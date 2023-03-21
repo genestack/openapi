@@ -1,0 +1,490 @@
+---
+swagger: "2.0"
+info:
+  description: "This swagger page describes the API endpoints to add, edit and remove groups.\
+    \ The endpoints are developed according to the SCIM 2.0 specification."
+  version: "default-released"
+  title: "ODM API"
+host: "unused"
+basePath: "/frontend/rs/genestack/scim-integration/default-released/scim"
+tags:
+- name: "Groups"
+schemes:
+- "https"
+paths:
+  /Groups:
+    get:
+      tags:
+      - "Groups"
+      summary: "Retrieve a list of available groups"
+      description: "The endpoint returns a list of groups that the user has access to:\
+        \ where the user is a member of the group or if the user has the \"Manage Groups\" permission,\
+        \ then a list of all groups.\n\
+        \ The list can be filtered by group attributes using the filter parameter.\
+        \ If no filtering parameters are passed, then all available groups are returned.\
+        \ If there are no groups in the response body, the endpoint returns 200 OK."
+      operationId: "findGroups"
+      produces:
+      - "application/scim+json"
+      parameters:
+      - name: "filter"
+        in: "query"
+        description: "Filter by group attributes. The parameter name is case-sensitive,\
+          \ therefore parameters FILTER, fiLter, and other options are ignored.\n\
+          \ Supported operators:\n\
+          \ &nbsp;&nbsp;eq - equal, the attribute and operator values must be identical for a match;\n\
+          \ &nbsp;&nbsp;Using other operators returns an error.\n\
+          \ Groups can be filtered by displayName only.\n\
+          \ Attribute names and attribute operators used in filters are case insensitive.\n\
+          \ Examples of the request:\n\
+          \ &nbsp;&nbsp;filter=displayName eq \"Curator\"."
+        required: false
+        type: "string"
+      - name: "excludedAttributes"
+        in: "query"
+        description: "If excludedAttributes=members is specified in the request,\
+          \ groups are returned without the members attribute.\
+          \ Other attributes are not supported in excludedAttributes parameter and ignored in the request\
+          \ → all attributes are returned in the response body."
+        required: false
+        type: "string"
+      - name: "startIndex"
+        in: "query"
+        description: "The 1-based index of the first result in the current set of list results."
+        required: false
+        type: "integer"
+        format: "int32"
+      - name: "count"
+        in: "query"
+        description: "The number of resources returned in a list response page. The value by default is 100."
+        required: false
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "The request was successful."
+          schema:
+            $ref: "#/definitions/FilterGroupsResponse"
+        400:
+          description: "Incorrect syntax in the request. See the error message for details."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+    post:
+      tags:
+        - "Groups"
+      summary: "Add a new user group"
+      description: "The endpoint creates a new user group in ODM. The endpoint does not update an existing group.\
+        \ A user who calls the endpoint is added to the group automatically with the \"Group admin\" role.\
+        \ The \"members\" attribute in the request body must be empty, otherwise the endpoint returns an error.\n\
+        \ The endpoint does not require any user permission.\n\
+        \ The endpoint does not check the uniqueness of the group name.\
+        \ The user can create any number of groups with the same name.\n\
+        \ If there are attributes in the request body that ODM does not support, then ODM ignores them."
+      operationId: "createGroup"
+      produces:
+        - "application/scim+json"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Group"
+      responses:
+        201:
+          description: "The operation is successful.\
+            \ The response body contains the representation of the newly created group."
+          schema:
+            $ref: "#/definitions/GroupResponse"
+        400:
+          description: "The object cannot be created, the supplied data or metadata are incorrect.\
+            \ See the error message for details."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+        409:
+          description: "The object cannot be created, data conflict. See the error message for details."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+      security:
+        - Genestack-API-Token: []
+        - Access-token: []
+  /Groups/{id}:
+    get:
+      tags:
+      - "Groups"
+      summary: "Retrieve a group by id"
+      description: "The endpoint returns a not deleted group by id, where id is an internal group id in ODM.\
+        \ Access to the group is required:\n\
+        \ &nbsp;&nbsp;- If the user has the \"Manage groups\" permission, the endpoint returns not deleted group\
+        \ on the instance regardless of user’s membership in this group;\n\
+        \ &nbsp;&nbsp;- If the user does not have the \"Manage groups\" permission, the endpoint returns only groups\
+        \ in which the user is a member. Otherwise, 404 Not Found is returned."
+      operationId: "getGroup"
+      produces:
+      - "application/scim+json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "String, unique identifier of the group in ODM."
+        required: true
+        type: "string"
+      - name: "excludedAttributes"
+        in: "query"
+        description: "If excludedAttributes=members is specified in the request,\
+                 \ Groups are returned without the members attribute.\
+                \ Other attributes are not supported in excludedAttributes parameter and ignored in the request → all\
+                \ attributes are returned in the response body."
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "The request was successful."
+          schema:
+            $ref: "#/definitions/GroupResponse"
+        400:
+          description: "The supplied group ID is invalid."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+        404:
+          description: "There are no available groups with the specified id."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+    patch:
+      tags:
+        - "Groups"
+      summary: "Update a group"
+      description: "The endpoint updates one or several attributes of a specific group,\
+        \ where id is internal group id in ODM. Also the endpoints adds a new user to the group\
+        \ and removes users from the group.\n\n\
+        \ Supported operators in the request body: replace, add, remove.\
+        \ For details of the syntax of using these operators,\
+        \ we recommend that you refer to the SCIM 2.0 specification.\n\n\
+        \ The list of group attributes that can be edited: displayName, externalId, members.\
+        \ If the user tries to edit other attributes, e.g. id, an error is returned.\
+        \ If the user tries to edit attributes that are not supported in the ODM group scheme,\
+        \ this attribute is ignored.\
+        \ If the request body includes only attributes that are not supported by ODM, the endpoint returns 200 OK.\n\n\
+        \ A PATCH request, regardless of the number of operations, is treated as atomic.\
+        \ If a single operation encounters an error condition, the original user attributes are restored,\
+        \ and a failure status is returned.\n\n\
+        \ The endpoint requires access to the group as admin of the group: the user has the \"Admin group\" role\
+        \ in the group or the user has the \"Manage groups\" permission."
+      operationId: "patchGroup"
+      produces:
+        - "application/scim+json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "String, unique identifier of the group in ODM."
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/GroupPatch"
+      responses:
+        204:
+          description: "Group is successfully updated. No data is returned"
+        400:
+          description: "The object cannot be updated, the supplied data or metadata are incorrect.\
+            \ See the error message for details."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+        403:
+          description: "Operation is not permitted. The \"Group admin\" role in the group\
+            \ or the \"Manage groups\" permission is required."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        404:
+          description: "There are no groups with the specified id."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+      security:
+        - Genestack-API-Token: []
+        - Access-token: []
+    delete:
+      tags:
+        - "Groups"
+      summary: "Delete a group"
+      description: "The endpoint deletes a group in ODM.\
+        \ The group can be deleted, even if it has members: admins and not admins.\
+        \ Users of this group are not deactivated.\n\
+        \ Permissions to call the endpoint:\n\
+        \ &nbsp;&nbsp;- If the user does not have the \"Manage groups\" permission:\n\
+        \ &nbsp;&nbsp;&nbsp;&nbsp;* the user has \"Group admin\" role - the user can delete the group;\n\
+        \ &nbsp;&nbsp;&nbsp;&nbsp;* the user has \"Group member\" role\
+        \ - the group can not be deleted, an error is returned;\n\
+        \ &nbsp;&nbsp;&nbsp;&nbsp;* the user is not a member of the specified group\
+        \ - the group can not be deleted, an error is returned.\n\
+        \ &nbsp;&nbsp;- If the user has the \"Manage groups\" permission\
+        \ - the user can delete the group regardless of user’s membership in this group."
+      operationId: "deleteGroup"
+      produces:
+        - "application/scim+json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "String, unique identifier of the group in ODM."
+          required: true
+          type: "string"
+      responses:
+        204:
+          description: "The group has been successfully removed. No data is returned."
+        400:
+          description: "The supplied group ID is invalid."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+        403:
+          description: "Operation is not permitted. The \"Group admin\" role in the group\
+                    \ or the \"Manage groups\" permission is required."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        404:
+          description: "There are no groups with the specified id."
+          schema:
+            $ref: "#/definitions/SCIMErrorResponse"
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+          schema:
+            $ref: "#/definitions/BaseErrorResponse"
+      security:
+        - Genestack-API-Token: []
+        - Access-token: []
+securityDefinitions:
+  Access-token:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+  Genestack-API-Token:
+    type: "apiKey"
+    name: "Genestack-API-Token"
+    in: "header"
+definitions:
+  Group:
+    type: "object"
+    required:
+      - "displayName"
+    properties:
+      externalId:
+        type: "string"
+        description: "External unique resource id"
+      id:
+        type: "string"
+        description: "Unique resource id"
+      schemas:
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "urn:ietf:params:scim:schemas:core:2.0:Group"
+      members:
+        type: "array"
+        items:
+          $ref: "#/definitions/Member"
+      displayName:
+        type: "string"
+  Member:
+    type: "object"
+    required:
+      - "value"
+      - "$ref"
+    properties:
+      value:
+        type: "string"
+      display:
+        type: "string"
+      $ref:
+        type: "string"
+        format: "uri"
+        description: "The URI of the member resource"
+  GroupPatch:
+    type: "object"
+    required:
+      - "Operations"
+      - "schemas"
+    properties:
+      Operations:
+        type: "array"
+        description: "Patch operations list"
+        items:
+          $ref: "#/definitions/PatchOperation"
+      schemas:
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+  PatchOperation:
+    type: "object"
+    required:
+      - "op"
+    properties:
+      op:
+        type: "string"
+        enum:
+          - "add"
+          - "replace"
+          - "remove"
+      path:
+        type: "string"
+      value:
+        type: "object"
+        description: "Corresponding 'value' of that field specified by 'path'"
+  FilterGroupsResponse:
+    type: "object"
+    properties:
+      Resources:
+        type: "array"
+        description: "List of groups"
+        items:
+          $ref: "#/definitions/GroupResponse"
+      itemsPerPage:
+        type: "integer"
+        format: "int64"
+      schemas:
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      startIndex:
+        type: "integer"
+        format: "int64"
+      totalResults:
+        type: "integer"
+        format: "int64"
+  GroupResponse:
+    allOf:
+      - $ref: "#/definitions/Group"
+      - type: "object"
+        properties:
+          meta:
+            $ref: "#/definitions/Meta"
+  Meta:
+    type: "object"
+    properties:
+      created:
+        type: "string"
+        format: "date-time"
+      lastModified:
+        type: "string"
+        format: "date-time"
+      resourceType:
+        type: "string"
+        enum:
+          - "User"
+          - "Group"
+    description: "resource metadata"
+  SCIMErrorResponse:
+    type: "object"
+    required:
+      - "status"
+    properties:
+      detail:
+        type: "string"
+        description: "Detailed error message"
+      schemas:
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "urn:ietf:params:scim:api:messages:2.0:Error"
+      scimType:
+        type: "string"
+        description: "Bad request type when status code is 400"
+        enum:
+          - "uniqueness"
+          - "tooMany"
+          - "mutability"
+          - "sensitive"
+          - "invalidSyntax"
+          - "invalidFilter"
+          - "invalidPath"
+          - "invalidValue"
+          - "invalidVers"
+          - "noTarget"
+      status:
+        type: "string"
+        description: "Same as HTTP status code, e.g. 400, 403, etc."
+  BaseErrorResponse:
+    type: "object"
+    required:
+      - "error"
+    properties:
+      error:
+        $ref: "#/definitions/ErrorMessage"
+  ErrorMessage:
+    type: "object"
+    required:
+      - "message"
+    properties:
+      message:
+        type: "string"
+        description: "Detailed error message"

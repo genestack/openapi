@@ -1,0 +1,146 @@
+{%- extends "base_template.jinja" %}
+
+{%- block title %}
+  <title>pRED Data Commons omics APIs</title>
+{%- endblock %}
+
+{%- block content %}
+  <style>
+    .underline-header {
+      text-decoration: underline;
+    }
+  </style>
+
+  <section>
+    <h1>Omics data in pRED Data Commons</h1>
+    <p>
+      In pRED the omics HDAP and integration layers are implemented within Genestack.
+      These pages describe programmatic access to Genestack via RESTful APIs.
+    </p>
+  </section>
+
+  {# Description section #}
+  <section>
+    <h4>How data is organised in Genestack</h4>
+    <p>
+      Genestack is organised into studies, samples and processed (experiment-derived/signal) data
+      for those samples. Curator endpoints allow dedicated curator users to edit and link data.
+      User endpoints allow data query/retrieval.
+    </p>
+    <div class="pictures">
+      <img
+        class="picture first"
+        alt="Data model"
+        src="//bio-test-data.s3.amazonaws.com/odm/Images/data_model.png"
+      />
+      <img
+        class="picture second"
+        alt="Metainfo editor"
+        src="//bio-test-data.s3.amazonaws.com/odm/Images/metainfo_editor.png"
+      />
+    </div>
+  </section>
+
+  <section>
+    <h4 class="underline-header">
+      User query/retrieval tasks
+    </h4>
+    <p>
+      These user endpoints allow all users to make omics queries.
+    </p>
+
+    {# Only Integration use should be in this section #}
+    <section>
+      <h5>Integration layer</h5>
+      <ul>
+        <li>
+          <a href="/swagger/?urls.primaryName=integrationUser">integrationUser</a> -
+          {{ sections["Query/retrieve data"]["integrationUser"] }}
+        </li>
+      </ul>
+    </section>
+
+    {# the rest user-related sections should be here #}
+    <section>
+      <h5>HDAPs</h5>
+      <ul>
+        {%- for name, comment in sections["Query/retrieve data"].items() %}
+          {%- if name != "integrationUser" %}
+            <li>
+              <a href="/swagger/?urls.primaryName={{ name }}">{{ name }}</a> -
+              {{ comment }}
+            </li>
+          {%- endif %}
+        {%- endfor %}
+      </ul>
+    </section>
+  </section>
+
+  <section>
+    <h4 class="underline-header">
+      Curation tasks
+    </h4>
+    <p>
+      These curator endpoints are only meant for a dedicated group of data curators.
+    </p>
+
+    <section>
+      <h5>
+        Integration layer
+      </h5>
+      <ul>
+        {%- for name, comment in sections["Import/curate data"].items() %}
+          {%- if name in ["integrationCurator", "arvados-importer", "tasks"] %}
+            <li>
+              <a href="/swagger/?urls.primaryName={{ name }}">{{ name }}</a> -
+              {{ comment }}
+            </li>
+          {%- endif %}
+        {%- endfor %}
+      </ul>
+    </section>
+
+    <section>
+      <h5>
+        HDAPs
+      </h5>
+      <ul>
+        {%- for name, comment in sections["Import/curate data"].items() %}
+          {%- if name not in ["integrationCurator", "arvados-importer", "tasks"] %}
+            <li>
+              <a href="/swagger/?urls.primaryName={{ name }}">{{ name }}</a> -
+              {{ comment }}
+            </li>
+          {%- endif %}
+        {%- endfor %}
+      </ul>
+    </section>
+  </section>
+
+  <section>
+    <h5>
+      Data sources
+    </h5>
+    <ul>
+      <li>
+        <a href="/swagger/?urls.primaryName=reference-data">reference-data</a> -
+        {{ sections["Data sources"]["reference-data"] }}
+      </li>
+    </ul>
+  </section>
+
+  {# API tokens section #}
+  <section>
+    <h4>API Tokens</h4>
+    <p>
+      All API usage (including via the above example scripts) requires authentication.
+      You can use either Access token from an identity provider, e.g. Azure AD, or
+      <a
+        href="https://odm-user-guide.readthedocs.io/en/development/doc-odm-user-guide/getting-a-genestack-api-token.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Genestack API token.</a>
+      To specify the Access token use the “Authorization” header, to specify the Genestack API token use the “Genestack-Api-Token” header.</p>
+      <p>Note: access token takes precedence, meaning that if both tokens are supplied, the access token will be used for processing the request.</p>
+  </section>
+{%- endblock %}
