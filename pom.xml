@@ -70,63 +70,588 @@
                     <generateModelTests>false</generateModelTests>
                 </configuration>
                 <executions>
-
                     <!--Clients-->
                     <!--python client for integration-->
-                    <execution><id>python for ${integrationCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${integrationCurator.package}</packageName><projectName>${integrationCurator.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${integrationCurator.app}.yaml</inputSpec><output>../generated/python/${integrationCurator.app}</output><language>python</language></configuration></execution>
-                    <execution><id>python for ${integrationUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${integrationUser.package}</packageName><projectName>${integrationUser.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${integrationUser.app}.yaml</inputSpec><output>../generated/python/${integrationUser.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${integrationCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${integrationCurator.package}</packageName>
+                                <projectName>${integrationCurator.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${integrationCurator.app}.yaml</inputSpec>
+                            <output>generated/python/${integrationCurator.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${integrationUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${integrationUser.package}</packageName>
+                                <projectName>${integrationUser.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${integrationUser.app}.yaml</inputSpec>
+                            <output>generated/python/${integrationUser.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
                     <!--python client for study-->
-                    <execution><id>python for ${studyCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${studyCurator.package}</packageName><projectName>${studyCurator.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${studyCurator.app}.yaml</inputSpec><output>../generated/python/${studyCurator.app}</output><language>python</language></configuration></execution>
-                    <execution><id>python for ${studyUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${studyUser.package}</packageName><projectName>${studyUser.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${studyUser.app}.yaml</inputSpec><output>../generated/python/${studyUser.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${studyCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${studyCurator.package}</packageName>
+                                <projectName>${studyCurator.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${studyCurator.app}.yaml</inputSpec>
+                            <output>generated/python/${studyCurator.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${studyUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${studyUser.package}</packageName>
+                                <projectName>${studyUser.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${studyUser.app}.yaml</inputSpec>
+                            <output>generated/python/${studyUser.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
                     <!--python client for sample-->
-                    <execution><id>python for ${sampleCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${sampleCurator.package}</packageName><projectName>${sampleCurator.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${sampleCurator.app}.yaml</inputSpec><output>../generated/python/${sampleCurator.app}</output><language>python</language></configuration></execution>
-                    <execution><id>python for ${sampleUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${sampleUser.package}</packageName><projectName>${sampleUser.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${sampleUser.app}.yaml</inputSpec><output>../generated/python/${sampleUser.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${sampleCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${sampleCurator.package}</packageName>
+                                <projectName>${sampleCurator.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${sampleCurator.app}.yaml</inputSpec>
+                            <output>generated/python/${sampleCurator.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${sampleUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${sampleUser.package}</packageName>
+                                <projectName>${sampleUser.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${sampleUser.app}.yaml</inputSpec>
+                            <output>generated/python/${sampleUser.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
                     <!--python client for library-->
-                    <execution><id>python for ${libraryCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${libraryCurator.package}</packageName><projectName>${libraryCurator.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${libraryCurator.app}.yaml</inputSpec><output>../generated/python/${libraryCurator.app}</output><language>python</language></configuration></execution>
-                    <execution><id>python for ${libraryUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${libraryUser.package}</packageName><projectName>${libraryUser.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${libraryUser.app}.yaml</inputSpec><output>../generated/python/${libraryUser.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${libraryCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${libraryCurator.package}</packageName>
+                                <projectName>${libraryCurator.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${libraryCurator.app}.yaml</inputSpec>
+                            <output>generated/python/${libraryCurator.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${libraryUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${libraryUser.package}</packageName>
+                                <projectName>${libraryUser.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${libraryUser.app}.yaml</inputSpec>
+                            <output>generated/python/${libraryUser.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
                     <!--python client for preparations-->
-                    <execution><id>python for ${preparationCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${preparationCurator.package}</packageName><projectName>${preparationCurator.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${preparationCurator.app}.yaml</inputSpec><output>../generated/python/${preparationCurator.app}</output><language>python</language></configuration></execution>
-                    <execution><id>python for ${preparationUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${preparationUser.package}</packageName><projectName>${preparationUser.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${preparationUser.app}.yaml</inputSpec><output>../generated/python/${preparationUser.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${preparationCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${preparationCurator.package}</packageName>
+                                <projectName>${preparationCurator.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${preparationCurator.app}.yaml</inputSpec>
+                            <output>generated/python/${preparationCurator.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${preparationUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${preparationUser.package}</packageName>
+                                <projectName>${preparationUser.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${preparationUser.app}.yaml</inputSpec>
+                            <output>generated/python/${preparationUser.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
                     <!--python client for variant-->
-                    <execution><id>python for ${variantCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${variantCurator.package}</packageName><projectName>${variantCurator.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${variantCurator.app}.yaml</inputSpec><output>../generated/python/${variantCurator.app}</output><language>python</language></configuration></execution>
-                    <execution><id>python for ${variantUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${variantUser.package}</packageName><projectName>${variantUser.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${variantUser.app}.yaml</inputSpec><output>../generated/python/${variantUser.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${variantCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${variantCurator.package}</packageName>
+                                <projectName>${variantCurator.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${variantCurator.app}.yaml</inputSpec>
+                            <output>generated/python/${variantCurator.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${variantUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${variantUser.package}</packageName>
+                                <projectName>${variantUser.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${variantUser.app}.yaml</inputSpec>
+                            <output>generated/python/${variantUser.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
                     <!--python client for flow-cytometry-->
-                    <execution><id>python for ${flowCytometryCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${flowCytometryCurator.package}</packageName><projectName>${flowCytometryCurator.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${flowCytometryCurator.app}.yaml</inputSpec><output>../generated/python/${flowCytometryCurator.app}</output><language>python</language></configuration></execution>
-                    <execution><id>python for ${flowCytometryUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${flowCytometryUser.package}</packageName><projectName>${flowCytometryUser.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${flowCytometryUser.app}.yaml</inputSpec><output>../generated/python/${flowCytometryUser.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${flowCytometryCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${flowCytometryCurator.package}</packageName>
+                                <projectName>${flowCytometryCurator.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${flowCytometryCurator.app}.yaml</inputSpec>
+                            <output>generated/python/${flowCytometryCurator.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${flowCytometryUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${flowCytometryUser.package}</packageName>
+                                <projectName>${flowCytometryUser.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${flowCytometryUser.app}.yaml</inputSpec>
+                            <output>generated/python/${flowCytometryUser.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
                     <!--python client for expression-->
-                    <execution><id>python for ${expressionCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${expressionCurator.package}</packageName><projectName>${expressionCurator.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${expressionCurator.app}.yaml</inputSpec><output>../generated/python/${expressionCurator.app}</output><language>python</language></configuration></execution>
-                    <execution><id>python for ${expressionUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${expressionUser.package}</packageName><projectName>${expressionUser.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${expressionUser.app}.yaml</inputSpec><output>../generated/python/${expressionUser.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${expressionCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${expressionCurator.package}</packageName>
+                                <projectName>${expressionCurator.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${expressionCurator.app}.yaml</inputSpec>
+                            <output>generated/python/${expressionCurator.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${expressionUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${expressionUser.package}</packageName>
+                                <projectName>${expressionUser.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${expressionUser.app}.yaml</inputSpec>
+                            <output>generated/python/${expressionUser.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
                     <!--python client for tasks-->
-                    <execution><id>python for ${tasks.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${tasks.package}</packageName><projectName>${tasks.app}</projectName></configOptions><templateDirectory>templates/python</templateDirectory><inputSpec>openapi/default/${tasks.app}.yaml</inputSpec><output>../generated/python/${tasks.app}</output><language>python</language></configuration></execution>
+                    <execution>
+                        <id>python for ${tasks.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${tasks.package}</packageName>
+                                <projectName>${tasks.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${tasks.app}.yaml</inputSpec>
+                            <output>generated/python/${tasks.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
 
 
                     <!--r client for integration-->
-                    <execution><id>r for ${integrationCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${integrationCurator.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${integrationCurator.app}.yaml</inputSpec><output>../generated/r/${integrationCurator.app}</output><language>r</language></configuration></execution>
-                    <execution><id>r for ${integrationUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${integrationUser.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${integrationUser.app}.yaml</inputSpec><output>../generated/r/${integrationUser.app}</output><language>r</language></configuration></execution>
+                    <execution>
+                        <id>r for ${integrationCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${integrationCurator.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${integrationCurator.app}.yaml</inputSpec>
+                            <output>generated/r/${integrationCurator.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${integrationUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${integrationUser.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${integrationUser.app}.yaml</inputSpec>
+                            <output>generated/r/${integrationUser.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                     <!--r client for study-->
-                    <execution><id>r for ${studyCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${studyCurator.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${studyCurator.app}.yaml</inputSpec><output>../generated/r/${studyCurator.app}</output><language>r</language></configuration></execution>
-                    <execution><id>r for ${studyUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${studyUser.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${studyUser.app}.yaml</inputSpec><output>../generated/r/${studyUser.app}</output><language>r</language></configuration></execution>
+                    <execution>
+                        <id>r for ${studyCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${studyCurator.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${studyCurator.app}.yaml</inputSpec>
+                            <output>generated/r/${studyCurator.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${studyUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${studyUser.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${studyUser.app}.yaml</inputSpec>
+                            <output>generated/r/${studyUser.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                     <!--r client for sample-->
-                    <execution><id>r for ${sampleCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${sampleCurator.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${sampleCurator.app}.yaml</inputSpec><output>../generated/r/${sampleCurator.app}</output><language>r</language></configuration></execution>
-                    <execution><id>r for ${sampleUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${sampleUser.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${sampleUser.app}.yaml</inputSpec><output>../generated/r/${sampleUser.app}</output><language>r</language></configuration></execution>
+                    <execution>
+                        <id>r for ${sampleCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${sampleCurator.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${sampleCurator.app}.yaml</inputSpec>
+                            <output>generated/r/${sampleCurator.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${sampleUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${sampleUser.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${sampleUser.app}.yaml</inputSpec>
+                            <output>generated/r/${sampleUser.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                     <!--r client for library-->
-                    <execution><id>r for ${libraryCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${libraryCurator.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${libraryCurator.app}.yaml</inputSpec><output>../generated/r/${libraryCurator.app}</output><language>r</language></configuration></execution>
-                    <execution><id>r for ${libraryUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${libraryUser.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${libraryUser.app}.yaml</inputSpec><output>../generated/r/${libraryUser.app}</output><language>r</language></configuration></execution>
+                    <execution>
+                        <id>r for ${libraryCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${libraryCurator.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${libraryCurator.app}.yaml</inputSpec>
+                            <output>generated/r/${libraryCurator.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${libraryUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${libraryUser.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${libraryUser.app}.yaml</inputSpec>
+                            <output>generated/r/${libraryUser.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                     <!--r client for preparation-->
-                    <execution><id>r for ${preparationCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${preparationCurator.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${preparationCurator.app}.yaml</inputSpec><output>../generated/r/${preparationCurator.app}</output><language>r</language></configuration></execution>
-                    <execution><id>r for ${preparationUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${preparationUser.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${preparationUser.app}.yaml</inputSpec><output>../generated/r/${preparationUser.app}</output><language>r</language></configuration></execution>
+                    <execution>
+                        <id>r for ${preparationCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${preparationCurator.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${preparationCurator.app}.yaml</inputSpec>
+                            <output>generated/r/${preparationCurator.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${preparationUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${preparationUser.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${preparationUser.app}.yaml</inputSpec>
+                            <output>generated/r/${preparationUser.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                     <!--r client for variant-->
-                    <execution><id>r for ${variantCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${variantCurator.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${variantCurator.app}.yaml</inputSpec><output>../generated/r/${variantCurator.app}</output><language>r</language></configuration></execution>
-                    <execution><id>r for ${variantUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${variantUser.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${variantUser.app}.yaml</inputSpec><output>../generated/r/${variantUser.app}</output><language>r</language></configuration></execution>
+                    <execution>
+                        <id>r for ${variantCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${variantCurator.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${variantCurator.app}.yaml</inputSpec>
+                            <output>generated/r/${variantCurator.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${variantUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${variantUser.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${variantUser.app}.yaml</inputSpec>
+                            <output>generated/r/${variantUser.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                     <!--r client for flow-cytometry-->
-                    <execution><id>r for ${flowCytometryCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${flowCytometryCurator.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${flowCytometryCurator.app}.yaml</inputSpec><output>../generated/r/${flowCytometryCurator.app}</output><language>r</language></configuration></execution>
-                    <execution><id>r for ${flowCytometryUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${flowCytometryUser.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${flowCytometryUser.app}.yaml</inputSpec><output>../generated/r/${flowCytometryUser.app}</output><language>r</language></configuration></execution>
+                    <execution>
+                        <id>r for ${flowCytometryCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${flowCytometryCurator.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${flowCytometryCurator.app}.yaml</inputSpec>
+                            <output>generated/r/${flowCytometryCurator.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${flowCytometryUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${flowCytometryUser.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${flowCytometryUser.app}.yaml</inputSpec>
+                            <output>generated/r/${flowCytometryUser.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                     <!--r client for expression-->
-                    <execution><id>r for ${expressionCurator.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${expressionCurator.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${expressionCurator.app}.yaml</inputSpec><output>../generated/r/${expressionCurator.app}</output><language>r</language></configuration></execution>
-                    <execution><id>r for ${expressionUser.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${expressionUser.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${expressionUser.app}.yaml</inputSpec><output>../generated/r/${expressionUser.app}</output><language>r</language></configuration></execution>
+                    <execution>
+                        <id>r for ${expressionCurator.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${expressionCurator.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${expressionCurator.app}.yaml</inputSpec>
+                            <output>generated/r/${expressionCurator.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${expressionUser.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${expressionUser.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${expressionUser.app}.yaml</inputSpec>
+                            <output>generated/r/${expressionUser.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                     <!--r client for tasks-->
-                    <execution><id>r for ${tasks.app}</id><phase>prepare-package</phase><goals><goal>generate</goal></goals><configuration><configOptions><packageName>${tasks.app}</packageName></configOptions><templateDirectory>templates/r</templateDirectory><inputSpec>openapi/default/${tasks.app}.yaml</inputSpec><output>../generated/r/${tasks.app}</output><language>r</language></configuration></execution>
-
+                    <execution>
+                        <id>r for ${tasks.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${tasks.app}</packageName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${tasks.app}.yaml</inputSpec>
+                            <output>generated/r/${tasks.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -134,43 +659,483 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <executions>
                     <!--Docs for python-->
-                    <execution><id>Documentation python ${integrationCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${integrationCurator.app}</argument><argument>${integrationCurator.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${integrationUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${integrationUser.app}</argument><argument>${integrationUser.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${studyCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${studyCurator.app}</argument><argument>${studyCurator.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${studyUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${studyUser.app}</argument><argument>${studyUser.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${sampleCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${sampleCurator.app}</argument><argument>${sampleCurator.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${sampleUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${sampleUser.app}</argument><argument>${sampleUser.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${libraryCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${libraryCurator.app}</argument><argument>${libraryCurator.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${libraryUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${libraryUser.app}</argument><argument>${libraryUser.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${preparationCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${preparationCurator.app}</argument><argument>${preparationCurator.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${preparationUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${preparationUser.app}</argument><argument>${preparationUser.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${variantCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${variantCurator.app}</argument><argument>${variantCurator.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${variantUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${variantUser.app}</argument><argument>${variantUser.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${flowCytometryCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${flowCytometryCurator.app}</argument><argument>${flowCytometryCurator.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${flowCytometryUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${flowCytometryUser.app}</argument><argument>${flowCytometryUser.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${expressionCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${expressionCurator.app}</argument><argument>${expressionCurator.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${expressionUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${expressionUser.app}</argument><argument>${expressionUser.package}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation python ${tasks.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/python/generate_documentation.sh</executable><arguments><argument>${tasks.app}</argument><argument>${tasks.package}</argument></arguments></configuration></execution>
+                    <execution>
+                        <id>Documentation python ${integrationCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${integrationCurator.app}</argument>
+                                <argument>${integrationCurator.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${integrationUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${integrationUser.app}</argument>
+                                <argument>${integrationUser.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${studyCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${studyCurator.app}</argument>
+                                <argument>${studyCurator.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${studyUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${studyUser.app}</argument>
+                                <argument>${studyUser.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${sampleCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${sampleCurator.app}</argument>
+                                <argument>${sampleCurator.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${sampleUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${sampleUser.app}</argument>
+                                <argument>${sampleUser.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${libraryCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${libraryCurator.app}</argument>
+                                <argument>${libraryCurator.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${libraryUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${libraryUser.app}</argument>
+                                <argument>${libraryUser.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${preparationCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${preparationCurator.app}</argument>
+                                <argument>${preparationCurator.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${preparationUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${preparationUser.app}</argument>
+                                <argument>${preparationUser.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${variantCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${variantCurator.app}</argument>
+                                <argument>${variantCurator.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${variantUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${variantUser.app}</argument>
+                                <argument>${variantUser.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${flowCytometryCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${flowCytometryCurator.app}</argument>
+                                <argument>${flowCytometryCurator.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${flowCytometryUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${flowCytometryUser.app}</argument>
+                                <argument>${flowCytometryUser.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${expressionCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${expressionCurator.app}</argument>
+                                <argument>${expressionCurator.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${expressionUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${expressionUser.app}</argument>
+                                <argument>${expressionUser.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python ${tasks.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${tasks.app}</argument>
+                                <argument>${tasks.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
                     <!--Docs for r-->
-                    <execution><id>Documentation r ${integrationCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${integrationCurator.app}</argument><argument>${integrationCurator.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${integrationUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${integrationUser.app}</argument><argument>${integrationUser.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${studyCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${studyCurator.app}</argument><argument>${studyCurator.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${studyUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${studyUser.app}</argument><argument>${studyUser.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${sampleCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${sampleCurator.app}</argument><argument>${sampleCurator.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${sampleUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${sampleUser.app}</argument><argument>${sampleUser.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${libraryCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${libraryCurator.app}</argument><argument>${libraryCurator.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${libraryUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${libraryUser.app}</argument><argument>${libraryUser.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${preparationCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${preparationCurator.app}</argument><argument>${preparationCurator.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${preparationUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${preparationUser.app}</argument><argument>${preparationUser.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${variantCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${variantCurator.app}</argument><argument>${variantCurator.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${variantUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${variantUser.app}</argument><argument>${variantUser.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${flowCytometryCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${flowCytometryCurator.app}</argument><argument>${flowCytometryCurator.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${flowCytometryUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${flowCytometryUser.app}</argument><argument>${flowCytometryUser.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${expressionCurator.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${expressionCurator.app}</argument><argument>${expressionCurator.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${expressionUser.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${expressionUser.app}</argument><argument>${expressionUser.app}</argument></arguments></configuration></execution>
-                    <execution><id>Documentation r ${tasks.app}</id><phase>package</phase><goals><goal>exec</goal></goals><configuration><executable>docs/r/generate_documentation.sh</executable><arguments><argument>${tasks.app}</argument><argument>${tasks.app}</argument></arguments></configuration></execution>
-
-
+                    <execution>
+                        <id>Documentation r ${integrationCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${integrationCurator.app}</argument>
+                                <argument>${integrationCurator.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${integrationUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${integrationUser.app}</argument>
+                                <argument>${integrationUser.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${studyCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${studyCurator.app}</argument>
+                                <argument>${studyCurator.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${studyUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${studyUser.app}</argument>
+                                <argument>${studyUser.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${sampleCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${sampleCurator.app}</argument>
+                                <argument>${sampleCurator.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${sampleUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${sampleUser.app}</argument>
+                                <argument>${sampleUser.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${libraryCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${libraryCurator.app}</argument>
+                                <argument>${libraryCurator.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${libraryUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${libraryUser.app}</argument>
+                                <argument>${libraryUser.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${preparationCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${preparationCurator.app}</argument>
+                                <argument>${preparationCurator.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${preparationUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${preparationUser.app}</argument>
+                                <argument>${preparationUser.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${variantCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${variantCurator.app}</argument>
+                                <argument>${variantCurator.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${variantUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${variantUser.app}</argument>
+                                <argument>${variantUser.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${flowCytometryCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${flowCytometryCurator.app}</argument>
+                                <argument>${flowCytometryCurator.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${flowCytometryUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${flowCytometryUser.app}</argument>
+                                <argument>${flowCytometryUser.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${expressionCurator.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${expressionCurator.app}</argument>
+                                <argument>${expressionCurator.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${expressionUser.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${expressionUser.app}</argument>
+                                <argument>${expressionUser.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${tasks.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${tasks.app}</argument>
+                                <argument>${tasks.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <!--Remove temp files after documentation generation-->
@@ -186,22 +1151,22 @@
                         <configuration>
                             <target>
                                 <delete includeEmptyDirs="true">
-                                    <fileset dir="../generated"
+                                    <fileset dir="generated"
                                              includes="**/.swagger-codegen-ignore"/>
-                                    <fileset dir="../generated"
+                                    <fileset dir="generated"
                                              includes="**/.swagger-codegen/"/>
-                                    <fileset dir="../generated/python" includes="*/docs/"/>
-                                    <fileset dir="../generated/python" includes="*/README.md"/>
-                                    <fileset dir="../generated/python"
+                                    <fileset dir="generated/python" includes="*/docs/"/>
+                                    <fileset dir="generated/python" includes="*/README.md"/>
+                                    <fileset dir="generated/python"
                                              includes="*/sphinx_docs/.doctrees/"/>
-                                    <fileset dir="../generated/python"
+                                    <fileset dir="generated/python"
                                              includes="*/sphinx_docs/objects.inv"/>
-                                    <fileset dir="../generated/python"
+                                    <fileset dir="generated/python"
                                              includes="*/sphinx_docs/.buildinfo"/>
-                                    <fileset dir="../generated/python" includes="**.pyc/"/>
-                                    <fileset dir="../generated/python"
+                                    <fileset dir="generated/python" includes="**.pyc/"/>
+                                    <fileset dir="generated/python"
                                              includes="*/*/source/"/>
-                                    <fileset dir="../generated/r"
+                                    <fileset dir="generated/r"
                                              includes="*/.Rbuildignore"/>
                                 </delete>
                             </target>

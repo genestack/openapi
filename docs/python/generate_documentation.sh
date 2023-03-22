@@ -5,7 +5,7 @@ PACKAGE_NAME="${2?PACKAGE_NAME needs to be defined}"
 
 
 SCRIPT_PATH=${0%/*}
-GENERATED_CLIENT_PATH=${SCRIPT_PATH}/../../../generated/python/${APP_ID}/${PACKAGE_NAME}
+GENERATED_CLIENT_PATH=${SCRIPT_PATH}/../../generated/python/${APP_ID}/${PACKAGE_NAME}
 
 
 # Copy source/ folder with conf.py, _static/ and _templates/

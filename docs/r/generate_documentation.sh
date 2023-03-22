@@ -3,7 +3,7 @@
 SCRIPT_PATH=${0%/*}
 
 # Set CLIENT_PATH bash variable to the R package actual path
-CLIENT_PATH=${SCRIPT_PATH}/../../../generated/r/${1}/
+CLIENT_PATH=${SCRIPT_PATH}/../../generated/r/${1}/
 
 # Reformat roxygen strings within sources
 python ${SCRIPT_PATH}/prepare_roxygen_r_files.py --source-folder ${CLIENT_PATH}/R/
