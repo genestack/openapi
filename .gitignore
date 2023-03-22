@@ -1,6 +1,8 @@
 .DS_Store
 .idea
 
+generated
+
 # Maven stuff
 .flattened-pom.xml
 .ci-friendly-pom.xml

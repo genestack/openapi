@@ -10,7 +10,7 @@
 
     <properties>
         <!--suppress UnresolvedMavenProperty -->
-        <platform-version>${env.ODM_OPENAPI_VERSION}</platform-version>
+        <revision>${env.ODM_OPENAPI_VERSION}</revision>
         <!--REST configurations-->
         <integrationCurator.app>integrationCurator</integrationCurator.app>
         <integrationCurator.package>integration_curator</integrationCurator.package>
