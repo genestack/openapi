@@ -1,0 +1,26 @@
+VERSION 0.7
+
+ARG --global --required HARBOR_DOCKER_HUB_MIRROR
+
+swagger-ui:
+    FROM ${HARBOR_DOCKER_HUB_MIRROR}/swaggerapi/swagger-ui:v4.15.5
+
+    # TODO: probably we have to move to fs after with fix client-generator
+    COPY default/index.html /usr/share/nginx/html/helper/index.html
+    COPY default/*yaml /usr/share/nginx/html/yaml/
+    COPY fs /
+
+    RUN apk add bash --no-cache && \
+        rewrite_entrypoint.sh && \
+        apk del bash
+
+    # IDK why it's required
+    RUN ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml
+    RUN sed -i '/^.*default_type.*/a include log.conf;' /etc/nginx/nginx.conf && \
+        sed -i '/host:/d' /usr/share/nginx/html/yaml/*.yaml && \
+        sed -i '/^.*swagger-ui.css.*>$/a \ \ \ \ <link rel="stylesheet" type="text/css" href="./gs-swagger-ui.css" >' /usr/share/nginx/html/index.html
+
+    ENTRYPOINT ["/genestack-docker-entrypoint.sh"]
+    CMD ["nginx", "-g", "daemon off;"]
+
+    SAVE IMAGE --cache-hint

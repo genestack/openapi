@@ -1,0 +1,124 @@
+---
+swagger: "2.0"
+info:
+  description: "These API endpoints serve to import or reimport project from Arvados.\n"
+  version: "v0.1"
+  title: "Arvados-Importer API"
+host: "unused"
+basePath: "/frontend/rs/genestack/arvados-importer/v0.1"
+tags:
+- name: "Arvados Importer API"
+schemes:
+- "https"
+paths:
+  /arvados-importer/api/import:
+    post:
+      tags:
+      - "Arvados Importer API"
+      summary: "Imports a new project from Arvados and creates a corresponding study\
+        \ with associated samples and signal data."
+      description: "In the request body provide an Arvados project URL and optionally\
+        \ a version message that is used as the title for metadata versions of imported\
+        \ objects."
+      operationId: "importProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "payload"
+        required: false
+        schema:
+          $ref: "#/definitions/RequestPayload"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/IImportResult"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+  /arvados-importer/api/reimport:
+    post:
+      tags:
+      - "Arvados Importer API"
+      summary: "Updates a previously imported Arvados project by creating new metadata\
+        \ versions of each object in a study."
+      description: "In the request body provide an Arvados project URL and mandatory\
+        \ version message to explain the reasons for reimporting."
+      operationId: "reimportProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "payload"
+        required: false
+        schema:
+          $ref: "#/definitions/RequestPayload"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/IImportResult"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+  /arvados-importer/api/status:
+    post:
+      tags:
+      - "Arvados Importer API"
+      summary: "Check if a particular Arvados project has already been imported."
+      description: "In the request body provide an Arvados project URL."
+      operationId: "check"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "payload"
+        required: false
+        schema:
+          $ref: "#/definitions/RequestPayloadUrlOnly"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/IImportResult"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+securityDefinitions:
+  Access-token:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+  Genestack-API-Token:
+    type: "apiKey"
+    name: "Genestack-API-Token"
+    in: "header"
+definitions:
+  IImportResult:
+    type: "object"
+    properties:
+      resultStatus:
+        type: "string"
+        enum:
+        - "FATAL"
+        - "FAILED"
+        - "SUCCESS"
+  RequestPayload:
+    type: "object"
+    properties:
+      arvadosProjectURL:
+        type: "string"
+      versionMessage:
+        type: "string"
+  RequestPayloadUrlOnly:
+    type: "object"
+    properties:
+      arvadosProjectURL:
+        type: "string"

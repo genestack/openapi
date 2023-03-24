@@ -1,2 +1,15 @@
 .DS_Store
 .idea
+
+generated
+
+# Maven stuff
+.flattened-pom.xml
+.ci-friendly-pom.xml
+target
+
+# Earthly stuff
+.env
+.env-woq
+.arg
+.secret
