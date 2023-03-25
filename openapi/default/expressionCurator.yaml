@@ -60,14 +60,17 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
+        description: "Allows to get an extended or updated response body. Available values:\n
+        `term_id` - returns extended information including IDs for values and dictionaries;\n
+        `multi_values` - returns data with several feature attributes and several sample
+         measurements in the response body."
         required: false
-        type: "string"
-        enum:
-        - "term_id"
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
       - name: "filter"
         in: "query"
         description: "Filter by expression metadata (key-value metadata pair(s)).\
@@ -107,6 +110,23 @@ paths:
         required: false
         type: "number"
         format: "double"
+#      - name: "minValueKeys"
+#        in: "query"
+#        description: "Column names for which you want to set minimum thresholds (inclusive)."
+#        required: false
+#        type: "array"
+#        items:
+#          type: "string"
+#        collectionformat: "multi"
+#        uniqueItems: true
+#      - name: "minValueValues"
+#        in: "query"
+#        description: "Minimum thresholds (inclusive) for each column set in minValueKeys."
+#        required: false
+#        type: "array"
+#        items:
+#          type: "number"
+#        collectionFormat: "multi"
       - name: "featureList"
         in: "query"
         description: "List of features to return. These features must match exactly\
@@ -381,7 +401,7 @@ paths:
         \ no `query` parameter. Doing so returns a list of all data objects."
       operationId: "searchGroups"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -483,7 +503,7 @@ paths:
       description: ""
       operationId: "getGroupByRun"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -540,7 +560,7 @@ paths:
       description: ""
       operationId: "getGroup"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -764,14 +784,17 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
+        description: "Allows to get an extended or updated response body. Available values:\n
+        `term_id` - returns extended information including IDs for values and dictionaries;\n
+        `multi_values` - returns data with several feature attributes and several sample
+         measurements in the response body."
         required: false
-        type: "string"
-        enum:
-        - "term_id"
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
       - name: "id"
         in: "path"
         description: "Unique identifier (accession) of the object."
@@ -909,7 +932,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1033,6 +1056,21 @@ definitions:
       expression:
         type: "number"
         format: "double"
+        example: 1.82
+        readOnly: true
+      features:
+        type: "object"
+        example:
+          genes: MYO9A,
+          groupingKey: VRSLGGISPSEDRR
+        readOnly: true
+      values:
+        type: "object"
+        additionalProperties:
+          type: "number"
+          format: "double"
+        example:
+          expression: 1.82
         readOnly: true
       description:
         type: "string"
@@ -1131,3 +1169,7 @@ definitions:
       previousVersion:
         type: "string"
         description: "Accession of matrix group or matrix group version chain."
+      numberOfFeatureAttributes:
+        type: "integer"
+        example: 5
+        description: "Integer value that specifies the number of columns related to the feature in the uploaded data frame, and indicates the starting position of the sample data. This attribute is not needed if the uploaded file is in GCT format."

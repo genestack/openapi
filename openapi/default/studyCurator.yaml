@@ -50,7 +50,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -199,7 +199,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -376,7 +376,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."

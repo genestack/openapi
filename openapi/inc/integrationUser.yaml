@@ -135,7 +135,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -240,7 +240,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -344,7 +344,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -439,7 +439,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -707,7 +707,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -802,7 +802,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -975,7 +975,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1068,7 +1068,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1128,7 +1128,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1232,7 +1232,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1292,7 +1292,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1443,7 +1443,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1583,7 +1583,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1723,7 +1723,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1825,7 +1825,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1946,7 +1946,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2086,7 +2086,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2227,7 +2227,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2320,7 +2320,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2401,7 +2401,7 @@ paths:
       - "application/json"
       - "text/tab-separated-values"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2496,7 +2496,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2767,14 +2767,17 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
+        description: "Allows to get an extended or updated response body. Available values:\n
+        `term_id` - returns extended information including IDs for values and dictionaries;\n
+        `multi_values` - returns data with several feature attributes and several sample
+         measurements in the response body."
         required: false
-        type: "string"
-        enum:
-        - "term_id"
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
       - name: "studyFilter"
         in: "query"
         description: "Filter by study metadata (key-value metadata pair(s)). E.g.\
@@ -2989,7 +2992,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -3338,7 +3341,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -3560,7 +3563,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -3783,7 +3786,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -4005,7 +4008,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -4227,7 +4230,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
