@@ -63,7 +63,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -227,7 +227,7 @@ paths:
         \ no `query` parameter. Doing so returns a list of all data objects."
       operationId: "searchGroups"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -329,7 +329,7 @@ paths:
       description: ""
       operationId: "getGroupByRun"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -386,7 +386,7 @@ paths:
       description: ""
       operationId: "getGroup"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -502,7 +502,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -596,7 +596,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "include"
+      - name: "responseFormat"
         in: "query"
         description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."

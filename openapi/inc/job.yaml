@@ -50,7 +50,7 @@ paths:
         name: "body"
         required: false
         schema:
-          $ref: "#/definitions/ImportSignalRunRequest"
+          $ref: "#/definitions/ImportExpressionSignalRunRequest"
       responses:
         200:
           description: "successful operation"
@@ -373,6 +373,14 @@ definitions:
         type: "string"
         example: "GSF334953"
     description: "import signal data request"
+  ImportExpressionSignalRunRequest:
+    allOf:
+      - $ref: "#/definitions/ImportSignalRunRequest"
+    properties:
+      numberOfFeatureAttributes:
+        type: "integer"
+        example: 5
+        description: "Integer value that specifies the number of columns related to the feature in the uploaded data frame, and indicates the starting position of the sample data. This attribute is not needed if the uploaded file is in GCT format."
   Info:
     type: "object"
     required:
