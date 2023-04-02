@@ -54,18 +54,17 @@
         <plugins>
             <!-- Generate APIs -->
             <plugin>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>2.4.29</version>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.5.0</version>
                 <configuration>
                     <inputSpec/>
                     <output/>
-                    <language/>
+                    <generatorName/>
                     <configOptions>
                         <!-- read from VERSION file in the root of repository -->
                         <packageVersion>${project.version}</packageVersion>
                     </configOptions>
-                    <ignoreFileOverride>client/templates/.swagger-codegen-ignore</ignoreFileOverride>
                     <generateApiTests>false</generateApiTests>
                     <generateModelTests>false</generateModelTests>
                 </configuration>
@@ -86,7 +85,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${integrationCurator.app}.yaml</inputSpec>
                             <output>generated/python/${integrationCurator.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -103,7 +102,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${integrationUser.app}.yaml</inputSpec>
                             <output>generated/python/${integrationUser.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <!--python client for study-->
@@ -121,7 +120,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${studyCurator.app}.yaml</inputSpec>
                             <output>generated/python/${studyCurator.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -138,7 +137,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${studyUser.app}.yaml</inputSpec>
                             <output>generated/python/${studyUser.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <!--python client for sample-->
@@ -156,7 +155,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${sampleCurator.app}.yaml</inputSpec>
                             <output>generated/python/${sampleCurator.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -173,7 +172,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${sampleUser.app}.yaml</inputSpec>
                             <output>generated/python/${sampleUser.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <!--python client for library-->
@@ -191,7 +190,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${libraryCurator.app}.yaml</inputSpec>
                             <output>generated/python/${libraryCurator.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -208,7 +207,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${libraryUser.app}.yaml</inputSpec>
                             <output>generated/python/${libraryUser.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <!--python client for preparations-->
@@ -226,7 +225,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${preparationCurator.app}.yaml</inputSpec>
                             <output>generated/python/${preparationCurator.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -243,7 +242,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${preparationUser.app}.yaml</inputSpec>
                             <output>generated/python/${preparationUser.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <!--python client for variant-->
@@ -261,7 +260,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${variantCurator.app}.yaml</inputSpec>
                             <output>generated/python/${variantCurator.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -278,7 +277,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${variantUser.app}.yaml</inputSpec>
                             <output>generated/python/${variantUser.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <!--python client for flow-cytometry-->
@@ -296,7 +295,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${flowCytometryCurator.app}.yaml</inputSpec>
                             <output>generated/python/${flowCytometryCurator.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -313,7 +312,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${flowCytometryUser.app}.yaml</inputSpec>
                             <output>generated/python/${flowCytometryUser.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <!--python client for expression-->
@@ -331,7 +330,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${expressionCurator.app}.yaml</inputSpec>
                             <output>generated/python/${expressionCurator.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -348,7 +347,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${expressionUser.app}.yaml</inputSpec>
                             <output>generated/python/${expressionUser.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
                     <!--python client for tasks-->
@@ -366,7 +365,7 @@
                             <templateDirectory>templates/python</templateDirectory>
                             <inputSpec>openapi/default/${tasks.app}.yaml</inputSpec>
                             <output>generated/python/${tasks.app}</output>
-                            <language>python</language>
+                            <generatorName>python</generatorName>
                         </configuration>
                     </execution>
 
@@ -385,7 +384,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${integrationCurator.app}.yaml</inputSpec>
                             <output>generated/r/${integrationCurator.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -401,7 +400,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${integrationUser.app}.yaml</inputSpec>
                             <output>generated/r/${integrationUser.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <!--r client for study-->
@@ -418,7 +417,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${studyCurator.app}.yaml</inputSpec>
                             <output>generated/r/${studyCurator.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -434,7 +433,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${studyUser.app}.yaml</inputSpec>
                             <output>generated/r/${studyUser.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <!--r client for sample-->
@@ -451,7 +450,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${sampleCurator.app}.yaml</inputSpec>
                             <output>generated/r/${sampleCurator.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -467,7 +466,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${sampleUser.app}.yaml</inputSpec>
                             <output>generated/r/${sampleUser.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <!--r client for library-->
@@ -484,7 +483,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${libraryCurator.app}.yaml</inputSpec>
                             <output>generated/r/${libraryCurator.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -500,7 +499,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${libraryUser.app}.yaml</inputSpec>
                             <output>generated/r/${libraryUser.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <!--r client for preparation-->
@@ -517,7 +516,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${preparationCurator.app}.yaml</inputSpec>
                             <output>generated/r/${preparationCurator.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -533,7 +532,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${preparationUser.app}.yaml</inputSpec>
                             <output>generated/r/${preparationUser.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <!--r client for variant-->
@@ -550,7 +549,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${variantCurator.app}.yaml</inputSpec>
                             <output>generated/r/${variantCurator.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -566,7 +565,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${variantUser.app}.yaml</inputSpec>
                             <output>generated/r/${variantUser.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <!--r client for flow-cytometry-->
@@ -583,7 +582,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${flowCytometryCurator.app}.yaml</inputSpec>
                             <output>generated/r/${flowCytometryCurator.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -599,7 +598,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${flowCytometryUser.app}.yaml</inputSpec>
                             <output>generated/r/${flowCytometryUser.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <!--r client for expression-->
@@ -616,7 +615,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${expressionCurator.app}.yaml</inputSpec>
                             <output>generated/r/${expressionCurator.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <execution>
@@ -632,7 +631,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${expressionUser.app}.yaml</inputSpec>
                             <output>generated/r/${expressionUser.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                     <!--r client for tasks-->
@@ -649,7 +648,7 @@
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${tasks.app}.yaml</inputSpec>
                             <output>generated/r/${tasks.app}</output>
-                            <language>r</language>
+                            <generatorName>r</generatorName>
                         </configuration>
                     </execution>
                 </executions>
@@ -1139,41 +1138,6 @@
                 </executions>
             </plugin>
             <!--Remove temp files after documentation generation-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <delete includeEmptyDirs="true">
-                                    <fileset dir="generated"
-                                             includes="**/.swagger-codegen-ignore"/>
-                                    <fileset dir="generated"
-                                             includes="**/.swagger-codegen/"/>
-                                    <fileset dir="generated/python" includes="*/docs/"/>
-                                    <fileset dir="generated/python" includes="*/README.md"/>
-                                    <fileset dir="generated/python"
-                                             includes="*/sphinx_docs/.doctrees/"/>
-                                    <fileset dir="generated/python"
-                                             includes="*/sphinx_docs/objects.inv"/>
-                                    <fileset dir="generated/python"
-                                             includes="*/sphinx_docs/.buildinfo"/>
-                                    <fileset dir="generated/python" includes="**.pyc/"/>
-                                    <fileset dir="generated/python"
-                                             includes="*/*/source/"/>
-                                    <fileset dir="generated/r"
-                                             includes="*/.Rbuildignore"/>
-                                </delete>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>
