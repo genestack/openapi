@@ -3243,9 +3243,18 @@ paths:
       produces:
         - "text/csv"
       parameters:
-        - name: "sampleFilter"
-          in: "query"
-          description: "Filter by sample metadata (key-value metadata pair(s)). E.g.\
+      - name: "responseFormat"
+        in: "query"
+        description: "Allows to get an extended or updated response body. Available values:\n
+        `multi_values` - returns data with several feature attributes and several sample
+         measurements in the response body."
+        required: false
+        type: "string"
+        enum:
+          - "multi_values"
+      - name: "sampleFilter"
+        in: "query"
+        description: "Filter by sample metadata (key-value metadata pair(s)). E.g.\
           \ `\"Species or strain\"=\"Homo sapiens\"`\n"
           required: false
           type: "string"
@@ -3301,25 +3310,19 @@ paths:
           description: "Filter results by specific feature (eg. Gene identifier). The\
           \ feature parameter value must match the name of the identifier in the GCT\
           \ file (under the NAME column). Example: `ENSG00000077044`"
-          required: false
-          type: "array"
-          items:
-            type: "string"
-          collectionFormat: "multi"
-        #      - name: "exQuery"
-        #        in: "query"
-        #        description: "Search for objects linked to expression data and originally uploaded in GCT format via data query\
-        #          \ (key-value pair(s)), e.g.,`feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n"
-        #        required: false
-        #        type: "string"
-        - name: "groupAccession"
-          in: "query"
-          description: "Accession of the expression group object (GCT)"
-          required: true
+        required: false
+        type: "array"
+        items:
           type: "string"
-        - name: "roundDigits"
-          in: "query"
-          description: "The number of digits after the decimal point for floating-point\
+        collectionFormat: "multi"
+      - name: "groupAccession"
+        in: "query"
+        description: "Accession of the expression group object (GCT)"
+        required: true
+        type: "string"
+      - name: "roundDigits"
+        in: "query"
+        description: "The number of digits after the decimal point for floating-point\
           \ values. The final value is rounded up. Must be non-negative. The default\
           \ is 4."
           required: false
