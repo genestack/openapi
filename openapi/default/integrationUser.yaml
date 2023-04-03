@@ -3243,53 +3243,50 @@ paths:
       produces:
         - "text/csv"
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Allows to get an extended or updated response body. Available values:\n
-        `multi_values` - returns data with several feature attributes and several sample
-         measurements in the response body."
-        required: false
-        type: "string"
-        enum:
-          - "multi_values"
-      - name: "sampleFilter"
-        in: "query"
-        description: "Filter by sample metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Species or strain\"=\"Homo sapiens\"`\n"
+        - name: "responseFormat"
+          in: "query"
+          description: "Allows to get an extended or updated response body. Available values:\n
+          `multi_values` - returns data with several feature attributes and several sample \
+          measurements in the response body."
+          required: false
+          type: "string"
+          enum:
+            - "multi_values"
+        - name: "sampleFilter"
+          in: "query"
+          description: "Filter by sample metadata (key-value metadata pair(s)). E.g.\
+          `\"Species or strain\"=\"Homo sapiens\"`\n"
           required: false
           type: "string"
         - name: "sampleQuery"
           in: "query"
-          description: "Search for objects via a full-text query over all sample metadata\
-          \ fields. E.g. `Clozapine`. Queries matching dictionary terms are automatically\
-          \ expanded to include synonyms."
+          description: "Search for objects via a full-text query over all sample metadata \
+          fields. E.g. `Clozapine`. Queries matching dictionary terms are automatically \
+          expanded to include synonyms."
           required: false
           type: "string"
         - name: "libraryFilter"
           in: "query"
-          description: "Filter by library metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Library Type\"=RNA-Seq-1`"
+          description: "Filter by library metadata (key-value metadata pair(s)). E.g. `\"Library Type\"=RNA-Seq-1`"
           required: false
           type: "string"
         - name: "libraryQuery"
           in: "query"
-          description: "Search for library objects via a full-text query over all library\
-          \ metadata fields. E.g. `\"illumina HiSeq500\"`. Queries matching dictionary\
-          \ terms are automatically expanded to include synonyms."
+          description: "Search for library objects via a full-text query over all library \
+          metadata fields. E.g. `\"illumina HiSeq500\"`. Queries matching dictionary \
+          terms are automatically expanded to include synonyms."
           required: false
           type: "string"
         - name: "preparationFilter"
           in: "query"
-          description: "Filter by preparation metadata (key-value metadata pair(s)).\
-          \ E.g. `Digestion=Trypsin`"
+          description: "Filter by preparation metadata (key-value metadata pair(s)). E.g. `Digestion=Trypsin`"
           required: false
           type: "string"
         - name: "preparationQuery"
           in: "query"
-          description: "Search for preparation objects via a full-text query over all\
-          \ preparation metadata fields. E.g. `\"reversed-phase liquid chromatography\"\
-          `. Queries matching dictionary terms are automatically expanded to include\
-          \ synonyms."
+          description: "Search for preparation objects via a full-text query over all \
+          preparation metadata fields. E.g. `\"reversed-phase liquid chromatography\"`. \
+          Queries matching dictionary terms are automatically expanded to include synonyms."
           required: false
           type: "string"
         - name: "searchSpecificTerms"
@@ -3310,19 +3307,19 @@ paths:
           description: "Filter results by specific feature (eg. Gene identifier). The\
           \ feature parameter value must match the name of the identifier in the GCT\
           \ file (under the NAME column). Example: `ENSG00000077044`"
-        required: false
-        type: "array"
-        items:
+          required: false
+          type: "array"
+          items:
+            type: "string"
+          collectionFormat: "multi"
+        - name: "groupAccession"
+          in: "query"
+          description: "Accession of the expression group object (GCT)"
+          required: true
           type: "string"
-        collectionFormat: "multi"
-      - name: "groupAccession"
-        in: "query"
-        description: "Accession of the expression group object (GCT)"
-        required: true
-        type: "string"
-      - name: "roundDigits"
-        in: "query"
-        description: "The number of digits after the decimal point for floating-point\
+        - name: "roundDigits"
+          in: "query"
+          description: "The number of digits after the decimal point for floating-point\
           \ values. The final value is rounded up. Must be non-negative. The default\
           \ is 4."
           required: false
