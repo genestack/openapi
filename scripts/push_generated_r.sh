@@ -13,6 +13,11 @@ done
 cd generated/r
 
 for archive in $(find -type f -name "*.tar.gz" -printf '%P\n') ; do
-    curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
-       --upload-file "$archive" "${R_REGISTRY_SNAPSHOTS}/genestack/odm/api-sdk/$archive"
+    if echo ${ODM_OPENAPI_VERSION} | grep -Exq "^([a-zA-Z0-9]+(.)?){3}$"; then
+      curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
+         --upload-file "$archive" "${R_REGISTRY_RELEASES}/genestack/odm/api-sdk/$archive"
+    else
+      curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
+         --upload-file "$archive" "${R_REGISTRY_SNAPSHOTS}/genestack/odm/api-sdk/$archive"
+    fi
 done
