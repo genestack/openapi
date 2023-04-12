@@ -66,7 +66,11 @@ swagger-ui-image:
          --HARBOR_DOCKER_HUB_MIRROR=${HARBOR_DOCKER_HUB_MIRROR}
 
     ARG --required ODM_OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_SNAPSHOTS}/genestack-swagger-ui:${ODM_OPENAPI_VERSION}
+    IF echo ${ODM_OPENAPI_VERSION} | grep -Exq "^([a-zA-Z0-9]+(.)?){3}$"
+        SAVE IMAGE --push ${HARBOR_DOCKER_RELEASES}/genestack-swagger-ui:${ODM_OPENAPI_VERSION}
+    ELSE
+        SAVE IMAGE --push ${HARBOR_DOCKER_SNAPSHOTS}/genestack-swagger-ui:${ODM_OPENAPI_VERSION}
+    END
 
 main:
     BUILD +swagger-ui-image
