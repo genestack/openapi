@@ -2,9 +2,7 @@ VERSION 0.7
 
 IMPORT ./openapi
 
-ARG --global --required HARBOR_DOCKER_SNAPSHOTS
-ARG --global --required HARBOR_DOCKER_RELEASES
-ARG --global --required HARBOR_DOCKER_CACHE
+ARG --global --required HARBOR_DOCKER_REGISTRY
 ARG --global --required HARBOR_DOCKER_HUB_MIRROR
 ARG --global --required MAVEN_REGISTRY_GROUP
 ARG --global --required MAVEN_REGISTRY_RELEASES
@@ -22,7 +20,7 @@ ARG --global --required NEXUS_REPOSITORY_URL
 
 deps:
     ARG --required BASE_IMAGES_VERSION
-    FROM ${HARBOR_DOCKER_SNAPSHOTS}/genestack-builder:${BASE_IMAGES_VERSION}
+    FROM ${HARBOR_DOCKER_REGISTRY}/genestack-builder:${BASE_IMAGES_VERSION}
     COPY --dir pom.xml deps .
 
     RUN \
@@ -66,7 +64,7 @@ swagger-ui-image:
          --HARBOR_DOCKER_HUB_MIRROR=${HARBOR_DOCKER_HUB_MIRROR}
 
     ARG --required ODM_OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_SNAPSHOTS}/genestack-swagger-ui:${ODM_OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/genestack-swagger-ui:${ODM_OPENAPI_VERSION}
 
 main:
     BUILD +swagger-ui-image
