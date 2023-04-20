@@ -4534,8 +4534,21 @@ paths:
         type: "string"
       - name: "exQuery"
         in: "query"
-        description: "Search for objects linked to expression data and originally uploaded in GCT format via data query\
-          \ (key-value pair(s)), e.g.,`feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n"
+        description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          For the case when the original data is represented by multiple attributes per feature (e.g., multi_values) \
+          scenarios, extended filtering syntax is as follows: \
+          \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
+          `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
+          as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
+          \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
+          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          `features.NAME=1007_s_at features.Description=\"probe set\"`.
+          \n4. The first column for each original data file is identified as feature accession \
+          (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
+          would significantly outperform more complex queries by combining the other feature attributes. \
+          To enable such a search, use `feature` without any attribute extension, e.g., \
+          `feature=ENSG00000230368,ENSG00000188976`."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4892,8 +4905,21 @@ paths:
         type: "string"
       - name: "exQuery"
         in: "query"
-        description: "Search for objects linked to expression data and originally uploaded in GCT format via data query\
-          \ (key-value pair(s)), e.g.,`feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n"
+        description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          For the case when the original data is represented by multiple attributes per feature (e.g., multi_values) \
+          scenarios, extended filtering syntax is as follows: \
+          \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
+          `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
+          as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
+          \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
+          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          `features.NAME=1007_s_at features.Description=\"probe set\"`.
+          \n4. The first column for each original data file is identified as feature accession \
+          (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
+          would significantly outperform more complex queries by combining the other feature attributes. \
+          To enable such a search, use `feature` without any attribute extension, e.g., \
+          `feature=ENSG00000230368,ENSG00000188976`."
         required: false
         type: "string"
       - name: "exFilter"
@@ -5114,8 +5140,21 @@ paths:
         type: "string"
       - name: "exQuery"
         in: "query"
-        description: "Search for objects linked to expression data and originally uploaded in GCT format via data query\
-          \ (key-value pair(s)), e.g.,`feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n"
+        description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          For the case when the original data is represented by multiple attributes per feature (e.g., multi_values) \
+          scenarios, extended filtering syntax is as follows: \
+          \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
+          `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
+          as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
+          \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
+          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          `features.NAME=1007_s_at features.Description=\"probe set\"`.
+          \n4. The first column for each original data file is identified as feature accession \
+          (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
+          would significantly outperform more complex queries by combining the other feature attributes. \
+          To enable such a search, use `feature` without any attribute extension, e.g., \
+          `feature=ENSG00000230368,ENSG00000188976`."
         required: false
         type: "string"
       - name: "exFilter"
@@ -5337,8 +5376,21 @@ paths:
         type: "string"
       - name: "exQuery"
         in: "query"
-        description: "Search for objects linked to expression data and originally uploaded in GCT format via data query\
-          \ (key-value pair(s)), e.g.,`feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n"
+        description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          For the case when the original data is represented by multiple attributes per feature (e.g., multi_values) \
+          scenarios, extended filtering syntax is as follows: \
+          \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
+          `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
+          as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
+          \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
+          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          `features.NAME=1007_s_at features.Description=\"probe set\"`.
+          \n4. The first column for each original data file is identified as feature accession \
+          (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
+          would significantly outperform more complex queries by combining the other feature attributes. \
+          To enable such a search, use `feature` without any attribute extension, e.g., \
+          `feature=ENSG00000230368,ENSG00000188976`."
         required: false
         type: "string"
       - name: "exFilter"
@@ -5559,8 +5611,21 @@ paths:
         type: "string"
       - name: "exQuery"
         in: "query"
-        description: "Search for objects linked to expression data and originally uploaded in GCT format via data query\
-          \ (key-value pair(s)), e.g.,`feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n"
+        description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          For the case when the original data is represented by multiple attributes per feature (e.g., multi_values) \
+          scenarios, extended filtering syntax is as follows: \
+          \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
+          `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
+          as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
+          \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
+          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          `features.NAME=1007_s_at features.Description=\"probe set\"`.
+          \n4. The first column for each original data file is identified as feature accession \
+          (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
+          would significantly outperform more complex queries by combining the other feature attributes. \
+          To enable such a search, use `feature` without any attribute extension, e.g., \
+          `feature=ENSG00000230368,ENSG00000188976`."
         required: false
         type: "string"
       - name: "exFilter"
@@ -5781,8 +5846,21 @@ paths:
         type: "string"
       - name: "exQuery"
         in: "query"
-        description: "Search for objects linked to expression data and originally uploaded in GCT format via data query\
-          \ (key-value pair(s)), e.g.,`feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n"
+        description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          For the case when the original data is represented by multiple attributes per feature (e.g., multi_values) \
+          scenarios, extended filtering syntax is as follows: \
+          \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
+          `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
+          as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
+          \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
+          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          `features.NAME=1007_s_at features.Description=\"probe set\"`.
+          \n4. The first column for each original data file is identified as feature accession \
+          (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
+          would significantly outperform more complex queries by combining the other feature attributes. \
+          To enable such a search, use `feature` without any attribute extension, e.g., \
+          `feature=ENSG00000230368,ENSG00000188976`."
         required: false
         type: "string"
       - name: "exFilter"
