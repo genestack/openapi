@@ -4239,9 +4239,10 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          \n3. Comparison signs and ranges are available for numeric attributes: `features.NUMERIC_ATTR_1>30 -1<=features.NUMERIC_ATTR_2<=1`.
+          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -4474,9 +4475,10 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -4845,9 +4847,10 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -5080,9 +5083,10 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -5316,9 +5320,10 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -5551,9 +5556,10 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -5786,9 +5792,10 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Use a combination of several conditions to search by more than one feature attribute at once: \
+          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
