@@ -2909,7 +2909,12 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols
+          to specify the desired ranges as follows:
+          \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
+          \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
+          \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
+          \n`NOT (-3 < features.Name_4 < 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
           \n5. The first column for each original data file is identified as feature accession \
@@ -3145,7 +3150,12 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols
+          to specify the desired ranges as follows:
+          \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
+          \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
+          \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
+          \n`NOT (-3 < features.Name_4 < 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
           \n5. The first column for each original data file is identified as feature accession \
@@ -3514,7 +3524,12 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols
+          to specify the desired ranges as follows:
+          \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
+          \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
+          \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
+          \n`NOT (-3 < features.Name_4 < 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
           \n5. The first column for each original data file is identified as feature accession \
@@ -3750,7 +3765,12 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols
+          to specify the desired ranges as follows:
+          \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
+          \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
+          \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
+          \n`NOT (-3 < features.Name_4 < 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
           \n5. The first column for each original data file is identified as feature accession \
@@ -3987,7 +4007,12 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols
+          to specify the desired ranges as follows:
+          \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
+          \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
+          \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
+          \n`NOT (-3 < features.Name_4 < 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
           \n5. The first column for each original data file is identified as feature accession \
@@ -4223,7 +4248,12 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols
+          to specify the desired ranges as follows:
+          \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
+          \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
+          \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
+          \n`NOT (-3 < features.Name_4 < 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
           \n5. The first column for each original data file is identified as feature accession \
@@ -4459,7 +4489,12 @@ paths:
           `features.\"Average Mz\"=2.218`. As in the case of sample metadata queries, single words can be supplied \
           as is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.
           \n2. It is possible to specify a set of possible values, separated by comma: `features.NAME=1007_s_at,121_at`.
-          \n3. Comparison signs and ranges are available for numeric attributes: `features.NAME_1>30 -1<=features.NAME_2<=1`.
+          \n3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols
+          to specify the desired ranges as follows:
+          \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
+          \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
+          \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
+          \n`NOT (-3 < features.Name_4 < 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
           `features.NAME=1007_s_at features.Description=\"probe set\"`.
           \n5. The first column for each original data file is identified as feature accession \
