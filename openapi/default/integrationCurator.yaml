@@ -4313,13 +4313,21 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
-          `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n5. The first column for each original data file is identified as feature accession \
+          \n4. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
-          `feature=ENSG00000230368,ENSG00000188976`."
+          `feature=ENSG00000230368,ENSG00000188976`.\n
+          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          logical operators and parentheses:
+          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A`: Equivalent to the example above.
+          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
+          \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
+          \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4554,13 +4562,21 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
-          `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n5. The first column for each original data file is identified as feature accession \
+          \n4. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
-          `feature=ENSG00000230368,ENSG00000188976`."
+          `feature=ENSG00000230368,ENSG00000188976`.\n
+          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          logical operators and parentheses:
+          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A`: Equivalent to the example above.
+          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
+          \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
+          \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4931,13 +4947,21 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
-          `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n5. The first column for each original data file is identified as feature accession \
+          \n4. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
-          `feature=ENSG00000230368,ENSG00000188976`."
+          `feature=ENSG00000230368,ENSG00000188976`.\n
+          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          logical operators and parentheses:
+          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A`: Equivalent to the example above.
+          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
+          \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
+          \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -5172,13 +5196,21 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
-          `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n5. The first column for each original data file is identified as feature accession \
+          \n4. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
-          `feature=ENSG00000230368,ENSG00000188976`."
+          `feature=ENSG00000230368,ENSG00000188976`.\n
+          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          logical operators and parentheses:
+          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A`: Equivalent to the example above.
+          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
+          \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
+          \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -5414,13 +5446,21 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
-          `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n5. The first column for each original data file is identified as feature accession \
+          \n4. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
-          `feature=ENSG00000230368,ENSG00000188976`."
+          `feature=ENSG00000230368,ENSG00000188976`.\n
+          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          logical operators and parentheses:
+          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A`: Equivalent to the example above.
+          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
+          \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
+          \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -5655,13 +5695,21 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
-          `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n5. The first column for each original data file is identified as feature accession \
+          \n4. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
-          `feature=ENSG00000230368,ENSG00000188976`."
+          `feature=ENSG00000230368,ENSG00000188976`.\n
+          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          logical operators and parentheses:
+          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A`: Equivalent to the example above.
+          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
+          \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
+          \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -5896,13 +5944,21 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. Use a combination of several conditions to search by more than one feature attribute at once: \
-          `features.NAME=1007_s_at features.Description=\"probe set\"`.
-          \n5. The first column for each original data file is identified as feature accession \
+          \n4. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
-          `feature=ENSG00000230368,ENSG00000188976`."
+          `feature=ENSG00000230368,ENSG00000188976`.\n
+          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          logical operators and parentheses:
+          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A`: Equivalent to the example above.
+          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
+          \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
+          \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
+          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
