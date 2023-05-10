@@ -20,7 +20,7 @@ ARG --global --required NEXUS_REPOSITORY_URL
 
 deps:
     ARG --required BASE_IMAGES_VERSION
-    FROM ${HARBOR_DOCKER_REGISTRY}/genestack-builder:${BASE_IMAGES_VERSION}
+    FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
     COPY --dir pom.xml deps .
 
     RUN \
@@ -59,14 +59,14 @@ python-api-sdk:
             pypi-login.sh && \
             scripts/push_generated_python.sh
 
-swagger-ui-image:
+swagger-image:
     FROM openapi+swagger-ui \
          --HARBOR_DOCKER_HUB_MIRROR=${HARBOR_DOCKER_HUB_MIRROR}
 
     ARG --required ODM_OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/genestack-swagger-ui:${ODM_OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${ODM_OPENAPI_VERSION}
 
 main:
-    BUILD +swagger-ui-image
+    BUILD +swagger-image
     BUILD +r-api-sdk
     BUILD +python-api-sdk
