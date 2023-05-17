@@ -1,0 +1,3 @@
+--extra-index-url https://nexus.devops.gs.team/repository/pypi-proxy-central/simple/
+wheel==0.37.1
+twine==4.0.2
