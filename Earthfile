@@ -21,16 +21,26 @@ ARG --global --required NEXUS_REPOSITORY_URL
 deps:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
-    COPY --dir pom.xml deps .
+    COPY pom.xml python2-requirements.txt python3-requirements.txt requirements.R .
+    ARG APT_PACKAGES=build-essential \
+        pandoc texinfo texlive-latex-extra \
+        texlive-fonts-extra libz-dev libxml2-dev \
+        libcurl4-openssl-dev libssl-dev libssl-doc \
+        automake file libfribidi-dev libgfortran5 \
+        libfontconfig1-dev libgdal-dev libzmq3-dev \
+        libharfbuzz-dev libfreetype6-dev libpng-dev \
+        libtiff5-dev libjpeg-dev libxml2-dev \
+        libicu70 libgomp1 libreadline8
 
     RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            mvn de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies -T 1C \
-                -Drevision=dummyValue && \
-            python2 -m pip install -r deps/python/python2-requirements.txt && \
-            python3 -m pip install -r deps/python/python3-requirements.txt && \
-            deps/r/ubuntu.sh
+        mvn de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies -T 1C \
+            -Drevision=dummyValue && \
+        apt update && apt install -y ${APT_PACKAGES} && \
+        python2 -m pip install -r python2-requirements.txt && \
+        python3 -m pip install -r python3-requirements.txt && \
+        Rscript requirements.R
+
+    SAVE IMAGE --cache-hint
 
 build:
     FROM +deps
