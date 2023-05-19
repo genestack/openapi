@@ -7,6 +7,7 @@ swagger-ui:
 
     # TODO: probably we have to move to fs after with fix client-generator
     COPY default/index.html /usr/share/nginx/html/helper/index.html
+    COPY default/*.png /usr/share/nginx/html/helper
     COPY default/*yaml /usr/share/nginx/html/yaml/
     COPY fs /
 
