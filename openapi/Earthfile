@@ -1,9 +1,8 @@
 VERSION 0.7
 
-ARG --global --required HARBOR_DOCKER_HUB_MIRROR
 
 swagger-ui:
-    FROM ${HARBOR_DOCKER_HUB_MIRROR}/swaggerapi/swagger-ui:v4.15.5
+    FROM swaggerapi/swagger-ui:v4.15.5
 
     # TODO: probably we have to move to fs after with fix client-generator
     COPY default/index.html /usr/share/nginx/html/helper/index.html
