@@ -3284,15 +3284,6 @@ paths:
       produces:
         - "text/csv"
       parameters:
-        - name: "responseFormat"
-          in: "query"
-          description: "Allows to get an extended or updated response body. Available values:\n
-          `multi_values` - returns data with several feature attributes and several sample \
-          measurements in the response body."
-          required: false
-          type: "string"
-          enum:
-            - "multi_values"
         - name: "sampleFilter"
           in: "query"
           description: "Filter by sample metadata (key-value metadata pair(s)). E.g.\
