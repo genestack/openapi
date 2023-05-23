@@ -3,7 +3,6 @@ VERSION 0.7
 IMPORT ./openapi
 
 ARG --global --required HARBOR_DOCKER_REGISTRY
-ARG --global --required HARBOR_DOCKER_HUB_MIRROR
 ARG --global --required MAVEN_REGISTRY_GROUP
 ARG --global --required MAVEN_REGISTRY_RELEASES
 ARG --global --required MAVEN_REGISTRY_SNAPSHOTS
@@ -70,8 +69,7 @@ python-api-sdk:
             scripts/push_generated_python.sh
 
 swagger-image:
-    FROM openapi+swagger-ui \
-         --HARBOR_DOCKER_HUB_MIRROR=${HARBOR_DOCKER_HUB_MIRROR}
+    FROM openapi+swagger-ui
 
     ARG --required ODM_OPENAPI_VERSION
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${ODM_OPENAPI_VERSION}
