@@ -2915,7 +2915,8 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -3164,7 +3165,8 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -3537,7 +3539,8 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -3786,7 +3789,8 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -4036,7 +4040,8 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -4285,7 +4290,8 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
@@ -4534,7 +4540,8 @@ paths:
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
           \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
-          \n4. The first column for each original data file is identified as feature accession \
+          \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
+          \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
