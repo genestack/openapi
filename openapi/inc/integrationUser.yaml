@@ -2882,12 +2882,12 @@ paths:
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
-          \nThe value keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
+          \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
           `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -2897,7 +2897,7 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -3138,12 +3138,12 @@ paths:
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
-          \nThe value keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
+          \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
           `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -3153,7 +3153,7 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -3521,12 +3521,12 @@ paths:
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
-          \nThe value keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
+          \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
           `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -3536,7 +3536,7 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -3777,12 +3777,12 @@ paths:
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
-          \nThe value keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
+          \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
           `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -3792,7 +3792,7 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4034,12 +4034,12 @@ paths:
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
-          \nThe value keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
+          \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
           `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -4049,7 +4049,7 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4290,12 +4290,12 @@ paths:
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
-          \nThe value keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
+          \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
           `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -4305,7 +4305,7 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4546,12 +4546,12 @@ paths:
           would significantly outperform more complex queries by combining the other feature attributes. \
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
-          \nThe value keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
+          \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
           `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -4561,7 +4561,7 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR MinValue=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
         required: false
         type: "string"
       - name: "exFilter"
