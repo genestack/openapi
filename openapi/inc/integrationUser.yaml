@@ -2863,7 +2863,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
+          query, e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -2897,7 +2897,8 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A \
+          and either Name_2 is B or minimal possible measurement value is 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -3119,7 +3120,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
+          query, e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -3153,7 +3154,8 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A \
+          and either Name_2 is B or minimal possible measurement value is 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -3502,7 +3504,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
+          query, e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -3536,7 +3538,8 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A \
+          and either Name_2 is B or minimal possible measurement value is 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -3758,7 +3761,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
+          query, e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -3792,7 +3795,8 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A \
+          and either Name_2 is B or minimal possible measurement value is 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4015,7 +4019,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
+          query, e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -4049,7 +4053,8 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A \
+          and either Name_2 is B or minimal possible measurement value is 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4271,7 +4276,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
+          query, e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -4305,7 +4310,8 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A \
+          and either Name_2 is B or minimal possible measurement value is 1.0."
         required: false
         type: "string"
       - name: "exFilter"
@@ -4527,7 +4533,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
+          query, e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -4561,7 +4567,8 @@ paths:
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
           \n* `features.Name_1=A || features.Name_2=B`: Equivalent to the example above.
-          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is B or MinValue equals 1.0."
+          \n* `features.Name_1=A AND (features.Name_2=B OR value>=1.0)`: Select all rows where Name_1 is A \
+          and either Name_2 is B or minimal possible measurement value is 1.0."
         required: false
         type: "string"
       - name: "exFilter"
