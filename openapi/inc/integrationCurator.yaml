@@ -4244,7 +4244,6 @@ paths:
           \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
-          \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
           \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
@@ -4257,11 +4256,10 @@ paths:
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
-          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
-          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
-          \n* `features.Name_1!=A`: Equivalent to the example above.
-          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1!=A`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A,B,C`: Select all rows where Name_1 is not A, B, or C.
           \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
@@ -4501,7 +4499,6 @@ paths:
           \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
-          \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
           \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
@@ -4514,11 +4511,10 @@ paths:
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
-          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
-          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
-          \n* `features.Name_1!=A`: Equivalent to the example above.
-          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1!=A`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A,B,C`: Select all rows where Name_1 is not A, B, or C.
           \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
@@ -4885,7 +4881,6 @@ paths:
           \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
-          \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
           \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
@@ -4898,11 +4893,10 @@ paths:
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
-          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
-          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
-          \n* `features.Name_1!=A`: Equivalent to the example above.
-          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1!=A`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A,B,C`: Select all rows where Name_1 is not A, B, or C.
           \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
@@ -5142,7 +5136,6 @@ paths:
           \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
-          \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
           \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
@@ -5155,11 +5148,10 @@ paths:
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
-          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
-          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
-          \n* `features.Name_1!=A`: Equivalent to the example above.
-          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1!=A`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A,B,C`: Select all rows where Name_1 is not A, B, or C.
           \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
@@ -5400,7 +5392,6 @@ paths:
           \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
-          \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
           \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
@@ -5413,11 +5404,10 @@ paths:
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
-          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
-          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
-          \n* `features.Name_1!=A`: Equivalent to the example above.
-          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1!=A`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A,B,C`: Select all rows where Name_1 is not A, B, or C.
           \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
@@ -5657,7 +5647,6 @@ paths:
           \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
-          \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
           \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
@@ -5670,11 +5659,10 @@ paths:
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
-          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
-          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
-          \n* `features.Name_1!=A`: Equivalent to the example above.
-          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1!=A`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A,B,C`: Select all rows where Name_1 is not A, B, or C.
           \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
@@ -5914,7 +5902,6 @@ paths:
           \n`features.Name_1 > 3`: Select all rows where the feature attribute Name_1 values are greater than 3.
           \n`features.Name_2 >= 6`: Select all rows where the feature attribute Name_2 values are greater than or equal to 6.
           \n`-3 < features.Name_3 < 3`: Select all rows where the feature attribute Name_3 values lie within the interval between -3 and 3.
-          \n`NOT (-3 <= features.Name_4 <= 3)`: Select all rows where the feature attribute Name_4 values are either less than -3 or greater than 3.
           \n4. Use substring search to get the records where the attribute field contains the provided substring: `features.attribute1 =~ \"some text\"`.
           \n5. The first column for each original data file is identified as feature accession \
           (typically, it contains gene or protein names, accession IDs, etc.). Searching by such feature accession \
@@ -5927,11 +5914,10 @@ paths:
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
-          \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
+          \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
-          \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
-          \n* `features.Name_1!=A`: Equivalent to the example above.
-          \n* `NOT(features.Name_1=A,B,C)`: Select all rows where Name_1 is not A, B, or C.
+          \n* `features.Name_1!=A`: Select all rows where Name_1 is not A.
+          \n* `features.Name_1!=A,B,C`: Select all rows where Name_1 is not A, B, or C.
           \n* `features.Name_1=A AND features.Name_2=B`: Select all rows where Name_1 is A and Name_2 is B.
           \n* `features.Name_1=A && features.Name_2=B`: Equivalent to the example above.
           \n* `features.Name_1=A OR features.Name_2=B`: Select all rows where Name_1 is A or Name_2 is B.
