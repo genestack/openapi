@@ -4300,7 +4300,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -4324,7 +4324,7 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue parameter has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -4556,7 +4556,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -4580,7 +4580,7 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue parameter has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -4939,7 +4939,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -4963,7 +4963,7 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue parameter has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -5195,7 +5195,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -5219,7 +5219,7 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue parameter has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -5452,7 +5452,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -5476,7 +5476,7 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue parameter has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -5708,7 +5708,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -5732,7 +5732,7 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue parameter has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
@@ -5964,7 +5964,7 @@ paths:
       - name: "exQuery"
         in: "query"
         description: "Search for objects linked to expression data and originally uploaded in GCT format via data \
-          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 MinValue=1.50`\n
+          query (key-value pair(s)), e.g., `feature=ENSG00000230368,ENSG00000188976 value>=1.50`\n
           For the case when the original data is represented by multiple attributes per feature \
           scenarios, extended filtering syntax is as follows: \
           \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at` or \
@@ -5988,7 +5988,7 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
-          \n2. Note: The MinValue parameter has been deprecated and should be replaced with the aforementioned comparisons.\n
+          \n2. Note: The MinValue keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `NOT` (`!`), `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
           \n* `NOT(features.Name_1=A)`: Select all rows where Name_1 is not A.
