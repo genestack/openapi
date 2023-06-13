@@ -381,6 +381,14 @@ definitions:
         type: "integer"
         example: 5
         description: "Integer value that specifies the number of columns related to the feature in the uploaded data frame, and indicates the starting position of the sample data. This attribute is not needed if the uploaded file is in GCT format."
+      dataClass:
+        type: "string"
+        example: "Proteomics"
+        description: "A mandatory parameter with the following possible values: `Bulk transcriptomics`, `Single-cell transcriptomics`, 
+        `Differential abundance (FC, pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`, 
+        `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene panel data`, `Biomarker data`, 
+        `Physical measures`, `Blood counts`, `Other body fluid counts`, `Nanopore`, `Other`.
+        \nIn case the parameter is not set the dataClass is automatically defined as `Other`."
   Info:
     type: "object"
     required:
