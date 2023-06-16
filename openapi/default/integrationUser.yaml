@@ -2921,10 +2921,12 @@ paths:
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
           \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
-          `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
+          `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
-          \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
+          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -3176,10 +3178,12 @@ paths:
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
           \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
-          `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
+          `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
-          \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
+          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -3555,10 +3559,12 @@ paths:
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
           \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
-          `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
+          `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
-          \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
+          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -3810,10 +3816,12 @@ paths:
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
           \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
-          `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
+          `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
-          \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
+          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -4066,10 +4074,12 @@ paths:
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
           \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
-          `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
+          `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
-          \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
+          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -4321,10 +4331,12 @@ paths:
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
           \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
-          `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
+          `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
-          \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
+          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -4576,10 +4588,12 @@ paths:
           To enable such a search, use `feature` without any attribute extension, e.g., \
           `feature=ENSG00000230368,ENSG00000188976`.\n
           \nThe `value` keyword can be used to select rows where the sample (library or preparation) measurements has values from a certain range. Examples:
-          `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
+          `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
-          \n1. `values.p_value > 3`: selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
+          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
