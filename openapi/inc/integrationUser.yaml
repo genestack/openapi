@@ -2885,6 +2885,7 @@ paths:
           `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity does not equal 2 and does not equal empty value.
           \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
@@ -3141,6 +3142,7 @@ paths:
           `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity does not equal 2 and does not equal empty value.
           \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
@@ -3524,6 +3526,7 @@ paths:
           `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity does not equal 2 and does not equal empty value.
           \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
@@ -3780,6 +3783,7 @@ paths:
           `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity does not equal 2 and does not equal empty value.
           \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
@@ -4037,6 +4041,7 @@ paths:
           `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity does not equal 2 and does not equal empty value.
           \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
@@ -4293,6 +4298,7 @@ paths:
           `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity does not equal 2 and does not equal empty value.
           \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
@@ -4549,6 +4555,7 @@ paths:
           `value = 3`, `value > 3`, `-3 < value < 3`. When the original data contains multiple measurements for a single item, \
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
+          \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity does not equal 2 and does not equal empty value.
           \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
           \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
