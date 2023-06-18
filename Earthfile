@@ -19,7 +19,7 @@ ARG --global --required NEXUS_REPOSITORY_URL
 
 deps:
     ARG --required BASE_IMAGES_VERSION
-    FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
+    FROM ${HARBOR_DOCKER_REGISTRY}/image/builder:${BASE_IMAGES_VERSION}
     COPY pom.xml python2-requirements.txt python3-requirements.txt requirements.R .
     ARG APT_PACKAGES=build-essential \
         pandoc texinfo texlive-latex-extra \
@@ -72,7 +72,7 @@ swagger-image:
     FROM openapi+swagger-ui
 
     ARG --required ODM_OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${ODM_OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/image/swagger:${ODM_OPENAPI_VERSION}
 
 main:
     BUILD +swagger-image
