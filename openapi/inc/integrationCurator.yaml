@@ -4255,8 +4255,8 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
           \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
-          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n`value.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < value.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -4512,8 +4512,8 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
           \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
-          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n`value.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < value.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -4896,8 +4896,8 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
           \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
-          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n`value.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < value.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -5153,8 +5153,8 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
           \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
-          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n`value.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < value.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -5411,8 +5411,8 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
           \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
-          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n`value.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < value.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -5668,8 +5668,8 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
           \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
-          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n`value.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < value.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
@@ -5925,8 +5925,8 @@ paths:
           such as a sample (library or preparation), use the measurement name to specify the exact column type, e.g.: \
           \n1. `value.intensity = 3`: Selects all rows where the measurement attribute intensity equals 3.
           \n `value.intensity != 2,null`: Select all rows where the measurement attribute intensity is not equal 2 and is not an empty value.
-          \n`values.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
-          \n`-3 < values.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
+          \n`value.p_value > 3`: Selects all rows where the measurement attribute 'p_value' values are greater than 3.
+          \n`-3 < value.FC < 3`: Selects all rows where the measurement attribute 'FC' values lie within the interval between -3 and 3.\n
           \n2. Note: The `MinValue` keyword has been deprecated and should be replaced with the aforementioned comparisons.\n
           \nCombine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`)
           logical operators and parentheses:
