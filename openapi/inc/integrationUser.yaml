@@ -3235,9 +3235,9 @@ paths:
     get:
       tags:
       - "Omics queries"
-      summary: "Stream expression data from a given GCT file"
-      description: "Stream expression data from a given expression group object (GCT\
-        \ file) that matches a sample/library/preparations query/filter. If no query/filters\
+      summary: "Stream data from a given tabular file"
+      description: "Stream data from a given group for a tabular file\
+        \ that matches a sample/library/preparations query/filter. If no query/filters\
         \ are supplied all expression data is returned. Note it is not possible to\
         \ filter the expression data by value (e.g. min expression level) - all features\
         \ will be returned regardless of value. If a metadata filter is specified,\
@@ -3357,7 +3357,7 @@ paths:
         type: "string"
       - name: "featureList"
         in: "query"
-        description: "Deprecated, use `exQuery` instead. Filter results by specific feature (eg. Gene identifier). The\
+        description: "Deprecated; use `exQuery` parameter instead. Filters results by the feature column (e.g., Gene ID). The\
           \ feature parameter value must match the name of the identifier in the GCT\
           \ file (under the NAME column). Example: `ENSG00000077044`"
         required: false
