@@ -1050,21 +1050,18 @@ definitions:
       gene:
         type: "string"
         readOnly: true
-      feature:
-        type: "string"
-        readOnly: true
       expression:
         type: "number"
         format: "double"
         example: 1.82
         readOnly: true
-      features:
+      feature:
         type: "object"
         example:
           genes: MYO9A,
           groupingKey: VRSLGGISPSEDRR
         readOnly: true
-      values:
+      value:
         type: "object"
         additionalProperties:
           type: "number"
