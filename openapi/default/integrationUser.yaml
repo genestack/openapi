@@ -3277,9 +3277,7 @@ paths:
       summary: "Stream data from a given tabular file"
       description: "Stream data from a given group for a tabular file\
         \ that matches a sample/library/preparations query/filter. If no query/filters\
-        \ are supplied all expression data is returned. Note it is not possible to\
-        \ filter the expression data by value (e.g. min expression level) - all features\
-        \ will be returned regardless of value. If a metadata filter is specified,\
+        \ are supplied all expression data is returned. If a metadata filter is specified,\
         \ this endpoint will only return expression data that is associated with a\
         \ sample via the Sample Source ID attribute.\n## Conditions\nIt is possible\
         \ to supply conditions for:\n\n1. Samples (full-text or metadata key-value\
