@@ -1,11 +1,11 @@
 {
   "Query/retrieve data": {
-    "integrationUser": "API endpoints for conducting multi-omics queries. Use this to find and retrieve study, sample and processed (signal) data and metadata for a given query",
+    "integrationUser": "API endpoints designed for executing inquiries across Life Sciences data (including multi-omics). Use these endpoints to search for and retrieve metadata and data related to studies, samples, and other data types based on a specific query",
     "studyUser": "API endpoints for retrieving only study metadata",
     "sampleUser": "API endpoints for retrieving only sample metadata",
     "libraryUser": "API endpoints for retrieving only library metadata",
     "preparationUser": "API endpoints for retrieving only preparation metadata",
-    "expressionUser": "API endpoints for retrieving only expression data or metadata",
+    "expressionUser": "API endpoints for retrieving any tabular data (not only expression data) except Gene Variant or Flow Cytometry",
     "variantUser": "API endpoints for retrieving only variant data or metadata",
     "flowCytometryUser": "API endpoints for retrieving only flow cytometry data or metadata"
   },
@@ -15,7 +15,7 @@
     "sampleCurator": "API endpoints to add, delete and update samples and sample metadata",
     "libraryCurator": "API endpoints to add, delete and update libraries and library metadata",
     "preparationCurator": "API endpoints to add, delete and update preparations and preparation metadata",
-    "expressionCurator": "API endpoints to add, delete and update expression data and metadata",
+    "expressionCurator": "API endpoints to add, delete and update any tabular data (not only expression data) except Gene Variant or Flow Cytometry",
     "variantCurator": "API endpoints to add, delete and update variant data and metadata",
     "flowCytometryCurator": "API endpoints to add, delete and update flow cytometry data and metadata",
     "job": "Experimental API endpoints to run asynchronous jobs (import large datasets, e.t.c)",
