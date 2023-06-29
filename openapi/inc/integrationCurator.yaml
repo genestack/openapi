@@ -1549,8 +1549,8 @@ paths:
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
         \ conditions for:\n\n1. Samples (full-text or metadata key-value pair)\n2.\
         \ Parent studies (full-text or metadata key-value pair)\n3. Linked variant\
-        \ objects (list of data key-value pairs)\n4. Linked expression objects (list\
-        \ of data key-value pairs)\n5. Linked flow cytometry objects (list of data\
+        \ objects (list of data key-value pairs)\n4. Linked flow cytometry objects (list\
+        \ of data key-value pairs)\n5. Linked any data (except variant and flow cytometry) objects (list of data\
         \ key-value pairs)\n\n## Metadata full-text queries\nSingle words can be supplied\
         \ as is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
         \ Speech marks and backslash characters in the query need to be escaped with\
@@ -2301,8 +2301,8 @@ paths:
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
         \ conditions for:\n\n1. Samples (full-text or metadata key-value pair)\n2.\
         \ Parent studies (full-text or metadata key-value pair)\n3. Linked variant\
-        \ objects (list of data key-value pairs)\n4. Linked expression objects (list\
-        \ of data key-value pairs)\n5. Linked flow cytometry objects (list of data\
+        \ objects (list of data key-value pairs)\n4. Linked flow cytometry objects (list\
+        \ of data key-value pairs)\n5. Linked any data (except variant and flow cytometry) objects (list of data\
         \ key-value pairs)\n\n## Metadata full-text queries\nSingle words can be supplied\
         \ as is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
         \ Speech marks and backslash characters in the query need to be escaped with\
@@ -2581,8 +2581,8 @@ paths:
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
         \ conditions for:\n\n1. Samples (full-text or metadata key-value pair)\n2.\
         \ Parent studies (full-text or metadata key-value pair)\n3. Linked variant\
-        \ objects (list of data key-value pairs)\n4. Linked expression objects (list\
-        \ of data key-value pairs)\n5. Linked flow cytometry objects (list of data\
+        \ objects (list of data key-value pairs)\n4. Linked flow cytometry objects (list\
+        \ of data key-value pairs)\n5. Linked any data (except variant and flow cytometry) objects (list of data\
         \ key-value pairs)\n\n## Metadata full-text queries\nSingle words can be supplied\
         \ as is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
         \ Speech marks and backslash characters in the query need to be escaped with\
@@ -2721,8 +2721,8 @@ paths:
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
         \ conditions for:\n\n1. Samples (full-text or metadata key-value pair)\n2.\
         \ Parent studies (full-text or metadata key-value pair)\n3. Linked variant\
-        \ objects (list of data key-value pairs)\n4. Linked expression objects (list\
-        \ of data key-value pairs)\n5. Linked flow cytometry objects (list of data\
+        \ objects (list of data key-value pairs)\n4. Linked flow cytometry objects (list\
+        \ of data key-value pairs)\n5. Linked any data (except variant and flow cytometry) objects (list of data\
         \ key-value pairs)\n\n## Metadata full-text queries\nSingle words can be supplied\
         \ as is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
         \ Speech marks and backslash characters in the query need to be escaped with\
@@ -2944,8 +2944,8 @@ paths:
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
         \ conditions for:\n\n1. Samples (full-text or metadata key-value pair)\n2.\
         \ Parent studies (full-text or metadata key-value pair)\n3. Linked variant\
-        \ objects (list of data key-value pairs)\n4. Linked expression objects (list\
-        \ of data key-value pairs)\n5. Linked flow cytometry objects (list of data\
+        \ objects (list of data key-value pairs)\n4. Linked flow cytometry objects (list\
+        \ of data key-value pairs)\n5. Linked any data (except variant and flow cytometry) objects (list of data\
         \ key-value pairs)\n\n## Metadata full-text queries\nSingle words can be supplied\
         \ as is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
         \ Speech marks and backslash characters in the query need to be escaped with\
@@ -3084,8 +3084,8 @@ paths:
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
         \ conditions for:\n\n1. Samples (full-text or metadata key-value pair)\n2.\
         \ Parent studies (full-text or metadata key-value pair)\n3. Linked variant\
-        \ objects (list of data key-value pairs)\n4. Linked expression objects (list\
-        \ of data key-value pairs)\n5. Linked flow cytometry objects (list of data\
+        \ objects (list of data key-value pairs)\n4. Linked flow cytometry objects (list\
+        \ of data key-value pairs)\n5. Linked any data (except variant and flow cytometry) objects (list of data\
         \ key-value pairs)\n\n## Metadata full-text queries\nSingle words can be supplied\
         \ as is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
         \ Speech marks and backslash characters in the query need to be escaped with\
@@ -3225,8 +3225,8 @@ paths:
         \ all supplied conditions.\n\n## Conditions\nIt is possible to supply conditions\
         \ for:\n\n1. Samples (full-text or metadata key-value pair)\n2. Parent studies\
         \ (full-text or metadata key-value pair)\n3. Linked variant objects (list\
-        \ of data key-value pairs)\n4. Linked expression objects (list of data key-value\
-        \ pairs)\n5. Linked flow cytometry objects (list of data key-value pairs)\n\
+        \ of data key-value pairs)\n4. Linked flow cytometry objects (list of data key-value\
+        \ pairs)\n5. Linked any data (except variant and flow cytometry) objects (list of data key-value pairs)\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
         \ use speech marks (`\"`) to quote queries that include whitespace. Speech\
         \ marks and backslash characters in the query need to be escaped with a backslash\
@@ -4086,14 +4086,13 @@ paths:
     get:
       tags:
       - "Omics queries"
-      summary: "Retrieve expression data objects by searching across multiple data\
-        \ types"
-      description: "Retrieve expression data objects whose linked data matches all\
-        \ supplied conditions.\n\nNote: An expression data query must be supplied.\n\
+      summary: "Retrieve data objects by searching across multiple data types"
+      description: "Retrieve any data objects whose linked data matches all supplied conditions.\
+        \ \n\nNote: An expression data query must be supplied.\n\
         \n## Conditions\nIt is possible to supply conditions for:\n\n1. Samples (full-text\
         \ or metadata key-value pair)\n2. Parent studies (full-text or metadata key-value\
         \ pair)\n3. Linked variant objects (list of data key-value pairs)\n4. Linked\
-        \ expression objects (list of data key-value pairs)\n5. Linked flow cytometry\
+        \ flow cytometry objects (list of data key-value pairs)\n5. Linked any data (except variant and flow cytometry)\
         \ objects (list of data key-value pairs)\n\n## Metadata full-text queries\n\
         Single words can be supplied as is, otherwise use speech marks (`\"`) to quote\
         \ queries that include whitespace. Speech marks and backslash characters in\
@@ -4140,8 +4139,9 @@ paths:
         in: "query"
         description: "Allows to get an extended or updated response body. Available values:\n
         `term_id` - returns extended information including IDs for values and dictionaries;\n
-        `multi_values` - returns data with several feature attributes and several sample
-         measurements in the response body."
+        `multi_values` - returns data with several feature attributes and several sample measurements\
+         \ in the response body in case the original data had them. If not specified, returns only the first\
+         \ feature identifier and the first measurement per sample from the original data."
         required: false
         type: "array"
         items:
@@ -4352,8 +4352,8 @@ paths:
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
         \n1. Samples (full-text or metadata key-value pair)\n2. Parent studies (full-text\
         \ or metadata key-value pair)\n3. Linked variant objects (list of data key-value\
-        \ pairs)\n4. Linked expression objects (list of data key-value pairs)\n5.\
-        \ Linked flow cytometry objects (list of data key-value pairs)\n\n## Metadata\
+        \ pairs)\n4. Linked flow cytometry objects (list of data key-value pairs)\n5.\
+        \ Linked any data (except variant and flow cytometry) objects (list of data key-value pairs)\n\n## Metadata\
         \ full-text queries\nSingle words can be supplied as is, otherwise use speech\
         \ marks (`\"`) to quote queries that include whitespace. Speech marks and\
         \ backslash characters in the query need to be escaped with a backslash (`\\\
@@ -4776,7 +4776,7 @@ paths:
         \n## Conditions\nIt is possible to supply conditions for:\n\n1. Samples (full-text\
         \ or metadata key-value pair)\n2. Parent studies (full-text or metadata key-value\
         \ pair)\n3. Linked variant objects (list of data key-value pairs)\n4. Linked\
-        \ expression objects (list of data key-value pairs)\n5. Linked flow cytometry\
+        \ flow cytometry objects (list of data key-value pairs)\n5. Linked any data (except variant and flow cytometry)\
         \ objects (list of data key-value pairs)\n\n## Metadata full-text queries\n\
         Single words can be supplied as is, otherwise use speech marks (`\"`) to quote\
         \ queries that include whitespace. Speech marks and backslash characters in\
@@ -5032,8 +5032,8 @@ paths:
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
         \n1. Samples (full-text or metadata key-value pair)\n2. Parent studies (full-text\
         \ or metadata key-value pair)\n3. Linked variant objects (list of data key-value\
-        \ pairs)\n4. Linked expression objects (list of data key-value pairs)\n5.\
-        \ Linked flow cytometry objects (list of data key-value pairs)\n\n## Metadata\
+        \ pairs)\n4. Linked flow cytometry objects (list of data key-value pairs)\n5.\
+        \ Linked any data (except variant and flow cytometry) objects (list of data key-value pairs)\n\n## Metadata\
         \ full-text queries\nSingle words can be supplied as is, otherwise use speech\
         \ marks (`\"`) to quote queries that include whitespace. Speech marks and\
         \ backslash characters in the query need to be escaped with a backslash (`\\\
@@ -5290,8 +5290,8 @@ paths:
         \ supplied conditions.\n\n## Conditions\nIt is possible to supply conditions\
         \ for:\n\n1. Samples (full-text or metadata key-value pair)\n2. Parent studies\
         \ (full-text or metadata key-value pair)\n3. Linked variant objects (list\
-        \ of data key-value pairs)\n4. Linked expression objects (list of data key-value\
-        \ pairs)\n5. Linked flow cytometry objects (list of data key-value pairs)\n\
+        \ of data key-value pairs)\n4. Linked flow cytometry objects (list of data key-value\
+        \ pairs)\n5. Linked any data (except variant and flow cytometry) objects (list of data key-value pairs)\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
         \ use speech marks (`\"`) to quote queries that include whitespace. Speech\
         \ marks and backslash characters in the query need to be escaped with a backslash\
@@ -5548,7 +5548,7 @@ paths:
         It is possible to supply conditions for:\n\n1. Samples (full-text or metadata\
         \ key-value pair)\n2. Parent studies (full-text or metadata key-value pair)\n\
         3. Linked variant objects (list of data key-value pairs)\n4. Linked expression\
-        \ objects (list of data key-value pairs)\n5. Linked flow cytometry objects\
+        \ objects (list of data key-value pairs)\n5. Linked any data (except variant and flow cytometry) objects\
         \ (list of data key-value pairs)\n\n## Metadata full-text queries\nSingle\
         \ words can be supplied as is, otherwise use speech marks (`\"`) to quote\
         \ queries that include whitespace. Speech marks and backslash characters in\
@@ -5804,8 +5804,8 @@ paths:
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
         \n1. Samples (full-text or metadata key-value pair)\n2. Parent studies (full-text\
         \ or metadata key-value pair)\n3. Linked variant objects (list of data key-value\
-        \ pairs)\n4. Linked expression objects (list of data key-value pairs)\n5.\
-        \ Linked flow cytometry objects (list of data key-value pairs)\n\n## Metadata\
+        \ pairs)\n4. Linked flow cytometry objects (list of data key-value pairs)\n5.\
+        \ Linked any data (except variant and flow cytometry) objects (list of data key-value pairs)\n\n## Metadata\
         \ full-text queries\nSingle words can be supplied as is, otherwise use speech\
         \ marks (`\"`) to quote queries that include whitespace. Speech marks and\
         \ backslash characters in the query need to be escaped with a backslash (`\\\

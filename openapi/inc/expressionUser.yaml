@@ -3,7 +3,8 @@ swagger: "2.0"
 info:
   description: "This is the API for layer 3 of the Roche pRed project.\n\nThis swagger\
     \ page describes the expressionUser API endpoints for ODM. These are typically\
-    \ used to find and retrieve expression data and metadata.\n\nBefore carrying out\
+    \ used to find and retrieve any tabular data (not only expression data) except Gene Variant\
+    \ or Flow Cytometry.\n\nBefore carrying out\
     \ any API calls you will need an API token. API tokens can be obtained under your\
     \ profile within the Genestack software. Further instructions can be found [here](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html).\n\
     \nTo try out calls in this swagger page:\n\n1.  Click the 'Authorize' button below\
@@ -67,8 +68,9 @@ paths:
         in: "query"
         description: "Allows to get an extended or updated response body. Available values:\n
         `term_id` - returns extended information including IDs for values and dictionaries;\n
-        `multi_values` - returns data with several feature attributes and several sample
-         measurements in the response body."
+        `multi_values` - returns data with several feature attributes and several sample measurements\
+         \ in the response body in case the original data had them. If not specified, returns only the first\
+         \ feature identifier and the first measurement per sample from the original data."
         required: false
         type: "array"
         items:
@@ -500,8 +502,9 @@ paths:
         in: "query"
         description: "Allows to get an extended or updated response body. Available values:\n
         `term_id` - returns extended information including IDs for values and dictionaries;\n
-        `multi_values` - returns data with several feature attributes and several sample
-         measurements in the response body."
+        `multi_values` - returns data with several feature attributes and several sample measurements\
+         \ in the response body in case the original data had them. If not specified, returns only the first\
+         \ feature identifier and the first measurement per sample from the original data."
         required: false
         type: "array"
         items:
