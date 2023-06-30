@@ -2,7 +2,7 @@ VERSION 0.7
 
 
 swagger-ui:
-    FROM swaggerapi/swagger-ui:v4.15.5
+    FROM swaggerapi/swagger-ui:v5.1.0
 
     # TODO: probably we have to move to fs after with fix client-generator
     COPY default/index.html /usr/share/nginx/html/helper/index.html
