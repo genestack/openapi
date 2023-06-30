@@ -1,0 +1,631 @@
+---
+swagger: "2.0"
+info:
+  description: "This is the API for layer 3 of the Roche pRed project.\n\nThis swagger\
+    \ page describes the studyCurator APIs.\n\nBefore carrying out any API calls you\
+    \ will need an API token. API tokens can be obtained under your profile within\
+    \ the Genestack software.\n\nTo try out calls in this swagger page:\n\n1. Click\
+    \ the 'Authorize' button below to enter your API token\n2. Scroll to the 'Parameters'\
+    \ section for the method you wish to try out and click the 'Try it out' button\n\
+    3. Enter parameter values that you wish to try\n4. Scroll to the bottom of the\
+    \ Parameters section and click the 'Execute' bar that appears\n\nThe server response\
+    \ will be in the section that follows."
+  version: "v0.1"
+  title: "Roche pRed Layers 3"
+host: "unused"
+basePath: "/frontend/rs/genestack/studyCurator/v0.1"
+tags:
+- name: "Study SPoT"
+schemes:
+- "https"
+paths:
+  /studies:
+    get:
+      tags:
+      - "Study SPoT"
+      summary: "List or search for study metadata objects"
+      description: "Retrieve study metadata objects by searching/listing study metadata.\n\
+        \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
+        \ use speech marks (`\"`) to quote queries that include whitespace. Speech\
+        \ marks and backslash characters in the query need to be escaped with a backslash\
+        \ (`\\`).\n\n## Metadata filters\nMetadata filters are key-value pairs joined\
+        \ by an operator. The `=` operator matches literal values/string. The `!=`\
+        \ operator matches anything except the literal value/string. The `<` or `>`\
+        \ operators match numerical results that are less or greater than the supplied\
+        \ value. Strings containing whitespace need to be quoted with (`\"`).\n\n\
+        ## Combinations\nMetadata queries/filters for the same parameter can be combined\
+        \ with `&&`, `AND`, `||` and `OR` operators, using white-space to separate\
+        \ out the terms and operators. Parentheses `( )` can be used for complex expressions.\n\
+        \n## Paging\nFor performance reasons this endpoint returns results in \"pages\"\
+        \ of limited size. In order to retrieve all matching results the client needs\
+        \ to request multiple pages starting from an offset to the first result. You\
+        \ can do this using the pageOffset query parameter. A value of 0 (the default)\
+        \ instructs the server to return the first page of results, 100 would return\
+        \ a page of results starting from the 101st result and so on. To return all\
+        \ results iterate through pages using pageOffset values of `n * pageLimit`\
+        \ until the `resultsExhausted` response field is true.\n\n## List operation\n\
+        \nThis endpoint can be called with no `query` parameter. Doing so returns\
+        \ a list of all study objects."
+      operationId: "searchStudies"
+      produces:
+      - "application/json"
+      - "text/tab-separated-values"
+      parameters:
+      - name: "responseFormat"
+        in: "query"
+        description: "Supply this parameter with the value `term_id` as part of the\
+          \ query to return extended information including IDs for values and dictionaries."
+        required: false
+        type: "string"
+        enum:
+        - "term_id"
+      - name: "filter"
+        in: "query"
+        description: "Filter by study metadata (key-value metadata pair(s)). E.g.\
+          \ `\"Study Source\"=ArrayExpress`\n\n\n"
+        required: false
+        type: "string"
+      - name: "query"
+        in: "query"
+        description: "Search for study objects via a full-text query over all study\
+          \ metadata fields. E.g. `\"RNA-Seq of human dendritic cells\"`. Queries\
+          \ matching dictionary terms are automatically expanded to include synonyms."
+        required: false
+        type: "string"
+      - name: "searchSpecificTerms"
+        in: "query"
+        description: "If the full-text query term is present in an ODM dictionary,\
+          \ enabling this parameter will modify the query to include child terms of\
+          \ the full-text query.\n\nFor example, the search query \"Body fluid\" can\
+          \ be expanded to include the term \"Blood\" (a child term of  \"Body fluid\"\
+          ) so files containing either \"Body fluid\" or  \"Blood\"  in their metadata\
+          \ will be returned in the search results.\n\nThe parent-child relationship\
+          \ is defined by the key \"broaders\" or \"subClassOf\" in the dictionary.\n\
+          \nIf the full query term is not present in a dictionary then this parameter\
+          \ has no effect."
+        required: false
+        type: "boolean"
+      - name: "returnedMetadataFields"
+        in: "query"
+        description: "The parameter defines amount of metadata attributes to return:\n\
+          \n1. `minimal_data` - return metadata attributes according to the default\
+          \ template.\n2. `extended_data_included` - return metadata attributes according\
+          \ to applied template, if object doesn’t have applied template, default\
+          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
+          \ - return all metadata attributes with values and null attributes, if they\
+          \ are present in the applied template. This is the default for Curator endpoints."
+        required: false
+        type: "string"
+        enum:
+        - "minimal_data"
+        - "extended_data_included"
+        - "original_data_included"
+      - name: "sort"
+        in: "query"
+        description: "Attribute to sort by, with optional ascending/descending marker,\
+          \ of the form `\"[+|-]<key_name>\"`.\n\nNo marker or `\"+\"` indicates ascending\
+          \ sort, and `\"-\"` indicates descending sort.\n\n*Default:* sort by ID\
+          \ in ascending order."
+        required: false
+        type: "string"
+        enum:
+        - "id"
+        - "creation"
+        - "last_update"
+        - "name"
+        - "+id"
+        - "+creation"
+        - "+last_update"
+        - "+name"
+        - "-id"
+        - "-creation"
+        - "-last_update"
+        - "-name"
+      - name: "pageLimit"
+        in: "query"
+        description: "Maximum number of results to return. This value must be between\
+          \ 0 and 2000 (inclusive)."
+        required: false
+        type: "integer"
+        format: "int32"
+      - name: "pageOffset"
+        in: "query"
+        description: "Show the page {pageOffset+1} results from the start of the results.\
+          \ E.g. 100 will show a page of results  starting from the 101st result.\
+          \ The default value is 0."
+        required: false
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+          schema:
+            $ref: "#/definitions/ListResponse"
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+    post:
+      tags:
+      - "Study SPoT"
+      summary: "Add new study object"
+      description: "## Data\n This operation requires the URL of a Study metadata file.\n ## Metadata\n The metadata file will be used as the original metadata for the created study. The file should consist of a list of exactly two records separated by a `CRLF` (`U+000D U+000A`) sequence, where each record has the same number of two tab-separated (`U+0009`) columns. The first record value is interpreted as metadata attribute names, and the second is parsed as the associated value. This value can be a single string, or a list of strings by using the `|` (`U+007C`) separator character. Values are trimmed of whitespace before parsing, and a literal `|` (`U+007C`) character may be escaped by repeating it twice."
+      operationId: "addStudy"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "source"
+        required: false
+        schema:
+          $ref: "#/definitions/StudySource"
+      responses:
+        201:
+          description: "Object successfully created."
+          schema:
+            $ref: "#/definitions/Study"
+        400:
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+  /studies/atomic:
+    post:
+      tags:
+      - "Study SPoT"
+      summary: "Create a single new object from a given data file with optional supplied\
+        \ metadata."
+      description: "## Data\n This operation requires the URL of a signal data file, for example a GCT, VCF or Flow Cytometry file. The required form of this file depends on the specific SPoT.\n\n ## Metadata\n It is also possible to optionally supply the URL of a CSV metadata file. This metadata will be used as the original metadata for the created objects. The CSV file should consist of a list of exactly two records separated by a `CRLF` (`U+000D U+000A`) sequence, where each record has the same number of two tab-separated (`U+0009`) columns. The first record value is interpreted as metadata attribute names, and the second is parsed as the associated value. This value can be a single string, or a list of strings by using the `|` (`U+007C`) separator character. Values are trimmed of whitespace before parsing, and a literal `|` (`U+007C`) character may be escaped by repeating it twice.\n\n"
+      operationId: "addAtomicStudy"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "source"
+        description: "## Data\n\nSee the VariantSource model for details of the data\
+          \ fields.\n\n## Metadata\n\nThe supplied metadata object must be a JSON\
+          \ _object_ with non-empty strings as keys. These are interpreted as attribute\
+          \ names. The values should be either scalar JSON values (null, boolean,\
+          \ number or string), or an type-homogenous array of scalar values."
+        required: false
+        schema:
+          $ref: "#/definitions/AtomicStudySource"
+      responses:
+        201:
+          description: "The objects were successfully created. The returned value\
+            \ is a list of created objects."
+          schema:
+            $ref: "#/definitions/MetadataWithId"
+        400:
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+  /studies/atomic/{id}:
+    patch:
+      tags:
+      - "Study SPoT"
+      summary: "Update object metadata"
+      description: "## Basic operation\nThe object metadata is updated using the supplied\
+        \ map of attribute names to attribute values. There are three cases:\n1. The\
+        \ attribute name does not already exist in the object metadata. In this case,\
+        \ the attribute and value are added to the object metadata.\n2. The attribute\
+        \ name already exists in the object metadata. In this case, the value is updated.\n\
+        3. The attribute value is `null`.In this case, the attribute is removed from\
+        \ the object metadata.\n\n## Attribute values\nThe attribute values are intelligently\
+        \ parsed as booleans, integers, etc."
+      operationId: "updateAtomicMetadata"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Unique identifier (accession) of the object."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Metadata in the form of `{key: value, key2: value2, ...}`"
+        required: false
+        schema:
+          $ref: "#/definitions/MetadataContent"
+      responses:
+        200:
+          description: "The objects was successfully created. The returned value is\
+            \ the updated object, along with any warnings."
+          schema:
+            $ref: "#/definitions/MetadataContent"
+        400:
+          description: "The supplied object ID or metadata is invalid."
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        404:
+          description: "No object exists with the given ID."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+  /studies/{id}:
+    get:
+      tags:
+      - "Study SPoT"
+      summary: "Retrieve a single study object by ID (accession)"
+      description: ""
+      operationId: "getStudy"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "responseFormat"
+        in: "query"
+        description: "Supply this parameter with the value `term_id` as part of the\
+          \ query to return extended information including IDs for values and dictionaries."
+        required: false
+        type: "string"
+        enum:
+        - "term_id"
+      - name: "id"
+        in: "path"
+        description: "Unique identifier (accession) of the object."
+        required: true
+        type: "string"
+      - name: "returnedMetadataFields"
+        in: "query"
+        description: "The parameter defines amount of metadata attributes to return:\n\
+          \n1. `minimal_data` - return metadata attributes according to the default\
+          \ template.\n2. `extended_data_included` - return metadata attributes according\
+          \ to applied template, if object doesn’t have applied template, default\
+          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
+          \ - return all metadata attributes with values and null attributes, if they\
+          \ are present in the applied template. This is the default for Curator endpoints."
+        required: false
+        type: "string"
+        enum:
+        - "minimal_data"
+        - "extended_data_included"
+        - "original_data_included"
+      responses:
+        200:
+          description: "The request was successful. The returned value is the object."
+          schema:
+            $ref: "#/definitions/Study"
+        400:
+          description: "The supplied object ID is invalid."
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        404:
+          description: "No object exists with the given ID."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+    delete:
+      tags:
+      - "Study SPoT"
+      summary: "Delete a given study object. This will not delete related objects\
+        \ or links to related objects."
+      description: ""
+      operationId: "deleteStudy"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Unique identifier (accession) of the object."
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "The object has been successfully deleted. No data is returned."
+        400:
+          description: "The supplied object ID is invalid."
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        404:
+          description: "No object exists with the given ID."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+    patch:
+      tags:
+      - "Study SPoT"
+      summary: "Update a study object"
+      description: "## Basic operation\nThe object metadata is updated using the supplied\
+        \ map of attribute names to attribute values. There are three cases:\n1. The\
+        \ attribute name does not already exist in the object metadata. In this case,\
+        \ the attribute and value are added to the object metadata.\n2. The attribute\
+        \ name already exists in the object metadata. In this case, the value is updated.\n\
+        3. The attribute value is `null`.In this case, the attribute is removed from\
+        \ the object metadata.\n\n## Attribute values\nThe attribute values are intelligently\
+        \ parsed as booleans, integers, etc."
+      operationId: "updateStudy"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Unique identifier (accession) of the object."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Metadata in the form of `{key: value, key2: value2, ...}`"
+        required: false
+        schema:
+          $ref: "#/definitions/MetadataContent"
+      responses:
+        200:
+          description: "The objects was successfully created. The returned value is\
+            \ the updated object, along with any warnings."
+          schema:
+            $ref: "#/definitions/Study"
+        400:
+          description: "The supplied object ID or metadata is invalid."
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        404:
+          description: "No object exists with the given ID."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+  /studies/{id}/versions:
+    get:
+      tags:
+      - "Study SPoT"
+      summary: "Retrieve a list of object versions by ID"
+      description: ""
+      operationId: "getStudyVersions"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Unique identifier (accession) of the object."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "The request was successful. The returned value is the list\
+            \ of  object versions."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CommitInfo"
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+  /studies/{id}/versions/{version}:
+    get:
+      tags:
+      - "Study SPoT"
+      summary: "Retrieve a single study object by ID (accession)"
+      description: ""
+      operationId: "getStudyByVersion"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "responseFormat"
+        in: "query"
+        description: "Supply this parameter with the value `term_id` as part of the\
+          \ query to return extended information including IDs for values and dictionaries."
+        required: false
+        type: "string"
+        enum:
+        - "term_id"
+      - name: "id"
+        in: "path"
+        description: "Unique identifier (accession) of the object."
+        required: true
+        type: "string"
+      - name: "version"
+        in: "path"
+        description: "Unique version of the object."
+        required: true
+        type: "string"
+      - name: "returnedMetadataFields"
+        in: "query"
+        description: "The parameter defines amount of metadata attributes to return:\n\
+          \n1. `minimal_data` - return metadata attributes according to the default\
+          \ template.\n2. `extended_data_included` - return metadata attributes according\
+          \ to applied template, if object doesn’t have applied template, default\
+          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
+          \ - return all metadata attributes with values and null attributes, if they\
+          \ are present in the applied template. This is the default for Curator endpoints."
+        required: false
+        type: "string"
+        enum:
+        - "minimal_data"
+        - "extended_data_included"
+        - "original_data_included"
+      responses:
+        200:
+          description: "The request was successful. The returned value is the object."
+          schema:
+            $ref: "#/definitions/Study"
+        400:
+          description: "The supplied object ID is invalid."
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        404:
+          description: "No object exists with the given ID."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to glomgn_genestack@msxdl.roche.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+securityDefinitions:
+  Access-token:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+  Genestack-API-Token:
+    type: "apiKey"
+    name: "Genestack-API-Token"
+    in: "header"
+definitions:
+  AtomicStudySource:
+    type: "object"
+    properties:
+      templateId:
+        type: "string"
+        example: "GSF000001"
+        description: "ID of template file."
+        readOnly: true
+      metadata:
+        $ref: "#/definitions/JsonMetadata"
+  CommitInfo:
+    type: "object"
+    properties:
+      author:
+        type: "string"
+      message:
+        type: "string"
+      timestamp:
+        type: "integer"
+        format: "int64"
+      version:
+        type: "string"
+        readOnly: true
+  IntegrationHelper:
+    type: "object"
+  JsonMetadata:
+    type: "object"
+    properties:
+      attributes:
+        type: "object"
+        additionalProperties:
+          type: "object"
+  ListResponse:
+    type: "object"
+    properties:
+      meta:
+        $ref: "#/definitions/MetaResponse"
+      data:
+        type: "array"
+        items:
+          type: "object"
+  MetaResponse:
+    type: "object"
+    properties:
+      pagination:
+        $ref: "#/definitions/PaginationInfo"
+  MetadataContent:
+    type: "object"
+  MetadataWithId:
+    type: "object"
+    properties:
+      itemId:
+        type: "string"
+        readOnly: true
+      metadata:
+        readOnly: true
+        $ref: "#/definitions/MetadataContent"
+  PaginationInfo:
+    type: "object"
+    properties:
+      count:
+        type: "integer"
+        format: "int32"
+      total:
+        type: "integer"
+        format: "int64"
+      offset:
+        type: "integer"
+        format: "int32"
+      limit:
+        type: "integer"
+        format: "int32"
+  Study:
+    type: "object"
+  StudySource:
+    type: "object"
+    required:
+    - "link"
+    properties:
+      templateId:
+        type: "string"
+        example: "GSF000001"
+        description: "ID of template file."
+        readOnly: true
+      link:
+        type: "string"
+        example: "arvados://arvados1.inception-dev.genestack.com/projects/12a74-4zz18-jy8d28t3m8xqrjv"
+        description: "URL of project in Arvados."
+      metadataLink:
+        type: "string"
+        example: "arvados://arvados1.inception-dev.genestack.com/collections/12a74-4zz18-jy8d28t3m8xqrjv/mouse.study.csv"
+        description: "URL of the study metadata in Arvados."
