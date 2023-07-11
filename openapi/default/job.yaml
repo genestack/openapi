@@ -405,6 +405,13 @@ definitions:
         `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene panel data`, `Biomarker data`, 
         `Physical measures`, `Blood counts`, `Other body fluid counts`, `Nanopore`, `Other`.
         \nIn case the parameter is not set the dataClass is automatically defined as `Other`."
+      measurementSeparator:
+        type: "string"
+        example: ":"
+        description: "This parameter is necessary when your file contains multiple measurement columns for each sample, 
+        library, or preparation. It represents the character that distinguishes the sample/library/preparation name 
+        from the measurement name in column headers. Supported separators include `. , : ; _ - / \\ |`, with the allowance 
+        for multi-character separators."
   Info:
     type: "object"
     required:
