@@ -435,7 +435,7 @@ paths:
         \ (for omics data files with a CHAIN_ID of GSCV002 query only the specific\
         \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
         \ supplied to the parameter using the ; separator.\n\n"
-      operationId: "getGroupsByStudy"
+      operationId: "getExpressionGroupsByStudy"
       produces:
       - "application/json"
       parameters:
@@ -628,7 +628,7 @@ paths:
         \ on. To return all results iterate through pages using pageOffset values\
         \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
         \n"
-      operationId: "getRunToSamplePairs"
+      operationId: "getExpressionRunToSamplePairs"
       parameters:
       - name: "id"
         in: "path"
@@ -798,7 +798,7 @@ paths:
         \ (for omics data files with a CHAIN_ID of GSCV002 query only the specific\
         \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
         \ supplied to the parameter using the ; separator.\n\n"
-      operationId: "getGroupsByStudy"
+      operationId: "getFlowCytometryGroupsByStudy"
       produces:
       - "application/json"
       parameters:
@@ -873,7 +873,7 @@ paths:
         \ on. To return all results iterate through pages using pageOffset values\
         \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
         \n"
-      operationId: "getRunToSamplePairs"
+      operationId: "getFlowCytometryRunToSamplePairs"
       parameters:
       - name: "id"
         in: "path"
@@ -1124,7 +1124,7 @@ paths:
       - "Library integration"
       summary: "Retrieve group metadata by querying study ID (accession)"
       description: ""
-      operationId: "getGroupsByStudy"
+      operationId: "getLibraryGroupsByStudy"
       produces:
       - "application/json"
       parameters:
@@ -1288,7 +1288,7 @@ paths:
       - "Preparation integration"
       summary: "Retrieve group metadata by querying study ID (accession)"
       description: ""
-      operationId: "getGroupsByStudy"
+      operationId: "getPreparationGroupsByStudy"
       produces:
       - "application/json"
       parameters:
@@ -2492,7 +2492,7 @@ paths:
         \ (for omics data files with a CHAIN_ID of GSCV002 query only the specific\
         \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
         \ supplied to the parameter using the ; separator.\n\n"
-      operationId: "getGroupsByStudy"
+      operationId: "getVariantGroupsByStudy"
       produces:
       - "application/json"
       parameters:
@@ -2567,7 +2567,7 @@ paths:
         \ on. To return all results iterate through pages using pageOffset values\
         \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
         \n"
-      operationId: "getRunToSamplePairs"
+      operationId: "getVariantRunToSamplePairs"
       parameters:
       - name: "id"
         in: "path"
