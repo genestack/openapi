@@ -64,8 +64,9 @@ paths:
         in: "query"
         description: "Allows to get an extended or updated response body. Available values:\n
         `term_id` - returns extended information including IDs for values and dictionaries;\n
-        `multi_values` - returns data with several feature attributes and several sample
-         measurements in the response body."
+        `multi_values` - returns data with several feature attributes and several sample measurements\
+         \ in the response body in case the original data had them. If not specified, returns only the first\
+         \ feature identifier and the first measurement per sample from the original data."
         required: false
         type: "array"
         items:
@@ -197,7 +198,7 @@ paths:
       - "Expression SPoT"
       summary: "Create a single new object from a given data file with optional supplied\
         \ metadata."
-      description: "## Data\n This operation requires the URL of a signal data  file, for example a GCT, VCF or Flow Cytometry file. The required form of this file depends  on the specific SPoT.\n\n ## Metadata\n It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.\n ## Metadata file format\n * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed\n * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n * Header: the first line is treated as table header that contains attribute names\n * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.\n * Skip zeros in GCT file: if the metadata attribute \"Skip zero values\" is found in the GCT file (the value of which is irrelevant) then zeros in the file are skipped, saving time and space. \n ## File sources\n * Supported external sources (links): `http`/`https`/`ftp`"
+      description: "## Data\n This operation requires the URL of a signal data  file, for example a GCT, VCF or Flow Cytometry file. The required form of this file depends  on the specific SPoT.\n\n ## Metadata\n It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.\n ## Metadata file format\n * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed\n * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n * Header: the first line is treated as table header that contains attribute names\n * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.\n ## File sources\n * Supported external sources (links): `http`/`https`/`ftp`"
       operationId: "addAtomicExpression"
       consumes:
       - "application/json"
@@ -324,7 +325,7 @@ paths:
       - "Expression SPoT"
       summary: "Create multiple new objects from a multi-row data file with optional\
         \ supplied metadata"
-      description: "## Data\n This operation requires the URL of a signal data  file, for example a GCT, VCF or Flow Cytometry file. The required form of this file depends  on the specific SPoT.\n\n ## Metadata\n It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.\n ## Metadata file format\n * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed\n * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n * Header: the first line is treated as table header that contains attribute names\n * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.\n * Skip zeros in GCT file: if the metadata attribute \"Skip zero values\" is found in the GCT file (the value of which is irrelevant) then zeros in the file are skipped, saving time and space. \n ## File sources\n * Supported external sources (links): `http`/`https`/`ftp`"
+      description: "## Data\n This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.\n\n ## Metadata\n It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.\n ## Metadata file format\n * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed\n * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n * Header: the first line is treated as table header that contains attribute names\n * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.\n * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data. \n ## File sources\n * Supported external sources (links): `http`/`https`/`ftp`"
       operationId: "addExpression"
       consumes:
       - "application/json"
@@ -788,8 +789,9 @@ paths:
         in: "query"
         description: "Allows to get an extended or updated response body. Available values:\n
         `term_id` - returns extended information including IDs for values and dictionaries;\n
-        `multi_values` - returns data with several feature attributes and several sample
-         measurements in the response body."
+        `multi_values` - returns data with several feature attributes and several sample measurements\
+         \ in the response body in case the original data had them. If not specified, returns only the first\
+         \ feature identifier and the first measurement per sample from the original data."
         required: false
         type: "array"
         items:
@@ -1050,21 +1052,18 @@ definitions:
       gene:
         type: "string"
         readOnly: true
-      feature:
-        type: "string"
-        readOnly: true
       expression:
         type: "number"
         format: "double"
         example: 1.82
         readOnly: true
-      features:
+      feature:
         type: "object"
         example:
           genes: MYO9A,
           groupingKey: VRSLGGISPSEDRR
         readOnly: true
-      values:
+      value:
         type: "object"
         additionalProperties:
           type: "number"
@@ -1181,3 +1180,10 @@ definitions:
         `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene panel data`, `Biomarker data`, 
         `Physical measures`, `Blood counts`, `Other body fluid counts`, `Nanopore`, `Other`.
         \nIn case the parameter is not set the dataClass is automatically defined as `Other`."
+      measurementSeparator:
+        type: "string"
+        example: ":"
+        description: "This parameter is necessary when your file contains multiple measurement columns for each sample, 
+        library, or preparation. It represents the character that distinguishes the sample/library/preparation name 
+        from the measurement name in column headers. Supported separators include `. , : ; _ - / \\ |`, with the allowance 
+        for multi-character separators."
