@@ -1,0 +1,110 @@
+---
+swagger: "2.0"
+info:
+  description: "This swagger page describes the detachedData APIs.\n\nBefore\
+    \ carrying out any API calls you will need an API token. API tokens can be obtained\
+    \ under your profile within the Genestack software.\n\nTo try out calls in this\
+    \ swagger page:\n\n1. Click the 'Authorize' button below to enter your API token\n\
+    2. Scroll to the 'Parameters' section for the method you wish to try out and click\
+    \ the 'Try it out' button\n3. Enter parameter values that you wish to try\n4.\
+    \ Scroll to the bottom of the Parameters section and click the 'Execute' bar that\
+    \ appears\n\nThe server response will be in the section that follows."
+  version: "default-released"
+  title: "ODM API"
+host: "unused"
+basePath: "/frontend/rs/genestack/detachedData/default-released"
+tags:
+  - name: "Detached Data"
+schemes:
+  - "https"
+paths:
+  /find:
+    get:
+      tags:
+        - "Detached Data"
+      summary: "Retrieve a list of detached data objects"
+      description: "Retrieve all types of detached data objects. An object considered as detached\
+        \ if it's not linked either directly or through other objects to a root level object, which is study.\n\
+        \ Objects are ordered by detached type (see the list of supported types below) and `genestack:accession`.\n\
+        \ Pagination could be done with a help of `cursor` and `limit` parameters.\n\
+        \ Supported types of detached objects (in order of retrieving) are:\
+        \ `SAMPLE_GROUP, LIBRARY_GROUP, PREPARATION_GROUP`.\n\n"
+      operationId: "find"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "limit"
+          in: "query"
+          description: "How many results to retrieve per page. The default is 2000"
+          required: false
+          type: "integer"
+          format: "int32"
+        - name: "cursor"
+          in: "query"
+          description: "Allows to retrieve objects from certain point.\n\
+          \ A cursor content is a subject to change, it's not recommended to parse a cursor and use it's parts."
+          required: false
+          type: "string"
+      responses:
+        200:
+          description: "Retrieved detached data."
+          schema:
+            $ref: "#/definitions/DetachedCollection"
+        400:
+          description: "Detached data cannot be retrieved due to Bad Request."
+        401:
+          description: "User is not authenticated. Please supply a valid Access Token in\
+            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
+            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
+            \ obtained from the Genestack UI _Profile_ page)."
+        403:
+          description: "Not enough permissions to call method."
+        500:
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+securityDefinitions:
+  Access-token:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+  Genestack-API-Token:
+    type: "apiKey"
+    name: "Genestack-API-Token"
+    in: "header"
+definitions:
+  DetachedCollection:
+    type: "object"
+    required:
+      - "data"
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/DetachedObject"
+      cursor:
+        type: "string"
+  DetachedObject:
+    type: "object"
+    required:
+      - "genestack:accession"
+      - "detachedObjectType"
+      - "ownerEmail"
+      - "createdAt"
+    properties:
+      genestack:accession:
+        type: "string"
+      detachedObjectType:
+        type: "string"
+        enum:
+          - SAMPLE_GROUP
+          - LIBRARY_GROUP
+          - PREPARATION_GROUP
+      ownerEmail:
+        type: "string"
+      createdAt:
+        type: "string"
+        format: "date-time"
