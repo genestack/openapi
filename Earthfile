@@ -21,6 +21,8 @@ deps:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
     COPY pom.xml python2-requirements.txt python3-requirements.txt requirements.R .
+    COPY .mvn .mvn
+    COPY mvnw mvnw
     ARG APT_PACKAGES=build-essential \
         pandoc texinfo texlive-latex-extra \
         texlive-fonts-extra libz-dev libxml2-dev \
@@ -32,7 +34,7 @@ deps:
         libicu70 libgomp1 libreadline8
 
     RUN \
-        mvn de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies -T 1C \
+        ./mvnw de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies \
             -Drevision=dummyValue && \
         apt update && apt install -y ${APT_PACKAGES} && \
         python2 -m pip install -r python2-requirements.txt && \
@@ -49,7 +51,7 @@ build:
     # https://r-pkgs.org/lifecycle.html
     ARG --required ODM_OPENAPI_VERSION
     ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
-    RUN mvn package -T 1C
+    RUN ./mvnw package
 
     SAVE IMAGE --cache-hint
 
