@@ -18,7 +18,7 @@ tags:
 schemes:
   - "https"
 paths:
-  /detachedObjects:
+  /detached-objects:
     get:
       tags:
         - "Detached Data"
@@ -29,7 +29,7 @@ paths:
         \ Pagination could be done with a help of `cursor` and `limit` parameters.\n\
         \ Supported types of detached objects (in order of retrieving) are:\
         \ `SAMPLE_GROUP, LIBRARY_GROUP, PREPARATION_GROUP`.\n\n"
-      operationId: "detachedObjects"
+      operationId: "detached-objects"
       produces:
         - "application/json"
       parameters:
