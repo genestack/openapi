@@ -22,28 +22,33 @@ paths:
     get:
       tags:
         - "Detached Data"
-      summary: "Retrieve a list of detached data objects"
-      description: "Retrieve all types of detached data objects. An object considered as detached\
-        \ if it's not linked either directly or through other objects to a root level object, which is study.\n\
-        \ Objects are ordered by detached type (see the list of supported types below) and `genestack:accession`.\n\
-        \ Pagination could be done with a help of `cursor` and `limit` parameters.\n\
-        \ Supported types of detached objects (in order of retrieving) are:\
-        \ `SAMPLE_GROUP, LIBRARY_GROUP, PREPARATION_GROUP`.\n\n"
+      summary: "Retrieve a list of detached objects"
+      description: "Retrieve various types of detached data objects. An object is defined as 'detached' if it lacks\
+        \ any direct or indirect link to a root-level object, which in this context is referred to as 'study'.\n\
+        \ The detached objects are sorted according to their `detachedObjectType` and `genestack:accession`.\
+        \ Specific ordering can be observed in the list of supported detached types found below.\n\
+        \ Pagination of the results can be conveniently managed using the `cursor` and `limit` parameters.\n\
+        \ Supported types of detached objects (listed in the order of retrieval) include:\n\
+        \ * `SAMPLE_GROUP`\n\
+        \ * `LIBRARY_GROUP`\n\
+        \ * `PREPARATION_GROUP`\n\n"
       operationId: "detached-objects"
       produces:
         - "application/json"
       parameters:
         - name: "limit"
           in: "query"
-          description: "How many results to retrieve per page. The default is 2000"
+          description: "This parameter determines the number of results to retrieve per page,\
+            \ with the default set at 2000."
           required: false
           type: "integer"
           format: "int32"
         - name: "cursor"
           in: "query"
-          description: "Allows to retrieve objects from certain point.\n\
-          \ Currently it represents the accession of the last obtained object, but it may change over time,\
-          \ consider cursor's content as a general string."
+          description: "This parameter enables retrieval of objects starting from a specific point.\n\
+            \ Currently, it represents the accession of the last obtained object. However, please note that\
+            \ its functionality might change over time, so it is advisable to consider the cursor's content\
+            \ as a general string."
           required: false
           type: "string"
       responses:
