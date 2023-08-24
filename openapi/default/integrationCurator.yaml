@@ -4388,7 +4388,8 @@ paths:
         type: "string"
       - name: "pageLimit"
         in: "query"
-        description: "How many results to retrieve per page. The default is 2000"
+        description: "This parameter determines the number of results to retrieve per page,\
+          \ with the default set at 2000."
         required: false
         type: "integer"
         format: "int32"
@@ -4645,7 +4646,8 @@ paths:
         type: "string"
       - name: "pageLimit"
         in: "query"
-        description: "How many results to retrieve per page. The default is 2000"
+        description: "This parameter determines the number of results to retrieve per page,\
+          \ with the default set at 2000."
         required: false
         type: "integer"
         format: "int32"
@@ -5068,7 +5070,8 @@ paths:
         type: "string"
       - name: "pageLimit"
         in: "query"
-        description: "How many results to retrieve per page. The default is 2000"
+        description: "This parameter determines the number of results to retrieve per page,\
+          \ with the default set at 2000."
         required: false
         type: "integer"
         format: "int32"
@@ -5325,7 +5328,8 @@ paths:
         type: "string"
       - name: "pageLimit"
         in: "query"
-        description: "How many results to retrieve per page. The default is 2000"
+        description: "This parameter determines the number of results to retrieve per page,\
+          \ with the default set at 2000."
         required: false
         type: "integer"
         format: "int32"
@@ -5583,7 +5587,8 @@ paths:
         type: "string"
       - name: "pageLimit"
         in: "query"
-        description: "How many results to retrieve per page. The default is 2000"
+        description: "This parameter determines the number of results to retrieve per page,\
+          \ with the default set at 2000."
         required: false
         type: "integer"
         format: "int32"
@@ -5840,7 +5845,8 @@ paths:
         type: "string"
       - name: "pageLimit"
         in: "query"
-        description: "How many results to retrieve per page. The default is 2000"
+        description: "This parameter determines the number of results to retrieve per page,\
+          \ with the default set at 2000."
         required: false
         type: "integer"
         format: "int32"
@@ -6097,7 +6103,8 @@ paths:
         type: "string"
       - name: "pageLimit"
         in: "query"
-        description: "How many results to retrieve per page. The default is 2000"
+        description: "This parameter determines the number of results to retrieve per page,\
+          \ with the default set at 2000."
         required: false
         type: "integer"
         format: "int32"
