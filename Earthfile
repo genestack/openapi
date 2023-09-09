@@ -75,6 +75,7 @@ swagger-image:
 
     ARG --required ODM_OPENAPI_VERSION
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${ODM_OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 main:
     BUILD +swagger-image
