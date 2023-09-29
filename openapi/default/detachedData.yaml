@@ -31,7 +31,10 @@ paths:
         \ Supported types of detached objects (listed in the order of retrieval) include:\n\
         \ * `SAMPLE_GROUP`\n\
         \ * `LIBRARY_GROUP`\n\
-        \ * `PREPARATION_GROUP`\n\n"
+        \ * `PREPARATION_GROUP`\n\
+        \ * `TABULAR_DATA`\n\
+        \ * `GENE_VARIANT`\n\
+        \ * `FLOW_CYTOMETRY`\n\n"
       operationId: "detached-objects"
       produces:
         - "application/json"
