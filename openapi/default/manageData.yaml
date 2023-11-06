@@ -103,7 +103,7 @@ paths:
             type: "string"
       responses:
         202:
-          description: "All files are scheduled for deletion and the "
+          description: "Listed files are scheduled for deletion."
           schema:
             $ref: "#/definitions/ManagedObject"
         400:
@@ -177,7 +177,7 @@ definitions:
     type: "object"
     required:
       - "genestack:accession"
-      - "щbjectType"
+      - "objectType"
       - "ownerEmail"
       - "createdAt"
     properties:
