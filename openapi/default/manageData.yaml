@@ -80,8 +80,9 @@ paths:
       tags:
         - "Detached Data"
       summary: "Delete objects from ODM"
-      description: "Schedules deletion of objects from ODM. Affects all versions if the versioning is enabled\
-       \ and the object is versioned. Currently __supported formats__:\n\
+      description: "Schedules deletion of ODM objects. In case the selected object has more than\
+        \ one version, the endpoint deletes all of them. The following object types can be deleted\
+        \ by the endpoint:\n\
         \ * `STUDY`\n\
         \ * `SAMPLE_GROUP`\n \
         \ * `LIBRARY_GROUP`\n \
