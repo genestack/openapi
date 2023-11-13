@@ -121,7 +121,7 @@ paths:
            \ Please review your list and repeat the attempt."
         406:
           description: "Some of the provided accessions do not belong to the supported object types. Deletion will not\
-          \ be performed. Please review your list and repeat the attempt.."
+          \ be performed. Please review your list and repeat the attempt."
         500:
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
