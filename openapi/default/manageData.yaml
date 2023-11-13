@@ -103,7 +103,7 @@ paths:
             type: "string"
       responses:
         202:
-          description: "Listed files are scheduled for deletion."
+          description: "The following objects are scheduled for deletion."
           schema:
             $ref: "#/definitions/ManagedObject"
         400:
@@ -116,11 +116,11 @@ paths:
         403:
           description: "Not enough permissions to call method."
         404:
-          description: "Some of the provided accessions could not be found in ODM. Deletion will\
-           \ not be preformed."
+          description: "Some of the provided accessions could not be found in ODM. Deletion will not be preformed.\
+           \ Please review your list and repeat the attempt."
         406:
-          description: "Some of the provided accessions do not match the supported types. Deletion \
-          \ will not be performed."
+          description: "Some of the provided accessions do not belong to the supported object types. Deletion will not\
+          \ be performed. Please review your list and repeat the attempt.."
         500:
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
