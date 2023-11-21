@@ -3295,7 +3295,10 @@ paths:
         \ need to be quoted with (`\"`).\n\n## Combinations\nMetadata queries/filters\
         \ for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators,\
         \ using white-space to separate out the terms and operators. Parentheses `(\
-        \ )` can be used for complex expressions.\n\n"
+        \ )` can be used for complex expressions.\n
+        \ \n\n## Error Handling\n
+        \ In case of unexpected internal error during data retrieval, the last line of\
+        \ the body will contain an error message, prefixed by the `#` character \n\n"
       operationId: "searchStreamedExpressionData"
       produces:
         - "text/csv"
