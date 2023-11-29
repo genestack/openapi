@@ -54,6 +54,11 @@ paths:
             \ as a general string."
           required: false
           type: "string"
+        - name: "filter"
+          in: "query"
+          description: "TBD"
+          required: false
+          type: "string"
       responses:
         200:
           description: "Retrieved detached data."
