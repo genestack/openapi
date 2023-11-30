@@ -25,8 +25,8 @@ paths:
       summary: "Retrieve a list of detached objects"
       description: "Retrieve various types of detached data objects. An object is defined as 'detached' if it lacks\
         \ any direct or indirect link to a root-level object, which in this context is referred to as 'study'.\n\
-        \ The detached objects are sorted according to their `detachedObjectType` and `genestack:accession`.\n\
         \ Data with specific `detachedObjectType` can be retrieved by specifying the types in `filter` parameter.\n\
+        \ The detached objects are sorted according to their `detachedObjectType` and `genestack:accession`.\n\
         \ Specific ordering can be observed in the list of supported detached types found below.\n\
         \ Pagination of the results can be conveniently managed using the `cursor` and `limit` parameters.\n\
         \ Supported types of detached objects (listed in the order of retrieval) include:\n\
@@ -42,10 +42,12 @@ paths:
       parameters:
         - name: "filter"
           in: "query"
-          description: "Filter by detached object type. Multiple values can be used to filter the data. E.g.\
-          \ `SAMPLE_GROUP,GENE_VARIANT`"
+          description: "Filter by detached object type. Multiple values can be used to filter the data."
           required: false
-          type: "string"
+          type: "array"
+          items:
+            type: "string"
+          collectionFormat: "multi"
         - name: "limit"
           in: "query"
           description: "This parameter determines the number of results to retrieve per page,\
