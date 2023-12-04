@@ -21,7 +21,7 @@
     "job": "Experimental API endpoints to run asynchronous jobs (import large datasets, e.t.c)",
     "arvados-importer": "API for importing projects from Arvados",
     "tasks": "API endpoints to work with asynchronous tasks",
-    "manageData": "API endpoints for managing detached data"
+    "manageData": "API endpoints for managing data"
   },
   "Data sources": {
     "reference-data": "Experimental API endpoints to create, delete, update and query cross-reference entries"
