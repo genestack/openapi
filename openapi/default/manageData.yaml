@@ -91,7 +91,7 @@ paths:
         \ * `GENE_VARIANT`\n\
         \ * `FLOW_CYTOMETRY`\n\n
        "
-      operationId: "detached-objects"
+      operationId: "deleteData"
       produces:
         - "application/json"
       parameters:
