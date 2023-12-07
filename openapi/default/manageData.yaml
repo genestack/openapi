@@ -24,7 +24,7 @@ paths:
         - "Detached Data"
       summary: "Retrieve a list of detached objects"
       description: "Retrieve various types of detached data objects. An object is defined as 'detached' if it lacks\
-        \ any direct or indirect link to a root-level object, which in this context is referred to as 'study'.\n
+        \ any direct or indirect link to a root-level object, which in this context is referred to as 'study'.\n\
         \ Data with specific `detachedObjectType` can be retrieved by specifying the types in `detachedObjectType`\
         \ parameter.\nThe detached objects are sorted according to their `detachedObjectType` and\
         \ `genestack:accession`.\nSpecific ordering can be observed in the list of supported detached types found\
