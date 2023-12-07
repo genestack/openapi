@@ -14,14 +14,14 @@ info:
 host: "unused"
 basePath: "/frontend/rs/genestack/manageData/default-released"
 tags:
-  - name: "Detached Data"
+  - name: "Manage Data"
 schemes:
   - "https"
 paths:
   /detached-objects:
     get:
       tags:
-        - "Detached Data"
+        - "Manage Data"
       summary: "Retrieve a list of detached objects"
       description: "Retrieve various types of detached data objects. An object is defined as 'detached' if it lacks\
         \ any direct or indirect link to a root-level object, which in this context is referred to as 'study'.\n\
@@ -36,7 +36,7 @@ paths:
         \ * `TABULAR_DATA`\n\
         \ * `GENE_VARIANT`\n\
         \ * `FLOW_CYTOMETRY`\n\n"
-      operationId: "detached-objects"
+      operationId: "getDetachedObjects"
       produces:
         - "application/json"
       parameters:
@@ -87,7 +87,7 @@ paths:
   /data:
     delete:
       tags:
-        - "Detached Data"
+        - "Manage Data"
       summary: "Delete objects from ODM"
       description: "Schedules deletion of ODM objects. In case the selected object has more than\
         \ one version, the endpoint deletes all of them. The following object types can be deleted\
@@ -100,7 +100,7 @@ paths:
         \ * `GENE_VARIANT`\n\
         \ * `FLOW_CYTOMETRY`\n\n
        "
-      operationId: "detached-objects"
+      operationId: "deleteData"
       produces:
         - "application/json"
       parameters:
