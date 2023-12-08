@@ -5,5 +5,12 @@
     "enabled": true
   },
   "schedule": ["every weekend"],
-  "labels": ["renovate"]
+  "labels": ["renovate"],
+  "dockerfile": {
+    "fileMatch": [
+      "(^|/)Earthfile$",
+      "(^|/|\\.)Dockerfile$",
+      "(^|/)Dockerfile[^/]*$"
+    ]
+  }
 }
