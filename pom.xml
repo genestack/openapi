@@ -757,7 +757,7 @@
                                 <packageName>${job.package}</packageName>
                                 <projectName>${job.app}</projectName>
                             </configOptions>
-                            <templateDirectory>templates/python</templateDirectory>
+                            <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${job.app}.yaml</inputSpec>
                             <output>generated/r/${job.app}</output>
                             <language>r</language>
@@ -774,7 +774,7 @@
                                 <packageName>${manageData.package}</packageName>
                                 <projectName>${manageData.app}</projectName>
                             </configOptions>
-                            <templateDirectory>templates/python</templateDirectory>
+                            <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${manageData.app}.yaml</inputSpec>
                             <output>generated/r/${manageData.app}</output>
                             <language>r</language>
@@ -791,7 +791,7 @@
                                 <packageName>${referenceData.package}</packageName>
                                 <projectName>${referenceData.app}</projectName>
                             </configOptions>
-                            <templateDirectory>templates/python</templateDirectory>
+                            <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${referenceData.app}.yaml</inputSpec>
                             <output>generated/r/${referenceData.app}</output>
                             <language>r</language>
@@ -808,7 +808,7 @@
                                 <packageName>${scimGroups.package}</packageName>
                                 <projectName>${scimGroups.app}</projectName>
                             </configOptions>
-                            <templateDirectory>templates/python</templateDirectory>
+                            <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${scimGroups.app}.yaml</inputSpec>
                             <output>generated/r/${scimGroups.app}</output>
                             <language>r</language>
@@ -825,7 +825,7 @@
                                 <packageName>${scimUsers.package}</packageName>
                                 <projectName>${scimUsers.app}</projectName>
                             </configOptions>
-                            <templateDirectory>templates/python</templateDirectory>
+                            <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${scimUsers.app}.yaml</inputSpec>
                             <output>generated/r/${scimUsers.app}</output>
                             <language>r</language>
