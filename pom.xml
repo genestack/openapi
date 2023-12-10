@@ -1088,7 +1088,7 @@
                             <executable>docs/python/generate_documentation.sh</executable>
                             <arguments>
                                 <argument>${job.app}</argument>
-                                <argument>${job.app}</argument>
+                                <argument>${job.package}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1102,7 +1102,7 @@
                             <executable>docs/python/generate_documentation.sh</executable>
                             <arguments>
                                 <argument>${manageData.app}</argument>
-                                <argument>${manageData.app}</argument>
+                                <argument>${manageData.package}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1116,7 +1116,7 @@
                             <executable>docs/python/generate_documentation.sh</executable>
                             <arguments>
                                 <argument>${referenceData.app}</argument>
-                                <argument>${referenceData.app}</argument>
+                                <argument>${referenceData.package}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1130,7 +1130,7 @@
                             <executable>docs/python/generate_documentation.sh</executable>
                             <arguments>
                                 <argument>${scimGroups.app}</argument>
-                                <argument>${scimGroups.app}</argument>
+                                <argument>${scimGroups.package}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1144,7 +1144,7 @@
                             <executable>docs/python/generate_documentation.sh</executable>
                             <arguments>
                                 <argument>${scimUsers.app}</argument>
-                                <argument>${scimUsers.app}</argument>
+                                <argument>${scimUsers.package}</argument>
                             </arguments>
                         </configuration>
                     </execution>
