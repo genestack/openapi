@@ -1400,7 +1400,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Documentation r for ${manageData.app}</id>
+                        <id>Documentation r ${manageData.app}</id>
                         <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
@@ -1414,7 +1414,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Documentation r for ${referenceData.app}</id>
+                        <id>Documentation r ${referenceData.app}</id>
                         <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
@@ -1428,7 +1428,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Documentation r for ${scimGroups.app}</id>
+                        <id>Documentation r ${scimGroups.app}</id>
                         <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
@@ -1442,7 +1442,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Documentation r for ${scimUsers.app}</id>
+                        <id>Documentation r ${scimUsers.app}</id>
                         <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
