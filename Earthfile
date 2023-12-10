@@ -20,7 +20,7 @@ ARG --global --required NEXUS_REPOSITORY_URL
 deps:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
-    COPY pom.xml python3-requirements.txt requirements.R .
+    COPY pom.xml python2-requirements.txt python3-requirements.txt requirements.R .
     COPY .mvn .mvn
     COPY mvnw mvnw
     ARG APT_PACKAGES=build-essential \
@@ -37,6 +37,7 @@ deps:
         ./mvnw de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies \
             -Drevision=dummyValue && \
         apt update && apt install -y ${APT_PACKAGES} && \
+        python2 -m pip install -r python2-requirements.txt && \
         python3 -m pip install -r python3-requirements.txt && \
         Rscript requirements.R
 

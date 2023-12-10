@@ -17,10 +17,10 @@ sphinx-apidoc -o ${GENERATED_CLIENT_PATH}/source/ ${GENERATED_CLIENT_PATH} --no-
 rm ${GENERATED_CLIENT_PATH}/source/${PACKAGE_NAME}.rst
 
 # Reformat docstring within python files
-python3 ${GENERATED_CLIENT_PATH}/source/prepare_sphinx_py_files.py --client-folder ${GENERATED_CLIENT_PATH}
+python ${GENERATED_CLIENT_PATH}/source/prepare_sphinx_py_files.py --client-folder ${GENERATED_CLIENT_PATH}
 
 # Generate index.rst from README.md file and prettify api and models .rst files
-python3 ${GENERATED_CLIENT_PATH}/source/prepare_sphinx_rst_files.py \
+python ${GENERATED_CLIENT_PATH}/source/prepare_sphinx_rst_files.py \
     --package ${2} \
     --readme ${GENERATED_CLIENT_PATH}/../README.md  \
     --sphinx-folder ${GENERATED_CLIENT_PATH}/source
