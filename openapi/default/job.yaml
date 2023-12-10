@@ -50,6 +50,7 @@ paths:
         \ * Header: the first line is treated as table header that contains attribute names\n\
         \ * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.\n\
         \ * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data."
+      operationId: "startImportExpression"
       consumes:
       - "application/json"
       produces:
