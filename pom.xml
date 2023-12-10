@@ -54,10 +54,8 @@
         <scimGroups.package>scim_groups</scimGroups.package>
         <scimUsers.app>scimUsers</scimUsers.app>
         <scimUsers.package>scim_users</scimUsers.package>
-        <scimUsers.app>scimUsers</scimUsers.app>
-        <scimUsers.package>scim_users</scimUsers.package>
         <referenceData.app>reference-data</referenceData.app>
-        <referenceData.package>reference-data</referenceData.package>
+        <referenceData.package>reference_data</referenceData.package>
     </properties>
 
 
