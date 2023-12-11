@@ -55,6 +55,7 @@ build:
     RUN ./mvnw package
 
     SAVE IMAGE --cache-hint
+    SAVE ARTIFACT generated
 
 r-api-sdk:
     FROM +build
