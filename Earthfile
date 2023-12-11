@@ -20,9 +20,7 @@ ARG --global --required NEXUS_REPOSITORY_URL
 deps:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
-    COPY pom.xml python2-requirements.txt python3-requirements.txt requirements.R .
-    COPY .mvn .mvn
-    COPY mvnw mvnw
+    COPY requirements.R .
     ARG APT_PACKAGES=build-essential \
         pandoc texinfo texlive-latex-extra \
         texlive-fonts-extra libz-dev libxml2-dev \
@@ -32,14 +30,17 @@ deps:
         libharfbuzz-dev libfreetype6-dev libpng-dev \
         libtiff5-dev libjpeg-dev libxml2-dev \
         libicu70 libgomp1 libreadline8
+    RUN \
+        apt update && apt install -y ${APT_PACKAGES} && \
+        Rscript requirements.R
 
+    COPY pom.xml python3-requirements.txt .
+    COPY .mvn .mvn
+    COPY mvnw mvnw
     RUN \
         ./mvnw de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies \
             -Drevision=dummyValue && \
-        apt update && apt install -y ${APT_PACKAGES} && \
-        python2 -m pip install -r python2-requirements.txt && \
-        python3 -m pip install -r python3-requirements.txt && \
-        Rscript requirements.R
+        python3 -m pip install -r python3-requirements.txt
 
     SAVE IMAGE --cache-hint
 
@@ -78,6 +79,7 @@ swagger-image:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 main:
-    BUILD +swagger-image
-    BUILD +r-api-sdk
-    BUILD +python-api-sdk
+    BUILD +build
+    #BUILD +swagger-image
+    #BUILD +r-api-sdk
+    #BUILD +python-api-sdk
