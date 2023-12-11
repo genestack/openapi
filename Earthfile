@@ -79,7 +79,6 @@ swagger-image:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 main:
-    BUILD +build
-    #BUILD +swagger-image
-    #BUILD +r-api-sdk
-    #BUILD +python-api-sdk
+    BUILD +swagger-image
+    BUILD +r-api-sdk
+    BUILD +python-api-sdk
