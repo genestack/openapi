@@ -89,7 +89,7 @@ paths:
       tags:
         - "Manage Data"
       summary: "Delete objects from ODM"
-      description: "Schedules deletion of ODM objects. In case the selected object has more than\
+      description: "The objects will be marked for deletion. In case the selected object has more than\
         \ one version, the endpoint deletes all of them. The following object types can be deleted\
         \ by the endpoint:\n\
         \ * `STUDY`\n\
