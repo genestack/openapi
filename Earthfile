@@ -34,13 +34,13 @@ deps:
         apt update && apt install -y ${APT_PACKAGES} && \
         Rscript requirements.R
 
-    COPY pom.xml python3-requirements.txt .
+    COPY pom.xml requirements.txt .
     COPY .mvn .mvn
     COPY mvnw mvnw
     RUN \
         ./mvnw de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies \
             -Drevision=dummyValue && \
-        python3 -m pip install -r python3-requirements.txt
+        python3 -m pip install -r requirements.txt
 
     SAVE IMAGE --cache-hint
 

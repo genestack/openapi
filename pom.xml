@@ -55,6 +55,7 @@
         <scimUsers.app>scimUsers</scimUsers.app>
         <scimUsers.package>scim_users</scimUsers.package>
         <referenceData.app>reference-data</referenceData.app>
+        <referenceData.app.camelCase>reference-data</referenceData.app.camelCase>
         <referenceData.package>reference_data</referenceData.package>
     </properties>
 
@@ -754,7 +755,6 @@
                         </goals>
                         <configuration>
                             <configOptions>
-                                <packageName>${job.package}</packageName>
                                 <projectName>${job.app}</projectName>
                             </configOptions>
                             <templateDirectory>templates/r</templateDirectory>
@@ -771,7 +771,6 @@
                         </goals>
                         <configuration>
                             <configOptions>
-                                <packageName>${manageData.package}</packageName>
                                 <projectName>${manageData.app}</projectName>
                             </configOptions>
                             <templateDirectory>templates/r</templateDirectory>
@@ -788,8 +787,7 @@
                         </goals>
                         <configuration>
                             <configOptions>
-                                <packageName>${referenceData.package}</packageName>
-                                <projectName>${referenceData.app}</projectName>
+                                <projectName>${referenceData.app.camelCase}</projectName>
                             </configOptions>
                             <templateDirectory>templates/r</templateDirectory>
                             <inputSpec>openapi/default/${referenceData.app}.yaml</inputSpec>
@@ -805,7 +803,6 @@
                         </goals>
                         <configuration>
                             <configOptions>
-                                <packageName>${scimGroups.package}</packageName>
                                 <projectName>${scimGroups.app}</projectName>
                             </configOptions>
                             <templateDirectory>templates/r</templateDirectory>
@@ -822,7 +819,6 @@
                         </goals>
                         <configuration>
                             <configOptions>
-                                <packageName>${scimUsers.package}</packageName>
                                 <projectName>${scimUsers.app}</projectName>
                             </configOptions>
                             <templateDirectory>templates/r</templateDirectory>
@@ -1399,64 +1395,62 @@
                             </arguments>
                         </configuration>
                     </execution>
-<!--                    Some weird error in process of generation PDF from generated R packages-->
-<!--                    Task to fix it in the future : ODM-10911-->
-<!--                    <execution>-->
-<!--                        <id>Documentation r ${manageData.app}</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>exec</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <executable>docs/r/generate_documentation.sh</executable>-->
-<!--                            <arguments>-->
-<!--                                <argument>${manageData.app}</argument>-->
-<!--                                <argument>${manageData.app}</argument>-->
-<!--                            </arguments>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>Documentation r ${referenceData.app}</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>exec</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <executable>docs/r/generate_documentation.sh</executable>-->
-<!--                            <arguments>-->
-<!--                                <argument>${referenceData.app}</argument>-->
-<!--                                <argument>${referenceData.app}</argument>-->
-<!--                            </arguments>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>Documentation r ${scimGroups.app}</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>exec</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <executable>docs/r/generate_documentation.sh</executable>-->
-<!--                            <arguments>-->
-<!--                                <argument>${scimGroups.app}</argument>-->
-<!--                                <argument>${scimGroups.app}</argument>-->
-<!--                            </arguments>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>Documentation r ${scimUsers.app}</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>exec</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <executable>docs/r/generate_documentation.sh</executable>-->
-<!--                            <arguments>-->
-<!--                                <argument>${scimUsers.app}</argument>-->
-<!--                                <argument>${scimUsers.app}</argument>-->
-<!--                            </arguments>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
+                    <execution>
+                        <id>Documentation r ${manageData.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${manageData.app}</argument>
+                                <argument>${manageData.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${referenceData.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${referenceData.app}</argument>
+                                <argument>${referenceData.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${scimGroups.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${scimGroups.app}</argument>
+                                <argument>${scimGroups.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${scimUsers.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${scimUsers.app}</argument>
+                                <argument>${scimUsers.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <!--Remove temp files after documentation generation-->
