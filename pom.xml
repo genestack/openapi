@@ -46,6 +46,17 @@
         <expressionUser.package>expression_user</expressionUser.package>
         <tasks.app>tasks</tasks.app>
         <tasks.package>tasks</tasks.package>
+        <job.app>job</job.app>
+        <job.package>job</job.package>
+        <manageData.app>manageData</manageData.app>
+        <manageData.package>manage_data</manageData.package>
+        <scimGroups.app>scimGroups</scimGroups.app>
+        <scimGroups.package>scim_groups</scimGroups.package>
+        <scimUsers.app>scimUsers</scimUsers.app>
+        <scimUsers.package>scim_users</scimUsers.package>
+        <referenceData.app>reference-data</referenceData.app>
+        <referenceData.app.camelCase>reference-data</referenceData.app.camelCase>
+        <referenceData.package>reference_data</referenceData.package>
     </properties>
 
 
@@ -369,7 +380,91 @@
                             <language>python</language>
                         </configuration>
                     </execution>
-
+                    <execution>
+                        <id>python for ${job.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${job.package}</packageName>
+                                <projectName>${job.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${job.app}.yaml</inputSpec>
+                            <output>generated/python/${job.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${manageData.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${manageData.package}</packageName>
+                                <projectName>${manageData.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${manageData.app}.yaml</inputSpec>
+                            <output>generated/python/${manageData.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${referenceData.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${referenceData.package}</packageName>
+                                <projectName>${referenceData.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${referenceData.app}.yaml</inputSpec>
+                            <output>generated/python/${referenceData.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${scimGroups.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${scimGroups.package}</packageName>
+                                <projectName>${scimGroups.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${scimGroups.app}.yaml</inputSpec>
+                            <output>generated/python/${scimGroups.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python for ${scimUsers.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <packageName>${scimUsers.package}</packageName>
+                                <projectName>${scimUsers.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/python</templateDirectory>
+                            <inputSpec>openapi/default/${scimUsers.app}.yaml</inputSpec>
+                            <output>generated/python/${scimUsers.app}</output>
+                            <language>python</language>
+                        </configuration>
+                    </execution>
 
                     <!--r client for integration-->
                     <execution>
@@ -652,6 +747,86 @@
                             <language>r</language>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>r for ${job.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <projectName>${job.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${job.app}.yaml</inputSpec>
+                            <output>generated/r/${job.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${manageData.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <projectName>${manageData.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${manageData.app}.yaml</inputSpec>
+                            <output>generated/r/${manageData.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${referenceData.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <projectName>${referenceData.app.camelCase}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${referenceData.app}.yaml</inputSpec>
+                            <output>generated/r/${referenceData.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${scimGroups.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <projectName>${scimGroups.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${scimGroups.app}.yaml</inputSpec>
+                            <output>generated/r/${scimGroups.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>r for ${scimUsers.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <configOptions>
+                                <projectName>${scimUsers.app}</projectName>
+                            </configOptions>
+                            <templateDirectory>templates/r</templateDirectory>
+                            <inputSpec>openapi/default/${scimUsers.app}.yaml</inputSpec>
+                            <output>generated/r/${scimUsers.app}</output>
+                            <language>r</language>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -897,6 +1072,76 @@
                             </arguments>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>Documentation python for ${job.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${job.app}</argument>
+                                <argument>${job.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python for ${manageData.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${manageData.app}</argument>
+                                <argument>${manageData.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python for ${referenceData.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${referenceData.app}</argument>
+                                <argument>${referenceData.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python for ${scimGroups.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${scimGroups.app}</argument>
+                                <argument>${scimGroups.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation python for ${scimUsers.app}</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/python/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${scimUsers.app}</argument>
+                                <argument>${scimUsers.package}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
                     <!--Docs for r-->
                     <execution>
                         <id>Documentation r ${integrationCurator.app}</id>
@@ -1133,6 +1378,76 @@
                             <arguments>
                                 <argument>${tasks.app}</argument>
                                 <argument>${tasks.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${job.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${job.app}</argument>
+                                <argument>${job.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${manageData.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${manageData.app}</argument>
+                                <argument>${manageData.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${referenceData.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${referenceData.app}</argument>
+                                <argument>${referenceData.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${scimGroups.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${scimGroups.app}</argument>
+                                <argument>${scimGroups.app}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Documentation r ${scimUsers.app}</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docs/r/generate_documentation.sh</executable>
+                            <arguments>
+                                <argument>${scimUsers.app}</argument>
+                                <argument>${scimUsers.app}</argument>
                             </arguments>
                         </configuration>
                     </execution>

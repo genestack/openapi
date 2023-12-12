@@ -1,4 +1,6 @@
 --extra-index-url https://nexus.devops.gs.team/repository/pypi-proxy-central/simple/
-sphinx >= 1.7.6
-sphinx-rtd-theme >= 0.4.1
-pypandoc >= 1.4
+wheel==0.42.0
+twine==4.0.2
+sphinx==7.2.6
+sphinx-rtd-theme==2.0.0
+pypandoc==1.12
