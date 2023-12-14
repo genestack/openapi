@@ -106,7 +106,7 @@ paths:
         \ along with any linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`/`LIBRARY_GROUP`/`PREPARATION_GROUP`.\
         \ The linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY` will be deleted, even if it is linked to another\
         \ metadata group.\n\
-        \ * If you delete `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`, all associated data, such as links, runs\
+        \ * If you delete `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`, all associated data, such as links and runs\
         \ will be removed from ODM.\
        "
       operationId: "deleteData"
