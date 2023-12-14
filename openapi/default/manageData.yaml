@@ -102,7 +102,7 @@ paths:
         \ Moreover, if the selected object is linked to any other data, the endpoint will also delete the linked data\
         \ associated with it according to the specified rules:\n\
         \ * If you delete a `STUDY`, the entire study, including all the listed group types, will be removed.\n\
-        \ * Deleting a 'SAMPLE_GROUP' will result in the removal of all samples associated with this sample group,\
+        \ * Deleting a `SAMPLE_GROUP` will result in the removal of all samples associated with this sample group,\
         \ along with any linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`/`LIBRARY_GROUP`/`PREPARATION_GROUP`.\
         \ The linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY` will be deleted, even if it is linked to another\
         \ metadata group.\n\
