@@ -14,13 +14,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/studyUser/default-released"
 tags:
 - name: "Study SPoT"
 schemes:
 - "https"
 paths:
-  /studies:
+  /frontend/rs/genestack/studyUser/default-released/studies:
     get:
       tags:
       - "Study SPoT"
@@ -155,7 +154,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /studies/{id}:
+  /frontend/rs/genestack/studyUser/default-released/studies/{id}:
     get:
       tags:
       - "Study SPoT"
@@ -214,7 +213,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /studies/{id}/versions:
+  /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions:
     get:
       tags:
       - "Study SPoT"
@@ -249,7 +248,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /studies/{id}/versions/{version}:
+  /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions/{version}:
     get:
       tags:
       - "Study SPoT"

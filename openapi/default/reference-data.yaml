@@ -7,13 +7,12 @@ info:
   version: "default-released"
   title: "Xrefsets API"
 host: "unused"
-basePath: "/frontend/rs/genestack/reference-data/default-released"
 tags:
 - name: "Xrefset queries"
 schemes:
 - "https"
 paths:
-  /xrefsets:
+  /frontend/rs/genestack/reference-data/default-released/xrefsets:
     post:
       tags:
       - "Xrefset queries"
@@ -53,7 +52,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /xrefsets/entries:
+  /frontend/rs/genestack/reference-data/default-released/xrefsets/entries:
     get:
       tags:
       - "Xrefset queries"
@@ -119,7 +118,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /xrefsets/{id}:
+  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}:
     delete:
       tags:
       - "Xrefset queries"
@@ -158,7 +157,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /xrefsets/{id}/entries:
+  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}/entries:
     get:
       tags:
       - "Xrefset queries"
@@ -231,7 +230,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /xrefsets/{id}/metadata:
+  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}/metadata:
     get:
       tags:
       - "Xrefset queries"

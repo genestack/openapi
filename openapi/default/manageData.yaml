@@ -12,13 +12,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/manageData/default-released"
 tags:
   - name: "Manage Data"
 schemes:
   - "https"
 paths:
-  /detached-objects:
+  /frontend/rs/genestack/manageData/default-released/detached-objects:
     get:
       tags:
         - "Manage Data"
@@ -84,7 +83,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /data:
+  /frontend/rs/genestack/manageData/default-released/data:
     delete:
       tags:
         - "Manage Data"

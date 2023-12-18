@@ -12,13 +12,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/expressionCurator/default-released"
 tags:
 - name: "Expression SPoT"
 schemes:
 - "https"
 paths:
-  /expression:
+  /frontend/rs/genestack/expressionCurator/default-released/expression:
     get:
       tags:
       - "Expression SPoT"
@@ -236,7 +235,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/atomic/{id}:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/atomic/{id}:
     delete:
       tags:
       - "Expression SPoT"
@@ -319,7 +318,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/gct:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/gct:
     post:
       tags:
       - "Expression SPoT"
@@ -358,7 +357,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/group:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/group:
     get:
       tags:
       - "Expression SPoT"
@@ -496,7 +495,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/group/by/run/{id}:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/group/by/run/{id}:
     get:
       tags:
       - "Expression SPoT"
@@ -553,7 +552,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/group/{id}:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/group/{id}:
     get:
       tags:
       - "Expression SPoT"
@@ -641,7 +640,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/group/{id}/curation:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/group/{id}/curation:
     get:
       tags:
       - "Expression SPoT"
@@ -718,7 +717,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/runs/by/group/{id}:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/runs/by/group/{id}:
     get:
       tags:
       - "Expression SPoT"
@@ -775,7 +774,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/{id}:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/{id}:
     get:
       tags:
       - "Expression SPoT"
@@ -889,7 +888,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/{id}/versions:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/{id}/versions:
     get:
       tags:
       - "Expression SPoT"
@@ -924,7 +923,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/{id}/versions/{version}:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/{id}/versions/{version}:
     get:
       tags:
       - "Expression SPoT"

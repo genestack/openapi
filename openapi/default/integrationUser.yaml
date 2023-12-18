@@ -15,7 +15,6 @@ info:
   version: "default-released"
   title: "ODM Integration API"
 host: "unused"
-basePath: "/frontend/rs/genestack/integrationUser/default-released"
 tags:
   - name: "Expression integration"
   - name: "Flow Cytometry integration"
@@ -29,7 +28,7 @@ tags:
 schemes:
   - "https"
 paths:
-  /data-types:
+  /frontend/rs/genestack/integrationUser/default-released/data-types:
     get:
       tags:
         - "Linkage"
@@ -61,7 +60,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /data-types/links:
+  /frontend/rs/genestack/integrationUser/default-released/data-types/links:
     get:
       tags:
         - "Linkage"
@@ -99,7 +98,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/expression/by/library/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/library/{id}:
     get:
       tags:
         - "Expression integration"
@@ -204,7 +203,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/expression/by/preparation/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/preparation/{id}:
     get:
       tags:
         - "Expression integration"
@@ -309,7 +308,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/expression/by/sample/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/sample/{id}:
     get:
       tags:
         - "Expression integration"
@@ -413,7 +412,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/expression/group/by/study/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/group/by/study/{id}:
     get:
       tags:
         - "Expression integration"
@@ -494,7 +493,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/expression/run-to-libraries/by/group/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-libraries/by/group/{id}:
     get:
       tags:
         - "Expression integration"
@@ -553,7 +552,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/expression/run-to-preparations/by/group/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-preparations/by/group/{id}:
     get:
       tags:
         - "Expression integration"
@@ -612,7 +611,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/expression/run-to-samples/by/group/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-samples/by/group/{id}:
     get:
       tags:
         - "Expression integration"
@@ -671,7 +670,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/flow-cytometry/by/sample/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/by/sample/{id}:
     get:
       tags:
         - "Flow Cytometry integration"
@@ -776,7 +775,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/flow-cytometry/group/by/study/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       tags:
         - "Flow Cytometry integration"
@@ -857,7 +856,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/flow-cytometry/run-to-samples/by/group/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       tags:
         - "Flow Cytometry integration"
@@ -916,7 +915,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/libraries/by/samples:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/libraries/by/samples:
     get:
       tags:
         - "Library integration"
@@ -1056,7 +1055,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/library/by/sample/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/library/by/sample/{id}:
     get:
       tags:
         - "Library integration"
@@ -1117,7 +1116,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/library/group/by/study/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/library/group/by/study/{id}:
     get:
       tags:
         - "Library integration"
@@ -1161,7 +1160,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/library/libraries-to-samples/by/group/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/library/libraries-to-samples/by/group/{id}:
     get:
       tags:
         - "Library integration"
@@ -1220,7 +1219,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/preparation/by/sample/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/by/sample/{id}:
     get:
       tags:
         - "Preparation integration"
@@ -1281,7 +1280,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/preparation/group/by/study/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/group/by/study/{id}:
     get:
       tags:
         - "Preparation integration"
@@ -1325,7 +1324,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/preparation/preparations-to-samples/by/group/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/preparations-to-samples/by/group/{id}:
     get:
       tags:
         - "Preparation integration"
@@ -1384,7 +1383,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/preparations/by/samples:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/preparations/by/samples:
     get:
       tags:
         - "Preparation integration"
@@ -1524,7 +1523,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/samples/by/libraries:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/libraries:
     get:
       tags:
         - "Sample integration"
@@ -1664,7 +1663,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/samples/by/preparations:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/preparations:
     get:
       tags:
         - "Sample integration"
@@ -1805,7 +1804,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/samples/by/study/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/study/{id}:
     get:
       tags:
         - "Sample integration"
@@ -1887,7 +1886,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/studies/by/libraries:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/libraries:
     get:
       tags:
         - "Study integration"
@@ -2027,7 +2026,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/studies/by/preparations:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/preparations:
     get:
       tags:
         - "Study integration"
@@ -2168,7 +2167,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/studies/by/samples:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/samples:
     get:
       tags:
         - "Study integration"
@@ -2309,7 +2308,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/study/by/sample/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/study/by/sample/{id}:
     get:
       tags:
         - "Study integration"
@@ -2366,7 +2365,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/fulltext/search/studies:
+  /frontend/rs/genestack/integrationUser/default-released/integration/fulltext/search/studies:
     post:
       tags:
         - "Study integration"
@@ -2406,7 +2405,7 @@ paths:
               \ including the error details."
       security:
         - Genestack-API-Token: [ ]
-  /integration/link/variant/by/sample/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/by/sample/{id}:
     get:
       tags:
         - "Variant integration"
@@ -2510,7 +2509,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/variant/group/by/study/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/group/by/study/{id}:
     get:
       tags:
         - "Variant integration"
@@ -2591,7 +2590,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /integration/link/variant/run-to-samples/by/group/{id}:
+  /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/run-to-samples/by/group/{id}:
     get:
       tags:
         - "Variant integration"
@@ -2650,7 +2649,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /links:
+  /frontend/rs/genestack/integrationUser/default-released/links:
     get:
       tags:
         - "Linkage"
@@ -2716,7 +2715,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /links/get-batch:
+  /frontend/rs/genestack/integrationUser/default-released/links/get-batch:
     post:
       tags:
         - "Linkage"
@@ -2752,7 +2751,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /omics/expression/data:
+  /frontend/rs/genestack/integrationUser/default-released/omics/expression/data:
     get:
       tags:
         - "Omics queries"
@@ -3014,7 +3013,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /omics/expression/group:
+  /frontend/rs/genestack/integrationUser/default-released/omics/expression/group:
     get:
       tags:
         - "Omics queries"
@@ -3272,7 +3271,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /omics/expression/streamed-data:
+  /frontend/rs/genestack/integrationUser/default-released/omics/expression/streamed-data:
     get:
       tags:
         - "Omics queries"
@@ -3437,7 +3436,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /omics/flow-cytometry/data:
+  /frontend/rs/genestack/integrationUser/default-released/omics/flow-cytometry/data:
     get:
       tags:
         - "Omics queries"
@@ -3696,7 +3695,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /omics/flow-cytometry/group:
+  /frontend/rs/genestack/integrationUser/default-released/omics/flow-cytometry/group:
     get:
       tags:
         - "Omics queries"
@@ -3954,7 +3953,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /omics/samples:
+  /frontend/rs/genestack/integrationUser/default-released/omics/samples:
     get:
       tags:
         - "Omics queries"
@@ -4213,7 +4212,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /omics/variant/data:
+  /frontend/rs/genestack/integrationUser/default-released/omics/variant/data:
     get:
       tags:
         - "Omics queries"
@@ -4471,7 +4470,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /omics/variant/group:
+  /frontend/rs/genestack/integrationUser/default-released/omics/variant/group:
     get:
       tags:
         - "Omics queries"

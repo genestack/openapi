@@ -15,13 +15,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/preparationUser/default-released"
 tags:
 - name: "Preparation SPoT"
 schemes:
 - "https"
 paths:
-  /preparations:
+  /frontend/rs/genestack/preparationUser/default-released/preparations:
     get:
       tags:
       - "Preparation SPoT"
@@ -157,7 +156,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/by/group/{id}:
+  /frontend/rs/genestack/preparationUser/default-released/preparations/by/group/{id}:
     get:
       tags:
       - "Preparation SPoT"
@@ -232,7 +231,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/{id}:
+  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}:
     get:
       tags:
       - "Preparation SPoT"
@@ -291,7 +290,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/{id}/versions:
+  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions:
     get:
       tags:
       - "Preparation SPoT"
@@ -326,7 +325,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/{id}/versions/{version}:
+  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions/{version}:
     get:
       tags:
       - "Preparation SPoT"

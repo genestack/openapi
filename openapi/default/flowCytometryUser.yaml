@@ -15,13 +15,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/flowCytometryUser/default-released"
 tags:
 - name: "Flow Cytometry SPoT"
 schemes:
 - "https"
 paths:
-  /flow-cytometry:
+  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -183,7 +182,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/group:
+  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -321,7 +320,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/group/by/run/{id}:
+  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group/by/run/{id}:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -378,7 +377,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/group/{id}:
+  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group/{id}:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -435,7 +434,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/runs/by/group/{id}:
+  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/runs/by/group/{id}:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -492,7 +491,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/{id}:
+  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -551,7 +550,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/{id}/versions:
+  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}/versions:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -586,7 +585,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/{id}/versions/{version}:
+  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}/versions/{version}:
     get:
       tags:
       - "Flow Cytometry SPoT"

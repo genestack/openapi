@@ -15,13 +15,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/sampleUser/default-released"
 tags:
 - name: "Sample SPoT"
 schemes:
 - "https"
 paths:
-  /samples:
+  /frontend/rs/genestack/sampleUser/default-released/samples:
     get:
       tags:
       - "Sample SPoT"
@@ -156,7 +155,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /samples/{id}:
+  /frontend/rs/genestack/sampleUser/default-released/samples/{id}:
     get:
       tags:
       - "Sample SPoT"
@@ -215,7 +214,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /samples/{id}/versions:
+  /frontend/rs/genestack/sampleUser/default-released/samples/{id}/versions:
     get:
       tags:
       - "Sample SPoT"
@@ -250,7 +249,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /samples/{id}/versions/{version}:
+  /frontend/rs/genestack/sampleUser/default-released/samples/{id}/versions/{version}:
     get:
       tags:
       - "Sample SPoT"

@@ -12,13 +12,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/preparationCurator/default-released"
 tags:
 - name: "Preparation SPoT"
 schemes:
 - "https"
 paths:
-  /preparations:
+  /frontend/rs/genestack/preparationCurator/default-released/preparations:
     get:
       tags:
       - "Preparation SPoT"
@@ -208,7 +207,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/by/group/{id}:
+  /frontend/rs/genestack/preparationCurator/default-released/preparations/by/group/{id}:
     get:
       tags:
       - "Preparation SPoT"
@@ -283,7 +282,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/group/{id}:
+  /frontend/rs/genestack/preparationCurator/default-released/preparations/group/{id}:
     delete:
       tags:
       - "Preparation SPoT"
@@ -315,7 +314,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/{id}:
+  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}:
     get:
       tags:
       - "Preparation SPoT"
@@ -456,7 +455,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/{id}/versions:
+  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions:
     get:
       tags:
       - "Preparation SPoT"
@@ -491,7 +490,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/{id}/versions/{version}:
+  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions/{version}:
     get:
       tags:
       - "Preparation SPoT"

@@ -12,13 +12,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/libraryCurator/default-released"
 tags:
 - name: "Library SPoT"
 schemes:
 - "https"
 paths:
-  /libraries:
+  /frontend/rs/genestack/libraryCurator/default-released/libraries:
     get:
       tags:
       - "Library SPoT"
@@ -207,7 +206,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /libraries/by/group/{id}:
+  /frontend/rs/genestack/libraryCurator/default-released/libraries/by/group/{id}:
     get:
       tags:
       - "Library SPoT"
@@ -282,7 +281,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /libraries/group/{id}:
+  /frontend/rs/genestack/libraryCurator/default-released/libraries/group/{id}:
     delete:
       tags:
       - "Library SPoT"
@@ -314,7 +313,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /libraries/{id}:
+  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}:
     get:
       tags:
       - "Library SPoT"
@@ -455,7 +454,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /libraries/{id}/versions:
+  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions:
     get:
       tags:
       - "Library SPoT"
@@ -490,7 +489,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /libraries/{id}/versions/{version}:
+  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions/{version}:
     get:
       tags:
       - "Library SPoT"

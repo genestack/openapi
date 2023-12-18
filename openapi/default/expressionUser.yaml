@@ -16,13 +16,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/expressionUser/default-released"
 tags:
 - name: "Expression SPoT"
 schemes:
 - "https"
 paths:
-  /expression:
+  /frontend/rs/genestack/expressionUser/default-released/expression:
     get:
       tags:
       - "Expression SPoT"
@@ -196,7 +195,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/group:
+  /frontend/rs/genestack/expressionUser/default-released/expression/group:
     get:
       tags:
       - "Expression SPoT"
@@ -334,7 +333,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/group/by/run/{id}:
+  /frontend/rs/genestack/expressionUser/default-released/expression/group/by/run/{id}:
     get:
       tags:
       - "Expression SPoT"
@@ -391,7 +390,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/group/{id}:
+  /frontend/rs/genestack/expressionUser/default-released/expression/group/{id}:
     get:
       tags:
       - "Expression SPoT"
@@ -448,7 +447,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/runs/by/group/{id}:
+  /frontend/rs/genestack/expressionUser/default-released/expression/runs/by/group/{id}:
     get:
       tags:
       - "Expression SPoT"
@@ -505,7 +504,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/{id}:
+  /frontend/rs/genestack/expressionUser/default-released/expression/{id}:
     get:
       tags:
       - "Expression SPoT"
@@ -568,7 +567,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/{id}/versions:
+  /frontend/rs/genestack/expressionUser/default-released/expression/{id}/versions:
     get:
       tags:
       - "Expression SPoT"
@@ -603,7 +602,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/{id}/versions/{version}:
+  /frontend/rs/genestack/expressionUser/default-released/expression/{id}/versions/{version}:
     get:
       tags:
       - "Expression SPoT"

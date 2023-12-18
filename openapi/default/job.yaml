@@ -25,14 +25,13 @@ info:
   version: "default-released"
   title: "Job API"
 host: "unused"
-basePath: "/frontend/rs/genestack/job/default-released"
 tags:
 - name: "Data import jobs"
 - name: "Job operations"
 schemes:
 - "https"
 paths:
-  /import/expression:
+  /frontend/rs/genestack/job/default-released/import/expression:
     post:
       tags:
       - "Data import jobs"
@@ -70,7 +69,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /import/flow-cytometry:
+  /frontend/rs/genestack/job/default-released/import/flow-cytometry:
     post:
       tags:
       - "Data import jobs"
@@ -98,7 +97,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /import/libraries:
+  /frontend/rs/genestack/job/default-released/import/libraries:
     post:
       tags:
       - "Data import jobs"
@@ -126,7 +125,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /import/preparations:
+  /frontend/rs/genestack/job/default-released/import/preparations:
     post:
       tags:
       - "Data import jobs"
@@ -154,7 +153,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /import/samples:
+  /frontend/rs/genestack/job/default-released/import/samples:
     post:
       tags:
       - "Data import jobs"
@@ -182,7 +181,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /import/study:
+  /frontend/rs/genestack/job/default-released/import/study:
     post:
       tags:
       - "Data import jobs"
@@ -210,7 +209,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /import/variant:
+  /frontend/rs/genestack/job/default-released/import/variant:
     post:
       tags:
       - "Data import jobs"
@@ -238,7 +237,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /{jobExecId}/info:
+  /frontend/rs/genestack/job/default-released/{jobExecId}/info:
     get:
       tags:
       - "Job operations"
@@ -261,7 +260,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /{jobExecId}/output:
+  /frontend/rs/genestack/job/default-released/{jobExecId}/output:
     get:
       tags:
       - "Job operations"
@@ -284,7 +283,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /{jobExecId}/restart:
+  /frontend/rs/genestack/job/default-released/{jobExecId}/restart:
     put:
       tags:
       - "Job operations"
@@ -307,7 +306,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /{jobExecId}/stop:
+  /frontend/rs/genestack/job/default-released/{jobExecId}/stop:
     put:
       tags:
       - "Job operations"

@@ -6,13 +6,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/scim-integration/default-released/scim"
 tags:
 - name: "Users"
 schemes:
 - "https"
 paths:
-  /Users:
+  /frontend/rs/genestack/scim-integration/default-released/scim/Users:
     get:
       tags:
       - "Users"
@@ -136,7 +135,7 @@ paths:
       security:
         - Genestack-API-Token: []
         - Access-token: []
-  /Users/{id}:
+  /frontend/rs/genestack/scim-integration/default-released/scim/Users/{id}:
     get:
       tags:
       - "Users"

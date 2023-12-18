@@ -15,13 +15,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/variantUser/default-released"
 tags:
 - name: "Variant SPoT"
 schemes:
 - "https"
 paths:
-  /variant:
+  /frontend/rs/genestack/variantUser/default-released/variant:
     get:
       tags:
       - "Variant SPoT"
@@ -213,7 +212,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /variant/group:
+  /frontend/rs/genestack/variantUser/default-released/variant/group:
     get:
       tags:
       - "Variant SPoT"
@@ -351,7 +350,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /variant/group/by/run/{id}:
+  /frontend/rs/genestack/variantUser/default-released/variant/group/by/run/{id}:
     get:
       tags:
       - "Variant SPoT"
@@ -408,7 +407,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /variant/group/{id}:
+  /frontend/rs/genestack/variantUser/default-released/variant/group/{id}:
     get:
       tags:
       - "Variant SPoT"
@@ -465,7 +464,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /variant/runs/by/group/{id}:
+  /frontend/rs/genestack/variantUser/default-released/variant/runs/by/group/{id}:
     get:
       tags:
       - "Variant SPoT"
@@ -522,7 +521,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /variant/{id}:
+  /frontend/rs/genestack/variantUser/default-released/variant/{id}:
     get:
       tags:
       - "Variant SPoT"
@@ -581,7 +580,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /variant/{id}/versions:
+  /frontend/rs/genestack/variantUser/default-released/variant/{id}/versions:
     get:
       tags:
       - "Variant SPoT"
@@ -616,7 +615,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /variant/{id}/versions/{version}:
+  /frontend/rs/genestack/variantUser/default-released/variant/{id}/versions/{version}:
     get:
       tags:
       - "Variant SPoT"

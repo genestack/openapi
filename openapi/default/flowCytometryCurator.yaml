@@ -12,13 +12,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/flowCytometryCurator/default-released"
 tags:
 - name: "Flow Cytometry SPoT"
 schemes:
 - "https"
 paths:
-  /flow-cytometry:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -180,7 +179,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/atomic:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic:
     post:
       tags:
       - "Flow Cytometry SPoT"
@@ -224,7 +223,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/atomic/{id}:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic/{id}:
     delete:
       tags:
       - "Flow Cytometry SPoT"
@@ -307,7 +306,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/facs:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/facs:
     post:
       tags:
       - "Flow Cytometry SPoT"
@@ -346,7 +345,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/group:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -484,7 +483,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/group/by/run/{id}:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/by/run/{id}:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -541,7 +540,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/group/{id}:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -629,7 +628,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/group/{id}/curation:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}/curation:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -706,7 +705,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/runs/by/group/{id}:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/runs/by/group/{id}:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -763,7 +762,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/{id}:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -873,7 +872,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/{id}/versions:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions:
     get:
       tags:
       - "Flow Cytometry SPoT"
@@ -908,7 +907,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /flow-cytometry/{id}/versions/{version}:
+  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions/{version}:
     get:
       tags:
       - "Flow Cytometry SPoT"

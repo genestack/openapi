@@ -6,13 +6,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/scim-integration/default-released/scim"
 tags:
 - name: "Groups"
 schemes:
 - "https"
 paths:
-  /Groups:
+  /frontend/rs/genestack/scim-integration/default-released/scim/Groups:
     get:
       tags:
       - "Groups"
@@ -136,7 +135,7 @@ paths:
       security:
         - Genestack-API-Token: []
         - Access-token: []
-  /Groups/{id}:
+  /frontend/rs/genestack/scim-integration/default-released/scim/Groups/{id}:
     get:
       tags:
       - "Groups"

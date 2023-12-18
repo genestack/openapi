@@ -12,13 +12,12 @@ info:
   version: "default-released"
   title: "ODM API"
 host: "unused"
-basePath: "/frontend/rs/genestack/sampleCurator/default-released"
 tags:
 - name: "Sample SPoT"
 schemes:
 - "https"
 paths:
-  /samples:
+  /frontend/rs/genestack/sampleCurator/default-released/samples:
     get:
       tags:
       - "Sample SPoT"
@@ -191,7 +190,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /samples/atomic:
+  /frontend/rs/genestack/sampleCurator/default-released/samples/atomic:
     post:
       tags:
       - "Sample SPoT"
@@ -234,7 +233,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /samples/atomic/{id}:
+  /frontend/rs/genestack/sampleCurator/default-released/samples/atomic/{id}:
     patch:
       tags:
       - "Sample SPoT"
@@ -286,7 +285,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /samples/{id}:
+  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}:
     get:
       tags:
       - "Sample SPoT"
@@ -427,7 +426,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /samples/{id}/versions:
+  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}/versions:
     get:
       tags:
       - "Sample SPoT"
@@ -462,7 +461,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /samples/{id}/versions/{version}:
+  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}/versions/{version}:
     get:
       tags:
       - "Sample SPoT"

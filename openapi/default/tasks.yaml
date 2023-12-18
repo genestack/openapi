@@ -5,13 +5,12 @@ info:
   version: "default-released"
   title: "Tasks API"
 host: "unused"
-basePath: "/frontend/rs/genestack/taskmanager/default-released"
 tags:
 - name: "Tasks API"
 schemes:
 - "https"
 paths:
-  /tasks/publish-versions:
+  /frontend/rs/genestack/taskmanager/default-released/tasks/publish-versions:
     post:
       tags:
       - "Tasks API"
@@ -49,7 +48,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /tasks/{id}:
+  /frontend/rs/genestack/taskmanager/default-released/tasks/{id}:
     get:
       tags:
       - "Tasks API"
