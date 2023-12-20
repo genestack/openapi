@@ -191,7 +191,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /expression/atomic:
+  /frontend/rs/genestack/expressionCurator/default-released/expression/atomic:
     post:
       tags:
       - "Expression SPoT"
