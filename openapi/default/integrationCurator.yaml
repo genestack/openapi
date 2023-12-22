@@ -3972,6 +3972,8 @@ paths:
         \ an expected answer would be true for existing links and false for no link\
         \ between the objects."
       operationId: "getLinksByParams"
+      consumes:
+      - "application/json"
       parameters:
       - name: "firstId"
         in: "query"
@@ -4037,6 +4039,8 @@ paths:
         \ A to Object B it can be done both ways, by linking firstType to secondType\
         \ and vice versa)."
       operationId: "saveLinks"
+      consumes:
+      - "application/json"
       parameters:
       - in: "body"
         name: "links"
@@ -4075,6 +4079,8 @@ paths:
         \ of an object. Please, keep in mind that deleting a link between Study and\
         \ Sample will not delete a link between corresponding Sample and it’s signal."
       operationId: "deleteLink"
+      consumes:
+      - "application/json"
       parameters:
       - name: "firstId"
         in: "query"
