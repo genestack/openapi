@@ -1,1200 +1,1388 @@
----
-swagger: "2.0"
+openapi: 3.0.1
 info:
-  description: "This swagger page describes the variantCurator APIs.\n\nBefore carrying\
-    \ out any API calls you will need an API token. API tokens can be obtained under\
-    \ your profile within the Genestack software.\n\nTo try out calls in this swagger\
-    \ page:\n\n1. Click the 'Authorize' button below to enter your API token\n2. Scroll\
-    \ to the 'Parameters' section for the method you wish to try out and click the\
-    \ 'Try it out' button\n3. Enter parameter values that you wish to try\n4. Scroll\
-    \ to the bottom of the Parameters section and click the 'Execute' bar that appears\n\
-    \nThe server response will be in the section that follows."
-  version: "default-released"
-  title: "ODM API"
-host: "unused"
+  description: |-
+    This swagger page describes the variantCurator APIs.
+
+    Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
+
+    To try out calls in this swagger page:
+
+    1. Click the 'Authorize' button below to enter your API token
+    2. Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
+    3. Enter parameter values that you wish to try
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
+
+    The server response will be in the section that follows.
+  title: ODM API
+  version: default-released
+servers:
+- url: https://unused/
 tags:
-- name: "Variant SPoT"
-schemes:
-- "https"
+- name: Variant SPoT
 paths:
   /frontend/rs/genestack/variantCurator/default-released/variant:
     get:
-      tags:
-      - "Variant SPoT"
-      summary: "Retrieve multiple variant data and metadata objects"
-      description: "Retrieve all variant data and metadata objects that match a query.\n\
-        \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
-        \ use speech marks (`\"`) to quote queries that include whitespace. Speech\
-        \ marks and backslash characters in the query need to be escaped with a backslash\
-        \ (`\\`).\n\n## Metadata filters\nMetadata filters are key-value pairs joined\
-        \ by an operator. The `=` operator matches literal values/string. The `!=`\
-        \ operator matches anything except the literal value/string. The `<` or `>`\
-        \ operators match numerical results that are less or greater than the supplied\
-        \ value. Strings containing whitespace need to be quoted with (`\"`).\n\n\
-        ## Combinations\nMetadata queries/filters for the same parameter can be combined\
-        \ with `&&`, `AND`, `||` and `OR` operators, using white-space to separate\
-        \ out the terms and operators. Parentheses `( )` can be used for complex expressions.\n\
-        \n## Versioning\nSpecific versions of omics data files (eg. GCT) can be queried\
-        \ via the useVersions parameter. Different versions of an omics data file\
-        \ are associated via their CHAIN_ID metadata value. This CHAIN_ID can be supplied\
-        \ to the useVersions parameter along with the version number or specific omics\
-        \ data file accessions to include them in the query. If nothing is supplied\
-        \ to the useVersions parameter then only the active version (which is usually\
-        \ the last one imported) is queried. This acts as a filter before the rest\
-        \ of the query is carried out.\n\nExample usage:\nuseVersions=* (query all\
-        \ versions, including those without CHAIN_IDs)\nuseVersions=v2 (query the\
-        \ second version. If there is no second version then the data file is not\
-        \ queried)\nuseVersions=v1,v0 (query the first version and any data files\
-        \ without CHAIN_IDs(v0) )\nuseVersions=GSVC002:v3 (for omics data files with\
-        \ a CHAIN_ID of GSCV002 query the third version)\nuseVersions=GSVC002:GSF00494,GSF000496\
-        \ (for omics data files with a CHAIN_ID of GSCV002 query only the specific\
-        \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
-        \ supplied to the parameter using the ; separator.\n\n## Paging\nFor\
-        \ performance reasons this endpoint returns results in \"pages\" of\
-        \ limited size together with a `cursor` tag. To retrieve the next page\
-        \ of results please supply this `cursor` tag to resume the query from\
-        \ your previous result and get the next page. If there are no more\
-        \ results you will just retrieve an empty result.\n\n"
-      operationId: "getAllVariants"
-      produces:
-      - "application/json"
+      description: |+
+        Retrieve all variant data and metadata objects that match a query.
+
+        ## Metadata full-text queries
+        Single words can be supplied as is, otherwise use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
+
+        ## Metadata filters
+        Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
+
+        ## Combinations
+        Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
+
+        ## Versioning
+        Specific versions of omics data files (eg. GCT) can be queried via the useVersions parameter. Different versions of an omics data file are associated via their CHAIN_ID metadata value. This CHAIN_ID can be supplied to the useVersions parameter along with the version number or specific omics data file accessions to include them in the query. If nothing is supplied to the useVersions parameter then only the active version (which is usually the last one imported) is queried. This acts as a filter before the rest of the query is carried out.
+
+        Example usage:
+        useVersions=* (query all versions, including those without CHAIN_IDs)
+        useVersions=v2 (query the second version. If there is no second version then the data file is not queried)
+        useVersions=v1,v0 (query the first version and any data files without CHAIN_IDs(v0) )
+        useVersions=GSVC002:v3 (for omics data files with a CHAIN_ID of GSCV002 query the third version)
+        useVersions=GSVC002:GSF00494,GSF000496 (for omics data files with a CHAIN_ID of GSCV002 query only the specific accessions GSF00494 and GSF000496)
+
+        Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
+
+        ## Paging
+        For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
+
+      operationId: getAllVariants
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "filter"
-        in: "query"
-        description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source ID\"=\"HG00096\"\
-          \  will be deprecated after June 2023"
-        required: false
-        type: "string"
-      - name: "query"
-        in: "query"
-        description: "Search for variant objects via a full text query over all variant\
-          \ metadata. E.g. `dbSNP`. Queries matching dictionary terms are automatically\
-          \ expanded to include synonyms."
-        required: false
-        type: "string"
-      - name: "searchSpecificTerms"
-        in: "query"
-        description: "If the full-text query term is present in an ODM dictionary,\
-          \ enabling this parameter will modify the query to include child terms of\
-          \ the full-text query.\n\nFor example, the search query \"Body fluid\" can\
-          \ be expanded to include the term \"Blood\" (a child term of  \"Body fluid\"\
-          ) so files containing either \"Body fluid\" or  \"Blood\"  in their metadata\
-          \ will be returned in the search results.\n\nThe parent-child relationship\
-          \ is defined by the key \"broaders\" or \"subClassOf\" in the dictionary.\n\
-          \nIf the full query term is not present in a dictionary then this parameter\
-          \ has no effect."
-        required: false
-        type: "boolean"
-      - name: "runFilter"
-        in: "query"
-        description: "Genestack accession that corresponds to the vcf column used\
-          \ to link variants from the same run to a sample"
-        required: false
-        type: "string"
-      - name: "infoFilter"
-        in: "query"
-        description: "Filter by vcf INFO field key=value(or range) pairs. Multiple\
-          \ filters can be separated with semicolons. E.g. `AF=(0.8:0.95);VT=SNP'"
-        required: false
-        type: "string"
-      - name: "genes"
-        in: "query"
-        description: "Specify a chromosome interval related with the genes list. Use\
-          \ commas to specify multiple genes."
-        required: false
-        type: "string"
-      - name: "interval"
-        in: "query"
-        description: "Specify a chromosome interval to find genes between these positions.\
-          \ E.g. `2:233364596-233385916`. Use commas to specify multiple intervals."
-        required: false
-        type: "string"
-      - name: "variationId"
-        in: "query"
-        description: "One or more specific variation IDs can be specified. E.g. `rs838705`\
-          \ use `|` characters to specify mutliple IDs. "
-        required: false
-        type: "string"
-      - name: "reference"
-        in: "query"
-        description: "Reference bases, with multiple characters sepearated by `|`.\
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Filter by variant metadata (key-value metadata pair(s)). E.g.
+          `"Variant Source"=dbSNP`. Retrieving individual runs via "Run Source ID"="HG00096"  will
+          be deprecated after June 2023
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Search for variant objects via a full text query over all variant
+          metadata. E.g. `dbSNP`. Queries matching dictionary terms are automatically
+          expanded to include synonyms.
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: |-
+          If the full-text query term is present in an ODM dictionary, enabling this parameter will modify the query to include child terms of the full-text query.
+
+          For example, the search query "Body fluid" can be expanded to include the term "Blood" (a child term of  "Body fluid") so files containing either "Body fluid" or  "Blood"  in their metadata will be returned in the search results.
+
+          The parent-child relationship is defined by the key "broaders" or "subClassOf" in the dictionary.
+
+          If the full query term is not present in a dictionary then this parameter has no effect.
+        in: query
+        name: searchSpecificTerms
+        schema:
+          type: boolean
+      - description: Genestack accession that corresponds to the vcf column used to
+          link variants from the same run to a sample
+        in: query
+        name: runFilter
+        schema:
+          type: string
+      - description: Filter by vcf INFO field key=value(or range) pairs. Multiple
+          filters can be separated with semicolons. E.g. `AF=(0.8:0.95);VT=SNP'
+        in: query
+        name: infoFilter
+        schema:
+          type: string
+      - description: Specify a chromosome interval related with the genes list. Use
+          commas to specify multiple genes.
+        in: query
+        name: genes
+        schema:
+          type: string
+      - description: Specify a chromosome interval to find genes between these positions.
+          E.g. `2:233364596-233385916`. Use commas to specify multiple intervals.
+        in: query
+        name: interval
+        schema:
+          type: string
+      - description: 'One or more specific variation IDs can be specified. E.g. `rs838705`
+          use `|` characters to specify mutliple IDs. '
+        in: query
+        name: variationId
+        schema:
+          type: string
+      - description: "Reference bases, with multiple characters sepearated by `|`.\
           \ E.g. `CA|G`."
-        required: false
-        type: "string"
-      - name: "alteration"
-        in: "query"
-        description: "Alternate bases, with multiple characters sepearated by `|`.\
+        in: query
+        name: reference
+        schema:
+          type: string
+      - description: "Alternate bases, with multiple characters sepearated by `|`.\
           \ E.g. `CA|G`."
-        required: false
-        type: "string"
-      - name: "alleles"
-        in: "query"
-        description: "The response can be filtered by number of affected alleles.\
-          \ All objects which have a number of mutations that is equal or greater\
-          \ than the supplied value will match the search criteria.\n\nFor example,\
-          \ if you provide ‘1’, all variant objects which have mutations in 1, 2,\
-          \ or more, alleles will be displayed in the response."
-        required: false
-        type: "string"
-      - name: "quality"
-        in: "query"
-        description: "The objects can be filtered by quality value. Quality should\
-          \ be entered as an interval in parentheses with the starting and ending\
-          \ values are separated by a colon.\n\nFor example, if you enter (100:200),\
-          \ variant objects with quality values greater than 100 and less than 200\
-          \ will be shown in the response."
-        required: false
-        type: "string"
-      - name: "useVersions"
-        in: "query"
-        description: "Specify which versions of omics data files are used in the query.\
-          \ By default the active version is used. See Versioning above. Syntax:\n\
-          \n\\* or `v<version number>` or `<CHAIN_ID>`:`v<version number>` or `<CHAIN_ID>`:`<accession1,accession2,..>`"
-        required: false
-        type: "string"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
-      - name: "pageLimit"
-        in: "query"
-        description: "Maximum number of results to return per page (see Paging above).\
-          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
-        required: false
-        type: "integer"
-        format: "int32"
-      - name: "cursor"
-        in: "query"
-        description: "The page tag to resume results from (see paging above)."
-        required: false
-        type: "string"
+        in: query
+        name: alteration
+        schema:
+          type: string
+      - description: |-
+          The response can be filtered by number of affected alleles. All objects which have a number of mutations that is equal or greater than the supplied value will match the search criteria.
+
+          For example, if you provide ‘1’, all variant objects which have mutations in 1, 2, or more, alleles will be displayed in the response.
+        in: query
+        name: alleles
+        schema:
+          type: string
+      - description: |-
+          The objects can be filtered by quality value. Quality should be entered as an interval in parentheses with the starting and ending values are separated by a colon.
+
+          For example, if you enter (100:200), variant objects with quality values greater than 100 and less than 200 will be shown in the response.
+        in: query
+        name: quality
+        schema:
+          type: string
+      - description: |-
+          Specify which versions of omics data files are used in the query. By default the active version is used. See Versioning above. Syntax:
+
+          \* or `v<version number>` or `<CHAIN_ID>`:`v<version number>` or `<CHAIN_ID>`:`<accession1,accession2,..>`
+        in: query
+        name: useVersions
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
+      - description: Maximum number of results to return per page (see Paging above).
+          This value must be between 0 and 2000 (inclusive). The default is 2000.
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
+      - description: The page tag to resume results from (see paging above).
+        in: query
+        name: cursor
+        schema:
+          type: string
       responses:
-        200:
-          description: "Retrieved variant data."
-          schema:
-            $ref: "#/definitions/VariantResponse"
-        400:
-          description: "Variant data cannot be retrieved."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariantResponse'
+          description: Retrieved variant data.
+        "400":
+          content: {}
+          description: Variant data cannot be retrieved.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Retrieve multiple variant data and metadata objects
+      tags:
+      - Variant SPoT
   /frontend/rs/genestack/variantCurator/default-released/variant/atomic:
     post:
-      tags:
-      - "Variant SPoT"
-      summary: "Create a single new object from a given data file with optional supplied\
-        \ metadata."
-      description: "## Data\n This operation requires the URL of a signal data  file, for example a GCT, VCF or Flow Cytometry file. The required form of this file depends  on the specific SPoT.\n\n ## Metadata\n It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.\n ## Metadata file format\n * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed\n * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n * Header: the first line is treated as table header that contains attribute names\n * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.\n ## File sources\n * Supported external sources (links): `http`/`https`/`ftp`"
-      operationId: "addAtomicVariant"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "source"
-        description: "## Data\n\nSee the VariantSource model for details of the data\
-          \ fields.\n\n## Metadata\n\nThe supplied metadata object must be a JSON\
-          \ _object_ with non-empty strings as keys. These are interpreted as attribute\
-          \ names. The values should be either scalar JSON values (null, boolean,\
-          \ number or string), or an type-homogenous array of scalar values."
+      description: |-
+        ## Data
+         This operation requires the URL of a signal data  file, for example a GCT, VCF or Flow Cytometry file. The required form of this file depends  on the specific SPoT.
+
+         ## Metadata
+         It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.
+         ## Metadata file format
+         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
+         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Header: the first line is treated as table header that contains attribute names
+         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+         ## File sources
+         * Supported external sources (links): `http`/`https`/`ftp`
+      operationId: addAtomicVariant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VariantSource'
+        description: |-
+          ## Data
+
+          See the VariantSource model for details of the data fields.
+
+          ## Metadata
+
+          The supplied metadata object must be a JSON _object_ with non-empty strings as keys. These are interpreted as attribute names. The values should be either scalar JSON values (null, boolean, number or string), or an type-homogenous array of scalar values.
         required: false
-        schema:
-          $ref: "#/definitions/VariantSource"
       responses:
-        201:
-          description: "The objects were successfully created. The returned value\
-            \ is a list of created objects."
-          schema:
-            $ref: "#/definitions/VariantItem"
-        400:
-          description: "The object cannot be created. This error occurs when the supplied\
-            \ data or metadata are incorrect. Please see error message for details."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        500:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariantItem'
+          description: The objects were successfully created. The returned value is
+            a list of created objects.
+        "400":
+          content: {}
+          description: The object cannot be created. This error occurs when the supplied
+            data or metadata are incorrect. Please see error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Create a single new object from a given data file with optional supplied
+        metadata.
+      tags:
+      - Variant SPoT
+      x-codegen-request-body-name: source
   /frontend/rs/genestack/variantCurator/default-released/variant/atomic/{id}:
     delete:
-      tags:
-      - "Variant SPoT"
-      summary: "Delete the object"
-      description: ""
-      operationId: "deleteAtomic"
+      operationId: deleteAtomic
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
+        schema:
+          type: string
       responses:
-        204:
-          description: "The object has been successfully deleted. No data is returned."
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "204":
+          content: {}
+          description: The object has been successfully deleted. No data is returned.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-    patch:
+      summary: Delete the object
       tags:
-      - "Variant SPoT"
-      summary: "Update object metadata"
-      description: "## Basic operation\nThe object metadata is updated using the supplied\
-        \ map of attribute names to attribute values. There are three cases:\n1. The\
-        \ attribute name does not already exist in the object metadata. In this case,\
-        \ the attribute and value are added to the object metadata.\n2. The attribute\
-        \ name already exists in the object metadata. In this case, the value is updated.\n\
-        3. The attribute value is `null`.In this case, the attribute is removed from\
-        \ the object metadata.\n\n## Attribute values\nThe attribute values are intelligently\
-        \ parsed as booleans, integers, etc."
-      operationId: "updateAtomicMetadata"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - Variant SPoT
+    patch:
+      description: |-
+        ## Basic operation
+        The object metadata is updated using the supplied map of attribute names to attribute values. There are three cases:
+        1. The attribute name does not already exist in the object metadata. In this case, the attribute and value are added to the object metadata.
+        2. The attribute name already exists in the object metadata. In this case, the value is updated.
+        3. The attribute value is `null`.In this case, the attribute is removed from the object metadata.
+
+        ## Attribute values
+        The attribute values are intelligently parsed as booleans, integers, etc.
+      operationId: updateAtomicMetadata
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - in: "body"
-        name: "body"
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataContent'
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
-        schema:
-          $ref: "#/definitions/MetadataContent"
       responses:
-        200:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataContent'
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
-          schema:
-            $ref: "#/definitions/MetadataContent"
-        400:
-          description: "The supplied object ID or metadata is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "400":
+          content: {}
+          description: The supplied object ID or metadata is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Update object metadata
+      tags:
+      - Variant SPoT
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/group:
     get:
-      tags:
-      - "Variant SPoT"
-      summary: "Retrieve groups that match a query"
-      description: "Retrieve all group metadata objects that match a query.\n\n##\
-        \ Metadata full-text queries\nSingle words can be supplied as is, otherwise\
-        \ use speech marks (`\"`) to quote queries that include whitespace. Speech\
-        \ marks and backslash characters in the query need to be escaped with a backslash\
-        \ (`\\`).\n\n## Metadata filters\nMetadata filters are key-value pairs joined\
-        \ by an operator. The `=` operator matches literal values/string. The `!=`\
-        \ operator matches anything except the literal value/string. The `<` or `>`\
-        \ operators match numerical results that are less or greater than the supplied\
-        \ value. Strings containing whitespace need to be quoted with (`\"`).\n\n\
-        ## Combinations\nMetadata queries/filters for the same parameter can be combined\
-        \ with `&&`, `AND`, `||` and `OR` operators, using white-space to separate\
-        \ out the terms and operators. Parentheses `( )` can be used for complex expressions.\n\
-        \n## Versioning\nSpecific versions of omics data files (eg. GCT) can be queried\
-        \ via the useVersions parameter. Different versions of an omics data file\
-        \ are associated via their CHAIN_ID metadata value. This CHAIN_ID can be supplied\
-        \ to the useVersions parameter along with the version number or specific omics\
-        \ data file accessions to include them in the query. If nothing is supplied\
-        \ to the useVersions parameter then only the active version (which is usually\
-        \ the last one imported) is queried. This acts as a filter before the rest\
-        \ of the query is carried out.\n\nExample usage:\nuseVersions=* (query all\
-        \ versions, including those without CHAIN_IDs)\nuseVersions=v2 (query the\
-        \ second version. If there is no second version then the data file is not\
-        \ queried)\nuseVersions=v1,v0 (query the first version and any data files\
-        \ without CHAIN_IDs(v0) )\nuseVersions=GSVC002:v3 (for omics data files with\
-        \ a CHAIN_ID of GSCV002 query the third version)\nuseVersions=GSVC002:GSF00494,GSF000496\
-        \ (for omics data files with a CHAIN_ID of GSCV002 query only the specific\
-        \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
-        \ supplied to the parameter using the ; separator.\n\n## Paging\nFor performance\
-        \ reasons this endpoint returns results in \"pages\" of limited size. In order\
-        \ to retrieve all matching results the client needs to request multiple pages\
-        \ starting from an offset to the first result. You can do this using the pageOffset\
-        \ query parameter. A value of 0 (the default) instructs the server to return\
-        \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n*pageLimit` until the `resultsExhausted` response\
-        \ field is true.\n\n## List operation\n\nThis endpoint can be called with\
-        \ no `query` parameter. Doing so returns a list of all data objects."
-      operationId: "searchGroups"
+      description: |-
+        Retrieve all group metadata objects that match a query.
+
+        ## Metadata full-text queries
+        Single words can be supplied as is, otherwise use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
+
+        ## Metadata filters
+        Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
+
+        ## Combinations
+        Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
+
+        ## Versioning
+        Specific versions of omics data files (eg. GCT) can be queried via the useVersions parameter. Different versions of an omics data file are associated via their CHAIN_ID metadata value. This CHAIN_ID can be supplied to the useVersions parameter along with the version number or specific omics data file accessions to include them in the query. If nothing is supplied to the useVersions parameter then only the active version (which is usually the last one imported) is queried. This acts as a filter before the rest of the query is carried out.
+
+        Example usage:
+        useVersions=* (query all versions, including those without CHAIN_IDs)
+        useVersions=v2 (query the second version. If there is no second version then the data file is not queried)
+        useVersions=v1,v0 (query the first version and any data files without CHAIN_IDs(v0) )
+        useVersions=GSVC002:v3 (for omics data files with a CHAIN_ID of GSCV002 query the third version)
+        useVersions=GSVC002:GSF00494,GSF000496 (for omics data files with a CHAIN_ID of GSCV002 query only the specific accessions GSF00494 and GSF000496)
+
+        Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
+
+        ## Paging
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n*pageLimit` until the `resultsExhausted` response field is true.
+
+        ## List operation
+
+        This endpoint can be called with no `query` parameter. Doing so returns a list of all data objects.
+      operationId: searchGroups
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "filter"
-        in: "query"
-        description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source ID\"=\"HG00096\"\
-          \  will be deprecated after June 2023"
-        required: false
-        type: "string"
-      - name: "query"
-        in: "query"
-        description: "Search for variant objects via a full text query over all variant\
-          \ metadata. E.g. `dbSNP`. Queries matching dictionary terms are automatically\
-          \ expanded to include synonyms."
-        required: false
-        type: "string"
-      - name: "searchSpecificTerms"
-        in: "query"
-        description: "If the full-text query term is present in an ODM dictionary,\
-          \ enabling this parameter will modify the query to include child terms of\
-          \ the full-text query.\n\nFor example, the search query \"Body fluid\" can\
-          \ be expanded to include the term \"Blood\" (a child term of  \"Body fluid\"\
-          ) so files containing either \"Body fluid\" or  \"Blood\"  in their metadata\
-          \ will be returned in the search results.\n\nThe parent-child relationship\
-          \ is defined by the key \"broaders\" or \"subClassOf\" in the dictionary.\n\
-          \nIf the full query term is not present in a dictionary then this parameter\
-          \ has no effect."
-        required: false
-        type: "boolean"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
-      - name: "useVersions"
-        in: "query"
-        description: "Specify which versions of omics data files are used in the query.\
-          \ By default the active version is used. See Versioning above. Syntax:\n\
-          \n\\* or `v<version number>` or `<CHAIN_ID>`:`v<version number>` or `<CHAIN_ID>`:`<accession1,accession2,..>`"
-        required: false
-        type: "string"
-      - name: "pageOffset"
-        in: "query"
-        description: "Show the page {pageOffset+1} results from the start of the results.\
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Filter by variant metadata (key-value metadata pair(s)). E.g.
+          `"Variant Source"=dbSNP`. Retrieving individual runs via "Run Source ID"="HG00096"  will
+          be deprecated after June 2023
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Search for variant objects via a full text query over all variant
+          metadata. E.g. `dbSNP`. Queries matching dictionary terms are automatically
+          expanded to include synonyms.
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: |-
+          If the full-text query term is present in an ODM dictionary, enabling this parameter will modify the query to include child terms of the full-text query.
+
+          For example, the search query "Body fluid" can be expanded to include the term "Blood" (a child term of  "Body fluid") so files containing either "Body fluid" or  "Blood"  in their metadata will be returned in the search results.
+
+          The parent-child relationship is defined by the key "broaders" or "subClassOf" in the dictionary.
+
+          If the full query term is not present in a dictionary then this parameter has no effect.
+        in: query
+        name: searchSpecificTerms
+        schema:
+          type: boolean
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
+      - description: |-
+          Specify which versions of omics data files are used in the query. By default the active version is used. See Versioning above. Syntax:
+
+          \* or `v<version number>` or `<CHAIN_ID>`:`v<version number>` or `<CHAIN_ID>`:`<accession1,accession2,..>`
+        in: query
+        name: useVersions
+        schema:
+          type: string
+      - description: "Show the page {pageOffset+1} results from the start of the results.\
           \ E.g. 100 will show a page of results  starting from the 101st result.\
           \ The default value is 0."
-        required: false
-        type: "integer"
-        format: "int32"
-      - name: "pageLimit"
-        in: "query"
-        description: "Maximum number of results to return per page (see Paging above).\
-          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
-        required: false
-        type: "integer"
-        format: "int32"
+        in: query
+        name: pageOffset
+        schema:
+          format: int32
+          type: integer
+      - description: Maximum number of results to return per page (see Paging above).
+          This value must be between 0 and 2000 (inclusive). The default is 2000.
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
       responses:
-        200:
-          description: "The request was successful. The returned value is a list of\
-            \ objects."
-          schema:
-            $ref: "#/definitions/ListResponse"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListResponse'
+          description: The request was successful. The returned value is a list of
+            objects.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Retrieve groups that match a query
+      tags:
+      - Variant SPoT
   /frontend/rs/genestack/variantCurator/default-released/variant/group/by/run/{id}:
     get:
-      tags:
-      - "Variant SPoT"
-      summary: "Retrieve a single group object by run ID (accession)"
-      description: ""
-      operationId: "getGroupByRun"
+      operationId: getGroupByRun
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
       responses:
-        200:
-          description: "The request was successful. The returned value is the object."
-          schema:
-            $ref: "#/definitions/MetadataWithId"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MetadataWithId'
+          description: The request was successful. The returned value is the object.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Retrieve a single group object by run ID (accession)
+      tags:
+      - Variant SPoT
   /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}:
-    get:
-      tags:
-      - "Variant SPoT"
-      summary: "Retrieve a single group object by ID (accession)"
-      description: ""
-      operationId: "getGroup"
-      parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
-        required: true
-        type: "string"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
-      responses:
-        200:
-          description: "The request was successful. The returned value is the object."
-          schema:
-            $ref: "#/definitions/MetadataWithId"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
     delete:
-      tags:
-      - "Variant SPoT"
-      summary: "Delete the object"
-      description: ""
-      operationId: "deleteGroup"
+      operationId: deleteGroup
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
+        schema:
+          type: string
       responses:
-        204:
-          description: "The object has been successfully deleted. No data is returned."
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "204":
+          content: {}
+          description: The object has been successfully deleted. No data is returned.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Delete the object
+      tags:
+      - Variant SPoT
+    get:
+      operationId: getGroup
+      parameters:
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MetadataWithId'
+          description: The request was successful. The returned value is the object.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve a single group object by ID (accession)
+      tags:
+      - Variant SPoT
   /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}/curation:
     get:
-      tags:
-      - "Variant SPoT"
-      summary: "Get curation status of a group by ID (accession)"
-      description: ""
-      operationId: "getGroupCurationStatus"
-      produces:
-      - "application/json"
+      operationId: getGroupCurationStatus
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
+        schema:
+          type: string
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/CurationSource"
-        204:
-          description: "The request was successful. The returned value is the object."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurationSource'
+          description: successful operation
+        "204":
+          content: {}
+          description: The request was successful. The returned value is the object.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-    patch:
+      summary: Get curation status of a group by ID (accession)
       tags:
-      - "Variant SPoT"
-      summary: "Set curation status of a group by ID (accession)"
-      description: ""
-      operationId: "updateGroup"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - Variant SPoT
+    patch:
+      operationId: updateGroup
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - in: "body"
-        name: "body"
-        description: "## Data\n\nSee CurationSource model for details of the data\
-          \ fields.\n\n"
-        required: false
         schema:
-          $ref: "#/definitions/CurationSource"
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurationSource'
+        description: |+
+          ## Data
+
+          See CurationSource model for details of the data fields.
+
+        required: false
       responses:
-        200:
+        "200":
+          content: {}
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Set curation status of a group by ID (accession)
+      tags:
+      - Variant SPoT
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/runs/by/group/{id}:
     get:
-      tags:
-      - "Variant SPoT"
-      summary: "Retrieve run objects related to the given group"
-      description: "## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size. In order to retrieve all matching results\
-        \ the client needs to request multiple pages starting from an offset to the\
-        \ first result. You can do this using the pageOffset query parameter. A value\
-        \ of 0 (the default) instructs the server to return the first page of results,\
-        \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
-      operationId: "searchRuns"
+      description: |+
+        ## Paging
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+
+      operationId: searchRuns
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - name: "pageOffset"
-        in: "query"
-        description: "Show the page {pageOffset+1} results from the start of the results.\
+        schema:
+          type: string
+      - description: "Show the page {pageOffset+1} results from the start of the results.\
           \ E.g. 100 will show a page of results  starting from the 101st result.\
           \ The default value is 0."
-        required: false
-        type: "integer"
-        format: "int32"
-      - name: "pageLimit"
-        in: "query"
-        description: "Maximum number of results to return per page (see Paging above).\
-          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
-        required: false
-        type: "integer"
-        format: "int32"
+        in: query
+        name: pageOffset
+        schema:
+          format: int32
+          type: integer
+      - description: Maximum number of results to return per page (see Paging above).
+          This value must be between 0 and 2000 (inclusive). The default is 2000.
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
       responses:
-        200:
-          description: "The request was successful. The returned value is the object."
-          schema:
-            $ref: "#/definitions/ListResponse"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListResponse'
+          description: The request was successful. The returned value is the object.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Retrieve run objects related to the given group
+      tags:
+      - Variant SPoT
   /frontend/rs/genestack/variantCurator/default-released/variant/vcf:
     post:
-      tags:
-      - "Variant SPoT"
-      summary: "Create multiple new objects from a multi-row data file with optional\
-        \ supplied metadata"
-      description: "## Data\n This operation requires the URL of a VCF data file. Method differed from the other  SPoT POST methods as it returns additionally an id of created experiment.\n ## Metadata\n It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.\n ## Metadata file format\n * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed\n * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n * Header: the first line is treated as table header that contains attribute names\n * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.\n ## File sources\n * Supported external sources (links): `http`/`https`/`ftp`"
-      operationId: "addVariants"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "source"
+      description: |-
+        ## Data
+         This operation requires the URL of a VCF data file. Method differed from the other  SPoT POST methods as it returns additionally an id of created experiment.
+         ## Metadata
+         It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.
+         ## Metadata file format
+         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
+         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Header: the first line is treated as table header that contains attribute names
+         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+         ## File sources
+         * Supported external sources (links): `http`/`https`/`ftp`
+      operationId: addVariants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignalSource'
         required: false
-        schema:
-          $ref: "#/definitions/SignalSource"
       responses:
-        201:
-          description: "The objects were successfully created. The returned value\
-            \ is a list of created objects."
-          schema:
-            $ref: "#/definitions/RunsResponse"
-        400:
-          description: "The object cannot be created. This error occurs when the supplied\
-            \ data or metadata are incorrect. Please see error message for details."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        500:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunsResponse'
+          description: The objects were successfully created. The returned value is
+            a list of created objects.
+        "400":
+          content: {}
+          description: The object cannot be created. This error occurs when the supplied
+            data or metadata are incorrect. Please see error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Create multiple new objects from a multi-row data file with optional
+        supplied metadata
+      tags:
+      - Variant SPoT
+      x-codegen-request-body-name: source
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}:
     get:
-      tags:
-      - "Variant SPoT"
-      summary: "Retrieve a single variant object by ID (accession)"
-      description: ""
-      operationId: "getVariant"
-      produces:
-      - "application/json"
+      operationId: getVariant
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
       responses:
-        200:
-          description: "The request was successful. The returned value is the object."
-          schema:
-            $ref: "#/definitions/VariantItem"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariantItem'
+          description: The request was successful. The returned value is the object.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-    patch:
+      summary: Retrieve a single variant object by ID (accession)
       tags:
-      - "Variant SPoT"
-      summary: "Update object metadata"
-      description: "## Basic operation\nThe object metadata is updated using the supplied\
-        \ map of attribute names to attribute values. There are three cases:\n1. The\
-        \ attribute name does not already exist in the object metadata. In this case,\
-        \ the attribute and value are added to the object metadata.\n2. The attribute\
-        \ name already exists in the object metadata. In this case, the value is updated.\n\
-        3. The attribute value is `null`.In this case, the attribute is removed from\
-        \ the object metadata.\n\n## Attribute values\nThe attribute values are intelligently\
-        \ parsed as booleans, integers, etc."
-      operationId: "updateVariant"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - Variant SPoT
+    patch:
+      description: |-
+        ## Basic operation
+        The object metadata is updated using the supplied map of attribute names to attribute values. There are three cases:
+        1. The attribute name does not already exist in the object metadata. In this case, the attribute and value are added to the object metadata.
+        2. The attribute name already exists in the object metadata. In this case, the value is updated.
+        3. The attribute value is `null`.In this case, the attribute is removed from the object metadata.
+
+        ## Attribute values
+        The attribute values are intelligently parsed as booleans, integers, etc.
+      operationId: updateVariant
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - in: "body"
-        name: "body"
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataContent'
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
-        schema:
-          $ref: "#/definitions/MetadataContent"
       responses:
-        200:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignalRun'
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
-          schema:
-            $ref: "#/definitions/SignalRun"
-        400:
-          description: "The supplied object ID or metadata is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "400":
+          content: {}
+          description: The supplied object ID or metadata is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Update object metadata
+      tags:
+      - Variant SPoT
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions:
     get:
-      tags:
-      - "Variant SPoT"
-      summary: "Retrieve a list of object versions by ID"
-      description: ""
-      operationId: "getVariantVersions"
-      produces:
-      - "application/json"
+      operationId: getVariantVersions
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
+        schema:
+          type: string
       responses:
-        200:
-          description: "The request was successful. The returned value is the list\
-            \ of  object versions."
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/CommitInfo"
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CommitInfo'
+                type: array
+          description: The request was successful. The returned value is the list
+            of  object versions.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Retrieve a list of object versions by ID
+      tags:
+      - Variant SPoT
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions/{version}:
     get:
-      tags:
-      - "Variant SPoT"
-      summary: "Retrieve a single variant object by ID (accession)"
-      description: ""
-      operationId: "getVariantByVersion"
-      produces:
-      - "application/json"
+      operationId: getVariantByVersion
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - name: "version"
-        in: "path"
-        description: "Unique version of the object."
+        schema:
+          type: string
+      - description: Unique version of the object.
+        in: path
+        name: version
         required: true
-        type: "string"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
       responses:
-        200:
-          description: "The request was successful. The returned value is the object."
-          schema:
-            $ref: "#/definitions/SignalRun"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignalRun'
+          description: The request was successful. The returned value is the object.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-securityDefinitions:
-  Access-token:
-    type: "apiKey"
-    name: "Authorization"
-    in: "header"
-  Genestack-API-Token:
-    type: "apiKey"
-    name: "Genestack-API-Token"
-    in: "header"
-definitions:
-  CommitInfo:
-    type: "object"
-    properties:
-      author:
-        type: "string"
-      message:
-        type: "string"
-      timestamp:
-        type: "integer"
-        format: "int64"
-      version:
-        type: "string"
-        readOnly: true
-  CurationSource:
-    type: "object"
-    properties:
-      curated:
-        type: "boolean"
-        description: "Curation status"
-  IntegrationHelper:
-    type: "object"
-  JsonMetadata:
-    type: "object"
-    properties:
-      attributes:
-        type: "object"
-        additionalProperties:
-          type: "object"
-  ListResponse:
-    type: "object"
-    properties:
-      meta:
-        $ref: "#/definitions/MetaResponse"
-      data:
-        type: "array"
-        items:
-          type: "object"
-  MetaResponse:
-    type: "object"
-    properties:
-      pagination:
-        $ref: "#/definitions/PaginationInfo"
-  MetadataContent:
-    type: "object"
-  MetadataWithId:
-    type: "object"
-    properties:
-      itemId:
-        type: "string"
-        readOnly: true
-      metadata:
-        readOnly: true
-        $ref: "#/definitions/MetadataContent"
-  PaginationInfo:
-    type: "object"
-    properties:
-      count:
-        type: "integer"
-        format: "int32"
-      total:
-        type: "integer"
-        format: "int64"
-      offset:
-        type: "integer"
-        format: "int32"
-      limit:
-        type: "integer"
-        format: "int32"
-  RunsResponse:
-    type: "object"
-    properties:
-      runs:
-        type: "array"
-        items:
-          $ref: "#/definitions/SignalRun"
-      experiment:
-        type: "string"
-      warnings:
-        type: "array"
-        items:
-          type: "string"
-      versionChainId:
-        type: "string"
-  SignalRun:
-    type: "object"
-  SignalSource:
-    type: "object"
-    required:
-    - "link"
-    properties:
-      templateId:
-        type: "string"
-        example: "GSF000001"
-        description: "ID of template file."
-        readOnly: true
-      link:
-        type: "string"
-        description: "URL of the signal file."
-      metadataLink:
-        type: "string"
-        description: "URL of the signal file metadata."
-      previousVersion:
-        type: "string"
-        description: "Accession of matrix group or matrix group version chain."
-  VariantItem:
-    type: "object"
-    properties:
-      itemId:
-        type: "string"
-        readOnly: true
-      metadata:
-        readOnly: true
-        $ref: "#/definitions/MetadataContent"
-      runId:
-        type: "string"
-        readOnly: true
-      groupId:
-        type: "string"
-        readOnly: true
-      contig:
-        type: "string"
-        readOnly: true
-      start:
-        type: "integer"
-        format: "int64"
-        readOnly: true
-      reference:
-        type: "string"
-        readOnly: true
-      alteration:
-        type: "array"
-        readOnly: true
-        items:
-          type: "string"
-      variationId:
-        type: "array"
-        readOnly: true
-        items:
-          type: "string"
-      info:
-        type: "object"
-        readOnly: true
-        additionalProperties:
-          type: "array"
+      summary: Retrieve a single variant object by ID (accession)
+      tags:
+      - Variant SPoT
+components:
+  schemas:
+    CommitInfo:
+      example:
+        author: author
+        message: message
+        version: version
+        timestamp: 0
+      properties:
+        author:
+          type: string
+        message:
+          type: string
+        timestamp:
+          format: int64
+          type: integer
+        version:
+          readOnly: true
+          type: string
+      type: object
+    CurationSource:
+      example:
+        curated: true
+      properties:
+        curated:
+          description: Curation status
+          type: boolean
+      type: object
+    IntegrationHelper:
+      type: object
+    JsonMetadata:
+      example:
+        attributes:
+          key: "{}"
+      properties:
+        attributes:
+          additionalProperties:
+            properties: {}
+            type: object
+          type: object
+      type: object
+    ListResponse:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        meta:
+          pagination:
+            total: 6
+            offset: 1
+            count: 0
+            limit: 5
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaResponse'
+        data:
           items:
-            type: "string"
-      genotype:
-        type: "object"
-        readOnly: true
-        additionalProperties:
-          type: "string"
-  VariantResponse:
-    type: "object"
-    properties:
-      data:
-        type: "array"
-        items:
-          $ref: "#/definitions/VariantItem"
-      cursor:
-        type: "string"
-  VariantSource:
-    type: "object"
-    properties:
-      templateId:
-        type: "string"
-        example: "GSF000001"
-        description: "ID of template file."
-        readOnly: true
-      contig:
-        type: "string"
-      locus:
-        type: "integer"
-        format: "int64"
-      variationId:
-        type: "array"
-        items:
-          type: "string"
-      reference:
-        type: "string"
-      alteration:
-        type: "array"
-        items:
-          type: "string"
-      genotype:
-        type: "string"
-      metadata:
-        $ref: "#/definitions/JsonMetadata"
+            properties: {}
+            type: object
+          type: array
+      type: object
+    MetaResponse:
+      example:
+        pagination:
+          total: 6
+          offset: 1
+          count: 0
+          limit: 5
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+      type: object
+    MetadataContent:
+      type: object
+    MetadataWithId:
+      example:
+        itemId: itemId
+        metadata: "{}"
+      properties:
+        itemId:
+          readOnly: true
+          type: string
+        metadata:
+          type: object
+      type: object
+    PaginationInfo:
+      example:
+        total: 6
+        offset: 1
+        count: 0
+        limit: 5
+      properties:
+        count:
+          format: int32
+          type: integer
+        total:
+          format: int64
+          type: integer
+        offset:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+      type: object
+    RunsResponse:
+      example:
+        experiment: experiment
+        warnings:
+        - warnings
+        - warnings
+        versionChainId: versionChainId
+        runs:
+        - null
+        - null
+      properties:
+        runs:
+          items:
+            $ref: '#/components/schemas/SignalRun'
+          type: array
+        experiment:
+          type: string
+        warnings:
+          items:
+            type: string
+          type: array
+        versionChainId:
+          type: string
+      type: object
+    SignalRun:
+      type: object
+    SignalSource:
+      example:
+        previousVersion: previousVersion
+        link: link
+        metadataLink: metadataLink
+        templateId: GSF000001
+      properties:
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+        link:
+          description: URL of the signal file.
+          type: string
+        metadataLink:
+          description: URL of the signal file metadata.
+          type: string
+        previousVersion:
+          description: Accession of matrix group or matrix group version chain.
+          type: string
+      required:
+      - link
+      type: object
+    VariantItem:
+      example:
+        reference: reference
+        itemId: itemId
+        metadata: "{}"
+        variationId:
+        - variationId
+        - variationId
+        groupId: groupId
+        start: 0
+        alteration:
+        - alteration
+        - alteration
+        runId: runId
+        contig: contig
+        info:
+          key:
+          - info
+          - info
+        genotype:
+          key: genotype
+      properties:
+        itemId:
+          readOnly: true
+          type: string
+        metadata:
+          type: object
+        runId:
+          readOnly: true
+          type: string
+        groupId:
+          readOnly: true
+          type: string
+        contig:
+          readOnly: true
+          type: string
+        start:
+          format: int64
+          readOnly: true
+          type: integer
+        reference:
+          readOnly: true
+          type: string
+        alteration:
+          items:
+            type: string
+          readOnly: true
+          type: array
+        variationId:
+          items:
+            type: string
+          readOnly: true
+          type: array
+        info:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          readOnly: true
+          type: object
+        genotype:
+          additionalProperties:
+            type: string
+          readOnly: true
+          type: object
+      type: object
+    VariantResponse:
+      example:
+        cursor: cursor
+        data:
+        - reference: reference
+          itemId: itemId
+          metadata: "{}"
+          variationId:
+          - variationId
+          - variationId
+          groupId: groupId
+          start: 0
+          alteration:
+          - alteration
+          - alteration
+          runId: runId
+          contig: contig
+          info:
+            key:
+            - info
+            - info
+          genotype:
+            key: genotype
+        - reference: reference
+          itemId: itemId
+          metadata: "{}"
+          variationId:
+          - variationId
+          - variationId
+          groupId: groupId
+          start: 0
+          alteration:
+          - alteration
+          - alteration
+          runId: runId
+          contig: contig
+          info:
+            key:
+            - info
+            - info
+          genotype:
+            key: genotype
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/VariantItem'
+          type: array
+        cursor:
+          type: string
+      type: object
+    VariantSource:
+      example:
+        reference: reference
+        metadata:
+          attributes:
+            key: "{}"
+        variationId:
+        - variationId
+        - variationId
+        alteration:
+        - alteration
+        - alteration
+        locus: 0
+        templateId: GSF000001
+        contig: contig
+        genotype: genotype
+      properties:
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+        contig:
+          type: string
+        locus:
+          format: int64
+          type: integer
+        variationId:
+          items:
+            type: string
+          type: array
+        reference:
+          type: string
+        alteration:
+          items:
+            type: string
+          type: array
+        genotype:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/JsonMetadata'
+      type: object
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
+x-original-swagger-version: "2.0"

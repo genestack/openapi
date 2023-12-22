@@ -1,505 +1,635 @@
----
-swagger: "2.0"
+openapi: 3.0.1
 info:
-  description: "#### NOTE: these API endpoints are experimental. The parameters, request\
-    \ body and response body may change.\n\nThese API endpoints serve to start, control,\
-    \ monitor and retrieve results for a set of available Genestack jobs.\n\nA job\
-    \ is an arbitrary process that, once started, runs asynchronously in the background.\n\
-    Upon starting a job the user receives a job execution identifier (`jobExecId`)\
-    \ that they can use to control and monitor the job and to retrieve the job result\
-    \ (output).\n\n#### Basic workflow:\n\nStart a job (POST endpoints) to return\
-    \ a `jobExecId`\nPeriodically poll the `GET /{jobExecId}/output` endpoint to get\
-    \ the job status for a given `jobExecId`\nWhen the status is `COMPLETED` or `FAILED`,\
-    \ queries to the `GET /{jobExecId}/output` endpoint will also contain any output\
-    \ (result/errors)\n\nTo retrieve more information about a job, such as start time\
-    \ etc., use the `GET /{jobExecId}/info` endpoint.\n\n#### Available statuses:\n\
-    \n- `STARTING`: initial job status\n- `RUNNING`: the job has successfully started\
-    \ and is running\n- `COMPLETED` (terminal): the job has completed and the result\
-    \ is available in the `GET /{jobExecId}/output` response\n- `FAILED` (terminal):\
-    \ the job has failed, you can extract errors from the `GET /{jobExecId}/output`\
-    \ response\n- `STOPPING`: a stop request has been initiated, the job is in the\
-    \ process of stopping\n- `STOPPED` (terminal): the job has been stopped (it may\
-    \ be able to be restarted)\n- `ABANDONED` (terminal): the job has been abandoned\
-    \ for an unknown reason, please contact your system administrator.\n- `UNKNOWN`:\
-    \ the job status is unknown, please contact your system administrator.\n"
-  version: "default-released"
-  title: "Job API"
-host: "unused"
+  description: |
+    #### NOTE: these API endpoints are experimental. The parameters, request body and response body may change.
+
+    These API endpoints serve to start, control, monitor and retrieve results for a set of available Genestack jobs.
+
+    A job is an arbitrary process that, once started, runs asynchronously in the background.
+    Upon starting a job the user receives a job execution identifier (`jobExecId`) that they can use to control and monitor the job and to retrieve the job result (output).
+
+    #### Basic workflow:
+
+    Start a job (POST endpoints) to return a `jobExecId`
+    Periodically poll the `GET /{jobExecId}/output` endpoint to get the job status for a given `jobExecId`
+    When the status is `COMPLETED` or `FAILED`, queries to the `GET /{jobExecId}/output` endpoint will also contain any output (result/errors)
+
+    To retrieve more information about a job, such as start time etc., use the `GET /{jobExecId}/info` endpoint.
+
+    #### Available statuses:
+
+    - `STARTING`: initial job status
+    - `RUNNING`: the job has successfully started and is running
+    - `COMPLETED` (terminal): the job has completed and the result is available in the `GET /{jobExecId}/output` response
+    - `FAILED` (terminal): the job has failed, you can extract errors from the `GET /{jobExecId}/output` response
+    - `STOPPING`: a stop request has been initiated, the job is in the process of stopping
+    - `STOPPED` (terminal): the job has been stopped (it may be able to be restarted)
+    - `ABANDONED` (terminal): the job has been abandoned for an unknown reason, please contact your system administrator.
+    - `UNKNOWN`: the job status is unknown, please contact your system administrator.
+  title: Job API
+  version: default-released
+servers:
+- url: https://unused/
 tags:
-- name: "Data import jobs"
-- name: "Job operations"
-schemes:
-- "https"
+- name: Data import jobs
+- name: Job operations
 paths:
   /frontend/rs/genestack/job/default-released/import/expression:
     post:
-      tags:
-      - "Data import jobs"
-      summary: "Import any tabular data from TSV or GCT files"
-      description: "## Data\n This operation necessitates the URL of a tabular data file, which must be either in\
-        \ TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content\
-        \ requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the\
-        \ parameters section, not only Gene Expression data.\n\n\
-        ## Metadata\n It is also possible to optionally supply the URL of a metadata file. This metadata will be used\
-        \ as the original metadata for the created objects. The file is expected to contain single record with metadata\
-        \ describing the uploaded signal file.\n\
-        ## Metadata file format\n\
-        \ * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed\n\
-        \ * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n\
-        \ * Header: the first line is treated as table header that contains attribute names\n\
-        \ * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.\n\
-        \ * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data."
-      operationId: "startImportExpression"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: |-
+        ## Data
+         This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
+
+        ## Metadata
+         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
+        ## Metadata file format
+         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
+         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Header: the first line is treated as table header that contains attribute names
+         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+         * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
+      operationId: startImportExpression
       parameters:
-      - in: "body"
-        name: "body"
-        required: false
+      - description: "Load duplicate data: the data from the links has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: query
+        name: allow_dups
         schema:
-          $ref: "#/definitions/ImportExpressionSignalRunRequest"
-      - $ref: "#/parameters/AllowDuplicates"
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportExpressionSignalRunRequest'
+        required: false
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Import any tabular data from TSV or GCT files
+      tags:
+      - Data import jobs
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/job/default-released/import/flow-cytometry:
     post:
-      tags:
-      - "Data import jobs"
-      summary: "Import flow-cytometry data and metadata from FACS and TSV files"
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n    "
-      operationId: "startImportFlowCytometry"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      operationId: startImportFlowCytometry
       parameters:
-      - in: "body"
-        name: "body"
-        required: false
+      - description: "Load duplicate data: the data from the links has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: query
+        name: allow_dups
         schema:
-          $ref: "#/definitions/ImportSignalRunRequest"
-      - $ref: "#/parameters/AllowDuplicates"
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportSignalRunRequest'
+        required: false
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Import flow-cytometry data and metadata from FACS and TSV files
+      tags:
+      - Data import jobs
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/job/default-released/import/libraries:
     post:
-      tags:
-      - "Data import jobs"
-      summary: "Import a group of library metadata objects from a TSV file"
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportLibraries"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportLibraries
       parameters:
-      - in: "body"
-        name: "body"
-        required: false
+      - description: "Load duplicate data: the data from the links has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: query
+        name: allow_dups
         schema:
-          $ref: "#/definitions/ImportMetadataRequest"
-      - $ref: "#/parameters/AllowDuplicates"
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMetadataRequest'
+        required: false
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Import a group of library metadata objects from a TSV file
+      tags:
+      - Data import jobs
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/job/default-released/import/preparations:
     post:
-      tags:
-      - "Data import jobs"
-      summary: "Import a group of preparation metadata objects from a TSV file"
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportPreparations"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportPreparations
       parameters:
-      - in: "body"
-        name: "body"
-        required: false
+      - description: "Load duplicate data: the data from the links has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: query
+        name: allow_dups
         schema:
-          $ref: "#/definitions/ImportMetadataRequest"
-      - $ref: "#/parameters/AllowDuplicates"
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMetadataRequest'
+        required: false
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Import a group of preparation metadata objects from a TSV file
+      tags:
+      - Data import jobs
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/job/default-released/import/samples:
     post:
-      tags:
-      - "Data import jobs"
-      summary: "Import a group of sample metadata objects from a TSV file"
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportSamples"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportSamples
       parameters:
-      - in: "body"
-        name: "body"
-        required: false
+      - description: "Load duplicate data: the data from the links has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: query
+        name: allow_dups
         schema:
-          $ref: "#/definitions/ImportMetadataRequest"
-      - $ref: "#/parameters/AllowDuplicates"
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMetadataRequest'
+        required: false
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Import a group of sample metadata objects from a TSV file
+      tags:
+      - Data import jobs
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/job/default-released/import/study:
     post:
-      tags:
-      - "Data import jobs"
-      summary: "Import study metadata from a TSV file"
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportStudy"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportStudy
       parameters:
-      - in: "body"
-        name: "body"
-        required: false
+      - description: "Load duplicate data: the data from the links has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: query
+        name: allow_dups
         schema:
-          $ref: "#/definitions/ImportMetadataRequest"
-      - $ref: "#/parameters/AllowDuplicates"
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMetadataRequest'
+        required: false
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Import study metadata from a TSV file
+      tags:
+      - Data import jobs
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/job/default-released/import/variant:
     post:
-      tags:
-      - "Data import jobs"
-      summary: "Import variation data and metadata from VCF and TSV files"
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n    "
-      operationId: "startImportVariant"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      operationId: startImportVariant
       parameters:
-      - in: "body"
-        name: "body"
-        required: false
+      - description: "Load duplicate data: the data from the links has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: query
+        name: allow_dups
         schema:
-          $ref: "#/definitions/ImportSignalRunRequest"
-      - $ref: "#/parameters/AllowDuplicates"
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportSignalRunRequest'
+        required: false
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: Import variation data and metadata from VCF and TSV files
+      tags:
+      - Data import jobs
+      x-codegen-request-body-name: body
   /frontend/rs/genestack/job/default-released/{jobExecId}/info:
     get:
-      tags:
-      - "Job operations"
-      summary: "get information about one particular job execution"
-      description: ""
-      operationId: "info"
-      produces:
-      - "application/json"
+      operationId: info
       parameters:
-      - name: "jobExecId"
-        in: "path"
+      - in: path
+        name: jobExecId
         required: true
-        type: "integer"
-        format: "int64"
+        schema:
+          format: int64
+          type: integer
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: get information about one particular job execution
+      tags:
+      - Job operations
   /frontend/rs/genestack/job/default-released/{jobExecId}/output:
     get:
-      tags:
-      - "Job operations"
-      summary: "retrieve job output (result)"
-      description: ""
-      operationId: "output"
-      produces:
-      - "application/json"
+      operationId: output
       parameters:
-      - name: "jobExecId"
-        in: "path"
+      - in: path
+        name: jobExecId
         required: true
-        type: "integer"
-        format: "int64"
+        schema:
+          format: int64
+          type: integer
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Output"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: retrieve job output (result)
+      tags:
+      - Job operations
   /frontend/rs/genestack/job/default-released/{jobExecId}/restart:
     put:
-      tags:
-      - "Job operations"
-      summary: "restart stopped (failed) job"
-      description: ""
-      operationId: "restart"
-      produces:
-      - "application/json"
+      operationId: restart
       parameters:
-      - name: "jobExecId"
-        in: "path"
+      - in: path
+        name: jobExecId
         required: true
-        type: "integer"
-        format: "int64"
+        schema:
+          format: int64
+          type: integer
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
+      summary: restart stopped (failed) job
+      tags:
+      - Job operations
   /frontend/rs/genestack/job/default-released/{jobExecId}/stop:
     put:
-      tags:
-      - "Job operations"
-      summary: "stop running job"
-      description: ""
-      operationId: "stop"
-      produces:
-      - "application/json"
+      operationId: stop
       parameters:
-      - name: "jobExecId"
-        in: "path"
+      - in: path
+        name: jobExecId
         required: true
-        type: "integer"
-        format: "int64"
+        schema:
+          format: int64
+          type: integer
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Info"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: successful operation
       security:
       - Access-token: []
       - Genestack-API-Token: []
-securityDefinitions:
-  Access-token:
-    type: "apiKey"
-    name: "Authorization"
-    in: "header"
-  Genestack-API-Token:
-    type: "apiKey"
-    name: "Genestack-API-Token"
-    in: "header"
-definitions:
-  ExceptionTypeAndMessage:
-    type: "object"
-    properties:
-      type:
-        type: "string"
-      message:
-        type: "string"
-  ImportMetadataRequest:
-    type: "object"
-    required:
-    - "metadataLink"
-    properties:
-      source:
-        type: "string"
-        example: "HTTP"
-        enum:
-        - "ARVADOS"
-        - "S3"
-        - "HTTP"
-      metadataLink:
-        type: "string"
-        example: "https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv"
-      templateId:
-        type: "string"
-        example: "GSF334953"
-  ImportSignalRunRequest:
-    type: "object"
-    required:
-    - "dataLink"
-    properties:
-      source:
-        type: "string"
-        example: "HTTP"
-        enum:
-        - "ARVADOS"
-        - "S3"
-        - "HTTP"
-      metadataLink:
-        type: "string"
-        example: "https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv"
-      dataLink:
-        type: "string"
-        example: "https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz"
-      templateId:
-        type: "string"
-        example: "GSF334953"
-      previousVersion:
-        type: "string"
-        example: "GSF334953"
-    description: "import signal data request"
-  ImportExpressionSignalRunRequest:
-    allOf:
-      - $ref: "#/definitions/ImportSignalRunRequest"
-    properties:
-      numberOfFeatureAttributes:
-        type: "integer"
-        example: 5
-        description: "Integer value that specifies the number of columns related to the feature in the uploaded data frame, and indicates the starting position of the sample data. This attribute is not needed if the uploaded file is in GCT format."
-      dataClass:
-        type: "string"
-        example: "Proteomics"
-        description: "A mandatory parameter with the following possible values: `Bulk transcriptomics`, `Single-cell transcriptomics`, 
-        `Differential abundance (FC, pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`, 
-        `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene panel data`, `Biomarker data`, 
-        `Physical measures`, `Blood counts`, `Other body fluid counts`, `Nanopore`, `Other`.
-        \nIn case the parameter is not set the dataClass is automatically defined as `Other`."
-      measurementSeparator:
-        type: "string"
-        example: ":"
-        description: "This parameter is necessary when your file contains multiple measurement columns for each sample, 
-        library, or preparation. It represents the character that distinguishes the sample/library/preparation name 
-        from the measurement name in column headers. Supported separators include `. , : ; _ - / \\ |`, with the allowance 
-        for multi-character separators."
-  Info:
-    type: "object"
-    required:
-    - "createTime"
-    - "jobExecId"
-    - "jobName"
-    - "startedBy"
-    - "status"
-    properties:
-      jobExecId:
-        type: "integer"
-        format: "int64"
-        example: 12345
-        description: "job execution id"
-      startedBy:
-        type: "string"
-        example: "job@genestack.com"
-        description: "user name who started the job"
-      jobName:
-        type: "string"
-        example: "Protein folding"
-        description: "actual job name"
-      status:
-        type: "string"
-        example: "STARTED"
-        description: "current job status"
-        enum:
-        - "COMPLETED"
-        - "STARTING"
-        - "RUNNING"
-        - "STOPPING"
-        - "STOPPED"
-        - "FAILED"
-        - "ABANDONED"
-        - "UNKNOWN"
-      createTime:
-        type: "string"
-        format: "date-time"
-        example: "dd-MM-yyyy hh:mm:ss"
-      endTime:
-        type: "string"
-        format: "date-time"
-        example: "dd-MM-yyyy hh:mm:ss"
-    description: "job execution information"
-  JobRuntimeError:
-    type: "object"
-    properties:
-      stage:
-        type: "string"
-      stack:
-        type: "array"
-        items:
-          $ref: "#/definitions/ExceptionTypeAndMessage"
-  Output:
-    type: "object"
-    required:
-    - "status"
-    properties:
-      status:
-        type: "string"
-        example: "COMPLETED"
-        description: "current job status"
-        enum:
-        - "COMPLETED"
-        - "STARTING"
-        - "RUNNING"
-        - "STOPPING"
-        - "STOPPED"
-        - "FAILED"
-        - "ABANDONED"
-        - "UNKNOWN"
-      result:
-        type: "object"
-        description: "job result object (available if job completed successfully)"
-      errors:
-        type: "array"
-        description: "array of errors occurred during execution of the job (available\
-          \ if job failed)"
-        items:
-          $ref: "#/definitions/JobRuntimeError"
-    description: "job execution output"
-parameters:
-  AllowDuplicates:
-    in: query
-    type: boolean
-    required: false
-    default: "false"
-    name: "allow_dups"
-    description: "Load duplicate data: the data from the links has already \
-     been previously loaded into ODM, and for **testing purposes**, you need \
-     to load this data again."
+      summary: stop running job
+      tags:
+      - Job operations
+components:
+  parameters:
+    AllowDuplicates:
+      description: "Load duplicate data: the data from the links has already been\
+        \ previously loaded into ODM, and for **testing purposes**, you need to load\
+        \ this data again."
+      in: query
+      name: allow_dups
+      schema:
+        default: false
+        type: boolean
+  schemas:
+    ExceptionTypeAndMessage:
+      example:
+        type: type
+        message: message
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+      type: object
+    ImportMetadataRequest:
+      example:
+        source: HTTP
+        metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
+        templateId: GSF334953
+      properties:
+        source:
+          enum:
+          - ARVADOS
+          - S3
+          - HTTP
+          example: HTTP
+          type: string
+        metadataLink:
+          example: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
+          type: string
+        templateId:
+          example: GSF334953
+          type: string
+      required:
+      - metadataLink
+      type: object
+    ImportSignalRunRequest:
+      description: import signal data request
+      example:
+        previousVersion: GSF334953
+        source: HTTP
+        metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
+        dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
+        templateId: GSF334953
+      properties:
+        source:
+          enum:
+          - ARVADOS
+          - S3
+          - HTTP
+          example: HTTP
+          type: string
+        metadataLink:
+          example: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
+          type: string
+        dataLink:
+          example: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
+          type: string
+        templateId:
+          example: GSF334953
+          type: string
+        previousVersion:
+          example: GSF334953
+          type: string
+      required:
+      - dataLink
+      type: object
+    ImportExpressionSignalRunRequest:
+      allOf:
+      - $ref: '#/components/schemas/ImportSignalRunRequest'
+      example:
+        numberOfFeatureAttributes: 5
+        measurementSeparator: ':'
+        dataClass: Proteomics
+      properties:
+        numberOfFeatureAttributes:
+          description: "Integer value that specifies the number of columns related\
+            \ to the feature in the uploaded data frame, and indicates the starting\
+            \ position of the sample data. This attribute is not needed if the uploaded\
+            \ file is in GCT format."
+          example: 5
+          type: integer
+        dataClass:
+          description: "A mandatory parameter with the following possible values:\
+            \ `Bulk transcriptomics`, `Single-cell transcriptomics`, `Differential\
+            \ abundance (FC, pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell\
+            \ proteomics`, `Metabolomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`,\
+            \ `Imaging features`, `Gene panel data`, `Biomarker data`, `Physical measures`,\
+            \ `Blood counts`, `Other body fluid counts`, `Nanopore`, `Other`. \nIn\
+            \ case the parameter is not set the dataClass is automatically defined\
+            \ as `Other`."
+          example: Proteomics
+          type: string
+        measurementSeparator:
+          description: "This parameter is necessary when your file contains multiple\
+            \ measurement columns for each sample, library, or preparation. It represents\
+            \ the character that distinguishes the sample/library/preparation name\
+            \ from the measurement name in column headers. Supported separators include\
+            \ `. , : ; _ - / \\ |`, with the allowance for multi-character separators."
+          example: ':'
+          type: string
+    Info:
+      description: job execution information
+      example:
+        jobName: Protein folding
+        startedBy: job@genestack.com
+        createTime: 2000-01-23T04:56:07.000+00:00
+        jobExecId: 12345
+        endTime: 2000-01-23T04:56:07.000+00:00
+        status: STARTED
+      properties:
+        jobExecId:
+          description: job execution id
+          example: 12345
+          format: int64
+          type: integer
+        startedBy:
+          description: user name who started the job
+          example: job@genestack.com
+          type: string
+        jobName:
+          description: actual job name
+          example: Protein folding
+          type: string
+        status:
+          description: current job status
+          enum:
+          - COMPLETED
+          - STARTING
+          - RUNNING
+          - STOPPING
+          - STOPPED
+          - FAILED
+          - ABANDONED
+          - UNKNOWN
+          example: STARTED
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          type: string
+      required:
+      - createTime
+      - jobExecId
+      - jobName
+      - startedBy
+      - status
+      type: object
+    JobRuntimeError:
+      example:
+        stack:
+        - type: type
+          message: message
+        - type: type
+          message: message
+        stage: stage
+      properties:
+        stage:
+          type: string
+        stack:
+          items:
+            $ref: '#/components/schemas/ExceptionTypeAndMessage'
+          type: array
+      type: object
+    Output:
+      description: job execution output
+      example:
+        result: "{}"
+        errors:
+        - stack:
+          - type: type
+            message: message
+          - type: type
+            message: message
+          stage: stage
+        - stack:
+          - type: type
+            message: message
+          - type: type
+            message: message
+          stage: stage
+        status: COMPLETED
+      properties:
+        status:
+          description: current job status
+          enum:
+          - COMPLETED
+          - STARTING
+          - RUNNING
+          - STOPPING
+          - STOPPED
+          - FAILED
+          - ABANDONED
+          - UNKNOWN
+          example: COMPLETED
+          type: string
+        result:
+          description: job result object (available if job completed successfully)
+          properties: {}
+          type: object
+        errors:
+          description: array of errors occurred during execution of the job (available
+            if job failed)
+          items:
+            $ref: '#/components/schemas/JobRuntimeError'
+          type: array
+      required:
+      - status
+      type: object
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
+x-original-swagger-version: "2.0"
