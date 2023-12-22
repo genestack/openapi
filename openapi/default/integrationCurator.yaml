@@ -4203,6 +4203,8 @@ paths:
       operationId: "searchExpressionData"
       produces:
       - "application/json"
+      consumes:
+      - "application/json"
       parameters:
       - name: "responseFormat"
         in: "query"
@@ -4464,6 +4466,8 @@ paths:
         \ result.\n\n"
       operationId: "searchExpressionGroups"
       produces:
+      - "application/json"
+      consumes:
       - "application/json"
       parameters:
       - name: "responseFormat"
@@ -4889,6 +4893,8 @@ paths:
       operationId: "searchFlowCytometryData"
       produces:
       - "application/json"
+      consumes:
+      - "application/json"
       parameters:
       - name: "responseFormat"
         in: "query"
@@ -5146,6 +5152,8 @@ paths:
         \ result.\n\n"
       operationId: "searchFlowCytometryGroups"
       produces:
+      - "application/json"
+      consumes:
       - "application/json"
       parameters:
       - name: "responseFormat"
@@ -5406,6 +5414,8 @@ paths:
       operationId: "searchSamples"
       produces:
       - "application/json"
+      consumes:
+      - "application/json"
       parameters:
       - name: "responseFormat"
         in: "query"
@@ -5664,6 +5674,8 @@ paths:
       operationId: "searchVariantData"
       produces:
       - "application/json"
+      consumes:
+      - "application/json"
       parameters:
       - name: "responseFormat"
         in: "query"
@@ -5921,6 +5933,8 @@ paths:
         \ result.\n\n"
       operationId: "searchVariantGroups"
       produces:
+      - "application/json"
+      consumes:
       - "application/json"
       parameters:
       - name: "responseFormat"
