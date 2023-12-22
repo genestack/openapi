@@ -1,4 +1,4 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [plugins]
-openapi-generator = { id = "org.openapi.generator", version = "7.1.0" }
+openapi-generator = { id = "org.openapi.generator", version = "7.2.0" }
