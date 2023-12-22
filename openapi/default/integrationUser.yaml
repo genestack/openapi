@@ -2334,7 +2334,7 @@ paths:
       operationId: searchStudiesByFilter
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/SearchStudyRequest'
         required: true
