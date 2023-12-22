@@ -1144,6 +1144,7 @@ components:
           additionalProperties:
             format: double
             type: number
+            nullable: true
           example:
             expression: 1.82
           readOnly: true
