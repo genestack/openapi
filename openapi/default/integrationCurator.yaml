@@ -3937,6 +3937,8 @@ paths:
       operationId: "searchStudiesByFilter"
       produces:
         - "application/json"
+      consumes:
+        - "application/json"
       parameters:
         - in: "body"
           name: "request"
