@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   description: |-
     This swagger page describes the expressionUser API endpoints for ODM. These are typically used to find and retrieve any tabular data (not only expression data) except Gene Variant or Flow Cytometry.
@@ -725,8 +725,9 @@ components:
         value:
           additionalProperties:
             format: double
-            type: number
-            nullable: true
+            type:
+              - number
+              - "null"
           example:
             expression: 1.82
           readOnly: true
