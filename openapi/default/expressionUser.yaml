@@ -713,12 +713,15 @@ components:
           readOnly: true
           type: number
         feature:
-          example:
-            genes: "MYO9A,"
-            groupingKey: VRSLGGISPSEDRR
-          properties: {}
-          readOnly: true
-          type: object
+          oneOf:
+            - type: object
+              example:
+                genes: "MYO9A,"
+                groupingKey: VRSLGGISPSEDRR
+              properties: {}
+              readOnly: true
+            - type: string
+              readOnly: true
         value:
           additionalProperties:
             format: double
