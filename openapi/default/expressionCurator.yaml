@@ -1134,15 +1134,12 @@ components:
           readOnly: true
           type: number
         feature:
-          oneOf:
-            - type: object
-              example:
-                genes: "MYO9A,"
-                groupingKey: VRSLGGISPSEDRR
-              properties: {}
-              readOnly: true
-            - type: string
-              readOnly: true
+          example:
+            genes: "MYO9A,"
+            groupingKey: VRSLGGISPSEDRR
+          properties: {}
+          readOnly: true
+          type: object
         value:
           additionalProperties:
             format: double
@@ -1201,13 +1198,10 @@ components:
           key: "{}"
       properties:
         attributes:
-          oneOf:
-            - type: object
-              additionalProperties:
-                properties: {}
-                type: object
-            - type: string
-              readOnly: true
+          additionalProperties:
+            properties: {}
+            type: object
+          type: object
       type: object
     ListResponse:
       example:

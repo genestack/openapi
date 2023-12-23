@@ -619,13 +619,10 @@ components:
           key: "{}"
       properties:
         attributes:
-          oneOf:
-            - type: object
-              additionalProperties:
-                properties: {}
-                type: object
-            - type: string
-              readOnly: true
+          additionalProperties:
+            properties: {}
+            type: object
+          type: object
       type: object
     ListResponse:
       example:
