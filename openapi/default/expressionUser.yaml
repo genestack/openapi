@@ -713,6 +713,8 @@ components:
           readOnly: true
           type: number
         feature:
+          additionalProperties:
+            type: string
           example:
             genes: "MYO9A,"
             groupingKey: VRSLGGISPSEDRR
