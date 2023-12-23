@@ -718,7 +718,9 @@ components:
             groupingKey: VRSLGGISPSEDRR
           properties: {}
           readOnly: true
-          type: object
+          type:
+            - object
+            - string
         value:
           additionalProperties:
             format: double

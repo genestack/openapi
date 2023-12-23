@@ -1139,7 +1139,9 @@ components:
             groupingKey: VRSLGGISPSEDRR
           properties: {}
           readOnly: true
-          type: object
+          type:
+          - object
+          - string
         value:
           additionalProperties:
             format: double
@@ -1201,7 +1203,9 @@ components:
           additionalProperties:
             properties: {}
             type: object
-          type: object
+          type:
+            - object
+            - string
       type: object
     ListResponse:
       example:
