@@ -1134,8 +1134,6 @@ components:
           readOnly: true
           type: number
         feature:
-          additionalProperties:
-            type: string
           example:
             genes: "MYO9A,"
             groupingKey: VRSLGGISPSEDRR
@@ -1146,6 +1144,7 @@ components:
           additionalProperties:
             format: double
             type: number
+            nullable: true
           example:
             expression: 1.82
           readOnly: true
