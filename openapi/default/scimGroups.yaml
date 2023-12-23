@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   description: "This swagger page describes the API endpoints to add, edit and remove\
     \ groups. The endpoints are developed according to the SCIM 2.0 specification."

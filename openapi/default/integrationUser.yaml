@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   description: |-
     This swagger page describes the integrationUser APIs for ODM. These are typically used to find and retrieve study, sample and processed (signal) data and metadata for a given query.

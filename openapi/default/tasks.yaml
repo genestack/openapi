@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   description: |
     These API endpoints serve to work with asynchronous tasks.

@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   description: |
     #### NOTE: these API endpoints are experimental. The parameters, request body and response body may change.
