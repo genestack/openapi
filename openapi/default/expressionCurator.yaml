@@ -1137,10 +1137,10 @@ components:
           example:
             genes: "MYO9A,"
             groupingKey: VRSLGGISPSEDRR
-          readOnly: true
-          type:
-          - object
-          - string
+          anyOf:
+            - type: object
+            - type: string
+              readOnly: true
         value:
           additionalProperties:
             format: double
