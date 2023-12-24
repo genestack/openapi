@@ -723,9 +723,7 @@ components:
         value:
           additionalProperties:
             format: double
-            type:
-              - number
-              #- "null"
+            type: number
           example:
             expression: 1.82
           readOnly: true
