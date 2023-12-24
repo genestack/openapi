@@ -1139,6 +1139,7 @@ components:
             groupingKey: VRSLGGISPSEDRR
           anyOf:
             - type: object
+              properties: {}
             - type: string
               readOnly: true
         value:
