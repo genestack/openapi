@@ -1142,12 +1142,11 @@ components:
             - type: string
               readOnly: true
         value:
+          example:
+            expression: 1.82
           additionalProperties:
             format: double
             type: number
-          example:
-            expression: 1.82
-          readOnly: true
           type: object
         description:
           readOnly: true
