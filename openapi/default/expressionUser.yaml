@@ -718,7 +718,7 @@ components:
             groupingKey: VRSLGGISPSEDRR
           anyOf:
             - type: object
-              properties: {}
+              minProperties: 1
             - type: string
               readOnly: true
         value:
