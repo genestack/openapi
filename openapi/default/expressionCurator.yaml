@@ -1144,9 +1144,12 @@ components:
         value:
           example:
             expression: 1.82
-          additionalProperties:
-            format: double
-            type: number
+          anyOf:
+            - type: object
+              properties:
+                format: double
+                type: number
+            - type: "null"
           type: object
         description:
           readOnly: true
