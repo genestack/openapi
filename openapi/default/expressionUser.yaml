@@ -718,7 +718,6 @@ components:
             groupingKey: VRSLGGISPSEDRR
           anyOf:
             - type: object
-              minProperties: 1
             - type: string
               readOnly: true
         value:
@@ -726,7 +725,7 @@ components:
             format: double
             type:
               - number
-              - "null"
+              #- "null"
           example:
             expression: 1.82
           readOnly: true
