@@ -1274,14 +1274,14 @@ components:
           readOnly: true
           type: array
         info:
-          additionalProperties:
+          properties:
             items:
               type: string
             type: array
           readOnly: true
           type: object
         genotype:
-          additionalProperties:
+          properties:
             type: string
           readOnly: true
           type: object
