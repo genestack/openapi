@@ -1274,17 +1274,15 @@ components:
           readOnly: true
           type: array
         info:
+          type: object
           properties:
+            type: array
             items:
               type: string
-            type: array
-          readOnly: true
-          type: object
         genotype:
+          type: object
           properties:
             type: string
-          readOnly: true
-          type: object
       type: object
     VariantResponse:
       example:
