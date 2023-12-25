@@ -818,13 +818,9 @@ components:
           readOnly: true
           type: string
         alteration:
-          items:
-            type: string
           readOnly: true
           type: array
         variationId:
-          items:
-            type: string
           readOnly: true
           type: array
         info:
@@ -834,6 +830,7 @@ components:
             type: array
         genotype:
           type: object
+          readOnly: true
           properties:
             type: string
       type: object
