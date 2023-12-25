@@ -829,10 +829,9 @@ components:
           type: array
         info:
           type: object
+          readOnly: true
           properties:
             type: array
-            items:
-              type: string
         genotype:
           type: object
           properties:
