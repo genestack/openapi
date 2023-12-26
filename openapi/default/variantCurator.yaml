@@ -1269,8 +1269,6 @@ components:
           type: object
           properties:
             type: array
-            items:
-              type: string
         genotype:
           type: object
           properties:
