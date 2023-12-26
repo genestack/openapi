@@ -1266,19 +1266,20 @@ components:
         alteration:
           readOnly: true
           type: array
+          items:
+            type: string
         variationId:
           readOnly: true
           type: array
+          items:
+            type: string
         info:
           type: object
           readOnly: true
           properties:
             type: array
-        genotype:
-          type: object
-          readOnly: true
-          properties:
-            type: string
+            items:
+              type: string
       type: object
     VariantResponse:
       example:
