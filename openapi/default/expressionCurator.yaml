@@ -1148,6 +1148,7 @@ components:
           type: object
         description:
           type: string
+          readOnly: true
       type: object
     ExpressionResponse:
       example:
