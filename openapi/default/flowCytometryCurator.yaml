@@ -1103,27 +1103,20 @@ components:
         runId: runId
       properties:
         itemId:
-          readOnly: true
           type: string
         metadata:
           type: object
         runId:
-          readOnly: true
           type: string
         groupId:
-          readOnly: true
           type: string
         readoutType:
-          readOnly: true
           type: string
         cellPopulation:
-          readOnly: true
           type: string
         marker:
-          readOnly: true
           type: string
         expression:
-          readOnly: true
           type: number
       type: object
     FlowCytometryResponse:

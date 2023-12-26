@@ -694,23 +694,18 @@ components:
           expression: 1.82
       properties:
         itemId:
-          readOnly: true
           type: string
         metadata:
           type: object
         runId:
-          readOnly: true
           type: string
         groupId:
-          readOnly: true
           type: string
         gene:
-          readOnly: true
           type: string
         expression:
           example: 1.82
           format: double
-          readOnly: true
           type: number
         feature:
           example:
@@ -719,7 +714,6 @@ components:
           anyOf:
             - type: object
             - type: string
-              readOnly: true
         value:
           example:
             expression: 1.82

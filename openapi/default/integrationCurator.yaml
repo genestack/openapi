@@ -6537,7 +6537,6 @@ components:
     DataItem:
       properties:
         itemId:
-          readOnly: true
           type: string
         metadata:
           type: object

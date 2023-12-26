@@ -797,46 +797,36 @@ components:
           key: genotype
       properties:
         itemId:
-          readOnly: true
           type: string
         metadata:
           type: object
         runId:
-          readOnly: true
           type: string
         groupId:
-          readOnly: true
           type: string
         contig:
-          readOnly: true
           type: string
         start:
           format: int64
-          readOnly: true
           type: integer
         reference:
-          readOnly: true
           type: string
         alteration:
-          readOnly: true
           type: array
           items:
             type: string
         variationId:
-          readOnly: true
           type: array
           items:
            type: string
         info:
           type: object
-          readOnly: true
           properties:
             type: array
             items:
               type: string
         genotype:
           type: object
-          readOnly: true
           properties:
             type: string
       type: object
