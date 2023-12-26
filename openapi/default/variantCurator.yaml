@@ -1271,6 +1271,10 @@ components:
             type: array
             items:
               type: string
+        genotype:
+          type: object
+          properties:
+            type: string
       type: object
     VariantResponse:
       example:
