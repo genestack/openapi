@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 servers:
-- url: https://unused/
+- url: /
 tags:
 - name: Sample SPoT
 paths:

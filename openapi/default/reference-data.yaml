@@ -5,7 +5,7 @@ info:
   title: Xrefsets API
   version: default-released
 servers:
-- url: https://unused/
+- url: /
 tags:
 - name: Xrefset queries
 paths:

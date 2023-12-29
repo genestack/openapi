@@ -29,7 +29,7 @@ info:
   title: Job API
   version: default-released
 servers:
-- url: https://unused/
+- url: /
 tags:
 - name: Data import jobs
 - name: Job operations

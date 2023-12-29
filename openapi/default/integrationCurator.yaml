@@ -14,7 +14,7 @@ info:
   title: ODM Integration API
   version: default-released
 servers:
-- url: https://unused/
+- url: /
 tags:
 - name: Expression integration
 - name: Flow Cytometry integration
