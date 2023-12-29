@@ -4,8 +4,6 @@ info:
     These API endpoints serve to work with asynchronous tasks.
   title: Tasks API
   version: default-released
-servers:
-- url: /
 tags:
 - name: Tasks API
 paths:

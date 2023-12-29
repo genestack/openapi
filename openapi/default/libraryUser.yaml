@@ -16,8 +16,6 @@ info:
      The server response will be in the section that follows.
   title: ODM API
   version: default-released
-servers:
-- url: /
 tags:
 - name: Library SPoT
 paths:

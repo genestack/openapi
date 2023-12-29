@@ -4,8 +4,6 @@ info:
     These API endpoints serve to upload and remove xrefsets, search in xrefsets and get details about them. These API endpoints are experimental. The parameters, request body and response body may change.
   title: Xrefsets API
   version: default-released
-servers:
-- url: /
 tags:
 - name: Xrefset queries
 paths:

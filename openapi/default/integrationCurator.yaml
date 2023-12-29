@@ -13,8 +13,6 @@ info:
     The server response will be in the section that follows.
   title: ODM Integration API
   version: default-released
-servers:
-- url: /
 tags:
 - name: Expression integration
 - name: Flow Cytometry integration

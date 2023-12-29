@@ -28,8 +28,6 @@ info:
     - `UNKNOWN`: the job status is unknown, please contact your system administrator.
   title: Job API
   version: default-released
-servers:
-- url: /
 tags:
 - name: Data import jobs
 - name: Job operations

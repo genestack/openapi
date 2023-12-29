@@ -4,8 +4,6 @@ info:
     \ groups. The endpoints are developed according to the SCIM 2.0 specification."
   title: ODM API
   version: default-released
-servers:
-- url: /
 tags:
 - name: Groups
 paths:
