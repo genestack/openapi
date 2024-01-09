@@ -313,7 +313,7 @@ paths:
       responses:
         "200":
           content:
-            '*/*':
+            'application/json':
               schema:
                 $ref: '#/components/schemas/ListResponse'
           description: The request was successful. The returned value is a list of
@@ -375,7 +375,7 @@ paths:
       responses:
         "200":
           content:
-            '*/*':
+            'application/json':
               schema:
                 $ref: '#/components/schemas/MetadataWithId'
           description: The request was successful. The returned value is the object.
@@ -436,7 +436,7 @@ paths:
       responses:
         "200":
           content:
-            '*/*':
+            'application/json':
               schema:
                 $ref: '#/components/schemas/MetadataWithId'
           description: The request was successful. The returned value is the object.
@@ -494,7 +494,7 @@ paths:
       responses:
         "200":
           content:
-            '*/*':
+            'application/json':
               schema:
                 $ref: '#/components/schemas/ListResponse'
           description: The request was successful. The returned value is the object.
