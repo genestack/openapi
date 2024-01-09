@@ -94,7 +94,7 @@ paths:
       operationId: createGroup
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/Group'
         required: true
@@ -289,7 +289,7 @@ paths:
           type: string
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/GroupPatch'
         required: true

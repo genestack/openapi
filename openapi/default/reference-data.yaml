@@ -12,7 +12,7 @@ paths:
       operationId: create
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/XrefSetCreateRequest'
         required: false

@@ -95,7 +95,7 @@ paths:
       operationId: createUser
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/User'
         required: true
@@ -288,7 +288,7 @@ paths:
           type: string
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/UserPatch'
         required: true

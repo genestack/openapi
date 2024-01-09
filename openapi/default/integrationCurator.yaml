@@ -4274,7 +4274,7 @@ paths:
       operationId: getLinksByIds
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: '#/components/schemas/BatchOfIds'
         required: false
