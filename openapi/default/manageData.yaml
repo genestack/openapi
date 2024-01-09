@@ -25,7 +25,7 @@ paths:
          Data with specific `detachedObjectType` can be retrieved by specifying the types in `detachedObjectType` parameter.
         The detached objects are sorted according to their `detachedObjectType` and `genestack:accession`.
         Specific ordering can be observed in the list of supported detached types found below.
-         agination of the results can be conveniently managed using the `cursor` and `limit` parameters.
+        Pagination of the results can be conveniently managed using the `cursor` and `limit` parameters.
          Supported types of detached objects (listed in the order of retrieval) include:
          * `SAMPLE_GROUP`
          * `LIBRARY_GROUP`
