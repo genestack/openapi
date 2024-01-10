@@ -4787,12 +4787,12 @@ components:
     BatchOfIds:
       description: Request model for getting links by many IDs.
       example:
+        firstType: study
         firstIds:
         - firstIds
         - firstIds
         offset: 0
-        firstType: study
-        limit: 6
+        limit: 0
       properties:
         firstType:
           description: Type of the objects.
