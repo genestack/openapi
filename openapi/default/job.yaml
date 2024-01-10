@@ -449,11 +449,11 @@ components:
     ImportSignalRunRequest:
       description: import signal data request
       example:
-        previousVersion: GSF334953
         source: HTTP
         metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
         dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
         templateId: GSF334953
+        previousVersion: GSF334953
       properties:
         source:
           enum:
@@ -481,9 +481,14 @@ components:
       allOf:
       - $ref: '#/components/schemas/ImportSignalRunRequest'
       example:
+        source: "HTTP"
+        metadataLink: "https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv"
+        dataLink: "https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz"
+        templateId: "GSF334953"
+        previousVersion: "GSF334953"
         numberOfFeatureAttributes: 5
-        measurementSeparator: ':'
-        dataClass: Proteomics
+        dataClass: "Proteomics"
+        measurementSeparator: ":"
       properties:
         numberOfFeatureAttributes:
           description: "Integer value that specifies the number of columns related\
