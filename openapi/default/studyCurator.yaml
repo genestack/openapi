@@ -536,7 +536,6 @@ components:
     StudyGenericSource:
       example:
         link: https://inception-dev.genestack.com/studies/my_stydy.csv
-        templateId: GSF000001
       properties:
         link:
           description: URL for a file with Study metadata.

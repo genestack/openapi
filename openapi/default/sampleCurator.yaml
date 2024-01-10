@@ -581,7 +581,6 @@ components:
         metadata:
           attributes:
             key: "{}"
-        templateId: GSF000001
       properties:
         templateId:
           description: ID of template file.
@@ -693,7 +692,6 @@ components:
     SampleSource:
       example:
         link: link
-        templateId: GSF000001
       properties:
         templateId:
           description: ID of template file.

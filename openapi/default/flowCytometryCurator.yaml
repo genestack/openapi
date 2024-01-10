@@ -1252,10 +1252,9 @@ components:
       type: object
     SignalSource:
       example:
-        previousVersion: previousVersion
         link: link
         metadataLink: metadataLink
-        templateId: GSF000001
+        previousVersion: previousVersion
       properties:
         templateId:
           description: ID of template file.

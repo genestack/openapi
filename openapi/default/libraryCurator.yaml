@@ -657,7 +657,6 @@ components:
     SampleSource:
       example:
         link: link
-        templateId: GSF000001
       properties:
         templateId:
           description: ID of template file.

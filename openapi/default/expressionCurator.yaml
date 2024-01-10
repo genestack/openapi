@@ -1291,13 +1291,13 @@ components:
       type: object
     SignalSource:
       example:
-        numberOfFeatureAttributes: 5
-        measurementSeparator: ':'
-        previousVersion: previousVersion
-        dataClass: Proteomics
         link: link
         metadataLink: metadataLink
         templateId: GSF000001
+        dataClass: Proteomics
+        numberOfFeatureAttributes: 5
+        measurementSeparator: ':'
+        previousVersion: previousVersion
       properties:
         templateId:
           description: ID of template file.
