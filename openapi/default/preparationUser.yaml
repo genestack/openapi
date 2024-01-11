@@ -1,448 +1,482 @@
----
-swagger: "2.0"
+openapi: 3.1.0
 info:
-  description: "This swagger page describes the preparationUser API endpoints for\
-    \ ODM. These are typically used to find and retrieve preparation metadata.\n\n\
-    Before carrying out any API calls you will need an API token. API tokens can be\
-    \ obtained under your profile within the Genestack software. Further instructions\
-    \ can be found [here](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html).\n\
-    \nTo try out calls in this swagger page:\n\n1.  Click the 'Authorize' button below\
-    \ to enter your API token\n2.  Scroll to the 'Parameters' section for the method\
-    \ you wish to try out and click the 'Try it out' button\n3.  Enter parameter values\
-    \ that you wish to try\n4.  Scroll to the bottom of the Parameters section and\
-    \ click the 'Execute' bar that appears\n\n\n The server response will be in the\
-    \ section that follows."
-  version: "default-released"
-  title: "ODM API"
-host: "unused"
-basePath: "/frontend/rs/genestack/preparationUser/default-released"
+  description: |-
+    This swagger page describes the preparationUser API endpoints for ODM. These are typically used to find and retrieve preparation metadata.
+
+    Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software. Further instructions can be found [here](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html).
+
+    To try out calls in this swagger page:
+
+    1.  Click the 'Authorize' button below to enter your API token
+    2.  Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
+    3.  Enter parameter values that you wish to try
+    4.  Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
+
+
+     The server response will be in the section that follows.
+  title: ODM API
+  version: default-released
 tags:
-- name: "Preparation SPoT"
-schemes:
-- "https"
+- name: Preparation SPoT
 paths:
-  /preparations:
+  /frontend/rs/genestack/preparationUser/default-released/preparations:
     get:
-      tags:
-      - "Preparation SPoT"
-      summary: "List or search for preparation metadata objects"
-      description: "Retrieve preparation metadata objects by searching/listing preparation\
-        \ metadata.\n\n## Metadata full-text queries\nSingle words can be supplied\
-        \ as is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
-        \ Speech marks and backslash characters in the query need to be escaped with\
-        \ a backslash (`\\`).\n\n## Metadata filters\nMetadata filters are key-value\
-        \ pairs joined by an operator. The `=` operator matches literal values/string.\
-        \ The `!=` operator matches anything except the literal value/string. The\
-        \ `<` or `>` operators match numerical results that are less or greater than\
-        \ the supplied value. Strings containing whitespace need to be quoted with\
-        \ (`\"`).\n\n## Combinations\nMetadata queries/filters for the same parameter\
-        \ can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space\
-        \ to separate out the terms and operators. Parentheses `( )` can be used for\
-        \ complex expressions.\n\n## Paging\nFor performance reasons this endpoint\
-        \ returns results in \"pages\" of limited size. In order to retrieve all matching\
-        \ results the client needs to request multiple pages starting from an offset\
-        \ to the first result. You can do this using the pageOffset query parameter.\
-        \ A value of 0 (the default) instructs the server to return the first page\
-        \ of results, 100 would return a page of results starting from the 101st result\
-        \ and so on. To return all results iterate through pages using pageOffset\
-        \ values of `n*pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n## List operation\n\nThis endpoint can be called with no `query` parameter.\
-        \ Doing so returns a list of all variant objects."
-      operationId: "searchPreparations"
-      produces:
-      - "application/json"
-      - "text/tab-separated-values"
+      description: |-
+        Retrieve preparation metadata objects by searching/listing preparation metadata.
+
+        ## Metadata full-text queries
+        Single words can be supplied as is, otherwise use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
+
+        ## Metadata filters
+        Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
+
+        ## Combinations
+        Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
+
+        ## Paging
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n*pageLimit` until the `resultsExhausted` response field is true.
+
+        ## List operation
+
+        This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
+      operationId: searchPreparations
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "filter"
-        in: "query"
-        description: "Filter by preparation metadata (key-value metadata pair(s)).\
-          \ E.g. `Digestion=Trypsin`"
-        required: false
-        type: "string"
-      - name: "query"
-        in: "query"
-        description: "Search for preparation objects via a full-text query over all\
-          \ preparation metadata fields. E.g. `\"reversed-phase liquid chromatography\"\
-          `. Queries matching dictionary terms are automatically expanded to include\
-          \ synonyms."
-        required: false
-        type: "string"
-      - name: "searchSpecificTerms"
-        in: "query"
-        description: "If the full-text query term is present in an ODM dictionary,\
-          \ enabling this parameter will modify the query to include child terms of\
-          \ the full-text query.\n\nFor example, the search query \"Body fluid\" can\
-          \ be expanded to include the term \"Blood\" (a child term of  \"Body fluid\"\
-          ) so files containing either \"Body fluid\" or  \"Blood\"  in their metadata\
-          \ will be returned in the search results.\n\nThe parent-child relationship\
-          \ is defined by the key \"broaders\" or \"subClassOf\" in the dictionary.\n\
-          \nIf the full query term is not present in a dictionary then this parameter\
-          \ has no effect."
-        required: false
-        type: "boolean"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
-      - name: "sort"
-        in: "query"
-        description: "Attribute to sort by, with optional ascending/descending marker,\
-          \ of the form `\"[+|-]<key_name>\"`.\n\nNo marker or `\"+\"` indicates ascending\
-          \ sort, and `\"-\"` indicates descending sort.\n\n*Default:* sort by ID\
-          \ in ascending order."
-        required: false
-        type: "string"
-        enum:
-        - "id"
-        - "creation"
-        - "last_update"
-        - "name"
-        - "+id"
-        - "+creation"
-        - "+last_update"
-        - "+name"
-        - "-id"
-        - "-creation"
-        - "-last_update"
-        - "-name"
-      - name: "pageLimit"
-        in: "query"
-        description: "Maximum number of results to return per page (see Paging above).\
-          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
-        required: false
-        type: "integer"
-        format: "int32"
-      - name: "pageOffset"
-        in: "query"
-        description: "Show the page {pageOffset+1} results from the start of the results.\
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Filter by preparation metadata (key-value metadata pair(s)).
+          E.g. `Digestion=Trypsin`
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Search for preparation objects via a full-text query over all
+          preparation metadata fields. E.g. `"reversed-phase liquid chromatography"`.
+          Queries matching dictionary terms are automatically expanded to include
+          synonyms.
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: |-
+          If the full-text query term is present in an ODM dictionary, enabling this parameter will modify the query to include child terms of the full-text query.
+
+          For example, the search query "Body fluid" can be expanded to include the term "Blood" (a child term of  "Body fluid") so files containing either "Body fluid" or  "Blood"  in their metadata will be returned in the search results.
+
+          The parent-child relationship is defined by the key "broaders" or "subClassOf" in the dictionary.
+
+          If the full query term is not present in a dictionary then this parameter has no effect.
+        in: query
+        name: searchSpecificTerms
+        schema:
+          type: boolean
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
+      - description: |-
+          Attribute to sort by, with optional ascending/descending marker, of the form `"[+|-]<key_name>"`.
+
+          No marker or `"+"` indicates ascending sort, and `"-"` indicates descending sort.
+
+          *Default:* sort by ID in ascending order.
+        in: query
+        name: sort
+        schema:
+          enum:
+          - id
+          - creation
+          - last_update
+          - name
+          - +id
+          - +creation
+          - +last_update
+          - +name
+          - -id
+          - -creation
+          - -last_update
+          - -name
+          type: string
+      - description: Maximum number of results to return per page (see Paging above).
+          This value must be between 0 and 2000 (inclusive). The default is 2000.
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
+      - description: "Show the page {pageOffset+1} results from the start of the results.\
           \ E.g. 100 will show a page of results  starting from the 101st result.\
           \ The default value is 0."
-        required: false
-        type: "integer"
-        format: "int32"
+        in: query
+        name: pageOffset
+        schema:
+          format: int32
+          type: integer
       responses:
-        200:
-          description: "The request was successful. The returned value is a list of\
-            \ objects."
-          schema:
-            $ref: "#/definitions/ListResponse"
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListResponse'
+            text/tab-separated-values:
+              schema:
+                $ref: '#/components/schemas/ListResponse'
+          description: The request was successful. The returned value is a list of
+            objects.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/by/group/{id}:
-    get:
+      summary: List or search for preparation metadata objects
       tags:
-      - "Preparation SPoT"
-      summary: "Retrieve preparations related to the given group"
-      description: ""
-      operationId: "getPreparationsByGroup"
-      produces:
-      - "application/json"
+      - Preparation SPoT
+  /frontend/rs/genestack/preparationUser/default-released/preparations/by/group/{id}:
+    get:
+      operationId: getPreparationsByGroup
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
-      - name: "pageOffset"
-        in: "query"
-        description: "Show the page {pageOffset+1} results from the start of the results.\
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
+      - description: "Show the page {pageOffset+1} results from the start of the results.\
           \ E.g. 100 will show a page of results  starting from the 101st result.\
           \ The default value is 0."
-        required: false
-        type: "integer"
-        format: "int32"
-      - name: "pageLimit"
-        in: "query"
-        description: "Maximum number of results to return per page (see Paging above).\
-          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
-        required: false
-        type: "integer"
-        format: "int32"
+        in: query
+        name: pageOffset
+        schema:
+          format: int32
+          type: integer
+      - description: Maximum number of results to return per page (see Paging above).
+          This value must be between 0 and 2000 (inclusive). The default is 2000.
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
       responses:
-        200:
-          description: "The request was successful. The returned value is a list of\
-            \ objects."
-          schema:
-            $ref: "#/definitions/ListResponse"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListResponse'
+          description: The request was successful. The returned value is a list of
+            objects.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/{id}:
-    get:
+      summary: Retrieve preparations related to the given group
       tags:
-      - "Preparation SPoT"
-      summary: "Retrieve a single preparation object by ID (accession)"
-      description: ""
-      operationId: "getPreparation"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
-        required: true
-        type: "string"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
-      responses:
-        200:
-          description: "The request was successful. The returned value is the object."
-          schema:
-            $ref: "#/definitions/Preparation"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-  /preparations/{id}/versions:
+      - Preparation SPoT
+  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}:
     get:
-      tags:
-      - "Preparation SPoT"
-      summary: "Retrieve a list of object versions by ID"
-      description: ""
-      operationId: "getPreparationVersions"
-      produces:
-      - "application/json"
+      operationId: getPreparation
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
       responses:
-        200:
-          description: "The request was successful. The returned value is the list\
-            \ of  object versions."
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/CommitInfo"
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preparation'
+          description: The request was successful. The returned value is the object.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /preparations/{id}/versions/{version}:
+      summary: Retrieve a single preparation object by ID (accession)
+      tags:
+      - Preparation SPoT
+  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions:
     get:
-      tags:
-      - "Preparation SPoT"
-      summary: "Retrieve a single preparation object by ID (accession)"
-      description: ""
-      operationId: "getPreparationByVersion"
-      produces:
-      - "application/json"
+      operationId: getPreparationVersions
       parameters:
-      - name: "responseFormat"
-        in: "query"
-        description: "Supply this parameter with the value `term_id` as part of the\
-          \ query to return extended information including IDs for values and dictionaries."
-        required: false
-        type: "string"
-        enum:
-        - "term_id"
-      - name: "id"
-        in: "path"
-        description: "Unique identifier (accession) of the object."
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
         required: true
-        type: "string"
-      - name: "version"
-        in: "path"
-        description: "Unique version of the object."
-        required: true
-        type: "string"
-      - name: "returnedMetadataFields"
-        in: "query"
-        description: "The parameter defines amount of metadata attributes to return:\n\
-          \n1. `minimal_data` - return metadata attributes according to the default\
-          \ template.\n2. `extended_data_included` - return metadata attributes according\
-          \ to applied template, if object doesn’t have applied template, default\
-          \ template will be used. This is the default for User endpoints.\n3. `original_data_included`\
-          \ - return all metadata attributes with values and null attributes, if they\
-          \ are present in the applied template. This is the default for Curator endpoints."
-        required: false
-        type: "string"
-        enum:
-        - "minimal_data"
-        - "extended_data_included"
-        - "original_data_included"
+        schema:
+          type: string
       responses:
-        200:
-          description: "The request was successful. The returned value is the object."
-          schema:
-            $ref: "#/definitions/Preparation"
-        400:
-          description: "The supplied object ID is invalid."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "No object exists with the given ID."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CommitInfo'
+                type: array
+          description: The request was successful. The returned value is the list
+            of  object versions.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-securityDefinitions:
-  Access-token:
-    type: "apiKey"
-    name: "Authorization"
-    in: "header"
-  Genestack-API-Token:
-    type: "apiKey"
-    name: "Genestack-API-Token"
-    in: "header"
-definitions:
-  CommitInfo:
-    type: "object"
-    properties:
-      author:
-        type: "string"
-      message:
-        type: "string"
-      timestamp:
-        type: "integer"
-        format: "int64"
-      version:
-        type: "string"
-        readOnly: true
-  IntegrationHelper:
-    type: "object"
-  ListResponse:
-    type: "object"
-    properties:
-      meta:
-        $ref: "#/definitions/MetaResponse"
-      data:
-        type: "array"
-        items:
-          type: "object"
-  MetaResponse:
-    type: "object"
-    properties:
-      pagination:
-        $ref: "#/definitions/PaginationInfo"
-  PaginationInfo:
-    type: "object"
-    properties:
-      count:
-        type: "integer"
-        format: "int32"
-      total:
-        type: "integer"
-        format: "int64"
-      offset:
-        type: "integer"
-        format: "int32"
-      limit:
-        type: "integer"
-        format: "int32"
-  Preparation:
-    type: "object"
+      summary: Retrieve a list of object versions by ID
+      tags:
+      - Preparation SPoT
+  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions/{version}:
+    get:
+      operationId: getPreparationByVersion
+      parameters:
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          enum:
+          - term_id
+          type: string
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Unique version of the object.
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preparation'
+          description: The request was successful. The returned value is the object.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve a single preparation object by ID (accession)
+      tags:
+      - Preparation SPoT
+components:
+  schemas:
+    CommitInfo:
+      example:
+        author: author
+        message: message
+        version: version
+        timestamp: 0
+      properties:
+        author:
+          type: string
+        message:
+          type: string
+        timestamp:
+          format: int64
+          type: integer
+        version:
+          readOnly: true
+          type: string
+      type: object
+    IntegrationHelper:
+      type: object
+    ListResponse:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        meta:
+          pagination:
+            total: 6
+            offset: 1
+            count: 0
+            limit: 5
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaResponse'
+        data:
+          items:
+            properties: {}
+            type: object
+          type: array
+      type: object
+    MetaResponse:
+      example:
+        pagination:
+          total: 6
+          offset: 1
+          count: 0
+          limit: 5
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+      type: object
+    PaginationInfo:
+      example:
+        total: 6
+        offset: 1
+        count: 0
+        limit: 5
+      properties:
+        count:
+          format: int32
+          type: integer
+        total:
+          format: int64
+          type: integer
+        offset:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+      type: object
+    Preparation:
+      type: object
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
+x-original-swagger-version: "2.0"

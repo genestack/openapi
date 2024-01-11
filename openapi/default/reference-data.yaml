@@ -1,404 +1,452 @@
----
-swagger: "2.0"
+openapi: 3.1.0
 info:
-  description: "These API endpoints serve to upload and remove xrefsets, search in\
-    \ xrefsets and get details about them. These API endpoints are experimental. The\
-    \ parameters, request body and response body may change.\n"
-  version: "default-released"
-  title: "Xrefsets API"
-host: "unused"
-basePath: "/frontend/rs/genestack/reference-data/default-released"
+  description: |
+    These API endpoints serve to upload and remove xrefsets, search in xrefsets and get details about them. These API endpoints are experimental. The parameters, request body and response body may change.
+  title: Xrefsets API
+  version: default-released
 tags:
-- name: "Xrefset queries"
-schemes:
-- "https"
+- name: Xrefset queries
 paths:
-  /xrefsets:
+  /frontend/rs/genestack/reference-data/default-released/xrefsets:
     post:
-      tags:
-      - "Xrefset queries"
-      summary: "Import a new xrefset file"
-      description: ""
-      operationId: "create"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XrefSetCreateRequest'
         required: false
-        schema:
-          $ref: "#/definitions/XrefSetCreateRequest"
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/XrefSetCreateResponse"
-        201:
-          description: "The objects were successfully created. The returned value\
-            \ is a list of created objects."
-        400:
-          description: "The object cannot be created. This error occurs when the supplied\
-            \ data or metadata are incorrect. Please see error message for details"
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        403:
-          description: "Not enough permissions to work with the xrefset."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XrefSetCreateResponse'
+          description: successful operation
+        "201":
+          content: {}
+          description: The objects were successfully created. The returned value is
+            a list of created objects.
+        "400":
+          content: {}
+          description: The object cannot be created. This error occurs when the supplied
+            data or metadata are incorrect. Please see error message for details
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Not enough permissions to work with the xrefset.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /xrefsets/entries:
+      summary: Import a new xrefset file
+      tags:
+      - Xrefset queries
+      x-codegen-request-body-name: body
+  /frontend/rs/genestack/reference-data/default-released/xrefsets/entries:
     get:
-      tags:
-      - "Xrefset queries"
-      summary: "Retrieve a list of entries across all xrefsets for given sourceId\
-        \ and targetId"
-      description: "## Conditions\nIt is possible to supply a list of values for \"\
-        targetId\" and \"sourceId\". If non-empty lists of values for \"targetId\"\
-        \ and \"sourceId\" are supplied, the following search rule is applied: (sourceId\
-        \ = \"S1\" OR .. sourceId = \"Sn\") AND (targetId = \"T1\" OR .. targetId\
-        \ = \"Tm\").\n\n"
-      operationId: "searchEntries"
-      produces:
-      - "application/json"
+      description: |+
+        ## Conditions
+        It is possible to supply a list of values for "targetId" and "sourceId". If non-empty lists of values for "targetId" and "sourceId" are supplied, the following search rule is applied: (sourceId = "S1" OR .. sourceId = "Sn") AND (targetId = "T1" OR .. targetId = "Tm").
+
+      operationId: searchEntries
       parameters:
-      - name: "sourceId"
-        in: "query"
-        description: "Supply sourceId in the format \"sourceId\". For transcript-gene\
+      - description: "Supply sourceId in the format \"sourceId\". For transcript-gene\
           \ mapping this is gene ID, e.g. \"ENSG00000146648\""
-        required: false
-        type: "array"
-        items:
-          type: "string"
-        collectionFormat: "multi"
-      - name: "targetId"
-        in: "query"
-        description: "Supply targetId in the format \"targetId\". For transcript-gene\
+        explode: true
+        in: query
+        name: sourceId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Supply targetId in the format \"targetId\". For transcript-gene\
           \ mapping this is transcript ID, e.g. \"ENST00000617423.4\""
-        required: false
-        type: "array"
-        items:
-          type: "string"
-        collectionFormat: "multi"
-      - name: "cursor"
-        in: "query"
-        description: "The page tag to resume results from (see paging above)."
-        required: false
-        type: "string"
-      - name: "pageLimit"
-        in: "query"
-        description: "This parameter determines the number of results to retrieve per page,\
-          \ with the default set at 2000."
-        required: false
-        type: "integer"
-        format: "int32"
+        explode: true
+        in: query
+        name: targetId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The page tag to resume results from (see paging above).
+        in: query
+        name: cursor
+        schema:
+          type: string
+      - description: "This parameter determines the number of results to retrieve\
+          \ per page, with the default set at 2000."
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
       responses:
-        200:
-          description: "Json object with the cursor and json array of retrieved xrefset\
-            \ data. Response entries are ordered by xrefset ID and then by source\
-            \ ID."
-          schema:
-            $ref: "#/definitions/XrefSetSearchResult"
-        400:
-          description: "Invalid data in the request. See the error message for details."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XrefSetSearchResult'
+          description: Json object with the cursor and json array of retrieved xrefset
+            data. Response entries are ordered by xrefset ID and then by source ID.
+        "400":
+          content: {}
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /xrefsets/{id}:
-    delete:
+      summary: Retrieve a list of entries across all xrefsets for given sourceId and
+        targetId
       tags:
-      - "Xrefset queries"
-      summary: "Delete a xrefset with all related data.\nOnly users who uploaded the\
-        \ xrefset are allowed to delete it."
-      description: ""
-      operationId: "deleteFile"
-      produces:
-      - "application/json"
+      - Xrefset queries
+  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}:
+    delete:
+      operationId: deleteFile
       parameters:
-      - name: "id"
-        in: "path"
-        description: "xrefset ID"
+      - description: xrefset ID
+        in: path
+        name: id
         required: true
-        type: "string"
-        pattern: ".*"
+        schema:
+          pattern: .*
+          type: string
       responses:
-        204:
+        "204":
+          content: {}
           description: "Xrefset file successfully marked for deletion, mappings have\
             \ been removed"
-        400:
-          description: "Invalid data in the request. See the error message for details."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        403:
-          description: "Not enough permissions to work with the xrefset."
-        404:
-          description: "The xrefset does not exist."
-        500:
+        "400":
+          content: {}
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Not enough permissions to work with the xrefset.
+        "404":
+          content: {}
+          description: The xrefset does not exist.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /xrefsets/{id}/entries:
-    get:
+      summary: |-
+        Delete a xrefset with all related data.
+        Only users who uploaded the xrefset are allowed to delete it.
       tags:
-      - "Xrefset queries"
-      summary: "Retrieve a list of entries for the given xrefset and given sourceId\
-        \ and targetId"
-      description: "## Conditions\nIt is possible to supply a list of values for \"\
-        targetId\" and \"sourceId\". If non-empty lists of values for \"targetId\"\
-        \ and \"sourceId\" are supplied, the following search rule is applied: (sourceId\
-        \ = \"S1\" OR .. sourceId = \"Sn\") AND (targetId = \"T1\" OR .. targetId\
-        \ = \"Tm\").\n\n"
-      operationId: "searchEntriesWithinFile"
-      produces:
-      - "application/json"
+      - Xrefset queries
+  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}/entries:
+    get:
+      description: |+
+        ## Conditions
+        It is possible to supply a list of values for "targetId" and "sourceId". If non-empty lists of values for "targetId" and "sourceId" are supplied, the following search rule is applied: (sourceId = "S1" OR .. sourceId = "Sn") AND (targetId = "T1" OR .. targetId = "Tm").
+
+      operationId: searchEntriesWithinFile
       parameters:
-      - name: "id"
-        in: "path"
-        description: "xrefset ID"
+      - description: xrefset ID
+        in: path
+        name: id
         required: true
-        type: "string"
-      - name: "sourceId"
-        in: "query"
-        description: "Supply sourceId in the format \"sourceId\". For transcript-gene\
+        schema:
+          type: string
+      - description: "Supply sourceId in the format \"sourceId\". For transcript-gene\
           \ mapping this is gene ID, e.g. \"ENSG00000146648\""
-        required: false
-        type: "array"
-        items:
-          type: "string"
-        collectionFormat: "multi"
-      - name: "targetId"
-        in: "query"
-        description: "Supply targetId in the format \"targetId\". For transcript-gene\
+        explode: true
+        in: query
+        name: sourceId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Supply targetId in the format \"targetId\". For transcript-gene\
           \ mapping this is transcript ID, e.g. \"ENST00000617423.4\""
-        required: false
-        type: "array"
-        items:
-          type: "string"
-        collectionFormat: "multi"
-      - name: "cursor"
-        in: "query"
-        description: "The page tag to resume results from (see paging above)."
-        required: false
-        type: "string"
-      - name: "pageLimit"
-        in: "query"
-        description: "This parameter determines the number of results to retrieve per page,\
-          \ with the default set at 2000."
-        required: false
-        type: "integer"
-        format: "int32"
+        explode: true
+        in: query
+        name: targetId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The page tag to resume results from (see paging above).
+        in: query
+        name: cursor
+        schema:
+          type: string
+      - description: "This parameter determines the number of results to retrieve\
+          \ per page, with the default set at 2000."
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
       responses:
-        200:
-          description: "Json object with the cursor and json array of retrieved xrefset\
-            \ data. Response entries are ordered by xrefset ID and then by source\
-            \ ID."
-          schema:
-            $ref: "#/definitions/XrefSetSearchResult"
-        400:
-          description: "Invalid data in the request. See the error message for details."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "The xrefset does not exist."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XrefSetSearchResult'
+          description: Json object with the cursor and json array of retrieved xrefset
+            data. Response entries are ordered by xrefset ID and then by source ID.
+        "400":
+          content: {}
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: The xrefset does not exist.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-  /xrefsets/{id}/metadata:
-    get:
+      summary: Retrieve a list of entries for the given xrefset and given sourceId
+        and targetId
       tags:
-      - "Xrefset queries"
-      summary: "Retrieve xrefset details"
-      description: ""
-      operationId: "getDetailsByAccession"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - Xrefset queries
+  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}/metadata:
+    get:
+      operationId: getDetailsByAccession
       parameters:
-      - name: "id"
-        in: "path"
-        description: "xrefset ID"
+      - description: xrefset ID
+        in: path
+        name: id
         required: true
-        type: "string"
+        schema:
+          type: string
       responses:
-        200:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XrefSetMetadata'
           description: "Object containing xrefset details, including user submitted\
             \ metadata and system info"
-          schema:
-            $ref: "#/definitions/XrefSetMetadata"
-        400:
-          description: "Invalid data in the request. See the error message for details."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        404:
-          description: "The xrefset does not exist."
-        500:
+        "400":
+          content: {}
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: The xrefset does not exist.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
       - Access-token: []
       - Genestack-API-Token: []
-securityDefinitions:
-  Access-token:
-    type: "apiKey"
-    name: "Authorization"
-    in: "header"
-  Genestack-API-Token:
-    type: "apiKey"
-    name: "Genestack-API-Token"
-    in: "header"
-definitions:
-  XrefSetCreateRequest:
-    type: "object"
-    required:
-    - "dataLink"
-    - "dataSource"
-    - "xrefSetType"
-    properties:
-      xrefSetType:
-        type: "string"
-        description: "Type of data stored in XrefSet"
-        enum:
-        - "gene-transcript"
-      dataLink:
-        type: "string"
-        example: "\"http://example-url.com/my-mapping.tsv\""
-        description: "Mapping file link"
-      dataSource:
-        type: "string"
-        description: "Target storage dataLink points to"
-        enum:
-        - "arvados"
-        - "s3"
-        - "http"
-      metadata:
-        type: "object"
-        description: "Additional user metadata"
-        additionalProperties:
-          type: "string"
-    description: "Create XrefSet request body"
-  XrefSetCreateResponse:
-    type: "object"
-    required:
-    - "createdBy"
-    - "createdDate"
-    - "lastUpdated"
-    - "metadata"
-    - "warnings"
-    - "xrefSetId"
-    - "xrefSetType"
-    properties:
-      xrefSetId:
-        type: "string"
-        example: "\"GSF0000013\""
-        description: "Accession of the created XrefSet"
-      createdBy:
-        type: "string"
-        example: "\"User007\""
-        description: "Name of the user created XrefSet"
-      createdDate:
-        type: "integer"
-        format: "int64"
-        example: 1602838500612
-        description: "Date of XrefSet creation"
-      lastUpdated:
-        type: "integer"
-        format: "int64"
-        example: 1602838500612
-        description: "Date of XrefSet last update. For a new entity lastUpdated =\
-          \ createdDate"
-      xrefSetType:
-        type: "string"
-        description: "Type of data stored in XrefSet"
-        enum:
-        - "gene-transcript"
-      metadata:
-        type: "object"
-        description: "Additional user metadata"
-        additionalProperties:
-          type: "string"
-      warnings:
-        type: "array"
-        description: "Warnings, if any"
-        items:
-          type: "string"
-    description: "Create XrefSet response body"
-  XrefSetMetadata:
-    type: "object"
-    properties:
-      xrefSetId:
-        type: "string"
-        example: "\"GSF000477\""
-      createdBy:
-        type: "string"
-        example: "\"Genestack Superuser\""
-      createdDate:
-        type: "integer"
-        format: "int64"
-        example: 1594846270242
-      lastUpdated:
-        type: "integer"
-        format: "int64"
-        example: 1594846270242
-      data:
-        type: "object"
-        additionalProperties:
-          type: "string"
-    description: "Xrefset metadata"
-  XrefSetSearchResult:
-    type: "object"
-    properties:
-      cursor:
-        type: "string"
-        example: "\"GSF0000013#ENSG00000231103.2#ENST00000617423.4\""
-      result:
-        type: "array"
-        items:
-          $ref: "#/definitions/XrefSetSearchResultEntry"
-    description: "Result of a search query for xrefsets"
-  XrefSetSearchResultEntry:
-    type: "object"
-    properties:
-      xrefSetId:
-        type: "string"
-        example: "\"GSF0000013\""
-      sourceId:
-        type: "string"
-        example: "\"ENSG00000231103.2\""
-      targetIds:
-        type: "array"
-        example: "[\"ENST00000617423.4\", \"ENST00000334232.8\"]"
-        items:
-          type: "string"
+      summary: Retrieve xrefset details
+      tags:
+      - Xrefset queries
+components:
+  schemas:
+    XrefSetCreateRequest:
+      description: Create XrefSet request body
+      example:
+        metadata:
+          key: metadata
+        xrefSetType: gene-transcript
+        dataLink: '"http://example-url.com/my-mapping.tsv"'
+        dataSource: arvados
+      properties:
+        xrefSetType:
+          description: Type of data stored in XrefSet
+          enum:
+          - gene-transcript
+          type: string
+        dataLink:
+          description: Mapping file link
+          example: '"http://example-url.com/my-mapping.tsv"'
+          type: string
+        dataSource:
+          description: Target storage dataLink points to
+          enum:
+          - arvados
+          - s3
+          - http
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional user metadata
+          type: object
+      required:
+      - dataLink
+      - dataSource
+      - xrefSetType
+      type: object
+    XrefSetCreateResponse:
+      description: Create XrefSet response body
+      example:
+        lastUpdated: 1602838500612
+        metadata:
+          key: metadata
+        createdDate: 1602838500612
+        createdBy: '"User007"'
+        warnings:
+        - warnings
+        - warnings
+        xrefSetType: gene-transcript
+        xrefSetId: '"GSF0000013"'
+      properties:
+        xrefSetId:
+          description: Accession of the created XrefSet
+          example: '"GSF0000013"'
+          type: string
+        createdBy:
+          description: Name of the user created XrefSet
+          example: '"User007"'
+          type: string
+        createdDate:
+          description: Date of XrefSet creation
+          example: 1602838500612
+          format: int64
+          type: integer
+        lastUpdated:
+          description: Date of XrefSet last update. For a new entity lastUpdated =
+            createdDate
+          example: 1602838500612
+          format: int64
+          type: integer
+        xrefSetType:
+          description: Type of data stored in XrefSet
+          enum:
+          - gene-transcript
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Additional user metadata
+          type: object
+        warnings:
+          description: "Warnings, if any"
+          items:
+            type: string
+          type: array
+      required:
+      - createdBy
+      - createdDate
+      - lastUpdated
+      - metadata
+      - warnings
+      - xrefSetId
+      - xrefSetType
+      type: object
+    XrefSetMetadata:
+      description: Xrefset metadata
+      example:
+        lastUpdated: 1594846270242
+        createdDate: 1594846270242
+        data:
+          key: data
+        createdBy: '"Genestack Superuser"'
+        xrefSetId: '"GSF000477"'
+      properties:
+        xrefSetId:
+          example: '"GSF000477"'
+          type: string
+        createdBy:
+          example: '"Genestack Superuser"'
+          type: string
+        createdDate:
+          example: 1594846270242
+          format: int64
+          type: integer
+        lastUpdated:
+          example: 1594846270242
+          format: int64
+          type: integer
+        data:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    XrefSetSearchResult:
+      description: Result of a search query for xrefsets
+      example:
+        cursor: '"GSF0000013#ENSG00000231103.2#ENST00000617423.4"'
+        result:
+        - sourceId: '"ENSG00000231103.2"'
+          targetIds: "[\"ENST00000617423.4\", \"ENST00000334232.8\"]"
+          xrefSetId: '"GSF0000013"'
+        - sourceId: '"ENSG00000231103.2"'
+          targetIds: "[\"ENST00000617423.4\", \"ENST00000334232.8\"]"
+          xrefSetId: '"GSF0000013"'
+      properties:
+        cursor:
+          example: '"GSF0000013#ENSG00000231103.2#ENST00000617423.4"'
+          type: string
+        result:
+          items:
+            $ref: '#/components/schemas/XrefSetSearchResultEntry'
+          type: array
+      type: object
+    XrefSetSearchResultEntry:
+      example:
+        sourceId: '"ENSG00000231103.2"'
+        targetIds: "[\"ENST00000617423.4\", \"ENST00000334232.8\"]"
+        xrefSetId: '"GSF0000013"'
+      properties:
+        xrefSetId:
+          example: '"GSF0000013"'
+          type: string
+        sourceId:
+          example: '"ENSG00000231103.2"'
+          type: string
+        targetIds:
+          example: "[\"ENST00000617423.4\", \"ENST00000334232.8\"]"
+          items:
+            type: string
+          type: array
+      type: object
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
+x-original-swagger-version: "2.0"

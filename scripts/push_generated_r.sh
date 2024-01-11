@@ -5,7 +5,7 @@ set -eu
 # Build R archives
 for directory in $(find generated/r -maxdepth 1 -type d -not -path generated/r); do
     cd "$directory"
-    R -e "devtools::build()"
+    R CMD build .
     cd "$OLDPWD"
 done
 

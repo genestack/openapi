@@ -1,211 +1,243 @@
----
-swagger: "2.0"
+openapi: 3.1.0
 info:
-  description: "This swagger page describes the manageData APIs.\n\nBefore\
-    \ carrying out any API calls you will need an API token. API tokens can be obtained\
-    \ under your profile within the Genestack software.\n\nTo try out calls in this\
-    \ swagger page:\n\n1. Click the 'Authorize' button below to enter your API token\n\
-    2. Scroll to the 'Parameters' section for the method you wish to try out and click\
-    \ the 'Try it out' button\n3. Enter parameter values that you wish to try\n4.\
-    \ Scroll to the bottom of the Parameters section and click the 'Execute' bar that\
-    \ appears\n\nThe server response will be in the section that follows."
-  version: "default-released"
-  title: "ODM API"
-host: "unused"
-basePath: "/frontend/rs/genestack/manageData/default-released"
+  description: |-
+    This swagger page describes the manageData APIs.
+
+    Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
+
+    To try out calls in this swagger page:
+
+    1. Click the 'Authorize' button below to enter your API token
+    2. Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
+    3. Enter parameter values that you wish to try
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
+
+    The server response will be in the section that follows.
+  title: ODM API
+  version: default-released
 tags:
-  - name: "Manage Data"
-schemes:
-  - "https"
+- name: Manage Data
 paths:
-  /detached-objects:
+  /frontend/rs/genestack/manageData/default-released/detached-objects:
     get:
-      tags:
-        - "Manage Data"
-      summary: "Retrieve a list of detached objects"
-      description: "Retrieve various types of detached data objects. An object is defined as 'detached' if it lacks\
-        \ any direct or indirect link to a root-level object, which in this context is referred to as 'study'.\n\
-        \ Data with specific `detachedObjectType` can be retrieved by specifying the types in `detachedObjectType`\
-        \ parameter.\nThe detached objects are sorted according to their `detachedObjectType` and\
-        \ `genestack:accession`.\nSpecific ordering can be observed in the list of supported detached types found\
-        \ below.\n\Pagination of the results can be conveniently managed using the `cursor` and `limit` parameters.\n\
-        \ Supported types of detached objects (listed in the order of retrieval) include:\n\
-        \ * `SAMPLE_GROUP`\n\
-        \ * `LIBRARY_GROUP`\n\
-        \ * `PREPARATION_GROUP`\n\
-        \ * `TABULAR_DATA`\n\
-        \ * `GENE_VARIANT`\n\
-        \ * `FLOW_CYTOMETRY`\n\n"
-      operationId: "getDetachedObjects"
-      produces:
-        - "application/json"
+      description: |+
+        Retrieve various types of detached data objects. An object is defined as 'detached' if it lacks any direct or indirect link to a root-level object, which in this context is referred to as 'study'.
+         Data with specific `detachedObjectType` can be retrieved by specifying the types in `detachedObjectType` parameter.
+        The detached objects are sorted according to their `detachedObjectType` and `genestack:accession`.
+        Specific ordering can be observed in the list of supported detached types found below.
+        Pagination of the results can be conveniently managed using the `cursor` and `limit` parameters.
+         Supported types of detached objects (listed in the order of retrieval) include:
+         * `SAMPLE_GROUP`
+         * `LIBRARY_GROUP`
+         * `PREPARATION_GROUP`
+         * `TABULAR_DATA`
+         * `GENE_VARIANT`
+         * `FLOW_CYTOMETRY`
+
+      operationId: getDetachedObjects
       parameters:
-        - name: "detachedObjectType"
-          in: "query"
-          description: "Filter by detached object type. Multiple values can be used to filter the data."
-          required: false
-          type: "array"
+      - description: Filter by detached object type. Multiple values can be used to
+          filter the data.
+        explode: true
+        in: query
+        name: detachedObjectType
+        schema:
           items:
-            type: "string"
-          collectionFormat: "multi"
-        - name: "limit"
-          in: "query"
-          description: "This parameter determines the number of results to retrieve per page,\
-            \ with the default set at 2000."
-          required: false
-          type: "integer"
-          format: "int32"
-        - name: "cursor"
-          in: "query"
-          description: "This parameter enables retrieval of objects starting from a specific point.\n\
-            \ Currently, it represents the accession of the last obtained object. However, please note that\
-            \ its functionality might change over time, so it is advisable to consider the cursor's content\
-            \ as a general string."
-          required: false
-          type: "string"
+            type: string
+          type: array
+        style: form
+      - description: "This parameter determines the number of results to retrieve\
+          \ per page, with the default set at 2000."
+        in: query
+        name: limit
+        schema:
+          format: int32
+          type: integer
+      - description: |-
+          This parameter enables retrieval of objects starting from a specific point.
+           Currently, it represents the accession of the last obtained object. However, please note that its functionality might change over time, so it is advisable to consider the cursor's content as a general string.
+        in: query
+        name: cursor
+        schema:
+          type: string
       responses:
-        200:
-          description: "Retrieved detached data."
-          schema:
-            $ref: "#/definitions/DetachedCollection"
-        400:
-          description: "Detached data cannot be retrieved due to Bad Request."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        403:
-          description: "Not enough permissions to call method."
-        500:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetachedCollection'
+          description: Retrieved detached data.
+        "400":
+          content: {}
+          description: Detached data cannot be retrieved due to Bad Request.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Not enough permissions to call method.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
-        - Access-token: [ ]
-        - Genestack-API-Token: [ ]
-  /data:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve a list of detached objects
+      tags:
+      - Manage Data
+  /frontend/rs/genestack/manageData/default-released/data:
     delete:
-      tags:
-        - "Manage Data"
-      summary: "Delete objects from ODM"
-      description: "The objects will be marked for deletion. In case the selected object has more than\
-        \ one version, the endpoint deletes all of them. The following object types can be deleted\
-        \ by the endpoint:\n\
-        \ * `STUDY`\n\
-        \ * `SAMPLE_GROUP`\n \
-        \ * `LIBRARY_GROUP`\n \
-        \ * `PREPARATION_GROUP`\n \
-        \ * `TABULAR_DATA`\n\
-        \ * `GENE_VARIANT`\n\
-        \ * `FLOW_CYTOMETRY`\n\n\
-        \ Moreover, if the selected object is linked to any other data, the endpoint will also delete the linked data\
-        \ associated with it according to the specified rules:\n\
-        \ * If you delete a `STUDY`, the entire study with all the listed group types, will be removed.\n\
-        \ * Deleting a `SAMPLE_GROUP` will result in the removal of all samples associated with this sample group,\
-        \ along with any linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`/`LIBRARY_GROUP`/`PREPARATION_GROUP`.\
-        \ The linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY` will be deleted, even if it is linked to another\
-        \ metadata group.\n\
-        \ * If you delete `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`, all associated data, such as links and runs\
-        \ will be removed from ODM.\
-       "
-      operationId: "deleteData"
-      produces:
-        - "application/json"
+      description: |-
+        The objects will be marked for deletion. In case the selected object has more than one version, the endpoint deletes all of them. The following object types can be deleted by the endpoint:
+         * `STUDY`
+         * `SAMPLE_GROUP`
+          * `LIBRARY_GROUP`
+          * `PREPARATION_GROUP`
+          * `TABULAR_DATA`
+         * `GENE_VARIANT`
+         * `FLOW_CYTOMETRY`
+
+         Moreover, if the selected object is linked to any other data, the endpoint will also delete the linked data associated with it according to the specified rules:
+         * If you delete a `STUDY`, the entire study with all the listed group types, will be removed.
+         * Deleting a `SAMPLE_GROUP` will result in the removal of all samples associated with this sample group, along with any linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`/`LIBRARY_GROUP`/`PREPARATION_GROUP`. The linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY` will be deleted, even if it is linked to another metadata group.
+         * If you delete `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`, all associated data, such as links and runs will be removed from ODM.
+      operationId: deleteData
       parameters:
-        - name: "accession"
-          in: "query"
-          description: "Accessions files to be deleted."
-          required: false
-          type: "array"
+      - description: Accessions files to be deleted.
+        explode: false
+        in: query
+        name: accession
+        schema:
           items:
-            type: "string"
+            type: string
+          type: array
+        style: form
       responses:
-        202:
-          description: "The deletion of the following files and all linked data has started."
-          schema:
-            $ref: "#/definitions/ManagedObject"
-        400:
-          description: "Deletion could not be performed due to Bad Request."
-        401:
-          description: "User is not authenticated. Please supply a valid Access Token in\
-            \ the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n or \
-            \ Genestack API token in the `Genestack-API-Token` header (this token may be\
-            \ obtained from the Genestack UI _Profile_ page)."
-        403:
-          description: "Not enough permissions to call method."
-        404:
-          description: "Some of the provided accessions could not be found in ODM. Deletion will not be preformed.\
-           \ Please review your list and repeat the attempt."
-        406:
-          description: "Some of the provided accessions do not belong to the supported object types. Deletion will not\
-          \ be performed. Please review your list and repeat the attempt."
-        500:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+          description: The deletion of the following files and all linked data has
+            started.
+        "400":
+          content: {}
+          description: Deletion could not be performed due to Bad Request.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Not enough permissions to call method.
+        "404":
+          content: {}
+          description: Some of the provided accessions could not be found in ODM.
+            Deletion will not be preformed. Please review your list and repeat the
+            attempt.
+        "406":
+          content: {}
+          description: Some of the provided accessions do not belong to the supported
+            object types. Deletion will not be performed. Please review your list
+            and repeat the attempt.
+        "500":
+          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
       security:
-        - Access-token: [ ]
-        - Genestack-API-Token: [ ]
-securityDefinitions:
-  Access-token:
-    type: "apiKey"
-    name: "Authorization"
-    in: "header"
-  Genestack-API-Token:
-    type: "apiKey"
-    name: "Genestack-API-Token"
-    in: "header"
-definitions:
-  DetachedCollection:
-    type: "object"
-    required:
-      - "data"
-    properties:
-      data:
-        type: "array"
-        items:
-          $ref: "#/definitions/DetachedObject"
-      cursor:
-        type: "string"
-  DetachedObject:
-    type: "object"
-    required:
-      - "genestack:accession"
-      - "detachedObjectType"
-      - "ownerEmail"
-      - "createdAt"
-    properties:
-      genestack:accession:
-        type: "string"
-      detachedObjectType:
-        type: "string"
-        enum:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Delete objects from ODM
+      tags:
+      - Manage Data
+components:
+  schemas:
+    DetachedCollection:
+      example:
+        cursor: cursor
+        data:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          genestack:accession: genestack:accession
+          detachedObjectType: SAMPLE_GROUP
+          ownerEmail: ownerEmail
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          genestack:accession: genestack:accession
+          detachedObjectType: SAMPLE_GROUP
+          ownerEmail: ownerEmail
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/DetachedObject'
+          type: array
+        cursor:
+          type: string
+      required:
+      - data
+      type: object
+    DetachedObject:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        genestack:accession: genestack:accession
+        detachedObjectType: SAMPLE_GROUP
+        ownerEmail: ownerEmail
+      properties:
+        genestack:accession:
+          type: string
+        detachedObjectType:
+          enum:
           - SAMPLE_GROUP
           - LIBRARY_GROUP
           - PREPARATION_GROUP
           - TABULAR_DATA
           - GENE_VARIANT
           - FLOW_CYTOMETRY
-      ownerEmail:
-        type: "string"
-      createdAt:
-        type: "string"
-        format: "date-time"
-  ManagedObject:
-    type: "object"
-    required:
-      - "genestack:accession"
-      - "objectType"
-      - "ownerEmail"
-      - "createdAt"
-    properties:
-      genestack:accession:
-        type: "string"
-      objectType:
-        type: "string"
-      ownerEmail:
-        type: "string"
-      createdAt:
-        type: "string"
-        format: "date-time"
+          type: string
+        ownerEmail:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - detachedObjectType
+      - genestack:accession
+      - ownerEmail
+      type: object
+    ManagedObject:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        genestack:accession: genestack:accession
+        objectType: objectType
+        ownerEmail: ownerEmail
+      properties:
+        genestack:accession:
+          type: string
+        objectType:
+          type: string
+        ownerEmail:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - genestack:accession
+      - objectType
+      - ownerEmail
+      type: object
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
+x-original-swagger-version: "2.0"

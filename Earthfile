@@ -20,39 +20,26 @@ ARG --global --required NEXUS_REPOSITORY_URL
 deps:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
-    COPY requirements.R .
-    ARG APT_PACKAGES=build-essential \
-        pandoc texinfo texlive-latex-extra \
-        texlive-fonts-extra libz-dev libxml2-dev \
-        libcurl4-openssl-dev libssl-dev libssl-doc \
-        automake file libfribidi-dev libgfortran5 \
-        libfontconfig1-dev libgdal-dev libzmq3-dev \
-        libharfbuzz-dev libfreetype6-dev libpng-dev \
-        libtiff5-dev libjpeg-dev libxml2-dev \
-        libicu70 libgomp1 libreadline8
+    COPY requirements.R requirements.txt .
     RUN \
-        apt update && apt install -y ${APT_PACKAGES} && \
-        Rscript requirements.R
-
-    COPY pom.xml requirements.txt .
-    COPY .mvn .mvn
-    COPY mvnw mvnw
-    RUN \
-        ./mvnw de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies \
-            -Drevision=dummyValue && \
-        python3 -m pip install -r requirements.txt
+        Rscript requirements.R && \
+        python3 \
+            -m pip install \
+            -r requirements.txt
 
     SAVE IMAGE --cache-hint
 
 build:
     FROM +deps
 
-    COPY --dir openapi scripts docs templates .
+    COPY --dir openapi scripts gradle gradlew  build.gradle.kts settings.gradle.kts .
     # R allows only numeric versions
     # https://r-pkgs.org/lifecycle.html
     ARG --required ODM_OPENAPI_VERSION
     ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
-    RUN ./mvnw package
+    RUN ./gradlew \
+            --no-daemon \
+            generateAllApiClients
 
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated
