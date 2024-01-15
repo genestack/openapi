@@ -529,7 +529,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExpressionItem'
+                $ref: './schemas/ExpressionItem.yaml'
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -676,56 +676,6 @@ components:
           readOnly: true
           type: string
       type: object
-    ExpressionItem:
-      example:
-        itemId: itemId
-        metadata: "{}"
-        expression: 1.82
-        feature:
-          genes: "MYO9A,"
-          groupingKey: VRSLGGISPSEDRR
-        gene: gene
-        groupId: groupId
-        description: description
-        runId: runId
-        value:
-          expression: 1.82
-      properties:
-        itemId:
-          type: string
-        metadata:
-          type: object
-        runId:
-          type: string
-        groupId:
-          type: string
-        gene:
-          type: string
-        expression:
-          example: 1.82
-          format: double
-          type: number
-        feature:
-          example:
-            genes: "MYO9A,"
-            groupingKey: VRSLGGISPSEDRR
-          anyOf:
-            - type: object
-            - type: string
-        value:
-          example:
-            expression: 1.82
-          anyOf:
-            - type: object
-              properties:
-                format: double
-                type: number
-            - type: "null"
-          type: object
-        description:
-          readOnly: true
-          type: string
-      type: object
     ExpressionResponse:
       example:
         cursor: cursor
@@ -757,7 +707,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/ExpressionItem'
+            $ref: './schemas/ExpressionItem.yaml'
           type: array
         cursor:
           type: string
