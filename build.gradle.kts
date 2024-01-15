@@ -8,7 +8,7 @@ plugins {
 }
 
 val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION")
-val openApiSpecPath = "$rootDir/openapi/default"
+val openApiSpecPath = "$rootDir/openapi/v1"
 val fileNameList = KotlinPath(openApiSpecPath).listDirectoryEntries("*.yaml")
 val tasksList = fileNameList
         .map { it.name.replace(".yaml", "") }
@@ -33,7 +33,7 @@ tasks {
     for (task in tasksList) {
         register(task + "Python", GenerateTask::class) {
             generatorName.set("python")
-            inputSpec.set("$rootDir/openapi/default/$task.yaml")
+            inputSpec.set("$rootDir/openapi/v1/$task.yaml")
             outputDir.set("$rootDir/generated/python/${task.camelToKebabCase()}")
             packageName.set(task.camelToSnakeCase())
             gitUserId.set("genestack")
@@ -45,7 +45,7 @@ tasks {
         }
         register(task + "R", GenerateTask::class) {
             generatorName.set("r")
-            inputSpec.set("$rootDir/openapi/default/$task.yaml")
+            inputSpec.set("$rootDir/openapi/v1/$task.yaml")
             outputDir.set("$rootDir/generated/r/${task.kebabToCamelCase()}")
             packageName.set(task.kebabToCamelCase())
             gitUserId.set("genestack")
