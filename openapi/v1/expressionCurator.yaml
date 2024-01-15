@@ -151,18 +151,14 @@ paths:
                 $ref: '#/components/schemas/ExpressionResponse'
           description: Retrieved Expression data.
         "400":
-          content: {}
           description: Expression data cannot be retrieved.
         "401":
-          content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "404":
-          content: {}
           description: No object exists with the given ID.
         "500":
-          content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
