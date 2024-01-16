@@ -1092,7 +1092,7 @@ components:
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
     JsonMetadata:
-      $ref: "./schemas/variant/JsonMetadata.yaml"
+      $ref: "./schemas/common/JsonMetadata.yaml"
     ListResponse:
       $ref: "./schemas/variant/ListResponse.yaml"
     MetaResponse:

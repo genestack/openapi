@@ -583,7 +583,7 @@ components:
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
     JsonMetadata:
-      $ref: "./schemas/sample/JsonMetadata.yaml"
+      $ref: "./schemas/common/JsonMetadata.yaml"
     ListResponse:
       $ref: "./schemas/sample/ListResponse.yaml"
     MetaResponse:

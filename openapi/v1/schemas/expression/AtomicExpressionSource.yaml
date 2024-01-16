@@ -20,5 +20,5 @@ properties:
   description:
     type: string
   metadata:
-    $ref: "JsonMetadata.yaml"
+    $ref: "../common/JsonMetadata.yaml"
 type: object
