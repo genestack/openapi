@@ -35,7 +35,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 items:
                   type: string
@@ -76,7 +76,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 items:
                   $ref: "#/components/schemas/SourceTypePair"
@@ -521,7 +521,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
@@ -581,7 +581,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
@@ -641,7 +641,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
@@ -884,7 +884,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
@@ -1188,7 +1188,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
@@ -1360,7 +1360,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
@@ -2576,7 +2576,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
@@ -2651,7 +2651,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
@@ -2690,7 +2690,7 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
