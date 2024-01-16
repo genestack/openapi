@@ -6508,7 +6508,7 @@ components:
     StudyValidationSummary:
       $ref: "./schemas/integration/StudyValidationSummary.yaml"
     TaskInfo:
-      $ref: "./schemas/integration/TaskInfo.yaml"
+      $ref: "./schemas/common/TaskInfo.yaml"
     ValidationError:
       $ref: "./schemas/integration/ValidationError.yaml"
     SearchStudyRequest:
