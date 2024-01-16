@@ -1061,7 +1061,7 @@ components:
     JsonMetadata:
       $ref: "./schemas/common/JsonMetadata.yaml"
     ListResponse:
-      $ref: "./schemas/expression/ListResponse.yaml"
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/expression/MetaResponse.yaml"
     MetadataContent:

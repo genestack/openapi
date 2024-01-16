@@ -6472,7 +6472,7 @@ components:
     Link:
       $ref: "./schemas/integration/Link.yaml"
     ListResponse:
-      $ref: "./schemas/integration/ListResponse.yaml"
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/integration/MetaResponse.yaml"
     MetadataContent:

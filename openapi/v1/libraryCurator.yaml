@@ -586,7 +586,7 @@ components:
     Library:
       $ref: "./schemas/library/Library.yaml"
     ListResponse:
-      $ref: "./schemas/library/ListResponse.yaml"
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/library/MetaResponse.yaml"
     MetadataContent:

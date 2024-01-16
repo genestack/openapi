@@ -691,7 +691,7 @@ components:
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
     ListResponse:
-      $ref: "./schemas/variant/ListResponse.yaml"
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/variant/MetaResponse.yaml"
     MetadataContent:

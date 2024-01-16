@@ -325,7 +325,7 @@ components:
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
     ListResponse:
-      $ref: "./schemas/sample/ListResponse.yaml"
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/sample/MetaResponse.yaml"
     PaginationInfo:

@@ -1050,7 +1050,7 @@ components:
     JsonMetadata:
       $ref: "./schemas/common/JsonMetadata.yaml"
     ListResponse:
-      $ref: "./schemas/flow-cytometry/ListResponse.yaml"
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/flow-cytometry/MetaResponse.yaml"
     MetadataContent:
