@@ -5,15 +5,15 @@ example:
   Operations:
   - op: add
     path: path
-    value: '{}'
+    value: "{}"
   - op: add
     path: path
-    value: '{}'
+    value: "{}"
 properties:
   Operations:
     description: Patch operations list
     items:
-      $ref: '#/components/schemas/PatchOperation'
+      $ref: "PatchOperation.yaml"
     type: array
   schemas:
     items:

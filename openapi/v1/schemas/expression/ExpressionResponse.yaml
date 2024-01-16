@@ -28,7 +28,7 @@ example:
 properties:
   data:
     items:
-      $ref: "./ExpressionItem.yaml"
+      $ref: "ExpressionItem.yaml"
     type: array
   cursor:
     type: string

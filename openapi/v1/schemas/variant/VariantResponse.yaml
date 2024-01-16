@@ -3,7 +3,7 @@ example:
   data:
   - reference: reference
     itemId: itemId
-    metadata: '{}'
+    metadata: "{}"
     variationId:
     - variationId
     - variationId
@@ -22,7 +22,7 @@ example:
       key: genotype
   - reference: reference
     itemId: itemId
-    metadata: '{}'
+    metadata: "{}"
     variationId:
     - variationId
     - variationId
@@ -42,7 +42,7 @@ example:
 properties:
   data:
     items:
-      $ref: '#/components/schemas/VariantItem'
+      $ref: "VariantItem.yaml"
     type: array
   cursor:
     type: string

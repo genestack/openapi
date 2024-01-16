@@ -1,6 +1,6 @@
 properties:
   error:
-    $ref: '#/components/schemas/ErrorMessage'
+    $ref: "ErrorMessage.yaml"
 required:
 - error
 type: object

@@ -2,7 +2,7 @@ example:
   cursor: cursor
   data:
   - itemId: itemId
-    metadata: '{}'
+    metadata: "{}"
     expression: 0.8008281904610115
     marker: marker
     groupId: groupId
@@ -10,7 +10,7 @@ example:
     readoutType: readoutType
     runId: runId
   - itemId: itemId
-    metadata: '{}'
+    metadata: "{}"
     expression: 0.8008281904610115
     marker: marker
     groupId: groupId
@@ -20,7 +20,7 @@ example:
 properties:
   data:
     items:
-      $ref: '#/components/schemas/FlowCytometryItem'
+      $ref: "FlowCytometryItem.yaml"
     type: array
   cursor:
     type: string

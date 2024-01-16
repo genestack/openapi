@@ -1,5 +1,5 @@
 allOf:
-- $ref: '#/components/schemas/ImportSignalRunRequest'
+- $ref: "ImportSignalRunRequest.yaml"
 example:
   source: HTTP
   metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv

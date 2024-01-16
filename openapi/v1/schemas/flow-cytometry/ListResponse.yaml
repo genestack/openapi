@@ -1,7 +1,7 @@
 example:
   data:
-  - '{}'
-  - '{}'
+  - "{}"
+  - "{}"
   meta:
     pagination:
       total: 6
@@ -10,7 +10,7 @@ example:
       limit: 5
 properties:
   meta:
-    $ref: '#/components/schemas/MetaResponse'
+    $ref: "MetaResponse.yaml"
   data:
     items:
       properties: {}

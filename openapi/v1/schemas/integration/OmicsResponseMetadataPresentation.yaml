@@ -1,7 +1,7 @@
 properties:
   data:
     items:
-      $ref: '#/components/schemas/MetadataPresentation'
+      $ref: "MetadataPresentation.yaml"
     type: array
   resultsExhausted:
     type: boolean

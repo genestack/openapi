@@ -10,7 +10,7 @@ example:
 properties:
   runs:
     items:
-      $ref: '#/components/schemas/SignalRun'
+      $ref: "SignalRun.yaml"
     type: array
   experiment:
     type: string

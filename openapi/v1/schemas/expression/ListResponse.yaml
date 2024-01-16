@@ -10,7 +10,7 @@ example:
       limit: 5
 properties:
   meta:
-    $ref: "./MetaResponse.yaml"
+    $ref: "MetaResponse.yaml"
   data:
     items:
       properties: {}

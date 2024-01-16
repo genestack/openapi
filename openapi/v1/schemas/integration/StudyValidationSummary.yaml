@@ -5,14 +5,14 @@ example:
     - attributeName: attributeName
       attributeInvalidValues:
       - count: 0
-        value: '{}'
+        value: "{}"
         errors:
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
       - count: 0
-        value: '{}'
+        value: "{}"
         errors:
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
@@ -21,14 +21,14 @@ example:
     - attributeName: attributeName
       attributeInvalidValues:
       - count: 0
-        value: '{}'
+        value: "{}"
         errors:
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
       - count: 0
-        value: '{}'
+        value: "{}"
         errors:
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
@@ -39,14 +39,14 @@ example:
     - attributeName: attributeName
       attributeInvalidValues:
       - count: 0
-        value: '{}'
+        value: "{}"
         errors:
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
       - count: 0
-        value: '{}'
+        value: "{}"
         errors:
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
@@ -55,14 +55,14 @@ example:
     - attributeName: attributeName
       attributeInvalidValues:
       - count: 0
-        value: '{}'
+        value: "{}"
         errors:
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
       - count: 0
-        value: '{}'
+        value: "{}"
         errors:
         - errorType: VALUE_NOT_SET
           errorMessage: errorMessage
@@ -71,6 +71,6 @@ example:
 properties:
   samples:
     items:
-      $ref: '#/components/schemas/GroupValidationSummary'
+      $ref: "GroupValidationSummary.yaml"
     type: array
 type: object

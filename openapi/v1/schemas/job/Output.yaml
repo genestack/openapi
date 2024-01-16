@@ -1,6 +1,6 @@
 description: job execution output
 example:
-  result: '{}'
+  result: "{}"
   errors:
   - stack:
     - type: type
@@ -37,7 +37,7 @@ properties:
     description: array of errors occurred during execution of the job (available if
       job failed)
     items:
-      $ref: '#/components/schemas/JobRuntimeError'
+      $ref: "JobRuntimeError.yaml"
     type: array
 required:
 - status

@@ -1,6 +1,6 @@
 allOf:
-- $ref: '#/components/schemas/Group'
+- $ref: "Group.yaml"
 - properties:
     meta:
-      $ref: '#/components/schemas/Meta'
+      $ref: "Meta.yaml"
   type: object

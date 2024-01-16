@@ -12,7 +12,7 @@ example:
 properties:
   data:
     items:
-      $ref: '#/components/schemas/DetachedObject'
+      $ref: "DetachedObject.yaml"
     type: array
   cursor:
     type: string

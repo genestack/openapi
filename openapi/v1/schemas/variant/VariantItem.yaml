@@ -1,7 +1,7 @@
 example:
   reference: reference
   itemId: itemId
-  metadata: '{}'
+  metadata: "{}"
   variationId:
   - variationId
   - variationId

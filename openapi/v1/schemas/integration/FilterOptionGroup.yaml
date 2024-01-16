@@ -17,6 +17,6 @@ properties:
     type: boolean
   options:
     items:
-      $ref: '#/components/schemas/FilterOption'
+      $ref: "FilterOption.yaml"
     type: array
 type: object

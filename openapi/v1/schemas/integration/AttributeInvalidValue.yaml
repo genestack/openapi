@@ -1,6 +1,6 @@
 example:
   count: 0
-  value: '{}'
+  value: "{}"
   errors:
   - errorType: VALUE_NOT_SET
     errorMessage: errorMessage
@@ -15,6 +15,6 @@ properties:
     type: integer
   errors:
     items:
-      $ref: '#/components/schemas/ValidationError'
+      $ref: "ValidationError.yaml"
     type: array
 type: object

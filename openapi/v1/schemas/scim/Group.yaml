@@ -27,7 +27,7 @@ properties:
     type: array
   members:
     items:
-      $ref: '#/components/schemas/Member'
+      $ref: "Member.yaml"
     type: array
   displayName:
     type: string

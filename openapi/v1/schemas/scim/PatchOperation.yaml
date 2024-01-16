@@ -1,7 +1,7 @@
 example:
   op: add
   path: path
-  value: '{}'
+  value: "{}"
 properties:
   op:
     enum:

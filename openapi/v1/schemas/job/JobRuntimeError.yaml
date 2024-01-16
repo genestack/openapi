@@ -10,6 +10,6 @@ properties:
     type: string
   stack:
     items:
-      $ref: '#/components/schemas/ExceptionTypeAndMessage'
+      $ref: "ExceptionTypeAndMessage.yaml"
     type: array
 type: object
