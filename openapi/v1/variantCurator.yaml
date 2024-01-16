@@ -180,7 +180,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VariantResponse'
+                $ref: "#/components/schemas/VariantResponse"
           description: Retrieved variant data.
         "400":
           content: {}
@@ -224,7 +224,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VariantSource'
+              $ref: "#/components/schemas/VariantSource"
         description: |-
           ## Data
 
@@ -239,7 +239,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VariantItem'
+                $ref: "#/components/schemas/VariantItem"
           description: The objects were successfully created. The returned value is
             a list of created objects.
         "400":
@@ -322,7 +322,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetadataContent'
+              $ref: "#/components/schemas/MetadataContent"
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
       responses:
@@ -330,7 +330,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetadataContent'
+                $ref: "#/components/schemas/MetadataContent"
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
         "400":
@@ -466,7 +466,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -528,7 +528,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetadataWithId'
+                $ref: "#/components/schemas/MetadataWithId"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -624,7 +624,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetadataWithId'
+                $ref: "#/components/schemas/MetadataWithId"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -663,7 +663,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CurationSource'
+                $ref: "#/components/schemas/CurationSource"
           description: successful operation
         "204":
           content: {}
@@ -700,7 +700,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CurationSource'
+              $ref: "#/components/schemas/CurationSource"
         description: |+
           ## Data
 
@@ -766,7 +766,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -809,14 +809,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignalSource'
+              $ref: "#/components/schemas/SignalSource"
         required: false
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RunsResponse'
+                $ref: "#/components/schemas/RunsResponse"
           description: The objects were successfully created. The returned value is
             a list of created objects.
         "400":
@@ -878,7 +878,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VariantItem'
+                $ref: "#/components/schemas/VariantItem"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -924,7 +924,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetadataContent'
+              $ref: "#/components/schemas/MetadataContent"
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
       responses:
@@ -932,7 +932,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignalRun'
+                $ref: "#/components/schemas/SignalRun"
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
         "400":
@@ -974,7 +974,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/CommitInfo'
+                  $ref: "#/components/schemas/CommitInfo"
                 type: array
           description: The request was successful. The returned value is the list
             of  object versions.
@@ -1037,7 +1037,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignalRun'
+                $ref: "#/components/schemas/SignalRun"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -1117,7 +1117,7 @@ components:
             limit: 5
       properties:
         meta:
-          $ref: '#/components/schemas/MetaResponse'
+          $ref: "#/components/schemas/MetaResponse"
         data:
           items:
             properties: {}
@@ -1133,7 +1133,7 @@ components:
           limit: 5
       properties:
         pagination:
-          $ref: '#/components/schemas/PaginationInfo'
+          $ref: "#/components/schemas/PaginationInfo"
       type: object
     MetadataContent:
       type: object
@@ -1181,7 +1181,7 @@ components:
       properties:
         runs:
           items:
-            $ref: '#/components/schemas/SignalRun'
+            $ref: "#/components/schemas/SignalRun"
           type: array
         experiment:
           type: string
@@ -1316,7 +1316,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/VariantItem'
+            $ref: "#/components/schemas/VariantItem"
           type: array
         cursor:
           type: string
@@ -1361,7 +1361,7 @@ components:
         genotype:
           type: string
         metadata:
-          $ref: '#/components/schemas/JsonMetadata'
+          $ref: "#/components/schemas/JsonMetadata"
       type: object
   securitySchemes:
     Access-token:

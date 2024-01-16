@@ -25,7 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskInfo'
+                $ref: "#/components/schemas/TaskInfo"
           description: Task information.
         "401":
           content: {}
@@ -64,7 +64,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskInfo'
+                $ref: "#/components/schemas/TaskInfo"
           description: Task information.
         "401":
           content: {}

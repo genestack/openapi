@@ -130,10 +130,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -177,7 +177,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SampleSource'
+              $ref: "#/components/schemas/SampleSource"
         required: false
       responses:
         "201":
@@ -185,7 +185,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Library'
+                  $ref: "#/components/schemas/Library"
                 type: array
           description: Object successfully created.
         "400":
@@ -261,7 +261,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -394,7 +394,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Library'
+                $ref: "#/components/schemas/Library"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -440,7 +440,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetadataContent'
+              $ref: "#/components/schemas/MetadataContent"
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
       responses:
@@ -448,7 +448,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Library'
+                $ref: "#/components/schemas/Library"
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
         "400":
@@ -490,7 +490,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/CommitInfo'
+                  $ref: "#/components/schemas/CommitInfo"
                 type: array
           description: The request was successful. The returned value is the list
             of  object versions.
@@ -553,7 +553,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Library'
+                $ref: "#/components/schemas/Library"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -580,21 +580,21 @@ paths:
 components:
   schemas:
     CommitInfo:
-      $ref: './schemas/library/CommitInfo.yaml'
+      $ref: "./schemas/library/CommitInfo.yaml"
     IntegrationHelper:
-      $ref: './schemas/library/IntegrationHelper.yaml'
+      $ref: "./schemas/library/IntegrationHelper.yaml"
     Library:
-      $ref: './schemas/library/Library.yaml'
+      $ref: "./schemas/library/Library.yaml"
     ListResponse:
-      $ref: './schemas/library/ListResponse.yaml'
+      $ref: "./schemas/library/ListResponse.yaml"
     MetaResponse:
-      $ref: './schemas/library/MetaResponse.yaml'
+      $ref: "./schemas/library/MetaResponse.yaml"
     MetadataContent:
-      $ref: './schemas/library/MetadataContent.yaml'
+      $ref: "./schemas/library/MetadataContent.yaml"
     PaginationInfo:
-      $ref: './schemas/library/PaginationInfo.yaml'
+      $ref: "./schemas/library/PaginationInfo.yaml"
     SampleSource:
-      $ref: './schemas/library/SampleSource.yaml'
+      $ref: "./schemas/library/SampleSource.yaml"
   securitySchemes:
     Access-token:
       in: header

@@ -14,14 +14,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/XrefSetCreateRequest'
+              $ref: "#/components/schemas/XrefSetCreateRequest"
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/XrefSetCreateResponse'
+                $ref: "#/components/schemas/XrefSetCreateResponse"
           description: successful operation
         "201":
           content: {}
@@ -96,7 +96,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/XrefSetSearchResult'
+                $ref: "#/components/schemas/XrefSetSearchResult"
           description: Json object with the cursor and json array of retrieved xrefset
             data. Response entries are ordered by xrefset ID and then by source ID.
         "400":
@@ -213,7 +213,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/XrefSetSearchResult'
+                $ref: "#/components/schemas/XrefSetSearchResult"
           description: Json object with the cursor and json array of retrieved xrefset
             data. Response entries are ordered by xrefset ID and then by source ID.
         "400":
@@ -254,7 +254,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/XrefSetMetadata'
+                $ref: "#/components/schemas/XrefSetMetadata"
           description: "Object containing xrefset details, including user submitted\
             \ metadata and system info"
         "400":
@@ -419,7 +419,7 @@ components:
           type: string
         result:
           items:
-            $ref: '#/components/schemas/XrefSetSearchResultEntry'
+            $ref: "#/components/schemas/XrefSetSearchResultEntry"
           type: array
       type: object
     XrefSetSearchResultEntry:

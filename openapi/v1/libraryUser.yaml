@@ -131,10 +131,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -205,7 +205,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -267,7 +267,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Library'
+                $ref: "#/components/schemas/Library"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -307,7 +307,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/CommitInfo'
+                  $ref: "#/components/schemas/CommitInfo"
                 type: array
           description: The request was successful. The returned value is the list
             of  object versions.
@@ -370,7 +370,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Library'
+                $ref: "#/components/schemas/Library"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -431,7 +431,7 @@ components:
             limit: 5
       properties:
         meta:
-          $ref: '#/components/schemas/MetaResponse'
+          $ref: "#/components/schemas/MetaResponse"
         data:
           items:
             properties: {}
@@ -447,7 +447,7 @@ components:
           limit: 5
       properties:
         pagination:
-          $ref: '#/components/schemas/PaginationInfo'
+          $ref: "#/components/schemas/PaginationInfo"
       type: object
     PaginationInfo:
       example:
