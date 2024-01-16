@@ -669,7 +669,7 @@ components:
     ListResponse:
       $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
-      $ref: "./schemas/expression/MetaResponse.yaml"
+      $ref: "./schemas/common/MetaResponse.yaml"
     MetadataContent:
       $ref: "./schemas/common/MetadataContent.yaml"
     MetadataWithId:

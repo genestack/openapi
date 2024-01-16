@@ -327,7 +327,7 @@ components:
     ListResponse:
       $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
-      $ref: "./schemas/sample/MetaResponse.yaml"
+      $ref: "./schemas/common/MetaResponse.yaml"
     PaginationInfo:
       $ref: "./schemas/sample/PaginationInfo.yaml"
     Sample:

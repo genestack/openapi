@@ -404,7 +404,7 @@ components:
     ListResponse:
       $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
-      $ref: "./schemas/preparation/MetaResponse.yaml"
+      $ref: "./schemas/common/MetaResponse.yaml"
     PaginationInfo:
       $ref: "./schemas/preparation/PaginationInfo.yaml"
     Preparation:
