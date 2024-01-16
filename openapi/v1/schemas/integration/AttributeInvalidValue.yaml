@@ -1,0 +1,20 @@
+example:
+  count: 0
+  value: '{}'
+  errors:
+  - errorType: VALUE_NOT_SET
+    errorMessage: errorMessage
+  - errorType: VALUE_NOT_SET
+    errorMessage: errorMessage
+properties:
+  value:
+    properties: {}
+    type: object
+  count:
+    format: int64
+    type: integer
+  errors:
+    items:
+      $ref: '#/components/schemas/ValidationError'
+    type: array
+type: object

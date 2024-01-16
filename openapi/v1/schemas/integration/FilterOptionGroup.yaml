@@ -1,0 +1,22 @@
+example:
+  filterId: filterId
+  hasMoreOptions: true
+  options:
+  - filterId: filterId
+    name: name
+    count: 5
+    id: id
+  - filterId: filterId
+    name: name
+    count: 5
+    id: id
+properties:
+  filterId:
+    type: string
+  hasMoreOptions:
+    type: boolean
+  options:
+    items:
+      $ref: '#/components/schemas/FilterOption'
+    type: array
+type: object

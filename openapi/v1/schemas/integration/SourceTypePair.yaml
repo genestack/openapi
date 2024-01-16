@@ -1,0 +1,13 @@
+example:
+  firstType: firstType
+  secondType: secondType
+properties:
+  firstType:
+    description: Type of the object (e.g. study)
+    readOnly: true
+    type: string
+  secondType:
+    description: Type of the object (e.g. study)
+    readOnly: true
+    type: string
+type: object

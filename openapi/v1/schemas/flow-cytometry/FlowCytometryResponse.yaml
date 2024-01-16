@@ -1,0 +1,27 @@
+example:
+  cursor: cursor
+  data:
+  - itemId: itemId
+    metadata: '{}'
+    expression: 0.8008281904610115
+    marker: marker
+    groupId: groupId
+    cellPopulation: cellPopulation
+    readoutType: readoutType
+    runId: runId
+  - itemId: itemId
+    metadata: '{}'
+    expression: 0.8008281904610115
+    marker: marker
+    groupId: groupId
+    cellPopulation: cellPopulation
+    readoutType: readoutType
+    runId: runId
+properties:
+  data:
+    items:
+      $ref: '#/components/schemas/FlowCytometryItem'
+    type: array
+  cursor:
+    type: string
+type: object

@@ -60,14 +60,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportExpressionSignalRunRequest'
+              $ref: "#/components/schemas/ImportExpressionSignalRunRequest"
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -95,14 +95,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportSignalRunRequest'
+              $ref: "#/components/schemas/ImportSignalRunRequest"
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -136,14 +136,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportMetadataRequest'
+              $ref: "#/components/schemas/ImportMetadataRequest"
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -177,14 +177,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportMetadataRequest'
+              $ref: "#/components/schemas/ImportMetadataRequest"
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -218,14 +218,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportMetadataRequest'
+              $ref: "#/components/schemas/ImportMetadataRequest"
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -259,14 +259,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportMetadataRequest'
+              $ref: "#/components/schemas/ImportMetadataRequest"
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -294,14 +294,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportSignalRunRequest'
+              $ref: "#/components/schemas/ImportSignalRunRequest"
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -325,7 +325,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -348,7 +348,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Output'
+                $ref: "#/components/schemas/Output"
           description: successful operation
       security:
       - Access-token: []
@@ -371,7 +371,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -394,7 +394,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: "#/components/schemas/Info"
           description: successful operation
       security:
       - Access-token: []
@@ -415,217 +415,19 @@ components:
         type: boolean
   schemas:
     ExceptionTypeAndMessage:
-      example:
-        type: type
-        message: message
-      properties:
-        type:
-          type: string
-        message:
-          type: string
-      type: object
+      $ref: "./schemas/job/ExceptionTypeAndMessage.yaml"
     ImportMetadataRequest:
-      example:
-        source: HTTP
-        metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
-        templateId: GSF334953
-      properties:
-        source:
-          enum:
-          - ARVADOS
-          - S3
-          - HTTP
-          example: HTTP
-          type: string
-        metadataLink:
-          example: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
-          type: string
-        templateId:
-          example: GSF334953
-          type: string
-      required:
-      - metadataLink
-      type: object
+      $ref: "./schemas/job/ImportMetadataRequest.yaml"
     ImportSignalRunRequest:
-      description: import signal data request
-      example:
-        source: HTTP
-        metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
-        dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
-        templateId: GSF334953
-        previousVersion: GSF334953
-      properties:
-        source:
-          enum:
-          - ARVADOS
-          - S3
-          - HTTP
-          example: HTTP
-          type: string
-        metadataLink:
-          example: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
-          type: string
-        dataLink:
-          example: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
-          type: string
-        templateId:
-          example: GSF334953
-          type: string
-        previousVersion:
-          example: GSF334953
-          type: string
-      required:
-      - dataLink
-      type: object
+      $ref: "./schemas/job/ImportSignalRunRequest.yaml"
     ImportExpressionSignalRunRequest:
-      allOf:
-      - $ref: '#/components/schemas/ImportSignalRunRequest'
-      example:
-        source: "HTTP"
-        metadataLink: "https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv"
-        dataLink: "https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz"
-        templateId: "GSF334953"
-        previousVersion: "GSF334953"
-        numberOfFeatureAttributes: 5
-        dataClass: "Proteomics"
-        measurementSeparator: ":"
-      properties:
-        numberOfFeatureAttributes:
-          description: "Integer value that specifies the number of columns related\
-            \ to the feature in the uploaded data frame, and indicates the starting\
-            \ position of the sample data. This attribute is not needed if the uploaded\
-            \ file is in GCT format."
-          example: 5
-          type: integer
-        dataClass:
-          description: "A mandatory parameter with the following possible values:\
-            \ `Bulk transcriptomics`, `Single-cell transcriptomics`, `Differential\
-            \ abundance (FC, pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell\
-            \ proteomics`, `Metabolomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`,\
-            \ `Imaging features`, `Gene panel data`, `Biomarker data`, `Physical measures`,\
-            \ `Blood counts`, `Other body fluid counts`, `Nanopore`, `Other`. \nIn\
-            \ case the parameter is not set the dataClass is automatically defined\
-            \ as `Other`."
-          example: Proteomics
-          type: string
-        measurementSeparator:
-          description: "This parameter is necessary when your file contains multiple\
-            \ measurement columns for each sample, library, or preparation. It represents\
-            \ the character that distinguishes the sample/library/preparation name\
-            \ from the measurement name in column headers. Supported separators include\
-            \ `. , : ; _ - / \\ |`, with the allowance for multi-character separators."
-          example: ':'
-          type: string
+      $ref: "./schemas/job/ImportExpressionSignalRunRequest.yaml"
     Info:
-      description: job execution information
-      example:
-        jobName: Protein folding
-        startedBy: job@genestack.com
-        createTime: 2000-01-23T04:56:07.000+00:00
-        jobExecId: 12345
-        endTime: 2000-01-23T04:56:07.000+00:00
-        status: STARTED
-      properties:
-        jobExecId:
-          description: job execution id
-          example: 12345
-          format: int64
-          type: integer
-        startedBy:
-          description: user name who started the job
-          example: job@genestack.com
-          type: string
-        jobName:
-          description: actual job name
-          example: Protein folding
-          type: string
-        status:
-          description: current job status
-          enum:
-          - COMPLETED
-          - STARTING
-          - RUNNING
-          - STOPPING
-          - STOPPED
-          - FAILED
-          - ABANDONED
-          - UNKNOWN
-          example: STARTED
-          type: string
-        createTime:
-          format: date-time
-          type: string
-        endTime:
-          format: date-time
-          type: string
-      required:
-      - createTime
-      - jobExecId
-      - jobName
-      - startedBy
-      - status
-      type: object
+      $ref: "./schemas/job/Info.yaml"
     JobRuntimeError:
-      example:
-        stack:
-        - type: type
-          message: message
-        - type: type
-          message: message
-        stage: stage
-      properties:
-        stage:
-          type: string
-        stack:
-          items:
-            $ref: '#/components/schemas/ExceptionTypeAndMessage'
-          type: array
-      type: object
+      $ref: "./schemas/job/JobRuntimeError.yaml"
     Output:
-      description: job execution output
-      example:
-        result: "{}"
-        errors:
-        - stack:
-          - type: type
-            message: message
-          - type: type
-            message: message
-          stage: stage
-        - stack:
-          - type: type
-            message: message
-          - type: type
-            message: message
-          stage: stage
-        status: COMPLETED
-      properties:
-        status:
-          description: current job status
-          enum:
-          - COMPLETED
-          - STARTING
-          - RUNNING
-          - STOPPING
-          - STOPPED
-          - FAILED
-          - ABANDONED
-          - UNKNOWN
-          example: COMPLETED
-          type: string
-        result:
-          description: job result object (available if job completed successfully)
-          properties: {}
-          type: object
-        errors:
-          description: array of errors occurred during execution of the job (available
-            if job failed)
-          items:
-            $ref: '#/components/schemas/JobRuntimeError'
-          type: array
-      required:
-      - status
-      type: object
+      $ref: "./schemas/job/Output.yaml"
   securitySchemes:
     Access-token:
       in: header
@@ -635,4 +437,3 @@ components:
       in: header
       name: Genestack-API-Token
       type: apiKey
-x-original-swagger-version: "2.0"

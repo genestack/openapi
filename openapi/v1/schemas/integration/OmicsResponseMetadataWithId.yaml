@@ -1,0 +1,14 @@
+properties:
+  data:
+    items:
+      $ref: '#/components/schemas/MetadataWithId'
+    type: array
+  resultsExhausted:
+    type: boolean
+  log:
+    items:
+      type: string
+    type: array
+  cursor:
+    type: string
+type: object

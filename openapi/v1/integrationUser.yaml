@@ -35,7 +35,7 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
                 items:
                   type: string
@@ -76,10 +76,10 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
                 items:
-                  $ref: '#/components/schemas/SourceTypePair'
+                  $ref: "#/components/schemas/SourceTypePair"
                 type: array
                 uniqueItems: true
           description: The request was successful. The returned value is a list of
@@ -180,10 +180,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -281,10 +281,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -383,10 +383,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -467,7 +467,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/MetadataWithId'
+                  $ref: "#/components/schemas/MetadataWithId"
                 type: array
           description: The request was successful. The returned value is the object.
         "400":
@@ -521,9 +521,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -581,9 +581,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -641,9 +641,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -745,10 +745,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -830,7 +830,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/MetadataWithId'
+                  $ref: "#/components/schemas/MetadataWithId"
                 type: array
           description: The request was successful. The returned value is the object.
         "400":
@@ -884,9 +884,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -1022,10 +1022,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -1082,12 +1082,12 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Library'
+                  $ref: "#/components/schemas/Library"
                 type: array
             text/tab-separated-values:
               schema:
                 items:
-                  $ref: '#/components/schemas/Library'
+                  $ref: "#/components/schemas/Library"
                 type: array
           description: The request was successful. The returned value is a list of
             objects.
@@ -1134,7 +1134,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/MetadataWithId'
+                  $ref: "#/components/schemas/MetadataWithId"
                 type: array
           description: The request was successful. The returned value is the object.
         "400":
@@ -1188,9 +1188,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -1254,12 +1254,12 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Preparation'
+                  $ref: "#/components/schemas/Preparation"
                 type: array
             text/tab-separated-values:
               schema:
                 items:
-                  $ref: '#/components/schemas/Preparation'
+                  $ref: "#/components/schemas/Preparation"
                 type: array
           description: The request was successful. The returned value is a list of
             objects.
@@ -1306,7 +1306,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/MetadataWithId'
+                  $ref: "#/components/schemas/MetadataWithId"
                 type: array
           description: The request was successful. The returned value is the object.
         "400":
@@ -1360,9 +1360,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -1498,10 +1498,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -1630,10 +1630,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -1763,10 +1763,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -1841,10 +1841,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -1976,10 +1976,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -2109,10 +2109,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -2241,10 +2241,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -2300,7 +2300,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Study'
+                $ref: "#/components/schemas/Study"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -2334,14 +2334,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SearchStudyRequest'
+              $ref: "#/components/schemas/SearchStudyRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FindObjectsResponse'
+                $ref: "#/components/schemas/FindObjectsResponse"
           description: The request was successful. Retrieved studies and filters
         "400":
           content: {}
@@ -2438,10 +2438,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -2522,7 +2522,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/MetadataWithId'
+                  $ref: "#/components/schemas/MetadataWithId"
                 type: array
           description: The request was successful. The returned value is the object.
         "400":
@@ -2576,9 +2576,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -2651,9 +2651,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -2685,14 +2685,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BatchOfIds'
+              $ref: "#/components/schemas/BatchOfIds"
         required: false
       responses:
         "200":
           content:
-            'application/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -2972,7 +2972,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OmicsResponse'
+                $ref: "#/components/schemas/OmicsResponse"
           description: Omics query result.
         "400":
           content: {}
@@ -3239,7 +3239,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OmicsResponse'
+                $ref: "#/components/schemas/OmicsResponse"
           description: Omics query result.
         "400":
           content: {}
@@ -3420,7 +3420,7 @@ paths:
           content:
             text/csv:
               schema:
-                $ref: '#/components/schemas/StreamingOutput'
+                $ref: "#/components/schemas/StreamingOutput"
           description: Stream of retrieved Expression data.
         "400":
           content: {}
@@ -3689,7 +3689,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OmicsResponse'
+                $ref: "#/components/schemas/OmicsResponse"
           description: Omics query result.
         "400":
           content: {}
@@ -3957,7 +3957,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OmicsResponse'
+                $ref: "#/components/schemas/OmicsResponse"
           description: Omics query result.
         "400":
           content: {}
@@ -4224,7 +4224,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OmicsResponse'
+                $ref: "#/components/schemas/OmicsResponse"
           description: Omics query result.
         "400":
           content: {}
@@ -4494,7 +4494,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OmicsResponse'
+                $ref: "#/components/schemas/OmicsResponse"
           description: Omics query result.
         "400":
           content: {}
@@ -4761,7 +4761,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OmicsResponse'
+                $ref: "#/components/schemas/OmicsResponse"
           description: Omics query result.
         "400":
           content: {}
@@ -4785,553 +4785,65 @@ paths:
 components:
   schemas:
     BatchOfIds:
-      description: Request model for getting links by many IDs.
-      example:
-        firstType: study
-        firstIds:
-        - firstIds
-        - firstIds
-        offset: 0
-        limit: 0
-      properties:
-        firstType:
-          description: Type of the objects.
-          example: study
-          type: string
-        firstIds:
-          description: Array of the object IDs with the same type.
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        offset:
-          description: "Param says to skip that many links before beginning to return\
-            \ links. Default: 0."
-          format: int32
-          type: integer
-        limit:
-          description: "Param says to limit the count of returned links. Default:\
-            \ 1000."
-          format: int32
-          type: integer
-      required:
-      - firstIds
-      - firstType
-      type: object
+      $ref: "./schemas/integration/BatchOfIds.yaml"
     DataItem:
-      properties:
-        itemId:
-          type: string
-        metadata:
-          type: object
-      type: object
+      $ref: "./schemas/integration/DataItem.yaml"
     DataPresentation:
-      properties:
-        itemId:
-          readOnly: true
-          type: string
-        metadata:
-          type: object
-        relationships:
-          $ref: '#/components/schemas/Relationships'
-      type: object
+      $ref: "./schemas/integration/DataPresentation.yaml"
     IMetadata:
-      properties:
-        source:
-          format: uri
-          type: string
-        name:
-          type: string
-        public:
-          type: boolean
-        id:
-          type: string
-        content:
-          type: object
-        dataType:
-          type: string
-        contentMap:
-          additionalProperties:
-            properties: {}
-            type: object
-          type: object
-        metadataContent:
-          additionalProperties:
-            properties: {}
-            type: object
-          type: object
-        fileIdAssociatedWithTemplate:
-          type: string
-      type: object
+      $ref: "./schemas/integration/IMetadata.yaml"
     IntegrationHelper:
-      type: object
+      $ref: "./schemas/integration/IntegrationHelper.yaml"
     Library:
-      type: object
+      $ref: "./schemas/integration/Library.yaml"
     ListResponse:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        meta:
-          pagination:
-            total: 6
-            offset: 1
-            count: 0
-            limit: 5
-      properties:
-        meta:
-          $ref: '#/components/schemas/MetaResponse'
-        data:
-          items:
-            properties: {}
-            type: object
-          type: array
-      type: object
+      $ref: "./schemas/integration/ListResponse.yaml"
     MetaResponse:
-      example:
-        pagination:
-          total: 6
-          offset: 1
-          count: 0
-          limit: 5
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
-      type: object
+      $ref: "./schemas/integration/MetaResponse.yaml"
     MetadataContent:
-      type: object
+      $ref: "./schemas/integration/MetadataContent.yaml"
     MetadataPresentation:
-      description: |-
-        A description of object metadata.
-
-        This will contain:
-        - `genestack:accession`: the object ID
-        - `Study Title` (for studies)
-        - `Sample ID` (for samples)
-        - all other attributes defined in the linked template (if any)
-      properties:
-        metadata:
-          $ref: '#/components/schemas/IMetadata'
-        relationships:
-          $ref: '#/components/schemas/Relationships'
-      type: object
+      $ref: "./schemas/integration/MetadataPresentation.yaml"
     MetadataWithId:
-      example:
-        itemId: itemId
-        metadata: "{}"
-      properties:
-        itemId:
-          readOnly: true
-          type: string
-        metadata:
-          type: object
-      type: object
+      $ref: "./schemas/integration/MetadataWithId.yaml"
     OmicsResponse:
-      example:
-        cursor: cursor
-        data:
-        - "{}"
-        - "{}"
-        log:
-        - log
-        - log
-        resultsExhausted: true
-      properties:
-        data:
-          items:
-            properties: {}
-            type: object
-          type: array
-        resultsExhausted:
-          type: boolean
-        log:
-          items:
-            type: string
-          type: array
-        cursor:
-          type: string
-      type: object
+      $ref: "./schemas/integration/OmicsResponse.yaml"
     OmicsResponseDataPresentation:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/DataPresentation'
-          type: array
-        resultsExhausted:
-          type: boolean
-        log:
-          items:
-            type: string
-          type: array
-        cursor:
-          type: string
-      type: object
+      $ref: "./schemas/integration/OmicsResponseDataPresentation.yaml"
     OmicsResponseMetadataPresentation:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/MetadataPresentation'
-          type: array
-        resultsExhausted:
-          type: boolean
-        log:
-          items:
-            type: string
-          type: array
-        cursor:
-          type: string
-      type: object
+      $ref: "./schemas/integration/OmicsResponseMetadataPresentation.yaml"
     OmicsResponseMetadataWithId:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/MetadataWithId'
-          type: array
-        resultsExhausted:
-          type: boolean
-        log:
-          items:
-            type: string
-          type: array
-        cursor:
-          type: string
-      type: object
+      $ref: "./schemas/integration/OmicsResponseMetadataWithId.yaml"
     PaginationInfo:
-      example:
-        total: 6
-        offset: 1
-        count: 0
-        limit: 5
-      properties:
-        count:
-          format: int32
-          type: integer
-        total:
-          format: int64
-          type: integer
-        offset:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-      type: object
+      $ref: "./schemas/integration/PaginationInfo.yaml"
     Preparation:
-      type: object
+      $ref: "./schemas/integration/Preparation.yaml"
     Relationships:
-      properties:
-        sample:
-          readOnly: true
-          type: string
-        cell:
-          readOnly: true
-          type: string
-        library:
-          readOnly: true
-          type: string
-        preparation:
-          readOnly: true
-          type: string
-      type: object
+      $ref: "./schemas/integration/Relationships.yaml"
     SourceTypePair:
-      example:
-        firstType: firstType
-        secondType: secondType
-      properties:
-        firstType:
-          description: Type of the object (e.g. study)
-          readOnly: true
-          type: string
-        secondType:
-          description: Type of the object (e.g. study)
-          readOnly: true
-          type: string
-      type: object
+      $ref: "./schemas/integration/SourceTypePair.yaml"
     StreamingOutput:
-      type: object
+      $ref: "./schemas/integration/StreamingOutput.yaml"
     Study:
-      type: object
+      $ref: "./schemas/integration/Study.yaml"
     SearchStudyRequest:
-      example:
-        filters:
-        - type: FULL_TEXT
-          match: text_to_search
-          mode: STRICT
-        - type: SELECT
-          filterOptionId: TUVUQURBVEFfU3R1ZHlfU291cmNlOlRlc3QgR0VP
-        page:
-          offset: 6
-          limit: 50
-      properties:
-        filters:
-          example:
-          - type: FULL_TEXT
-            match: text_to_search
-            mode: STRICT
-          - type: SELECT
-            filterOptionId: TUVUQURBVEFfU3R1ZHlfU291cmNlOlRlc3QgR0VP
-          items:
-            $ref: '#/components/schemas/AppliedFilter'
-          type: array
-        page:
-          $ref: '#/components/schemas/PageRequest'
-      type: object
+      $ref: "./schemas/integration/SearchStudyRequest.yaml"
     AppliedFilter:
-      properties:
-        type:
-          enum:
-          - FULL_TEXT
-          - SELECT
-          type: string
-        filterOptionId:
-          type: string
-        match:
-          type: string
-        mode:
-          enum:
-          - STRICT
-          - USE_NARROWER_TERMS
-          type: string
-      type: object
+      $ref: "./schemas/integration/AppliedFilter.yaml"
     PageRequest:
-      example:
-        offset: 6
-        limit: 50
-      properties:
-        offset:
-          description: "Param says to skip that many links before beginning to return\
-            \ links. Default: 0."
-          format: int32
-          type: integer
-        limit:
-          description: "Param says to limit the count of returned links. Default:\
-            \ 1000."
-          example: 50
-          format: int32
-          type: integer
-      type: object
+      $ref: "./schemas/integration/PageRequest.yaml"
     FindObjectsResponse:
-      example:
-        filterOptionGroups:
-        - filterId: filterId
-          hasMoreOptions: true
-          options:
-          - filterId: filterId
-            name: name
-            count: 5
-            id: id
-          - filterId: filterId
-            name: name
-            count: 5
-            id: id
-        - filterId: filterId
-          hasMoreOptions: true
-          options:
-          - filterId: filterId
-            name: name
-            count: 5
-            id: id
-          - filterId: filterId
-            name: name
-            count: 5
-            id: id
-        objectsPage:
-          filteredCount: 0
-          pageRequest:
-            offset: 6
-            limit: 50
-          content:
-          - owner: owner
-            summary:
-            - values:
-              - values
-              - values
-              key: key
-            - values:
-              - values
-              - values
-              key: key
-            hasFacs: true
-            hasTranscriptomics: true
-            size: 1
-            fileCreation: fileCreation
-            name: name
-            accession: accession
-            hasGenomic: true
-          - owner: owner
-            summary:
-            - values:
-              - values
-              - values
-              key: key
-            - values:
-              - values
-              - values
-              key: key
-            hasFacs: true
-            hasTranscriptomics: true
-            size: 1
-            fileCreation: fileCreation
-            name: name
-            accession: accession
-            hasGenomic: true
-      properties:
-        objectsPage:
-          $ref: '#/components/schemas/ObjectsPage'
-        filterOptionGroups:
-          items:
-            $ref: '#/components/schemas/FilterOptionGroup'
-          type: array
-      type: object
+      $ref: "./schemas/integration/FindObjectsResponse.yaml"
     ObjectsPage:
-      example:
-        filteredCount: 0
-        pageRequest:
-          offset: 6
-          limit: 50
-        content:
-        - owner: owner
-          summary:
-          - values:
-            - values
-            - values
-            key: key
-          - values:
-            - values
-            - values
-            key: key
-          hasFacs: true
-          hasTranscriptomics: true
-          size: 1
-          fileCreation: fileCreation
-          name: name
-          accession: accession
-          hasGenomic: true
-        - owner: owner
-          summary:
-          - values:
-            - values
-            - values
-            key: key
-          - values:
-            - values
-            - values
-            key: key
-          hasFacs: true
-          hasTranscriptomics: true
-          size: 1
-          fileCreation: fileCreation
-          name: name
-          accession: accession
-          hasGenomic: true
-      properties:
-        filteredCount:
-          format: int64
-          type: integer
-        pageRequest:
-          $ref: '#/components/schemas/PageRequest'
-        content:
-          items:
-            $ref: '#/components/schemas/StudySearchInfo'
-          type: array
-      type: object
+      $ref: "./schemas/integration/ObjectsPage.yaml"
     StudySearchInfo:
-      example:
-        owner: owner
-        summary:
-        - values:
-          - values
-          - values
-          key: key
-        - values:
-          - values
-          - values
-          key: key
-        hasFacs: true
-        hasTranscriptomics: true
-        size: 1
-        fileCreation: fileCreation
-        name: name
-        accession: accession
-        hasGenomic: true
-      properties:
-        accession:
-          type: string
-        name:
-          type: string
-        owner:
-          type: string
-        fileCreation:
-          format: int64
-          type: string
-        size:
-          format: int64
-          type: integer
-        hasFacs:
-          type: boolean
-        hasGenomic:
-          type: boolean
-        hasTranscriptomics:
-          type: boolean
-        summary:
-          items:
-            $ref: '#/components/schemas/MetainfoKeyForSummary'
-          type: array
-      type: object
+      $ref: "./schemas/integration/StudySearchInfo.yaml"
     MetainfoKeyForSummary:
-      example:
-        values:
-        - values
-        - values
-        key: key
-      properties:
-        key:
-          type: string
-        values:
-          items:
-            type: string
-          type: array
-      type: object
+      $ref: "./schemas/integration/MetainfoKeyForSummary.yaml"
     FilterOptionGroup:
-      example:
-        filterId: filterId
-        hasMoreOptions: true
-        options:
-        - filterId: filterId
-          name: name
-          count: 5
-          id: id
-        - filterId: filterId
-          name: name
-          count: 5
-          id: id
-      properties:
-        filterId:
-          type: string
-        hasMoreOptions:
-          type: boolean
-        options:
-          items:
-            $ref: '#/components/schemas/FilterOption'
-          type: array
-      type: object
+      $ref: "./schemas/integration/FilterOptionGroup.yaml"
     FilterOption:
-      example:
-        filterId: filterId
-        name: name
-        count: 5
-        id: id
-      properties:
-        id:
-          type: string
-        filterId:
-          type: string
-        name:
-          type: string
-        count:
-          format: int64
-          type: integer
-      type: object
+      $ref: "./schemas/integration/FilterOption.yaml"
   securitySchemes:
     Access-token:
       in: header
@@ -5341,4 +4853,3 @@ components:
       in: header
       name: Genestack-API-Token
       type: apiKey
-x-original-swagger-version: "2.0"

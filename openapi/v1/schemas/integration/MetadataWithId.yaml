@@ -1,0 +1,10 @@
+example:
+  itemId: itemId
+  metadata: '{}'
+properties:
+  itemId:
+    readOnly: true
+    type: string
+  metadata:
+    type: object
+type: object
