@@ -1,0 +1,22 @@
+example:
+  link: link
+  metadataLink: metadataLink
+  previousVersion: previousVersion
+properties:
+  templateId:
+    description: ID of template file.
+    example: GSF000001
+    readOnly: true
+    type: string
+  link:
+    description: URL of the signal file.
+    type: string
+  metadataLink:
+    description: URL of the signal file metadata.
+    type: string
+  previousVersion:
+    description: Accession of matrix group or matrix group version chain.
+    type: string
+required:
+- link
+type: object

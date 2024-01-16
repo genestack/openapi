@@ -1,0 +1,13 @@
+example:
+  metadata:
+    attributes:
+      key: '{}'
+properties:
+  templateId:
+    description: ID of template file.
+    example: GSF000001
+    readOnly: true
+    type: string
+  metadata:
+    $ref: '#/components/schemas/JsonMetadata'
+type: object

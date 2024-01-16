@@ -1,0 +1,41 @@
+example:
+  reference: reference
+  metadata:
+    attributes:
+      key: '{}'
+  variationId:
+  - variationId
+  - variationId
+  alteration:
+  - alteration
+  - alteration
+  locus: 0
+  templateId: GSF000001
+  contig: contig
+  genotype: genotype
+properties:
+  templateId:
+    description: ID of template file.
+    example: GSF000001
+    readOnly: true
+    type: string
+  contig:
+    type: string
+  locus:
+    format: int64
+    type: integer
+  variationId:
+    items:
+      type: string
+    type: array
+  reference:
+    type: string
+  alteration:
+    items:
+      type: string
+    type: array
+  genotype:
+    type: string
+  metadata:
+    $ref: '#/components/schemas/JsonMetadata'
+type: object

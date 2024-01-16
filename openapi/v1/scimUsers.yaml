@@ -346,206 +346,25 @@ paths:
 components:
   schemas:
     User:
-      example:
-        emails:
-        - type: work
-          value: value
-          primary: true
-        - type: work
-          value: value
-          primary: true
-        displayName: displayName
-        schemas:
-        - urn:ietf:params:scim:schemas:core:2.0:User
-        - urn:ietf:params:scim:schemas:core:2.0:User
-        active: true
-        externalId: externalId
-        id: id
-        userName: userName
-      properties:
-        active:
-          description: User status
-          type: boolean
-        emails:
-          items:
-            $ref: "#/components/schemas/Email"
-          type: array
-        externalId:
-          description: External unique resource id
-          type: string
-        id:
-          description: Unique resource id
-          type: string
-        schemas:
-          items:
-            enum:
-            - urn:ietf:params:scim:schemas:core:2.0:User
-            type: string
-          type: array
-        userName:
-          type: string
-        displayName:
-          type: string
-      required:
-      - active
-      - displayName
-      - emails
-      type: object
+      $ref: "./schemas/scim/User.yaml"
     Email:
-      example:
-        type: work
-        value: value
-        primary: true
-      properties:
-        type:
-          enum:
-          - work
-          type: string
-        value:
-          type: string
-        primary:
-          type: boolean
-      type: object
+      $ref: "./schemas/scim/Email.yaml"
     UserPatch:
-      example:
-        schemas:
-        - urn:ietf:params:scim:api:messages:2.0:PatchOp
-        - urn:ietf:params:scim:api:messages:2.0:PatchOp
-        Operations:
-        - op: add
-          path: path
-          value: "{}"
-        - op: add
-          path: path
-          value: "{}"
-      properties:
-        Operations:
-          description: Patch operations list
-          items:
-            $ref: "#/components/schemas/PatchOperation"
-          type: array
-        schemas:
-          items:
-            enum:
-            - urn:ietf:params:scim:api:messages:2.0:PatchOp
-            type: string
-          type: array
-      required:
-      - Operations
-      - schemas
-      type: object
+      $ref: "./schemas/scim/UserPatch.yaml"
     PatchOperation:
-      example:
-        op: add
-        path: path
-        value: "{}"
-      properties:
-        op:
-          enum:
-          - add
-          - replace
-          - remove
-          type: string
-        path:
-          type: string
-        value:
-          description: Corresponding 'value' of that field specified by 'path'
-          properties: {}
-          type: object
-      required:
-      - op
-      type: object
+      $ref: "./schemas/scim/PatchOperation.yaml"
     FilterUsersResponse:
-      properties:
-        Resources:
-          description: List of users
-          items:
-            $ref: "#/components/schemas/UserResponse"
-          type: array
-        itemsPerPage:
-          format: int64
-          type: integer
-        schemas:
-          items:
-            enum:
-            - urn:ietf:params:scim:api:messages:2.0:ListResponse
-            type: string
-          type: array
-        startIndex:
-          format: int64
-          type: integer
-        totalResults:
-          format: int64
-          type: integer
-      type: object
+      $ref: "./schemas/scim/FilterUsersResponse.yaml"
     UserResponse:
-      allOf:
-      - $ref: "#/components/schemas/User"
-      - properties:
-          meta:
-            $ref: "#/components/schemas/Meta"
-        type: object
+      $ref: "./schemas/scim/UserResponse.yaml"
     Meta:
-      description: resource metadata
-      properties:
-        created:
-          format: date-time
-          type: string
-        lastModified:
-          format: date-time
-          type: string
-        resourceType:
-          enum:
-          - User
-          - Group
-          type: string
-      type: object
+      $ref: "./schemas/scim/Meta.yaml"
     SCIMErrorResponse:
-      properties:
-        detail:
-          description: Detailed error message
-          type: string
-        schemas:
-          items:
-            enum:
-            - urn:ietf:params:scim:api:messages:2.0:Error
-            type: string
-          type: array
-        scimType:
-          description: Bad request type when status code is 400
-          enum:
-          - uniqueness
-          - tooMany
-          - mutability
-          - sensitive
-          - invalidSyntax
-          - invalidFilter
-          - invalidPath
-          - invalidValue
-          - invalidVers
-          - noTarget
-          type: string
-        status:
-          description: "Same as HTTP status code, e.g. 400, 403, etc."
-          type: string
-      required:
-      - status
-      type: object
+      $ref: "./schemas/scim/SCIMErrorResponse.yaml"
     BaseErrorResponse:
-      properties:
-        error:
-          $ref: "#/components/schemas/ErrorMessage"
-      required:
-      - error
-      type: object
+      $ref: "./schemas/scim/BaseErrorResponse.yaml"
     ErrorMessage:
-      properties:
-        message:
-          description: Detailed error message
-          type: string
-      required:
-      - message
-      type: object
+      $ref: "./schemas/scim/ErrorMessage.yaml"
   securitySchemes:
     Access-token:
       in: header

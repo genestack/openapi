@@ -1,0 +1,28 @@
+description: Xrefset metadata
+example:
+  lastUpdated: 1594846270242
+  createdDate: 1594846270242
+  data:
+    key: data
+  createdBy: '"Genestack Superuser"'
+  xrefSetId: '"GSF000477"'
+properties:
+  xrefSetId:
+    example: '"GSF000477"'
+    type: string
+  createdBy:
+    example: '"Genestack Superuser"'
+    type: string
+  createdDate:
+    example: 1594846270242
+    format: int64
+    type: integer
+  lastUpdated:
+    example: 1594846270242
+    format: int64
+    type: integer
+  data:
+    additionalProperties:
+      type: string
+    type: object
+type: object

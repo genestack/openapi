@@ -459,96 +459,21 @@ paths:
 components:
   schemas:
     CommitInfo:
-      example:
-        author: author
-        message: message
-        version: version
-        timestamp: 0
-      properties:
-        author:
-          type: string
-        message:
-          type: string
-        timestamp:
-          format: int64
-          type: integer
-        version:
-          readOnly: true
-          type: string
-      type: object
+      $ref: "./schemas/study/CommitInfo.yaml"
     IntegrationHelper:
-      type: object
+      $ref: "./schemas/study/IntegrationHelper.yaml"
     ListResponse:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        meta:
-          pagination:
-            total: 6
-            offset: 1
-            count: 0
-            limit: 5
-      properties:
-        meta:
-          $ref: "#/components/schemas/MetaResponse"
-        data:
-          items:
-            properties: {}
-            type: object
-          type: array
-      type: object
+      $ref: "./schemas/study/ListResponse.yaml"
     MetaResponse:
-      example:
-        pagination:
-          total: 6
-          offset: 1
-          count: 0
-          limit: 5
-      properties:
-        pagination:
-          $ref: "#/components/schemas/PaginationInfo"
-      type: object
+      $ref: "./schemas/study/MetaResponse.yaml"
     MetadataContent:
-      type: object
+      $ref: "./schemas/study/MetadataContent.yaml"
     PaginationInfo:
-      example:
-        total: 6
-        offset: 1
-        count: 0
-        limit: 5
-      properties:
-        count:
-          format: int32
-          type: integer
-        total:
-          format: int64
-          type: integer
-        offset:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-      type: object
+      $ref: "./schemas/study/PaginationInfo.yaml"
     Study:
-      type: object
+      $ref: "./schemas/study/Study.yaml"
     StudyGenericSource:
-      example:
-        link: https://inception-dev.genestack.com/studies/my_stydy.csv
-      properties:
-        link:
-          description: URL for a file with Study metadata.
-          example: https://inception-dev.genestack.com/studies/my_stydy.csv
-          type: string
-        templateId:
-          description: ID of template file.
-          example: GSF000001
-          readOnly: true
-          type: string
-      required:
-      - link
-      type: object
+      $ref: "./schemas/study/StudyGenericSource.yaml"
   securitySchemes:
     Access-token:
       in: header

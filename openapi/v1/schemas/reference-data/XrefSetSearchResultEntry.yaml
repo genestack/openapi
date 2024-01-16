@@ -1,0 +1,17 @@
+example:
+  sourceId: '"ENSG00000231103.2"'
+  targetIds: '["ENST00000617423.4", "ENST00000334232.8"]'
+  xrefSetId: '"GSF0000013"'
+properties:
+  xrefSetId:
+    example: '"GSF0000013"'
+    type: string
+  sourceId:
+    example: '"ENSG00000231103.2"'
+    type: string
+  targetIds:
+    example: '["ENST00000617423.4", "ENST00000334232.8"]'
+    items:
+      type: string
+    type: array
+type: object

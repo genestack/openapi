@@ -1,0 +1,53 @@
+example:
+  reference: reference
+  itemId: itemId
+  metadata: '{}'
+  variationId:
+  - variationId
+  - variationId
+  groupId: groupId
+  start: 0
+  alteration:
+  - alteration
+  - alteration
+  runId: runId
+  contig: contig
+  info:
+    key:
+    - info
+    - info
+  genotype:
+    key: genotype
+properties:
+  itemId:
+    type: string
+  metadata:
+    type: object
+  runId:
+    type: string
+  groupId:
+    type: string
+  contig:
+    type: string
+  start:
+    format: int64
+    type: integer
+  reference:
+    type: string
+  alteration:
+    type: array
+    items:
+      type: string
+  variationId:
+    type: array
+    items:
+      type: string
+  info:
+    type: object
+    properties:
+      type: array
+  genotype:
+    type: object
+    properties:
+      type: string
+type: object

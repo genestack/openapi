@@ -1,0 +1,20 @@
+example:
+  op: add
+  path: path
+  value: '{}'
+properties:
+  op:
+    enum:
+    - add
+    - replace
+    - remove
+    type: string
+  path:
+    type: string
+  value:
+    description: Corresponding 'value' of that field specified by 'path'
+    properties: {}
+    type: object
+required:
+- op
+type: object

@@ -1,0 +1,6 @@
+allOf:
+- $ref: '#/components/schemas/User'
+- properties:
+    meta:
+      $ref: '#/components/schemas/Meta'
+  type: object

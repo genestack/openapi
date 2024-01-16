@@ -1,0 +1,17 @@
+example:
+  author: author
+  message: message
+  version: version
+  timestamp: 0
+properties:
+  author:
+    type: string
+  message:
+    type: string
+  timestamp:
+    format: int64
+    type: integer
+  version:
+    readOnly: true
+    type: string
+type: object
