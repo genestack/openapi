@@ -6476,7 +6476,7 @@ components:
     MetaResponse:
       $ref: "./schemas/integration/MetaResponse.yaml"
     MetadataContent:
-      $ref: "./schemas/integration/MetadataContent.yaml"
+      $ref: "./schemas/common/MetadataContent.yaml"
     MetadataPresentation:
       $ref: "./schemas/integration/MetadataPresentation.yaml"
     MetadataWithId:

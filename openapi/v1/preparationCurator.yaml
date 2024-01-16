@@ -589,7 +589,7 @@ components:
     MetaResponse:
       $ref: "./schemas/preparation/MetaResponse.yaml"
     MetadataContent:
-      $ref: "./schemas/preparation/MetadataContent.yaml"
+      $ref: "./schemas/common/MetadataContent.yaml"
     PaginationInfo:
       $ref: "./schemas/preparation/PaginationInfo.yaml"
     Preparation:

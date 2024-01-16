@@ -670,7 +670,7 @@ components:
     MetaResponse:
       $ref: "./schemas/flow-cytometry/MetaResponse.yaml"
     MetadataContent:
-      $ref: "./schemas/flow-cytometry/MetadataContent.yaml"
+      $ref: "./schemas/common/MetadataContent.yaml"
     MetadataWithId:
       $ref: "./schemas/flow-cytometry/MetadataWithId.yaml"
     PaginationInfo:

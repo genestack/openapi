@@ -1098,7 +1098,7 @@ components:
     MetaResponse:
       $ref: "./schemas/variant/MetaResponse.yaml"
     MetadataContent:
-      $ref: "./schemas/variant/MetadataContent.yaml"
+      $ref: "./schemas/common/MetadataContent.yaml"
     MetadataWithId:
       $ref: "./schemas/variant/MetadataWithId.yaml"
     PaginationInfo:

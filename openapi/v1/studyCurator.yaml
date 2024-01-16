@@ -467,7 +467,7 @@ components:
     MetaResponse:
       $ref: "./schemas/study/MetaResponse.yaml"
     MetadataContent:
-      $ref: "./schemas/study/MetadataContent.yaml"
+      $ref: "./schemas/common/MetadataContent.yaml"
     PaginationInfo:
       $ref: "./schemas/study/PaginationInfo.yaml"
     Study:

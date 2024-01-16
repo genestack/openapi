@@ -671,7 +671,7 @@ components:
     MetaResponse:
       $ref: "./schemas/expression/MetaResponse.yaml"
     MetadataContent:
-      $ref: "./schemas/expression/MetadataContent.yaml"
+      $ref: "./schemas/common/MetadataContent.yaml"
     MetadataWithId:
       $ref: "./schemas/expression/MetadataWithId.yaml"
     PaginationInfo:

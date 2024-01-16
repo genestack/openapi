@@ -590,7 +590,7 @@ components:
     MetaResponse:
       $ref: "./schemas/library/MetaResponse.yaml"
     MetadataContent:
-      $ref: "./schemas/library/MetadataContent.yaml"
+      $ref: "./schemas/common/MetadataContent.yaml"
     PaginationInfo:
       $ref: "./schemas/library/PaginationInfo.yaml"
     SampleSource:
