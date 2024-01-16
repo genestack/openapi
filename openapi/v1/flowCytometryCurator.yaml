@@ -1064,7 +1064,7 @@ components:
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
     SignalSource:
-      $ref: "./schemas/flow-cytometry/SignalSource.yaml"
+      $ref: "./schemas/common/SignalSource.yaml"
   securitySchemes:
     Access-token:
       in: header
