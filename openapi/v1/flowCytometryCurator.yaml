@@ -1060,7 +1060,7 @@ components:
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     RunsResponse:
-      $ref: "./schemas/flow-cytometry/RunsResponse.yaml"
+      $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
       $ref: "./schemas/flow-cytometry/SignalRun.yaml"
     SignalSource:

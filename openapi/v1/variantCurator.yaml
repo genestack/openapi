@@ -1104,7 +1104,7 @@ components:
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     RunsResponse:
-      $ref: "./schemas/variant/RunsResponse.yaml"
+      $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
       $ref: "./schemas/variant/SignalRun.yaml"
     SignalSource:
