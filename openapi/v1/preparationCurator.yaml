@@ -583,7 +583,7 @@ components:
     CommitInfo:
       $ref: "./schemas/common/CommitInfo.yaml"
     IntegrationHelper:
-      $ref: "./schemas/preparation/IntegrationHelper.yaml"
+      $ref: "./schemas/common/IntegrationHelper.yaml"
     ListResponse:
       $ref: "./schemas/preparation/ListResponse.yaml"
     MetaResponse:

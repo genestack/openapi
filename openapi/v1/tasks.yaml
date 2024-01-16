@@ -88,7 +88,7 @@ paths:
 components:
   schemas:
     IntegrationHelper:
-      $ref: "./schemas/tasks/IntegrationHelper.yaml"
+      $ref: "./schemas/common/IntegrationHelper.yaml"
     TaskInfo:
       $ref: "./schemas/tasks/TaskInfo.yaml"
   securitySchemes:

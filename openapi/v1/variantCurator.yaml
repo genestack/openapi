@@ -1090,7 +1090,7 @@ components:
           type: boolean
       type: object
     IntegrationHelper:
-      $ref: "./schemas/variant/IntegrationHelper.yaml"
+      $ref: "./schemas/common/IntegrationHelper.yaml"
     JsonMetadata:
       $ref: "./schemas/variant/JsonMetadata.yaml"
     ListResponse:

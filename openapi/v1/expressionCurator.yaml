@@ -1057,7 +1057,7 @@ components:
     ExpressionResponse:
       $ref: "./schemas/expression/ExpressionResponse.yaml"
     IntegrationHelper:
-      $ref: "./schemas/expression/IntegrationHelper.yaml"
+      $ref: "./schemas/common/IntegrationHelper.yaml"
     JsonMetadata:
       $ref: "./schemas/expression/JsonMetadata.yaml"
     ListResponse:
