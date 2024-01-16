@@ -1051,7 +1051,7 @@ components:
     CommitInfo:
       $ref: "./schemas/common/CommitInfo.yaml"
     CurationSource:
-      $ref: "./schemas/expression/CurationSource.yaml"
+      $ref: "./schemas/common/CurationSource.yaml"
     ExpressionItem:
       $ref: "./schemas/expression/ExpressionItem.yaml"
     ExpressionResponse:
