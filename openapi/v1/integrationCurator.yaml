@@ -6500,7 +6500,7 @@ components:
     StreamingOutput:
       $ref: "./schemas/integration/StreamingOutput.yaml"
     Study:
-      $ref: "./schemas/integration/Study.yaml"
+      $ref: "./schemas/study/Study.yaml"
     StudyCurationStatusResponse:
       $ref: "./schemas/integration/StudyCurationStatusResponse.yaml"
     StudyCurationStatusUpdateRequest:
