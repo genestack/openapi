@@ -1073,7 +1073,7 @@ components:
     RunsResponse:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
-      $ref: "./schemas/expression/SignalRun.yaml"
+      $ref: "./schemas/common/SignalRun.yaml"
     SignalSource:
       $ref: "./schemas/expression/SignalSource.yaml"
   securitySchemes:

@@ -701,7 +701,7 @@ components:
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     SignalRun:
-      $ref: "./schemas/variant/SignalRun.yaml"
+      $ref: "./schemas/common/SignalRun.yaml"
     VariantItem:
       $ref: "./schemas/variant/VariantItem.yaml"
     VariantResponse:

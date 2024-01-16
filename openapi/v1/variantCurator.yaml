@@ -1106,7 +1106,7 @@ components:
     RunsResponse:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
-      $ref: "./schemas/variant/SignalRun.yaml"
+      $ref: "./schemas/common/SignalRun.yaml"
     SignalSource:
       $ref: "./schemas/variant/SignalSource.yaml"
     VariantItem:

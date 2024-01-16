@@ -677,7 +677,7 @@ components:
       $ref: "./schemas/common/PaginationInfo.yaml"
       type: object
     SignalRun:
-      $ref: "./schemas/flow-cytometry/SignalRun.yaml"
+      $ref: "./schemas/common/SignalRun.yaml"
   securitySchemes:
     Access-token:
       in: header

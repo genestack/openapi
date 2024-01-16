@@ -677,7 +677,7 @@ components:
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     SignalRun:
-      $ref: "./schemas/expression/SignalRun.yaml"
+      $ref: "./schemas/common/SignalRun.yaml"
   securitySchemes:
     Access-token:
       in: header
