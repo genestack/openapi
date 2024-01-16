@@ -1038,7 +1038,7 @@ components:
     AtomicFlowCytometrySource:
       $ref: "./schemas/flow-cytometry/AtomicFlowCytometrySource.yaml"
     CommitInfo:
-      $ref: "./schemas/flow-cytometry/CommitInfo.yaml"
+      $ref: "./schemas/common/CommitInfo.yaml"
     CurationSource:
       $ref: "./schemas/flow-cytometry/CurationSource.yaml"
     FlowCytometryItem:

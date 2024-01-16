@@ -397,7 +397,7 @@ paths:
 components:
   schemas:
     CommitInfo:
-      $ref: "./schemas/library/CommitInfo.yaml"
+      $ref: "./schemas/common/CommitInfo.yaml"
     IntegrationHelper:
       $ref: "./schemas/library/IntegrationHelper.yaml"
     Library:

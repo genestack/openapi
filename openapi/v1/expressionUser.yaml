@@ -659,7 +659,7 @@ paths:
 components:
   schemas:
     CommitInfo:
-      $ref: "./schemas/expression/CommitInfo.yaml"
+      $ref: "./schemas/common/CommitInfo.yaml"
     ExpressionItem:
       $ref: "./schemas/expression/ExpressionItem.yaml"
     ExpressionResponse:

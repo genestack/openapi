@@ -658,7 +658,7 @@ paths:
 components:
   schemas:
     CommitInfo:
-      $ref: "./schemas/flow-cytometry/CommitInfo.yaml"
+      $ref: "./schemas/common/CommitInfo.yaml"
     FlowCytometryItem:
       $ref: "./schemas/flow-cytometry/FlowCytometryItem.yaml"
     FlowCytometryResponse:

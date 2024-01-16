@@ -1049,7 +1049,7 @@ components:
     AtomicExpressionSource:
       $ref: "./schemas/expression/AtomicExpressionSource.yaml"
     CommitInfo:
-      $ref: "./schemas/expression/CommitInfo.yaml"
+      $ref: "./schemas/common/CommitInfo.yaml"
     CurationSource:
       $ref: "./schemas/expression/CurationSource.yaml"
     ExpressionItem:

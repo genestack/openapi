@@ -579,7 +579,7 @@ components:
     AtomicSampleSource:
       $ref: "./schemas/sample/AtomicSampleSource.yaml"
     CommitInfo:
-      $ref: "./schemas/sample/CommitInfo.yaml"
+      $ref: "./schemas/common/CommitInfo.yaml"
     IntegrationHelper:
       $ref: "./schemas/sample/IntegrationHelper.yaml"
     JsonMetadata:

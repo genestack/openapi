@@ -687,7 +687,7 @@ paths:
 components:
   schemas:
     CommitInfo:
-      $ref: "./schemas/variant/CommitInfo.yaml"
+      $ref: "./schemas/common/CommitInfo.yaml"
     IntegrationHelper:
       $ref: "./schemas/variant/IntegrationHelper.yaml"
     ListResponse:
