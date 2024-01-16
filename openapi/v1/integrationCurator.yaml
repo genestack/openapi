@@ -6490,7 +6490,7 @@ components:
     OmicsResponseMetadataWithId:
       $ref: "./schemas/integration/OmicsResponseMetadataWithId.yaml"
     PaginationInfo:
-      $ref: "./schemas/integration/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     Preparation:
       $ref: "./schemas/integration/Preparation.yaml"
     Relationships:

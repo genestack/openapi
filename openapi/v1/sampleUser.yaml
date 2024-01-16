@@ -329,7 +329,7 @@ components:
     MetaResponse:
       $ref: "./schemas/common/MetaResponse.yaml"
     PaginationInfo:
-      $ref: "./schemas/sample/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     Sample:
       $ref: "./schemas/sample/Sample.yaml"
   securitySchemes:

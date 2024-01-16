@@ -406,7 +406,7 @@ components:
     MetaResponse:
       $ref: "./schemas/common/MetaResponse.yaml"
     PaginationInfo:
-      $ref: "./schemas/preparation/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     Preparation:
       $ref: "./schemas/preparation/Preparation.yaml"
   securitySchemes:

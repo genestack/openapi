@@ -699,7 +699,7 @@ components:
     MetadataWithId:
       $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
-      $ref: "./schemas/variant/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     SignalRun:
       $ref: "./schemas/variant/SignalRun.yaml"
     VariantItem:

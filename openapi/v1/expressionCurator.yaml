@@ -1069,7 +1069,7 @@ components:
     MetadataWithId:
       $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
-      $ref: "./schemas/expression/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     RunsResponse:
       $ref: "./schemas/expression/RunsResponse.yaml"
     SignalRun:

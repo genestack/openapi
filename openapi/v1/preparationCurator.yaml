@@ -591,7 +591,7 @@ components:
     MetadataContent:
       $ref: "./schemas/common/MetadataContent.yaml"
     PaginationInfo:
-      $ref: "./schemas/preparation/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     Preparation:
       $ref: "./schemas/preparation/Preparation.yaml"
     SampleSource:

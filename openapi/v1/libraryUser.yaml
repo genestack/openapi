@@ -407,7 +407,7 @@ components:
     MetaResponse:
       $ref: "./schemas/common/MetaResponse.yaml"
     PaginationInfo:
-      $ref: "./schemas/library/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
   securitySchemes:
     Access-token:
       in: header

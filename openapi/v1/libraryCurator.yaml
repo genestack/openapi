@@ -592,7 +592,7 @@ components:
     MetadataContent:
       $ref: "./schemas/common/MetadataContent.yaml"
     PaginationInfo:
-      $ref: "./schemas/library/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     SampleSource:
       $ref: "./schemas/library/SampleSource.yaml"
   securitySchemes:

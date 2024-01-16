@@ -469,7 +469,7 @@ components:
     MetadataContent:
       $ref: "./schemas/common/MetadataContent.yaml"
     PaginationInfo:
-      $ref: "./schemas/study/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     Study:
       $ref: "./schemas/study/Study.yaml"
     StudyGenericSource:

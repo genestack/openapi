@@ -675,7 +675,7 @@ components:
     MetadataWithId:
       $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
-      $ref: "./schemas/expression/PaginationInfo.yaml"
+      $ref: "./schemas/common/PaginationInfo.yaml"
     SignalRun:
       $ref: "./schemas/expression/SignalRun.yaml"
   securitySchemes:
