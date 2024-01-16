@@ -595,7 +595,7 @@ components:
     Preparation:
       $ref: "./schemas/preparation/Preparation.yaml"
     SampleSource:
-      $ref: "./schemas/preparation/SampleSource.yaml"
+      $ref: "./schemas/common/SampleSource.yaml"
   securitySchemes:
     Access-token:
       in: header

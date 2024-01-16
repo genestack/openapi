@@ -6468,7 +6468,7 @@ components:
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
     Library:
-      $ref: "./schemas/integration/Library.yaml"
+      $ref: "./schemas/library/Library.yaml"
     Link:
       $ref: "./schemas/integration/Link.yaml"
     ListResponse:
@@ -6492,7 +6492,7 @@ components:
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     Preparation:
-      $ref: "./schemas/integration/Preparation.yaml"
+      $ref: "./schemas/preparation/Preparation.yaml"
     Relationships:
       $ref: "./schemas/integration/Relationships.yaml"
     SourceTypePair:
@@ -6508,7 +6508,7 @@ components:
     StudyValidationSummary:
       $ref: "./schemas/integration/StudyValidationSummary.yaml"
     TaskInfo:
-      $ref: "./schemas/common/TaskInfo.yaml"
+      $ref: "./schemas/tasks/TaskInfo.yaml"
     ValidationError:
       $ref: "./schemas/integration/ValidationError.yaml"
     SearchStudyRequest:

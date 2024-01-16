@@ -90,7 +90,7 @@ components:
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
     TaskInfo:
-      $ref: "./schemas/common/TaskInfo.yaml"
+      $ref: "./schemas/tasks/TaskInfo.yaml"
   securitySchemes:
     Access-token:
       in: header

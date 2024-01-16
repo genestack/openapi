@@ -4795,7 +4795,7 @@ components:
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
     Library:
-      $ref: "./schemas/integration/Library.yaml"
+      $ref: "./schemas/library/Library.yaml"
     ListResponse:
       $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
@@ -4817,7 +4817,7 @@ components:
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     Preparation:
-      $ref: "./schemas/integration/Preparation.yaml"
+      $ref: "./schemas/preparation/Preparation.yaml"
     Relationships:
       $ref: "./schemas/integration/Relationships.yaml"
     SourceTypePair:

@@ -597,7 +597,7 @@ components:
     Sample:
       $ref: "./schemas/sample/Sample.yaml"
     SampleSource:
-      $ref: "./schemas/sample/SampleSource.yaml"
+      $ref: "./schemas/common/SampleSource.yaml"
   securitySchemes:
     Access-token:
       in: header

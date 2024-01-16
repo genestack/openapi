@@ -594,7 +594,7 @@ components:
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     SampleSource:
-      $ref: "./schemas/library/SampleSource.yaml"
+      $ref: "./schemas/common/SampleSource.yaml"
   securitySchemes:
     Access-token:
       in: header
