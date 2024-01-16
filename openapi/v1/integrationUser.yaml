@@ -4805,7 +4805,7 @@ components:
     MetadataPresentation:
       $ref: "./schemas/integration/MetadataPresentation.yaml"
     MetadataWithId:
-      $ref: "./schemas/integration/MetadataWithId.yaml"
+      $ref: "./schemas/common/MetadataWithId.yaml"
     OmicsResponse:
       $ref: "./schemas/integration/OmicsResponse.yaml"
     OmicsResponseDataPresentation:

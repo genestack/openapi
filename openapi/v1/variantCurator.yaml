@@ -1100,7 +1100,7 @@ components:
     MetadataContent:
       $ref: "./schemas/common/MetadataContent.yaml"
     MetadataWithId:
-      $ref: "./schemas/variant/MetadataWithId.yaml"
+      $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
       $ref: "./schemas/variant/PaginationInfo.yaml"
     RunsResponse:
