@@ -5,8 +5,8 @@ example:
   - warnings
   versionChainId: versionChainId
   runs:
-  - 
-  - 
+  -
+  -
 properties:
   runs:
     items:

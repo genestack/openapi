@@ -55,7 +55,7 @@ tasks {
             )
             skipValidateSpec = true
         }
-        
+
     }
 
     val generateAllApiClients by registering(GradleBuild::class) {
