@@ -5,6 +5,7 @@ import kotlin.io.path.Path as KotlinPath
 
 plugins {
     alias(libs.plugins.openapi.generator) apply true
+    `custom-greetings`
 }
 
 val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
