@@ -27,10 +27,14 @@ properties:
     type: array
   members:
     items:
-      $ref: "Member.yaml"
+      $ref: "#/components/schemas/Member"
     type: array
   displayName:
     type: string
 required:
 - displayName
 type: object
+components:
+  schemas:
+    Member:
+      $ref: "./Member.yaml"

@@ -37,5 +37,9 @@ properties:
   genotype:
     type: string
   metadata:
-    $ref: "../common/JsonMetadata.yaml"
+    $ref: "#/components/schemas/JsonMetadata"
 type: object
+components:
+  schemas:
+    JsonMetadata:
+      $ref: "../common/JsonMetadata.yaml"

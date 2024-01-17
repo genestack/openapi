@@ -13,7 +13,7 @@ properties:
   Operations:
     description: Patch operations list
     items:
-      $ref: "PatchOperation.yaml"
+      $ref: "#/components/schemas/PatchOperation"
     type: array
   schemas:
     items:
@@ -25,3 +25,7 @@ required:
 - Operations
 - schemas
 type: object
+components:
+  schemas:
+    PatchOperation:
+      $ref: "./PatchOperation.yaml"

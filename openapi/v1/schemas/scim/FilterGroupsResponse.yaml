@@ -2,7 +2,7 @@ properties:
   Resources:
     description: List of groups
     items:
-      $ref: "GroupResponse.yaml"
+      $ref: "#/components/schemas/GroupResponse"
     type: array
   itemsPerPage:
     format: int64
@@ -20,3 +20,7 @@ properties:
     format: int64
     type: integer
 type: object
+components:
+  schemas:
+    GroupResponse:
+      $ref: "./GroupResponse.yaml"
