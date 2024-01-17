@@ -39,9 +39,10 @@ properties:
       expression: 1.82
     anyOf:
     - type: object
-      properties:
-        format: double
-        type: number
+      patternProperties:
+        "^.*$":
+          format: double
+          type: number
     - type: "null"
     type: object
   description:
