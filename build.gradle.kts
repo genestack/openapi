@@ -55,10 +55,10 @@ tasks {
             )
             skipValidateSpec = true
         }
-
     }
 
     val generateAllApiClients by registering(GradleBuild::class) {
+        file("$rootDir/generated").deleteRecursively()
         tasks = tasksList.flatMap { listOf(it + "Python", it + "R") }
     }
 }
