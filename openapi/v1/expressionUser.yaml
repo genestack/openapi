@@ -149,7 +149,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExpressionResponse'
+                $ref: "#/components/schemas/ExpressionResponse"
           description: Retrieved Expression data.
         "400":
           content: {}
@@ -281,9 +281,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -343,9 +343,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/MetadataWithId'
+                $ref: "#/components/schemas/MetadataWithId"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -404,9 +404,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/MetadataWithId'
+                $ref: "#/components/schemas/MetadataWithId"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -462,9 +462,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -529,7 +529,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExpressionItem'
+                $ref: "#/components/schemas/ExpressionItem"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -569,7 +569,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/CommitInfo'
+                  $ref: "#/components/schemas/CommitInfo"
                 type: array
           description: The request was successful. The returned value is the list
             of  object versions.
@@ -632,7 +632,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignalRun'
+                $ref: "#/components/schemas/SignalRun"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -659,177 +659,25 @@ paths:
 components:
   schemas:
     CommitInfo:
-      example:
-        author: author
-        message: message
-        version: version
-        timestamp: 0
-      properties:
-        author:
-          type: string
-        message:
-          type: string
-        timestamp:
-          format: int64
-          type: integer
-        version:
-          readOnly: true
-          type: string
-      type: object
+      $ref: "./schemas/common/CommitInfo.yaml"
     ExpressionItem:
-      example:
-        itemId: itemId
-        metadata: "{}"
-        expression: 1.82
-        feature:
-          genes: "MYO9A,"
-          groupingKey: VRSLGGISPSEDRR
-        gene: gene
-        groupId: groupId
-        description: description
-        runId: runId
-        value:
-          expression: 1.82
-      properties:
-        itemId:
-          type: string
-        metadata:
-          type: object
-        runId:
-          type: string
-        groupId:
-          type: string
-        gene:
-          type: string
-        expression:
-          example: 1.82
-          format: double
-          type: number
-        feature:
-          example:
-            genes: "MYO9A,"
-            groupingKey: VRSLGGISPSEDRR
-          anyOf:
-            - type: object
-            - type: string
-        value:
-          example:
-            expression: 1.82
-          anyOf:
-            - type: object
-              properties:
-                format: double
-                type: number
-            - type: "null"
-          type: object
-        description:
-          readOnly: true
-          type: string
-      type: object
+      $ref: "./schemas/expression/ExpressionItem.yaml"
     ExpressionResponse:
-      example:
-        cursor: cursor
-        data:
-        - itemId: itemId
-          metadata: "{}"
-          expression: 1.82
-          feature:
-            genes: "MYO9A,"
-            groupingKey: VRSLGGISPSEDRR
-          gene: gene
-          groupId: groupId
-          description: description
-          runId: runId
-          value:
-            expression: 1.82
-        - itemId: itemId
-          metadata: "{}"
-          expression: 1.82
-          feature:
-            genes: "MYO9A,"
-            groupingKey: VRSLGGISPSEDRR
-          gene: gene
-          groupId: groupId
-          description: description
-          runId: runId
-          value:
-            expression: 1.82
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ExpressionItem'
-          type: array
-        cursor:
-          type: string
-      type: object
+      $ref: "./schemas/expression/ExpressionResponse.yaml"
     IntegrationHelper:
-      type: object
+      $ref: "./schemas/common/IntegrationHelper.yaml"
     ListResponse:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        meta:
-          pagination:
-            total: 6
-            offset: 1
-            count: 0
-            limit: 5
-      properties:
-        meta:
-          $ref: '#/components/schemas/MetaResponse'
-        data:
-          items:
-            properties: {}
-            type: object
-          type: array
-      type: object
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
-      example:
-        pagination:
-          total: 6
-          offset: 1
-          count: 0
-          limit: 5
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
-      type: object
+      $ref: "./schemas/common/MetaResponse.yaml"
     MetadataContent:
-      type: object
+      $ref: "./schemas/common/MetadataContent.yaml"
     MetadataWithId:
-      example:
-        itemId: itemId
-        metadata: "{}"
-      properties:
-        itemId:
-          readOnly: true
-          type: string
-        metadata:
-          type: object
-      type: object
+      $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
-      example:
-        total: 6
-        offset: 1
-        count: 0
-        limit: 5
-      properties:
-        count:
-          format: int32
-          type: integer
-        total:
-          format: int64
-          type: integer
-        offset:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-      type: object
+      $ref: "./schemas/common/PaginationInfo.yaml"
     SignalRun:
-      type: object
+      $ref: "./schemas/common/SignalRun.yaml"
   securitySchemes:
     Access-token:
       in: header
@@ -839,4 +687,3 @@ components:
       in: header
       name: Genestack-API-Token
       type: apiKey
-x-original-swagger-version: "2.0"

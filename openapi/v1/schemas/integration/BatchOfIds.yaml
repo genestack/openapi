@@ -1,0 +1,32 @@
+description: Request model for getting links by many IDs.
+example:
+  firstType: study
+  firstIds:
+  - firstIds
+  - firstIds
+  offset: 0
+  limit: 0
+properties:
+  firstType:
+    description: Type of the objects.
+    example: study
+    type: string
+  firstIds:
+    description: Array of the object IDs with the same type.
+    items:
+      type: string
+    type: array
+    uniqueItems: true
+  offset:
+    description: 'Param says to skip that many links before beginning to return links.
+      Default: 0.'
+    format: int32
+    type: integer
+  limit:
+    description: 'Param says to limit the count of returned links. Default: 1000.'
+    format: int32
+    type: integer
+required:
+- firstIds
+- firstType
+type: object

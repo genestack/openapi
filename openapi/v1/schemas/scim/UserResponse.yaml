@@ -1,0 +1,12 @@
+allOf:
+- $ref: "#/components/schemas/User"
+- properties:
+    meta:
+      $ref: "#/components/schemas/Meta"
+  type: object
+components:
+  schemas:
+    User:
+      $ref: "./User.yaml"
+    Meta:
+      $ref: "./Meta.yaml"

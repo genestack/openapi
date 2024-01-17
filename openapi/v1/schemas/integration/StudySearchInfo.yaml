@@ -1,0 +1,46 @@
+example:
+  owner: owner
+  summary:
+  - values:
+    - values
+    - values
+    key: key
+  - values:
+    - values
+    - values
+    key: key
+  hasFacs: true
+  hasTranscriptomics: true
+  size: 1
+  fileCreation: fileCreation
+  name: name
+  accession: accession
+  hasGenomic: true
+properties:
+  accession:
+    type: string
+  name:
+    type: string
+  owner:
+    type: string
+  fileCreation:
+    format: int64
+    type: string
+  size:
+    format: int64
+    type: integer
+  hasFacs:
+    type: boolean
+  hasGenomic:
+    type: boolean
+  hasTranscriptomics:
+    type: boolean
+  summary:
+    items:
+      $ref: "#/components/schemas/MetainfoKeyForSummary"
+    type: array
+type: object
+components:
+  schemas:
+    MetainfoKeyForSummary:
+      $ref: "./MetainfoKeyForSummary.yaml"

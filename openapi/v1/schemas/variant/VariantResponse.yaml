@@ -1,0 +1,53 @@
+example:
+  cursor: cursor
+  data:
+  - reference: reference
+    itemId: itemId
+    metadata: "{}"
+    variationId:
+    - variationId
+    - variationId
+    groupId: groupId
+    start: 0
+    alteration:
+    - alteration
+    - alteration
+    runId: runId
+    contig: contig
+    info:
+      key:
+      - info
+      - info
+    genotype:
+      key: genotype
+  - reference: reference
+    itemId: itemId
+    metadata: "{}"
+    variationId:
+    - variationId
+    - variationId
+    groupId: groupId
+    start: 0
+    alteration:
+    - alteration
+    - alteration
+    runId: runId
+    contig: contig
+    info:
+      key:
+      - info
+      - info
+    genotype:
+      key: genotype
+properties:
+  data:
+    items:
+      $ref: "#/components/schemas/VariantItem"
+    type: array
+  cursor:
+    type: string
+type: object
+components:
+  schemas:
+    VariantItem:
+      $ref: "VariantItem.yaml"

@@ -1,0 +1,31 @@
+example:
+  cell-population: cell-population
+  metadata:
+    attributes:
+      key: "{}"
+  marker: marker
+  templateId: GSF000001
+  readout-type: readout-type
+  value: 0.8008281904610115
+properties:
+  templateId:
+    description: ID of template file.
+    example: GSF000001
+    readOnly: true
+    type: string
+  cell-population:
+    type: string
+  marker:
+    type: string
+  readout-type:
+    type: string
+  value:
+    format: double
+    type: number
+  metadata:
+    $ref: "#/components/schemas/JsonMetadata"
+type: object
+components:
+  schemas:
+    JsonMetadata:
+      $ref: "../common/JsonMetadata.yaml"

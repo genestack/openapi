@@ -1,0 +1,27 @@
+example:
+  itemId: itemId
+  metadata: "{}"
+  expression: 0.8008281904610115
+  marker: marker
+  groupId: groupId
+  cellPopulation: cellPopulation
+  readoutType: readoutType
+  runId: runId
+properties:
+  itemId:
+    type: string
+  metadata:
+    type: object
+  runId:
+    type: string
+  groupId:
+    type: string
+  readoutType:
+    type: string
+  cellPopulation:
+    type: string
+  marker:
+    type: string
+  expression:
+    type: number
+type: object

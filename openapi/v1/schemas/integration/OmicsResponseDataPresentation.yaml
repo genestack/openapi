@@ -1,0 +1,18 @@
+properties:
+  data:
+    items:
+      $ref: "#/components/schemas/DataPresentation"
+    type: array
+  resultsExhausted:
+    type: boolean
+  log:
+    items:
+      type: string
+    type: array
+  cursor:
+    type: string
+type: object
+components:
+  schemas:
+    DataPresentation:
+      $ref: "./DataPresentation.yaml"

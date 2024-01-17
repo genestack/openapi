@@ -131,10 +131,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
             text/tab-separated-values:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "401":
@@ -174,7 +174,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SampleSource'
+              $ref: "#/components/schemas/SampleSource"
         required: false
       responses:
         "201":
@@ -182,7 +182,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Sample'
+                  $ref: "#/components/schemas/Sample"
                 type: array
           description: Object successfully created.
         "400":
@@ -226,7 +226,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AtomicSampleSource'
+              $ref: "#/components/schemas/AtomicSampleSource"
         description: |-
           ## Metadata
 
@@ -237,7 +237,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetadataWithId'
+                $ref: "#/components/schemas/MetadataWithId"
           description: The objects were successfully created. The returned value is
             a list of created objects.
         "400":
@@ -285,7 +285,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetadataContent'
+              $ref: "#/components/schemas/MetadataContent"
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
       responses:
@@ -293,7 +293,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetadataContent'
+                $ref: "#/components/schemas/MetadataContent"
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
         "400":
@@ -391,7 +391,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sample'
+                $ref: "#/components/schemas/Sample"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -437,7 +437,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetadataContent'
+              $ref: "#/components/schemas/MetadataContent"
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
       responses:
@@ -445,7 +445,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sample'
+                $ref: "#/components/schemas/Sample"
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
         "400":
@@ -487,7 +487,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/CommitInfo'
+                  $ref: "#/components/schemas/CommitInfo"
                 type: array
           description: The request was successful. The returned value is the list
             of  object versions.
@@ -550,7 +550,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sample'
+                $ref: "#/components/schemas/Sample"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -577,133 +577,27 @@ paths:
 components:
   schemas:
     AtomicSampleSource:
-      example:
-        metadata:
-          attributes:
-            key: "{}"
-      properties:
-        templateId:
-          description: ID of template file.
-          example: GSF000001
-          readOnly: true
-          type: string
-        metadata:
-          $ref: '#/components/schemas/JsonMetadata'
-      type: object
+      $ref: "./schemas/sample/AtomicSampleSource.yaml"
     CommitInfo:
-      example:
-        author: author
-        message: message
-        version: version
-        timestamp: 0
-      properties:
-        author:
-          type: string
-        message:
-          type: string
-        timestamp:
-          format: int64
-          type: integer
-        version:
-          readOnly: true
-          type: string
-      type: object
+      $ref: "./schemas/common/CommitInfo.yaml"
     IntegrationHelper:
-      type: object
+      $ref: "./schemas/common/IntegrationHelper.yaml"
     JsonMetadata:
-      example:
-        attributes:
-          key: "{}"
-      properties:
-        attributes:
-          additionalProperties:
-            properties: {}
-            type: object
-          type:
-          - object
-          - string
-      type: object
+      $ref: "./schemas/common/JsonMetadata.yaml"
     ListResponse:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        meta:
-          pagination:
-            total: 6
-            offset: 1
-            count: 0
-            limit: 5
-      properties:
-        meta:
-          $ref: '#/components/schemas/MetaResponse'
-        data:
-          items:
-            properties: {}
-            type: object
-          type: array
-      type: object
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
-      example:
-        pagination:
-          total: 6
-          offset: 1
-          count: 0
-          limit: 5
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
-      type: object
+      $ref: "./schemas/common/MetaResponse.yaml"
     MetadataContent:
-      type: object
+      $ref: "./schemas/common/MetadataContent.yaml"
     MetadataWithId:
-      example:
-        itemId: itemId
-        metadata: "{}"
-      properties:
-        itemId:
-          readOnly: true
-          type: string
-        metadata:
-          type: object
-      type: object
+      $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
-      example:
-        total: 6
-        offset: 1
-        count: 0
-        limit: 5
-      properties:
-        count:
-          format: int32
-          type: integer
-        total:
-          format: int64
-          type: integer
-        offset:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-      type: object
+      $ref: "./schemas/common/PaginationInfo.yaml"
     Sample:
-      type: object
+      $ref: "./schemas/sample/Sample.yaml"
     SampleSource:
-      example:
-        link: link
-      properties:
-        templateId:
-          description: ID of template file.
-          example: GSF000001
-          readOnly: true
-          type: string
-        link:
-          description: URL of sample file.
-          type: string
-      required:
-      - link
-      type: object
+      $ref: "./schemas/common/SampleSource.yaml"
   securitySchemes:
     Access-token:
       in: header
@@ -713,4 +607,3 @@ components:
       in: header
       name: Genestack-API-Token
       type: apiKey
-x-original-swagger-version: "2.0"

@@ -151,7 +151,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FlowCytometryResponse'
+                $ref: "#/components/schemas/FlowCytometryResponse"
           description: Retrieved Flow Cytometry data.
         "400":
           content: {}
@@ -195,7 +195,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AtomicFlowCytometrySource'
+              $ref: "#/components/schemas/AtomicFlowCytometrySource"
         description: |-
           ## Data
 
@@ -210,7 +210,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FlowCytometryItem'
+                $ref: "#/components/schemas/FlowCytometryItem"
           description: The objects were successfully created. The returned value is
             a list of created objects.
         "400":
@@ -293,7 +293,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetadataContent'
+              $ref: "#/components/schemas/MetadataContent"
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
       responses:
@@ -301,7 +301,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetadataContent'
+                $ref: "#/components/schemas/MetadataContent"
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
         "400":
@@ -347,14 +347,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignalSource'
+              $ref: "#/components/schemas/SignalSource"
         required: false
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RunsResponse'
+                $ref: "#/components/schemas/RunsResponse"
           description: The objects were successfully created. The returned value is
             a list of created objects.
         "400":
@@ -487,9 +487,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is a list of
             objects.
         "400":
@@ -549,9 +549,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/MetadataWithId'
+                $ref: "#/components/schemas/MetadataWithId"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -645,9 +645,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/MetadataWithId'
+                $ref: "#/components/schemas/MetadataWithId"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -686,7 +686,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CurationSource'
+                $ref: "#/components/schemas/CurationSource"
           description: successful operation
         "204":
           content: {}
@@ -723,7 +723,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CurationSource'
+              $ref: "#/components/schemas/CurationSource"
         description: |+
           ## Data
 
@@ -787,9 +787,9 @@ paths:
       responses:
         "200":
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse'
+                $ref: "#/components/schemas/ListResponse"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -850,7 +850,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FlowCytometryItem'
+                $ref: "#/components/schemas/FlowCytometryItem"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -896,7 +896,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetadataContent'
+              $ref: "#/components/schemas/MetadataContent"
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
       responses:
@@ -904,7 +904,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignalRun'
+                $ref: "#/components/schemas/SignalRun"
           description: "The objects was successfully created. The returned value is\
             \ the updated object, along with any warnings."
         "400":
@@ -946,7 +946,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/CommitInfo'
+                  $ref: "#/components/schemas/CommitInfo"
                 type: array
           description: The request was successful. The returned value is the list
             of  object versions.
@@ -1009,7 +1009,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignalRun'
+                $ref: "#/components/schemas/SignalRun"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -1036,243 +1036,35 @@ paths:
 components:
   schemas:
     AtomicFlowCytometrySource:
-      example:
-        cell-population: cell-population
-        metadata:
-          attributes:
-            key: "{}"
-        marker: marker
-        templateId: GSF000001
-        readout-type: readout-type
-        value: 0.8008281904610115
-      properties:
-        templateId:
-          description: ID of template file.
-          example: GSF000001
-          readOnly: true
-          type: string
-        cell-population:
-          type: string
-        marker:
-          type: string
-        readout-type:
-          type: string
-        value:
-          format: double
-          type: number
-        metadata:
-          $ref: '#/components/schemas/JsonMetadata'
-      type: object
+      $ref: "./schemas/flow-cytometry/AtomicFlowCytometrySource.yaml"
     CommitInfo:
-      example:
-        author: author
-        message: message
-        version: version
-        timestamp: 0
-      properties:
-        author:
-          type: string
-        message:
-          type: string
-        timestamp:
-          format: int64
-          type: integer
-        version:
-          readOnly: true
-          type: string
-      type: object
+      $ref: "./schemas/common/CommitInfo.yaml"
     CurationSource:
-      example:
-        curated: true
-      properties:
-        curated:
-          description: Curation status
-          type: boolean
-      type: object
+      $ref: "./schemas/common/CurationSource.yaml"
     FlowCytometryItem:
-      example:
-        itemId: itemId
-        metadata: "{}"
-        expression: 0.8008281904610115
-        marker: marker
-        groupId: groupId
-        cellPopulation: cellPopulation
-        readoutType: readoutType
-        runId: runId
-      properties:
-        itemId:
-          type: string
-        metadata:
-          type: object
-        runId:
-          type: string
-        groupId:
-          type: string
-        readoutType:
-          type: string
-        cellPopulation:
-          type: string
-        marker:
-          type: string
-        expression:
-          type: number
-      type: object
+      $ref: "./schemas/flow-cytometry/FlowCytometryItem.yaml"
     FlowCytometryResponse:
-      example:
-        cursor: cursor
-        data:
-        - itemId: itemId
-          metadata: "{}"
-          expression: 0.8008281904610115
-          marker: marker
-          groupId: groupId
-          cellPopulation: cellPopulation
-          readoutType: readoutType
-          runId: runId
-        - itemId: itemId
-          metadata: "{}"
-          expression: 0.8008281904610115
-          marker: marker
-          groupId: groupId
-          cellPopulation: cellPopulation
-          readoutType: readoutType
-          runId: runId
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/FlowCytometryItem'
-          type: array
-        cursor:
-          type: string
-      type: object
+      $ref: "./schemas/flow-cytometry/FlowCytometryResponse.yaml"
     IntegrationHelper:
-      type: object
+      $ref: "./schemas/common/IntegrationHelper.yaml"
     JsonMetadata:
-      example:
-        attributes:
-          key: "{}"
-      properties:
-        attributes:
-          additionalProperties:
-            properties: {}
-            type: object
-          type:
-            - object
-            - string
-      type: object
+      $ref: "./schemas/common/JsonMetadata.yaml"
     ListResponse:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        meta:
-          pagination:
-            total: 6
-            offset: 1
-            count: 0
-            limit: 5
-      properties:
-        meta:
-          $ref: '#/components/schemas/MetaResponse'
-        data:
-          items:
-            properties: {}
-            type: object
-          type: array
-      type: object
+      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
-      example:
-        pagination:
-          total: 6
-          offset: 1
-          count: 0
-          limit: 5
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
-      type: object
+      $ref: "./schemas/common/MetaResponse.yaml"
     MetadataContent:
-      type: object
+      $ref: "./schemas/common/MetadataContent.yaml"
     MetadataWithId:
-      example:
-        itemId: itemId
-        metadata: "{}"
-      properties:
-        itemId:
-          readOnly: true
-          type: string
-        metadata:
-          type: object
-      type: object
+      $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
-      example:
-        total: 6
-        offset: 1
-        count: 0
-        limit: 5
-      properties:
-        count:
-          format: int32
-          type: integer
-        total:
-          format: int64
-          type: integer
-        offset:
-          format: int32
-          type: integer
-        limit:
-          format: int32
-          type: integer
-      type: object
+      $ref: "./schemas/common/PaginationInfo.yaml"
     RunsResponse:
-      example:
-        experiment: experiment
-        warnings:
-        - warnings
-        - warnings
-        versionChainId: versionChainId
-        runs:
-        - null
-        - null
-      properties:
-        runs:
-          items:
-            $ref: '#/components/schemas/SignalRun'
-          type: array
-        experiment:
-          type: string
-        warnings:
-          items:
-            type: string
-          type: array
-        versionChainId:
-          type: string
-      type: object
+      $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
-      type: object
+      $ref: "./schemas/common/SignalRun.yaml"
     SignalSource:
-      example:
-        link: link
-        metadataLink: metadataLink
-        previousVersion: previousVersion
-      properties:
-        templateId:
-          description: ID of template file.
-          example: GSF000001
-          readOnly: true
-          type: string
-        link:
-          description: URL of the signal file.
-          type: string
-        metadataLink:
-          description: URL of the signal file metadata.
-          type: string
-        previousVersion:
-          description: Accession of matrix group or matrix group version chain.
-          type: string
-      required:
-      - link
-      type: object
+      $ref: "./schemas/common/SignalSource.yaml"
   securitySchemes:
     Access-token:
       in: header
@@ -1282,4 +1074,3 @@ components:
       in: header
       name: Genestack-API-Token
       type: apiKey
-x-original-swagger-version: "2.0"

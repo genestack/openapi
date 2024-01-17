@@ -65,7 +65,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DetachedCollection'
+                $ref: "#/components/schemas/DetachedCollection"
           description: Retrieved detached data.
         "400":
           content: {}
@@ -121,7 +121,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ManagedObject'
+                $ref: "#/components/schemas/ManagedObject"
           description: The deletion of the following files and all linked data has
             started.
         "400":
@@ -159,78 +159,11 @@ paths:
 components:
   schemas:
     DetachedCollection:
-      example:
-        cursor: cursor
-        data:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          genestack:accession: genestack:accession
-          detachedObjectType: SAMPLE_GROUP
-          ownerEmail: ownerEmail
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          genestack:accession: genestack:accession
-          detachedObjectType: SAMPLE_GROUP
-          ownerEmail: ownerEmail
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/DetachedObject'
-          type: array
-        cursor:
-          type: string
-      required:
-      - data
-      type: object
+      $ref: "./schemas/manage-data/DetachedCollection.yaml"
     DetachedObject:
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        genestack:accession: genestack:accession
-        detachedObjectType: SAMPLE_GROUP
-        ownerEmail: ownerEmail
-      properties:
-        genestack:accession:
-          type: string
-        detachedObjectType:
-          enum:
-          - SAMPLE_GROUP
-          - LIBRARY_GROUP
-          - PREPARATION_GROUP
-          - TABULAR_DATA
-          - GENE_VARIANT
-          - FLOW_CYTOMETRY
-          type: string
-        ownerEmail:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-      required:
-      - createdAt
-      - detachedObjectType
-      - genestack:accession
-      - ownerEmail
-      type: object
+      $ref: "./schemas/manage-data/DetachedObject.yaml"
     ManagedObject:
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        genestack:accession: genestack:accession
-        objectType: objectType
-        ownerEmail: ownerEmail
-      properties:
-        genestack:accession:
-          type: string
-        objectType:
-          type: string
-        ownerEmail:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-      required:
-      - createdAt
-      - genestack:accession
-      - objectType
-      - ownerEmail
-      type: object
+      $ref: "./schemas/manage-data/ManagedObject.yaml"
   securitySchemes:
     Access-token:
       in: header
@@ -240,4 +173,3 @@ components:
       in: header
       name: Genestack-API-Token
       type: apiKey
-x-original-swagger-version: "2.0"

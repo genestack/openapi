@@ -1,0 +1,43 @@
+example:
+  application: application
+  createdBy: createdBy
+  endedAt: 6
+  name: name
+  startedAt: 0
+  id: id
+  status: CREATED
+properties:
+  id:
+    readOnly: true
+    type: string
+  name:
+    readOnly: true
+    type: string
+  status:
+    enum:
+    - CREATED
+    - QUEUEING
+    - QUEUED
+    - STARTING
+    - RUNNING
+    - DONE
+    - FAILED
+    - BLOCKED_BY_DEPENDENCY_FAILURE
+    - KILLED
+    readOnly: true
+    type: string
+  application:
+    readOnly: true
+    type: string
+  startedAt:
+    format: int64
+    readOnly: true
+    type: integer
+  endedAt:
+    format: int64
+    readOnly: true
+    type: integer
+  createdBy:
+    readOnly: true
+    type: string
+type: object

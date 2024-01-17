@@ -54,20 +54,20 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/FilterGroupsResponse'
+                $ref: "#/components/schemas/FilterGroupsResponse"
           description: The request was successful.
         "400":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: Incorrect syntax in the request. See the error message for
             details.
         "401":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
@@ -75,7 +75,7 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
@@ -96,28 +96,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Group'
+              $ref: "#/components/schemas/Group"
         required: true
       responses:
         "201":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/GroupResponse'
+                $ref: "#/components/schemas/GroupResponse"
           description: The operation is successful. The response body contains the
             representation of the newly created group.
         "400":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: "The object cannot be created, the supplied data or metadata\
             \ are incorrect. See the error message for details."
         "401":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
@@ -125,14 +125,14 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: "The object cannot be created, data conflict. See the error\
             \ message for details."
         "500":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
@@ -169,13 +169,13 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: The supplied group ID is invalid.
         "401":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
@@ -183,20 +183,20 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: Operation is not permitted. The "Group admin" role in the group
             or the "Manage groups" permission is required.
         "404":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: There are no groups with the specified id.
         "500":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
@@ -232,19 +232,19 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/GroupResponse'
+                $ref: "#/components/schemas/GroupResponse"
           description: The request was successful.
         "400":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: The supplied group ID is invalid.
         "401":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
@@ -252,13 +252,13 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: There are no available groups with the specified id.
         "500":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
@@ -291,7 +291,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GroupPatch'
+              $ref: "#/components/schemas/GroupPatch"
         required: true
       responses:
         "204":
@@ -301,14 +301,14 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: "The object cannot be updated, the supplied data or metadata\
             \ are incorrect. See the error message for details."
         "401":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
@@ -316,20 +316,20 @@ paths:
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: Operation is not permitted. The "Group admin" role in the group
             or the "Manage groups" permission is required.
         "404":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/SCIMErrorResponse'
+                $ref: "#/components/schemas/SCIMErrorResponse"
           description: There are no groups with the specified id.
         "500":
           content:
             application/scim+json:
               schema:
-                $ref: '#/components/schemas/BaseErrorResponse'
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to support@genestack.com,\
             \ including the error details."
@@ -343,200 +343,25 @@ paths:
 components:
   schemas:
     Group:
-      example:
-        displayName: displayName
-        schemas:
-        - urn:ietf:params:scim:schemas:core:2.0:Group
-        - urn:ietf:params:scim:schemas:core:2.0:Group
-        members:
-        - display: display
-          value: value
-          $ref: https://openapi-generator.tech
-        - display: display
-          value: value
-          $ref: https://openapi-generator.tech
-        externalId: externalId
-        id: id
-      properties:
-        externalId:
-          description: External unique resource id
-          type: string
-        id:
-          description: Unique resource id
-          type: string
-        schemas:
-          items:
-            enum:
-            - urn:ietf:params:scim:schemas:core:2.0:Group
-            type: string
-          type: array
-        members:
-          items:
-            $ref: '#/components/schemas/Member'
-          type: array
-        displayName:
-          type: string
-      required:
-      - displayName
-      type: object
+      $ref: "./schemas/scim/Group.yaml"
     Member:
-      example:
-        display: display
-        value: value
-        $ref: https://openapi-generator.tech
-      properties:
-        value:
-          type: string
-        display:
-          type: string
-        $ref:
-          description: The URI of the member resource
-          format: uri
-          type: string
-      required:
-      - $ref
-      - value
-      type: object
+      $ref: "./schemas/scim/Member.yaml"
     GroupPatch:
-      example:
-        schemas:
-        - urn:ietf:params:scim:api:messages:2.0:PatchOp
-        - urn:ietf:params:scim:api:messages:2.0:PatchOp
-        Operations:
-        - op: add
-          path: path
-          value: "{}"
-        - op: add
-          path: path
-          value: "{}"
-      properties:
-        Operations:
-          description: Patch operations list
-          items:
-            $ref: '#/components/schemas/PatchOperation'
-          type: array
-        schemas:
-          items:
-            enum:
-            - urn:ietf:params:scim:api:messages:2.0:PatchOp
-            type: string
-          type: array
-      required:
-      - Operations
-      - schemas
-      type: object
+      $ref: "./schemas/scim/GroupPatch.yaml"
     PatchOperation:
-      example:
-        op: add
-        path: path
-        value: "{}"
-      properties:
-        op:
-          enum:
-          - add
-          - replace
-          - remove
-          type: string
-        path:
-          type: string
-        value:
-          description: Corresponding 'value' of that field specified by 'path'
-          properties: {}
-          type: object
-      required:
-      - op
-      type: object
+      $ref: "./schemas/scim/PatchOperation.yaml"
     FilterGroupsResponse:
-      properties:
-        Resources:
-          description: List of groups
-          items:
-            $ref: '#/components/schemas/GroupResponse'
-          type: array
-        itemsPerPage:
-          format: int64
-          type: integer
-        schemas:
-          items:
-            enum:
-            - urn:ietf:params:scim:api:messages:2.0:ListResponse
-            type: string
-          type: array
-        startIndex:
-          format: int64
-          type: integer
-        totalResults:
-          format: int64
-          type: integer
-      type: object
+      $ref: "./schemas/scim/FilterGroupsResponse.yaml"
     GroupResponse:
-      allOf:
-      - $ref: '#/components/schemas/Group'
-      - properties:
-          meta:
-            $ref: '#/components/schemas/Meta'
-        type: object
+      $ref: "./schemas/scim/GroupResponse.yaml"
     Meta:
-      description: resource metadata
-      properties:
-        created:
-          format: date-time
-          type: string
-        lastModified:
-          format: date-time
-          type: string
-        resourceType:
-          enum:
-          - User
-          - Group
-          type: string
-      type: object
+      $ref: "./schemas/scim/Meta.yaml"
     SCIMErrorResponse:
-      properties:
-        detail:
-          description: Detailed error message
-          type: string
-        schemas:
-          items:
-            enum:
-            - urn:ietf:params:scim:api:messages:2.0:Error
-            type: string
-          type: array
-        scimType:
-          description: Bad request type when status code is 400
-          enum:
-          - uniqueness
-          - tooMany
-          - mutability
-          - sensitive
-          - invalidSyntax
-          - invalidFilter
-          - invalidPath
-          - invalidValue
-          - invalidVers
-          - noTarget
-          type: string
-        status:
-          description: "Same as HTTP status code, e.g. 400, 403, etc."
-          type: string
-      required:
-      - status
-      type: object
+      $ref: "./schemas/scim/SCIMErrorResponse.yaml"
     BaseErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorMessage'
-      required:
-      - error
-      type: object
+      $ref: "./schemas/scim/BaseErrorResponse.yaml"
     ErrorMessage:
-      properties:
-        message:
-          description: Detailed error message
-          type: string
-      required:
-      - message
-      type: object
+      $ref: "./schemas/scim/ErrorMessage.yaml"
   securitySchemes:
     Access-token:
       in: header
@@ -546,4 +371,3 @@ components:
       in: header
       name: Genestack-API-Token
       type: apiKey
-x-original-swagger-version: "2.0"

@@ -4,10 +4,7 @@ VERSION 0.7
 swagger-ui:
     FROM swaggerapi/swagger-ui:v5.11.0
 
-    # TODO: probably we have to move to fs after with fix client-generator
-    COPY v1/index.html /usr/share/nginx/html/helper/index.html
-    COPY v1/*.png /usr/share/nginx/html/helper
-    COPY v1/*.yaml /usr/share/nginx/html/yaml/
+    COPY v1 /usr/share/nginx/html/yaml/
     COPY fs /
 
     RUN apk add bash --no-cache && \
