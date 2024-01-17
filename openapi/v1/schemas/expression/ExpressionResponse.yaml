@@ -28,8 +28,12 @@ example:
 properties:
   data:
     items:
-      $ref: "ExpressionItem.yaml"
+      $ref: "#/components/schemas/ExpressionItem"
     type: array
   cursor:
     type: string
 type: object
+components:
+  schemas:
+    ExpressionItem:
+      $ref: "./ExpressionItem.yaml"

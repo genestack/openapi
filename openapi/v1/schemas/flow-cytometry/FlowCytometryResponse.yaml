@@ -20,8 +20,12 @@ example:
 properties:
   data:
     items:
-      $ref: "FlowCytometryItem.yaml"
+      $ref: "#/components/schemas/FlowCytometryItem"
     type: array
   cursor:
     type: string
 type: object
+components:
+  schemas:
+    FlowCytometryItem:
+      $ref: "./FlowCytometryItem.yaml"
