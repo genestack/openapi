@@ -42,7 +42,9 @@ properties:
       patternProperties:
         "^.*$":
           format: double
-          type: number
+          type:
+            - number
+            - string
     - type: "null"
     type: object
   description:
