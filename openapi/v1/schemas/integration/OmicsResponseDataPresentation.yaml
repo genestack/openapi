@@ -1,7 +1,7 @@
 properties:
   data:
     items:
-      $ref: "DataPresentation.yaml"
+      $ref: "#/components/schemas/DataPresentation"
     type: array
   resultsExhausted:
     type: boolean
@@ -12,3 +12,7 @@ properties:
   cursor:
     type: string
 type: object
+components:
+  schemas:
+    DataPresentation:
+      $ref: "./DataPresentation.yaml"

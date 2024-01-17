@@ -17,8 +17,14 @@ properties:
     - type: SELECT
       filterOptionId: TUVUQURBVEFfU3R1ZHlfU291cmNlOlRlc3QgR0VP
     items:
-      $ref: "AppliedFilter.yaml"
+      $ref: "#/components/schemas/AppliedFilter"
     type: array
   page:
-    $ref: "PageRequest.yaml"
+    $ref: "#/components/schemas/PageRequest"
 type: object
+components:
+  schemas:
+    AppliedFilter:
+      $ref: "./AppliedFilter.yaml"
+    PageRequest:
+      $ref: "./PageRequest.yaml"

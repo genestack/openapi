@@ -43,9 +43,15 @@ properties:
     format: int64
     type: integer
   pageRequest:
-    $ref: "PageRequest.yaml"
+    $ref: "#/components/schemas/PageRequest"
   content:
     items:
-      $ref: "StudySearchInfo.yaml"
+      $ref: "#/components/schemas/StudySearchInfo"
     type: array
 type: object
+components:
+  schemas:
+    PageRequest:
+      $ref: "./PageRequest.yaml"
+    StudySearchInfo:
+      $ref: "./StudySearchInfo.yaml"

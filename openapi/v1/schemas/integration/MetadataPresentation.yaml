@@ -8,7 +8,13 @@ description: |-
   - all other attributes defined in the linked template (if any)
 properties:
   metadata:
-    $ref: "IMetadata.yaml"
+    $ref: "#/components/schemas/IMetadata"
   relationships:
-    $ref: "Relationships.yaml"
+    $ref: "#/components/schemas/Relationships"
 type: object
+components:
+  schemas:
+    IMetadata:
+      $ref: "./IMetadata.yaml"
+    Relationships:
+      $ref: "./Relationships.yaml"

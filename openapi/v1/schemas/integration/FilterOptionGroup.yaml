@@ -17,6 +17,10 @@ properties:
     type: boolean
   options:
     items:
-      $ref: "FilterOption.yaml"
+      $ref: "#/components/schemas/FilterOption"
     type: array
 type: object
+components:
+  schemas:
+    FilterOption:
+      $ref: "./FilterOption.yaml"

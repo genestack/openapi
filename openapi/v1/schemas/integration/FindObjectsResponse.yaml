@@ -64,9 +64,15 @@ example:
       hasGenomic: true
 properties:
   objectsPage:
-    $ref: "ObjectsPage.yaml"
+    $ref: "#/components/schemas/ObjectsPage"
   filterOptionGroups:
     items:
-      $ref: "FilterOptionGroup.yaml"
+      $ref: "#/components/schemas/FilterOptionGroup"
     type: array
 type: object
+components:
+  schemas:
+    ObjectsPage:
+      $ref: "./ObjectsPage.yaml"
+    FilterOptionGroup:
+      $ref: "./FilterOptionGroup.yaml"
