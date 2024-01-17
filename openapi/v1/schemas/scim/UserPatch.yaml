@@ -29,4 +29,3 @@ components:
   schemas:
     PatchOperation:
       $ref: "./PatchOperation.yaml"
-
