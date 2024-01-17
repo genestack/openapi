@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.openapi.generator) apply true
 }
 
-val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION")
+val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
 val openApiSpecPath = "$rootDir/openapi/v1"
 val fileNameList = KotlinPath(openApiSpecPath).listDirectoryEntries("*.yaml")
 val tasksList = fileNameList
