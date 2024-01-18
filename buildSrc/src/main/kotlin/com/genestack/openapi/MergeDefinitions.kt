@@ -20,10 +20,14 @@ abstract class MergeDefinitions : DefaultTask() {
 
     @TaskAction
     fun merge() {
-        println("inputFiles:$inputFiles")
-        println("outputFile:$outputFile")
+        val yamlMerger = YamlMerger()
         val destinationFile = outputFile.get().asFile
         destinationFile.parentFile.mkdirs()
+        destinationFile.delete()
         destinationFile.writeText("Hello!")
+
+//        yamlMerger.mergeYamlFiles(outputFile, *inputFiles)
+//        println("YAML files merged successfully.")
+
     }
 }
