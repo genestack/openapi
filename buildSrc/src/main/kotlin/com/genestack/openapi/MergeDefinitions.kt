@@ -27,14 +27,13 @@ abstract class MergeDefinitions : DefaultTask() {
     @TaskAction
     fun merge() {
         val objectMapper = ObjectMapper(YAMLFactory())
-        val outputFileNew = outputFile.get().asFile
-        val inputFilesNew = inputFiles.get().map { it.asFile }
 
-        val mergedNode = inputFilesNew
+        val mergedNode = inputFiles
+            .get().map { it.asFile }
             .map { objectMapper.readTree(it) }
             .reduce { acc, node -> deepMerge(objectMapper, acc, node) }
 
-        objectMapper.writeValue(outputFileNew, mergedNode)
+        objectMapper.writeValue(outputFile.get().asFile, mergedNode)
 
     }
 
