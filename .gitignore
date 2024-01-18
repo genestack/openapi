@@ -2,6 +2,7 @@
 .idea
 
 generated
+openapi/v1/merged.yaml
 
 # Maven stuff
 .flattened-pom.xml
