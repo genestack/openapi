@@ -44,10 +44,14 @@ properties:
       type: string
   info:
     type: object
-    properties:
-      type: array
+    patternProperties:
+      "^.*$":
+        type: array
+        items:
+          type: string
   genotype:
     type: object
-    properties:
-      type: string
+    patternProperties:
+      "^.*$":
+        type: string
 type: object
