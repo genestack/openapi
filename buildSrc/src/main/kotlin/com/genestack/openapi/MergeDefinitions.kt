@@ -27,11 +27,7 @@ abstract class MergeDefinitions : DefaultTask() {
     @TaskAction
     fun merge() {
         val objectMapper = ObjectMapper(YAMLFactory())
-
         val outputFileNew = outputFile.get().asFile
-        outputFileNew.parentFile.mkdirs()
-        outputFileNew.delete()
-
         val inputFilesNew = inputFiles.get().map { it.asFile }
 
         val mergedNode = inputFilesNew
