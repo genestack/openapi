@@ -9,11 +9,11 @@ plugins {
 }
 
 val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
-val openapiDefinitionsDirectory = "$rootDir/openapi/v1"
-val openapiDefinitionsMergedFileName = "merged.yaml"
-val fileNameList = KotlinPath(openapiDefinitionsDirectory)
+val sourceDirectory = "$rootDir/openapi/v1"
+val mergedFileName = "merged.yaml"
+val fileNameList = KotlinPath(sourceDirectory)
     .listDirectoryEntries("*.yaml")
-    .filterNot { it.name == openapiDefinitionsMergedFileName }
+    .filterNot { it.name == mergedFileName }
 val tasksList = fileNameList
         .map { it.name.replace(".yaml", "") }
 
@@ -32,15 +32,15 @@ fun String.kebabToCamelCase(): String {
     return this.replace(pattern) { it.groupValues[2].uppercase() }
 }
 
-val openapiDefinitionsSourceFileList = fileNameList.map {
-    layout.projectDirectory.file("${openapiDefinitionsDirectory}/${it}")
+val sourceFileList = fileNameList.map {
+    layout.projectDirectory.file("${sourceDirectory}/${it}")
 }
 
 tasks {
     for (task in tasksList) {
         register(task + "Python", GenerateTask::class) {
             generatorName.set("python")
-            inputSpec.set("${openapiDefinitionsDirectory}/${task}.yaml")
+            inputSpec.set("${sourceDirectory}/${task}.yaml")
             outputDir.set("$rootDir/generated/python/${task.camelToKebabCase()}")
             packageName.set(task.camelToSnakeCase())
             gitUserId.set("genestack")
@@ -52,7 +52,7 @@ tasks {
         }
         register(task + "R", GenerateTask::class) {
             generatorName.set("r")
-            inputSpec.set("${openapiDefinitionsDirectory}/${task}.yaml")
+            inputSpec.set("${sourceDirectory}/${task}.yaml")
             outputDir.set("$rootDir/generated/r/${task.kebabToCamelCase()}")
             packageName.set(task.kebabToCamelCase())
             gitUserId.set("genestack")
@@ -65,8 +65,8 @@ tasks {
     }
 
     register("mergeDefinitions", MergeDefinitions::class) {
-        inputFiles = openapiDefinitionsSourceFileList
-        outputFile = layout.projectDirectory.file("${openapiDefinitionsDirectory}/${openapiDefinitionsMergedFileName}")
+        inputFiles = sourceFileList
+        outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
     }
 
     val generateAllApiClients by registering(GradleBuild::class) {
