@@ -39,7 +39,7 @@ build:
     ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
     RUN ./gradlew \
             --no-daemon \
-            generateAllApiClients
+            generateAllApiSdks
 
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated

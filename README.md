@@ -6,7 +6,7 @@ This directory contains source files to generate the following artifacts:
 ## Building artifacts
 
 ```bash
-./gradlew generateAllApiClients
+./gradlew generateAllApiSdks
 ```
 
 Resulting artifacts are generated in the `generated` directory at the

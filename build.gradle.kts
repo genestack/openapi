@@ -33,7 +33,7 @@ fun String.kebabToCamelCase(): String {
 }
 
 val sourceFileList = fileNameList.map {
-    layout.projectDirectory.file("${sourceDirectory}/${it}")
+    layout.projectDirectory.file("${sourceDirectory}/${it.name}")
 }
 
 tasks {
@@ -64,13 +64,26 @@ tasks {
         }
     }
 
+    val generateAllApiSdks by registering(GradleBuild::class) {
+        file("$rootDir/generated").deleteRecursively()
+        tasks = tasksList.flatMap { listOf(it + "Python", it + "R") }
+    }
+
     register("mergeDefinitions", MergeDefinitions::class) {
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
     }
 
-    val generateAllApiClients by registering(GradleBuild::class) {
-        file("$rootDir/generated").deleteRecursively()
-        tasks = tasksList.flatMap { listOf(it + "Python", it + "R") }
+    register("generateMergedApiSdks", GenerateTask::class) {
+        generatorName.set("python")
+        inputSpec.set("${sourceDirectory}/merged.yaml")
+        outputDir.set("$rootDir/generated/python/odm-api-sdk")
+        packageName.set("odm_api_sdk")
+        gitUserId.set("genestack")
+        gitRepoId.set("odm-openapi")
+        configOptions = mapOf(
+            "packageVersion" to openApiVersion
+        )
+        skipValidateSpec = true
     }
 }

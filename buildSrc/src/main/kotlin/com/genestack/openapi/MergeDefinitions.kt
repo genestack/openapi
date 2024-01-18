@@ -9,6 +9,12 @@ import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.InputFiles
 
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.node.ObjectNode
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import java.io.File
+
 
 abstract class MergeDefinitions : DefaultTask() {
 
@@ -20,14 +26,35 @@ abstract class MergeDefinitions : DefaultTask() {
 
     @TaskAction
     fun merge() {
-        val yamlMerger = YamlMerger()
-        val destinationFile = outputFile.get().asFile
-        destinationFile.parentFile.mkdirs()
-        destinationFile.delete()
-        destinationFile.writeText("Hello!")
+        val objectMapper = ObjectMapper(YAMLFactory())
 
-//        yamlMerger.mergeYamlFiles(outputFile, *inputFiles)
-//        println("YAML files merged successfully.")
+        val outputFileNew = outputFile.get().asFile
+        outputFileNew.parentFile.mkdirs()
+        outputFileNew.delete()
 
+        val inputFilesNew = inputFiles.get().map { it.asFile }
+
+        val mergedNode = inputFilesNew
+            .map { objectMapper.readTree(it) }
+            .reduce { acc, node -> deepMerge(objectMapper, acc, node) }
+
+        objectMapper.writeValue(outputFileNew, mergedNode)
+
+    }
+
+    private fun deepMerge(objectMapper: ObjectMapper, target: JsonNode, source: JsonNode): JsonNode {
+        if (target is ObjectNode && source is ObjectNode) {
+            source.fieldNames().forEach { fieldName ->
+                val targetNode = target.get(fieldName)
+                val sourceNode = source.get(fieldName)
+
+                if (targetNode is ObjectNode && sourceNode is ObjectNode) {
+                    target.set(fieldName, deepMerge(objectMapper, targetNode, sourceNode))
+                } else {
+                    target.set(fieldName, sourceNode)
+                }
+            }
+        }
+        return target
     }
 }
