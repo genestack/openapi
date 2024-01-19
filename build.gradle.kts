@@ -65,17 +65,26 @@ tasks {
         }
     }
 
-    val generateAllApiSdks by registering(GradleBuild::class) {
-        file("$rootDir/generated").deleteRecursively()
-        tasks = tasksList.flatMap { listOf(it + "Python", it + "R") }
-    }
-
     register("mergeDefinitions", MergeDefinitions::class) {
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
     }
 
-    register("generateMergedApiSdks", GenerateTask::class) {
+    register("generateMergedRSdk", GenerateTask::class) {
+        dependsOn("mergeDefinitions")
+        generatorName.set("r")
+        inputSpec.set("${sourceDirectory}/merged.yaml")
+        outputDir.set("$rootDir/generated/r/odmApiSdk")
+        packageName.set("odmApiSdk")
+        gitUserId.set("genestack")
+        gitRepoId.set("odm-openapi")
+        configOptions = mapOf(
+            "packageVersion" to openApiVersion
+        )
+        skipValidateSpec = true
+    }
+
+    register("generateMergedPythonSdk", GenerateTask::class) {
         dependsOn("mergeDefinitions")
         generatorName.set("python")
         inputSpec.set("${sourceDirectory}/merged.yaml")
@@ -87,5 +96,12 @@ tasks {
             "packageVersion" to openApiVersion
         )
         skipValidateSpec = true
+    }
+
+    val generateAllApiSdks by registering(GradleBuild::class) {
+        tasks = tasksList
+            .flatMap { listOf(it + "Python", it + "R") }
+            .plus("generateMergedRSdk").
+            plus("generateMergedPythonSdk")
     }
 }
