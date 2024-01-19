@@ -100,7 +100,7 @@ tasks {
     val generateAllApiSdks by registering(GradleBuild::class) {
         tasks = tasksList
             .flatMap { listOf(it + "Python", it + "R") }
-            .plus("generateMergedRSdk").
-            plus("generateMergedPythonSdk")
+            .plus("generateMergedRSdk")
+            .plus("generateMergedPythonSdk")
     }
 }
