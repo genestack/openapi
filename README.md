@@ -2,6 +2,7 @@
 
 This directory contains source files to generate the following artifacts:
 - R and Python API SDK
+- TODO: Postman collection
 
 ## Building artifacts
 
