@@ -6,6 +6,7 @@ import kotlin.io.path.Path as KotlinPath
 
 plugins {
     alias(libs.plugins.openapi.generator) apply true
+    `merge-definitions`
 }
 
 val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
@@ -75,6 +76,7 @@ tasks {
     }
 
     register("generateMergedApiSdks", GenerateTask::class) {
+        dependsOn("mergeDefinitions")
         generatorName.set("python")
         inputSpec.set("${sourceDirectory}/merged.yaml")
         outputDir.set("$rootDir/generated/python/odm-api-sdk")
