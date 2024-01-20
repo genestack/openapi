@@ -16,6 +16,7 @@ ARG --global --required R_REGISTRY_GROUP
 ARG --global --required R_REGISTRY_RELEASES
 ARG --global --required R_REGISTRY_SNAPSHOTS
 ARG --global --required NEXUS_REPOSITORY_URL
+ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 deps:
     ARG --required BASE_IMAGES_VERSION
