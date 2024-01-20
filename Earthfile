@@ -82,3 +82,4 @@ main:
     BUILD +swagger-image
     BUILD +r-api-sdk
     BUILD +python-api-sdk
+    BUILD +openapi-definition
