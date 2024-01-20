@@ -40,15 +40,6 @@ build:
     RUN ./gradlew \
             generateAllApiSdks \
             --no-daemon
-    ARG OPENAPI_ARCHIVE=definition-${ODM_OPENAPI_VERSION}.tar.gz
-    RUN --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            tar cvf ${OPENAPI_ARCHIVE} openapi/v1 && \
-            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
-                -H 'Content-Type: application/gzip' \
-                 --upload-file ${OPENAPI_ARCHIVE} \
-                 ${RAW_REGISTRY_SNAPSHOTS}/openapi/${OPENAPI_ARCHIVE}
 
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated
@@ -67,6 +58,18 @@ python-api-sdk:
         --secret NEXUS_PASSWORD \
             pypi-login.sh && \
             scripts/push_generated_python.sh
+
+openapi-definition:
+    FROM +build
+    ARG OPENAPI_ARCHIVE=definition-${ODM_OPENAPI_VERSION}.tar.gz
+    RUN --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            tar cvf ${OPENAPI_ARCHIVE} openapi/v1 && \
+            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
+                -H 'Content-Type: application/gzip' \
+                 --upload-file ${OPENAPI_ARCHIVE} \
+                 ${RAW_REGISTRY_SNAPSHOTS}/openapi/${OPENAPI_ARCHIVE}
 
 swagger-image:
     FROM openapi+swagger-ui
