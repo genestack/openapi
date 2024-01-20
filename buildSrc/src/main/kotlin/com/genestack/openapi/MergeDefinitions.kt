@@ -29,25 +29,8 @@ abstract class MergeDefinitions : DefaultTask() {
         val mergedNode = inputFiles
             .get().map { it.asFile }
             .map { objectMapper.readTree(it) }
-            .reduce { acc, node -> deepMerge(objectMapper, acc, node) }
-
+            .reduce { acc, node -> objectMapper.updateValue(acc, node) }
         objectMapper.writeValue(outputFile.get().asFile, mergedNode)
 
-    }
-
-    private fun deepMerge(objectMapper: ObjectMapper, target: JsonNode, source: JsonNode): JsonNode {
-        if (target is ObjectNode && source is ObjectNode) {
-            source.fieldNames().forEach { fieldName ->
-                val targetNode = target.get(fieldName)
-                val sourceNode = source.get(fieldName)
-
-                if (targetNode is ObjectNode && sourceNode is ObjectNode) {
-                    target.set(fieldName, deepMerge(objectMapper, targetNode, sourceNode))
-                } else {
-                    target.set(fieldName, sourceNode)
-                }
-            }
-        }
-        return target
     }
 }
