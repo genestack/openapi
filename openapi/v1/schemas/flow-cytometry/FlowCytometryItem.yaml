@@ -1,6 +1,6 @@
 example:
   itemId: itemId
-  metadata: "{}"
+  metadata: {}
   expression: 0.8008281904610115
   marker: marker
   groupId: groupId

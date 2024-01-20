@@ -2,7 +2,7 @@ example:
   cell-population: cell-population
   metadata:
     attributes:
-      key: "{}"
+      key: {}
   marker: marker
   templateId: GSF000001
   readout-type: readout-type

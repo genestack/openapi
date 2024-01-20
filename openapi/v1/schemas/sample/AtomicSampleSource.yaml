@@ -1,7 +1,7 @@
 example:
   metadata:
     attributes:
-      key: "{}"
+      key: {}
 properties:
   templateId:
     description: ID of template file.

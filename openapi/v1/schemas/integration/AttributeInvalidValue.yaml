@@ -1,6 +1,6 @@
 example:
   count: 0
-  value: "{}"
+  value: {}
   errors:
   - errorType: VALUE_NOT_SET
     errorMessage: errorMessage

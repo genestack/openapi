@@ -1,6 +1,6 @@
 example:
   attributes:
-    key: "{}"
+    key: {}
 properties:
   attributes:
     additionalProperties:
