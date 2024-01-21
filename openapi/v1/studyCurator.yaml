@@ -38,7 +38,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all study objects.
-      operationId: searchStudies
+      operationId: searchStudiesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -165,7 +165,7 @@ paths:
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          ## File sources
          * Supported external sources (links): `http`/`https`/`ftp`
-      operationId: addStudy
+      operationId: addStudyAsCurator
       requestBody:
         content:
           application/json:
@@ -202,7 +202,7 @@ paths:
       x-codegen-request-body-name: source
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}:
     delete:
-      operationId: deleteStudy
+      operationId: deleteStudyAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -238,7 +238,7 @@ paths:
       tags:
       - Study SPoT as Curator
     get:
-      operationId: getStudy
+      operationId: getStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -307,7 +307,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateStudy
+      operationId: updateStudyAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -355,7 +355,7 @@ paths:
       x-codegen-request-body-name: body
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions:
     get:
-      operationId: getStudyVersions
+      operationId: getStudyVersionsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -391,7 +391,7 @@ paths:
       - Study SPoT as Curator
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions/{version}:
     get:
-      operationId: getStudyByVersion
+      operationId: getStudyByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
