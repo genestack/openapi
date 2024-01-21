@@ -38,7 +38,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchLibraries
+      operationId: searchLibrariesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -172,7 +172,7 @@ paths:
 
         ## File sources
         * Supported external sources (links): `http/https/ftp`
-      operationId: addLibraries
+      operationId: addLibrariesAsCurator
       requestBody:
         content:
           application/json:
@@ -211,7 +211,7 @@ paths:
       x-codegen-request-body-name: source
   /frontend/rs/genestack/libraryCurator/default-released/libraries/by/group/{id}:
     get:
-      operationId: getLibrariesByGroup
+      operationId: getLibrariesByGroupAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -288,7 +288,7 @@ paths:
       - Library SPoT as Curator
   /frontend/rs/genestack/libraryCurator/default-released/libraries/group/{id}:
     delete:
-      operationId: deleteLibraryGroup
+      operationId: deleteLibraryGroupAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -324,7 +324,7 @@ paths:
       - Library SPoT as Curator
   /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}:
     delete:
-      operationId: deleteLibrary
+      operationId: deleteLibraryAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -359,7 +359,7 @@ paths:
       tags:
       - Library SPoT as Curator
     get:
-      operationId: getLibrary
+      operationId: getLibraryAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -428,7 +428,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateLibrary
+      operationId: updateLibraryAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -476,7 +476,7 @@ paths:
       x-codegen-request-body-name: body
   /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions:
     get:
-      operationId: getLibraryVersions
+      operationId: getLibraryVersionsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -512,7 +512,7 @@ paths:
       - Library SPoT as Curator
   /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions/{version}:
     get:
-      operationId: getLibraryByVersion
+      operationId: getLibraryByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.

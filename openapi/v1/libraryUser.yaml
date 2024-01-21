@@ -39,7 +39,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchLibraries
+      operationId: searchLibrariesAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -155,7 +155,7 @@ paths:
       - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/by/group/{id}:
     get:
-      operationId: getLibrariesByGroup
+      operationId: getLibrariesByGroupAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -232,7 +232,7 @@ paths:
       - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}:
     get:
-      operationId: getLibrary
+      operationId: getLibraryAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -293,7 +293,7 @@ paths:
       - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions:
     get:
-      operationId: getLibraryVersions
+      operationId: getLibraryVersionsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -329,7 +329,7 @@ paths:
       - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions/{version}:
     get:
-      operationId: getLibraryByVersion
+      operationId: getLibraryByVersionAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
