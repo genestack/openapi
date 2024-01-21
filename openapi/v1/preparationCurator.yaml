@@ -38,7 +38,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchPreparations
+      operationId: searchPreparationsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -173,7 +173,7 @@ paths:
 
         ## File sources
         * Supported external sources (links): `http/https/ftp`
-      operationId: addPreparations
+      operationId: addPreparationsAsCurator
       requestBody:
         content:
           application/json:
@@ -212,7 +212,7 @@ paths:
       x-codegen-request-body-name: source
   /frontend/rs/genestack/preparationCurator/default-released/preparations/by/group/{id}:
     get:
-      operationId: getPreparationsByGroup
+      operationId: getPreparationsByGroupAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -289,7 +289,7 @@ paths:
       - Preparation SPoT as Curator
   /frontend/rs/genestack/preparationCurator/default-released/preparations/group/{id}:
     delete:
-      operationId: deletePreparationGroup
+      operationId: deletePreparationGroupAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -325,7 +325,7 @@ paths:
       - Preparation SPoT as Curator
   /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}:
     delete:
-      operationId: deletePreparation
+      operationId: deletePreparationAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -360,7 +360,7 @@ paths:
       tags:
       - Preparation SPoT as Curator
     get:
-      operationId: getPreparation
+      operationId: getPreparationAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -429,7 +429,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updatePreparation
+      operationId: updatePreparationAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -477,7 +477,7 @@ paths:
       x-codegen-request-body-name: body
   /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions:
     get:
-      operationId: getPreparationVersions
+      operationId: getPreparationVersionsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -513,7 +513,7 @@ paths:
       - Preparation SPoT as Curator
   /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions/{version}:
     get:
-      operationId: getPreparationByVersion
+      operationId: getPreparationByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
