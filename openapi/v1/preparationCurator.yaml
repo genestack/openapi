@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Preparation SPoT
+- name: Preparation SPoT as Curator
 paths:
   /frontend/rs/genestack/preparationCurator/default-released/preparations:
     get:
@@ -152,7 +152,7 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for preparation metadata objects
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
     post:
       description: |-
         Preparations metadata import
@@ -208,7 +208,7 @@ paths:
       - Genestack-API-Token: []
       summary: Add new preparation object
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/preparationCurator/default-released/preparations/by/group/{id}:
     get:
@@ -286,7 +286,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve preparations related to the given group
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
   /frontend/rs/genestack/preparationCurator/default-released/preparations/group/{id}:
     delete:
       operationId: deletePreparationGroup
@@ -322,7 +322,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a preparation group with all related preparation objects
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
   /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}:
     delete:
       operationId: deletePreparation
@@ -358,7 +358,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a preparation object
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
     get:
       operationId: getPreparation
       parameters:
@@ -418,7 +418,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single preparation object by ID (accession)
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -473,7 +473,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update a preparation object
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions:
     get:
@@ -510,7 +510,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
   /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions/{version}:
     get:
       operationId: getPreparationByVersion
@@ -577,7 +577,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single preparation object by ID (accession)
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as Curator
 components:
   schemas:
     CommitInfo:

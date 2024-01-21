@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Flow Cytometry SPoT
+- name: Flow Cytometry SPoT as Curator
 paths:
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry:
     get:
@@ -174,7 +174,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve multiple flow cytometry data and metadata objects
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic:
     post:
       description: |-
@@ -233,7 +233,7 @@ paths:
       summary: Create a single new object from a given data file with optional supplied
         metadata.
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic/{id}:
     delete:
@@ -270,7 +270,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -325,7 +325,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/facs:
     post:
@@ -377,7 +377,7 @@ paths:
       summary: Create multiple new objects from a multi-row data file with optional
         supplied metadata
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group:
     get:
@@ -513,7 +513,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve groups that match a query
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/by/run/{id}:
     get:
       operationId: getGroupByRun
@@ -574,7 +574,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by run ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}:
     delete:
       operationId: deleteGroup
@@ -610,7 +610,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
     get:
       operationId: getGroup
       parameters:
@@ -670,7 +670,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}/curation:
     get:
       operationId: getGroupCurationStatus
@@ -709,7 +709,7 @@ paths:
       - Genestack-API-Token: []
       summary: Get curation status of a group by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
     patch:
       operationId: updateGroup
       parameters:
@@ -753,7 +753,7 @@ paths:
       - Genestack-API-Token: []
       summary: Set curation status of a group by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/runs/by/group/{id}:
     get:
@@ -812,7 +812,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve run objects related to the given group
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}:
     get:
       operationId: getFlowCytometry
@@ -873,7 +873,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single sample flow cytometry by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -928,7 +928,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions:
     get:
@@ -965,7 +965,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions/{version}:
     get:
       operationId: getFlowCytometryByVersion
@@ -1032,7 +1032,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single sample flow cytometry by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
 components:
   schemas:
     AtomicFlowCytometrySource:

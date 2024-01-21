@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Sample SPoT
+- name: Sample SPoT as Curator
 paths:
   /frontend/rs/genestack/sampleCurator/default-released/samples:
     get:
@@ -152,7 +152,7 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for sample metadata objects
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
     post:
       description: |-
         ## Samples metadata import
@@ -204,7 +204,7 @@ paths:
       - Genestack-API-Token: []
       summary: Add new sample object
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/sampleCurator/default-released/samples/atomic:
     post:
@@ -260,7 +260,7 @@ paths:
       summary: Create a single new object from a given data file with optional supplied
         metadata.
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/sampleCurator/default-released/samples/atomic/{id}:
     patch:
@@ -317,7 +317,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/sampleCurator/default-released/samples/{id}:
     delete:
@@ -354,7 +354,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a sample object
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
     get:
       operationId: getSample
       parameters:
@@ -414,7 +414,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single sample object by ID (accession)
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -469,7 +469,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update a sample object
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/sampleCurator/default-released/samples/{id}/versions:
     get:
@@ -506,7 +506,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
   /frontend/rs/genestack/sampleCurator/default-released/samples/{id}/versions/{version}:
     get:
       operationId: getSampleByVersion
@@ -573,7 +573,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single sample object by ID (accession)
       tags:
-      - Sample SPoT
+      - Sample SPoT as Curator
 components:
   schemas:
     AtomicSampleSource:

@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Study SPoT
+- name: Study SPoT as Curator
 paths:
   /frontend/rs/genestack/studyCurator/default-released/studies:
     get:
@@ -153,7 +153,7 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for study metadata objects
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
     post:
       description: |-
         ## Data
@@ -198,7 +198,7 @@ paths:
       - Genestack-API-Token: []
       summary: Add new study object
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}:
     delete:
@@ -236,7 +236,7 @@ paths:
       summary: Delete a given study object. This will not delete related objects or
         links to related objects.
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
     get:
       operationId: getStudy
       parameters:
@@ -296,7 +296,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single study object by ID (accession)
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -351,7 +351,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update a study object
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions:
     get:
@@ -388,7 +388,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions/{version}:
     get:
       operationId: getStudyByVersion
@@ -455,7 +455,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single study object by ID (accession)
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
 components:
   schemas:
     CommitInfo:
