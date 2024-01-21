@@ -234,7 +234,7 @@ paths:
       x-codegen-request-body-name: source
   /frontend/rs/genestack/expressionCurator/default-released/expression/atomic/{id}:
     delete:
-      operationId: deleteExpressionAtomicAsCurator
+      operationId: deleteAtomicExpressionAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -278,7 +278,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateExpressionAtomicMetadataAsCurator
+      operationId: updateAtomicExpressionMetadataAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
