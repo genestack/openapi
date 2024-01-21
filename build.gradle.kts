@@ -10,10 +10,9 @@ plugins {
 
 val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
 val sourceDirectory = "$rootDir/openapi/v1"
-val mergedFileName = "merged.yaml"
+val mergedFileName = "odmApiSdk.yaml"
 val fileNameList = KotlinPath(sourceDirectory)
     .listDirectoryEntries("*.yaml")
-    .filterNot { it.name == mergedFileName }
 val tasksList = fileNameList
         .map { it.name.replace(".yaml", "") }
 
@@ -64,43 +63,14 @@ tasks {
         }
     }
 
+    // Should be used in pre-commit
     register("mergeDefinitions", MergeDefinitions::class) {
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
     }
 
-    register("generateMergedRSdk", GenerateTask::class) {
-        dependsOn("mergeDefinitions")
-        generatorName.set("r")
-        inputSpec.set("${sourceDirectory}/merged.yaml")
-        outputDir.set("$rootDir/generated/r/odmApiSdk")
-        packageName.set("odmApiSdk")
-        gitUserId.set("genestack")
-        gitRepoId.set("odm-openapi")
-        configOptions = mapOf(
-            "packageVersion" to openApiVersion
-        )
-        skipValidateSpec = true
-    }
-
-    register("generateMergedPythonSdk", GenerateTask::class) {
-        dependsOn("mergeDefinitions")
-        generatorName.set("python")
-        inputSpec.set("${sourceDirectory}/merged.yaml")
-        outputDir.set("$rootDir/generated/python/odm-api-sdk")
-        packageName.set("odm_api_sdk")
-        gitUserId.set("genestack")
-        gitRepoId.set("odm-openapi")
-        configOptions = mapOf(
-            "packageVersion" to openApiVersion
-        )
-        skipValidateSpec = true
-    }
-
-    val generateAllApiSdks by registering(GradleBuild::class) {
+    val generateAll by registering(GradleBuild::class) {
         tasks = tasksList
             .flatMap { listOf(it + "Python", it + "R") }
-            .plus("generateMergedRSdk")
-            .plus("generateMergedPythonSdk")
     }
 }

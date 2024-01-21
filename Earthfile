@@ -40,7 +40,7 @@ build:
     ARG --required ODM_OPENAPI_VERSION
     ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
     RUN ./gradlew \
-            generateAllApiSdks \
+            generateAll \
             --no-daemon
 
     SAVE IMAGE --cache-hint
