@@ -48,7 +48,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: getAllVariants
+      operationId: getAllVariantsAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -237,7 +237,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all data objects.
-      operationId: searchGroups
+      operationId: searchVariantGroupsAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -342,7 +342,7 @@ paths:
       - Variant SPoT as User
   /frontend/rs/genestack/variantUser/default-released/variant/group/by/run/{id}:
     get:
-      operationId: getGroupByRun
+      operationId: getVariantGroupByRunAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -403,7 +403,7 @@ paths:
       - Variant SPoT as User
   /frontend/rs/genestack/variantUser/default-released/variant/group/{id}:
     get:
-      operationId: getGroup
+      operationId: getVariantGroupAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -468,7 +468,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: searchRuns
+      operationId: searchVariantRunsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -522,7 +522,7 @@ paths:
       - Variant SPoT as User
   /frontend/rs/genestack/variantUser/default-released/variant/{id}:
     get:
-      operationId: getVariant
+      operationId: getVariantAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -583,7 +583,7 @@ paths:
       - Variant SPoT as User
   /frontend/rs/genestack/variantUser/default-released/variant/{id}/versions:
     get:
-      operationId: getVariantVersions
+      operationId: getVariantVersionsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -619,7 +619,7 @@ paths:
       - Variant SPoT as User
   /frontend/rs/genestack/variantUser/default-released/variant/{id}/versions/{version}:
     get:
-      operationId: getVariantByVersion
+      operationId: getVariantByVersionAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
