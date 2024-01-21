@@ -16,6 +16,10 @@ jobs:
       run: |
         pip3 install pre-commit
 
+    - name: Install pre-commit
+      run: |
+        apt -y update && apt -y install openjdk-17-jdk
+
     - name: Run common linters
       run: |
         pre-commit run -a
