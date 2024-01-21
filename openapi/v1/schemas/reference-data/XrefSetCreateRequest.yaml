@@ -23,7 +23,7 @@ properties:
     - http
     type: string
   metadata:
-    additionalProperties:
+    properties:
       type: string
     description: Additional user metadata
     type: object
