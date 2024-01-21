@@ -10,9 +10,8 @@ plugins {
 
 val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
 val sourceDirectory = "$rootDir/openapi/v1"
+val fileNameList = KotlinPath(sourceDirectory).listDirectoryEntries("*.yaml")
 val mergedFileName = "odmApiSdk.yaml"
-val fileNameList = KotlinPath(sourceDirectory)
-    .listDirectoryEntries("*.yaml")
 val tasksList = fileNameList
         .map { it.name.replace(".yaml", "") }
 
@@ -70,6 +69,7 @@ tasks {
     }
 
     val generateAll by registering(GradleBuild::class) {
+        file("$rootDir/generated").deleteRecursively()
         tasks = tasksList
             .flatMap { listOf(it + "Python", it + "R") }
     }
