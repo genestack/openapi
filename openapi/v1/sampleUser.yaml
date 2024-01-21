@@ -39,7 +39,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchSamples
+      operationId: searchSamplesAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -156,7 +156,7 @@ paths:
       - Sample SPoT as User
   /frontend/rs/genestack/sampleUser/default-released/samples/{id}:
     get:
-      operationId: getSample
+      operationId: getSampleAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -217,7 +217,7 @@ paths:
       - Sample SPoT as User
   /frontend/rs/genestack/sampleUser/default-released/samples/{id}/versions:
     get:
-      operationId: getSampleVersions
+      operationId: getSampleVersionsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -253,7 +253,7 @@ paths:
       - Sample SPoT as User
   /frontend/rs/genestack/sampleUser/default-released/samples/{id}/versions/{version}:
     get:
-      operationId: getSampleByVersion
+      operationId: getSampleByVersionAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
