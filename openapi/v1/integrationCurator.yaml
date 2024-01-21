@@ -14,17 +14,17 @@ info:
   title: ODM Integration API
   version: default-released
 tags:
-- name: Expression integration
-- name: Flow Cytometry integration
-- name: Library integration
-- name: Linkage
-- name: Metadata versioning
-- name: Omics queries
-- name: Preparation integration
-- name: Sample integration
-- name: Study integration
-- name: Validation summary
-- name: Variant integration
+- name: Expression integration as Curator
+- name: Flow Cytometry integration as Curator
+- name: Library integration as Curator
+- name: Linkage as Curator
+- name: Metadata versioning as Curator
+- name: Omics queries as Curator
+- name: Preparation integration as Curator
+- name: Sample integration as Curator
+- name: Study integration as Curator
+- name: Validation summary as Curator
+- name: Variant integration as Curator
 paths:
   /frontend/rs/genestack/integrationCurator/default-released/data-types:
     get:
@@ -60,7 +60,7 @@ paths:
       - Genestack-API-Token: []
       summary: Lists all available data types.
       tags:
-      - Linkage
+      - Linkage as Curator
   /frontend/rs/genestack/integrationCurator/default-released/data-types/links:
     get:
       description: "This endpoint should be used for instructional needs, and can\
@@ -102,7 +102,7 @@ paths:
       summary: List all possible links between data types that match the specified
         criteria.
       tags:
-      - Linkage
+      - Linkage as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/library/{id}:
     get:
       description: |+
@@ -203,7 +203,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve expression run-level data by querying related library ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/preparation/{id}:
     get:
       description: |+
@@ -305,7 +305,7 @@ paths:
       summary: Retrieve expression run-level data by querying related preparation
         ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/sample/{id}:
     get:
       description: |+
@@ -406,7 +406,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve expression run-level data by querying related sample ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/by/study/{id}:
     get:
       description: |+
@@ -487,7 +487,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/library/group/{targetId}
   : delete:
       description: Delete link between a group of expression objects and a group of
@@ -530,7 +530,7 @@ paths:
       summary: Delete link between a group of expression objects and a group of library
         objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between a group of expression objects and a group of library objects.
@@ -578,7 +578,7 @@ paths:
       summary: Create a link between a group of expression objects and a group of
         library objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}
   : delete:
       description: Delete link between a group of expression objects and a group of
@@ -621,7 +621,7 @@ paths:
       summary: Delete link between a group of expression objects and a group of preparation
         objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between a group of expression objects and a group of preparation objects.
@@ -670,7 +670,7 @@ paths:
       summary: Create a link between a group of expression objects and a group of
         preparation objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}
   : delete:
       description: Delete link between a group of expression objects and a group of
@@ -713,7 +713,7 @@ paths:
       summary: Delete link between a group of expression objects and a group of sample
         objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between a group of expression objects and a group of sample objects.
@@ -772,7 +772,7 @@ paths:
       summary: Create a link between a group of expression objects and a group of
         sample objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-libraries/by/group/{id}:
     get:
       description: |+
@@ -832,7 +832,7 @@ paths:
       summary: "Retrieve run-library pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-preparations/by/group/{id}:
     get:
       description: |+
@@ -892,7 +892,7 @@ paths:
       summary: "Retrieve run-preparation pairs by group id. Pagination is based on\
         \ unique runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-samples/by/group/{id}:
     get:
       description: |+
@@ -952,7 +952,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/library/{targetId}:
     delete:
       description: Delete link between an expression object and a library
@@ -993,7 +993,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between an expression object and a library
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between an expression object and a library.
@@ -1037,7 +1037,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between an expression object and a library
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/preparation/{targetId}:
     delete:
       description: Delete link between an expression object and a preparation
@@ -1078,7 +1078,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between an expression object and a preparation
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between an expression object and a preparation.
@@ -1122,7 +1122,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between an expression object and a preparation
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between an expression object and a sample
@@ -1163,7 +1163,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between an expression object and a sample
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between an expression object and a sample.
@@ -1207,7 +1207,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between an expression object and a sample
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/by/sample/{id}:
     get:
       description: |+
@@ -1309,7 +1309,7 @@ paths:
       summary: Retrieve flow cytometry run-level data by querying related sample ID
         (accession)
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: |+
@@ -1390,7 +1390,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/group/{sourceId}/to/sample/group/{targetId}
   : delete:
       description: Delete link between a group of flow-cytometry objects and a group
@@ -1433,7 +1433,7 @@ paths:
       summary: Delete link between a group of flow-cytometry objects and a group of
         sample objects
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
     post:
       description: |-
         Create a link between a group of flow-cytometry objects and a group of sample objects.
@@ -1492,7 +1492,7 @@ paths:
       summary: Create a link between a group of flow-cytometry objects and a group
         of sample objects
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: |+
@@ -1552,7 +1552,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between a flow-cytometry object and a sample
@@ -1592,7 +1592,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a flow-cytometry object and a sample
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
     post:
       description: |-
         Create a link between a flow-cytometry object and a sample.
@@ -1635,7 +1635,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a flow-cytometry object and a sample
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/libraries/by/samples:
     get:
       description: |+
@@ -1767,7 +1767,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve library metadata by querying related samples
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/by/sample/{id}:
     get:
       operationId: getLibraryBySample
@@ -1833,7 +1833,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve library metadata by querying related sample ID (accession)
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/group/by/study/{id}:
     get:
       operationId: getGroupsByStudy
@@ -1879,7 +1879,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/group/{sourceId}/to/sample/group/{targetId}:
     delete:
       description: Delete links between samples and libraries related to the specified
@@ -1921,7 +1921,7 @@ paths:
       summary: Delete links between samples and libraries related to the specified
         group
       tags:
-      - Library integration
+      - Library integration as Curator
     post:
       description: |-
         Create links between samples and libraries.
@@ -1963,7 +1963,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create links between samples and libraries
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/libraries-to-samples/by/group/{id}:
     get:
       description: |+
@@ -2023,7 +2023,7 @@ paths:
       summary: "Retrieve library-samples pairs by group id. Pagination is based on\
         \ unique libraries, not unique pairs."
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete a link between a library and a sample
@@ -2063,7 +2063,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a link between a library and a sample
       tags:
-      - Library integration
+      - Library integration as Curator
     post:
       description: |-
         Create a link between a library and a sample.
@@ -2105,7 +2105,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a library and a sample
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/by/sample/{id}:
     get:
       operationId: getPreparationBySample
@@ -2171,7 +2171,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve preparation metadata by querying related sample ID (accession)
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/group/by/study/{id}:
     get:
       operationId: getGroupsByStudy
@@ -2217,7 +2217,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}
   : delete:
       description: Delete links between samples and preparations related to the specified
@@ -2259,7 +2259,7 @@ paths:
       summary: Delete links between samples and preparations related to the specified
         group
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
     post:
       description: |-
         Create links between samples and preparations.
@@ -2301,7 +2301,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create links between samples and preparations
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/preparations-to-samples/by/group/{id}:
     get:
       description: |+
@@ -2361,7 +2361,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ preparations, not unique pairs."
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete a link between a preparation and a sample
@@ -2401,7 +2401,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a link between a preparation and a sample
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
     post:
       description: |-
         Create a link between a preparation and a sample.
@@ -2443,7 +2443,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a preparation and a sample
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparations/by/samples:
     get:
       description: |+
@@ -2575,7 +2575,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve preparation metadata by querying related samples
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/sample/group/{sourceId}/to/study/{targetId}:
     delete:
       description: Delete link between a group of sample objects and a study
@@ -2615,7 +2615,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a group of sample objects and a study
       tags:
-      - Sample integration
+      - Sample integration as Curator
     post:
       description: |-
         Create a link between a group of sample objects and a study.
@@ -2657,7 +2657,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a group of sample objects and a study
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/sample/{sourceId}/to/study/{targetId}:
     delete:
       description: Delete link between a sample and a study
@@ -2697,7 +2697,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a sample and a study
       tags:
-      - Sample integration
+      - Sample integration as Curator
     post:
       description: |-
         Create a link between a sample and a study.
@@ -2739,7 +2739,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a sample and a study
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/libraries:
     get:
       description: |+
@@ -2871,7 +2871,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related libraries
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/preparations:
     get:
       description: |+
@@ -3004,7 +3004,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related preparations
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/study/{id}:
     get:
       description: |+
@@ -3085,7 +3085,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related study ID (accession)
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/libraries:
     get:
       description: |+
@@ -3217,7 +3217,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related libraries
       tags:
-      - Study integration
+      - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/preparations:
     get:
       description: |+
@@ -3350,7 +3350,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related preparations
       tags:
-      - Study integration
+      - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/samples:
     get:
       description: |+
@@ -3482,7 +3482,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related samples
       tags:
-      - Study integration
+      - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/study/by/sample/{id}:
     get:
       operationId: getStudyBySample
@@ -3540,7 +3540,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata by querying sample ID (accession)
       tags:
-      - Study integration
+      - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/by/sample/{id}:
     get:
       description: |+
@@ -3641,7 +3641,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve variant run-level data by querying related sample ID (accession)
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/group/by/study/{id}:
     get:
       description: |+
@@ -3722,7 +3722,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}:
     delete:
       description: Delete link between a group of variant objects and a group of sample
@@ -3765,7 +3765,7 @@ paths:
       summary: Delete link between a group of variant objects and a group of sample
         objects
       tags:
-      - Variant integration
+      - Variant integration as Curator
     post:
       description: |-
         Create a link between a group of variant objects and a group of sample objects.
@@ -3824,7 +3824,7 @@ paths:
       summary: Create a link between a group of variant objects and a group of sample
         objects
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/run-to-samples/by/group/{id}:
     get:
       description: |+
@@ -3884,7 +3884,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between a variant object and a sample
@@ -3925,7 +3925,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a variant object and a sample
       tags:
-      - Variant integration
+      - Variant integration as Curator
     post:
       description: |-
         Create a link between a variant object and a sample.
@@ -3969,7 +3969,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a variant object and a sample
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/studies/{id}/curation-status:
     get:
       description: Use this endpoint to check the curation status of a given study.
@@ -4007,7 +4007,7 @@ paths:
       - Genestack-API-Token: []
       summary: Check the curation status of a study.
       tags:
-      - Study integration
+      - Study integration as Curator
     patch:
       description: Use this endpoint to change the curation status of a given study.
         Note the study and all associated objects must have valid metadata according
@@ -4053,7 +4053,7 @@ paths:
       - Genestack-API-Token: []
       summary: Change curation status of a study.
       tags:
-      - Study integration
+      - Study integration as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/integrationCurator/default-released/integration/fulltext/search/studies:
     post:
@@ -4094,7 +4094,7 @@ paths:
       - Genestack-API-Token: []
       summary: Find and retrieve studies via full-text or facet query
       tags:
-      - Study integration
+      - Study integration as Curator
       x-codegen-request-body-name: request
   /frontend/rs/genestack/integrationCurator/default-released/links:
     delete:
@@ -4150,7 +4150,7 @@ paths:
       - Genestack-API-Token: []
       summary: Deletes existing links matching the specified criteria.
       tags:
-      - Linkage
+      - Linkage as Curator
     get:
       description: Please make sure that this endpoint should be used only for getting
         all links to a specific object. In case you specify both firstId and secondId
@@ -4220,7 +4220,7 @@ paths:
       - Genestack-API-Token: []
       summary: Finds existing links matching the specified criteria.
       tags:
-      - Linkage
+      - Linkage as Curator
     post:
       description: "This method should be used only in case you need to create links\
         \ between 2 objects. Links are created both ways (e.g. when linking Object\
@@ -4264,7 +4264,7 @@ paths:
       - Genestack-API-Token: []
       summary: Creates new links between objects.
       tags:
-      - Linkage
+      - Linkage as Curator
       x-codegen-request-body-name: links
   /frontend/rs/genestack/integrationCurator/default-released/links/get-batch:
     post:
@@ -4305,7 +4305,7 @@ paths:
       summary: "Finds existing links by passing many IDs. \nPagination goes through\
         \ all links matched the criteria."
       tags:
-      - Linkage
+      - Linkage as Curator
       x-codegen-request-body-name: request
   /frontend/rs/genestack/integrationCurator/default-released/omics/expression/data:
     get:
@@ -4583,7 +4583,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve data objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/expression/group:
     get:
       description: |+
@@ -4850,7 +4850,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/expression/streamed-data:
     get:
       description: |+
@@ -5027,7 +5027,7 @@ paths:
       - Genestack-API-Token: []
       summary: Stream data from a given tabular file
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/flow-cytometry/data:
     get:
       description: |+
@@ -5297,7 +5297,7 @@ paths:
       summary: Retrieve flow cytometry data objects by searching across multiple data
         types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/flow-cytometry/group:
     get:
       description: |+
@@ -5564,7 +5564,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/samples:
     get:
       description: |+
@@ -5832,7 +5832,7 @@ paths:
       summary: Retrieve sample metadata objects by searching across multiple data
         types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/variant/data:
     get:
       description: |+
@@ -6101,7 +6101,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve variant data objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/variant/group:
     get:
       description: |+
@@ -6368,7 +6368,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/tasks/publish-versions:
     post:
       description: This endpoint publishes information from staging and creates new
@@ -6415,7 +6415,7 @@ paths:
       summary: Asynchronous task that publishes all pending versions for a single
         study.
       tags:
-      - Metadata versioning
+      - Metadata versioning as Curator
   /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/validation-summary:
     get:
       operationId: searchExpressionData
@@ -6448,7 +6448,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve validation summary by querying study ID (accession)
       tags:
-      - Validation summary
+      - Validation summary as Curator
 components:
   schemas:
     AttributeInvalidValue:

@@ -17,7 +17,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Preparation SPoT
+- name: Preparation SPoT as User
 paths:
   /frontend/rs/genestack/preparationUser/default-released/preparations:
     get:
@@ -153,7 +153,7 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for preparation metadata objects
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as User
   /frontend/rs/genestack/preparationUser/default-released/preparations/by/group/{id}:
     get:
       operationId: getPreparationsByGroup
@@ -230,7 +230,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve preparations related to the given group
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as User
   /frontend/rs/genestack/preparationUser/default-released/preparations/{id}:
     get:
       operationId: getPreparation
@@ -291,7 +291,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single preparation object by ID (accession)
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as User
   /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions:
     get:
       operationId: getPreparationVersions
@@ -327,7 +327,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as User
   /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions/{version}:
     get:
       operationId: getPreparationByVersion
@@ -394,7 +394,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single preparation object by ID (accession)
       tags:
-      - Preparation SPoT
+      - Preparation SPoT as User
 components:
   schemas:
     CommitInfo:

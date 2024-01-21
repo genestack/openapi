@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Expression SPoT
+- name: Expression SPoT as Curator
 paths:
   /frontend/rs/genestack/expressionCurator/default-released/expression:
     get:
@@ -171,7 +171,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve multiple expression data and metadata objects
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
   /frontend/rs/genestack/expressionCurator/default-released/expression/atomic:
     post:
       description: |-
@@ -230,7 +230,7 @@ paths:
       summary: Create a single new object from a given data file with optional supplied
         metadata.
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/expressionCurator/default-released/expression/atomic/{id}:
     delete:
@@ -267,7 +267,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -322,7 +322,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/expressionCurator/default-released/expression/gct:
     post:
@@ -384,7 +384,7 @@ paths:
       summary: Create multiple new objects from a multi-row data file with optional
         supplied metadata
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/expressionCurator/default-released/expression/group:
     get:
@@ -520,7 +520,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve groups that match a query
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
   /frontend/rs/genestack/expressionCurator/default-released/expression/group/by/run/{id}:
     get:
       operationId: getGroupByRun
@@ -581,7 +581,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by run ID (accession)
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
   /frontend/rs/genestack/expressionCurator/default-released/expression/group/{id}:
     delete:
       operationId: deleteGroup
@@ -617,7 +617,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
     get:
       operationId: getGroup
       parameters:
@@ -677,7 +677,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by ID (accession)
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
   /frontend/rs/genestack/expressionCurator/default-released/expression/group/{id}/curation:
     get:
       operationId: getGroupCurationStatus
@@ -716,7 +716,7 @@ paths:
       - Genestack-API-Token: []
       summary: Get curation status of a group by ID (accession)
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
     patch:
       operationId: updateGroup
       parameters:
@@ -760,7 +760,7 @@ paths:
       - Genestack-API-Token: []
       summary: Set curation status of a group by ID (accession)
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/expressionCurator/default-released/expression/runs/by/group/{id}:
     get:
@@ -819,7 +819,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve run objects related to the given group
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
   /frontend/rs/genestack/expressionCurator/default-released/expression/{id}:
     get:
       operationId: getExpression
@@ -884,7 +884,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single expression object by ID (accession)
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -939,7 +939,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/expressionCurator/default-released/expression/{id}/versions:
     get:
@@ -976,7 +976,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
   /frontend/rs/genestack/expressionCurator/default-released/expression/{id}/versions/{version}:
     get:
       operationId: getExpressionByVersion
@@ -1043,7 +1043,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single expression object by ID (accession)
       tags:
-      - Expression SPoT
+      - Expression SPoT as Curator
 components:
   schemas:
     AtomicExpressionSource:

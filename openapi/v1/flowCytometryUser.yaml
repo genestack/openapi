@@ -17,7 +17,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Flow Cytometry SPoT
+- name: Flow Cytometry SPoT as User
 paths:
   /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry:
     get:
@@ -175,7 +175,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve multiple flow cytometry data and metadata objects
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as User
   /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group:
     get:
       description: |-
@@ -310,7 +310,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve groups that match a query
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as User
   /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group/by/run/{id}:
     get:
       operationId: getGroupByRun
@@ -371,7 +371,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by run ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as User
   /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group/{id}:
     get:
       operationId: getGroup
@@ -432,7 +432,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as User
   /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/runs/by/group/{id}:
     get:
       description: |+
@@ -490,7 +490,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve run objects related to the given group
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as User
   /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}:
     get:
       operationId: getFlowCytometry
@@ -551,7 +551,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single sample flow cytometry by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as User
   /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}/versions:
     get:
       operationId: getFlowCytometryVersions
@@ -587,7 +587,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as User
   /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}/versions/{version}:
     get:
       operationId: getFlowCytometryByVersion
@@ -654,7 +654,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single sample flow cytometry by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as User
 components:
   schemas:
     CommitInfo:

@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Variant SPoT
+- name: Variant SPoT as Curator
 paths:
   /frontend/rs/genestack/variantCurator/default-released/variant:
     get:
@@ -203,7 +203,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve multiple variant data and metadata objects
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/atomic:
     post:
       description: |-
@@ -262,7 +262,7 @@ paths:
       summary: Create a single new object from a given data file with optional supplied
         metadata.
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/variantCurator/default-released/variant/atomic/{id}:
     delete:
@@ -299,7 +299,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -354,7 +354,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/group:
     get:
@@ -490,7 +490,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve groups that match a query
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/group/by/run/{id}:
     get:
       operationId: getGroupByRun
@@ -551,7 +551,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by run ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}:
     delete:
       operationId: deleteGroup
@@ -587,7 +587,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
     get:
       operationId: getGroup
       parameters:
@@ -647,7 +647,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}/curation:
     get:
       operationId: getGroupCurationStatus
@@ -686,7 +686,7 @@ paths:
       - Genestack-API-Token: []
       summary: Get curation status of a group by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
     patch:
       operationId: updateGroup
       parameters:
@@ -730,7 +730,7 @@ paths:
       - Genestack-API-Token: []
       summary: Set curation status of a group by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/runs/by/group/{id}:
     get:
@@ -789,7 +789,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve run objects related to the given group
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/vcf:
     post:
       description: |-
@@ -839,7 +839,7 @@ paths:
       summary: Create multiple new objects from a multi-row data file with optional
         supplied metadata
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}:
     get:
@@ -901,7 +901,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single variant object by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -956,7 +956,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions:
     get:
@@ -993,7 +993,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions/{version}:
     get:
       operationId: getVariantByVersion
@@ -1060,7 +1060,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single variant object by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
 components:
   schemas:
     CommitInfo:

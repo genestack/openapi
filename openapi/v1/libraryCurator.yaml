@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Library SPoT
+- name: Library SPoT as Curator
 paths:
   /frontend/rs/genestack/libraryCurator/default-released/libraries:
     get:
@@ -151,7 +151,7 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for library metadata objects
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
     post:
       description: |-
         Libraries metadata import
@@ -207,7 +207,7 @@ paths:
       - Genestack-API-Token: []
       summary: Add new library object
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/libraryCurator/default-released/libraries/by/group/{id}:
     get:
@@ -285,7 +285,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve libraries related to the given group
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
   /frontend/rs/genestack/libraryCurator/default-released/libraries/group/{id}:
     delete:
       operationId: deleteLibraryGroup
@@ -321,7 +321,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a library group with all related library objects
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
   /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}:
     delete:
       operationId: deleteLibrary
@@ -357,7 +357,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a library object
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
     get:
       operationId: getLibrary
       parameters:
@@ -417,7 +417,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single library object by ID (accession)
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -472,7 +472,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update a library object
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions:
     get:
@@ -509,7 +509,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
   /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions/{version}:
     get:
       operationId: getLibraryByVersion
@@ -576,7 +576,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single library object by ID (accession)
       tags:
-      - Library SPoT
+      - Library SPoT as Curator
 components:
   schemas:
     CommitInfo:

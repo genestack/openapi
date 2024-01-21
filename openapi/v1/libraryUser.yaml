@@ -17,7 +17,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Library SPoT
+- name: Library SPoT as User
 paths:
   /frontend/rs/genestack/libraryUser/default-released/libraries:
     get:
@@ -152,7 +152,7 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for library metadata objects
       tags:
-      - Library SPoT
+      - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/by/group/{id}:
     get:
       operationId: getLibrariesByGroup
@@ -229,7 +229,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve libraries related to the given group
       tags:
-      - Library SPoT
+      - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}:
     get:
       operationId: getLibrary
@@ -290,7 +290,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single library object by ID (accession)
       tags:
-      - Library SPoT
+      - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions:
     get:
       operationId: getLibraryVersions
@@ -326,7 +326,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Library SPoT
+      - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions/{version}:
     get:
       operationId: getLibraryByVersion
@@ -393,7 +393,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single library object by ID (accession)
       tags:
-      - Library SPoT
+      - Library SPoT as User
 components:
   schemas:
     CommitInfo:

@@ -17,7 +17,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Study SPoT
+- name: Study SPoT as User
 paths:
   /frontend/rs/genestack/studyUser/default-released/studies:
     get:
@@ -154,7 +154,7 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for study metadata objects
       tags:
-      - Study SPoT
+      - Study SPoT as User
   /frontend/rs/genestack/studyUser/default-released/studies/{id}:
     get:
       operationId: getStudy
@@ -215,7 +215,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single study object by ID (accession)
       tags:
-      - Study SPoT
+      - Study SPoT as User
   /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions:
     get:
       operationId: getStudyVersions
@@ -251,7 +251,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Study SPoT
+      - Study SPoT as User
   /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions/{version}:
     get:
       operationId: getStudyByVersion
@@ -318,7 +318,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single study object by ID (accession)
       tags:
-      - Study SPoT
+      - Study SPoT as User
 components:
   schemas:
     CommitInfo:

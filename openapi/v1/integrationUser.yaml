@@ -17,15 +17,15 @@ info:
   title: ODM Integration API
   version: default-released
 tags:
-- name: Expression integration
-- name: Flow Cytometry integration
-- name: Library integration
-- name: Linkage
-- name: Omics queries
-- name: Preparation integration
-- name: Sample integration
-- name: Study integration
-- name: Variant integration
+- name: Expression integration as User
+- name: Flow Cytometry integration as User
+- name: Library integration as User
+- name: Linkage as User
+- name: Omics queries as User
+- name: Preparation integration as User
+- name: Sample integration as User
+- name: Study integration as User
+- name: Variant integration as User
 paths:
   /frontend/rs/genestack/integrationUser/default-released/data-types:
     get:
@@ -61,7 +61,7 @@ paths:
       - Genestack-API-Token: []
       summary: Lists all available data types.
       tags:
-      - Linkage
+      - Linkage as User
   /frontend/rs/genestack/integrationUser/default-released/data-types/links:
     get:
       description: "This endpoint should be used for instructional needs, and can\
@@ -103,7 +103,7 @@ paths:
       summary: List all possible links between data types that match the specified
         criteria.
       tags:
-      - Linkage
+      - Linkage as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/library/{id}:
     get:
       description: |+
@@ -204,7 +204,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve expression run-level data by querying related library ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/preparation/{id}:
     get:
       description: |+
@@ -306,7 +306,7 @@ paths:
       summary: Retrieve expression run-level data by querying related preparation
         ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/sample/{id}:
     get:
       description: |+
@@ -407,7 +407,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve expression run-level data by querying related sample ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/group/by/study/{id}:
     get:
       description: |+
@@ -488,7 +488,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-libraries/by/group/{id}:
     get:
       description: |+
@@ -548,7 +548,7 @@ paths:
       summary: "Retrieve run-library pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-preparations/by/group/{id}:
     get:
       description: |+
@@ -608,7 +608,7 @@ paths:
       summary: "Retrieve run-preparation pairs by group id. Pagination is based on\
         \ unique runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-samples/by/group/{id}:
     get:
       description: |+
@@ -668,7 +668,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/by/sample/{id}:
     get:
       description: |+
@@ -770,7 +770,7 @@ paths:
       summary: Retrieve flow cytometry run-level data by querying related sample ID
         (accession)
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: |+
@@ -851,7 +851,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: |+
@@ -911,7 +911,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/libraries/by/samples:
     get:
       description: |+
@@ -1043,7 +1043,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve library metadata by querying related samples
       tags:
-      - Library integration
+      - Library integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/library/by/sample/{id}:
     get:
       operationId: getLibraryBySample
@@ -1109,7 +1109,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve library metadata by querying related sample ID (accession)
       tags:
-      - Library integration
+      - Library integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/library/group/by/study/{id}:
     get:
       operationId: getGroupsByStudy
@@ -1155,7 +1155,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Library integration
+      - Library integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/library/libraries-to-samples/by/group/{id}:
     get:
       description: |+
@@ -1215,7 +1215,7 @@ paths:
       summary: "Retrieve library-samples pairs by group id. Pagination is based on\
         \ unique libraries, not unique pairs."
       tags:
-      - Library integration
+      - Library integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/by/sample/{id}:
     get:
       operationId: getPreparationBySample
@@ -1281,7 +1281,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve preparation metadata by querying related sample ID (accession)
       tags:
-      - Preparation integration
+      - Preparation integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/group/by/study/{id}:
     get:
       operationId: getGroupsByStudy
@@ -1327,7 +1327,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Preparation integration
+      - Preparation integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/preparations-to-samples/by/group/{id}:
     get:
       description: |+
@@ -1387,7 +1387,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ preparations, not unique pairs."
       tags:
-      - Preparation integration
+      - Preparation integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/preparations/by/samples:
     get:
       description: |+
@@ -1519,7 +1519,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve preparation metadata by querying related samples
       tags:
-      - Preparation integration
+      - Preparation integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/libraries:
     get:
       description: |+
@@ -1651,7 +1651,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related libraries
       tags:
-      - Sample integration
+      - Sample integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/preparations:
     get:
       description: |+
@@ -1784,7 +1784,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related preparations
       tags:
-      - Sample integration
+      - Sample integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/study/{id}:
     get:
       description: |+
@@ -1865,7 +1865,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related study ID (accession)
       tags:
-      - Sample integration
+      - Sample integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/libraries:
     get:
       description: |+
@@ -1997,7 +1997,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related libraries
       tags:
-      - Study integration
+      - Study integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/preparations:
     get:
       description: |+
@@ -2130,7 +2130,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related preparations
       tags:
-      - Study integration
+      - Study integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/samples:
     get:
       description: |+
@@ -2262,7 +2262,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related samples
       tags:
-      - Study integration
+      - Study integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/study/by/sample/{id}:
     get:
       operationId: getStudyBySample
@@ -2320,7 +2320,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata by querying sample ID (accession)
       tags:
-      - Study integration
+      - Study integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/fulltext/search/studies:
     post:
       description: |-
@@ -2360,7 +2360,7 @@ paths:
       - Genestack-API-Token: []
       summary: Find and retrieve studies via full-text or facet query
       tags:
-      - Study integration
+      - Study integration as User
       x-codegen-request-body-name: request
   /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/by/sample/{id}:
     get:
@@ -2462,7 +2462,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve variant run-level data by querying related sample ID (accession)
       tags:
-      - Variant integration
+      - Variant integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/group/by/study/{id}:
     get:
       description: |+
@@ -2543,7 +2543,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Variant integration
+      - Variant integration as User
   /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/run-to-samples/by/group/{id}:
     get:
       description: |+
@@ -2603,7 +2603,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Variant integration
+      - Variant integration as User
   /frontend/rs/genestack/integrationUser/default-released/links:
     get:
       description: Please make sure that this endpoint should be used only for getting
@@ -2674,7 +2674,7 @@ paths:
       - Genestack-API-Token: []
       summary: Finds existing links matching the specified criteria.
       tags:
-      - Linkage
+      - Linkage as User
   /frontend/rs/genestack/integrationUser/default-released/links/get-batch:
     post:
       description: Please make sure to use that endpoint for batch calls only. You
@@ -2714,7 +2714,7 @@ paths:
       summary: "Finds existing links by passing many IDs. \nPagination goes through\
         \ all links matched the criteria."
       tags:
-      - Linkage
+      - Linkage as User
       x-codegen-request-body-name: request
   /frontend/rs/genestack/integrationUser/default-released/omics/expression/data:
     get:
@@ -2992,7 +2992,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve data objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as User
   /frontend/rs/genestack/integrationUser/default-released/omics/expression/group:
     get:
       description: |+
@@ -3259,7 +3259,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as User
   /frontend/rs/genestack/integrationUser/default-released/omics/expression/streamed-data:
     get:
       description: "Stream data from a given group for a tabular file that matches\
@@ -3440,7 +3440,7 @@ paths:
       - Genestack-API-Token: []
       summary: Stream data from a given tabular file
       tags:
-      - Omics queries
+      - Omics queries as User
   /frontend/rs/genestack/integrationUser/default-released/omics/flow-cytometry/data:
     get:
       description: |+
@@ -3710,7 +3710,7 @@ paths:
       summary: Retrieve flow cytometry data objects by searching across multiple data
         types
       tags:
-      - Omics queries
+      - Omics queries as User
   /frontend/rs/genestack/integrationUser/default-released/omics/flow-cytometry/group:
     get:
       description: |+
@@ -3977,7 +3977,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as User
   /frontend/rs/genestack/integrationUser/default-released/omics/samples:
     get:
       description: |+
@@ -4245,7 +4245,7 @@ paths:
       summary: Retrieve sample metadata objects by searching across multiple data
         types
       tags:
-      - Omics queries
+      - Omics queries as User
   /frontend/rs/genestack/integrationUser/default-released/omics/variant/data:
     get:
       description: |+
@@ -4514,7 +4514,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve variant data objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as User
   /frontend/rs/genestack/integrationUser/default-released/omics/variant/group:
     get:
       description: |+
@@ -4781,7 +4781,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as User
 components:
   schemas:
     BatchOfIds:
