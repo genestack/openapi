@@ -48,7 +48,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: getExpressionData
+      operationId: getExpressionDataAsUser
       parameters:
       - description: |-
           Allows to get an extended or updated response body. Available values:
@@ -205,7 +205,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all data objects.
-      operationId: searchGroups
+      operationId: searchExpressionGroupsAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -310,7 +310,7 @@ paths:
       - Expression SPoT as User
   /frontend/rs/genestack/expressionUser/default-released/expression/group/by/run/{id}:
     get:
-      operationId: getGroupByRun
+      operationId: getExpressionGroupByRunAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -371,7 +371,7 @@ paths:
       - Expression SPoT as User
   /frontend/rs/genestack/expressionUser/default-released/expression/group/{id}:
     get:
-      operationId: getGroup
+      operationId: getExpressionGroupAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -436,7 +436,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: searchRuns
+      operationId: searchExpressionRunsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -490,7 +490,7 @@ paths:
       - Expression SPoT as User
   /frontend/rs/genestack/expressionUser/default-released/expression/{id}:
     get:
-      operationId: getExpression
+      operationId: getExpressionAsUser
       parameters:
       - description: |-
           Allows to get an extended or updated response body. Available values:
@@ -555,7 +555,7 @@ paths:
       - Expression SPoT as User
   /frontend/rs/genestack/expressionUser/default-released/expression/{id}/versions:
     get:
-      operationId: getExpressionVersions
+      operationId: getExpressionVersionsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -591,7 +591,7 @@ paths:
       - Expression SPoT as User
   /frontend/rs/genestack/expressionUser/default-released/expression/{id}/versions/{version}:
     get:
-      operationId: getExpressionByVersion
+      operationId: getExpressionByVersionAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
