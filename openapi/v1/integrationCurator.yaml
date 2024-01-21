@@ -30,7 +30,7 @@ paths:
     get:
       description: This endpoint is for instructional uses and can be used to get
         the latest list of Data Types.
-      operationId: getDataTypes
+      operationId: getDataTypesAsCurator
       responses:
         "200":
           content:
@@ -65,7 +65,7 @@ paths:
     get:
       description: "This endpoint should be used for instructional needs, and can\
         \ be used in order to get the links between the Data Types."
-      operationId: getDataTypesLinks
+      operationId: getDataTypesLinksAsCurator
       parameters:
       - description: Return only links with the specified data type.
         in: query
@@ -121,7 +121,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getExpressionByLibrary
+      operationId: getExpressionByLibraryAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -324,7 +324,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getExpressionBySample
+      operationId: getExpressionBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -422,7 +422,7 @@ paths:
 
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
-      operationId: getGroupsByStudy
+      operationId: getExpressionGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -492,7 +492,7 @@ paths:
   : delete:
       description: Delete link between a group of expression objects and a group of
         library objects
-      operationId: deleteExpressionGroupLibraryGroupLink
+      operationId: deleteExpressionGroupLibraryGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -537,7 +537,7 @@ paths:
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionGroupLibraryGroupLink
+      operationId: createExpressionGroupLibraryGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -583,7 +583,7 @@ paths:
   : delete:
       description: Delete link between a group of expression objects and a group of
         preparation objects
-      operationId: deleteExpressionGroupPreparationGroupLink
+      operationId: deleteExpressionGroupPreparationGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -628,7 +628,7 @@ paths:
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionGroupPreparationGroupLink
+      operationId: createExpressionGroupPreparationGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -675,7 +675,7 @@ paths:
   : delete:
       description: Delete link between a group of expression objects and a group of
         sample objects
-      operationId: deleteExpressionGroupSampleGroupLink
+      operationId: deleteExpressionGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -722,7 +722,7 @@ paths:
         Expression objects of the same group can only be linked to objects of the same study.
 
          Users can specify a custom metadata field for linking omics data to samples via the “linkingAttribute” parameter, if not specified the “Sample Source ID“ sample metadata attribute will be used by default.
-      operationId: createExpressionGroupSampleGroupLink
+      operationId: createExpressionGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -779,7 +779,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToLibraryPairs
+      operationId: getExpressionRunToLibraryPairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -839,7 +839,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToPreparationPairs
+      operationId: getExpressionRunToPreparationPairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -899,7 +899,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToSamplePairs
+      operationId: getExpressionRunToSamplePairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -956,7 +956,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/library/{targetId}:
     delete:
       description: Delete link between an expression object and a library
-      operationId: deleteExpressionLibraryLink
+      operationId: deleteExpressionLibraryLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1000,7 +1000,7 @@ paths:
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionLibraryLink
+      operationId: createExpressionLibraryLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1041,7 +1041,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/preparation/{targetId}:
     delete:
       description: Delete link between an expression object and a preparation
-      operationId: deleteExpressionPreparationLink
+      operationId: deleteExpressionPreparationLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1085,7 +1085,7 @@ paths:
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionPreparationLink
+      operationId: createExpressionPreparationLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1126,7 +1126,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between an expression object and a sample
-      operationId: deleteExpressionSampleLink
+      operationId: deleteExpressionSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1170,7 +1170,7 @@ paths:
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionSampleLink
+      operationId: createExpressionSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1226,7 +1226,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getFlowCytometryBySample
+      operationId: getFlowCytometryBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1325,7 +1325,7 @@ paths:
 
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
-      operationId: getGroupsByStudy
+      operationId: getFlowCytometryGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1395,7 +1395,7 @@ paths:
   : delete:
       description: Delete link between a group of flow-cytometry objects and a group
         of sample objects
-      operationId: deleteFlowCytometryGroupSampleGroupLink
+      operationId: deleteFlowCytometryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to the column in a FACS file)
@@ -1442,7 +1442,7 @@ paths:
         Flow-cytometry objects of the same group can only be linked to objects of the same study.
 
         Users can specify a custom metadata field for linking omics data to samples via the “linkingAttribute” parameter, if not specified the “Sample Source ID“ sample metadata attribute will be used by default.
-      operationId: createFlowCytometryGroupSampleGroupLink
+      operationId: createFlowCytometryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to the column in a FACS file)
@@ -1499,7 +1499,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToSamplePairs
+      operationId: getFlowCytometryRunToSamplePairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -1556,7 +1556,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between a flow-cytometry object and a sample
-      operationId: deleteFlowCytometrySampleLink
+      operationId: deleteFlowCytometrySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level data block
         in: path
@@ -1599,7 +1599,7 @@ paths:
 
         A flow-cytometry object can be linked to one object only. If a flow-cytometry object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Flow-cytometry objects of the same group can only be linked to objects of the same study.
-      operationId: createFlowCytometrySampleLink
+      operationId: createFlowCytometrySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level data block
         in: path
@@ -1677,7 +1677,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getLibrariesBySamples
+      operationId: getLibrariesBySamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1770,7 +1770,7 @@ paths:
       - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/by/sample/{id}:
     get:
-      operationId: getLibraryBySample
+      operationId: getLibraryBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1836,7 +1836,7 @@ paths:
       - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/group/by/study/{id}:
     get:
-      operationId: getGroupsByStudy
+      operationId: getLibraryGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1884,7 +1884,7 @@ paths:
     delete:
       description: Delete links between samples and libraries related to the specified
         group
-      operationId: deleteLibraryGroupSampleGroupLink
+      operationId: deleteLibraryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the library group object
         in: path
@@ -1927,7 +1927,7 @@ paths:
         Create links between samples and libraries.
 
         Library objects of the same group can only be linked to objects of the same study.
-      operationId: createLibraryGroupSampleGroupLink
+      operationId: createLibraryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the library group object
         in: path
@@ -1970,7 +1970,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getLibraryLinksToSamples
+      operationId: getLibraryLinksToSamplesAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -2027,7 +2027,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete a link between a library and a sample
-      operationId: deleteLibrarySampleLink
+      operationId: deleteLibrarySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the library object
         in: path
@@ -2069,7 +2069,7 @@ paths:
         Create a link between a library and a sample.
 
         Library objects of the same group can only be linked to objects of the same study.
-      operationId: createLibrarySampleLink
+      operationId: createLibrarySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the library object
         in: path
@@ -2108,7 +2108,7 @@ paths:
       - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/by/sample/{id}:
     get:
-      operationId: getPreparationBySample
+      operationId: getPreparationBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -2174,7 +2174,7 @@ paths:
       - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/group/by/study/{id}:
     get:
-      operationId: getGroupsByStudy
+      operationId: getPreparationGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -2222,7 +2222,7 @@ paths:
   : delete:
       description: Delete links between samples and preparations related to the specified
         group
-      operationId: deletePreparationGroupSampleGroupLink
+      operationId: deletePreparationGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation group object
         in: path
@@ -2265,7 +2265,7 @@ paths:
         Create links between samples and preparations.
 
         Preparation objects of the same group can only be linked to objects of the same study.
-      operationId: createPreparationGroupSampleGroupLink
+      operationId: createPreparationGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation group object
         in: path
@@ -2308,7 +2308,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getPreparationLinksToSamples
+      operationId: getPreparationLinksToSamplesAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -2365,7 +2365,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete a link between a preparation and a sample
-      operationId: deletePreparationSampleLink
+      operationId: deletePreparationSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation object
         in: path
@@ -2407,7 +2407,7 @@ paths:
         Create a link between a preparation and a sample.
 
         Preparation objects of the same group can only be linked to objects of the same study.
-      operationId: createPreparationSampleLink
+      operationId: createPreparationSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation object
         in: path
@@ -2485,7 +2485,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getPreparationsBySamples
+      operationId: getPreparationsBySamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -2579,7 +2579,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/sample/group/{sourceId}/to/study/{targetId}:
     delete:
       description: Delete link between a group of sample objects and a study
-      operationId: deleteSampleGroupStudyLink
+      operationId: deleteSampleGroupStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample group object
         in: path
@@ -2621,7 +2621,7 @@ paths:
         Create a link between a group of sample objects and a study.
 
         Sample objects of the same group can only be linked to the same study.
-      operationId: createSampleGroupStudyLink
+      operationId: createSampleGroupStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample group object
         in: path
@@ -2661,7 +2661,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/sample/{sourceId}/to/study/{targetId}:
     delete:
       description: Delete link between a sample and a study
-      operationId: deleteSampleStudyLink
+      operationId: deleteSampleStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample object
         in: path
@@ -2703,7 +2703,7 @@ paths:
         Create a link between a sample and a study.
 
         Sample objects of the same group can only be linked to the same study.
-      operationId: createSampleStudyLink
+      operationId: createSampleStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample object
         in: path
@@ -2781,7 +2781,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getSamplesByLibraries
+      operationId: getSamplesByLibrariesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -2913,7 +2913,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getSamplesByPreparations
+      operationId: getSamplesByPreparationsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3011,7 +3011,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getSamplesByStudy
+      operationId: getSamplesByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3127,7 +3127,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getStudiesByLibraries
+      operationId: getStudiesByLibrariesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3259,7 +3259,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getStudiesByPreparations
+      operationId: getStudiesByPreparationsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3392,7 +3392,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getStudiesBySamples
+      operationId: getStudiesBySamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3485,7 +3485,7 @@ paths:
       - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/study/by/sample/{id}:
     get:
-      operationId: getStudyBySample
+      operationId: getStudyBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3559,7 +3559,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getVariantBySample
+      operationId: getVariantBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3657,7 +3657,7 @@ paths:
 
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
-      operationId: getGroupsByStudy
+      operationId: getVariantGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3727,7 +3727,7 @@ paths:
     delete:
       description: Delete link between a group of variant objects and a group of sample
         objects
-      operationId: deleteVariantGroupSampleGroupLink
+      operationId: deleteVariantGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to the column in a VCF file)
@@ -3774,7 +3774,7 @@ paths:
         Variant objects of the same group can only be linked to objects of the same study.
 
          Users can specify a custom metadata field for linking omics data to samples via the “linkingAttribute” parameter, if not specified the “Sample Source ID“ sample metadata attribute will be used by default.
-      operationId: createVariantGroupSampleGroupLink
+      operationId: createVariantGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to the column in a VCF file)
@@ -3831,7 +3831,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToSamplePairs
+      operationId: getVariantRunToSamplePairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -3888,7 +3888,7 @@ paths:
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between a variant object and a sample
-      operationId: deleteVariantSampleLink
+      operationId: deleteVariantSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -3932,7 +3932,7 @@ paths:
 
         A variant object can be linked to one object only. If a variant object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Variant objects of the same group can only be linked to objects of the same study.
-      operationId: createVariantSampleLink
+      operationId: createVariantSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -3974,7 +3974,7 @@ paths:
     get:
       description: Use this endpoint to check the curation status of a given study.
         The endpoint will return values of 'CURATED' or 'NOT_CURATED'.
-      operationId: getStudyCurationStatus
+      operationId: getStudyCurationStatusAsCurator
       parameters:
       - description: The ID (accession) of the study object
         in: path
@@ -4013,7 +4013,7 @@ paths:
         Note the study and all associated objects must have valid metadata according
         to the applied template before curation status can be set to 'CURATED. If
         any invalid metadata is present the status will remain 'NOT_CURATED'
-      operationId: changeCurationStatus
+      operationId: changeStudyCurationStatusAsCurator
       parameters:
       - description: The ID (accession) of the study object
         in: path
@@ -4063,7 +4063,7 @@ paths:
          The endpoint returns:
          - a list of studies with their metadata summary
          - a list of facet objects with counts; the facet list can be configured in the "Study Browser" application using the "Configure facets" option (by a user with appropriate permissions). For each facet object only the first 5 most popular values are returned, these are sorted by the number of matching studies in descending order.  Only studies available to the user are counted.
-      operationId: searchStudiesByFilter
+      operationId: searchStudiesByFilterAsCurator
       requestBody:
         content:
           application/json:
@@ -4101,7 +4101,7 @@ paths:
       description: "This method should be used in case you want to delete the links\
         \ of an object. Please, keep in mind that deleting a link between Study and\
         \ Sample will not delete a link between corresponding Sample and it’s signal."
-      operationId: deleteLink
+      operationId: deleteLinkAsCurator
       parameters:
       - description: Object ID (accession) (e.g. accession of study)
         in: query
@@ -4156,7 +4156,7 @@ paths:
         all links to a specific object. In case you specify both firstId and secondId
         an expected answer would be true for existing links and false for no link
         between the objects.
-      operationId: getLinksByParams
+      operationId: getLinksByParamsAsCurator
       parameters:
       - description: Object ID (accession) (e.g. accession of study)
         in: query
@@ -4226,7 +4226,7 @@ paths:
         \ between 2 objects. Links are created both ways (e.g. when linking Object\
         \ A to Object B it can be done both ways, by linking firstType to secondType\
         \ and vice versa)."
-      operationId: saveLinks
+      operationId: saveLinksAsCurator
       requestBody:
         content:
           application/json:
@@ -4271,7 +4271,7 @@ paths:
       description: Please make sure to use that endpoint for batch calls only. You
         are not allowed to pass 'mixed' objects. e.g. Studies and Samples at the same
         time. Please always specify firstType.
-      operationId: getLinksByIds
+      operationId: getLinksByIdsAsCurator
       requestBody:
         content:
           application/json:
@@ -4354,7 +4354,7 @@ paths:
         \ this `cursor` tag to resume the query from your previous result and get\
         \ the next page. If there are no more results you will just retrieve an empty\
         \ result.\n\n"
-      operationId: searchExpressionData
+      operationId: searchExpressionDataAsCurator
       parameters:
       - description: |-
           Allows to get an extended or updated response body. Available values:
@@ -4625,7 +4625,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchExpressionGroups
+      operationId: searchExpressionGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -4870,7 +4870,7 @@ paths:
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
 
-      operationId: searchStreamedExpressionData
+      operationId: searchStreamedExpressionDataAsCurator
       parameters:
       - description: |
           Filter by sample metadata (key-value metadata pair(s)). E.g. `"Species or strain"="Homo sapiens"`
@@ -5071,7 +5071,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchFlowCytometryData
+      operationId: searchFlowCytometryDataAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5339,7 +5339,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchFlowCytometryGroups
+      operationId: searchFlowCytometryGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5606,7 +5606,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchSamples
+      operationId: searchSamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5876,7 +5876,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchVariantData
+      operationId: searchVariantDataAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -6143,7 +6143,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchVariantGroups
+      operationId: searchVariantGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -6375,7 +6375,7 @@ paths:
         metadata versions for the specified study and all associated objects. The
         version name is set to “Auto-published by API call”. Only curators with access
         to the specified studies can use this method.
-      operationId: publishStudyByAccession
+      operationId: publishStudyByAccessionAsCurator
       parameters:
       - description: Supply the accession of the study to be published
         in: path
@@ -6418,7 +6418,7 @@ paths:
       - Metadata versioning as Curator
   /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/validation-summary:
     get:
-      operationId: searchExpressionData
+      operationId: searchExpressionDataAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
