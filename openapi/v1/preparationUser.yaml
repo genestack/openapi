@@ -39,7 +39,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchPreparations
+      operationId: searchPreparationsAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -156,7 +156,7 @@ paths:
       - Preparation SPoT as User
   /frontend/rs/genestack/preparationUser/default-released/preparations/by/group/{id}:
     get:
-      operationId: getPreparationsByGroup
+      operationId: getPreparationsByGroupAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -233,7 +233,7 @@ paths:
       - Preparation SPoT as User
   /frontend/rs/genestack/preparationUser/default-released/preparations/{id}:
     get:
-      operationId: getPreparation
+      operationId: getPreparationAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -294,7 +294,7 @@ paths:
       - Preparation SPoT as User
   /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions:
     get:
-      operationId: getPreparationVersions
+      operationId: getPreparationVersionsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -330,7 +330,7 @@ paths:
       - Preparation SPoT as User
   /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions/{version}:
     get:
-      operationId: getPreparationByVersion
+      operationId: getPreparationByVersionAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
