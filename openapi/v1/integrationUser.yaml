@@ -2763,7 +2763,7 @@ paths:
         \ this `cursor` tag to resume the query from your previous result and get\
         \ the next page. If there are no more results you will just retrieve an empty\
         \ result.\n\n"
-      operationId: searchExpressionDataAsUser
+      operationId: omicsSearchExpressionDataAsUser
       parameters:
       - description: |-
           Allows to get an extended or updated response body. Available values:
@@ -3034,7 +3034,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchExpressionGroupsAsUser
+      operationId: omicsSearchExpressionGroupsAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3283,7 +3283,7 @@ paths:
         \ )` can be used for complex expressions.\n  \n\n## Error Handling\n  In case\
         \ of unexpected internal error during data retrieval, the last line of the\
         \ body will contain an error message, prefixed by the `#` character \n\n"
-      operationId: searchStreamedExpressionDataAsUser
+      operationId: omicsSearchStreamedExpressionDataAsUser
       parameters:
       - description: |
           Filter by sample metadata (key-value metadata pair(s)). E.g.`"Species or strain"="Homo sapiens"`
@@ -3484,7 +3484,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchFlowCytometryDataAsUser
+      operationId: omicsSearchFlowCytometryDataAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3752,7 +3752,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchFlowCytometryGroupsAsUser
+      operationId: omicsSearchFlowCytometryGroupsAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -4019,7 +4019,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchSamplesAsUser
+      operationId: omicsSearchSamplesAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -4289,7 +4289,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchVariantDataAsUser
+      operationId: omicsSearchVariantDataAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -4556,7 +4556,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchVariantGroupsAsUser
+      operationId: omicsSearchVariantGroupsAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.

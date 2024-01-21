@@ -4354,7 +4354,7 @@ paths:
         \ this `cursor` tag to resume the query from your previous result and get\
         \ the next page. If there are no more results you will just retrieve an empty\
         \ result.\n\n"
-      operationId: searchExpressionDataAsCurator
+      operationId: omicsSearchExpressionDataAsCurator
       parameters:
       - description: |-
           Allows to get an extended or updated response body. Available values:
@@ -4625,7 +4625,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchExpressionGroupsAsCurator
+      operationId: omicsSearchExpressionGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -4870,7 +4870,7 @@ paths:
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
 
-      operationId: searchStreamedExpressionDataAsCurator
+      operationId: omicsSarchStreamedExpressionDataAsCurator
       parameters:
       - description: |
           Filter by sample metadata (key-value metadata pair(s)). E.g. `"Species or strain"="Homo sapiens"`
@@ -5071,7 +5071,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchFlowCytometryDataAsCurator
+      operationId: omicsSearchFlowCytometryDataAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5339,7 +5339,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchFlowCytometryGroupsAsCurator
+      operationId: omicsSearchFlowCytometryGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5606,7 +5606,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchSamplesAsCurator
+      operationId: omicsSearchSamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5876,7 +5876,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchVariantDataAsCurator
+      operationId: omicsSearchVariantDataAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -6143,7 +6143,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchVariantGroupsAsCurator
+      operationId: omicsSearchVariantGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
