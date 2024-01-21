@@ -33,7 +33,8 @@ deps:
 build:
     FROM +deps
 
-    COPY --dir openapi scripts gradle gradlew buildSrc build.gradle.kts settings.gradle.kts .
+    COPY --dir openapi scripts gradle gradlew build.gradle.kts settings.gradle.kts .
+    COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
     # R allows only numeric versions
     # https://r-pkgs.org/lifecycle.html
     ARG --required ODM_OPENAPI_VERSION
