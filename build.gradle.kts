@@ -46,7 +46,6 @@ tasks {
             configOptions = mapOf(
                     "packageVersion" to openApiVersion
             )
-            skipValidateSpec = true
         }
         register(task + "R", GenerateTask::class) {
             generatorName.set("r")
@@ -58,7 +57,6 @@ tasks {
             configOptions = mapOf(
                     "packageVersion" to openApiVersion
             )
-            skipValidateSpec = true
         }
     }
 
