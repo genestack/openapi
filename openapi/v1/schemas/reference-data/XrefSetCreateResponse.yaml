@@ -35,8 +35,9 @@ properties:
     - gene-transcript
     type: string
   metadata:
-    properties:
-      type: string
+    patternProperties:
+      "^.*$":
+        type: string
     description: Additional user metadata
     type: object
   warnings:

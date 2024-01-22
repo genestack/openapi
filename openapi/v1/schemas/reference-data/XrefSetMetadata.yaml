@@ -22,7 +22,8 @@ properties:
     format: int64
     type: integer
   data:
-    properties:
-      type: string
+    patternProperties:
+      "^.*$":
+        type: string
     type: object
 type: object
