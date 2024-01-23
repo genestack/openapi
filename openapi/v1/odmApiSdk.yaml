@@ -18505,7 +18505,7 @@ paths:
         \ the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators,\
         \ using white-space to separate out the terms and operators. Parentheses `(\
         \ )` can be used for complex expressions.\n\n"
-      operationId: "omicsSarchStreamedExpressionDataAsCurator"
+      operationId: "omicsSearchStreamedExpressionDataAsCurator"
       parameters:
       - description: "Filter by sample metadata (key-value metadata pair(s)). E.g.\
           \ `\"Species or strain\"=\"Homo sapiens\"`\n"
