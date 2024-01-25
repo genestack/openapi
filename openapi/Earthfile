@@ -12,7 +12,9 @@ swagger-ui:
         apk del bash
 
     # IDK why it's required
-    RUN ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml
+    RUN \
+        ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml && \
+        rm -f /usr/share/nginx/html/yaml/odmApi.yaml
 
     ENTRYPOINT ["/genestack-docker-entrypoint.sh"]
     CMD ["nginx", "-g", "daemon off;"]
