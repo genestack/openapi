@@ -18,7 +18,7 @@ info:
 tags:
 - name: Flow Cytometry SPoT as Curator
 paths:
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry:
+  /api/v1/as-curator/flow-cytometries:
     get:
       description: |+
         Retrieve all flow cytometry data and metadata objects that match a query.
@@ -175,7 +175,7 @@ paths:
       summary: Retrieve multiple flow cytometry data and metadata objects
       tags:
       - Flow Cytometry SPoT as Curator
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic:
+  /api/v1/as-curator/flow-cytometries/atomic:
     post:
       description: |-
         ## Data
@@ -235,7 +235,7 @@ paths:
       tags:
       - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic/{id}:
+  /api/v1/as-curator/flow-cytometries/atomic/{id}:
     delete:
       operationId: deleteAtomicFlowCytometryAsCurator
       parameters:
@@ -327,7 +327,7 @@ paths:
       tags:
       - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/facs:
+  /api/v1/as-curator/flow-cytometries/facs:
     post:
       description: |-
         ## Data
@@ -379,7 +379,7 @@ paths:
       tags:
       - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group:
+  /api/v1/as-curator/flow-cytometries/group:
     get:
       description: |-
         Retrieve all group metadata objects that match a query.
@@ -514,7 +514,7 @@ paths:
       summary: Retrieve groups that match a query
       tags:
       - Flow Cytometry SPoT as Curator
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/by/run/{id}:
+  /api/v1/as-curator/flow-cytometries/group/by/run/{id}:
     get:
       operationId: getFlowCytometryGroupByRunAsCurator
       parameters:
@@ -575,7 +575,7 @@ paths:
       summary: Retrieve a single group object by run ID (accession)
       tags:
       - Flow Cytometry SPoT as Curator
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}:
+  /api/v1/as-curator/flow-cytometries/group/{id}:
     delete:
       operationId: deleteFlowCytometryGroupAsCurator
       parameters:
@@ -671,7 +671,7 @@ paths:
       summary: Retrieve a single group object by ID (accession)
       tags:
       - Flow Cytometry SPoT as Curator
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}/curation:
+  /api/v1/as-curator/flow-cytometries/group/{id}/curation:
     get:
       operationId: getFlowCytometryGroupCurationStatusAsCurator
       parameters:
@@ -755,7 +755,7 @@ paths:
       tags:
       - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/runs/by/group/{id}:
+  /api/v1/as-curator/flow-cytometries/runs/by/group/{id}:
     get:
       description: |+
         ## Paging
@@ -813,7 +813,7 @@ paths:
       summary: Retrieve run objects related to the given group
       tags:
       - Flow Cytometry SPoT as Curator
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}:
+  /api/v1/as-curator/flow-cytometries/{id}:
     get:
       operationId: getFlowCytometryAsCurator
       parameters:
@@ -930,7 +930,7 @@ paths:
       tags:
       - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions:
+  /api/v1/as-curator/flow-cytometries/{id}/versions:
     get:
       operationId: getFlowCytometryVersionsAsCurator
       parameters:
@@ -966,7 +966,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Flow Cytometry SPoT as Curator
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions/{version}:
+  /api/v1/as-curator/flow-cytometries/{id}/versions/{version}:
     get:
       operationId: getFlowCytometryByVersionAsCurator
       parameters:

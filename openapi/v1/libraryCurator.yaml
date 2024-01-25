@@ -18,7 +18,7 @@ info:
 tags:
 - name: Library SPoT as Curator
 paths:
-  /frontend/rs/genestack/libraryCurator/default-released/libraries:
+  /api/v1/as-curator/libraries:
     get:
       description: |-
         Retrieve library metadata objects by searching/listing library metadata.
@@ -209,7 +209,7 @@ paths:
       tags:
       - Library SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/by/group/{id}:
+  /api/v1/as-curator/libraries/by/group/{id}:
     get:
       operationId: getLibrariesByGroupAsCurator
       parameters:
@@ -286,7 +286,7 @@ paths:
       summary: Retrieve libraries related to the given group
       tags:
       - Library SPoT as Curator
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/group/{id}:
+  /api/v1/as-curator/libraries/group/{id}:
     delete:
       operationId: deleteLibraryGroupAsCurator
       parameters:
@@ -322,7 +322,7 @@ paths:
       summary: Delete a library group with all related library objects
       tags:
       - Library SPoT as Curator
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}:
+  /api/v1/as-curator/libraries/{id}:
     delete:
       operationId: deleteLibraryAsCurator
       parameters:
@@ -474,7 +474,7 @@ paths:
       tags:
       - Library SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions:
+  /api/v1/as-curator/libraries/{id}/versions:
     get:
       operationId: getLibraryVersionsAsCurator
       parameters:
@@ -510,7 +510,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Library SPoT as Curator
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions/{version}:
+  /api/v1/as-curator/libraries/{id}/versions/{version}:
     get:
       operationId: getLibraryByVersionAsCurator
       parameters:

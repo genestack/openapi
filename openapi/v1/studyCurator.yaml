@@ -18,7 +18,7 @@ info:
 tags:
 - name: Study SPoT as Curator
 paths:
-  /frontend/rs/genestack/studyCurator/default-released/studies:
+  /api/v1/as-curator/studies:
     get:
       description: |-
         Retrieve study metadata objects by searching/listing study metadata.
@@ -200,7 +200,7 @@ paths:
       tags:
       - Study SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/studyCurator/default-released/studies/{id}:
+  /api/v1/as-curator/studies/{id}:
     delete:
       operationId: deleteStudyAsCurator
       parameters:
@@ -353,7 +353,7 @@ paths:
       tags:
       - Study SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions:
+  /api/v1/as-curator/studies/{id}/versions:
     get:
       operationId: getStudyVersionsAsCurator
       parameters:
@@ -389,7 +389,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Study SPoT as Curator
-  /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions/{version}:
+  /api/v1/as-curator/studies/{id}/versions/{version}:
     get:
       operationId: getStudyByVersionAsCurator
       parameters:

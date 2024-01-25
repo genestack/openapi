@@ -47,7 +47,7 @@ tags:
 - name: "Variant SPoT as User"
 - name: "Tasks API"
 paths:
-  /frontend/rs/genestack/reference-data/default-released/xrefsets:
+  /api/v1/xrefsets:
     post:
       operationId: "create"
       requestBody:
@@ -92,7 +92,7 @@ paths:
       tags:
       - "Xrefset queries"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/reference-data/default-released/xrefsets/entries:
+  /api/v1/xrefsets/entries:
     get:
       description: "## Conditions\nIt is possible to supply a list of values for \"\
         targetId\" and \"sourceId\". If non-empty lists of values for \"targetId\"\
@@ -163,7 +163,7 @@ paths:
         \ and targetId"
       tags:
       - "Xrefset queries"
-  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}:
+  /api/v1/xrefsets/{id}:
     delete:
       operationId: "deleteFile"
       parameters:
@@ -206,7 +206,7 @@ paths:
         \ xrefset are allowed to delete it."
       tags:
       - "Xrefset queries"
-  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}/entries:
+  /api/v1/xrefsets/{id}/entries:
     get:
       description: "## Conditions\nIt is possible to supply a list of values for \"\
         targetId\" and \"sourceId\". If non-empty lists of values for \"targetId\"\
@@ -286,7 +286,7 @@ paths:
         \ and targetId"
       tags:
       - "Xrefset queries"
-  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}/metadata:
+  /api/v1/xrefsets/{id}/metadata:
     get:
       operationId: "getDetailsByAccession"
       parameters:
@@ -327,7 +327,7 @@ paths:
       summary: "Retrieve xrefset details"
       tags:
       - "Xrefset queries"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry:
+  /api/v1/as-curator/flow-cytometries:
     get:
       description: "Retrieve all flow cytometry data and metadata objects that match\
         \ a query.\n\n## Metadata full-text queries\nSingle words can be supplied\
@@ -493,7 +493,7 @@ paths:
       summary: "Retrieve multiple flow cytometry data and metadata objects"
       tags:
       - "Flow Cytometry SPoT as Curator"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic:
+  /api/v1/as-curator/flow-cytometries/atomic:
     post:
       description: "## Data\n This operation requires the URL of a signal data  file,\
         \ for example a GCT, VCF or Flow Cytometry file. The required form of this\
@@ -555,7 +555,7 @@ paths:
       tags:
       - "Flow Cytometry SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic/{id}:
+  /api/v1/as-curator/flow-cytometries/atomic/{id}:
     delete:
       operationId: "deleteAtomicFlowCytometryAsCurator"
       parameters:
@@ -648,7 +648,7 @@ paths:
       tags:
       - "Flow Cytometry SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/facs:
+  /api/v1/as-curator/flow-cytometries/facs:
     post:
       description: "## Data\n This operation requires the URL of a signal data  file,\
         \ for example a GCT, VCF or Flow Cytometry file. The required form of this\
@@ -705,7 +705,7 @@ paths:
       tags:
       - "Flow Cytometry SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group:
+  /api/v1/as-curator/flow-cytometries/group:
     get:
       description: "Retrieve all group metadata objects that match a query.\n\n##\
         \ Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -849,7 +849,7 @@ paths:
       summary: "Retrieve groups that match a query"
       tags:
       - "Flow Cytometry SPoT as Curator"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/by/run/{id}:
+  /api/v1/as-curator/flow-cytometries/group/by/run/{id}:
     get:
       operationId: "getFlowCytometryGroupByRunAsCurator"
       parameters:
@@ -912,7 +912,7 @@ paths:
       summary: "Retrieve a single group object by run ID (accession)"
       tags:
       - "Flow Cytometry SPoT as Curator"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}:
+  /api/v1/as-curator/flow-cytometries/group/{id}:
     delete:
       operationId: "deleteFlowCytometryGroupAsCurator"
       parameters:
@@ -1011,7 +1011,7 @@ paths:
       summary: "Retrieve a single group object by ID (accession)"
       tags:
       - "Flow Cytometry SPoT as Curator"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}/curation:
+  /api/v1/as-curator/flow-cytometries/group/{id}/curation:
     get:
       operationId: "getFlowCytometryGroupCurationStatusAsCurator"
       parameters:
@@ -1094,7 +1094,7 @@ paths:
       tags:
       - "Flow Cytometry SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/runs/by/group/{id}:
+  /api/v1/as-curator/flow-cytometries/runs/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -1158,7 +1158,7 @@ paths:
       summary: "Retrieve run objects related to the given group"
       tags:
       - "Flow Cytometry SPoT as Curator"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}:
+  /api/v1/as-curator/flow-cytometries/{id}:
     get:
       operationId: "getFlowCytometryAsCurator"
       parameters:
@@ -1277,7 +1277,7 @@ paths:
       tags:
       - "Flow Cytometry SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions:
+  /api/v1/as-curator/flow-cytometries/{id}/versions:
     get:
       operationId: "getFlowCytometryVersionsAsCurator"
       parameters:
@@ -1314,7 +1314,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Flow Cytometry SPoT as Curator"
-  /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions/{version}:
+  /api/v1/as-curator/flow-cytometries/{id}/versions/{version}:
     get:
       operationId: "getFlowCytometryByVersionAsCurator"
       parameters:
@@ -1383,7 +1383,7 @@ paths:
       summary: "Retrieve a single sample flow cytometry by ID (accession)"
       tags:
       - "Flow Cytometry SPoT as Curator"
-  /frontend/rs/genestack/libraryUser/default-released/libraries:
+  /api/v1/as-user/libraries:
     get:
       description: "Retrieve library metadata objects by searching/listing library\
         \ metadata.\n\n## Metadata full-text queries\nSingle words can be supplied\
@@ -1522,7 +1522,7 @@ paths:
       summary: "List or search for library metadata objects"
       tags:
       - "Library SPoT as User"
-  /frontend/rs/genestack/libraryUser/default-released/libraries/by/group/{id}:
+  /api/v1/as-user/libraries/by/group/{id}:
     get:
       operationId: "getLibrariesByGroupAsUser"
       parameters:
@@ -1601,7 +1601,7 @@ paths:
       summary: "Retrieve libraries related to the given group"
       tags:
       - "Library SPoT as User"
-  /frontend/rs/genestack/libraryUser/default-released/libraries/{id}:
+  /api/v1/as-user/libraries/{id}:
     get:
       operationId: "getLibraryAsUser"
       parameters:
@@ -1664,7 +1664,7 @@ paths:
       summary: "Retrieve a single library object by ID (accession)"
       tags:
       - "Library SPoT as User"
-  /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions:
+  /api/v1/as-user/libraries/{id}/versions:
     get:
       operationId: "getLibraryVersionsAsUser"
       parameters:
@@ -1701,7 +1701,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Library SPoT as User"
-  /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions/{version}:
+  /api/v1/as-user/libraries/{id}/versions/{version}:
     get:
       operationId: "getLibraryByVersionAsUser"
       parameters:
@@ -1770,7 +1770,7 @@ paths:
       summary: "Retrieve a single library object by ID (accession)"
       tags:
       - "Library SPoT as User"
-  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry:
+  /api/v1/as-user/flow-cytometries:
     get:
       description: "Retrieve all flow cytometry data and metadata objects that match\
         \ a query.\n\n## Metadata full-text queries\nSingle words can be supplied\
@@ -1936,7 +1936,7 @@ paths:
       summary: "Retrieve multiple flow cytometry data and metadata objects"
       tags:
       - "Flow Cytometry SPoT as User"
-  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group:
+  /api/v1/as-user/flow-cytometries/group:
     get:
       description: "Retrieve all group metadata objects that match a query.\n\n##\
         \ Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -2080,7 +2080,7 @@ paths:
       summary: "Retrieve groups that match a query"
       tags:
       - "Flow Cytometry SPoT as User"
-  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group/by/run/{id}:
+  /api/v1/as-user/flow-cytometries/group/by/run/{id}:
     get:
       operationId: "getFlowCytometryGroupByRunAsUser"
       parameters:
@@ -2143,7 +2143,7 @@ paths:
       summary: "Retrieve a single group object by run ID (accession)"
       tags:
       - "Flow Cytometry SPoT as User"
-  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/group/{id}:
+  /api/v1/as-user/flow-cytometries/group/{id}:
     get:
       operationId: "getFlowCytometryGroupAsUser"
       parameters:
@@ -2206,7 +2206,7 @@ paths:
       summary: "Retrieve a single group object by ID (accession)"
       tags:
       - "Flow Cytometry SPoT as User"
-  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/runs/by/group/{id}:
+  /api/v1/as-user/flow-cytometries/runs/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -2270,7 +2270,7 @@ paths:
       summary: "Retrieve run objects related to the given group"
       tags:
       - "Flow Cytometry SPoT as User"
-  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}:
+  /api/v1/as-user/flow-cytometries/{id}:
     get:
       operationId: "getFlowCytometryAsUser"
       parameters:
@@ -2333,7 +2333,7 @@ paths:
       summary: "Retrieve a single sample flow cytometry by ID (accession)"
       tags:
       - "Flow Cytometry SPoT as User"
-  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}/versions:
+  /api/v1/as-user/flow-cytometries/{id}/versions:
     get:
       operationId: "getFlowCytometryVersionsAsUser"
       parameters:
@@ -2370,7 +2370,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Flow Cytometry SPoT as User"
-  /frontend/rs/genestack/flowCytometryUser/default-released/flow-cytometry/{id}/versions/{version}:
+  /api/v1/as-user/flow-cytometries/{id}/versions/{version}:
     get:
       operationId: "getFlowCytometryByVersionAsUser"
       parameters:
@@ -2439,7 +2439,7 @@ paths:
       summary: "Retrieve a single sample flow cytometry by ID (accession)"
       tags:
       - "Flow Cytometry SPoT as User"
-  /frontend/rs/genestack/variantCurator/default-released/variant:
+  /api/v1/as-curator/variants:
     get:
       description: "Retrieve all variant data and metadata objects that match a query.\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -2635,7 +2635,7 @@ paths:
       summary: "Retrieve multiple variant data and metadata objects"
       tags:
       - "Variant SPoT as Curator"
-  /frontend/rs/genestack/variantCurator/default-released/variant/atomic:
+  /api/v1/as-curator/variants/atomic:
     post:
       description: "## Data\n This operation requires the URL of a signal data  file,\
         \ for example a GCT, VCF or Flow Cytometry file. The required form of this\
@@ -2697,7 +2697,7 @@ paths:
       tags:
       - "Variant SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/variantCurator/default-released/variant/atomic/{id}:
+  /api/v1/as-curator/variants/atomic/{id}:
     delete:
       operationId: "deleteAtomicVariantAsCurator"
       parameters:
@@ -2790,7 +2790,7 @@ paths:
       tags:
       - "Variant SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/variantCurator/default-released/variant/group:
+  /api/v1/as-curator/variants/group:
     get:
       description: "Retrieve all group metadata objects that match a query.\n\n##\
         \ Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -2934,7 +2934,7 @@ paths:
       summary: "Retrieve groups that match a query"
       tags:
       - "Variant SPoT as Curator"
-  /frontend/rs/genestack/variantCurator/default-released/variant/group/by/run/{id}:
+  /api/v1/as-curator/variants/group/by/run/{id}:
     get:
       operationId: "getVariantGroupByRunAsCurator"
       parameters:
@@ -2997,7 +2997,7 @@ paths:
       summary: "Retrieve a single group object by run ID (accession)"
       tags:
       - "Variant SPoT as Curator"
-  /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}:
+  /api/v1/as-curator/variants/group/{id}:
     delete:
       operationId: "deleteVariantGroupAsCurator"
       parameters:
@@ -3096,7 +3096,7 @@ paths:
       summary: "Retrieve a single group object by ID (accession)"
       tags:
       - "Variant SPoT as Curator"
-  /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}/curation:
+  /api/v1/as-curator/variants/group/{id}/curation:
     get:
       operationId: "getVariantGroupCurationStatusAsCurator"
       parameters:
@@ -3179,7 +3179,7 @@ paths:
       tags:
       - "Variant SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/variantCurator/default-released/variant/runs/by/group/{id}:
+  /api/v1/as-curator/variants/runs/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -3243,7 +3243,7 @@ paths:
       summary: "Retrieve run objects related to the given group"
       tags:
       - "Variant SPoT as Curator"
-  /frontend/rs/genestack/variantCurator/default-released/variant/vcf:
+  /api/v1/as-curator/variants/vcf:
     post:
       description: "## Data\n This operation requires the URL of a VCF data file.\
         \ Method differed from the other  SPoT POST methods as it returns additionally\
@@ -3300,7 +3300,7 @@ paths:
       tags:
       - "Variant SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/variantCurator/default-released/variant/{id}:
+  /api/v1/as-curator/variants/{id}:
     get:
       operationId: "getVariantAsCurator"
       parameters:
@@ -3419,7 +3419,7 @@ paths:
       tags:
       - "Variant SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions:
+  /api/v1/as-curator/variants/{id}/versions:
     get:
       operationId: "getVariantVersionsAsCurator"
       parameters:
@@ -3456,7 +3456,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Variant SPoT as Curator"
-  /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions/{version}:
+  /api/v1/as-curator/variants/{id}/versions/{version}:
     get:
       operationId: "getVariantByVersionAsCurator"
       parameters:
@@ -3525,7 +3525,7 @@ paths:
       summary: "Retrieve a single variant object by ID (accession)"
       tags:
       - "Variant SPoT as Curator"
-  /frontend/rs/genestack/manageData/default-released/detached-objects:
+  /api/v1/manage-data/detached-objects:
     get:
       description: "Retrieve various types of detached data objects. An object is\
         \ defined as 'detached' if it lacks any direct or indirect link to a root-level\
@@ -3596,7 +3596,7 @@ paths:
       summary: "Retrieve a list of detached objects"
       tags:
       - "Manage Data"
-  /frontend/rs/genestack/manageData/default-released/data:
+  /api/v1/manage-data/data:
     delete:
       description: "The objects will be marked for deletion. In case the selected\
         \ object has more than one version, the endpoint deletes all of them. The\
@@ -3663,7 +3663,7 @@ paths:
       summary: "Delete objects from ODM"
       tags:
       - "Manage Data"
-  /frontend/rs/genestack/studyCurator/default-released/studies:
+  /api/v1/as-curator/studies:
     get:
       description: "Retrieve study metadata objects by searching/listing study metadata.\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -3852,7 +3852,7 @@ paths:
       tags:
       - "Study SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/studyCurator/default-released/studies/{id}:
+  /api/v1/as-curator/studies/{id}:
     delete:
       operationId: "deleteStudyAsCurator"
       parameters:
@@ -4008,7 +4008,7 @@ paths:
       tags:
       - "Study SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions:
+  /api/v1/as-curator/studies/{id}/versions:
     get:
       operationId: "getStudyVersionsAsCurator"
       parameters:
@@ -4045,7 +4045,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Study SPoT as Curator"
-  /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions/{version}:
+  /api/v1/as-curator/studies/{id}/versions/{version}:
     get:
       operationId: "getStudyByVersionAsCurator"
       parameters:
@@ -4114,7 +4114,7 @@ paths:
       summary: "Retrieve a single study object by ID (accession)"
       tags:
       - "Study SPoT as Curator"
-  /api/v1/as-user/expression:
+  /api/v1/as-user/expressions:
     get:
       description: "Retrieve all expression data and metadata objects that match a\
         \ query.\n\n## Metadata full-text queries\nSingle words can be supplied as\
@@ -4278,7 +4278,7 @@ paths:
       summary: "Retrieve multiple expression data and metadata objects"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-user/expression/group:
+  /api/v1/as-user/expressions/group:
     get:
       description: "Retrieve all group metadata objects that match a query.\n\n##\
         \ Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -4422,7 +4422,7 @@ paths:
       summary: "Retrieve groups that match a query"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-user/expression/group/by/run/{id}:
+  /api/v1/as-user/expressions/group/by/run/{id}:
     get:
       operationId: "getExpressionGroupByRunAsUser"
       parameters:
@@ -4485,7 +4485,7 @@ paths:
       summary: "Retrieve a single group object by run ID (accession)"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-user/expression/group/{id}:
+  /api/v1/as-user/expressions/group/{id}:
     get:
       operationId: "getExpressionGroupAsUser"
       parameters:
@@ -4548,7 +4548,7 @@ paths:
       summary: "Retrieve a single group object by ID (accession)"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-user/expression/runs/by/group/{id}:
+  /api/v1/as-user/expressions/runs/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -4612,7 +4612,7 @@ paths:
       summary: "Retrieve run objects related to the given group"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-user/expression/{id}:
+  /api/v1/as-user/expressions/{id}:
     get:
       operationId: "getExpressionAsUser"
       parameters:
@@ -4681,7 +4681,7 @@ paths:
       summary: "Retrieve a single expression object by ID (accession)"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-user/expression/{id}/versions:
+  /api/v1/as-user/expressions/{id}/versions:
     get:
       operationId: "getExpressionVersionsAsUser"
       parameters:
@@ -4718,7 +4718,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-user/expression/{id}/versions/{version}:
+  /api/v1/as-user/expressions/{id}/versions/{version}:
     get:
       operationId: "getExpressionByVersionAsUser"
       parameters:
@@ -4787,7 +4787,7 @@ paths:
       summary: "Retrieve a single expression object by ID (accession)"
       tags:
       - "Expression SPoT as User"
-  /frontend/rs/genestack/job/default-released/import/expression:
+  /api/v1/jobs/import/expression:
     post:
       description: "## Data\n This operation necessitates the URL of a tabular data\
         \ file, which must be either in TSV or GCT 1.2 format. Consult the user guide\
@@ -4841,7 +4841,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/job/default-released/import/flow-cytometry:
+  /api/v1/jobs/import/flow-cytometry:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -4876,7 +4876,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/job/default-released/import/libraries:
+  /api/v1/jobs/import/libraries:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -4911,7 +4911,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/job/default-released/import/preparations:
+  /api/v1/jobs/import/preparations:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -4946,7 +4946,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/job/default-released/import/samples:
+  /api/v1/jobs/import/samples:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -4981,7 +4981,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/job/default-released/import/study:
+  /api/v1/jobs/import/study:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -5016,7 +5016,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/job/default-released/import/variant:
+  /api/v1/jobs/import/variant:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -5051,7 +5051,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/job/default-released/{jobExecId}/info:
+  /api/v1/jobs/{jobExecId}/info:
     get:
       operationId: "info"
       parameters:
@@ -5074,7 +5074,7 @@ paths:
       summary: "get information about one particular job execution"
       tags:
       - "Job operations"
-  /frontend/rs/genestack/job/default-released/{jobExecId}/output:
+  /api/v1/jobs/{jobExecId}/output:
     get:
       operationId: "output"
       parameters:
@@ -5097,7 +5097,7 @@ paths:
       summary: "retrieve job output (result)"
       tags:
       - "Job operations"
-  /frontend/rs/genestack/job/default-released/{jobExecId}/restart:
+  /api/v1/jobs/{jobExecId}/restart:
     put:
       operationId: "restart"
       parameters:
@@ -5120,7 +5120,7 @@ paths:
       summary: "restart stopped (failed) job"
       tags:
       - "Job operations"
-  /frontend/rs/genestack/job/default-released/{jobExecId}/stop:
+  /api/v1/jobs/{jobExecId}/stop:
     put:
       operationId: "stop"
       parameters:
@@ -5222,7 +5222,7 @@ paths:
         \ criteria."
       tags:
       - "Linkage as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/library/{id}:
+  /api/v1/as-user/integration/link/expression/by/library/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -5333,7 +5333,7 @@ paths:
         \ (accession)"
       tags:
       - "Expression integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/preparation/{id}:
+  /api/v1/as-user/integration/link/expression/by/preparation/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -5444,7 +5444,7 @@ paths:
         \ ID (accession)"
       tags:
       - "Expression integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/by/sample/{id}:
+  /api/v1/as-user/integration/link/expression/by/sample/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -5554,7 +5554,7 @@ paths:
       summary: "Retrieve expression run-level data by querying related sample ID (accession)"
       tags:
       - "Expression integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/group/by/study/{id}:
+  /api/v1/as-user/integration/link/expression/group/by/study/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -5639,7 +5639,7 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Expression integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-libraries/by/group/{id}:
+  /api/v1/as-user/integration/link/expression/run-to-libraries/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -5705,7 +5705,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - "Expression integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-preparations/by/group/{id}:
+  /api/v1/as-user/integration/link/expression/run-to-preparations/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -5771,7 +5771,7 @@ paths:
         \ unique runs, not unique pairs."
       tags:
       - "Expression integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/expression/run-to-samples/by/group/{id}:
+  /api/v1/as-user/integration/link/expression/run-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -5837,7 +5837,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - "Expression integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/by/sample/{id}:
+  /api/v1/as-user/integration/link/flow-cytometry/by/sample/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -5948,7 +5948,7 @@ paths:
         \ ID (accession)"
       tags:
       - "Flow Cytometry integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/group/by/study/{id}:
+  /api/v1/as-user/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -6033,7 +6033,7 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Flow Cytometry integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
+  /api/v1/as-user/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -6099,7 +6099,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - "Flow Cytometry integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/libraries/by/samples:
+  /api/v1/as-user/integration/link/libraries/by/samples:
     get:
       description: "Retrieve library metadata objects whose linked sample metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -6243,7 +6243,7 @@ paths:
       summary: "Retrieve library metadata by querying related samples"
       tags:
       - "Library integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/library/by/sample/{id}:
+  /api/v1/as-user/integration/link/library/by/sample/{id}:
     get:
       operationId: "getLibraryBySampleAsUser"
       parameters:
@@ -6311,7 +6311,7 @@ paths:
       summary: "Retrieve library metadata by querying related sample ID (accession)"
       tags:
       - "Library integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/library/group/by/study/{id}:
+  /api/v1/as-user/integration/link/library/group/by/study/{id}:
     get:
       operationId: "getLibraryGroupsByStudyAsUser"
       parameters:
@@ -6358,7 +6358,7 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Library integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/library/libraries-to-samples/by/group/{id}:
+  /api/v1/as-user/integration/link/library/libraries-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -6424,7 +6424,7 @@ paths:
         \ unique libraries, not unique pairs."
       tags:
       - "Library integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/by/sample/{id}:
+  /api/v1/as-user/integration/link/preparation/by/sample/{id}:
     get:
       operationId: "getPreparationBySampleAsUser"
       parameters:
@@ -6492,7 +6492,7 @@ paths:
       summary: "Retrieve preparation metadata by querying related sample ID (accession)"
       tags:
       - "Preparation integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/group/by/study/{id}:
+  /api/v1/as-user/integration/link/preparation/group/by/study/{id}:
     get:
       operationId: "getPreparationGroupsByStudyAsUser"
       parameters:
@@ -6539,7 +6539,7 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Preparation integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/preparation/preparations-to-samples/by/group/{id}:
+  /api/v1/as-user/integration/link/preparation/preparations-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -6605,7 +6605,7 @@ paths:
         \ preparations, not unique pairs."
       tags:
       - "Preparation integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/preparations/by/samples:
+  /api/v1/as-user/integration/link/preparations/by/samples:
     get:
       description: "Retrieve preparation metadata objects whose linked sample metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -6749,7 +6749,7 @@ paths:
       summary: "Retrieve preparation metadata by querying related samples"
       tags:
       - "Preparation integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/libraries:
+  /api/v1/as-user/integration/link/samples/by/libraries:
     get:
       description: "Retrieve sample metadata objects whose linked library metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -6893,7 +6893,7 @@ paths:
       summary: "Retrieve sample metadata by querying related libraries"
       tags:
       - "Sample integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/preparations:
+  /api/v1/as-user/integration/link/samples/by/preparations:
     get:
       description: "Retrieve sample metadata objects whose linked preparation metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -7038,7 +7038,7 @@ paths:
       summary: "Retrieve sample metadata by querying related preparations"
       tags:
       - "Sample integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/samples/by/study/{id}:
+  /api/v1/as-user/integration/link/samples/by/study/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -7126,7 +7126,7 @@ paths:
       summary: "Retrieve sample metadata by querying related study ID (accession)"
       tags:
       - "Sample integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/libraries:
+  /api/v1/as-user/integration/link/studies/by/libraries:
     get:
       description: "Retrieve study metadata objects whose linked library metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -7270,7 +7270,7 @@ paths:
       summary: "Retrieve study metadata objects by querying related libraries"
       tags:
       - "Study integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/preparations:
+  /api/v1/as-user/integration/link/studies/by/preparations:
     get:
       description: "Retrieve study metadata objects whose linked preparation metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -7415,7 +7415,7 @@ paths:
       summary: "Retrieve study metadata objects by querying related preparations"
       tags:
       - "Study integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/studies/by/samples:
+  /api/v1/as-user/integration/link/studies/by/samples:
     get:
       description: "Retrieve study metadata objects whose linked sample metadata matches\
         \ all supplied conditions.\n\n## Conditions\nIt is possible to supply conditions\
@@ -7560,7 +7560,7 @@ paths:
       summary: "Retrieve study metadata objects by querying related samples"
       tags:
       - "Study integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/study/by/sample/{id}:
+  /api/v1/as-user/integration/link/study/by/sample/{id}:
     get:
       operationId: "getStudyBySampleAsUser"
       parameters:
@@ -7620,7 +7620,7 @@ paths:
       summary: "Retrieve study metadata by querying sample ID (accession)"
       tags:
       - "Study integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/fulltext/search/studies:
+  /api/v1/as-user/integration/fulltext/search/studies:
     post:
       description: "Find studies and retrieve their data by searching via a full-text\
         \ or facets search of study or linked objects metadata (e.g. samples, libraries,\
@@ -7665,7 +7665,7 @@ paths:
       tags:
       - "Study integration as User"
       x-codegen-request-body-name: "request"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/by/sample/{id}:
+  /api/v1/as-user/integration/link/variant/by/sample/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -7775,7 +7775,7 @@ paths:
       summary: "Retrieve variant run-level data by querying related sample ID (accession)"
       tags:
       - "Variant integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/group/by/study/{id}:
+  /api/v1/as-user/integration/link/variant/group/by/study/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -7860,7 +7860,7 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Variant integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/integration/link/variant/run-to-samples/by/group/{id}:
+  /api/v1/as-user/integration/link/variant/run-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -10153,7 +10153,7 @@ paths:
       summary: "Retrieve group objects by searching across multiple data types"
       tags:
       - "Omics queries as User"
-  /frontend/rs/genestack/scim-integration/default-released/scim/Users:
+  /api/v1/scim/Users:
     get:
       description: "The endpoint returns a list of active users. The list can be filtered\
         \ by user attributes using the filter parameter. If no filtering parameters\
@@ -10302,7 +10302,7 @@ paths:
       tags:
       - "Users"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/scim-integration/default-released/scim/Users/{id}:
+  /api/v1/scim/Users/{id}:
     delete:
       operationId: "deleteUser"
       parameters:
@@ -10499,7 +10499,7 @@ paths:
       tags:
       - "Users"
       x-codegen-request-body-name: "body"
-  /api/v1/as-curator/expression:
+  /api/v1/as-curator/expressions:
     get:
       description: "Retrieve all expression data and metadata objects that match a\
         \ query.\n\n## Metadata full-text queries\nSingle words can be supplied as\
@@ -10663,7 +10663,7 @@ paths:
       summary: "Retrieve multiple expression data and metadata objects"
       tags:
       - "Expression SPoT as Curator"
-  /api/v1/as-curator/expression/atomic:
+  /api/v1/as-curator/expressions/atomic:
     post:
       description: "## Data\n This operation requires the URL of a signal data  file,\
         \ for example a GCT, VCF or Flow Cytometry file. The required form of this\
@@ -10725,7 +10725,7 @@ paths:
       tags:
       - "Expression SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /api/v1/as-curator/expression/atomic/{id}:
+  /api/v1/as-curator/expressions/atomic/{id}:
     delete:
       operationId: "deleteAtomicExpressionAsCurator"
       parameters:
@@ -10818,7 +10818,7 @@ paths:
       tags:
       - "Expression SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /api/v1/as-curator/expression/gct:
+  /api/v1/as-curator/expressions/gct:
     post:
       description: "## Data\n This operation necessitates the URL of a tabular data\
         \ file, which must be either in TSV or GCT 1.2 format. Consult the user guide\
@@ -10881,7 +10881,7 @@ paths:
       tags:
       - "Expression SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /api/v1/as-curator/expression/group:
+  /api/v1/as-curator/expressions/group:
     get:
       description: "Retrieve all group metadata objects that match a query.\n\n##\
         \ Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -11025,7 +11025,7 @@ paths:
       summary: "Retrieve groups that match a query"
       tags:
       - "Expression SPoT as Curator"
-  /api/v1/as-curator/expression/group/by/run/{id}:
+  /api/v1/as-curator/expressions/group/by/run/{id}:
     get:
       operationId: "getExpressionGroupByRunAsCurator"
       parameters:
@@ -11088,7 +11088,7 @@ paths:
       summary: "Retrieve a single group object by run ID (accession)"
       tags:
       - "Expression SPoT as Curator"
-  /api/v1/as-curator/expression/group/{id}:
+  /api/v1/as-curator/expressions/group/{id}:
     delete:
       operationId: "deleteExpressionGroupAsCurator"
       parameters:
@@ -11187,7 +11187,7 @@ paths:
       summary: "Retrieve a single group object by ID (accession)"
       tags:
       - "Expression SPoT as Curator"
-  /api/v1/as-curator/expression/group/{id}/curation:
+  /api/v1/as-curator/expressions/group/{id}/curation:
     get:
       operationId: "getExpressionGroupCurationStatusAsCurator"
       parameters:
@@ -11270,7 +11270,7 @@ paths:
       tags:
       - "Expression SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /api/v1/as-curator/expression/runs/by/group/{id}:
+  /api/v1/as-curator/expressions/runs/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -11334,7 +11334,7 @@ paths:
       summary: "Retrieve run objects related to the given group"
       tags:
       - "Expression SPoT as Curator"
-  /api/v1/as-curator/expression/{id}:
+  /api/v1/as-curator/expressions/{id}:
     get:
       operationId: "getExpressionAsCurator"
       parameters:
@@ -11459,7 +11459,7 @@ paths:
       tags:
       - "Expression SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /api/v1/as-curator/expression/{id}/versions:
+  /api/v1/as-curator/expressions/{id}/versions:
     get:
       operationId: "getExpressionVersionsAsCurator"
       parameters:
@@ -11496,7 +11496,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Expression SPoT as Curator"
-  /api/v1/as-curator/expression/{id}/versions/{version}:
+  /api/v1/as-curator/expressions/{id}/versions/{version}:
     get:
       operationId: "getExpressionByVersionAsCurator"
       parameters:
@@ -11565,7 +11565,7 @@ paths:
       summary: "Retrieve a single expression object by ID (accession)"
       tags:
       - "Expression SPoT as Curator"
-  /frontend/rs/genestack/preparationUser/default-released/preparations:
+  /api/v1/as-user/preparations:
     get:
       description: "Retrieve preparation metadata objects by searching/listing preparation\
         \ metadata.\n\n## Metadata full-text queries\nSingle words can be supplied\
@@ -11705,7 +11705,7 @@ paths:
       summary: "List or search for preparation metadata objects"
       tags:
       - "Preparation SPoT as User"
-  /frontend/rs/genestack/preparationUser/default-released/preparations/by/group/{id}:
+  /api/v1/as-user/preparations/by/group/{id}:
     get:
       operationId: "getPreparationsByGroupAsUser"
       parameters:
@@ -11784,7 +11784,7 @@ paths:
       summary: "Retrieve preparations related to the given group"
       tags:
       - "Preparation SPoT as User"
-  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}:
+  /api/v1/as-user/preparations/{id}:
     get:
       operationId: "getPreparationAsUser"
       parameters:
@@ -11847,7 +11847,7 @@ paths:
       summary: "Retrieve a single preparation object by ID (accession)"
       tags:
       - "Preparation SPoT as User"
-  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions:
+  /api/v1/as-user/preparations/{id}/versions:
     get:
       operationId: "getPreparationVersionsAsUser"
       parameters:
@@ -11884,7 +11884,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Preparation SPoT as User"
-  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions/{version}:
+  /api/v1/as-user/preparations/{id}/versions/{version}:
     get:
       operationId: "getPreparationByVersionAsUser"
       parameters:
@@ -11953,7 +11953,7 @@ paths:
       summary: "Retrieve a single preparation object by ID (accession)"
       tags:
       - "Preparation SPoT as User"
-  /frontend/rs/genestack/studyUser/default-released/studies:
+  /api/v1/as-user/studies:
     get:
       description: "Retrieve study metadata objects by searching/listing study metadata.\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -12092,7 +12092,7 @@ paths:
       summary: "List or search for study metadata objects"
       tags:
       - "Study SPoT as User"
-  /frontend/rs/genestack/studyUser/default-released/studies/{id}:
+  /api/v1/as-user/studies/{id}:
     get:
       operationId: "getStudyAsUser"
       parameters:
@@ -12155,7 +12155,7 @@ paths:
       summary: "Retrieve a single study object by ID (accession)"
       tags:
       - "Study SPoT as User"
-  /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions:
+  /api/v1/as-user/studies/{id}/versions:
     get:
       operationId: "getStudyVersionsAsUser"
       parameters:
@@ -12192,7 +12192,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Study SPoT as User"
-  /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions/{version}:
+  /api/v1/as-user/studies/{id}/versions/{version}:
     get:
       operationId: "getStudyByVersionAsUser"
       parameters:
@@ -12261,7 +12261,7 @@ paths:
       summary: "Retrieve a single study object by ID (accession)"
       tags:
       - "Study SPoT as User"
-  /frontend/rs/genestack/sampleCurator/default-released/samples:
+  /api/v1/as-curator/samples:
     get:
       description: "Retrieve sample metadata objects by searching/listing sample metadata.\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -12459,7 +12459,7 @@ paths:
       tags:
       - "Sample SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/sampleCurator/default-released/samples/atomic:
+  /api/v1/as-curator/samples/atomic:
     post:
       description: "## Data\n This operation requires the URL of a signal data  file,\
         \ for example a GCT, VCF or Flow Cytometry file. The required form of this\
@@ -12520,7 +12520,7 @@ paths:
       tags:
       - "Sample SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/sampleCurator/default-released/samples/atomic/{id}:
+  /api/v1/as-curator/samples/atomic/{id}:
     patch:
       description: "## Basic operation\nThe object metadata is updated using the supplied\
         \ map of attribute names to attribute values. There are three cases:\n1. The\
@@ -12577,7 +12577,7 @@ paths:
       tags:
       - "Sample SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}:
+  /api/v1/as-curator/samples/{id}:
     delete:
       operationId: "deleteSampleAsCurator"
       parameters:
@@ -12732,7 +12732,7 @@ paths:
       tags:
       - "Sample SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}/versions:
+  /api/v1/as-curator/samples/{id}/versions:
     get:
       operationId: "getSampleVersionsAsCurator"
       parameters:
@@ -12769,7 +12769,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Sample SPoT as Curator"
-  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}/versions/{version}:
+  /api/v1/as-curator/samples/{id}/versions/{version}:
     get:
       operationId: "getSampleByVersionAsCurator"
       parameters:
@@ -12838,7 +12838,7 @@ paths:
       summary: "Retrieve a single sample object by ID (accession)"
       tags:
       - "Sample SPoT as Curator"
-  /frontend/rs/genestack/libraryCurator/default-released/libraries:
+  /api/v1/as-curator/libraries:
     get:
       description: "Retrieve library metadata objects by searching/listing library\
         \ metadata.\n\n## Metadata full-text queries\nSingle words can be supplied\
@@ -13033,7 +13033,7 @@ paths:
       tags:
       - "Library SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/by/group/{id}:
+  /api/v1/as-curator/libraries/by/group/{id}:
     get:
       operationId: "getLibrariesByGroupAsCurator"
       parameters:
@@ -13112,7 +13112,7 @@ paths:
       summary: "Retrieve libraries related to the given group"
       tags:
       - "Library SPoT as Curator"
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/group/{id}:
+  /api/v1/as-curator/libraries/group/{id}:
     delete:
       operationId: "deleteLibraryGroupAsCurator"
       parameters:
@@ -13149,7 +13149,7 @@ paths:
       summary: "Delete a library group with all related library objects"
       tags:
       - "Library SPoT as Curator"
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}:
+  /api/v1/as-curator/libraries/{id}:
     delete:
       operationId: "deleteLibraryAsCurator"
       parameters:
@@ -13304,7 +13304,7 @@ paths:
       tags:
       - "Library SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions:
+  /api/v1/as-curator/libraries/{id}/versions:
     get:
       operationId: "getLibraryVersionsAsCurator"
       parameters:
@@ -13341,7 +13341,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Library SPoT as Curator"
-  /frontend/rs/genestack/libraryCurator/default-released/libraries/{id}/versions/{version}:
+  /api/v1/as-curator/libraries/{id}/versions/{version}:
     get:
       operationId: "getLibraryByVersionAsCurator"
       parameters:
@@ -13489,7 +13489,7 @@ paths:
         \ criteria."
       tags:
       - "Linkage as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/library/{id}:
+  /api/v1/as-curator/integration/link/expression/by/library/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -13600,7 +13600,7 @@ paths:
         \ (accession)"
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/preparation/{id}:
+  /api/v1/as-curator/integration/link/expression/by/preparation/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -13711,7 +13711,7 @@ paths:
         \ ID (accession)"
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/sample/{id}:
+  /api/v1/as-curator/integration/link/expression/by/sample/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -13821,7 +13821,7 @@ paths:
       summary: "Retrieve expression run-level data by querying related sample ID (accession)"
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/by/study/{id}:
+  /api/v1/as-curator/integration/link/expression/group/by/study/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -13906,8 +13906,8 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Expression integration as Curator"
-  ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/library/group/{targetId}
-  : delete:
+  /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}:
+    delete:
       description: "Delete link between a group of expression objects and a group\
         \ of library objects"
       operationId: "deleteExpressionGroupLibraryGroupLinkAsCurator"
@@ -14000,8 +14000,8 @@ paths:
         \ library objects"
       tags:
       - "Expression integration as Curator"
-  ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}
-  : delete:
+  /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}:
+    delete:
       description: "Delete link between a group of expression objects and a group\
         \ of preparation objects"
       operationId: "deleteExpressionGroupPreparationGroupLinkAsCurator"
@@ -14095,8 +14095,8 @@ paths:
         \ preparation objects"
       tags:
       - "Expression integration as Curator"
-  ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}
-  : delete:
+  /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}:
+    delete:
       description: "Delete link between a group of expression objects and a group\
         \ of sample objects"
       operationId: "deleteExpressionGroupSampleGroupLinkAsCurator"
@@ -14200,7 +14200,7 @@ paths:
         \ sample objects"
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-libraries/by/group/{id}:
+  /api/v1/as-curator/integration/link/expression/run-to-libraries/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -14266,7 +14266,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-preparations/by/group/{id}:
+  /api/v1/as-curator/integration/link/expression/run-to-preparations/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -14332,7 +14332,7 @@ paths:
         \ unique runs, not unique pairs."
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-samples/by/group/{id}:
+  /api/v1/as-curator/integration/link/expression/run-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -14398,7 +14398,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/library/{targetId}:
+  /api/v1/as-curator/integration/link/expression/{sourceId}/to/library/{targetId}:
     delete:
       description: "Delete link between an expression object and a library"
       operationId: "deleteExpressionLibraryLinkAsCurator"
@@ -14485,7 +14485,7 @@ paths:
       summary: "Create a link between an expression object and a library"
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/preparation/{targetId}:
+  /api/v1/as-curator/integration/link/expression/{sourceId}/to/preparation/{targetId}:
     delete:
       description: "Delete link between an expression object and a preparation"
       operationId: "deleteExpressionPreparationLinkAsCurator"
@@ -14572,7 +14572,7 @@ paths:
       summary: "Create a link between an expression object and a preparation"
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/sample/{targetId}:
+  /api/v1/as-curator/integration/link/expression/{sourceId}/to/sample/{targetId}:
     delete:
       description: "Delete link between an expression object and a sample"
       operationId: "deleteExpressionSampleLinkAsCurator"
@@ -14659,7 +14659,7 @@ paths:
       summary: "Create a link between an expression object and a sample"
       tags:
       - "Expression integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/by/sample/{id}:
+  /api/v1/as-curator/integration/link/flow-cytometry/by/sample/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -14770,7 +14770,7 @@ paths:
         \ ID (accession)"
       tags:
       - "Flow Cytometry integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/group/by/study/{id}:
+  /api/v1/as-curator/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -14855,8 +14855,8 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Flow Cytometry integration as Curator"
-  ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/group/{sourceId}/to/sample/group/{targetId}
-  : delete:
+  /api/v1/as-curator/integration/link/flow-cytometry/group/{sourceId}/to/sample/group/{targetId}:
+    delete:
       description: "Delete link between a group of flow-cytometry objects and a group\
         \ of sample objects"
       operationId: "deleteFlowCytometryGroupSampleGroupLinkAsCurator"
@@ -14961,7 +14961,7 @@ paths:
         \ of sample objects"
       tags:
       - "Flow Cytometry integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
+  /api/v1/as-curator/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -15027,7 +15027,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - "Flow Cytometry integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
+  /api/v1/as-curator/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
     delete:
       description: "Delete link between a flow-cytometry object and a sample"
       operationId: "deleteFlowCytometrySampleLinkAsCurator"
@@ -15112,7 +15112,7 @@ paths:
       summary: "Create a link between a flow-cytometry object and a sample"
       tags:
       - "Flow Cytometry integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/libraries/by/samples:
+  /api/v1/as-curator/integration/link/libraries/by/samples:
     get:
       description: "Retrieve library metadata objects whose linked sample metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -15256,7 +15256,7 @@ paths:
       summary: "Retrieve library metadata by querying related samples"
       tags:
       - "Library integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/by/sample/{id}:
+  /api/v1/as-curator/integration/link/library/by/sample/{id}:
     get:
       operationId: "getLibraryBySampleAsCurator"
       parameters:
@@ -15324,7 +15324,7 @@ paths:
       summary: "Retrieve library metadata by querying related sample ID (accession)"
       tags:
       - "Library integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/group/by/study/{id}:
+  /api/v1/as-curator/integration/link/library/group/by/study/{id}:
     get:
       operationId: "getLibraryGroupsByStudyAsCurator"
       parameters:
@@ -15371,7 +15371,7 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Library integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/group/{sourceId}/to/sample/group/{targetId}:
+  /api/v1/as-curator/integration/link/library/group/{sourceId}/to/sample/group/{targetId}:
     delete:
       description: "Delete links between samples and libraries related to the specified\
         \ group"
@@ -15455,7 +15455,7 @@ paths:
       summary: "Create links between samples and libraries"
       tags:
       - "Library integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/libraries-to-samples/by/group/{id}:
+  /api/v1/as-curator/integration/link/library/libraries-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -15521,7 +15521,7 @@ paths:
         \ unique libraries, not unique pairs."
       tags:
       - "Library integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/{sourceId}/to/sample/{targetId}:
+  /api/v1/as-curator/integration/link/library/{sourceId}/to/sample/{targetId}:
     delete:
       description: "Delete a link between a library and a sample"
       operationId: "deleteLibrarySampleLinkAsCurator"
@@ -15603,7 +15603,7 @@ paths:
       summary: "Create a link between a library and a sample"
       tags:
       - "Library integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/by/sample/{id}:
+  /api/v1/as-curator/integration/link/preparation/by/sample/{id}:
     get:
       operationId: "getPreparationBySampleAsCurator"
       parameters:
@@ -15671,7 +15671,7 @@ paths:
       summary: "Retrieve preparation metadata by querying related sample ID (accession)"
       tags:
       - "Preparation integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/group/by/study/{id}:
+  /api/v1/as-curator/integration/link/preparation/group/by/study/{id}:
     get:
       operationId: "getPreparationGroupsByStudyAsCurator"
       parameters:
@@ -15718,8 +15718,8 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Preparation integration as Curator"
-  ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}
-  : delete:
+  /api/v1/as-curator/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}:
+    delete:
       description: "Delete links between samples and preparations related to the specified\
         \ group"
       operationId: "deletePreparationGroupSampleGroupLinkAsCurator"
@@ -15802,7 +15802,7 @@ paths:
       summary: "Create links between samples and preparations"
       tags:
       - "Preparation integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/preparations-to-samples/by/group/{id}:
+  /api/v1/as-curator/integration/link/preparation/preparations-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -15868,7 +15868,7 @@ paths:
         \ preparations, not unique pairs."
       tags:
       - "Preparation integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/{sourceId}/to/sample/{targetId}:
+  /api/v1/as-curator/integration/link/preparation/{sourceId}/to/sample/{targetId}:
     delete:
       description: "Delete a link between a preparation and a sample"
       operationId: "deletePreparationSampleLinkAsCurator"
@@ -15950,7 +15950,7 @@ paths:
       summary: "Create a link between a preparation and a sample"
       tags:
       - "Preparation integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparations/by/samples:
+  /api/v1/as-curator/integration/link/preparations/by/samples:
     get:
       description: "Retrieve preparation metadata objects whose linked sample metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -16094,7 +16094,7 @@ paths:
       summary: "Retrieve preparation metadata by querying related samples"
       tags:
       - "Preparation integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/sample/group/{sourceId}/to/study/{targetId}:
+  /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}:
     delete:
       description: "Delete link between a group of sample objects and a study"
       operationId: "deleteSampleGroupStudyLinkAsCurator"
@@ -16176,7 +16176,7 @@ paths:
       summary: "Create a link between a group of sample objects and a study"
       tags:
       - "Sample integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/sample/{sourceId}/to/study/{targetId}:
+  /api/v1/as-curator/integration/link/sample/{sourceId}/to/study/{targetId}:
     delete:
       description: "Delete link between a sample and a study"
       operationId: "deleteSampleStudyLinkAsCurator"
@@ -16258,7 +16258,7 @@ paths:
       summary: "Create a link between a sample and a study"
       tags:
       - "Sample integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/libraries:
+  /api/v1/as-curator/integration/link/samples/by/libraries:
     get:
       description: "Retrieve sample metadata objects whose linked library metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -16402,7 +16402,7 @@ paths:
       summary: "Retrieve sample metadata by querying related libraries"
       tags:
       - "Sample integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/preparations:
+  /api/v1/as-curator/integration/link/samples/by/preparations:
     get:
       description: "Retrieve sample metadata objects whose linked preparation metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -16547,7 +16547,7 @@ paths:
       summary: "Retrieve sample metadata by querying related preparations"
       tags:
       - "Sample integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/study/{id}:
+  /api/v1/as-curator/integration/link/samples/by/study/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -16635,7 +16635,7 @@ paths:
       summary: "Retrieve sample metadata by querying related study ID (accession)"
       tags:
       - "Sample integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/libraries:
+  /api/v1/as-curator/integration/link/studies/by/libraries:
     get:
       description: "Retrieve study metadata objects whose linked library metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -16779,7 +16779,7 @@ paths:
       summary: "Retrieve study metadata objects by querying related libraries"
       tags:
       - "Study integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/preparations:
+  /api/v1/as-curator/integration/link/studies/by/preparations:
     get:
       description: "Retrieve study metadata objects whose linked preparation metadata\
         \ matches all supplied conditions.\n\n## Conditions\nIt is possible to supply\
@@ -16924,7 +16924,7 @@ paths:
       summary: "Retrieve study metadata objects by querying related preparations"
       tags:
       - "Study integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/samples:
+  /api/v1/as-curator/integration/link/studies/by/samples:
     get:
       description: "Retrieve study metadata objects whose linked sample metadata matches\
         \ all supplied conditions.\n\n## Conditions\nIt is possible to supply conditions\
@@ -17069,7 +17069,7 @@ paths:
       summary: "Retrieve study metadata objects by querying related samples"
       tags:
       - "Study integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/study/by/sample/{id}:
+  /api/v1/as-curator/integration/link/study/by/sample/{id}:
     get:
       operationId: "getStudyBySampleAsCurator"
       parameters:
@@ -17129,7 +17129,7 @@ paths:
       summary: "Retrieve study metadata by querying sample ID (accession)"
       tags:
       - "Study integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/by/sample/{id}:
+  /api/v1/as-curator/integration/link/variant/by/sample/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -17239,7 +17239,7 @@ paths:
       summary: "Retrieve variant run-level data by querying related sample ID (accession)"
       tags:
       - "Variant integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/group/by/study/{id}:
+  /api/v1/as-curator/integration/link/variant/group/by/study/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
         \ can be queried via the useVersions parameter. Different versions of an omics\
@@ -17324,7 +17324,7 @@ paths:
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
       - "Variant integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}:
+  /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}:
     delete:
       description: "Delete link between a group of variant objects and a group of\
         \ sample objects"
@@ -17429,7 +17429,7 @@ paths:
         \ objects"
       tags:
       - "Variant integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/run-to-samples/by/group/{id}:
+  /api/v1/as-curator/integration/link/variant/run-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -17495,7 +17495,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - "Variant integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/{sourceId}/to/sample/{targetId}:
+  /api/v1/as-curator/integration/link/variant/{sourceId}/to/sample/{targetId}:
     delete:
       description: "Delete link between a variant object and a sample"
       operationId: "deleteVariantSampleLinkAsCurator"
@@ -17582,7 +17582,7 @@ paths:
       summary: "Create a link between a variant object and a sample"
       tags:
       - "Variant integration as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/studies/{id}/curation-status:
+  /api/v1/as-curator/integration/studies/{id}/curation-status:
     get:
       description: "Use this endpoint to check the curation status of a given study.\
         \ The endpoint will return values of 'CURATED' or 'NOT_CURATED'."
@@ -17669,7 +17669,7 @@ paths:
       tags:
       - "Study integration as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/integrationCurator/default-released/integration/fulltext/search/studies:
+  /api/v1/as-curator/integration/fulltext/search/studies:
     post:
       description: "Find studies and retrieve their data by searching via a full-text\
         \ or facets search of study or linked objects metadata (e.g. samples, libraries,\
@@ -20122,7 +20122,7 @@ paths:
       summary: "Retrieve validation summary by querying study ID (accession)"
       tags:
       - "Validation summary as Curator"
-  /frontend/rs/genestack/sampleUser/default-released/samples:
+  /api/v1/as-user/samples:
     get:
       description: "Retrieve sample metadata objects by searching/listing sample metadata.\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -20261,7 +20261,7 @@ paths:
       summary: "List or search for sample metadata objects"
       tags:
       - "Sample SPoT as User"
-  /frontend/rs/genestack/sampleUser/default-released/samples/{id}:
+  /api/v1/as-user/samples/{id}:
     get:
       operationId: "getSampleAsUser"
       parameters:
@@ -20324,7 +20324,7 @@ paths:
       summary: "Retrieve a single sample object by ID (accession)"
       tags:
       - "Sample SPoT as User"
-  /frontend/rs/genestack/sampleUser/default-released/samples/{id}/versions:
+  /api/v1/as-user/samples/{id}/versions:
     get:
       operationId: "getSampleVersionsAsUser"
       parameters:
@@ -20361,7 +20361,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Sample SPoT as User"
-  /frontend/rs/genestack/sampleUser/default-released/samples/{id}/versions/{version}:
+  /api/v1/as-user/samples/{id}/versions/{version}:
     get:
       operationId: "getSampleByVersionAsUser"
       parameters:
@@ -20430,7 +20430,7 @@ paths:
       summary: "Retrieve a single sample object by ID (accession)"
       tags:
       - "Sample SPoT as User"
-  /frontend/rs/genestack/preparationCurator/default-released/preparations:
+  /api/v1/as-curator/preparations:
     get:
       description: "Retrieve preparation metadata objects by searching/listing preparation\
         \ metadata.\n\n## Metadata full-text queries\nSingle words can be supplied\
@@ -20626,7 +20626,7 @@ paths:
       tags:
       - "Preparation SPoT as Curator"
       x-codegen-request-body-name: "source"
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/by/group/{id}:
+  /api/v1/as-curator/preparations/by/group/{id}:
     get:
       operationId: "getPreparationsByGroupAsCurator"
       parameters:
@@ -20705,7 +20705,7 @@ paths:
       summary: "Retrieve preparations related to the given group"
       tags:
       - "Preparation SPoT as Curator"
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/group/{id}:
+  /api/v1/as-curator/preparations/group/{id}:
     delete:
       operationId: "deletePreparationGroupAsCurator"
       parameters:
@@ -20742,7 +20742,7 @@ paths:
       summary: "Delete a preparation group with all related preparation objects"
       tags:
       - "Preparation SPoT as Curator"
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}:
+  /api/v1/as-curator/preparations/{id}:
     delete:
       operationId: "deletePreparationAsCurator"
       parameters:
@@ -20897,7 +20897,7 @@ paths:
       tags:
       - "Preparation SPoT as Curator"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions:
+  /api/v1/as-curator/preparations/{id}/versions:
     get:
       operationId: "getPreparationVersionsAsCurator"
       parameters:
@@ -20934,7 +20934,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Preparation SPoT as Curator"
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions/{version}:
+  /api/v1/as-curator/preparations/{id}/versions/{version}:
     get:
       operationId: "getPreparationByVersionAsCurator"
       parameters:
@@ -21003,7 +21003,7 @@ paths:
       summary: "Retrieve a single preparation object by ID (accession)"
       tags:
       - "Preparation SPoT as Curator"
-  /frontend/rs/genestack/scim-integration/default-released/scim/Groups:
+  /api/v1/scim/Groups:
     get:
       description: "The endpoint returns a list of groups that the user has access\
         \ to: where the user is a member of the group or if the user has the \"Manage\
@@ -21146,7 +21146,7 @@ paths:
       tags:
       - "Groups"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/scim-integration/default-released/scim/Groups/{id}:
+  /api/v1/scim/Groups/{id}:
     delete:
       description: "The endpoint deletes a group in ODM. The group can be deleted,\
         \ even if it has members: admins and not admins. Users of this group are not\
@@ -21357,7 +21357,7 @@ paths:
       tags:
       - "Groups"
       x-codegen-request-body-name: "body"
-  /frontend/rs/genestack/variantUser/default-released/variant:
+  /api/v1/as-user/variants:
     get:
       description: "Retrieve all variant data and metadata objects that match a query.\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -21553,7 +21553,7 @@ paths:
       summary: "Retrieve multiple variant data and metadata objects"
       tags:
       - "Variant SPoT as User"
-  /frontend/rs/genestack/variantUser/default-released/variant/group:
+  /api/v1/as-user/variants/group:
     get:
       description: "Retrieve all group metadata objects that match a query.\n\n##\
         \ Metadata full-text queries\nSingle words can be supplied as is, otherwise\
@@ -21697,7 +21697,7 @@ paths:
       summary: "Retrieve groups that match a query"
       tags:
       - "Variant SPoT as User"
-  /frontend/rs/genestack/variantUser/default-released/variant/group/by/run/{id}:
+  /api/v1/as-user/variants/group/by/run/{id}:
     get:
       operationId: "getVariantGroupByRunAsUser"
       parameters:
@@ -21760,7 +21760,7 @@ paths:
       summary: "Retrieve a single group object by run ID (accession)"
       tags:
       - "Variant SPoT as User"
-  /frontend/rs/genestack/variantUser/default-released/variant/group/{id}:
+  /api/v1/as-user/variants/group/{id}:
     get:
       operationId: "getVariantGroupAsUser"
       parameters:
@@ -21823,7 +21823,7 @@ paths:
       summary: "Retrieve a single group object by ID (accession)"
       tags:
       - "Variant SPoT as User"
-  /frontend/rs/genestack/variantUser/default-released/variant/runs/by/group/{id}:
+  /api/v1/as-user/variants/runs/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
         \ in \"pages\" of limited size. In order to retrieve all matching results\
@@ -21887,7 +21887,7 @@ paths:
       summary: "Retrieve run objects related to the given group"
       tags:
       - "Variant SPoT as User"
-  /frontend/rs/genestack/variantUser/default-released/variant/{id}:
+  /api/v1/as-user/variants/{id}:
     get:
       operationId: "getVariantAsUser"
       parameters:
@@ -21950,7 +21950,7 @@ paths:
       summary: "Retrieve a single variant object by ID (accession)"
       tags:
       - "Variant SPoT as User"
-  /frontend/rs/genestack/variantUser/default-released/variant/{id}/versions:
+  /api/v1/as-user/variants/{id}/versions:
     get:
       operationId: "getVariantVersionsAsUser"
       parameters:
@@ -21987,7 +21987,7 @@ paths:
       summary: "Retrieve a list of object versions by ID"
       tags:
       - "Variant SPoT as User"
-  /frontend/rs/genestack/variantUser/default-released/variant/{id}/versions/{version}:
+  /api/v1/as-user/variants/{id}/versions/{version}:
     get:
       operationId: "getVariantByVersionAsUser"
       parameters:
@@ -22056,7 +22056,7 @@ paths:
       summary: "Retrieve a single variant object by ID (accession)"
       tags:
       - "Variant SPoT as User"
-  /frontend/rs/genestack/taskmanager/default-released/tasks/publish-versions:
+  /api/v1/tasks/publish-versions:
     post:
       description: "This endpoint publishes all information from staging and creates\
         \ new metadata versions for each study/associated objects with unpublished\
@@ -22097,7 +22097,7 @@ paths:
         \ in the instance."
       tags:
       - "Tasks API"
-  /frontend/rs/genestack/taskmanager/default-released/tasks/{id}:
+  /api/v1/tasks/{id}:
     get:
       description: "Supply the accession (id) of an ODM task to retrieve metadata\
         \ about that task."
