@@ -33,6 +33,7 @@ paths:
          * `TABULAR_DATA`
          * `GENE_VARIANT`
          * `FLOW_CYTOMETRY`
+         * `STUDY`
 
       operationId: getDetachedObjects
       parameters:
