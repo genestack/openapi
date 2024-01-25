@@ -6,15 +6,14 @@ swagger-ui:
 
     COPY v1 /usr/share/nginx/html/yaml/
     COPY fs /
+    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
 
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
         apk del bash
 
     # IDK why it's required
-    RUN \
-        ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml && \
-        rm -f /usr/share/nginx/html/yaml/odmApi.yaml
+    RUN ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml
 
     ENTRYPOINT ["/genestack-docker-entrypoint.sh"]
     CMD ["nginx", "-g", "daemon off;"]
