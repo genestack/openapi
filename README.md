@@ -4,8 +4,8 @@ This directory contains source files to generate the following artifacts:
 - R and Python API SDK
 - TODO: Postman collection
 
-## Install pre-commit
-It's **required** to install pre-commit.
+## Mandatory! Working with the repository: setting up pre-commit
+To work with this repository it's **mandatory** to install pre-commit.
 [Official documentation](https://pre-commit.com/#installation)
 
 ## Building artifacts
