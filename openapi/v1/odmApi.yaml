@@ -3537,7 +3537,7 @@ paths:
         \ be conveniently managed using the `cursor` and `limit` parameters.\n Supported\
         \ types of detached objects (listed in the order of retrieval) include:\n\
         \ * `SAMPLE_GROUP`\n * `LIBRARY_GROUP`\n * `PREPARATION_GROUP`\n * `TABULAR_DATA`\n\
-        \ * `GENE_VARIANT`\n * `FLOW_CYTOMETRY`\n\n"
+        \ * `GENE_VARIANT`\n * `FLOW_CYTOMETRY`\n * `STUDY`\n\n"
       operationId: "getDetachedObjects"
       parameters:
       - description: "Filter by detached object type. Multiple values can be used\
