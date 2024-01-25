@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Variant SPoT
+- name: Variant SPoT as Curator
 paths:
   /frontend/rs/genestack/variantCurator/default-released/variant:
     get:
@@ -47,7 +47,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: getAllVariants
+      operationId: getAllVariantsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -203,7 +203,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve multiple variant data and metadata objects
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/atomic:
     post:
       description: |-
@@ -219,7 +219,7 @@ paths:
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          ## File sources
          * Supported external sources (links): `http`/`https`/`ftp`
-      operationId: addAtomicVariant
+      operationId: addAtomicVariantAsCurator
       requestBody:
         content:
           application/json:
@@ -262,11 +262,11 @@ paths:
       summary: Create a single new object from a given data file with optional supplied
         metadata.
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/variantCurator/default-released/variant/atomic/{id}:
     delete:
-      operationId: deleteAtomic
+      operationId: deleteAtomicVariantAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -299,7 +299,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -310,7 +310,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateAtomicMetadata
+      operationId: updateAtomicVariantMetadataAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -354,7 +354,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/group:
     get:
@@ -388,7 +388,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all data objects.
-      operationId: searchGroups
+      operationId: searchGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -490,10 +490,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve groups that match a query
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/group/by/run/{id}:
     get:
-      operationId: getGroupByRun
+      operationId: getVariantGroupByRunAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -551,10 +551,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by run ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}:
     delete:
-      operationId: deleteGroup
+      operationId: deleteVariantGroupAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -587,9 +587,9 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
     get:
-      operationId: getGroup
+      operationId: getVariantGroupAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -647,10 +647,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}/curation:
     get:
-      operationId: getGroupCurationStatus
+      operationId: getVariantGroupCurationStatusAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -686,9 +686,9 @@ paths:
       - Genestack-API-Token: []
       summary: Get curation status of a group by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
     patch:
-      operationId: updateGroup
+      operationId: updateVariantGroupAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -730,7 +730,7 @@ paths:
       - Genestack-API-Token: []
       summary: Set curation status of a group by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/runs/by/group/{id}:
     get:
@@ -738,7 +738,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: searchRuns
+      operationId: searchVariantRunsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -789,7 +789,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve run objects related to the given group
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/vcf:
     post:
       description: |-
@@ -804,7 +804,7 @@ paths:
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          ## File sources
          * Supported external sources (links): `http`/`https`/`ftp`
-      operationId: addVariants
+      operationId: addVariantsAsCurator
       requestBody:
         content:
           application/json:
@@ -839,11 +839,11 @@ paths:
       summary: Create multiple new objects from a multi-row data file with optional
         supplied metadata
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}:
     get:
-      operationId: getVariant
+      operationId: getVariantAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -901,7 +901,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single variant object by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -912,7 +912,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateVariant
+      operationId: updateVariantAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -956,11 +956,11 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions:
     get:
-      operationId: getVariantVersions
+      operationId: getVariantVersionsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -993,10 +993,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
   /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions/{version}:
     get:
-      operationId: getVariantByVersion
+      operationId: getVariantByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1060,7 +1060,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single variant object by ID (accession)
       tags:
-      - Variant SPoT
+      - Variant SPoT as Curator
 components:
   schemas:
     CommitInfo:

@@ -1,4 +1,5 @@
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
+import com.genestack.openapi.MergeDefinitions
 import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.name
 import kotlin.io.path.Path as KotlinPath
@@ -8,8 +9,9 @@ plugins {
 }
 
 val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
-val openApiSpecPath = "$rootDir/openapi/v1"
-val fileNameList = KotlinPath(openApiSpecPath).listDirectoryEntries("*.yaml")
+val sourceDirectory = "$rootDir/openapi/v1"
+val fileNameList = KotlinPath(sourceDirectory).listDirectoryEntries("*.yaml")
+val mergedFileName = "odmApi.yaml"
 val tasksList = fileNameList
         .map { it.name.replace(".yaml", "") }
 
@@ -28,12 +30,15 @@ fun String.kebabToCamelCase(): String {
     return this.replace(pattern) { it.groupValues[2].uppercase() }
 }
 
+val sourceFileList = fileNameList.map {
+    layout.projectDirectory.file("${sourceDirectory}/${it.name}")
+}
 
 tasks {
     for (task in tasksList) {
         register(task + "Python", GenerateTask::class) {
             generatorName.set("python")
-            inputSpec.set("$rootDir/openapi/v1/$task.yaml")
+            inputSpec.set("${sourceDirectory}/${task}.yaml")
             outputDir.set("$rootDir/generated/python/${task.camelToKebabCase()}")
             packageName.set(task.camelToSnakeCase())
             gitUserId.set("genestack")
@@ -41,11 +46,10 @@ tasks {
             configOptions = mapOf(
                     "packageVersion" to openApiVersion
             )
-            skipValidateSpec = true
         }
         register(task + "R", GenerateTask::class) {
             generatorName.set("r")
-            inputSpec.set("$rootDir/openapi/v1/$task.yaml")
+            inputSpec.set("${sourceDirectory}/${task}.yaml")
             outputDir.set("$rootDir/generated/r/${task.kebabToCamelCase()}")
             packageName.set(task.kebabToCamelCase())
             gitUserId.set("genestack")
@@ -53,12 +57,18 @@ tasks {
             configOptions = mapOf(
                     "packageVersion" to openApiVersion
             )
-            skipValidateSpec = true
         }
-
     }
 
-    val generateAllApiClients by registering(GradleBuild::class) {
-        tasks = tasksList.flatMap { listOf(it + "Python", it + "R") }
+    // Should be used in pre-commit
+    register("mergeDefinitions", MergeDefinitions::class) {
+        inputFiles = sourceFileList
+        outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
+    }
+
+    val generateAll by registering(GradleBuild::class) {
+        file("$rootDir/generated").deleteRecursively()
+        tasks = tasksList
+            .flatMap { listOf(it + "Python", it + "R") }
     }
 }

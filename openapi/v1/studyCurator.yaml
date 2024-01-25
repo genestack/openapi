@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Study SPoT
+- name: Study SPoT as Curator
 paths:
   /frontend/rs/genestack/studyCurator/default-released/studies:
     get:
@@ -38,7 +38,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all study objects.
-      operationId: searchStudies
+      operationId: searchStudiesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -153,7 +153,7 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for study metadata objects
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
     post:
       description: |-
         ## Data
@@ -165,7 +165,7 @@ paths:
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          ## File sources
          * Supported external sources (links): `http`/`https`/`ftp`
-      operationId: addStudy
+      operationId: addStudyAsCurator
       requestBody:
         content:
           application/json:
@@ -198,11 +198,11 @@ paths:
       - Genestack-API-Token: []
       summary: Add new study object
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}:
     delete:
-      operationId: deleteStudy
+      operationId: deleteStudyAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -236,9 +236,9 @@ paths:
       summary: Delete a given study object. This will not delete related objects or
         links to related objects.
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
     get:
-      operationId: getStudy
+      operationId: getStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -296,7 +296,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single study object by ID (accession)
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -307,7 +307,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateStudy
+      operationId: updateStudyAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -351,11 +351,11 @@ paths:
       - Genestack-API-Token: []
       summary: Update a study object
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions:
     get:
-      operationId: getStudyVersions
+      operationId: getStudyVersionsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -388,10 +388,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
   /frontend/rs/genestack/studyCurator/default-released/studies/{id}/versions/{version}:
     get:
-      operationId: getStudyByVersion
+      operationId: getStudyByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -455,7 +455,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single study object by ID (accession)
       tags:
-      - Study SPoT
+      - Study SPoT as Curator
 components:
   schemas:
     CommitInfo:

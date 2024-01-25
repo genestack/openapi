@@ -17,7 +17,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Library SPoT
+- name: Library SPoT as User
 paths:
   /frontend/rs/genestack/libraryUser/default-released/libraries:
     get:
@@ -39,7 +39,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchLibraries
+      operationId: searchLibrariesAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -152,10 +152,10 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for library metadata objects
       tags:
-      - Library SPoT
+      - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/by/group/{id}:
     get:
-      operationId: getLibrariesByGroup
+      operationId: getLibrariesByGroupAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -229,10 +229,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve libraries related to the given group
       tags:
-      - Library SPoT
+      - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}:
     get:
-      operationId: getLibrary
+      operationId: getLibraryAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -290,10 +290,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single library object by ID (accession)
       tags:
-      - Library SPoT
+      - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions:
     get:
-      operationId: getLibraryVersions
+      operationId: getLibraryVersionsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -326,10 +326,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Library SPoT
+      - Library SPoT as User
   /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions/{version}:
     get:
-      operationId: getLibraryByVersion
+      operationId: getLibraryByVersionAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -393,7 +393,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single library object by ID (accession)
       tags:
-      - Library SPoT
+      - Library SPoT as User
 components:
   schemas:
     CommitInfo:

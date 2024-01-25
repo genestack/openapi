@@ -17,7 +17,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Study SPoT
+- name: Study SPoT as User
 paths:
   /frontend/rs/genestack/studyUser/default-released/studies:
     get:
@@ -39,7 +39,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all study objects.
-      operationId: searchStudies
+      operationId: searchStudiesAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -154,10 +154,10 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for study metadata objects
       tags:
-      - Study SPoT
+      - Study SPoT as User
   /frontend/rs/genestack/studyUser/default-released/studies/{id}:
     get:
-      operationId: getStudy
+      operationId: getStudyAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -215,10 +215,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single study object by ID (accession)
       tags:
-      - Study SPoT
+      - Study SPoT as User
   /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions:
     get:
-      operationId: getStudyVersions
+      operationId: getStudyVersionsAsUser
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -251,10 +251,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Study SPoT
+      - Study SPoT as User
   /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions/{version}:
     get:
-      operationId: getStudyByVersion
+      operationId: getStudyByVersionAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -318,7 +318,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single study object by ID (accession)
       tags:
-      - Study SPoT
+      - Study SPoT as User
 components:
   schemas:
     CommitInfo:

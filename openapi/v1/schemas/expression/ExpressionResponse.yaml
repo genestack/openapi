@@ -2,7 +2,7 @@ example:
   cursor: cursor
   data:
   - itemId: itemId
-    metadata: "{}"
+    metadata: {}
     expression: 1.82
     feature:
       genes: MYO9A,
@@ -14,7 +14,7 @@ example:
     value:
       expression: 1.82
   - itemId: itemId
-    metadata: "{}"
+    metadata: {}
     expression: 1.82
     feature:
       genes: MYO9A,

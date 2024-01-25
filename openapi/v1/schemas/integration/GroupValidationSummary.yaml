@@ -4,14 +4,14 @@ example:
   - attributeName: attributeName
     attributeInvalidValues:
     - count: 0
-      value: "{}"
+      value: {}
       errors:
       - errorType: VALUE_NOT_SET
         errorMessage: errorMessage
       - errorType: VALUE_NOT_SET
         errorMessage: errorMessage
     - count: 0
-      value: "{}"
+      value: {}
       errors:
       - errorType: VALUE_NOT_SET
         errorMessage: errorMessage
@@ -20,14 +20,14 @@ example:
   - attributeName: attributeName
     attributeInvalidValues:
     - count: 0
-      value: "{}"
+      value: {}
       errors:
       - errorType: VALUE_NOT_SET
         errorMessage: errorMessage
       - errorType: VALUE_NOT_SET
         errorMessage: errorMessage
     - count: 0
-      value: "{}"
+      value: {}
       errors:
       - errorType: VALUE_NOT_SET
         errorMessage: errorMessage

@@ -2,7 +2,7 @@ example:
   reference: reference
   metadata:
     attributes:
-      key: "{}"
+      key: {}
   variationId:
   - variationId
   - variationId

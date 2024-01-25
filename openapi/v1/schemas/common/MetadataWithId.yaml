@@ -1,6 +1,6 @@
 example:
   itemId: itemId
-  metadata: "{}"
+  metadata: {}
 properties:
   itemId:
     readOnly: true

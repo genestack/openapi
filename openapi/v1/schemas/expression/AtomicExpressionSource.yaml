@@ -1,7 +1,7 @@
 example:
   metadata:
     attributes:
-      key: "{}"
+      key: {}
   expression: 0.8008281904610115
   feature: feature
   description: description

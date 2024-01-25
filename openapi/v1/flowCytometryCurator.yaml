@@ -16,7 +16,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Flow Cytometry SPoT
+- name: Flow Cytometry SPoT as Curator
 paths:
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry:
     get:
@@ -47,7 +47,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: getFlowCytometryData
+      operationId: getFlowCytometryDataAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -174,7 +174,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve multiple flow cytometry data and metadata objects
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic:
     post:
       description: |-
@@ -190,7 +190,7 @@ paths:
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          ## File sources
          * Supported external sources (links): `http`/`https`/`ftp`
-      operationId: addAtomicFlowCytometry
+      operationId: addAtomicFlowCytometryAsCurator
       requestBody:
         content:
           application/json:
@@ -233,11 +233,11 @@ paths:
       summary: Create a single new object from a given data file with optional supplied
         metadata.
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/atomic/{id}:
     delete:
-      operationId: deleteAtomic
+      operationId: deleteAtomicFlowCytometryAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -270,7 +270,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -281,7 +281,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateAtomicMetadata
+      operationId: updateAtomicFlowCytometryMetadataAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -325,7 +325,7 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/facs:
     post:
@@ -342,7 +342,7 @@ paths:
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          ## File sources
          * Supported external sources (links): `http`/`https`/`ftp`
-      operationId: addFlowCytometry
+      operationId: addFlowCytometryAsCurator
       requestBody:
         content:
           application/json:
@@ -377,7 +377,7 @@ paths:
       summary: Create multiple new objects from a multi-row data file with optional
         supplied metadata
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: source
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group:
     get:
@@ -411,7 +411,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all data objects.
-      operationId: searchGroups
+      operationId: searchFlowCytometryGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -513,10 +513,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve groups that match a query
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/by/run/{id}:
     get:
-      operationId: getGroupByRun
+      operationId: getFlowCytometryGroupByRunAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -574,10 +574,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by run ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}:
     delete:
-      operationId: deleteGroup
+      operationId: deleteFlowCytometryGroupAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -610,9 +610,9 @@ paths:
       - Genestack-API-Token: []
       summary: Delete the object
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
     get:
-      operationId: getGroup
+      operationId: getFlowCytometryGroupAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -670,10 +670,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/group/{id}/curation:
     get:
-      operationId: getGroupCurationStatus
+      operationId: getFlowCytometryGroupCurationStatusAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -709,9 +709,9 @@ paths:
       - Genestack-API-Token: []
       summary: Get curation status of a group by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
     patch:
-      operationId: updateGroup
+      operationId: updateFlowCytometryGroupAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -753,7 +753,7 @@ paths:
       - Genestack-API-Token: []
       summary: Set curation status of a group by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/runs/by/group/{id}:
     get:
@@ -761,7 +761,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: searchRuns
+      operationId: searchFlowCytometryRunsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -812,10 +812,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve run objects related to the given group
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}:
     get:
-      operationId: getFlowCytometry
+      operationId: getFlowCytometryAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -873,7 +873,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single sample flow cytometry by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
     patch:
       description: |-
         ## Basic operation
@@ -884,7 +884,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateFlowCytometry
+      operationId: updateFlowCytometryAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -928,11 +928,11 @@ paths:
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions:
     get:
-      operationId: getFlowCytometryVersions
+      operationId: getFlowCytometryVersionsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -965,10 +965,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
   /frontend/rs/genestack/flowCytometryCurator/default-released/flow-cytometry/{id}/versions/{version}:
     get:
-      operationId: getFlowCytometryByVersion
+      operationId: getFlowCytometryByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1032,7 +1032,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single sample flow cytometry by ID (accession)
       tags:
-      - Flow Cytometry SPoT
+      - Flow Cytometry SPoT as Curator
 components:
   schemas:
     AtomicFlowCytometrySource:

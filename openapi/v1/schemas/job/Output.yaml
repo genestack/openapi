@@ -1,6 +1,6 @@
 description: job execution output
 example:
-  result: "{}"
+  result: {}
   errors:
   - stack:
     - type: type

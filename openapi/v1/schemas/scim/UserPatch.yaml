@@ -5,10 +5,10 @@ example:
   Operations:
   - op: add
     path: path
-    value: "{}"
+    value: {}
   - op: add
     path: path
-    value: "{}"
+    value: {}
 properties:
   Operations:
     description: Patch operations list

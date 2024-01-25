@@ -14,23 +14,23 @@ info:
   title: ODM Integration API
   version: default-released
 tags:
-- name: Expression integration
-- name: Flow Cytometry integration
-- name: Library integration
-- name: Linkage
-- name: Metadata versioning
-- name: Omics queries
-- name: Preparation integration
-- name: Sample integration
-- name: Study integration
-- name: Validation summary
-- name: Variant integration
+- name: Expression integration as Curator
+- name: Flow Cytometry integration as Curator
+- name: Library integration as Curator
+- name: Linkage as Curator
+- name: Metadata versioning as Curator
+- name: Omics queries as Curator
+- name: Preparation integration as Curator
+- name: Sample integration as Curator
+- name: Study integration as Curator
+- name: Validation summary as Curator
+- name: Variant integration as Curator
 paths:
   /frontend/rs/genestack/integrationCurator/default-released/data-types:
     get:
       description: This endpoint is for instructional uses and can be used to get
         the latest list of Data Types.
-      operationId: getDataTypes
+      operationId: getDataTypesAsCurator
       responses:
         "200":
           content:
@@ -60,12 +60,12 @@ paths:
       - Genestack-API-Token: []
       summary: Lists all available data types.
       tags:
-      - Linkage
+      - Linkage as Curator
   /frontend/rs/genestack/integrationCurator/default-released/data-types/links:
     get:
       description: "This endpoint should be used for instructional needs, and can\
         \ be used in order to get the links between the Data Types."
-      operationId: getDataTypesLinks
+      operationId: getDataTypesLinksAsCurator
       parameters:
       - description: Return only links with the specified data type.
         in: query
@@ -102,7 +102,7 @@ paths:
       summary: List all possible links between data types that match the specified
         criteria.
       tags:
-      - Linkage
+      - Linkage as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/library/{id}:
     get:
       description: |+
@@ -121,7 +121,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getExpressionByLibrary
+      operationId: getExpressionByLibraryAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -203,7 +203,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve expression run-level data by querying related library ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/preparation/{id}:
     get:
       description: |+
@@ -305,7 +305,7 @@ paths:
       summary: Retrieve expression run-level data by querying related preparation
         ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/by/sample/{id}:
     get:
       description: |+
@@ -324,7 +324,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getExpressionBySample
+      operationId: getExpressionBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -406,7 +406,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve expression run-level data by querying related sample ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/by/study/{id}:
     get:
       description: |+
@@ -422,7 +422,7 @@ paths:
 
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
-      operationId: getGroupsByStudy
+      operationId: getExpressionGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -487,12 +487,12 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Expression integration
+      - Expression integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/library/group/{targetId}
   : delete:
       description: Delete link between a group of expression objects and a group of
         library objects
-      operationId: deleteExpressionGroupLibraryGroupLink
+      operationId: deleteExpressionGroupLibraryGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -530,14 +530,14 @@ paths:
       summary: Delete link between a group of expression objects and a group of library
         objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between a group of expression objects and a group of library objects.
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionGroupLibraryGroupLink
+      operationId: createExpressionGroupLibraryGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -578,12 +578,12 @@ paths:
       summary: Create a link between a group of expression objects and a group of
         library objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}
   : delete:
       description: Delete link between a group of expression objects and a group of
         preparation objects
-      operationId: deleteExpressionGroupPreparationGroupLink
+      operationId: deleteExpressionGroupPreparationGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -621,14 +621,14 @@ paths:
       summary: Delete link between a group of expression objects and a group of preparation
         objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between a group of expression objects and a group of preparation objects.
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionGroupPreparationGroupLink
+      operationId: createExpressionGroupPreparationGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -670,12 +670,12 @@ paths:
       summary: Create a link between a group of expression objects and a group of
         preparation objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}
   : delete:
       description: Delete link between a group of expression objects and a group of
         sample objects
-      operationId: deleteExpressionGroupSampleGroupLink
+      operationId: deleteExpressionGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -713,7 +713,7 @@ paths:
       summary: Delete link between a group of expression objects and a group of sample
         objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between a group of expression objects and a group of sample objects.
@@ -722,7 +722,7 @@ paths:
         Expression objects of the same group can only be linked to objects of the same study.
 
          Users can specify a custom metadata field for linking omics data to samples via the “linkingAttribute” parameter, if not specified the “Sample Source ID“ sample metadata attribute will be used by default.
-      operationId: createExpressionGroupSampleGroupLink
+      operationId: createExpressionGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to a GCT file)
@@ -772,14 +772,14 @@ paths:
       summary: Create a link between a group of expression objects and a group of
         sample objects
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-libraries/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToLibraryPairs
+      operationId: getExpressionRunToLibraryPairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -832,14 +832,14 @@ paths:
       summary: "Retrieve run-library pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-preparations/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToPreparationPairs
+      operationId: getExpressionRunToPreparationPairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -892,14 +892,14 @@ paths:
       summary: "Retrieve run-preparation pairs by group id. Pagination is based on\
         \ unique runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/run-to-samples/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToSamplePairs
+      operationId: getExpressionRunToSamplePairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -952,11 +952,11 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/library/{targetId}:
     delete:
       description: Delete link between an expression object and a library
-      operationId: deleteExpressionLibraryLink
+      operationId: deleteExpressionLibraryLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -993,14 +993,14 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between an expression object and a library
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between an expression object and a library.
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionLibraryLink
+      operationId: createExpressionLibraryLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1037,11 +1037,11 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between an expression object and a library
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/preparation/{targetId}:
     delete:
       description: Delete link between an expression object and a preparation
-      operationId: deleteExpressionPreparationLink
+      operationId: deleteExpressionPreparationLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1078,14 +1078,14 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between an expression object and a preparation
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between an expression object and a preparation.
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionPreparationLink
+      operationId: createExpressionPreparationLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1122,11 +1122,11 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between an expression object and a preparation
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/expression/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between an expression object and a sample
-      operationId: deleteExpressionSampleLink
+      operationId: deleteExpressionSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1163,14 +1163,14 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between an expression object and a sample
       tags:
-      - Expression integration
+      - Expression integration as Curator
     post:
       description: |-
         Create a link between an expression object and a sample.
 
         An expression object can be linked to one object only. If an expression object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Expression objects of the same group can only be linked to objects of the same study.
-      operationId: createExpressionSampleLink
+      operationId: createExpressionSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -1207,7 +1207,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between an expression object and a sample
       tags:
-      - Expression integration
+      - Expression integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/by/sample/{id}:
     get:
       description: |+
@@ -1226,7 +1226,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getFlowCytometryBySample
+      operationId: getFlowCytometryBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1309,7 +1309,7 @@ paths:
       summary: Retrieve flow cytometry run-level data by querying related sample ID
         (accession)
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: |+
@@ -1325,7 +1325,7 @@ paths:
 
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
-      operationId: getGroupsByStudy
+      operationId: getFlowCytometryGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1390,12 +1390,12 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/group/{sourceId}/to/sample/group/{targetId}
   : delete:
       description: Delete link between a group of flow-cytometry objects and a group
         of sample objects
-      operationId: deleteFlowCytometryGroupSampleGroupLink
+      operationId: deleteFlowCytometryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to the column in a FACS file)
@@ -1433,7 +1433,7 @@ paths:
       summary: Delete link between a group of flow-cytometry objects and a group of
         sample objects
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
     post:
       description: |-
         Create a link between a group of flow-cytometry objects and a group of sample objects.
@@ -1442,7 +1442,7 @@ paths:
         Flow-cytometry objects of the same group can only be linked to objects of the same study.
 
         Users can specify a custom metadata field for linking omics data to samples via the “linkingAttribute” parameter, if not specified the “Sample Source ID“ sample metadata attribute will be used by default.
-      operationId: createFlowCytometryGroupSampleGroupLink
+      operationId: createFlowCytometryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to the column in a FACS file)
@@ -1492,14 +1492,14 @@ paths:
       summary: Create a link between a group of flow-cytometry objects and a group
         of sample objects
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToSamplePairs
+      operationId: getFlowCytometryRunToSamplePairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -1552,11 +1552,11 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between a flow-cytometry object and a sample
-      operationId: deleteFlowCytometrySampleLink
+      operationId: deleteFlowCytometrySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level data block
         in: path
@@ -1592,14 +1592,14 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a flow-cytometry object and a sample
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
     post:
       description: |-
         Create a link between a flow-cytometry object and a sample.
 
         A flow-cytometry object can be linked to one object only. If a flow-cytometry object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Flow-cytometry objects of the same group can only be linked to objects of the same study.
-      operationId: createFlowCytometrySampleLink
+      operationId: createFlowCytometrySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level data block
         in: path
@@ -1635,7 +1635,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a flow-cytometry object and a sample
       tags:
-      - Flow Cytometry integration
+      - Flow Cytometry integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/libraries/by/samples:
     get:
       description: |+
@@ -1677,7 +1677,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getLibrariesBySamples
+      operationId: getLibrariesBySamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1767,10 +1767,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve library metadata by querying related samples
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/by/sample/{id}:
     get:
-      operationId: getLibraryBySample
+      operationId: getLibraryBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1833,10 +1833,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve library metadata by querying related sample ID (accession)
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/group/by/study/{id}:
     get:
-      operationId: getGroupsByStudy
+      operationId: getLibraryGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -1879,12 +1879,12 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/group/{sourceId}/to/sample/group/{targetId}:
     delete:
       description: Delete links between samples and libraries related to the specified
         group
-      operationId: deleteLibraryGroupSampleGroupLink
+      operationId: deleteLibraryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the library group object
         in: path
@@ -1921,13 +1921,13 @@ paths:
       summary: Delete links between samples and libraries related to the specified
         group
       tags:
-      - Library integration
+      - Library integration as Curator
     post:
       description: |-
         Create links between samples and libraries.
 
         Library objects of the same group can only be linked to objects of the same study.
-      operationId: createLibraryGroupSampleGroupLink
+      operationId: createLibraryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the library group object
         in: path
@@ -1963,14 +1963,14 @@ paths:
       - Genestack-API-Token: []
       summary: Create links between samples and libraries
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/libraries-to-samples/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getLibraryLinksToSamples
+      operationId: getLibraryLinksToSamplesAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -2023,11 +2023,11 @@ paths:
       summary: "Retrieve library-samples pairs by group id. Pagination is based on\
         \ unique libraries, not unique pairs."
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/library/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete a link between a library and a sample
-      operationId: deleteLibrarySampleLink
+      operationId: deleteLibrarySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the library object
         in: path
@@ -2063,13 +2063,13 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a link between a library and a sample
       tags:
-      - Library integration
+      - Library integration as Curator
     post:
       description: |-
         Create a link between a library and a sample.
 
         Library objects of the same group can only be linked to objects of the same study.
-      operationId: createLibrarySampleLink
+      operationId: createLibrarySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the library object
         in: path
@@ -2105,10 +2105,10 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a library and a sample
       tags:
-      - Library integration
+      - Library integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/by/sample/{id}:
     get:
-      operationId: getPreparationBySample
+      operationId: getPreparationBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -2171,10 +2171,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve preparation metadata by querying related sample ID (accession)
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/group/by/study/{id}:
     get:
-      operationId: getGroupsByStudy
+      operationId: getPreparationGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -2217,12 +2217,12 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   ? /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}
   : delete:
       description: Delete links between samples and preparations related to the specified
         group
-      operationId: deletePreparationGroupSampleGroupLink
+      operationId: deletePreparationGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation group object
         in: path
@@ -2259,13 +2259,13 @@ paths:
       summary: Delete links between samples and preparations related to the specified
         group
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
     post:
       description: |-
         Create links between samples and preparations.
 
         Preparation objects of the same group can only be linked to objects of the same study.
-      operationId: createPreparationGroupSampleGroupLink
+      operationId: createPreparationGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation group object
         in: path
@@ -2301,14 +2301,14 @@ paths:
       - Genestack-API-Token: []
       summary: Create links between samples and preparations
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/preparations-to-samples/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getPreparationLinksToSamples
+      operationId: getPreparationLinksToSamplesAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -2361,11 +2361,11 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ preparations, not unique pairs."
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparation/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete a link between a preparation and a sample
-      operationId: deletePreparationSampleLink
+      operationId: deletePreparationSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation object
         in: path
@@ -2401,13 +2401,13 @@ paths:
       - Genestack-API-Token: []
       summary: Delete a link between a preparation and a sample
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
     post:
       description: |-
         Create a link between a preparation and a sample.
 
         Preparation objects of the same group can only be linked to objects of the same study.
-      operationId: createPreparationSampleLink
+      operationId: createPreparationSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation object
         in: path
@@ -2443,7 +2443,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a preparation and a sample
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/preparations/by/samples:
     get:
       description: |+
@@ -2485,7 +2485,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getPreparationsBySamples
+      operationId: getPreparationsBySamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -2575,11 +2575,11 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve preparation metadata by querying related samples
       tags:
-      - Preparation integration
+      - Preparation integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/sample/group/{sourceId}/to/study/{targetId}:
     delete:
       description: Delete link between a group of sample objects and a study
-      operationId: deleteSampleGroupStudyLink
+      operationId: deleteSampleGroupStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample group object
         in: path
@@ -2615,13 +2615,13 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a group of sample objects and a study
       tags:
-      - Sample integration
+      - Sample integration as Curator
     post:
       description: |-
         Create a link between a group of sample objects and a study.
 
         Sample objects of the same group can only be linked to the same study.
-      operationId: createSampleGroupStudyLink
+      operationId: createSampleGroupStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample group object
         in: path
@@ -2657,11 +2657,11 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a group of sample objects and a study
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/sample/{sourceId}/to/study/{targetId}:
     delete:
       description: Delete link between a sample and a study
-      operationId: deleteSampleStudyLink
+      operationId: deleteSampleStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample object
         in: path
@@ -2697,13 +2697,13 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a sample and a study
       tags:
-      - Sample integration
+      - Sample integration as Curator
     post:
       description: |-
         Create a link between a sample and a study.
 
         Sample objects of the same group can only be linked to the same study.
-      operationId: createSampleStudyLink
+      operationId: createSampleStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample object
         in: path
@@ -2739,7 +2739,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a sample and a study
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/libraries:
     get:
       description: |+
@@ -2781,7 +2781,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getSamplesByLibraries
+      operationId: getSamplesByLibrariesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -2871,7 +2871,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related libraries
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/preparations:
     get:
       description: |+
@@ -2913,7 +2913,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getSamplesByPreparations
+      operationId: getSamplesByPreparationsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3004,14 +3004,14 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related preparations
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/samples/by/study/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getSamplesByStudy
+      operationId: getSamplesByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3085,7 +3085,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve sample metadata by querying related study ID (accession)
       tags:
-      - Sample integration
+      - Sample integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/libraries:
     get:
       description: |+
@@ -3127,7 +3127,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getStudiesByLibraries
+      operationId: getStudiesByLibrariesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3217,7 +3217,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related libraries
       tags:
-      - Study integration
+      - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/preparations:
     get:
       description: |+
@@ -3259,7 +3259,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getStudiesByPreparations
+      operationId: getStudiesByPreparationsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3350,7 +3350,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related preparations
       tags:
-      - Study integration
+      - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/studies/by/samples:
     get:
       description: |+
@@ -3392,7 +3392,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getStudiesBySamples
+      operationId: getStudiesBySamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3482,10 +3482,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata objects by querying related samples
       tags:
-      - Study integration
+      - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/study/by/sample/{id}:
     get:
-      operationId: getStudyBySample
+      operationId: getStudyBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3540,7 +3540,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata by querying sample ID (accession)
       tags:
-      - Study integration
+      - Study integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/by/sample/{id}:
     get:
       description: |+
@@ -3559,7 +3559,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getVariantBySample
+      operationId: getVariantBySampleAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3641,7 +3641,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve variant run-level data by querying related sample ID (accession)
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/group/by/study/{id}:
     get:
       description: |+
@@ -3657,7 +3657,7 @@ paths:
 
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
-      operationId: getGroupsByStudy
+      operationId: getVariantGroupsByStudyAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -3722,12 +3722,12 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}:
     delete:
       description: Delete link between a group of variant objects and a group of sample
         objects
-      operationId: deleteVariantGroupSampleGroupLink
+      operationId: deleteVariantGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to the column in a VCF file)
@@ -3765,7 +3765,7 @@ paths:
       summary: Delete link between a group of variant objects and a group of sample
         objects
       tags:
-      - Variant integration
+      - Variant integration as Curator
     post:
       description: |-
         Create a link between a group of variant objects and a group of sample objects.
@@ -3774,7 +3774,7 @@ paths:
         Variant objects of the same group can only be linked to objects of the same study.
 
          Users can specify a custom metadata field for linking omics data to samples via the “linkingAttribute” parameter, if not specified the “Sample Source ID“ sample metadata attribute will be used by default.
-      operationId: createVariantGroupSampleGroupLink
+      operationId: createVariantGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
           to the column in a VCF file)
@@ -3824,14 +3824,14 @@ paths:
       summary: Create a link between a group of variant objects and a group of sample
         objects
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/run-to-samples/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
-      operationId: getRunToSamplePairs
+      operationId: getVariantRunToSamplePairsAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -3884,11 +3884,11 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/link/variant/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between a variant object and a sample
-      operationId: deleteVariantSampleLink
+      operationId: deleteVariantSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -3925,14 +3925,14 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a variant object and a sample
       tags:
-      - Variant integration
+      - Variant integration as Curator
     post:
       description: |-
         Create a link between a variant object and a sample.
 
         A variant object can be linked to one object only. If a variant object is already linked to another object, this link will be deleted and a new link with the specified object will be created.
         Variant objects of the same group can only be linked to objects of the same study.
-      operationId: createVariantSampleLink
+      operationId: createVariantSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
           the column in a VCG/GCT file)
@@ -3969,12 +3969,12 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a variant object and a sample
       tags:
-      - Variant integration
+      - Variant integration as Curator
   /frontend/rs/genestack/integrationCurator/default-released/integration/studies/{id}/curation-status:
     get:
       description: Use this endpoint to check the curation status of a given study.
         The endpoint will return values of 'CURATED' or 'NOT_CURATED'.
-      operationId: getStudyCurationStatus
+      operationId: getStudyCurationStatusAsCurator
       parameters:
       - description: The ID (accession) of the study object
         in: path
@@ -4007,13 +4007,13 @@ paths:
       - Genestack-API-Token: []
       summary: Check the curation status of a study.
       tags:
-      - Study integration
+      - Study integration as Curator
     patch:
       description: Use this endpoint to change the curation status of a given study.
         Note the study and all associated objects must have valid metadata according
         to the applied template before curation status can be set to 'CURATED. If
         any invalid metadata is present the status will remain 'NOT_CURATED'
-      operationId: changeCurationStatus
+      operationId: changeStudyCurationStatusAsCurator
       parameters:
       - description: The ID (accession) of the study object
         in: path
@@ -4053,7 +4053,7 @@ paths:
       - Genestack-API-Token: []
       summary: Change curation status of a study.
       tags:
-      - Study integration
+      - Study integration as Curator
       x-codegen-request-body-name: body
   /frontend/rs/genestack/integrationCurator/default-released/integration/fulltext/search/studies:
     post:
@@ -4063,7 +4063,7 @@ paths:
          The endpoint returns:
          - a list of studies with their metadata summary
          - a list of facet objects with counts; the facet list can be configured in the "Study Browser" application using the "Configure facets" option (by a user with appropriate permissions). For each facet object only the first 5 most popular values are returned, these are sorted by the number of matching studies in descending order.  Only studies available to the user are counted.
-      operationId: searchStudiesByFilter
+      operationId: searchStudiesByFilterAsCurator
       requestBody:
         content:
           application/json:
@@ -4094,14 +4094,14 @@ paths:
       - Genestack-API-Token: []
       summary: Find and retrieve studies via full-text or facet query
       tags:
-      - Study integration
+      - Study integration as Curator
       x-codegen-request-body-name: request
   /frontend/rs/genestack/integrationCurator/default-released/links:
     delete:
       description: "This method should be used in case you want to delete the links\
         \ of an object. Please, keep in mind that deleting a link between Study and\
         \ Sample will not delete a link between corresponding Sample and it’s signal."
-      operationId: deleteLink
+      operationId: deleteLinkAsCurator
       parameters:
       - description: Object ID (accession) (e.g. accession of study)
         in: query
@@ -4150,13 +4150,13 @@ paths:
       - Genestack-API-Token: []
       summary: Deletes existing links matching the specified criteria.
       tags:
-      - Linkage
+      - Linkage as Curator
     get:
       description: Please make sure that this endpoint should be used only for getting
         all links to a specific object. In case you specify both firstId and secondId
         an expected answer would be true for existing links and false for no link
         between the objects.
-      operationId: getLinksByParams
+      operationId: getLinksByParamsAsCurator
       parameters:
       - description: Object ID (accession) (e.g. accession of study)
         in: query
@@ -4220,13 +4220,13 @@ paths:
       - Genestack-API-Token: []
       summary: Finds existing links matching the specified criteria.
       tags:
-      - Linkage
+      - Linkage as Curator
     post:
       description: "This method should be used only in case you need to create links\
         \ between 2 objects. Links are created both ways (e.g. when linking Object\
         \ A to Object B it can be done both ways, by linking firstType to secondType\
         \ and vice versa)."
-      operationId: saveLinks
+      operationId: saveLinksAsCurator
       requestBody:
         content:
           application/json:
@@ -4264,14 +4264,14 @@ paths:
       - Genestack-API-Token: []
       summary: Creates new links between objects.
       tags:
-      - Linkage
+      - Linkage as Curator
       x-codegen-request-body-name: links
   /frontend/rs/genestack/integrationCurator/default-released/links/get-batch:
     post:
       description: Please make sure to use that endpoint for batch calls only. You
         are not allowed to pass 'mixed' objects. e.g. Studies and Samples at the same
         time. Please always specify firstType.
-      operationId: getLinksByIds
+      operationId: getLinksByIdsAsCurator
       requestBody:
         content:
           application/json:
@@ -4305,7 +4305,7 @@ paths:
       summary: "Finds existing links by passing many IDs. \nPagination goes through\
         \ all links matched the criteria."
       tags:
-      - Linkage
+      - Linkage as Curator
       x-codegen-request-body-name: request
   /frontend/rs/genestack/integrationCurator/default-released/omics/expression/data:
     get:
@@ -4354,7 +4354,7 @@ paths:
         \ this `cursor` tag to resume the query from your previous result and get\
         \ the next page. If there are no more results you will just retrieve an empty\
         \ result.\n\n"
-      operationId: searchExpressionData
+      operationId: omicsSearchExpressionDataAsCurator
       parameters:
       - description: |-
           Allows to get an extended or updated response body. Available values:
@@ -4583,7 +4583,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve data objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/expression/group:
     get:
       description: |+
@@ -4625,7 +4625,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchExpressionGroups
+      operationId: omicsSearchExpressionGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -4850,7 +4850,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/expression/streamed-data:
     get:
       description: |+
@@ -4870,7 +4870,7 @@ paths:
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
 
-      operationId: searchStreamedExpressionData
+      operationId: omicsSearchStreamedExpressionDataAsCurator
       parameters:
       - description: |
           Filter by sample metadata (key-value metadata pair(s)). E.g. `"Species or strain"="Homo sapiens"`
@@ -5027,7 +5027,7 @@ paths:
       - Genestack-API-Token: []
       summary: Stream data from a given tabular file
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/flow-cytometry/data:
     get:
       description: |+
@@ -5071,7 +5071,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchFlowCytometryData
+      operationId: omicsSearchFlowCytometryDataAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5297,7 +5297,7 @@ paths:
       summary: Retrieve flow cytometry data objects by searching across multiple data
         types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/flow-cytometry/group:
     get:
       description: |+
@@ -5339,7 +5339,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchFlowCytometryGroups
+      operationId: omicsSearchFlowCytometryGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5564,7 +5564,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/samples:
     get:
       description: |+
@@ -5606,7 +5606,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchSamples
+      operationId: omicsSearchSamplesAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -5832,7 +5832,7 @@ paths:
       summary: Retrieve sample metadata objects by searching across multiple data
         types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/variant/data:
     get:
       description: |+
@@ -5876,7 +5876,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchVariantData
+      operationId: omicsSearchVariantDataAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -6101,7 +6101,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve variant data objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/omics/variant/group:
     get:
       description: |+
@@ -6143,7 +6143,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchVariantGroups
+      operationId: omicsSearchVariantGroupsAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -6368,14 +6368,14 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group objects by searching across multiple data types
       tags:
-      - Omics queries
+      - Omics queries as Curator
   /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/tasks/publish-versions:
     post:
       description: This endpoint publishes information from staging and creates new
         metadata versions for the specified study and all associated objects. The
         version name is set to “Auto-published by API call”. Only curators with access
         to the specified studies can use this method.
-      operationId: publishStudyByAccession
+      operationId: publishStudyByAccessionAsCurator
       parameters:
       - description: Supply the accession of the study to be published
         in: path
@@ -6415,10 +6415,10 @@ paths:
       summary: Asynchronous task that publishes all pending versions for a single
         study.
       tags:
-      - Metadata versioning
+      - Metadata versioning as Curator
   /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/validation-summary:
     get:
-      operationId: searchExpressionData
+      operationId: searchExpressionDataAsCurator
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -6448,7 +6448,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve validation summary by querying study ID (accession)
       tags:
-      - Validation summary
+      - Validation summary as Curator
 components:
   schemas:
     AttributeInvalidValue:
