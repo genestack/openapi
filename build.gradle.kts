@@ -17,7 +17,6 @@ val sourceFileList = fileNameList.map {
 }
 
 tasks {
-
     register("generateOdmApiPython", GenerateTask::class) {
         generatorName.set("python")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
@@ -40,7 +39,6 @@ tasks {
             "packageVersion" to openApiVersion
         )
     }
-
     register("generateOdmApiPostmanCollection", GenerateTask::class) {
         generatorName.set("postman-collection")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
@@ -52,13 +50,11 @@ tasks {
             "packageVersion" to openApiVersion
         )
     }
-
     // Should be used in pre-commit
     register("mergeDefinitions", MergeDefinitions::class) {
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
     }
-
     val generateAll by registering(GradleBuild::class) {
         file("$rootDir/generated").deleteRecursively()
         tasks = listOf("generateOdmApiPython", "generateOdmApiR", "generateOdmApiPostmanCollection")
