@@ -672,7 +672,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SignalSource"
+              $ref: "#/components/schemas/FlowCytometrySignalSource"
         required: false
       responses:
         "201":
@@ -3267,7 +3267,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SignalSource"
+              $ref: "#/components/schemas/VariantSignalSource"
         required: false
       responses:
         "201":
@@ -10848,7 +10848,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SignalSource"
+              $ref: "#/components/schemas/ExpressionSignalSource"
         required: false
       responses:
         "201":
@@ -22177,10 +22177,12 @@ components:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
-    SignalSource:
-      $ref: "./schemas/common/SignalSource.yaml"
+    FlowCytometrySignalSource:
+      $ref: "./schemas/flow-cytometry/FlowCytometrySignalSource.yaml"
     Library:
       $ref: "./schemas/library/Library.yaml"
+    VariantSignalSource:
+      $ref: "./schemas/variant/VariantSignalSource.yaml"
     VariantItem:
       $ref: "./schemas/variant/VariantItem.yaml"
     VariantResponse:
@@ -22281,6 +22283,8 @@ components:
       $ref: "./schemas/scim/ErrorMessage.yaml"
     AtomicExpressionSource:
       $ref: "./schemas/expression/AtomicExpressionSource.yaml"
+    ExpressionSignalSource:
+      $ref: "./schemas/expression/ExpressionSignalSource.yaml"
     AtomicSampleSource:
       $ref: "./schemas/sample/AtomicSampleSource.yaml"
     Sample:

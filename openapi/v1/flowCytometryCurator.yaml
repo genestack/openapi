@@ -347,7 +347,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SignalSource"
+              $ref: "#/components/schemas/FlowCytometrySignalSource"
         required: false
       responses:
         "201":
@@ -1063,8 +1063,8 @@ components:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
-    SignalSource:
-      $ref: "./schemas/common/SignalSource.yaml"
+    FlowCytometrySignalSource:
+      $ref: "./schemas/flow-cytometry/FlowCytometrySignalSource.yaml"
   securitySchemes:
     Access-token:
       in: header
