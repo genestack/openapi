@@ -27,13 +27,13 @@ paths:
         Specific ordering can be observed in the list of supported detached types found below.
         Pagination of the results can be conveniently managed using the `cursor` and `limit` parameters.
          Supported types of detached objects (listed in the order of retrieval) include:
+         * `STUDY`
          * `SAMPLE_GROUP`
          * `LIBRARY_GROUP`
          * `PREPARATION_GROUP`
          * `TABULAR_DATA`
          * `GENE_VARIANT`
          * `FLOW_CYTOMETRY`
-         * `STUDY`
 
       operationId: getDetachedObjects
       parameters:
