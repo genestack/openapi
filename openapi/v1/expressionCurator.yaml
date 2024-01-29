@@ -354,7 +354,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SignalSource"
+              $ref: "#/components/schemas/ExpressionSignalSource"
         required: false
       responses:
         "201":
@@ -1074,8 +1074,8 @@ components:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
-    SignalSource:
-      $ref: "./schemas/common/SignalSource.yaml"
+    ExpressionSignalSource:
+      $ref: "./schemas/expression/ExpressionSignalSource.yaml"
   securitySchemes:
     Access-token:
       in: header

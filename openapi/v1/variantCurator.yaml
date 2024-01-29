@@ -809,7 +809,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SignalSource"
+              $ref: "#/components/schemas/VariantSignalSource"
         required: false
       responses:
         "201":
@@ -1085,8 +1085,8 @@ components:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
-    SignalSource:
-      $ref: "./schemas/common/SignalSource.yaml"
+    VariantSignalSource:
+      $ref: "./schemas/variant/VariantSignalSource.yaml"
     VariantItem:
       $ref: "./schemas/variant/VariantItem.yaml"
     VariantResponse:
