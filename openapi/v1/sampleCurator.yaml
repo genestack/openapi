@@ -18,7 +18,7 @@ info:
 tags:
 - name: Sample SPoT as Curator
 paths:
-  /frontend/rs/genestack/sampleCurator/default-released/samples:
+  /api/v1/as-curator/samples:
     get:
       description: |-
         Retrieve sample metadata objects by searching/listing sample metadata.
@@ -206,7 +206,7 @@ paths:
       tags:
       - Sample SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/sampleCurator/default-released/samples/atomic:
+  /api/v1/as-curator/samples/atomic:
     post:
       description: |-
         ## Data
@@ -262,7 +262,7 @@ paths:
       tags:
       - Sample SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/sampleCurator/default-released/samples/atomic/{id}:
+  /api/v1/as-curator/samples/atomic/{id}:
     patch:
       description: |-
         ## Basic operation
@@ -319,7 +319,7 @@ paths:
       tags:
       - Sample SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}:
+  /api/v1/as-curator/samples/{id}:
     delete:
       operationId: deleteSampleAsCurator
       parameters:
@@ -471,7 +471,7 @@ paths:
       tags:
       - Sample SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}/versions:
+  /api/v1/as-curator/samples/{id}/versions:
     get:
       operationId: getSampleVersionsAsCurator
       parameters:
@@ -507,7 +507,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Sample SPoT as Curator
-  /frontend/rs/genestack/sampleCurator/default-released/samples/{id}/versions/{version}:
+  /api/v1/as-curator/samples/{id}/versions/{version}:
     get:
       operationId: getSampleByVersionAsCurator
       parameters:

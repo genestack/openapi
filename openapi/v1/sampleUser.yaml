@@ -19,7 +19,7 @@ info:
 tags:
 - name: Sample SPoT as User
 paths:
-  /frontend/rs/genestack/sampleUser/default-released/samples:
+  /api/v1/as-user/samples:
     get:
       description: |-
         Retrieve sample metadata objects by searching/listing sample metadata.
@@ -154,7 +154,7 @@ paths:
       summary: List or search for sample metadata objects
       tags:
       - Sample SPoT as User
-  /frontend/rs/genestack/sampleUser/default-released/samples/{id}:
+  /api/v1/as-user/samples/{id}:
     get:
       operationId: getSampleAsUser
       parameters:
@@ -215,7 +215,7 @@ paths:
       summary: Retrieve a single sample object by ID (accession)
       tags:
       - Sample SPoT as User
-  /frontend/rs/genestack/sampleUser/default-released/samples/{id}/versions:
+  /api/v1/as-user/samples/{id}/versions:
     get:
       operationId: getSampleVersionsAsUser
       parameters:
@@ -251,7 +251,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Sample SPoT as User
-  /frontend/rs/genestack/sampleUser/default-released/samples/{id}/versions/{version}:
+  /api/v1/as-user/samples/{id}/versions/{version}:
     get:
       operationId: getSampleByVersionAsUser
       parameters:

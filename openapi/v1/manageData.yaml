@@ -18,7 +18,7 @@ info:
 tags:
 - name: Manage Data
 paths:
-  /frontend/rs/genestack/manageData/default-released/detached-objects:
+  /api/v1/manage-data/detached-objects:
     get:
       description: |+
         Retrieve various types of detached data objects. An object is defined as 'detached' if it lacks any direct or indirect link to a root-level object, which in this context is referred to as 'study'.
@@ -90,7 +90,7 @@ paths:
       summary: Retrieve a list of detached objects
       tags:
       - Manage Data
-  /frontend/rs/genestack/manageData/default-released/data:
+  /api/v1/manage-data/data:
     delete:
       description: |-
         The objects will be marked for deletion. In case the selected object has more than one version, the endpoint deletes all of them. The following object types can be deleted by the endpoint:

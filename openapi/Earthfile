@@ -6,6 +6,7 @@ swagger-ui:
 
     COPY v1 /usr/share/nginx/html/yaml/
     COPY fs /
+    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
 
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \

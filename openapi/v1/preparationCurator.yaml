@@ -18,7 +18,7 @@ info:
 tags:
 - name: Preparation SPoT as Curator
 paths:
-  /frontend/rs/genestack/preparationCurator/default-released/preparations:
+  /api/v1/as-curator/preparations:
     get:
       description: |-
         Retrieve preparation metadata objects by searching/listing preparation metadata.
@@ -210,7 +210,7 @@ paths:
       tags:
       - Preparation SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/by/group/{id}:
+  /api/v1/as-curator/preparations/by/group/{id}:
     get:
       operationId: getPreparationsByGroupAsCurator
       parameters:
@@ -287,7 +287,7 @@ paths:
       summary: Retrieve preparations related to the given group
       tags:
       - Preparation SPoT as Curator
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/group/{id}:
+  /api/v1/as-curator/preparations/group/{id}:
     delete:
       operationId: deletePreparationGroupAsCurator
       parameters:
@@ -323,7 +323,7 @@ paths:
       summary: Delete a preparation group with all related preparation objects
       tags:
       - Preparation SPoT as Curator
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}:
+  /api/v1/as-curator/preparations/{id}:
     delete:
       operationId: deletePreparationAsCurator
       parameters:
@@ -475,7 +475,7 @@ paths:
       tags:
       - Preparation SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions:
+  /api/v1/as-curator/preparations/{id}/versions:
     get:
       operationId: getPreparationVersionsAsCurator
       parameters:
@@ -511,7 +511,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Preparation SPoT as Curator
-  /frontend/rs/genestack/preparationCurator/default-released/preparations/{id}/versions/{version}:
+  /api/v1/as-curator/preparations/{id}/versions/{version}:
     get:
       operationId: getPreparationByVersionAsCurator
       parameters:

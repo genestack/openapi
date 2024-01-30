@@ -19,7 +19,7 @@ info:
 tags:
 - name: Expression SPoT as User
 paths:
-  /frontend/rs/genestack/expressionUser/default-released/expression:
+  /api/v1/as-user/expressions:
     get:
       description: |+
         Retrieve all expression data and metadata objects that match a query.
@@ -173,7 +173,7 @@ paths:
       summary: Retrieve multiple expression data and metadata objects
       tags:
       - Expression SPoT as User
-  /frontend/rs/genestack/expressionUser/default-released/expression/group:
+  /api/v1/as-user/expressions/group:
     get:
       description: |-
         Retrieve all group metadata objects that match a query.
@@ -308,7 +308,7 @@ paths:
       summary: Retrieve groups that match a query
       tags:
       - Expression SPoT as User
-  /frontend/rs/genestack/expressionUser/default-released/expression/group/by/run/{id}:
+  /api/v1/as-user/expressions/group/by/run/{id}:
     get:
       operationId: getExpressionGroupByRunAsUser
       parameters:
@@ -369,7 +369,7 @@ paths:
       summary: Retrieve a single group object by run ID (accession)
       tags:
       - Expression SPoT as User
-  /frontend/rs/genestack/expressionUser/default-released/expression/group/{id}:
+  /api/v1/as-user/expressions/group/{id}:
     get:
       operationId: getExpressionGroupAsUser
       parameters:
@@ -430,7 +430,7 @@ paths:
       summary: Retrieve a single group object by ID (accession)
       tags:
       - Expression SPoT as User
-  /frontend/rs/genestack/expressionUser/default-released/expression/runs/by/group/{id}:
+  /api/v1/as-user/expressions/runs/by/group/{id}:
     get:
       description: |+
         ## Paging
@@ -488,7 +488,7 @@ paths:
       summary: Retrieve run objects related to the given group
       tags:
       - Expression SPoT as User
-  /frontend/rs/genestack/expressionUser/default-released/expression/{id}:
+  /api/v1/as-user/expressions/{id}:
     get:
       operationId: getExpressionAsUser
       parameters:
@@ -553,7 +553,7 @@ paths:
       summary: Retrieve a single expression object by ID (accession)
       tags:
       - Expression SPoT as User
-  /frontend/rs/genestack/expressionUser/default-released/expression/{id}/versions:
+  /api/v1/as-user/expressions/{id}/versions:
     get:
       operationId: getExpressionVersionsAsUser
       parameters:
@@ -589,7 +589,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Expression SPoT as User
-  /frontend/rs/genestack/expressionUser/default-released/expression/{id}/versions/{version}:
+  /api/v1/as-user/expressions/{id}/versions/{version}:
     get:
       operationId: getExpressionByVersionAsUser
       parameters:

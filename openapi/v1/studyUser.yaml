@@ -19,7 +19,7 @@ info:
 tags:
 - name: Study SPoT as User
 paths:
-  /frontend/rs/genestack/studyUser/default-released/studies:
+  /api/v1/as-user/studies:
     get:
       description: |-
         Retrieve study metadata objects by searching/listing study metadata.
@@ -155,7 +155,7 @@ paths:
       summary: List or search for study metadata objects
       tags:
       - Study SPoT as User
-  /frontend/rs/genestack/studyUser/default-released/studies/{id}:
+  /api/v1/as-user/studies/{id}:
     get:
       operationId: getStudyAsUser
       parameters:
@@ -216,7 +216,7 @@ paths:
       summary: Retrieve a single study object by ID (accession)
       tags:
       - Study SPoT as User
-  /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions:
+  /api/v1/as-user/studies/{id}/versions:
     get:
       operationId: getStudyVersionsAsUser
       parameters:
@@ -252,7 +252,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Study SPoT as User
-  /frontend/rs/genestack/studyUser/default-released/studies/{id}/versions/{version}:
+  /api/v1/as-user/studies/{id}/versions/{version}:
     get:
       operationId: getStudyByVersionAsUser
       parameters:

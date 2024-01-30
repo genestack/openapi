@@ -18,7 +18,7 @@ info:
 tags:
 - name: Variant SPoT as Curator
 paths:
-  /frontend/rs/genestack/variantCurator/default-released/variant:
+  /api/v1/as-curator/variants:
     get:
       description: |+
         Retrieve all variant data and metadata objects that match a query.
@@ -204,7 +204,7 @@ paths:
       summary: Retrieve multiple variant data and metadata objects
       tags:
       - Variant SPoT as Curator
-  /frontend/rs/genestack/variantCurator/default-released/variant/atomic:
+  /api/v1/as-curator/variants/atomic:
     post:
       description: |-
         ## Data
@@ -264,7 +264,7 @@ paths:
       tags:
       - Variant SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/variantCurator/default-released/variant/atomic/{id}:
+  /api/v1/as-curator/variants/atomic/{id}:
     delete:
       operationId: deleteAtomicVariantAsCurator
       parameters:
@@ -356,7 +356,7 @@ paths:
       tags:
       - Variant SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/variantCurator/default-released/variant/group:
+  /api/v1/as-curator/variants/group:
     get:
       description: |-
         Retrieve all group metadata objects that match a query.
@@ -491,7 +491,7 @@ paths:
       summary: Retrieve groups that match a query
       tags:
       - Variant SPoT as Curator
-  /frontend/rs/genestack/variantCurator/default-released/variant/group/by/run/{id}:
+  /api/v1/as-curator/variants/group/by/run/{id}:
     get:
       operationId: getVariantGroupByRunAsCurator
       parameters:
@@ -552,7 +552,7 @@ paths:
       summary: Retrieve a single group object by run ID (accession)
       tags:
       - Variant SPoT as Curator
-  /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}:
+  /api/v1/as-curator/variants/group/{id}:
     delete:
       operationId: deleteVariantGroupAsCurator
       parameters:
@@ -648,7 +648,7 @@ paths:
       summary: Retrieve a single group object by ID (accession)
       tags:
       - Variant SPoT as Curator
-  /frontend/rs/genestack/variantCurator/default-released/variant/group/{id}/curation:
+  /api/v1/as-curator/variants/group/{id}/curation:
     get:
       operationId: getVariantGroupCurationStatusAsCurator
       parameters:
@@ -732,7 +732,7 @@ paths:
       tags:
       - Variant SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/variantCurator/default-released/variant/runs/by/group/{id}:
+  /api/v1/as-curator/variants/runs/by/group/{id}:
     get:
       description: |+
         ## Paging
@@ -790,7 +790,7 @@ paths:
       summary: Retrieve run objects related to the given group
       tags:
       - Variant SPoT as Curator
-  /frontend/rs/genestack/variantCurator/default-released/variant/vcf:
+  /api/v1/as-curator/variants/vcf:
     post:
       description: |-
         ## Data
@@ -841,7 +841,7 @@ paths:
       tags:
       - Variant SPoT as Curator
       x-codegen-request-body-name: source
-  /frontend/rs/genestack/variantCurator/default-released/variant/{id}:
+  /api/v1/as-curator/variants/{id}:
     get:
       operationId: getVariantAsCurator
       parameters:
@@ -958,7 +958,7 @@ paths:
       tags:
       - Variant SPoT as Curator
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions:
+  /api/v1/as-curator/variants/{id}/versions:
     get:
       operationId: getVariantVersionsAsCurator
       parameters:
@@ -994,7 +994,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Variant SPoT as Curator
-  /frontend/rs/genestack/variantCurator/default-released/variant/{id}/versions/{version}:
+  /api/v1/as-curator/variants/{id}/versions/{version}:
     get:
       operationId: getVariantByVersionAsCurator
       parameters:
