@@ -5143,7 +5143,7 @@ paths:
       summary: "stop running job"
       tags:
       - "Job operations"
-  /frontend/rs/genestack/integrationUser/default-released/data-types:
+  /api/v1/as-user/data-types:
     get:
       description: "This endpoint is for instructional uses and can be used to get\
         \ the latest list of Data Types."
@@ -5179,7 +5179,7 @@ paths:
       summary: "Lists all available data types."
       tags:
       - "Linkage as User"
-  /frontend/rs/genestack/integrationUser/default-released/data-types/links:
+  /api/v1/as-user/data-types/links:
     get:
       description: "This endpoint should be used for instructional needs, and can\
         \ be used in order to get the links between the Data Types."
@@ -7926,7 +7926,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - "Variant integration as User"
-  /frontend/rs/genestack/integrationUser/default-released/links:
+  /api/v1/as-user/links:
     get:
       description: "Please make sure that this endpoint should be used only for getting\
         \ all links to a specific object. In case you specify both firstId and secondId\
@@ -7998,7 +7998,7 @@ paths:
       summary: "Finds existing links matching the specified criteria."
       tags:
       - "Linkage as User"
-  /frontend/rs/genestack/integrationUser/default-released/links/get-batch:
+  /api/v1/as-user/links/get-batch:
     post:
       description: "Please make sure to use that endpoint for batch calls only. You\
         \ are not allowed to pass 'mixed' objects. e.g. Studies and Samples at the\
@@ -8040,7 +8040,7 @@ paths:
       tags:
       - "Linkage as User"
       x-codegen-request-body-name: "request"
-  /frontend/rs/genestack/integrationUser/default-released/omics/expression/data:
+  /api/v1/as-user/omics/expression/data:
     get:
       description: "Retrieve any data objects whose linked data matches all supplied\
         \ conditions. \n\nNote: An expression data query must be supplied.\n\n## Conditions\n\
@@ -8321,7 +8321,7 @@ paths:
       summary: "Retrieve data objects by searching across multiple data types"
       tags:
       - "Omics queries as User"
-  /frontend/rs/genestack/integrationUser/default-released/omics/expression/group:
+  /api/v1/as-user/omics/expression/group:
     get:
       description: "Retrieve group objects whose linked data matches all supplied\
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
@@ -8595,7 +8595,7 @@ paths:
       summary: "Retrieve group objects by searching across multiple data types"
       tags:
       - "Omics queries as User"
-  /frontend/rs/genestack/integrationUser/default-released/omics/expression/streamed-data:
+  /api/v1/as-user/omics/expression/streamed-data:
     get:
       description: "Stream data from a given group for a tabular file that matches\
         \ a sample/library/preparations query/filter. If no query/filters are supplied\
@@ -8778,7 +8778,7 @@ paths:
       summary: "Stream data from a given tabular file"
       tags:
       - "Omics queries as User"
-  /frontend/rs/genestack/integrationUser/default-released/omics/flow-cytometry/data:
+  /api/v1/as-user/omics/flow-cytometry/data:
     get:
       description: "Retrieve flow cytometry data objects whose linked data matches\
         \ all supplied conditions.\n\nNote: A flow cytometry data query must be supplied.\n\
@@ -9054,7 +9054,7 @@ paths:
         \ data types"
       tags:
       - "Omics queries as User"
-  /frontend/rs/genestack/integrationUser/default-released/omics/flow-cytometry/group:
+  /api/v1/as-user/omics/flow-cytometry/group:
     get:
       description: "Retrieve group objects whose linked data matches all supplied\
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
@@ -9328,7 +9328,7 @@ paths:
       summary: "Retrieve group objects by searching across multiple data types"
       tags:
       - "Omics queries as User"
-  /frontend/rs/genestack/integrationUser/default-released/omics/samples:
+  /api/v1/as-user/omics/samples:
     get:
       description: "Retrieve sample metadata objects whose linked data matches all\
         \ supplied conditions.\n\n## Conditions\nIt is possible to supply conditions\
@@ -9604,7 +9604,7 @@ paths:
         \ types"
       tags:
       - "Omics queries as User"
-  /frontend/rs/genestack/integrationUser/default-released/omics/variant/data:
+  /api/v1/as-user/omics/variant/data:
     get:
       description: "Retrieve variant data objects whose linked data matches all supplied\
         \ conditions.\n\nNote: A variant data query must be supplied.\n\n## Conditions\n\
@@ -9879,7 +9879,7 @@ paths:
       summary: "Retrieve variant data objects by searching across multiple data types"
       tags:
       - "Omics queries as User"
-  /frontend/rs/genestack/integrationUser/default-released/omics/variant/group:
+  /api/v1/as-user/omics/variant/group:
     get:
       description: "Retrieve group objects whose linked data matches all supplied\
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
@@ -13410,7 +13410,7 @@ paths:
       summary: "Retrieve a single library object by ID (accession)"
       tags:
       - "Library SPoT as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/data-types:
+  /api/v1/as-curator/data-types:
     get:
       description: "This endpoint is for instructional uses and can be used to get\
         \ the latest list of Data Types."
@@ -13446,7 +13446,7 @@ paths:
       summary: "Lists all available data types."
       tags:
       - "Linkage as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/data-types/links:
+  /api/v1/as-curator/data-types/links:
     get:
       description: "This endpoint should be used for instructional needs, and can\
         \ be used in order to get the links between the Data Types."
@@ -17582,7 +17582,7 @@ paths:
       summary: "Create a link between a variant object and a sample"
       tags:
       - "Variant integration as Curator"
-  /api/v1/as-curator/integration/studies/{id}/curation-status:
+  /api/v1/as-curator/integration/curation/studies/{id}/curation-status:
     get:
       description: "Use this endpoint to check the curation status of a given study.\
         \ The endpoint will return values of 'CURATED' or 'NOT_CURATED'."
@@ -17714,7 +17714,7 @@ paths:
       tags:
       - "Study integration as Curator"
       x-codegen-request-body-name: "request"
-  /frontend/rs/genestack/integrationCurator/default-released/links:
+  /api/v1/as-curator/links:
     delete:
       description: "This method should be used in case you want to delete the links\
         \ of an object. Please, keep in mind that deleting a link between Study and\
@@ -17887,7 +17887,7 @@ paths:
       tags:
       - "Linkage as Curator"
       x-codegen-request-body-name: "links"
-  /frontend/rs/genestack/integrationCurator/default-released/links/get-batch:
+  /api/v1/as-curator/links/get-batch:
     post:
       description: "Please make sure to use that endpoint for batch calls only. You\
         \ are not allowed to pass 'mixed' objects. e.g. Studies and Samples at the\
@@ -17929,7 +17929,7 @@ paths:
       tags:
       - "Linkage as Curator"
       x-codegen-request-body-name: "request"
-  /frontend/rs/genestack/integrationCurator/default-released/omics/expression/data:
+  /api/v1/as-curator/omics/expression/data:
     get:
       description: "Retrieve any data objects whose linked data matches all supplied\
         \ conditions. \n\nNote: An expression data query must be supplied.\n\n## Conditions\n\
@@ -18210,7 +18210,7 @@ paths:
       summary: "Retrieve data objects by searching across multiple data types"
       tags:
       - "Omics queries as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/omics/expression/group:
+  /api/v1/as-curator/omics/expression/group:
     get:
       description: "Retrieve group objects whose linked data matches all supplied\
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
@@ -18484,7 +18484,7 @@ paths:
       summary: "Retrieve group objects by searching across multiple data types"
       tags:
       - "Omics queries as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/omics/expression/streamed-data:
+  /api/v1/as-curator/omics/expression/streamed-data:
     get:
       description: "Stream data from a given group for a tabular file that matches\
         \ a sample/library/preparations query/filter. If no query/filters are supplied\
@@ -18665,7 +18665,7 @@ paths:
       summary: "Stream data from a given tabular file"
       tags:
       - "Omics queries as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/omics/flow-cytometry/data:
+  /api/v1/as-curator/omics/flow-cytometry/data:
     get:
       description: "Retrieve flow cytometry data objects whose linked data matches\
         \ all supplied conditions.\n\nNote: A flow cytometry data query must be supplied.\n\
@@ -18941,7 +18941,7 @@ paths:
         \ data types"
       tags:
       - "Omics queries as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/omics/flow-cytometry/group:
+  /api/v1/as-curator/omics/flow-cytometry/group:
     get:
       description: "Retrieve group objects whose linked data matches all supplied\
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
@@ -19215,7 +19215,7 @@ paths:
       summary: "Retrieve group objects by searching across multiple data types"
       tags:
       - "Omics queries as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/omics/samples:
+  /api/v1/as-curator/omics/samples:
     get:
       description: "Retrieve sample metadata objects whose linked data matches all\
         \ supplied conditions.\n\n## Conditions\nIt is possible to supply conditions\
@@ -19491,7 +19491,7 @@ paths:
         \ types"
       tags:
       - "Omics queries as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/omics/variant/data:
+  /api/v1/as-curator/omics/variant/data:
     get:
       description: "Retrieve variant data objects whose linked data matches all supplied\
         \ conditions.\n\nNote: A variant data query must be supplied.\n\n## Conditions\n\
@@ -19766,7 +19766,7 @@ paths:
       summary: "Retrieve variant data objects by searching across multiple data types"
       tags:
       - "Omics queries as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/omics/variant/group:
+  /api/v1/as-curator/omics/variant/group:
     get:
       description: "Retrieve group objects whose linked data matches all supplied\
         \ conditions.\n\n## Conditions\nIt is possible to supply conditions for:\n\
@@ -20040,7 +20040,7 @@ paths:
       summary: "Retrieve group objects by searching across multiple data types"
       tags:
       - "Omics queries as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/tasks/publish-versions:
+  /api/v1/as-curator/integration/studies/{id}/tasks/publish-versions:
     post:
       description: "This endpoint publishes information from staging and creates new\
         \ metadata versions for the specified study and all associated objects. The\
@@ -20088,7 +20088,7 @@ paths:
         \ study."
       tags:
       - "Metadata versioning as Curator"
-  /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/validation-summary:
+  /api/v1/as-curator/integration/studies/{id}/validation-summary:
     get:
       operationId: "searchExpressionDataAsCurator"
       parameters:

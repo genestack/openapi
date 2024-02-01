@@ -26,7 +26,7 @@ tags:
 - name: Validation summary as Curator
 - name: Variant integration as Curator
 paths:
-  /frontend/rs/genestack/integrationCurator/default-released/data-types:
+  /api/v1/as-curator/data-types:
     get:
       description: This endpoint is for instructional uses and can be used to get
         the latest list of Data Types.
@@ -61,7 +61,7 @@ paths:
       summary: Lists all available data types.
       tags:
       - Linkage as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/data-types/links:
+  /api/v1/as-curator/data-types/links:
     get:
       description: "This endpoint should be used for instructional needs, and can\
         \ be used in order to get the links between the Data Types."
@@ -3970,7 +3970,7 @@ paths:
       summary: Create a link between a variant object and a sample
       tags:
       - Variant integration as Curator
-  /api/v1/as-curator/integration/studies/{id}/curation-status:
+  /api/v1/as-curator/integration/curation/studies/{id}/curation-status:
     get:
       description: Use this endpoint to check the curation status of a given study.
         The endpoint will return values of 'CURATED' or 'NOT_CURATED'.
@@ -4096,7 +4096,7 @@ paths:
       tags:
       - Study integration as Curator
       x-codegen-request-body-name: request
-  /frontend/rs/genestack/integrationCurator/default-released/links:
+  /api/v1/as-curator/links:
     delete:
       description: "This method should be used in case you want to delete the links\
         \ of an object. Please, keep in mind that deleting a link between Study and\
@@ -4266,7 +4266,7 @@ paths:
       tags:
       - Linkage as Curator
       x-codegen-request-body-name: links
-  /frontend/rs/genestack/integrationCurator/default-released/links/get-batch:
+  /api/v1/as-curator/links/get-batch:
     post:
       description: Please make sure to use that endpoint for batch calls only. You
         are not allowed to pass 'mixed' objects. e.g. Studies and Samples at the same
@@ -4307,7 +4307,7 @@ paths:
       tags:
       - Linkage as Curator
       x-codegen-request-body-name: request
-  /frontend/rs/genestack/integrationCurator/default-released/omics/expression/data:
+  /api/v1/as-curator/omics/expression/data:
     get:
       description: "Retrieve any data objects whose linked data matches all supplied\
         \ conditions. \n\nNote: An expression data query must be supplied.\n\n## Conditions\n\
@@ -4584,7 +4584,7 @@ paths:
       summary: Retrieve data objects by searching across multiple data types
       tags:
       - Omics queries as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/omics/expression/group:
+  /api/v1/as-curator/omics/expression/group:
     get:
       description: |+
         Retrieve group objects whose linked data matches all supplied conditions.
@@ -4851,7 +4851,7 @@ paths:
       summary: Retrieve group objects by searching across multiple data types
       tags:
       - Omics queries as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/omics/expression/streamed-data:
+  /api/v1/as-curator/omics/expression/streamed-data:
     get:
       description: |+
         Stream data from a given group for a tabular file that matches a sample/library/preparations query/filter. If no query/filters are supplied all expression data is returned. If a metadata filter is specified, this endpoint will only return expression data that is associated with a sample via the Sample Source ID attribute.
@@ -5028,7 +5028,7 @@ paths:
       summary: Stream data from a given tabular file
       tags:
       - Omics queries as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/omics/flow-cytometry/data:
+  /api/v1/as-curator/omics/flow-cytometry/data:
     get:
       description: |+
         Retrieve flow cytometry data objects whose linked data matches all supplied conditions.
@@ -5298,7 +5298,7 @@ paths:
         types
       tags:
       - Omics queries as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/omics/flow-cytometry/group:
+  /api/v1/as-curator/omics/flow-cytometry/group:
     get:
       description: |+
         Retrieve group objects whose linked data matches all supplied conditions.
@@ -5565,7 +5565,7 @@ paths:
       summary: Retrieve group objects by searching across multiple data types
       tags:
       - Omics queries as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/omics/samples:
+  /api/v1/as-curator/omics/samples:
     get:
       description: |+
         Retrieve sample metadata objects whose linked data matches all supplied conditions.
@@ -5833,7 +5833,7 @@ paths:
         types
       tags:
       - Omics queries as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/omics/variant/data:
+  /api/v1/as-curator/omics/variant/data:
     get:
       description: |+
         Retrieve variant data objects whose linked data matches all supplied conditions.
@@ -6102,7 +6102,7 @@ paths:
       summary: Retrieve variant data objects by searching across multiple data types
       tags:
       - Omics queries as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/omics/variant/group:
+  /api/v1/as-curator/omics/variant/group:
     get:
       description: |+
         Retrieve group objects whose linked data matches all supplied conditions.
@@ -6369,7 +6369,7 @@ paths:
       summary: Retrieve group objects by searching across multiple data types
       tags:
       - Omics queries as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/tasks/publish-versions:
+  /api/v1/as-curator/integration/studies/{id}/tasks/publish-versions:
     post:
       description: This endpoint publishes information from staging and creates new
         metadata versions for the specified study and all associated objects. The
@@ -6416,7 +6416,7 @@ paths:
         study.
       tags:
       - Metadata versioning as Curator
-  /frontend/rs/genestack/integrationCurator/default-released/studies/{id}/validation-summary:
+  /api/v1/as-curator/integration/studies/{id}/validation-summary:
     get:
       operationId: searchExpressionDataAsCurator
       parameters:

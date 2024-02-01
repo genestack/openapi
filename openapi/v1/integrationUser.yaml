@@ -27,7 +27,7 @@ tags:
 - name: Study integration as User
 - name: Variant integration as User
 paths:
-  /frontend/rs/genestack/integrationUser/default-released/data-types:
+  /api/v1/as-user/data-types:
     get:
       description: This endpoint is for instructional uses and can be used to get
         the latest list of Data Types.
@@ -62,7 +62,7 @@ paths:
       summary: Lists all available data types.
       tags:
       - Linkage as User
-  /frontend/rs/genestack/integrationUser/default-released/data-types/links:
+  /api/v1/as-user/data-types/links:
     get:
       description: "This endpoint should be used for instructional needs, and can\
         \ be used in order to get the links between the Data Types."
@@ -2604,7 +2604,7 @@ paths:
         \ runs, not unique pairs."
       tags:
       - Variant integration as User
-  /frontend/rs/genestack/integrationUser/default-released/links:
+  /api/v1/as-user/links:
     get:
       description: Please make sure that this endpoint should be used only for getting
         all links to a specific object. In case you specify both firstId and secondId
@@ -2675,7 +2675,7 @@ paths:
       summary: Finds existing links matching the specified criteria.
       tags:
       - Linkage as User
-  /frontend/rs/genestack/integrationUser/default-released/links/get-batch:
+  /api/v1/as-user/links/get-batch:
     post:
       description: Please make sure to use that endpoint for batch calls only. You
         are not allowed to pass 'mixed' objects. e.g. Studies and Samples at the same
@@ -2716,7 +2716,7 @@ paths:
       tags:
       - Linkage as User
       x-codegen-request-body-name: request
-  /frontend/rs/genestack/integrationUser/default-released/omics/expression/data:
+  /api/v1/as-user/omics/expression/data:
     get:
       description: "Retrieve any data objects whose linked data matches all supplied\
         \ conditions. \n\nNote: An expression data query must be supplied.\n\n## Conditions\n\
@@ -2993,7 +2993,7 @@ paths:
       summary: Retrieve data objects by searching across multiple data types
       tags:
       - Omics queries as User
-  /frontend/rs/genestack/integrationUser/default-released/omics/expression/group:
+  /api/v1/as-user/omics/expression/group:
     get:
       description: |+
         Retrieve group objects whose linked data matches all supplied conditions.
@@ -3260,7 +3260,7 @@ paths:
       summary: Retrieve group objects by searching across multiple data types
       tags:
       - Omics queries as User
-  /frontend/rs/genestack/integrationUser/default-released/omics/expression/streamed-data:
+  /api/v1/as-user/omics/expression/streamed-data:
     get:
       description: "Stream data from a given group for a tabular file that matches\
         \ a sample/library/preparations query/filter. If no query/filters are supplied\
@@ -3441,7 +3441,7 @@ paths:
       summary: Stream data from a given tabular file
       tags:
       - Omics queries as User
-  /frontend/rs/genestack/integrationUser/default-released/omics/flow-cytometry/data:
+  /api/v1/as-user/omics/flow-cytometry/data:
     get:
       description: |+
         Retrieve flow cytometry data objects whose linked data matches all supplied conditions.
@@ -3711,7 +3711,7 @@ paths:
         types
       tags:
       - Omics queries as User
-  /frontend/rs/genestack/integrationUser/default-released/omics/flow-cytometry/group:
+  /api/v1/as-user/omics/flow-cytometry/group:
     get:
       description: |+
         Retrieve group objects whose linked data matches all supplied conditions.
@@ -3978,7 +3978,7 @@ paths:
       summary: Retrieve group objects by searching across multiple data types
       tags:
       - Omics queries as User
-  /frontend/rs/genestack/integrationUser/default-released/omics/samples:
+  /api/v1/as-user/omics/samples:
     get:
       description: |+
         Retrieve sample metadata objects whose linked data matches all supplied conditions.
@@ -4246,7 +4246,7 @@ paths:
         types
       tags:
       - Omics queries as User
-  /frontend/rs/genestack/integrationUser/default-released/omics/variant/data:
+  /api/v1/as-user/omics/variant/data:
     get:
       description: |+
         Retrieve variant data objects whose linked data matches all supplied conditions.
@@ -4515,7 +4515,7 @@ paths:
       summary: Retrieve variant data objects by searching across multiple data types
       tags:
       - Omics queries as User
-  /frontend/rs/genestack/integrationUser/default-released/omics/variant/group:
+  /api/v1/as-user/omics/variant/group:
     get:
       description: |+
         Retrieve group objects whose linked data matches all supplied conditions.
