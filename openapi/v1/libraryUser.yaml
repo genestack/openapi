@@ -19,7 +19,7 @@ info:
 tags:
 - name: Library SPoT as User
 paths:
-  /frontend/rs/genestack/libraryUser/default-released/libraries:
+  /api/v1/as-user/libraries:
     get:
       description: |-
         Retrieve library metadata objects by searching/listing library metadata.
@@ -153,7 +153,7 @@ paths:
       summary: List or search for library metadata objects
       tags:
       - Library SPoT as User
-  /frontend/rs/genestack/libraryUser/default-released/libraries/by/group/{id}:
+  /api/v1/as-user/libraries/by/group/{id}:
     get:
       operationId: getLibrariesByGroupAsUser
       parameters:
@@ -230,7 +230,7 @@ paths:
       summary: Retrieve libraries related to the given group
       tags:
       - Library SPoT as User
-  /frontend/rs/genestack/libraryUser/default-released/libraries/{id}:
+  /api/v1/as-user/libraries/{id}:
     get:
       operationId: getLibraryAsUser
       parameters:
@@ -291,7 +291,7 @@ paths:
       summary: Retrieve a single library object by ID (accession)
       tags:
       - Library SPoT as User
-  /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions:
+  /api/v1/as-user/libraries/{id}/versions:
     get:
       operationId: getLibraryVersionsAsUser
       parameters:
@@ -327,7 +327,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Library SPoT as User
-  /frontend/rs/genestack/libraryUser/default-released/libraries/{id}/versions/{version}:
+  /api/v1/as-user/libraries/{id}/versions/{version}:
     get:
       operationId: getLibraryByVersionAsUser
       parameters:

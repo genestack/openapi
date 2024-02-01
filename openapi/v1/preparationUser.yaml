@@ -19,7 +19,7 @@ info:
 tags:
 - name: Preparation SPoT as User
 paths:
-  /frontend/rs/genestack/preparationUser/default-released/preparations:
+  /api/v1/as-user/preparations:
     get:
       description: |-
         Retrieve preparation metadata objects by searching/listing preparation metadata.
@@ -154,7 +154,7 @@ paths:
       summary: List or search for preparation metadata objects
       tags:
       - Preparation SPoT as User
-  /frontend/rs/genestack/preparationUser/default-released/preparations/by/group/{id}:
+  /api/v1/as-user/preparations/by/group/{id}:
     get:
       operationId: getPreparationsByGroupAsUser
       parameters:
@@ -231,7 +231,7 @@ paths:
       summary: Retrieve preparations related to the given group
       tags:
       - Preparation SPoT as User
-  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}:
+  /api/v1/as-user/preparations/{id}:
     get:
       operationId: getPreparationAsUser
       parameters:
@@ -292,7 +292,7 @@ paths:
       summary: Retrieve a single preparation object by ID (accession)
       tags:
       - Preparation SPoT as User
-  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions:
+  /api/v1/as-user/preparations/{id}/versions:
     get:
       operationId: getPreparationVersionsAsUser
       parameters:
@@ -328,7 +328,7 @@ paths:
       summary: Retrieve a list of object versions by ID
       tags:
       - Preparation SPoT as User
-  /frontend/rs/genestack/preparationUser/default-released/preparations/{id}/versions/{version}:
+  /api/v1/as-user/preparations/{id}/versions/{version}:
     get:
       operationId: getPreparationByVersionAsUser
       parameters:

@@ -7,7 +7,7 @@ info:
 tags:
 - name: Xrefset queries
 paths:
-  /frontend/rs/genestack/reference-data/default-released/xrefsets:
+  /api/v1/xrefsets:
     post:
       operationId: create
       requestBody:
@@ -51,7 +51,7 @@ paths:
       tags:
       - Xrefset queries
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/reference-data/default-released/xrefsets/entries:
+  /api/v1/xrefsets/entries:
     get:
       description: |+
         ## Conditions
@@ -119,7 +119,7 @@ paths:
         targetId
       tags:
       - Xrefset queries
-  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}:
+  /api/v1/xrefsets/{id}:
     delete:
       operationId: deleteFile
       parameters:
@@ -162,7 +162,7 @@ paths:
         Only users who uploaded the xrefset are allowed to delete it.
       tags:
       - Xrefset queries
-  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}/entries:
+  /api/v1/xrefsets/{id}/entries:
     get:
       description: |+
         ## Conditions
@@ -239,7 +239,7 @@ paths:
         and targetId
       tags:
       - Xrefset queries
-  /frontend/rs/genestack/reference-data/default-released/xrefsets/{id}/metadata:
+  /api/v1/xrefsets/{id}/metadata:
     get:
       operationId: getDetailsByAccession
       parameters:
