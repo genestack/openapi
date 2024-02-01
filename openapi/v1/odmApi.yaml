@@ -13410,7 +13410,7 @@ paths:
       summary: "Retrieve a single library object by ID (accession)"
       tags:
       - "Library SPoT as Curator"
-  /api/v1/as-curator/integration/data-types:
+  /api/v1/as-curator/data-types:
     get:
       description: "This endpoint is for instructional uses and can be used to get\
         \ the latest list of Data Types."
@@ -13446,7 +13446,7 @@ paths:
       summary: "Lists all available data types."
       tags:
       - "Linkage as Curator"
-  /api/v1/as-curator/integration/data-types/links:
+  /api/v1/as-curator/data-types/links:
     get:
       description: "This endpoint should be used for instructional needs, and can\
         \ be used in order to get the links between the Data Types."
