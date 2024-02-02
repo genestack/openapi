@@ -35,8 +35,8 @@ explorer-build:
 explorer:
     FROM nginx:1.25.3
 
-    COPY v1/schemas /usr/share/nginx/html/schemas
-    COPY --dir v1/odmApi.yaml /usr/share/nginx/html/odmApi.yaml
+    COPY v1/schemas /usr/share/nginx/html/
+    COPY v1/odmApi.yaml /usr/share/nginx/html/
     COPY --pass-args +explorer-build/openapi-explorer.min.js /usr/share/nginx/html/
     COPY explorer/fs /
 
