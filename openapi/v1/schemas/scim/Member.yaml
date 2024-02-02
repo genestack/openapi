@@ -1,7 +1,6 @@
 example:
   display: display
   value: value
-  $ref: https://openapi-generator.tech
 properties:
   value:
     type: string
