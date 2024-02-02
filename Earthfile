@@ -1,4 +1,4 @@
-VERSION 0.8
+VERSION --pass-args 0.7
 
 IMPORT ./openapi
 
