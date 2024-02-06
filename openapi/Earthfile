@@ -2,10 +2,11 @@ VERSION 0.7
 
 
 swagger-ui:
-    FROM swaggerapi/swagger-ui:v5.11.1
+    FROM swaggerapi/swagger-ui:v5.11.2
 
     COPY v1 /usr/share/nginx/html/yaml/
     COPY fs /
+    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
 
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \

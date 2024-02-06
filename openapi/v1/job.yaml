@@ -31,7 +31,7 @@ tags:
 - name: Data import jobs
 - name: Job operations
 paths:
-  /frontend/rs/genestack/job/default-released/import/expression:
+  /api/v1/jobs/import/expression:
     post:
       description: |-
         ## Data
@@ -75,7 +75,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/job/default-released/import/flow-cytometry:
+  /api/v1/jobs/import/flow-cytometry:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -110,7 +110,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/job/default-released/import/libraries:
+  /api/v1/jobs/import/libraries:
     post:
       description: |2
 
@@ -151,7 +151,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/job/default-released/import/preparations:
+  /api/v1/jobs/import/preparations:
     post:
       description: |2
 
@@ -192,7 +192,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/job/default-released/import/samples:
+  /api/v1/jobs/import/samples:
     post:
       description: |2
 
@@ -233,7 +233,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/job/default-released/import/study:
+  /api/v1/jobs/import/study:
     post:
       description: |2
 
@@ -274,7 +274,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/job/default-released/import/variant:
+  /api/v1/jobs/import/variant:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -309,7 +309,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/job/default-released/{jobExecId}/info:
+  /api/v1/jobs/{jobExecId}/info:
     get:
       operationId: info
       parameters:
@@ -332,7 +332,7 @@ paths:
       summary: get information about one particular job execution
       tags:
       - Job operations
-  /frontend/rs/genestack/job/default-released/{jobExecId}/output:
+  /api/v1/jobs/{jobExecId}/output:
     get:
       operationId: output
       parameters:
@@ -355,7 +355,7 @@ paths:
       summary: retrieve job output (result)
       tags:
       - Job operations
-  /frontend/rs/genestack/job/default-released/{jobExecId}/restart:
+  /api/v1/jobs/{jobExecId}/restart:
     put:
       operationId: restart
       parameters:
@@ -378,7 +378,7 @@ paths:
       summary: restart stopped (failed) job
       tags:
       - Job operations
-  /frontend/rs/genestack/job/default-released/{jobExecId}/stop:
+  /api/v1/jobs/{jobExecId}/stop:
     put:
       operationId: stop
       parameters:

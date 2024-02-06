@@ -7,7 +7,7 @@ info:
 tags:
 - name: Groups
 paths:
-  /frontend/rs/genestack/scim-integration/default-released/scim/Groups:
+  /api/v1/scim/Groups:
     get:
       description: |-
         The endpoint returns a list of groups that the user has access to: where the user is a member of the group or if the user has the "Manage Groups" permission, then a list of all groups.
@@ -143,7 +143,7 @@ paths:
       tags:
       - Groups
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/scim-integration/default-released/scim/Groups/{id}:
+  /api/v1/scim/Groups/{id}:
     delete:
       description: |-
         The endpoint deletes a group in ODM. The group can be deleted, even if it has members: admins and not admins. Users of this group are not deactivated.

@@ -7,7 +7,7 @@ info:
 tags:
 - name: Tasks API
 paths:
-  /frontend/rs/genestack/taskmanager/default-released/tasks/publish-versions:
+  /api/v1/tasks/publish-versions:
     post:
       description: This endpoint publishes all information from staging and creates
         new metadata versions for each study/associated objects with unpublished changes.Only
@@ -47,7 +47,7 @@ paths:
         in the instance.
       tags:
       - Tasks API
-  /frontend/rs/genestack/taskmanager/default-released/tasks/{id}:
+  /api/v1/tasks/{id}:
     get:
       description: Supply the accession (id) of an ODM task to retrieve metadata about
         that task.

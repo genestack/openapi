@@ -7,7 +7,7 @@ info:
 tags:
 - name: Users
 paths:
-  /frontend/rs/genestack/scim-integration/default-released/scim/Users:
+  /api/v1/scim/Users:
     get:
       description: "The endpoint returns a list of active users. The list can be filtered\
         \ by user attributes using the filter parameter. If no filtering parameters\
@@ -151,7 +151,7 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: body
-  /frontend/rs/genestack/scim-integration/default-released/scim/Users/{id}:
+  /api/v1/scim/Users/{id}:
     delete:
       operationId: deleteUser
       parameters:
