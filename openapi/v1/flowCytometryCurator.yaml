@@ -801,8 +801,6 @@ components:
   schemas:
     CommitInfo:
       $ref: "./schemas/common/CommitInfo.yaml"
-    CurationSource:
-      $ref: "./schemas/common/CurationSource.yaml"
     FlowCytometryItem:
       $ref: "./schemas/flow-cytometry/FlowCytometryItem.yaml"
     FlowCytometryResponse:

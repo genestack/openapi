@@ -21232,8 +21232,6 @@ components:
       $ref: "./schemas/reference-data/XrefSetSearchResultEntry.yaml"
     CommitInfo:
       $ref: "./schemas/common/CommitInfo.yaml"
-    CurationSource:
-      $ref: "./schemas/common/CurationSource.yaml"
     FlowCytometryItem:
       $ref: "./schemas/flow-cytometry/FlowCytometryItem.yaml"
     FlowCytometryResponse:
@@ -21373,8 +21371,6 @@ components:
       $ref: "./schemas/integration/GroupValidationSummary.yaml"
     Link:
       $ref: "./schemas/integration/Link.yaml"
-    StudyCurationStatusResponse:
-      $ref: "./schemas/integration/StudyCurationStatusResponse.yaml"
     StudyCurationStatusUpdateRequest:
       $ref: "./schemas/integration/StudyCurationStatusUpdateRequest.yaml"
     StudyValidationSummary:
