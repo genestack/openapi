@@ -1,0 +1,14 @@
+description: |-
+  A description of object metadata.
+
+  This will contain:
+  - `genestack:accession`: the object ID
+  - `Study Title` (for studies)
+  - `Sample ID` (for samples)
+  - all other attributes defined in the linked template (if any)
+properties:
+  metadata:
+    $ref: ./IMetadata.yaml
+  relationships:
+    $ref: ./Relationships.yaml
+type: object

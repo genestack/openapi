@@ -1,0 +1,160 @@
+get:
+  description: >-
+    The endpoint returns a list of active users. The list can be filtered by
+    user attributes using the filter parameter. If no filtering parameters are
+    passed, then all users are returned. If there are no users in the response
+    body, the endpoint returns 200 OK. The "Manage organization" permission is
+    required.
+  operationId: findUsers
+  parameters:
+    - description: >-
+        Filter by user attributes. The parameter name is case-sensitive,
+        therefore parameters FILTER, fiLter, and other options are ignored.
+         Supported operators:
+         &nbsp;&nbsp;eq - equal, the attribute and operator values must be identical for a match;
+         &nbsp;&nbsp;and - logical "and", the filter is only a match if both expressions evaluate to true;
+         &nbsp;&nbsp;Using other operators returns an error.
+         Attribute names and attribute operators used in filters are case insensitive.
+         Examples of the request:
+         &nbsp;&nbsp;filter=emails[type eq "work" and value eq "user@example.com"] - returns a user with login = user@example.com
+         &nbsp;&nbsp;filter=userName eq "bjensen"
+         &nbsp;&nbsp;filter=emails[type eq "work" and value eq "user@example.com"] and userName eq "bjensen".
+      in: query
+      name: filter
+      schema:
+        type: string
+    - description: >-
+        The 1-based index of the first result in the current set of list
+        results.
+      in: query
+      name: startIndex
+      schema:
+        format: int32
+        type: integer
+    - description: >-
+        The number of resources returned in a list response page. The value by
+        default is 100.
+      in: query
+      name: count
+      schema:
+        format: int32
+        type: integer
+  responses:
+    '200':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/FilterUsersResponse.yaml
+      description: The request was successful.
+    '400':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: Incorrect syntax in the request. See the error message for details.
+    '401':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '403':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        Operation is not permitted. The "Manage organization" permission is
+        required.
+    '500':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Retrieve a list of all active users
+  tags:
+    - Users
+post:
+  description: >-
+    The endpoint creates a new user in ODM or updates the existing user. A user
+    can be updated by this endpoint if the user has the same login as in the
+    request body. The "Manage organization" permission is required. The endpoint
+    does not allow to specify the user's password and user permissions, these
+    parameters can be set in the web application by a user with the "Manage
+    organization" permission.
+     Only one email can be specified.
+  operationId: createUser
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/User.yaml
+    required: true
+  responses:
+    '201':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/UserResponse.yaml
+      description: >-
+        The operation is successful. The response body contains the
+        representation of the newly created or updated user.
+    '400':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        The object cannot be created, the supplied data or metadata are
+        incorrect. See the error message for details.
+    '401':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '403':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        Operation is not permitted. The "Manage organization" permission is
+        required.
+    '409':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        The object cannot be created, data conflict. See the error message for
+        details.
+    '500':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Genestack-API-Token: []
+    - Access-token: []
+  summary: Add a new user
+  tags:
+    - Users
+  x-codegen-request-body-name: body

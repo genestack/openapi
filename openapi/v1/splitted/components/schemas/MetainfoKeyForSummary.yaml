@@ -1,0 +1,13 @@
+example:
+  values:
+    - values
+    - values
+  key: key
+properties:
+  key:
+    type: string
+  values:
+    items:
+      type: string
+    type: array
+type: object

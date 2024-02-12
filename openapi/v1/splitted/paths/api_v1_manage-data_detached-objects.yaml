@@ -1,0 +1,89 @@
+get:
+  description: >+
+    Retrieve various types of detached data objects. An object is defined as
+    'detached' if it lacks any direct or indirect link to a root-level object,
+    which in this context is referred to as 'study'.
+
+    Study is considered as detached object itself in case there are no links to
+    objects at a lower level.
+
+    Data with specific `detachedObjectType` can be retrieved by specifying the
+    types in `detachedObjectType` parameter.
+
+    The detached objects are sorted according to their `detachedObjectType` and
+    `genestack:accession`.
+
+    Specific ordering can be observed in the list of supported detached types
+    found below.
+
+    Pagination of the results can be conveniently managed using the `cursor` and
+    `limit` parameters.
+     Supported types of detached objects (listed in the order of retrieval) include:
+     * `STUDY`
+     * `SAMPLE_GROUP`
+     * `LIBRARY_GROUP`
+     * `PREPARATION_GROUP`
+     * `TABULAR_DATA`
+     * `GENE_VARIANT`
+     * `FLOW_CYTOMETRY`
+
+  operationId: getDetachedObjects
+  parameters:
+    - description: >-
+        Filter by detached object type. Multiple values can be used to filter
+        the data.
+      explode: true
+      in: query
+      name: detachedObjectType
+      schema:
+        items:
+          type: string
+        type: array
+      style: form
+    - description: >-
+        This parameter determines the number of results to retrieve per page,
+        with the default set at 2000.
+      in: query
+      name: limit
+      schema:
+        format: int32
+        type: integer
+    - description: >-
+        This parameter enables retrieval of objects starting from a specific
+        point.
+         Currently, it represents the accession of the last obtained object. However, please note that its functionality might change over time, so it is advisable to consider the cursor's content as a general string.
+      in: query
+      name: cursor
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/DetachedCollection.yaml
+      description: Retrieved detached data.
+    '400':
+      content: {}
+      description: Detached data cannot be retrieved due to Bad Request.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '403':
+      content: {}
+      description: Not enough permissions to call method.
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Retrieve a list of detached objects
+  tags:
+    - Manage Data

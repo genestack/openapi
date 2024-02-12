@@ -1,0 +1,6 @@
+allOf:
+  - $ref: ./Group.yaml
+  - properties:
+      meta:
+        $ref: ./Meta.yaml
+    type: object

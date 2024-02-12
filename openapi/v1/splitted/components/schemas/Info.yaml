@@ -1,0 +1,48 @@
+description: job execution information
+example:
+  jobName: Protein folding
+  startedBy: job@genestack.com
+  createTime: '2000-01-23T04:56:07+00:00'
+  jobExecId: 12345
+  endTime: '2000-01-23T04:56:07+00:00'
+  status: STARTED
+properties:
+  jobExecId:
+    description: job execution id
+    example: 12345
+    format: int64
+    type: integer
+  startedBy:
+    description: user name who started the job
+    example: job@genestack.com
+    type: string
+  jobName:
+    description: actual job name
+    example: Protein folding
+    type: string
+  status:
+    description: current job status
+    enum:
+      - COMPLETED
+      - STARTING
+      - RUNNING
+      - STOPPING
+      - STOPPED
+      - FAILED
+      - ABANDONED
+      - UNKNOWN
+    example: STARTED
+    type: string
+  createTime:
+    format: date-time
+    type: string
+  endTime:
+    format: date-time
+    type: string
+required:
+  - createTime
+  - jobExecId
+  - jobName
+  - startedBy
+  - status
+type: object

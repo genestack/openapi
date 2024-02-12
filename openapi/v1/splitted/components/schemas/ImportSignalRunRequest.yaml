@@ -1,0 +1,30 @@
+description: import signal data request
+example:
+  source: HTTP
+  metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
+  dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
+  templateId: GSF334953
+  previousVersion: GSF334953
+properties:
+  source:
+    enum:
+      - ARVADOS
+      - S3
+      - HTTP
+    example: HTTP
+    type: string
+  metadataLink:
+    example: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
+    type: string
+  dataLink:
+    example: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
+    type: string
+  templateId:
+    example: GSF334953
+    type: string
+  previousVersion:
+    example: GSF334953
+    type: string
+required:
+  - dataLink
+type: object

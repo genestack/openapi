@@ -1,0 +1,150 @@
+get:
+  description: >-
+    The endpoint returns a list of groups that the user has access to: where the
+    user is a member of the group or if the user has the "Manage Groups"
+    permission, then a list of all groups.
+     The list can be filtered by group attributes using the filter parameter. If no filtering parameters are passed, then all available groups are returned. If there are no groups in the response body, the endpoint returns 200 OK.
+  operationId: findGroups
+  parameters:
+    - description: >-
+        Filter by group attributes. The parameter name is case-sensitive,
+        therefore parameters FILTER, fiLter, and other options are ignored.
+         Supported operators:
+         &nbsp;&nbsp;eq - equal, the attribute and operator values must be identical for a match;
+         &nbsp;&nbsp;Using other operators returns an error.
+         Groups can be filtered by displayName only.
+         Attribute names and attribute operators used in filters are case insensitive.
+         Examples of the request:
+         &nbsp;&nbsp;filter=displayName eq "Curator".
+      in: query
+      name: filter
+      schema:
+        type: string
+    - description: >-
+        If excludedAttributes=members is specified in the request, groups are
+        returned without the members attribute. Other attributes are not
+        supported in excludedAttributes parameter and ignored in the request →
+        all attributes are returned in the response body.
+      in: query
+      name: excludedAttributes
+      schema:
+        type: string
+    - description: >-
+        The 1-based index of the first result in the current set of list
+        results.
+      in: query
+      name: startIndex
+      schema:
+        format: int32
+        type: integer
+    - description: >-
+        The number of resources returned in a list response page. The value by
+        default is 100.
+      in: query
+      name: count
+      schema:
+        format: int32
+        type: integer
+  responses:
+    '200':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/FilterGroupsResponse.yaml
+      description: The request was successful.
+    '400':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: Incorrect syntax in the request. See the error message for details.
+    '401':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Retrieve a list of available groups
+  tags:
+    - Groups
+post:
+  description: >-
+    The endpoint creates a new user group in ODM. The endpoint does not update
+    an existing group. A user who calls the endpoint is added to the group
+    automatically with the "Group admin" role. The "members" attribute in the
+    request body must be empty, otherwise the endpoint returns an error.
+     The endpoint does not require any user permission.
+     The endpoint does not check the uniqueness of the group name. The user can create any number of groups with the same name.
+     If there are attributes in the request body that ODM does not support, then ODM ignores them.
+  operationId: createGroup
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Group.yaml
+    required: true
+  responses:
+    '201':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/GroupResponse.yaml
+      description: >-
+        The operation is successful. The response body contains the
+        representation of the newly created group.
+    '400':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        The object cannot be created, the supplied data or metadata are
+        incorrect. See the error message for details.
+    '401':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '409':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        The object cannot be created, data conflict. See the error message for
+        details.
+    '500':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Genestack-API-Token: []
+    - Access-token: []
+  summary: Add a new user group
+  tags:
+    - Groups
+  x-codegen-request-body-name: body

@@ -1,0 +1,24 @@
+example:
+  attributeName: attributeName
+  attributeInvalidValues:
+    - count: 0
+      value: {}
+      errors:
+        - errorType: VALUE_NOT_SET
+          errorMessage: errorMessage
+        - errorType: VALUE_NOT_SET
+          errorMessage: errorMessage
+    - count: 0
+      value: {}
+      errors:
+        - errorType: VALUE_NOT_SET
+          errorMessage: errorMessage
+        - errorType: VALUE_NOT_SET
+          errorMessage: errorMessage
+properties:
+  attributeName:
+    type: string
+  attributeInvalidValues:
+    items:
+      $ref: ./AttributeInvalidValue.yaml
+    type: array

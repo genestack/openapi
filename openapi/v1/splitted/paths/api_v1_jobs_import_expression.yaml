@@ -1,0 +1,44 @@
+post:
+  description: |-
+    ## Data
+     This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
+
+    ## Metadata
+     It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
+    ## Metadata file format
+     * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
+     * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+     * Header: the first line is treated as table header that contains attribute names
+     * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+     * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
+  operationId: startImportExpression
+  parameters:
+    - description: >-
+        Load duplicate data: the data from the links has already been previously
+        loaded into ODM, and for **testing purposes**, you need to load this
+        data again.
+      in: query
+      name: allow_dups
+      schema:
+        default: false
+        type: boolean
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ImportExpressionSignalRunRequest.yaml
+    required: false
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Info.yaml
+      description: successful operation
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Import any tabular data from TSV or GCT files
+  tags:
+    - Data import jobs
+  x-codegen-request-body-name: body

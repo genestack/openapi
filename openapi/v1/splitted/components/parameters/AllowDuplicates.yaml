@@ -1,0 +1,9 @@
+description: >-
+  Load duplicate data: the data from the links has already been previously
+  loaded into ODM, and for **testing purposes**, you need to load this data
+  again.
+in: query
+name: allow_dups
+schema:
+  default: false
+  type: boolean

@@ -1,0 +1,46 @@
+post:
+  description: >-
+
+    When job finishes successfully the following **result** object can be
+    obtained using `GET /job/{id}/output` request:
+
+
+    ```
+
+    {
+        "groupAccession": "GSF1234567"
+    }
+
+    ```
+        
+  operationId: startImportFlowCytometry
+  parameters:
+    - description: >-
+        Load duplicate data: the data from the links has already been previously
+        loaded into ODM, and for **testing purposes**, you need to load this
+        data again.
+      in: query
+      name: allow_dups
+      schema:
+        default: false
+        type: boolean
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ImportSignalRunRequest.yaml
+    required: false
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Info.yaml
+      description: successful operation
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Import flow-cytometry data and metadata from FACS and TSV files
+  tags:
+    - Data import jobs
+  x-codegen-request-body-name: body

@@ -1,0 +1,105 @@
+delete:
+  description: >-
+    Delete link between a group of expression objects and a group of library
+    objects
+  operationId: deleteExpressionGroupLibraryGroupLinkAsCurator
+  parameters:
+    - description: >-
+        The ID (accession) of the group of run-level objects (corresponding to a
+        GCT file)
+      in: path
+      name: sourceId
+      required: true
+      schema:
+        type: string
+    - description: The ID (accession) of the library group object
+      in: path
+      name: targetId
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content: {}
+      description: Link deleted.
+    '400':
+      content: {}
+      description: Link cannot be deleted.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: >-
+    Delete link between a group of expression objects and a group of library
+    objects
+  tags:
+    - Expression integration as Curator
+post:
+  description: >-
+    Create a link between a group of expression objects and a group of library
+    objects.
+
+
+    An expression object can be linked to one object only. If an expression
+    object is already linked to another object, this link will be deleted and a
+    new link with the specified object will be created.
+
+    Expression objects of the same group can only be linked to objects of the
+    same study.
+  operationId: createExpressionGroupLibraryGroupLinkAsCurator
+  parameters:
+    - description: >-
+        The ID (accession) of the group of run-level objects (corresponding to a
+        GCT file)
+      in: path
+      name: sourceId
+      required: true
+      schema:
+        type: string
+    - description: The ID (accession) of the library group object
+      in: path
+      name: targetId
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content: {}
+      description: Some (not all) sample links created.
+    '204':
+      content: {}
+      description: Link created.
+    '400':
+      content: {}
+      description: Library group, signal group or libraries to link not found
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: >-
+    Create a link between a group of expression objects and a group of library
+    objects
+  tags:
+    - Expression integration as Curator

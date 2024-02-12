@@ -1,0 +1,21 @@
+example:
+  createdAt: '2000-01-23T04:56:07+00:00'
+  genestack:accession: genestack:accession
+  objectType: objectType
+  ownerEmail: ownerEmail
+properties:
+  genestack:accession:
+    type: string
+  objectType:
+    type: string
+  ownerEmail:
+    type: string
+  createdAt:
+    format: date-time
+    type: string
+required:
+  - createdAt
+  - genestack:accession
+  - objectType
+  - ownerEmail
+type: object

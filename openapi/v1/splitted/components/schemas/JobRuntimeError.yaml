@@ -1,0 +1,15 @@
+example:
+  stack:
+    - type: type
+      message: message
+    - type: type
+      message: message
+  stage: stage
+properties:
+  stage:
+    type: string
+  stack:
+    items:
+      $ref: ./ExceptionTypeAndMessage.yaml
+    type: array
+type: object

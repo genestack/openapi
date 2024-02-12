@@ -1,0 +1,216 @@
+get:
+  description: >+
+    Retrieve sample metadata objects whose linked library metadata matches all
+    supplied conditions.
+
+
+    ## Conditions
+
+    It is possible to supply conditions for:
+
+
+    1. Samples (full-text or metadata key-value pair)
+
+    2. Parent studies (full-text or metadata key-value pair)
+
+    3. Linked variant objects (list of data key-value pairs)
+
+    4. Linked flow cytometry objects (list of data key-value pairs)
+
+    5. Linked any data (except variant and flow cytometry) objects (list of data
+    key-value pairs)
+
+
+    ## Metadata full-text queries
+
+    Single words can be supplied as is; otherwise, use speech marks (`"`) to
+    quote queries that include whitespace. Speech marks and backslash characters
+    in the query need to be escaped with a backslash (`\`).
+
+
+    ## Metadata filters
+
+    Metadata filters are key-value pairs joined by an operator. The `=` operator
+    matches literal values/string. The `!=` operator matches anything except the
+    literal value/string. The `<` or `>` operators match numerical results that
+    are less or greater than the supplied value. Strings containing whitespace
+    need to be quoted with (`"`).
+
+
+    ## Data queries
+
+    Data queries must be a list of key-value pairs, separated by whitespace. The
+    set of valid keys depends on the specific query type, and is documented in
+    the query parameter summary. The values can be simple non-whitespace
+    strings, or strings enclosed by speech marks (`"`). Depending on the key,
+    the value may be be a comma-delimited list of string values. Others require
+    numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with
+    `|`.
+
+
+    ## Combinations
+
+    Metadata queries/filters for the same parameter can be combined with `&&`,
+    `AND`, `||` and `OR` operators, using white-space to separate out the terms
+    and operators. Parentheses `( )` can be used for complex expressions.
+
+
+    ## Versioning
+
+    Specific versions of omics data files (eg. GCT) can be queried via the
+    useVersions parameter. Different versions of an omics data file are
+    associated via their CHAIN_ID metadata value. This CHAIN_ID can be supplied
+    to the useVersions parameter along with the version number or specific omics
+    data file accessions to include them in the query. If nothing is supplied to
+    the useVersions parameter then only the active version (which is usually the
+    last one imported) is queried. This acts as a filter before the rest of the
+    query is carried out.
+
+
+    Example usage:
+
+    useVersions=* (query all versions, including those without CHAIN_IDs)
+
+    useVersions=v2 (query the second version. If there is no second version then
+    the data file is not queried)
+
+    useVersions=v1,v0 (query the first version and any data files without
+    CHAIN_IDs(v0) )
+
+    useVersions=GSVC002:v3 (for omics data files with a CHAIN_ID of GSCV002
+    query the third version)
+
+    useVersions=GSVC002:GSF00494,GSF000496 (for omics data files with a CHAIN_ID
+    of GSCV002 query only the specific accessions GSF00494 and GSF000496)
+
+
+    Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;
+    separator.
+
+
+    ## Paging
+
+    For performance reasons this endpoint returns results in "pages" of limited
+    size. In order to retrieve all matching results the client needs to request
+    multiple pages starting from an offset to the first result. You can do this
+    using the pageOffset query parameter. A value of 0 (the default) instructs
+    the server to return the first page of results, 100 would return a page of
+    results starting from the 101st result and so on. To return all results
+    iterate through pages using pageOffset values of `n * pageLimit` until the
+    `resultsExhausted` response field is true.
+
+  operationId: getSamplesByLibrariesAsUser
+  parameters:
+    - description: >-
+        Supply this parameter with the value `term_id` as part of the query to
+        return extended information including IDs for values and dictionaries.
+      in: query
+      name: responseFormat
+      schema:
+        enum:
+          - term_id
+        type: string
+    - description: >-
+        Filter by library metadata (key-value metadata pair(s)). E.g. `"Library
+        Type"=RNA-Seq-1`
+      in: query
+      name: filter
+      schema:
+        type: string
+    - description: >-
+        Search for library objects via a full-text query over all library
+        metadata fields. E.g. `"illumina HiSeq500"`. Queries matching dictionary
+        terms are automatically expanded to include synonyms.
+      in: query
+      name: query
+      schema:
+        type: string
+    - description: >-
+        If the full-text query term is present in an ODM dictionary, enabling
+        this parameter will modify the query to include child terms of the
+        full-text query.
+
+
+        For example, the search query "Body fluid" can be expanded to include
+        the term "Blood" (a child term of  "Body fluid") so files containing
+        either "Body fluid" or  "Blood"  in their metadata will be returned in
+        the search results.
+
+
+        The parent-child relationship is defined by the key "broaders" or
+        "subClassOf"  in the dictionary.
+
+
+        If the full query term is not present in a dictionary then this
+        parameter has no effect.
+      in: query
+      name: searchSpecificTerms
+      schema:
+        type: boolean
+    - description: >-
+        Maximum number of results to return. This value must be between 0 and
+        2000 (inclusive).
+      in: query
+      name: pageLimit
+      schema:
+        format: int32
+        type: integer
+    - description: >-
+        Show the page {pageOffset+1} results from the start of the results. E.g.
+        100 will show a page of results  starting from the 101st result. The
+        default value is 0.
+      in: query
+      name: pageOffset
+      schema:
+        format: int32
+        type: integer
+    - description: >-
+        The parameter defines amount of metadata attributes to return:
+
+
+        1. `minimal_data` - return metadata attributes according to the default
+        template.
+
+        2. `extended_data_included` - return metadata attributes according to
+        applied template, if object doesn’t have applied template default
+        template will be used. This is the default for User endpoints.
+
+        3. `original_data_included` - return all metadata attributes with values
+        and null attributes, if they are present in the applied template. This
+        is the default for Curator endpoints.
+      in: query
+      name: returnedMetadataFields
+      schema:
+        enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ListResponse.yaml
+        text/tab-separated-values:
+          schema:
+            $ref: ../components/schemas/ListResponse.yaml
+      description: The request was successful. The returned value is a list of objects.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Retrieve sample metadata by querying related libraries
+  tags:
+    - Sample integration as User

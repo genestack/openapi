@@ -1,0 +1,42 @@
+get:
+  operationId: getDetailsByAccession
+  parameters:
+    - description: xrefset ID
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/XrefSetMetadata.yaml
+      description: >-
+        Object containing xrefset details, including user submitted metadata and
+        system info
+    '400':
+      content: {}
+      description: Invalid data in the request. See the error message for details.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '404':
+      content: {}
+      description: The xrefset does not exist.
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Retrieve xrefset details
+  tags:
+    - Xrefset queries

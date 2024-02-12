@@ -1,0 +1,76 @@
+example:
+  samples:
+    - groupAccession: groupAccession
+      attributes:
+        - attributeName: attributeName
+          attributeInvalidValues:
+            - count: 0
+              value: {}
+              errors:
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+            - count: 0
+              value: {}
+              errors:
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+        - attributeName: attributeName
+          attributeInvalidValues:
+            - count: 0
+              value: {}
+              errors:
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+            - count: 0
+              value: {}
+              errors:
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+    - groupAccession: groupAccession
+      attributes:
+        - attributeName: attributeName
+          attributeInvalidValues:
+            - count: 0
+              value: {}
+              errors:
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+            - count: 0
+              value: {}
+              errors:
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+        - attributeName: attributeName
+          attributeInvalidValues:
+            - count: 0
+              value: {}
+              errors:
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+            - count: 0
+              value: {}
+              errors:
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+                - errorType: VALUE_NOT_SET
+                  errorMessage: errorMessage
+properties:
+  samples:
+    items:
+      $ref: ./GroupValidationSummary.yaml
+    type: array
+type: object

@@ -1,0 +1,16 @@
+properties:
+  type:
+    enum:
+      - FULL_TEXT
+      - SELECT
+    type: string
+  filterOptionId:
+    type: string
+  match:
+    type: string
+  mode:
+    enum:
+      - STRICT
+      - USE_NARROWER_TERMS
+    type: string
+type: object

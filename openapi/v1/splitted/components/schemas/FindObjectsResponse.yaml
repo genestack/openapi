@@ -1,0 +1,72 @@
+example:
+  filterOptionGroups:
+    - filterId: filterId
+      hasMoreOptions: true
+      options:
+        - filterId: filterId
+          name: name
+          count: 5
+          id: id
+        - filterId: filterId
+          name: name
+          count: 5
+          id: id
+    - filterId: filterId
+      hasMoreOptions: true
+      options:
+        - filterId: filterId
+          name: name
+          count: 5
+          id: id
+        - filterId: filterId
+          name: name
+          count: 5
+          id: id
+  objectsPage:
+    filteredCount: 0
+    pageRequest:
+      offset: 6
+      limit: 50
+    content:
+      - owner: owner
+        summary:
+          - values:
+              - values
+              - values
+            key: key
+          - values:
+              - values
+              - values
+            key: key
+        hasFacs: true
+        hasTranscriptomics: true
+        size: 1
+        fileCreation: fileCreation
+        name: name
+        accession: accession
+        hasGenomic: true
+      - owner: owner
+        summary:
+          - values:
+              - values
+              - values
+            key: key
+          - values:
+              - values
+              - values
+            key: key
+        hasFacs: true
+        hasTranscriptomics: true
+        size: 1
+        fileCreation: fileCreation
+        name: name
+        accession: accession
+        hasGenomic: true
+properties:
+  objectsPage:
+    $ref: ./ObjectsPage.yaml
+  filterOptionGroups:
+    items:
+      $ref: ./FilterOptionGroup.yaml
+    type: array
+type: object

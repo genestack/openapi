@@ -1,0 +1,19 @@
+description: Result of a search query for xrefsets
+example:
+  cursor: '"GSF0000013#ENSG00000231103.2#ENST00000617423.4"'
+  result:
+    - sourceId: '"ENSG00000231103.2"'
+      targetIds: '["ENST00000617423.4", "ENST00000334232.8"]'
+      xrefSetId: '"GSF0000013"'
+    - sourceId: '"ENSG00000231103.2"'
+      targetIds: '["ENST00000617423.4", "ENST00000334232.8"]'
+      xrefSetId: '"GSF0000013"'
+properties:
+  cursor:
+    example: '"GSF0000013#ENSG00000231103.2#ENST00000617423.4"'
+    type: string
+  result:
+    items:
+      $ref: ./XrefSetSearchResultEntry.yaml
+    type: array
+type: object

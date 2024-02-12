@@ -1,0 +1,9 @@
+properties:
+  itemId:
+    readOnly: true
+    type: string
+  metadata:
+    type: object
+  relationships:
+    $ref: ./Relationships.yaml
+type: object

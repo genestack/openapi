@@ -1,0 +1,64 @@
+post:
+  description: |-
+    ## Data
+     This operation requires the URL of a signal data  file, for example a GCT, VCF or Flow Cytometry file. The required form of this file depends  on the specific SPoT.
+
+     ## Metadata
+     It is also possible to optionally supply the URL of a metadata file. This  metadata will be used as the original metadata for the created objects. The  file is expected to contain single record with metadata describing the uploaded signal file.
+     ## Metadata file format
+     * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
+     * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+     * Header: the first line is treated as table header that contains attribute names
+     * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+     ## File sources
+     * Supported external sources (links): `http`/`https`/`ftp`
+  operationId: addAtomicSampleAsCurator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AtomicSampleSource.yaml
+    description: >-
+      ## Metadata
+
+
+      The supplied metadata object must be a JSON _object_ with non-empty
+      strings as keys. These are interpreted as attribute names. The values
+      should be either scalar JSON values (null, boolean, number or string), or
+      an type-homogenous array of scalar values.
+    required: false
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/MetadataWithId.yaml
+      description: >-
+        The objects were successfully created. The returned value is a list of
+        created objects.
+    '400':
+      content: {}
+      description: >-
+        The object cannot be created. This error occurs when the supplied data
+        or metadata are incorrect. Please see error message for details.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: >-
+    Create a single new object from a given data file with optional supplied
+    metadata.
+  tags:
+    - Sample SPoT as Curator
+  x-codegen-request-body-name: source

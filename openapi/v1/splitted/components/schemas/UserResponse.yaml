@@ -1,0 +1,6 @@
+allOf:
+  - $ref: ./User.yaml
+  - properties:
+      meta:
+        $ref: ./Meta.yaml
+    type: object

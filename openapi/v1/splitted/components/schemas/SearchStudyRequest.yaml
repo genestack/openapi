@@ -1,0 +1,24 @@
+example:
+  filters:
+    - type: FULL_TEXT
+      match: text_to_search
+      mode: STRICT
+    - type: SELECT
+      filterOptionId: TUVUQURBVEFfU3R1ZHlfU291cmNlOlRlc3QgR0VP
+  page:
+    offset: 6
+    limit: 50
+properties:
+  filters:
+    example:
+      - type: FULL_TEXT
+        match: text_to_search
+        mode: STRICT
+      - type: SELECT
+        filterOptionId: TUVUQURBVEFfU3R1ZHlfU291cmNlOlRlc3QgR0VP
+    items:
+      $ref: ./AppliedFilter.yaml
+    type: array
+  page:
+    $ref: ./PageRequest.yaml
+type: object

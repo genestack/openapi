@@ -1,0 +1,35 @@
+description: Create XrefSet request body
+example:
+  metadata:
+    key: metadata
+  xrefSetType: gene-transcript
+  dataLink: '"http://example-url.com/my-mapping.tsv"'
+  dataSource: arvados
+properties:
+  xrefSetType:
+    description: Type of data stored in XrefSet
+    enum:
+      - gene-transcript
+    type: string
+  dataLink:
+    description: Mapping file link
+    example: '"http://example-url.com/my-mapping.tsv"'
+    type: string
+  dataSource:
+    description: Target storage dataLink points to
+    enum:
+      - arvados
+      - s3
+      - http
+    type: string
+  metadata:
+    patternProperties:
+      ^.*$:
+        type: string
+    description: Additional user metadata
+    type: object
+required:
+  - dataLink
+  - dataSource
+  - xrefSetType
+type: object

@@ -1,0 +1,210 @@
+delete:
+  description: >-
+    The endpoint deletes a group in ODM. The group can be deleted, even if it
+    has members: admins and not admins. Users of this group are not deactivated.
+     Permissions to call the endpoint:
+     &nbsp;&nbsp;- If the user does not have the "Manage groups" permission:
+     &nbsp;&nbsp;&nbsp;&nbsp;* the user has "Group admin" role - the user can delete the group;
+     &nbsp;&nbsp;&nbsp;&nbsp;* the user has "Group member" role - the group can not be deleted, an error is returned;
+     &nbsp;&nbsp;&nbsp;&nbsp;* the user is not a member of the specified group - the group can not be deleted, an error is returned.
+     &nbsp;&nbsp;- If the user has the "Manage groups" permission - the user can delete the group regardless of user’s membership in this group.
+  operationId: deleteGroup
+  parameters:
+    - description: String, unique identifier of the group in ODM.
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content: {}
+      description: The group has been successfully removed. No data is returned.
+    '400':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: The supplied group ID is invalid.
+    '401':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '403':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        Operation is not permitted. The "Group admin" role in the group or the
+        "Manage groups" permission is required.
+    '404':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: There are no groups with the specified id.
+    '500':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Genestack-API-Token: []
+    - Access-token: []
+  summary: Delete a group
+  tags:
+    - Groups
+get:
+  description: >-
+    The endpoint returns a not deleted group by id, where id is an internal
+    group id in ODM. Access to the group is required:
+     &nbsp;&nbsp;- If the user has the "Manage groups" permission, the endpoint returns not deleted group on the instance regardless of user’s membership in this group;
+     &nbsp;&nbsp;- If the user does not have the "Manage groups" permission, the endpoint returns only groups in which the user is a member. Otherwise, 404 Not Found is returned.
+  operationId: getGroup
+  parameters:
+    - description: String, unique identifier of the group in ODM.
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    - description: >-
+        If excludedAttributes=members is specified in the request, Groups are
+        returned without the members attribute. Other attributes are not
+        supported in excludedAttributes parameter and ignored in the request →
+        all attributes are returned in the response body.
+      in: query
+      name: excludedAttributes
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/GroupResponse.yaml
+      description: The request was successful.
+    '400':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: The supplied group ID is invalid.
+    '401':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '404':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: There are no available groups with the specified id.
+    '500':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Retrieve a group by id
+  tags:
+    - Groups
+patch:
+  description: >-
+    The endpoint updates one or several attributes of a specific group, where id
+    is internal group id in ODM. Also the endpoints adds a new user to the group
+    and removes users from the group.
+
+     Supported operators in the request body: replace, add, remove. For details of the syntax of using these operators, we recommend that you refer to the SCIM 2.0 specification.
+
+     The list of group attributes that can be edited: displayName, externalId, members. If the user tries to edit other attributes, e.g. id, an error is returned. If the user tries to edit attributes that are not supported in the ODM group scheme, this attribute is ignored. If the request body includes only attributes that are not supported by ODM, the endpoint returns 200 OK.
+
+     A PATCH request, regardless of the number of operations, is treated as atomic. If a single operation encounters an error condition, the original user attributes are restored, and a failure status is returned.
+
+     The endpoint requires access to the group as admin of the group: the user has the "Admin group" role in the group or the user has the "Manage groups" permission.
+  operationId: patchGroup
+  parameters:
+    - description: String, unique identifier of the group in ODM.
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/GroupPatch.yaml
+    required: true
+  responses:
+    '204':
+      content: {}
+      description: Group is successfully updated. No data is returned
+    '400':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        The object cannot be updated, the supplied data or metadata are
+        incorrect. See the error message for details.
+    '401':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '403':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: >-
+        Operation is not permitted. The "Group admin" role in the group or the
+        "Manage groups" permission is required.
+    '404':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/SCIMErrorResponse.yaml
+      description: There are no groups with the specified id.
+    '500':
+      content:
+        application/scim+json:
+          schema:
+            $ref: ../components/schemas/BaseErrorResponse.yaml
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Genestack-API-Token: []
+    - Access-token: []
+  summary: Update a group
+  tags:
+    - Groups
+  x-codegen-request-body-name: body
