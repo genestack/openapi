@@ -1,5 +1,0 @@
-
-components:
-  schemas:
-    MetadataWithId:
-      $ref: "../common/MetadataWithId.yaml"

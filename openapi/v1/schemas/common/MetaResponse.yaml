@@ -1,5 +1,0 @@
-
-components:
-  schemas:
-    PaginationInfo:
-      $ref: "./PaginationInfo.yaml"

@@ -1,5 +1,0 @@
-
-components:
-  schemas:
-    DetachedObject:
-      $ref: "./DetachedObject.yaml"

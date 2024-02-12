@@ -1,7 +1,0 @@
-
-components:
-  schemas:
-    User:
-      $ref: "./User.yaml"
-    Meta:
-      $ref: "./Meta.yaml"

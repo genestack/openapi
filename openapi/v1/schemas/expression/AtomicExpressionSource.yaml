@@ -1,5 +1,0 @@
-
-components:
-  schemas:
-    JsonMetadata:
-      $ref: "../common/JsonMetadata.yaml"

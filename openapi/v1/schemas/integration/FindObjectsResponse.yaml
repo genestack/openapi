@@ -1,7 +1,0 @@
-
-components:
-  schemas:
-    ObjectsPage:
-      $ref: "./ObjectsPage.yaml"
-    FilterOptionGroup:
-      $ref: "./FilterOptionGroup.yaml"

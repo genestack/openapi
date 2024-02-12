@@ -1,7 +1,0 @@
-
-components:
-  schemas:
-    AppliedFilter:
-      $ref: "./AppliedFilter.yaml"
-    PageRequest:
-      $ref: "./PageRequest.yaml"

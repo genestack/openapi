@@ -1,7 +1,0 @@
-
-components:
-  schemas:
-    IMetadata:
-      $ref: "./IMetadata.yaml"
-    Relationships:
-      $ref: "./Relationships.yaml"

@@ -1,6 +1,0 @@
-
-type: object
-components:
-  schemas:
-    AttributeInvalidValue:
-      $ref: "./AttributeInvalidValue.yaml"

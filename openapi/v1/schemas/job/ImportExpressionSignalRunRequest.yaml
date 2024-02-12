@@ -1,5 +1,0 @@
-
-components:
-  schemas:
-    ImportSignalRunRequest:
-      $ref: "./ImportSignalRunRequest.yaml"

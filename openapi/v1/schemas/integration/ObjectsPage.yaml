@@ -1,7 +1,0 @@
-
-components:
-  schemas:
-    PageRequest:
-      $ref: "./PageRequest.yaml"
-    StudySearchInfo:
-      $ref: "./StudySearchInfo.yaml"

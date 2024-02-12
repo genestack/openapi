@@ -1,5 +1,0 @@
-
-components:
-  schemas:
-    UserResponse:
-      $ref: "./UserResponse.yaml"

@@ -1,5 +1,0 @@
-
-components:
-  schemas:
-    JobRuntimeError:
-      $ref: "./JobRuntimeError.yaml"

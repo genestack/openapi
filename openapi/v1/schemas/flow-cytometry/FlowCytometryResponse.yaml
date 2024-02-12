@@ -1,5 +1,0 @@
-
-components:
-  schemas:
-    FlowCytometryItem:
-      $ref: "./FlowCytometryItem.yaml"
