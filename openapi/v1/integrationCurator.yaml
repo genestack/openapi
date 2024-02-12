@@ -6416,8 +6416,6 @@ components:
       $ref: "./schemas/integration/StreamingOutput.yaml"
     Study:
       $ref: "./schemas/study/Study.yaml"
-    StudyCurationStatusUpdateRequest:
-      $ref: "./schemas/integration/StudyCurationStatusUpdateRequest.yaml"
     StudyValidationSummary:
       $ref: "./schemas/integration/StudyValidationSummary.yaml"
     TaskInfo:

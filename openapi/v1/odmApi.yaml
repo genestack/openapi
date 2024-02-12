@@ -21371,8 +21371,6 @@ components:
       $ref: "./schemas/integration/GroupValidationSummary.yaml"
     Link:
       $ref: "./schemas/integration/Link.yaml"
-    StudyCurationStatusUpdateRequest:
-      $ref: "./schemas/integration/StudyCurationStatusUpdateRequest.yaml"
     StudyValidationSummary:
       $ref: "./schemas/integration/StudyValidationSummary.yaml"
     TaskInfo:
