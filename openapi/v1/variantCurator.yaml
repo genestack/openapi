@@ -939,8 +939,6 @@ components:
       $ref: "./schemas/variant/VariantItem.yaml"
     VariantResponse:
       $ref: "./schemas/variant/VariantResponse.yaml"
-    VariantSource:
-      $ref: "./schemas/variant/VariantSource.yaml"
   securitySchemes:
     Access-token:
       in: header
