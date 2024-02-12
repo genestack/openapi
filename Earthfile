@@ -1,4 +1,4 @@
-VERSION 0.7
+VERSION 0.8
 
 IMPORT ./openapi
 
@@ -17,25 +17,22 @@ ARG --global --required R_REGISTRY_RELEASES
 ARG --global --required R_REGISTRY_SNAPSHOTS
 ARG --global --required NEXUS_REPOSITORY_URL
 
-deps:
+build:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
+
+    CACHE /root/.gradle
+    CACHE /root/.cache
+
     COPY requirements.R requirements.txt .
-    RUN \
-        Rscript requirements.R && \
+    COPY --dir openapi scripts gradle gradlew build.gradle.kts settings.gradle.kts .
+    COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
+
+    RUN Rscript requirements.R && \
         python3 \
             -m pip install \
             -r requirements.txt
 
-    SAVE IMAGE --cache-hint
-
-build:
-    FROM +deps
-
-    COPY --dir openapi scripts gradle gradlew build.gradle.kts settings.gradle.kts .
-    COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
-    # R allows only numeric versions
-    # https://r-pkgs.org/lifecycle.html
     ARG --required ODM_OPENAPI_VERSION
     ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
     RUN ./gradlew \
