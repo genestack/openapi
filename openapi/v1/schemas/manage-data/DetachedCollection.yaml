@@ -1,24 +1,4 @@
-example:
-  cursor: cursor
-  data:
-  - createdAt: 2000-01-23T04:56:07+00:00
-    genestack:accession: genestack:accession
-    detachedObjectType: SAMPLE_GROUP
-    ownerEmail: ownerEmail
-  - createdAt: 2000-01-23T04:56:07+00:00
-    genestack:accession: genestack:accession
-    detachedObjectType: SAMPLE_GROUP
-    ownerEmail: ownerEmail
-properties:
-  data:
-    items:
-      $ref: "#/components/schemas/DetachedObject"
-    type: array
-  cursor:
-    type: string
-required:
-- data
-type: object
+
 components:
   schemas:
     DetachedObject:

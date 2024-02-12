@@ -1,14 +1,1 @@
-description: resource metadata
-properties:
-  created:
-    format: date-time
-    type: string
-  lastModified:
-    format: date-time
-    type: string
-  resourceType:
-    enum:
-    - User
-    - Group
-    type: string
-type: object
+

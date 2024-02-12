@@ -1,9 +1,4 @@
-properties:
-  error:
-    $ref: "#/components/schemas/ErrorMessage"
-required:
-- error
-type: object
+
 components:
   schemas:
     ErrorMessage:

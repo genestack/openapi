@@ -1,14 +1,1 @@
-properties:
-  sample:
-    readOnly: true
-    type: string
-  cell:
-    readOnly: true
-    type: string
-  library:
-    readOnly: true
-    type: string
-  preparation:
-    readOnly: true
-    type: string
-type: object
+

@@ -22141,186 +22141,2141 @@ paths:
 components:
   schemas:
     XrefSetCreateRequest:
-      $ref: "./schemas/reference-data/XrefSetCreateRequest.yaml"
+      description: Create XrefSet request body
+      example:
+        metadata:
+          key: metadata
+        xrefSetType: gene-transcript
+        dataLink: '"http://example-url.com/my-mapping.tsv"'
+        dataSource: arvados
+      properties:
+        xrefSetType:
+          description: Type of data stored in XrefSet
+          enum:
+            - gene-transcript
+          type: string
+        dataLink:
+          description: Mapping file link
+          example: '"http://example-url.com/my-mapping.tsv"'
+          type: string
+        dataSource:
+          description: Target storage dataLink points to
+          enum:
+            - arvados
+            - s3
+            - http
+          type: string
+        metadata:
+          patternProperties:
+            "^.*$":
+              type: string
+          description: Additional user metadata
+          type: object
+      required:
+        - dataLink
+        - dataSource
+        - xrefSetType
+      type: object
+
     XrefSetCreateResponse:
-      $ref: "./schemas/reference-data/XrefSetCreateResponse.yaml"
+      description: Create XrefSet response body
+      example:
+        lastUpdated: 1602838500612
+        metadata:
+          key: metadata
+        createdDate: 1602838500612
+        createdBy: '"User007"'
+        warnings:
+          - warnings
+          - warnings
+        xrefSetType: gene-transcript
+        xrefSetId: '"GSF0000013"'
+      properties:
+        xrefSetId:
+          description: Accession of the created XrefSet
+          example: '"GSF0000013"'
+          type: string
+        createdBy:
+          description: Name of the user created XrefSet
+          example: '"User007"'
+          type: string
+        createdDate:
+          description: Date of XrefSet creation
+          example: 1602838500612
+          format: int64
+          type: integer
+        lastUpdated:
+          description: Date of XrefSet last update. For a new entity lastUpdated = createdDate
+          example: 1602838500612
+          format: int64
+          type: integer
+        xrefSetType:
+          description: Type of data stored in XrefSet
+          enum:
+            - gene-transcript
+          type: string
+        metadata:
+          patternProperties:
+            "^.*$":
+              type: string
+          description: Additional user metadata
+          type: object
+        warnings:
+          description: Warnings, if any
+          items:
+            type: string
+          type: array
+      required:
+        - createdBy
+        - createdDate
+        - lastUpdated
+        - metadata
+        - warnings
+        - xrefSetId
+        - xrefSetType
+      type: object
     XrefSetMetadata:
-      $ref: "./schemas/reference-data/XrefSetMetadata.yaml"
+      description: Xrefset metadata
+      example:
+        lastUpdated: 1594846270242
+        createdDate: 1594846270242
+        data:
+          key: data
+        createdBy: '"Genestack Superuser"'
+        xrefSetId: '"GSF000477"'
+      properties:
+        xrefSetId:
+          example: '"GSF000477"'
+          type: string
+        createdBy:
+          example: '"Genestack Superuser"'
+          type: string
+        createdDate:
+          example: 1594846270242
+          format: int64
+          type: integer
+        lastUpdated:
+          example: 1594846270242
+          format: int64
+          type: integer
+        data:
+          patternProperties:
+            "^.*$":
+              type: string
+          type: object
+      type: object
     XrefSetSearchResult:
-      $ref: "./schemas/reference-data/XrefSetSearchResult.yaml"
+      description: Result of a search query for xrefsets
+      example:
+        cursor: '"GSF0000013#ENSG00000231103.2#ENST00000617423.4"'
+        result:
+          - sourceId: '"ENSG00000231103.2"'
+            targetIds: '["ENST00000617423.4", "ENST00000334232.8"]'
+            xrefSetId: '"GSF0000013"'
+          - sourceId: '"ENSG00000231103.2"'
+            targetIds: '["ENST00000617423.4", "ENST00000334232.8"]'
+            xrefSetId: '"GSF0000013"'
+      properties:
+        cursor:
+          example: '"GSF0000013#ENSG00000231103.2#ENST00000617423.4"'
+          type: string
+        result:
+          items:
+            $ref: "#/components/schemas/XrefSetSearchResultEntry"
+          type: array
+      type: object
     XrefSetSearchResultEntry:
-      $ref: "./schemas/reference-data/XrefSetSearchResultEntry.yaml"
+      example:
+        sourceId: '"ENSG00000231103.2"'
+        targetIds: '["ENST00000617423.4", "ENST00000334232.8"]'
+        xrefSetId: '"GSF0000013"'
+      properties:
+        xrefSetId:
+          example: '"GSF0000013"'
+          type: string
+        sourceId:
+          example: '"ENSG00000231103.2"'
+          type: string
+        targetIds:
+          example: '["ENST00000617423.4", "ENST00000334232.8"]'
+          items:
+            type: string
+          type: array
+      type: object
     AtomicFlowCytometrySource:
-      $ref: "./schemas/flow-cytometry/AtomicFlowCytometrySource.yaml"
+      example:
+        cell-population: cell-population
+        metadata:
+          attributes:
+            key: { }
+        marker: marker
+        templateId: GSF000001
+        readout-type: readout-type
+        value: 0.8008281904610115
+      properties:
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+        cell-population:
+          type: string
+        marker:
+          type: string
+        readout-type:
+          type: string
+        value:
+          format: double
+          type: number
+        metadata:
+          $ref: "#/components/schemas/JsonMetadata"
+      type: object
     CommitInfo:
-      $ref: "./schemas/common/CommitInfo.yaml"
+      example:
+        author: author
+        message: message
+        version: version
+        timestamp: 0
+      properties:
+        author:
+          type: string
+        message:
+          type: string
+        timestamp:
+          format: int64
+          type: integer
+        version:
+          readOnly: true
+          type: string
+      type: object
     CurationSource:
-      $ref: "./schemas/common/CurationSource.yaml"
+      example:
+        curated: true
+      properties:
+        curated:
+          description: Curation status
+          type: boolean
+      type: object
     FlowCytometryItem:
-      $ref: "./schemas/flow-cytometry/FlowCytometryItem.yaml"
+      example:
+        itemId: itemId
+        metadata: { }
+        expression: 0.8008281904610115
+        marker: marker
+        groupId: groupId
+        cellPopulation: cellPopulation
+        readoutType: readoutType
+        runId: runId
+      properties:
+        itemId:
+          type: string
+        metadata:
+          type: object
+        runId:
+          type: string
+        groupId:
+          type: string
+        readoutType:
+          type: string
+        cellPopulation:
+          type: string
+        marker:
+          type: string
+        expression:
+          type: number
+      type: object
     FlowCytometryResponse:
-      $ref: "./schemas/flow-cytometry/FlowCytometryResponse.yaml"
+      example:
+        cursor: cursor
+        data:
+          - itemId: itemId
+            metadata: { }
+            expression: 0.8008281904610115
+            marker: marker
+            groupId: groupId
+            cellPopulation: cellPopulation
+            readoutType: readoutType
+            runId: runId
+          - itemId: itemId
+            metadata: { }
+            expression: 0.8008281904610115
+            marker: marker
+            groupId: groupId
+            cellPopulation: cellPopulation
+            readoutType: readoutType
+            runId: runId
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/FlowCytometryItem"
+          type: array
+        cursor:
+          type: string
+      type: object
     IntegrationHelper:
-      $ref: "./schemas/common/IntegrationHelper.yaml"
+      type: object
     JsonMetadata:
-      $ref: "./schemas/common/JsonMetadata.yaml"
+      example:
+        attributes:
+          key: { }
+      properties:
+        attributes:
+          additionalProperties:
+            properties: { }
+            type: object
+          type:
+            - object
+            - string
+      type: object
     ListResponse:
-      $ref: "./schemas/common/ListResponse.yaml"
+      example:
+        data:
+          - { }
+          - { }
+        meta:
+          pagination:
+            total: 6
+            offset: 1
+            count: 0
+            limit: 5
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaResponse"
+        data:
+          items:
+            properties: { }
+            type: object
+          type: array
+      type: object
     MetaResponse:
-      $ref: "./schemas/common/MetaResponse.yaml"
+      example:
+        pagination:
+          total: 6
+          offset: 1
+          count: 0
+          limit: 5
+      properties:
+        pagination:
+          $ref: "#/components/schemas/PaginationInfo"
+      type: object
     MetadataContent:
-      $ref: "./schemas/common/MetadataContent.yaml"
+      type: object
     MetadataWithId:
-      $ref: "./schemas/common/MetadataWithId.yaml"
+      example:
+        itemId: itemId
+        metadata: { }
+      properties:
+        itemId:
+          readOnly: true
+          type: string
+        metadata:
+          type: object
+      type: object
     PaginationInfo:
-      $ref: "./schemas/common/PaginationInfo.yaml"
-      type: "object"
+      example:
+        total: 6
+        offset: 1
+        count: 0
+        limit: 5
+      properties:
+        count:
+          format: int32
+          type: integer
+        total:
+          format: int64
+          type: integer
+        offset:
+          format: int32
+          type: integer
+        limit:
+          format: int32
+          type: integer
+      type: object
     RunsResponse:
-      $ref: "./schemas/common/RunsResponse.yaml"
+      example:
+        experiment: experiment
+        warnings:
+          - warnings
+          - warnings
+        versionChainId: versionChainId
+        runs:
+          -
+          -
+      properties:
+        runs:
+          items:
+            $ref: "#/components/schemas/SignalRun"
+          type: array
+        experiment:
+          type: string
+        warnings:
+          items:
+            type: string
+          type: array
+        versionChainId:
+          type: string
+      type: object
     SignalRun:
-      $ref: "./schemas/common/SignalRun.yaml"
+      type: object
     FlowCytometrySignalSource:
-      $ref: "./schemas/flow-cytometry/FlowCytometrySignalSource.yaml"
+      type: object
+      required:
+        - link
+      properties:
+        templateId:
+          type: string
+          example: GSF000001
+          description: ID of template file.
+          readOnly: true
+        link:
+          type: string
+          description: URL of the signal file.
+        metadataLink:
+          type: string
+          description: URL of the signal file metadata.
+        previousVersion:
+          type: string
+          description: Accession of matrix group or matrix group version chain.
     Library:
-      $ref: "./schemas/library/Library.yaml"
+      type: object
     VariantSignalSource:
-      $ref: "./schemas/variant/VariantSignalSource.yaml"
+      type: object
+      required:
+        - link
+      properties:
+        templateId:
+          type: string
+          example: GSF000001
+          description: ID of template file.
+          readOnly: true
+        link:
+          type: string
+          description: URL of the signal file.
+        metadataLink:
+          type: string
+          description: URL of the signal file metadata.
+        previousVersion:
+          type: string
+          description: Accession of matrix group or matrix group version chain.
     VariantItem:
-      $ref: "./schemas/variant/VariantItem.yaml"
+      example:
+        reference: reference
+        itemId: itemId
+        metadata: { }
+        variationId:
+          - variationId
+          - variationId
+        groupId: groupId
+        start: 0
+        alteration:
+          - alteration
+          - alteration
+        runId: runId
+        contig: contig
+        info:
+          key:
+            - info
+            - info
+        genotype:
+          key: genotype
+      properties:
+        itemId:
+          type: string
+        metadata:
+          type: object
+        runId:
+          type: string
+        groupId:
+          type: string
+        contig:
+          type: string
+        start:
+          format: int64
+          type: integer
+        reference:
+          type: string
+        alteration:
+          type: array
+          items:
+            type: string
+        variationId:
+          type: array
+          items:
+            type: string
+        info:
+          type: object
+          patternProperties:
+            "^.*$":
+              type: array
+              items:
+                type: string
+        genotype:
+          type: object
+          patternProperties:
+            "^.*$":
+              type: string
+      type: object
     VariantResponse:
-      $ref: "./schemas/variant/VariantResponse.yaml"
+      example:
+        cursor: cursor
+        data:
+          - reference: reference
+            itemId: itemId
+            metadata: { }
+            variationId:
+              - variationId
+              - variationId
+            groupId: groupId
+            start: 0
+            alteration:
+              - alteration
+              - alteration
+            runId: runId
+            contig: contig
+            info:
+              key:
+                - info
+                - info
+            genotype:
+              key: genotype
+          - reference: reference
+            itemId: itemId
+            metadata: { }
+            variationId:
+              - variationId
+              - variationId
+            groupId: groupId
+            start: 0
+            alteration:
+              - alteration
+              - alteration
+            runId: runId
+            contig: contig
+            info:
+              key:
+                - info
+                - info
+            genotype:
+              key: genotype
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/VariantItem"
+          type: array
+        cursor:
+          type: string
+      type: object
     VariantSource:
-      $ref: "./schemas/variant/VariantSource.yaml"
+      example:
+        reference: reference
+        metadata:
+          attributes:
+            key: { }
+        variationId:
+          - variationId
+          - variationId
+        alteration:
+          - alteration
+          - alteration
+        locus: 0
+        templateId: GSF000001
+        contig: contig
+        genotype: genotype
+      properties:
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+        contig:
+          type: string
+        locus:
+          format: int64
+          type: integer
+        variationId:
+          items:
+            type: string
+          type: array
+        reference:
+          type: string
+        alteration:
+          items:
+            type: string
+          type: array
+        genotype:
+          type: string
+        metadata:
+          $ref: "#/components/schemas/JsonMetadata"
+      type: object
     DetachedCollection:
-      $ref: "./schemas/manage-data/DetachedCollection.yaml"
+      example:
+        cursor: cursor
+        data:
+          - createdAt: 2000-01-23T04:56:07+00:00
+            genestack:accession: genestack:accession
+            detachedObjectType: SAMPLE_GROUP
+            ownerEmail: ownerEmail
+          - createdAt: 2000-01-23T04:56:07+00:00
+            genestack:accession: genestack:accession
+            detachedObjectType: SAMPLE_GROUP
+            ownerEmail: ownerEmail
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/DetachedObject"
+          type: array
+        cursor:
+          type: string
+      required:
+        - data
+      type: object
     DetachedObject:
-      $ref: "./schemas/manage-data/DetachedObject.yaml"
+      example:
+        createdAt: 2000-01-23T04:56:07+00:00
+        genestack:accession: genestack:accession
+        detachedObjectType: SAMPLE_GROUP
+        ownerEmail: ownerEmail
+      properties:
+        genestack:accession:
+          type: string
+        detachedObjectType:
+          enum:
+            - SAMPLE_GROUP
+            - LIBRARY_GROUP
+            - PREPARATION_GROUP
+            - TABULAR_DATA
+            - GENE_VARIANT
+            - FLOW_CYTOMETRY
+          type: string
+        ownerEmail:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+        - createdAt
+        - detachedObjectType
+        - genestack:accession
+        - ownerEmail
+      type: object
     ManagedObject:
-      $ref: "./schemas/manage-data/ManagedObject.yaml"
+      example:
+        createdAt: 2000-01-23T04:56:07+00:00
+        genestack:accession: genestack:accession
+        objectType: objectType
+        ownerEmail: ownerEmail
+      properties:
+        genestack:accession:
+          type: string
+        objectType:
+          type: string
+        ownerEmail:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+        - createdAt
+        - genestack:accession
+        - objectType
+        - ownerEmail
+      type: object
     Study:
-      $ref: "./schemas/study/Study.yaml"
+      type: object
     StudyGenericSource:
-      $ref: "./schemas/study/StudyGenericSource.yaml"
+      example:
+        link: https://inception-dev.genestack.com/studies/my_stydy.csv
+      properties:
+        link:
+          description: URL for a file with Study metadata.
+          example: https://inception-dev.genestack.com/studies/my_stydy.csv
+          type: string
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+      required:
+        - link
+      type: object
     ExpressionItem:
-      $ref: "./schemas/expression/ExpressionItem.yaml"
+      example:
+        itemId: itemId
+        metadata: { }
+        expression: 1.82
+        feature:
+          genes: MYO9A,
+          groupingKey: VRSLGGISPSEDRR
+        gene: gene
+        groupId: groupId
+        description: description
+        runId: runId
+        value:
+          expression: 1.82
+      properties:
+        itemId:
+          type: string
+        metadata:
+          type: object
+        runId:
+          type: string
+        groupId:
+          type: string
+        gene:
+          type: string
+        expression:
+          example: 1.82
+          format: double
+          type: number
+        feature:
+          example:
+            genes: MYO9A,
+            groupingKey: VRSLGGISPSEDRR
+          anyOf:
+            - type: object
+            - type: string
+              readOnly: true
+        value:
+          example:
+            expression: 1.82
+          anyOf:
+            - type: object
+              patternProperties:
+                "^.*$":
+                  format: double
+                  type:
+                    - number
+                    - string
+            - type: "null"
+          type: object
+        description:
+          type: string
+          readOnly: true
+      type: object
     ExpressionResponse:
-      $ref: "./schemas/expression/ExpressionResponse.yaml"
+      example:
+        cursor: cursor
+        data:
+          - itemId: itemId
+            metadata: { }
+            expression: 1.82
+            feature:
+              genes: MYO9A,
+              groupingKey: VRSLGGISPSEDRR
+            gene: gene
+            groupId: groupId
+            description: description
+            runId: runId
+            value:
+              expression: 1.82
+          - itemId: itemId
+            metadata: { }
+            expression: 1.82
+            feature:
+              genes: MYO9A,
+              groupingKey: VRSLGGISPSEDRR
+            gene: gene
+            groupId: groupId
+            description: description
+            runId: runId
+            value:
+              expression: 1.82
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/ExpressionItem"
+          type: array
+        cursor:
+          type: string
+      type: object
     ExceptionTypeAndMessage:
-      $ref: "./schemas/job/ExceptionTypeAndMessage.yaml"
+      example:
+        type: type
+        message: message
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+      type: object
     ImportMetadataRequest:
-      $ref: "./schemas/job/ImportMetadataRequest.yaml"
+      example:
+        source: HTTP
+        metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
+        templateId: GSF334953
+      properties:
+        source:
+          enum:
+            - ARVADOS
+            - S3
+            - HTTP
+          example: HTTP
+          type: string
+        metadataLink:
+          example: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
+          type: string
+        templateId:
+          example: GSF334953
+          type: string
+      required:
+        - metadataLink
+      type: object
     ImportSignalRunRequest:
-      $ref: "./schemas/job/ImportSignalRunRequest.yaml"
+      description: import signal data request
+      example:
+        source: HTTP
+        metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
+        dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
+        templateId: GSF334953
+        previousVersion: GSF334953
+      properties:
+        source:
+          enum:
+            - ARVADOS
+            - S3
+            - HTTP
+          example: HTTP
+          type: string
+        metadataLink:
+          example: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
+          type: string
+        dataLink:
+          example: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
+          type: string
+        templateId:
+          example: GSF334953
+          type: string
+        previousVersion:
+          example: GSF334953
+          type: string
+      required:
+        - dataLink
+      type: object
     ImportExpressionSignalRunRequest:
-      $ref: "./schemas/job/ImportExpressionSignalRunRequest.yaml"
+      allOf:
+        - $ref: "#/components/schemas/ImportSignalRunRequest"
+      example:
+        source: HTTP
+        metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
+        dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
+        templateId: GSF334953
+        previousVersion: GSF334953
+        numberOfFeatureAttributes: 5
+        dataClass: Proteomics
+        measurementSeparator: ':'
+      properties:
+        numberOfFeatureAttributes:
+          description: Integer value that specifies the number of columns related to the
+            feature in the uploaded data frame, and indicates the starting position of the
+            sample data. This attribute is not needed if the uploaded file is in GCT format.
+          example: 5
+          type: integer
+        dataClass:
+          description: "A mandatory parameter with the following possible values: `Bulk
+            transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
+            pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
+            `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene
+            panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
+            fluid counts`, `Nanopore`, `Other`. \nIn case the parameter is not set the dataClass
+            is automatically defined as `Other`."
+          example: Proteomics
+          type: string
+        measurementSeparator:
+          description: 'This parameter is necessary when your file contains multiple measurement
+            columns for each sample, library, or preparation. It represents the character
+            that distinguishes the sample/library/preparation name from the measurement
+            name in column headers. Supported separators include `. , : ; _ - / \ |`, with
+            the allowance for multi-character separators.'
+          example: ':'
+          type: string
     Info:
-      $ref: "./schemas/job/Info.yaml"
+      description: job execution information
+      example:
+        jobName: Protein folding
+        startedBy: job@genestack.com
+        createTime: 2000-01-23T04:56:07+00:00
+        jobExecId: 12345
+        endTime: 2000-01-23T04:56:07+00:00
+        status: STARTED
+      properties:
+        jobExecId:
+          description: job execution id
+          example: 12345
+          format: int64
+          type: integer
+        startedBy:
+          description: user name who started the job
+          example: job@genestack.com
+          type: string
+        jobName:
+          description: actual job name
+          example: Protein folding
+          type: string
+        status:
+          description: current job status
+          enum:
+            - COMPLETED
+            - STARTING
+            - RUNNING
+            - STOPPING
+            - STOPPED
+            - FAILED
+            - ABANDONED
+            - UNKNOWN
+          example: STARTED
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          type: string
+      required:
+        - createTime
+        - jobExecId
+        - jobName
+        - startedBy
+        - status
+      type: object
     JobRuntimeError:
-      $ref: "./schemas/job/JobRuntimeError.yaml"
+      example:
+        stack:
+          - type: type
+            message: message
+          - type: type
+            message: message
+        stage: stage
+      properties:
+        stage:
+          type: string
+        stack:
+          items:
+            $ref: "#/components/schemas/ExceptionTypeAndMessage"
+          type: array
+      type: object
     Output:
-      $ref: "./schemas/job/Output.yaml"
+      description: job execution output
+      example:
+        result: { }
+        errors:
+          - stack:
+              - type: type
+                message: message
+              - type: type
+                message: message
+            stage: stage
+          - stack:
+              - type: type
+                message: message
+              - type: type
+                message: message
+            stage: stage
+        status: COMPLETED
+      properties:
+        status:
+          description: current job status
+          enum:
+            - COMPLETED
+            - STARTING
+            - RUNNING
+            - STOPPING
+            - STOPPED
+            - FAILED
+            - ABANDONED
+            - UNKNOWN
+          example: COMPLETED
+          type: string
+        result:
+          description: job result object (available if job completed successfully)
+          properties: { }
+          type: object
+        errors:
+          description: array of errors occurred during execution of the job (available if
+            job failed)
+          items:
+            $ref: "#/components/schemas/JobRuntimeError"
+          type: array
+      required:
+        - status
+      type: object
     BatchOfIds:
-      $ref: "./schemas/integration/BatchOfIds.yaml"
+      description: Request model for getting links by many IDs.
+      example:
+        firstType: study
+        firstIds:
+          - firstIds
+          - firstIds
+        offset: 0
+        limit: 0
+      properties:
+        firstType:
+          description: Type of the objects.
+          example: study
+          type: string
+        firstIds:
+          description: Array of the object IDs with the same type.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        offset:
+          description: 'Param says to skip that many links before beginning to return links.
+            Default: 0.'
+          format: int32
+          type: integer
+        limit:
+          description: 'Param says to limit the count of returned links. Default: 1000.'
+          format: int32
+          type: integer
+      required:
+        - firstIds
+        - firstType
+      type: object
     DataItem:
-      $ref: "./schemas/integration/DataItem.yaml"
+      properties:
+        itemId:
+          type: string
+        metadata:
+          type: object
+      type: object
     DataPresentation:
-      $ref: "./schemas/integration/DataPresentation.yaml"
+      properties:
+        itemId:
+          readOnly: true
+          type: string
+        metadata:
+          type: object
+        relationships:
+          $ref: "#/components/schemas/Relationships"
+      type: object
     IMetadata:
-      $ref: "./schemas/integration/IMetadata.yaml"
+      properties:
+        source:
+          format: uri
+          type: string
+        name:
+          type: string
+        public:
+          type: boolean
+        id:
+          type: string
+        content:
+          type: object
+        dataType:
+          type: string
+        contentMap:
+          additionalProperties:
+            properties: { }
+            type: object
+          type: object
+        metadataContent:
+          additionalProperties:
+            properties: { }
+            type: object
+          type: object
+        fileIdAssociatedWithTemplate:
+          type: string
+      type: object
     MetadataPresentation:
-      $ref: "./schemas/integration/MetadataPresentation.yaml"
+      description: |-
+        A description of object metadata.
+
+        This will contain:
+        - `genestack:accession`: the object ID
+        - `Study Title` (for studies)
+        - `Sample ID` (for samples)
+        - all other attributes defined in the linked template (if any)
+      properties:
+        metadata:
+          $ref: "#/components/schemas/IMetadata"
+        relationships:
+          $ref: "#/components/schemas/Relationships"
+      type: object
     OmicsResponse:
-      $ref: "./schemas/integration/OmicsResponse.yaml"
+      example:
+        cursor: cursor
+        data:
+          - { }
+          - { }
+        log:
+          - log
+          - log
+        resultsExhausted: true
+      properties:
+        data:
+          items:
+            properties: { }
+            type: object
+          type: array
+        resultsExhausted:
+          type: boolean
+        log:
+          items:
+            type: string
+          type: array
+        cursor:
+          type: string
+      type: object
     OmicsResponseDataPresentation:
-      $ref: "./schemas/integration/OmicsResponseDataPresentation.yaml"
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/DataPresentation"
+          type: array
+        resultsExhausted:
+          type: boolean
+        log:
+          items:
+            type: string
+          type: array
+        cursor:
+          type: string
+      type: object
     OmicsResponseMetadataPresentation:
-      $ref: "./schemas/integration/OmicsResponseMetadataPresentation.yaml"
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/MetadataPresentation"
+          type: array
+        resultsExhausted:
+          type: boolean
+        log:
+          items:
+            type: string
+          type: array
+        cursor:
+          type: string
+      type: object
     OmicsResponseMetadataWithId:
-      $ref: "./schemas/integration/OmicsResponseMetadataWithId.yaml"
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/MetadataWithId"
+          type: array
+        resultsExhausted:
+          type: boolean
+        log:
+          items:
+            type: string
+          type: array
+        cursor:
+          type: string
+      type: object
     Preparation:
-      $ref: "./schemas/preparation/Preparation.yaml"
+      type: object
     Relationships:
-      $ref: "./schemas/integration/Relationships.yaml"
+      properties:
+        sample:
+          readOnly: true
+          type: string
+        cell:
+          readOnly: true
+          type: string
+        library:
+          readOnly: true
+          type: string
+        preparation:
+          readOnly: true
+          type: string
+      type: object
     SourceTypePair:
-      $ref: "./schemas/integration/SourceTypePair.yaml"
+      example:
+        firstType: firstType
+        secondType: secondType
+      properties:
+        firstType:
+          description: Type of the object (e.g. study)
+          readOnly: true
+          type: string
+        secondType:
+          description: Type of the object (e.g. study)
+          readOnly: true
+          type: string
+      type: object
     StreamingOutput:
-      $ref: "./schemas/integration/StreamingOutput.yaml"
+      type: object
     SearchStudyRequest:
-      $ref: "./schemas/integration/SearchStudyRequest.yaml"
+      example:
+        filters:
+          - type: FULL_TEXT
+            match: text_to_search
+            mode: STRICT
+          - type: SELECT
+            filterOptionId: TUVUQURBVEFfU3R1ZHlfU291cmNlOlRlc3QgR0VP
+        page:
+          offset: 6
+          limit: 50
+      properties:
+        filters:
+          example:
+            - type: FULL_TEXT
+              match: text_to_search
+              mode: STRICT
+            - type: SELECT
+              filterOptionId: TUVUQURBVEFfU3R1ZHlfU291cmNlOlRlc3QgR0VP
+          items:
+            $ref: "#/components/schemas/AppliedFilter"
+          type: array
+        page:
+          $ref: "#/components/schemas/PageRequest"
+      type: object
     AppliedFilter:
-      $ref: "./schemas/integration/AppliedFilter.yaml"
+      properties:
+        type:
+          enum:
+            - FULL_TEXT
+            - SELECT
+          type: string
+        filterOptionId:
+          type: string
+        match:
+          type: string
+        mode:
+          enum:
+            - STRICT
+            - USE_NARROWER_TERMS
+          type: string
+      type: object
     PageRequest:
-      $ref: "./schemas/integration/PageRequest.yaml"
+      example:
+        offset: 6
+        limit: 50
+      properties:
+        offset:
+          description: 'Param says to skip that many links before beginning to return links.
+            Default: 0.'
+          format: int32
+          type: integer
+        limit:
+          description: 'Param says to limit the count of returned links. Default: 1000.'
+          example: 50
+          format: int32
+          type: integer
+      type: object
     FindObjectsResponse:
-      $ref: "./schemas/integration/FindObjectsResponse.yaml"
+      example:
+        filterOptionGroups:
+          - filterId: filterId
+            hasMoreOptions: true
+            options:
+              - filterId: filterId
+                name: name
+                count: 5
+                id: id
+              - filterId: filterId
+                name: name
+                count: 5
+                id: id
+          - filterId: filterId
+            hasMoreOptions: true
+            options:
+              - filterId: filterId
+                name: name
+                count: 5
+                id: id
+              - filterId: filterId
+                name: name
+                count: 5
+                id: id
+        objectsPage:
+          filteredCount: 0
+          pageRequest:
+            offset: 6
+            limit: 50
+          content:
+            - owner: owner
+              summary:
+                - values:
+                    - values
+                    - values
+                  key: key
+                - values:
+                    - values
+                    - values
+                  key: key
+              hasFacs: true
+              hasTranscriptomics: true
+              size: 1
+              fileCreation: fileCreation
+              name: name
+              accession: accession
+              hasGenomic: true
+            - owner: owner
+              summary:
+                - values:
+                    - values
+                    - values
+                  key: key
+                - values:
+                    - values
+                    - values
+                  key: key
+              hasFacs: true
+              hasTranscriptomics: true
+              size: 1
+              fileCreation: fileCreation
+              name: name
+              accession: accession
+              hasGenomic: true
+      properties:
+        objectsPage:
+          $ref: "#/components/schemas/ObjectsPage"
+        filterOptionGroups:
+          items:
+            $ref: "#/components/schemas/FilterOptionGroup"
+          type: array
+      type: object
     ObjectsPage:
-      $ref: "./schemas/integration/ObjectsPage.yaml"
+      example:
+        filteredCount: 0
+        pageRequest:
+          offset: 6
+          limit: 50
+        content:
+          - owner: owner
+            summary:
+              - values:
+                  - values
+                  - values
+                key: key
+              - values:
+                  - values
+                  - values
+                key: key
+            hasFacs: true
+            hasTranscriptomics: true
+            size: 1
+            fileCreation: fileCreation
+            name: name
+            accession: accession
+            hasGenomic: true
+          - owner: owner
+            summary:
+              - values:
+                  - values
+                  - values
+                key: key
+              - values:
+                  - values
+                  - values
+                key: key
+            hasFacs: true
+            hasTranscriptomics: true
+            size: 1
+            fileCreation: fileCreation
+            name: name
+            accession: accession
+            hasGenomic: true
+      properties:
+        filteredCount:
+          format: int64
+          type: integer
+        pageRequest:
+          $ref: "#/components/schemas/PageRequest"
+        content:
+          items:
+            $ref: "#/components/schemas/StudySearchInfo"
+          type: array
+      type: object
     StudySearchInfo:
-      $ref: "./schemas/integration/StudySearchInfo.yaml"
+      example:
+        owner: owner
+        summary:
+          - values:
+              - values
+              - values
+            key: key
+          - values:
+              - values
+              - values
+            key: key
+        hasFacs: true
+        hasTranscriptomics: true
+        size: 1
+        fileCreation: fileCreation
+        name: name
+        accession: accession
+        hasGenomic: true
+      properties:
+        accession:
+          type: string
+        name:
+          type: string
+        owner:
+          type: string
+        fileCreation:
+          format: int64
+          type: string
+        size:
+          format: int64
+          type: integer
+        hasFacs:
+          type: boolean
+        hasGenomic:
+          type: boolean
+        hasTranscriptomics:
+          type: boolean
+        summary:
+          items:
+            $ref: "#/components/schemas/MetainfoKeyForSummary"
+          type: array
+      type: object
     MetainfoKeyForSummary:
-      $ref: "./schemas/integration/MetainfoKeyForSummary.yaml"
+      example:
+        values:
+          - values
+          - values
+        key: key
+      properties:
+        key:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      type: object
     FilterOptionGroup:
-      $ref: "./schemas/integration/FilterOptionGroup.yaml"
+      example:
+        filterId: filterId
+        hasMoreOptions: true
+        options:
+          - filterId: filterId
+            name: name
+            count: 5
+            id: id
+          - filterId: filterId
+            name: name
+            count: 5
+            id: id
+      properties:
+        filterId:
+          type: string
+        hasMoreOptions:
+          type: boolean
+        options:
+          items:
+            $ref: "#/components/schemas/FilterOption"
+          type: array
+      type: object
     FilterOption:
-      $ref: "./schemas/integration/FilterOption.yaml"
+      example:
+        filterId: filterId
+        name: name
+        count: 5
+        id: id
+      properties:
+        id:
+          type: string
+        filterId:
+          type: string
+        name:
+          type: string
+        count:
+          format: int64
+          type: integer
+      type: object
     User:
-      $ref: "./schemas/scim/User.yaml"
+      example:
+        emails:
+          - type: work
+            value: value
+            primary: true
+          - type: work
+            value: value
+            primary: true
+        displayName: displayName
+        schemas:
+          - urn:ietf:params:scim:schemas:core:2.0:User
+          - urn:ietf:params:scim:schemas:core:2.0:User
+        active: true
+        externalId: externalId
+        id: id
+        userName: userName
+      properties:
+        active:
+          description: User status
+          type: boolean
+        emails:
+          items:
+            $ref: "#/components/schemas/Email"
+          type: array
+        externalId:
+          description: External unique resource id
+          type: string
+        id:
+          description: Unique resource id
+          type: string
+        schemas:
+          items:
+            enum:
+              - urn:ietf:params:scim:schemas:core:2.0:User
+            type: string
+          type: array
+        userName:
+          type: string
+        displayName:
+          type: string
+      required:
+        - active
+        - displayName
+        - emails
+      type: object
     Email:
-      $ref: "./schemas/scim/Email.yaml"
+      example:
+        type: work
+        value: value
+        primary: true
+      properties:
+        type:
+          enum:
+            - work
+          type: string
+        value:
+          type: string
+        primary:
+          type: boolean
+      type: object
     UserPatch:
-      $ref: "./schemas/scim/UserPatch.yaml"
+      example:
+        schemas:
+          - urn:ietf:params:scim:api:messages:2.0:PatchOp
+          - urn:ietf:params:scim:api:messages:2.0:PatchOp
+        Operations:
+          - op: add
+            path: path
+            value: { }
+          - op: add
+            path: path
+            value: { }
+      properties:
+        Operations:
+          description: Patch operations list
+          items:
+            $ref: "#/components/schemas/PatchOperation"
+          type: array
+        schemas:
+          items:
+            enum:
+              - urn:ietf:params:scim:api:messages:2.0:PatchOp
+            type: string
+          type: array
+      required:
+        - Operations
+        - schemas
+      type: object
     PatchOperation:
-      $ref: "./schemas/scim/PatchOperation.yaml"
+      example:
+        op: add
+        path: path
+        value: { }
+      properties:
+        op:
+          enum:
+            - add
+            - replace
+            - remove
+          type: string
+        path:
+          type: string
+        value:
+          description: Corresponding 'value' of that field specified by 'path'
+          properties: { }
+          type: object
+      required:
+        - op
+      type: object
     FilterUsersResponse:
-      $ref: "./schemas/scim/FilterUsersResponse.yaml"
+      properties:
+        Resources:
+          description: List of users
+          items:
+            $ref: "#/components/schemas/UserResponse"
+          type: array
+        itemsPerPage:
+          format: int64
+          type: integer
+        schemas:
+          items:
+            enum:
+              - urn:ietf:params:scim:api:messages:2.0:ListResponse
+            type: string
+          type: array
+        startIndex:
+          format: int64
+          type: integer
+        totalResults:
+          format: int64
+          type: integer
+      type: object
     UserResponse:
-      $ref: "./schemas/scim/UserResponse.yaml"
+      allOf:
+        - $ref: "#/components/schemas/User"
+        - properties:
+            meta:
+              $ref: "#/components/schemas/Meta"
+          type: object
     Meta:
-      $ref: "./schemas/scim/Meta.yaml"
+      description: resource metadata
+      properties:
+        created:
+          format: date-time
+          type: string
+        lastModified:
+          format: date-time
+          type: string
+        resourceType:
+          enum:
+            - User
+            - Group
+          type: string
+      type: object
     SCIMErrorResponse:
-      $ref: "./schemas/scim/SCIMErrorResponse.yaml"
+      properties:
+        detail:
+          description: Detailed error message
+          type: string
+        schemas:
+          items:
+            enum:
+              - urn:ietf:params:scim:api:messages:2.0:Error
+            type: string
+          type: array
+        scimType:
+          description: Bad request type when status code is 400
+          enum:
+            - uniqueness
+            - tooMany
+            - mutability
+            - sensitive
+            - invalidSyntax
+            - invalidFilter
+            - invalidPath
+            - invalidValue
+            - invalidVers
+            - noTarget
+          type: string
+        status:
+          description: Same as HTTP status code, e.g. 400, 403, etc.
+          type: string
+      required:
+        - status
+      type: object
     BaseErrorResponse:
-      $ref: "./schemas/scim/BaseErrorResponse.yaml"
+      properties:
+        error:
+          $ref: "#/components/schemas/ErrorMessage"
+      required:
+        - error
+      type: object
     ErrorMessage:
-      $ref: "./schemas/scim/ErrorMessage.yaml"
+      properties:
+        message:
+          description: Detailed error message
+          type: string
+      required:
+        - message
+      type: object
     AtomicExpressionSource:
-      $ref: "./schemas/expression/AtomicExpressionSource.yaml"
+      example:
+        metadata:
+          attributes:
+            key: { }
+        expression: 0.8008281904610115
+        feature: feature
+        description: description
+        templateId: GSF000001
+      properties:
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+        feature:
+          type: string
+        expression:
+          format: double
+          type: number
+        description:
+          type: string
+        metadata:
+          $ref: "#/components/schemas/JsonMetadata"
+      type: object
     ExpressionSignalSource:
-      $ref: "./schemas/expression/ExpressionSignalSource.yaml"
+      example:
+        link: link
+        metadataLink: metadataLink
+        templateId: GSF000001
+        dataClass: Proteomics
+        numberOfFeatureAttributes: 5
+        measurementSeparator: ":"
+        previousVersion: previousVersion
+      properties:
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+        link:
+          description: URL of the signal file.
+          type: string
+        metadataLink:
+          description: URL of the signal file metadata.
+          type: string
+        previousVersion:
+          description: Accession of matrix group or matrix group version chain.
+          type: string
+        numberOfFeatureAttributes:
+          description: Integer value that specifies the number of columns related to the
+            feature in the uploaded data frame, and indicates the starting position of the
+            sample data. This attribute is not needed if the uploaded file is in GCT format.
+          example: 5
+          type: integer
+        dataClass:
+          description: "A mandatory parameter with the following possible values: `Bulk
+            transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
+            pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
+            `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene
+            panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
+            fluid counts`, `Nanopore`, `Other`. \nIn case the parameter is not set the dataClass
+            is automatically defined as `Other`."
+          example: Proteomics
+          type: string
+        measurementSeparator:
+          description: "This parameter is necessary when your file contains multiple measurement
+            columns for each sample, library, or preparation. It represents the character
+            that distinguishes the sample/library/preparation name from the measurement
+            name in column headers. Supported separators include `. , : ; _ - / \ |`, with
+            the allowance for multi-character separators."
+          example: ":"
+          type: string
+      required:
+        - link
+      type: object
     AtomicSampleSource:
-      $ref: "./schemas/sample/AtomicSampleSource.yaml"
+      example:
+        metadata:
+          attributes:
+            key: { }
+      properties:
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+        metadata:
+          $ref: "#/components/schemas/JsonMetadata"
+      type: object
     Sample:
-      $ref: "./schemas/sample/Sample.yaml"
+      type: object
     SampleSource:
-      $ref: "./schemas/common/SampleSource.yaml"
+      example:
+        link: link
+      properties:
+        templateId:
+          description: ID of template file.
+          example: GSF000001
+          readOnly: true
+          type: string
+        link:
+          description: URL of sample file.
+          type: string
+      required:
+        - link
+      type: object
     AttributeInvalidValue:
-      $ref: "./schemas/integration/AttributeInvalidValue.yaml"
+      example:
+        count: 0
+        value: { }
+        errors:
+          - errorType: VALUE_NOT_SET
+            errorMessage: errorMessage
+          - errorType: VALUE_NOT_SET
+            errorMessage: errorMessage
+      properties:
+        value:
+          properties: { }
+          type: object
+        count:
+          format: int64
+          type: integer
+        errors:
+          items:
+            $ref: "#/components/schemas/ValidationError"
+          type: array
+      type: object
     AttributeValidationSummary:
-      $ref: "./schemas/integration/AttributeValidationSummary.yaml"
+      example:
+        attributeName: attributeName
+        attributeInvalidValues:
+          - count: 0
+            value: { }
+            errors:
+              - errorType: VALUE_NOT_SET
+                errorMessage: errorMessage
+              - errorType: VALUE_NOT_SET
+                errorMessage: errorMessage
+          - count: 0
+            value: { }
+            errors:
+              - errorType: VALUE_NOT_SET
+                errorMessage: errorMessage
+              - errorType: VALUE_NOT_SET
+                errorMessage: errorMessage
+      properties:
+        attributeName:
+          type: string
+        attributeInvalidValues:
+          items:
+            $ref: "#/components/schemas/AttributeInvalidValue"
+          type: array
     GroupValidationSummary:
-      $ref: "./schemas/integration/GroupValidationSummary.yaml"
+      example:
+        groupAccession: groupAccession
+        attributes:
+          - attributeName: attributeName
+            attributeInvalidValues:
+              - count: 0
+                value: { }
+                errors:
+                  - errorType: VALUE_NOT_SET
+                    errorMessage: errorMessage
+                  - errorType: VALUE_NOT_SET
+                    errorMessage: errorMessage
+              - count: 0
+                value: { }
+                errors:
+                  - errorType: VALUE_NOT_SET
+                    errorMessage: errorMessage
+                  - errorType: VALUE_NOT_SET
+                    errorMessage: errorMessage
+          - attributeName: attributeName
+            attributeInvalidValues:
+              - count: 0
+                value: { }
+                errors:
+                  - errorType: VALUE_NOT_SET
+                    errorMessage: errorMessage
+                  - errorType: VALUE_NOT_SET
+                    errorMessage: errorMessage
+              - count: 0
+                value: { }
+                errors:
+                  - errorType: VALUE_NOT_SET
+                    errorMessage: errorMessage
+                  - errorType: VALUE_NOT_SET
+                    errorMessage: errorMessage
+      properties:
+        groupAccession:
+          type: string
+        attributes:
+          items:
+            $ref: "#/components/schemas/AttributeValidationSummary"
+          type: array
+      type: object
     Link:
-      $ref: "./schemas/integration/Link.yaml"
+      description: Link between two objects. Each of them represented as a unique pair of
+        ID (accession) and unique type.
+      example:
+        firstId: firstId
+        firstType: firstType
+        secondId: secondId
+        secondType: secondType
+      properties:
+        firstId:
+          description: Object ID (accession) (e.g. accession of study)
+          type: string
+        firstType:
+          description: Type of the object (e.g. study)
+          type: string
+        secondId:
+          description: Object ID (accession) (e.g. accession of study)
+          type: string
+        secondType:
+          description: Type of the object (e.g. study)
+          type: string
+      type: object
     StudyCurationStatusResponse:
-      $ref: "./schemas/integration/StudyCurationStatusResponse.yaml"
+      example:
+        curationStatus: CURATED
+        accession: accession
+        message: message
+      properties:
+        accession:
+          readOnly: true
+          type: string
+        curationStatus:
+          enum:
+            - CURATED
+            - NOT_CURATED
+          readOnly: true
+          type: string
+        message:
+          readOnly: true
+          type: string
+      type: object
     StudyCurationStatusUpdateRequest:
-      $ref: "./schemas/integration/StudyCurationStatusUpdateRequest.yaml"
+      example:
+        curationStatus: CURATED
+      properties:
+        curationStatus:
+          description: Curation status
+          enum:
+            - CURATED
+            - NOT_CURATED
+          type: string
+      required:
+        - curationStatus
+      type: object
     StudyValidationSummary:
-      $ref: "./schemas/integration/StudyValidationSummary.yaml"
+      example:
+        samples:
+          - groupAccession: groupAccession
+            attributes:
+              - attributeName: attributeName
+                attributeInvalidValues:
+                  - count: 0
+                    value: { }
+                    errors:
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                  - count: 0
+                    value: { }
+                    errors:
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+              - attributeName: attributeName
+                attributeInvalidValues:
+                  - count: 0
+                    value: { }
+                    errors:
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                  - count: 0
+                    value: { }
+                    errors:
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+          - groupAccession: groupAccession
+            attributes:
+              - attributeName: attributeName
+                attributeInvalidValues:
+                  - count: 0
+                    value: { }
+                    errors:
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                  - count: 0
+                    value: { }
+                    errors:
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+              - attributeName: attributeName
+                attributeInvalidValues:
+                  - count: 0
+                    value: { }
+                    errors:
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                  - count: 0
+                    value: { }
+                    errors:
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+                      - errorType: VALUE_NOT_SET
+                        errorMessage: errorMessage
+      properties:
+        samples:
+          items:
+            $ref: "#/components/schemas/GroupValidationSummary"
+          type: array
+      type: object
     TaskInfo:
-      $ref: "./schemas/tasks/TaskInfo.yaml"
+      example:
+        application: application
+        createdBy: createdBy
+        endedAt: 6
+        name: name
+        startedAt: 0
+        id: id
+        status: CREATED
+      properties:
+        id:
+          readOnly: true
+          type: string
+        name:
+          readOnly: true
+          type: string
+        status:
+          enum:
+            - CREATED
+            - QUEUEING
+            - QUEUED
+            - STARTING
+            - RUNNING
+            - DONE
+            - FAILED
+            - BLOCKED_BY_DEPENDENCY_FAILURE
+            - KILLED
+          readOnly: true
+          type: string
+        application:
+          readOnly: true
+          type: string
+        startedAt:
+          format: int64
+          readOnly: true
+          type: integer
+        endedAt:
+          format: int64
+          readOnly: true
+          type: integer
+        createdBy:
+          readOnly: true
+          type: string
+      type: object
     ValidationError:
-      $ref: "./schemas/integration/ValidationError.yaml"
+      example:
+        errorType: VALUE_NOT_SET
+        errorMessage: errorMessage
+      properties:
+        errorType:
+          enum:
+            - VALUE_NOT_SET
+            - VOCABULARY_NOT_FOUND
+            - TYPE_NOT_MATCH
+            - MISSING_ATTRIBUTE
+            - SYNONYM_ATTRIBUTE
+          type: string
+        errorMessage:
+          type: string
+      type: object
     Group:
-      $ref: "./schemas/scim/Group.yaml"
+      example:
+        displayName: displayName
+        schemas:
+          - urn:ietf:params:scim:schemas:core:2.0:Group
+          - urn:ietf:params:scim:schemas:core:2.0:Group
+        members:
+          - display: display
+            value: value
+            $ref: https://openapi-generator.tech
+          - display: display
+            value: value
+            $ref: https://openapi-generator.tech
+        externalId: externalId
+        id: id
+      properties:
+        externalId:
+          description: External unique resource id
+          type: string
+        id:
+          description: Unique resource id
+          type: string
+        schemas:
+          items:
+            enum:
+              - urn:ietf:params:scim:schemas:core:2.0:Group
+            type: string
+          type: array
+        members:
+          items:
+            $ref: "#/components/schemas/Member"
+          type: array
+        displayName:
+          type: string
+      required:
+        - displayName
+      type: object
     Member:
-      $ref: "./schemas/scim/Member.yaml"
+      example:
+        display: display
+        value: value
+        $ref: https://openapi-generator.tech
+      properties:
+        value:
+          type: string
+        display:
+          type: string
+        $ref:
+          description: The URI of the member resource
+          format: uri
+          type: string
+      required:
+        - $ref
+        - value
+      type: object
     GroupPatch:
-      $ref: "./schemas/scim/GroupPatch.yaml"
+      example:
+        schemas:
+          - urn:ietf:params:scim:api:messages:2.0:PatchOp
+          - urn:ietf:params:scim:api:messages:2.0:PatchOp
+        Operations:
+          - op: add
+            path: path
+            value: { }
+          - op: add
+            path: path
+            value: { }
+      properties:
+        Operations:
+          description: Patch operations list
+          items:
+            $ref: "#/components/schemas/PatchOperation"
+          type: array
+        schemas:
+          items:
+            enum:
+              - urn:ietf:params:scim:api:messages:2.0:PatchOp
+            type: string
+          type: array
+      required:
+        - Operations
+        - schemas
+      type: object
     FilterGroupsResponse:
-      $ref: "./schemas/scim/FilterGroupsResponse.yaml"
+      properties:
+        Resources:
+          description: List of groups
+          items:
+            $ref: "#/components/schemas/GroupResponse"
+          type: array
+        itemsPerPage:
+          format: int64
+          type: integer
+        schemas:
+          items:
+            enum:
+              - urn:ietf:params:scim:api:messages:2.0:ListResponse
+            type: string
+          type: array
+        startIndex:
+          format: int64
+          type: integer
+        totalResults:
+          format: int64
+          type: integer
+      type: object
     GroupResponse:
-      $ref: "./schemas/scim/GroupResponse.yaml"
+      allOf:
+        - $ref: "#/components/schemas/Group"
+        - properties:
+            meta:
+              $ref: "#/components/schemas/Meta"
+          type: object
   securitySchemes:
     Access-token:
       in: "header"

@@ -1,14 +1,1 @@
-example:
-  type: work
-  value: value
-  primary: true
-properties:
-  type:
-    enum:
-    - work
-    type: string
-  value:
-    type: string
-  primary:
-    type: boolean
-type: object
+

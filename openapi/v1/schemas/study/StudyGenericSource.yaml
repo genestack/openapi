@@ -1,15 +1,1 @@
-example:
-  link: https://inception-dev.genestack.com/studies/my_stydy.csv
-properties:
-  link:
-    description: URL for a file with Study metadata.
-    example: https://inception-dev.genestack.com/studies/my_stydy.csv
-    type: string
-  templateId:
-    description: ID of template file.
-    example: GSF000001
-    readOnly: true
-    type: string
-required:
-- link
-type: object
+

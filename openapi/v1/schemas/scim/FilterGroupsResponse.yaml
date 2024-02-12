@@ -1,25 +1,4 @@
-properties:
-  Resources:
-    description: List of groups
-    items:
-      $ref: "#/components/schemas/GroupResponse"
-    type: array
-  itemsPerPage:
-    format: int64
-    type: integer
-  schemas:
-    items:
-      enum:
-      - urn:ietf:params:scim:api:messages:2.0:ListResponse
-      type: string
-    type: array
-  startIndex:
-    format: int64
-    type: integer
-  totalResults:
-    format: int64
-    type: integer
-type: object
+
 components:
   schemas:
     GroupResponse:

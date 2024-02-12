@@ -1,39 +1,4 @@
-example:
-  displayName: displayName
-  schemas:
-  - urn:ietf:params:scim:schemas:core:2.0:Group
-  - urn:ietf:params:scim:schemas:core:2.0:Group
-  members:
-  - display: display
-    value: value
-    $ref: https://openapi-generator.tech
-  - display: display
-    value: value
-    $ref: https://openapi-generator.tech
-  externalId: externalId
-  id: id
-properties:
-  externalId:
-    description: External unique resource id
-    type: string
-  id:
-    description: Unique resource id
-    type: string
-  schemas:
-    items:
-      enum:
-      - urn:ietf:params:scim:schemas:core:2.0:Group
-      type: string
-    type: array
-  members:
-    items:
-      $ref: "#/components/schemas/Member"
-    type: array
-  displayName:
-    type: string
-required:
-- displayName
-type: object
+
 components:
   schemas:
     Member:

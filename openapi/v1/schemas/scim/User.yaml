@@ -1,48 +1,4 @@
-example:
-  emails:
-  - type: work
-    value: value
-    primary: true
-  - type: work
-    value: value
-    primary: true
-  displayName: displayName
-  schemas:
-  - urn:ietf:params:scim:schemas:core:2.0:User
-  - urn:ietf:params:scim:schemas:core:2.0:User
-  active: true
-  externalId: externalId
-  id: id
-  userName: userName
-properties:
-  active:
-    description: User status
-    type: boolean
-  emails:
-    items:
-      $ref: "#/components/schemas/Email"
-    type: array
-  externalId:
-    description: External unique resource id
-    type: string
-  id:
-    description: Unique resource id
-    type: string
-  schemas:
-    items:
-      enum:
-      - urn:ietf:params:scim:schemas:core:2.0:User
-      type: string
-    type: array
-  userName:
-    type: string
-  displayName:
-    type: string
-required:
-- active
-- displayName
-- emails
-type: object
+
 components:
   schemas:
     Email:

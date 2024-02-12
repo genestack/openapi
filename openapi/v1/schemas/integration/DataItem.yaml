@@ -1,6 +1,1 @@
-properties:
-  itemId:
-    type: string
-  metadata:
-    type: object
-type: object
+

@@ -1,18 +1,1 @@
-example:
-  curationStatus: CURATED
-  accession: accession
-  message: message
-properties:
-  accession:
-    readOnly: true
-    type: string
-  curationStatus:
-    enum:
-    - CURATED
-    - NOT_CURATED
-    readOnly: true
-    type: string
-  message:
-    readOnly: true
-    type: string
-type: object
+

@@ -1,15 +1,1 @@
-example:
-  offset: 6
-  limit: 50
-properties:
-  offset:
-    description: 'Param says to skip that many links before beginning to return links.
-      Default: 0.'
-    format: int32
-    type: integer
-  limit:
-    description: 'Param says to limit the count of returned links. Default: 1000.'
-    example: 50
-    format: int32
-    type: integer
-type: object
+

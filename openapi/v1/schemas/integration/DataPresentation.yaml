@@ -1,12 +1,4 @@
-properties:
-  itemId:
-    readOnly: true
-    type: string
-  metadata:
-    type: object
-  relationships:
-    $ref: "#/components/schemas/Relationships"
-type: object
+
 components:
   schemas:
     Relationships:

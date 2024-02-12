@@ -1,12 +1,1 @@
-example:
-  curationStatus: CURATED
-properties:
-  curationStatus:
-    description: Curation status
-    enum:
-    - CURATED
-    - NOT_CURATED
-    type: string
-required:
-- curationStatus
-type: object
+

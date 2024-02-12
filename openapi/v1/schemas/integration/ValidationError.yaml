@@ -1,15 +1,1 @@
-example:
-  errorType: VALUE_NOT_SET
-  errorMessage: errorMessage
-properties:
-  errorType:
-    enum:
-    - VALUE_NOT_SET
-    - VOCABULARY_NOT_FOUND
-    - TYPE_NOT_MATCH
-    - MISSING_ATTRIBUTE
-    - SYNONYM_ATTRIBUTE
-    type: string
-  errorMessage:
-    type: string
-type: object
+
