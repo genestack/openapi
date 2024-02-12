@@ -21,7 +21,8 @@ build:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
 
-    CACHE /root/.gradle
+    CACHE /root/.gradle/caches
+    CACHE /root/.gradle/wrapper
     CACHE /root/.cache
 
     COPY requirements.R requirements.txt .
