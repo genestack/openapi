@@ -1,7 +1,7 @@
 properties:
   data:
     items:
-      $ref: ./MetadataPresentation.yaml
+      $ref: "#/components/schemas/MetadataPresentation"
     type: array
   resultsExhausted:
     type: boolean
@@ -12,3 +12,7 @@ properties:
   cursor:
     type: string
 type: object
+components:
+  schemas:
+    MetadataPresentation:
+      $ref: ./MetadataPresentation.yaml

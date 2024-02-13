@@ -12,10 +12,14 @@ example:
 properties:
   data:
     items:
-      $ref: ./DetachedObject.yaml
+      $ref: "#/components/schemas/DetachedObject"
     type: array
   cursor:
     type: string
 required:
   - data
 type: object
+components:
+  schemas:
+    DetachedObject:
+      $ref: ./DetachedObject.yaml

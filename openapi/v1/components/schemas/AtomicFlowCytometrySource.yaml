@@ -23,5 +23,9 @@ properties:
     format: double
     type: number
   metadata:
-    $ref: ./JsonMetadata.yaml
+    $ref: "#/components/schemas/JsonMetadata"
 type: object
+components:
+  schemas:
+    JsonMetadata:
+      $ref: ./JsonMetadata.yaml

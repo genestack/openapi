@@ -6,5 +6,9 @@ example:
     limit: 5
 properties:
   pagination:
-    $ref: ./PaginationInfo.yaml
+    $ref: "#/components/schemas/PaginationInfo"
 type: object
+components:
+  schemas:
+    PaginationInfo:
+      $ref: ./PaginationInfo.yaml

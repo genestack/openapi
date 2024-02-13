@@ -37,6 +37,10 @@ properties:
     type: boolean
   summary:
     items:
-      $ref: ./MetainfoKeyForSummary.yaml
+      $ref: "#/components/schemas/MetainfoKeyForSummary"
     type: array
 type: object
+components:
+  schemas:
+    MetainfoKeyForSummary:
+      $ref: ./MetainfoKeyForSummary.yaml

@@ -38,6 +38,10 @@ properties:
     type: string
   attributes:
     items:
-      $ref: ./AttributeValidationSummary.yaml
+      $ref: "#/components/schemas/AttributeValidationSummary"
     type: array
 type: object
+components:
+  schemas:
+    AttributeValidationSummary:
+      $ref: ./AttributeValidationSummary.yaml

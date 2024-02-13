@@ -2,7 +2,7 @@ properties:
   Resources:
     description: List of users
     items:
-      $ref: ./UserResponse.yaml
+      $ref: "#/components/schemas/UserResponse"
     type: array
   itemsPerPage:
     format: int64
@@ -20,3 +20,7 @@ properties:
     format: int64
     type: integer
 type: object
+components:
+  schemas:
+    UserResponse:
+      $ref: ./UserResponse.yaml

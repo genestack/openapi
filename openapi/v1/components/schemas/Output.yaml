@@ -38,8 +38,12 @@ properties:
       array of errors occurred during execution of the job (available if job
       failed)
     items:
-      $ref: ./JobRuntimeError.yaml
+      $ref: "#/components/schemas/JobRuntimeError"
     type: array
 required:
   - status
 type: object
+components:
+  schemas:
+    JobRuntimeError:
+      $ref: ./JobRuntimeError.yaml

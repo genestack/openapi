@@ -6,10 +6,8 @@ example:
   members:
     - display: display
       value: value
-      $ref: https://openapi-generator.tech
     - display: display
       value: value
-      $ref: https://openapi-generator.tech
   externalId: externalId
   id: id
 properties:
@@ -27,10 +25,14 @@ properties:
     type: array
   members:
     items:
-      $ref: ./Member.yaml
+      $ref: "#/components/schemas/Member"
     type: array
   displayName:
     type: string
 required:
   - displayName
 type: object
+components:
+  schemas:
+    Member:
+      $ref: ./Member.yaml

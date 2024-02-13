@@ -42,8 +42,12 @@ example:
 properties:
   data:
     items:
-      $ref: ./VariantItem.yaml
+      $ref: "#/components/schemas/VariantItem"
     type: array
   cursor:
     type: string
 type: object
+components:
+  schemas:
+    VariantItem:
+      $ref: ./VariantItem.yaml

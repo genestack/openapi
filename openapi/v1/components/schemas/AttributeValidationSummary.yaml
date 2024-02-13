@@ -20,5 +20,9 @@ properties:
     type: string
   attributeInvalidValues:
     items:
-      $ref: ./AttributeInvalidValue.yaml
+      $ref: "#/components/schemas/AttributeInvalidValue"
     type: array
+components:
+  schemas:
+    AttributeInvalidValue:
+      $ref: ./AttributeInvalidValue.yaml

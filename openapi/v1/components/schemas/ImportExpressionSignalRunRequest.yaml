@@ -1,5 +1,5 @@
 allOf:
-  - $ref: ./ImportSignalRunRequest.yaml
+  - $ref: "#/components/schemas/ImportSignalRunRequest"
 example:
   source: HTTP
   metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
@@ -41,3 +41,7 @@ properties:
       _ - / \ |`, with the allowance for multi-character separators.
     example: ':'
     type: string
+components:
+  schemas:
+    ImportSignalRunRequest:
+      $ref: ./ImportSignalRunRequest.yaml

@@ -20,7 +20,7 @@ properties:
     type: boolean
   emails:
     items:
-      $ref: ./Email.yaml
+      $ref: "#/components/schemas/Email"
     type: array
   externalId:
     description: External unique resource id
@@ -43,3 +43,7 @@ required:
   - displayName
   - emails
 type: object
+components:
+  schemas:
+    Email:
+      $ref: ./Email.yaml

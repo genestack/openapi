@@ -71,6 +71,10 @@ example:
 properties:
   samples:
     items:
-      $ref: ./GroupValidationSummary.yaml
+      $ref: "#/components/schemas/GroupValidationSummary"
     type: array
 type: object
+components:
+  schemas:
+    GroupValidationSummary:
+      $ref: ./GroupValidationSummary.yaml
