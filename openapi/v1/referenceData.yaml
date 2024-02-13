@@ -8,49 +8,7 @@ tags:
 - name: Xrefset queries
 paths:
   /api/v1/xrefsets:
-    post:
-      operationId: create
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/XrefSetCreateRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/XrefSetCreateResponse"
-          description: successful operation
-        "201":
-          content: {}
-          description: The objects were successfully created. The returned value is
-            a list of created objects.
-        "400":
-          content: {}
-          description: The object cannot be created. This error occurs when the supplied
-            data or metadata are incorrect. Please see error message for details
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "403":
-          content: {}
-          description: Not enough permissions to work with the xrefset.
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Import a new xrefset file
-      tags:
-      - Xrefset queries
-      x-codegen-request-body-name: body
+    $ref: "paths/api-v1-xrefsets.yaml"
   /api/v1/xrefsets/entries:
     get:
       description: |+
