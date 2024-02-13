@@ -498,6 +498,190 @@ paths:
   /api/v1/tasks/id:
     $ref: paths/api_v1_tasks_id.yaml
 components:
+  schemas:
+    VariantResponse:
+      $ref: components/schemas/VariantResponse.yaml
+    JsonMetadata:
+      $ref: components/schemas/JsonMetadata.yaml
+    GroupPatch:
+      $ref: components/schemas/GroupPatch.yaml
+    ExpressionResponse:
+      $ref: components/schemas/ExpressionResponse.yaml
+    XrefSetSearchResultEntry:
+      $ref: components/schemas/XrefSetSearchResultEntry.yaml
+    Preparation:
+      $ref: components/schemas/Preparation.yaml
+    DetachedCollection:
+      $ref: components/schemas/DetachedCollection.yaml
+    SCIMErrorResponse:
+      $ref: components/schemas/SCIMErrorResponse.yaml
+    MetadataContent:
+      $ref: components/schemas/MetadataContent.yaml
+    SearchStudyRequest:
+      $ref: components/schemas/SearchStudyRequest.yaml
+    IntegrationHelper:
+      $ref: components/schemas/IntegrationHelper.yaml
+    IMetadata:
+      $ref: components/schemas/IMetadata.yaml
+    Study:
+      $ref: components/schemas/Study.yaml
+    FindObjectsResponse:
+      $ref: components/schemas/FindObjectsResponse.yaml
+    AttributeValidationSummary:
+      $ref: components/schemas/AttributeValidationSummary.yaml
+    AppliedFilter:
+      $ref: components/schemas/AppliedFilter.yaml
+    GroupResponse:
+      $ref: components/schemas/GroupResponse.yaml
+    GroupValidationSummary:
+      $ref: components/schemas/GroupValidationSummary.yaml
+    AtomicFlowCytometrySource:
+      $ref: components/schemas/AtomicFlowCytometrySource.yaml
+    ErrorMessage:
+      $ref: components/schemas/ErrorMessage.yaml
+    DataItem:
+      $ref: components/schemas/DataItem.yaml
+    RunsResponse:
+      $ref: components/schemas/RunsResponse.yaml
+    ImportSignalRunRequest:
+      $ref: components/schemas/ImportSignalRunRequest.yaml
+    StudyCurationStatusResponse:
+      $ref: components/schemas/StudyCurationStatusResponse.yaml
+    XrefSetCreateRequest:
+      $ref: components/schemas/XrefSetCreateRequest.yaml
+    ExceptionTypeAndMessage:
+      $ref: components/schemas/ExceptionTypeAndMessage.yaml
+    PaginationInfo:
+      $ref: components/schemas/PaginationInfo.yaml
+    VariantSource:
+      $ref: components/schemas/VariantSource.yaml
+    PatchOperation:
+      $ref: components/schemas/PatchOperation.yaml
+    Member:
+      $ref: components/schemas/Member.yaml
+    AttributeInvalidValue:
+      $ref: components/schemas/AttributeInvalidValue.yaml
+    VariantItem:
+      $ref: components/schemas/VariantItem.yaml
+    StudySearchInfo:
+      $ref: components/schemas/StudySearchInfo.yaml
+    ValidationError:
+      $ref: components/schemas/ValidationError.yaml
+    FlowCytometryResponse:
+      $ref: components/schemas/FlowCytometryResponse.yaml
+    AtomicSampleSource:
+      $ref: components/schemas/AtomicSampleSource.yaml
+    ImportMetadataRequest:
+      $ref: components/schemas/ImportMetadataRequest.yaml
+    Output:
+      $ref: components/schemas/Output.yaml
+    CommitInfo:
+      $ref: components/schemas/CommitInfo.yaml
+    MetainfoKeyForSummary:
+      $ref: components/schemas/MetainfoKeyForSummary.yaml
+    StudyCurationStatusUpdateRequest:
+      $ref: components/schemas/StudyCurationStatusUpdateRequest.yaml
+    MetadataPresentation:
+      $ref: components/schemas/MetadataPresentation.yaml
+    Sample:
+      $ref: components/schemas/Sample.yaml
+    ListResponse:
+      $ref: components/schemas/ListResponse.yaml
+    Relationships:
+      $ref: components/schemas/Relationships.yaml
+    FilterOptionGroup:
+      $ref: components/schemas/FilterOptionGroup.yaml
+    OmicsResponseMetadataPresentation:
+      $ref: components/schemas/OmicsResponseMetadataPresentation.yaml
+    Info:
+      $ref: components/schemas/Info.yaml
+    ExpressionSignalSource:
+      $ref: components/schemas/ExpressionSignalSource.yaml
+    StudyValidationSummary:
+      $ref: components/schemas/StudyValidationSummary.yaml
+    PageRequest:
+      $ref: components/schemas/PageRequest.yaml
+    ObjectsPage:
+      $ref: components/schemas/ObjectsPage.yaml
+    XrefSetSearchResult:
+      $ref: components/schemas/XrefSetSearchResult.yaml
+    ManagedObject:
+      $ref: components/schemas/ManagedObject.yaml
+    CurationSource:
+      $ref: components/schemas/CurationSource.yaml
+    XrefSetCreateResponse:
+      $ref: components/schemas/XrefSetCreateResponse.yaml
+    Library:
+      $ref: components/schemas/Library.yaml
+    User:
+      $ref: components/schemas/User.yaml
+    StudyGenericSource:
+      $ref: components/schemas/StudyGenericSource.yaml
+    UserPatch:
+      $ref: components/schemas/UserPatch.yaml
+    StreamingOutput:
+      $ref: components/schemas/StreamingOutput.yaml
+    BaseErrorResponse:
+      $ref: components/schemas/BaseErrorResponse.yaml
+    DetachedObject:
+      $ref: components/schemas/DetachedObject.yaml
+    FlowCytometryItem:
+      $ref: components/schemas/FlowCytometryItem.yaml
+    SignalRun:
+      $ref: components/schemas/SignalRun.yaml
+    ImportExpressionSignalRunRequest:
+      $ref: components/schemas/ImportExpressionSignalRunRequest.yaml
+    JobRuntimeError:
+      $ref: components/schemas/JobRuntimeError.yaml
+    SourceTypePair:
+      $ref: components/schemas/SourceTypePair.yaml
+    AtomicExpressionSource:
+      $ref: components/schemas/AtomicExpressionSource.yaml
+    FilterOption:
+      $ref: components/schemas/FilterOption.yaml
+    OmicsResponse:
+      $ref: components/schemas/OmicsResponse.yaml
+    Meta:
+      $ref: components/schemas/Meta.yaml
+    XrefSetMetadata:
+      $ref: components/schemas/XrefSetMetadata.yaml
+    TaskInfo:
+      $ref: components/schemas/TaskInfo.yaml
+    BatchOfIds:
+      $ref: components/schemas/BatchOfIds.yaml
+    FilterGroupsResponse:
+      $ref: components/schemas/FilterGroupsResponse.yaml
+    Group:
+      $ref: components/schemas/Group.yaml
+    UserResponse:
+      $ref: components/schemas/UserResponse.yaml
+    FilterUsersResponse:
+      $ref: components/schemas/FilterUsersResponse.yaml
+    MetaResponse:
+      $ref: components/schemas/MetaResponse.yaml
+    Email:
+      $ref: components/schemas/Email.yaml
+    OmicsResponseMetadataWithId:
+      $ref: components/schemas/OmicsResponseMetadataWithId.yaml
+    FlowCytometrySignalSource:
+      $ref: components/schemas/FlowCytometrySignalSource.yaml
+    DataPresentation:
+      $ref: components/schemas/DataPresentation.yaml
+    ExpressionItem:
+      $ref: components/schemas/ExpressionItem.yaml
+    VariantSignalSource:
+      $ref: components/schemas/VariantSignalSource.yaml
+    Link:
+      $ref: components/schemas/Link.yaml
+    OmicsResponseDataPresentation:
+      $ref: components/schemas/OmicsResponseDataPresentation.yaml
+    SampleSource:
+      $ref: components/schemas/SampleSource.yaml
+    MetadataWithId:
+      $ref: components/schemas/MetadataWithId.yaml
+  parameters:
+    AllowDuplicates:
+      $ref: components/parameters/AllowDuplicates.yaml
   securitySchemes:
     Access-token:
       in: header
