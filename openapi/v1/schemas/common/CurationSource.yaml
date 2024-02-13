@@ -1,7 +1,0 @@
-example:
-  curated: true
-properties:
-  curated:
-    description: Curation status
-    type: boolean
-type: object
