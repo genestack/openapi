@@ -194,22 +194,17 @@ paths:
   /api/v1/as-user/integration/link/expression/group/by/study/id:
     $ref: paths/api_v1_as-user_integration_link_expression_group_by_study_id.yaml
   /api/v1/as-user/integration/link/expression/run-to-libraries/by/group/id:
-    $ref: >-
-      paths/api_v1_as-user_integration_link_expression_run-to-libraries_by_group_id.yaml
+    $ref: paths/api_v1_as-user_integration_link_expression_run-to-libraries_by_group_id.yaml
   /api/v1/as-user/integration/link/expression/run-to-preparations/by/group/id:
-    $ref: >-
-      paths/api_v1_as-user_integration_link_expression_run-to-preparations_by_group_id.yaml
+    $ref: paths/api_v1_as-user_integration_link_expression_run-to-preparations_by_group_id.yaml
   /api/v1/as-user/integration/link/expression/run-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-user_integration_link_expression_run-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-user_integration_link_expression_run-to-samples_by_group_id.yaml
   /api/v1/as-user/integration/link/flow-cytometry/by/sample/id:
     $ref: paths/api_v1_as-user_integration_link_flow-cytometry_by_sample_id.yaml
   /api/v1/as-user/integration/link/flow-cytometry/group/by/study/id:
-    $ref: >-
-      paths/api_v1_as-user_integration_link_flow-cytometry_group_by_study_id.yaml
+    $ref: paths/api_v1_as-user_integration_link_flow-cytometry_group_by_study_id.yaml
   /api/v1/as-user/integration/link/flow-cytometry/run-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-user_integration_link_flow-cytometry_run-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-user_integration_link_flow-cytometry_run-to-samples_by_group_id.yaml
   /api/v1/as-user/integration/link/libraries/by/samples:
     $ref: paths/api_v1_as-user_integration_link_libraries_by_samples.yaml
   /api/v1/as-user/integration/link/library/by/sample/id:
@@ -217,15 +212,13 @@ paths:
   /api/v1/as-user/integration/link/library/group/by/study/id:
     $ref: paths/api_v1_as-user_integration_link_library_group_by_study_id.yaml
   /api/v1/as-user/integration/link/library/libraries-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-user_integration_link_library_libraries-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-user_integration_link_library_libraries-to-samples_by_group_id.yaml
   /api/v1/as-user/integration/link/preparation/by/sample/id:
     $ref: paths/api_v1_as-user_integration_link_preparation_by_sample_id.yaml
   /api/v1/as-user/integration/link/preparation/group/by/study/id:
     $ref: paths/api_v1_as-user_integration_link_preparation_group_by_study_id.yaml
   /api/v1/as-user/integration/link/preparation/preparations-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-user_integration_link_preparation_preparations-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-user_integration_link_preparation_preparations-to-samples_by_group_id.yaml
   /api/v1/as-user/integration/link/preparations/by/samples:
     $ref: paths/api_v1_as-user_integration_link_preparations_by_samples.yaml
   /api/v1/as-user/integration/link/samples/by/libraries:
@@ -249,8 +242,7 @@ paths:
   /api/v1/as-user/integration/link/variant/group/by/study/id:
     $ref: paths/api_v1_as-user_integration_link_variant_group_by_study_id.yaml
   /api/v1/as-user/integration/link/variant/run-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-user_integration_link_variant_run-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-user_integration_link_variant_run-to-samples_by_group_id.yaml
   /api/v1/as-user/links:
     $ref: paths/api_v1_as-user_links.yaml
   /api/v1/as-user/links/get-batch:
@@ -348,55 +340,39 @@ paths:
   /api/v1/as-curator/integration/link/expression/by/library/id:
     $ref: paths/api_v1_as-curator_integration_link_expression_by_library_id.yaml
   /api/v1/as-curator/integration/link/expression/by/preparation/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_by_preparation_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_by_preparation_id.yaml
   /api/v1/as-curator/integration/link/expression/by/sample/id:
     $ref: paths/api_v1_as-curator_integration_link_expression_by_sample_id.yaml
   /api/v1/as-curator/integration/link/expression/group/by/study/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_group_by_study_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_group_by_study_id.yaml
   /api/v1/as-curator/integration/link/expression/group/sourceId/to/library/group/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_group_sourceId_to_library_group_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_group_sourceId_to_library_group_targetId.yaml
   /api/v1/as-curator/integration/link/expression/group/sourceId/to/preparation/group/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_group_sourceId_to_preparation_group_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_group_sourceId_to_preparation_group_targetId.yaml
   /api/v1/as-curator/integration/link/expression/group/sourceId/to/sample/group/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_group_sourceId_to_sample_group_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_group_sourceId_to_sample_group_targetId.yaml
   /api/v1/as-curator/integration/link/expression/run-to-libraries/by/group/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_run-to-libraries_by_group_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_run-to-libraries_by_group_id.yaml
   /api/v1/as-curator/integration/link/expression/run-to-preparations/by/group/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_run-to-preparations_by_group_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_run-to-preparations_by_group_id.yaml
   /api/v1/as-curator/integration/link/expression/run-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_run-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_run-to-samples_by_group_id.yaml
   /api/v1/as-curator/integration/link/expression/sourceId/to/library/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_sourceId_to_library_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_sourceId_to_library_targetId.yaml
   /api/v1/as-curator/integration/link/expression/sourceId/to/preparation/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_sourceId_to_preparation_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_sourceId_to_preparation_targetId.yaml
   /api/v1/as-curator/integration/link/expression/sourceId/to/sample/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_expression_sourceId_to_sample_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_expression_sourceId_to_sample_targetId.yaml
   /api/v1/as-curator/integration/link/flow-cytometry/by/sample/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_flow-cytometry_by_sample_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_flow-cytometry_by_sample_id.yaml
   /api/v1/as-curator/integration/link/flow-cytometry/group/by/study/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_flow-cytometry_group_by_study_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_flow-cytometry_group_by_study_id.yaml
   /api/v1/as-curator/integration/link/flow-cytometry/group/sourceId/to/sample/group/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_flow-cytometry_group_sourceId_to_sample_group_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_flow-cytometry_group_sourceId_to_sample_group_targetId.yaml
   /api/v1/as-curator/integration/link/flow-cytometry/run-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_flow-cytometry_run-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_flow-cytometry_run-to-samples_by_group_id.yaml
   /api/v1/as-curator/integration/link/flow-cytometry/sourceId/to/sample/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_flow-cytometry_sourceId_to_sample_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_flow-cytometry_sourceId_to_sample_targetId.yaml
   /api/v1/as-curator/integration/link/libraries/by/samples:
     $ref: paths/api_v1_as-curator_integration_link_libraries_by_samples.yaml
   /api/v1/as-curator/integration/link/library/by/sample/id:
@@ -404,36 +380,27 @@ paths:
   /api/v1/as-curator/integration/link/library/group/by/study/id:
     $ref: paths/api_v1_as-curator_integration_link_library_group_by_study_id.yaml
   /api/v1/as-curator/integration/link/library/group/sourceId/to/sample/group/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_library_group_sourceId_to_sample_group_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_library_group_sourceId_to_sample_group_targetId.yaml
   /api/v1/as-curator/integration/link/library/libraries-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_library_libraries-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_library_libraries-to-samples_by_group_id.yaml
   /api/v1/as-curator/integration/link/library/sourceId/to/sample/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_library_sourceId_to_sample_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_library_sourceId_to_sample_targetId.yaml
   /api/v1/as-curator/integration/link/preparation/by/sample/id:
     $ref: paths/api_v1_as-curator_integration_link_preparation_by_sample_id.yaml
   /api/v1/as-curator/integration/link/preparation/group/by/study/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_preparation_group_by_study_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_preparation_group_by_study_id.yaml
   /api/v1/as-curator/integration/link/preparation/group/sourceId/to/sample/group/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_preparation_group_sourceId_to_sample_group_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_preparation_group_sourceId_to_sample_group_targetId.yaml
   /api/v1/as-curator/integration/link/preparation/preparations-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_preparation_preparations-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_preparation_preparations-to-samples_by_group_id.yaml
   /api/v1/as-curator/integration/link/preparation/sourceId/to/sample/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_preparation_sourceId_to_sample_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_preparation_sourceId_to_sample_targetId.yaml
   /api/v1/as-curator/integration/link/preparations/by/samples:
     $ref: paths/api_v1_as-curator_integration_link_preparations_by_samples.yaml
   /api/v1/as-curator/integration/link/sample/group/sourceId/to/study/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_sample_group_sourceId_to_study_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_sample_group_sourceId_to_study_targetId.yaml
   /api/v1/as-curator/integration/link/sample/sourceId/to/study/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_sample_sourceId_to_study_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_sample_sourceId_to_study_targetId.yaml
   /api/v1/as-curator/integration/link/samples/by/libraries:
     $ref: paths/api_v1_as-curator_integration_link_samples_by_libraries.yaml
   /api/v1/as-curator/integration/link/samples/by/preparations:
@@ -453,17 +420,13 @@ paths:
   /api/v1/as-curator/integration/link/variant/group/by/study/id:
     $ref: paths/api_v1_as-curator_integration_link_variant_group_by_study_id.yaml
   /api/v1/as-curator/integration/link/variant/group/sourceId/to/sample/group/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_variant_group_sourceId_to_sample_group_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_variant_group_sourceId_to_sample_group_targetId.yaml
   /api/v1/as-curator/integration/link/variant/run-to-samples/by/group/id:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_variant_run-to-samples_by_group_id.yaml
+    $ref: paths/api_v1_as-curator_integration_link_variant_run-to-samples_by_group_id.yaml
   /api/v1/as-curator/integration/link/variant/sourceId/to/sample/targetId:
-    $ref: >-
-      paths/api_v1_as-curator_integration_link_variant_sourceId_to_sample_targetId.yaml
+    $ref: paths/api_v1_as-curator_integration_link_variant_sourceId_to_sample_targetId.yaml
   /api/v1/as-curator/integration/curation/studies/id/curation-status:
-    $ref: >-
-      paths/api_v1_as-curator_integration_curation_studies_id_curation-status.yaml
+    $ref: paths/api_v1_as-curator_integration_curation_studies_id_curation-status.yaml
   /api/v1/as-curator/integration/fulltext/search/studies:
     $ref: paths/api_v1_as-curator_integration_fulltext_search_studies.yaml
   /api/v1/as-curator/links:
@@ -487,8 +450,7 @@ paths:
   /api/v1/as-curator/omics/variant/group:
     $ref: paths/api_v1_as-curator_omics_variant_group.yaml
   /api/v1/as-curator/integration/studies/id/tasks/publish-versions:
-    $ref: >-
-      paths/api_v1_as-curator_integration_studies_id_tasks_publish-versions.yaml
+    $ref: paths/api_v1_as-curator_integration_studies_id_tasks_publish-versions.yaml
   /api/v1/as-curator/integration/studies/id/validation-summary:
     $ref: paths/api_v1_as-curator_integration_studies_id_validation-summary.yaml
   /api/v1/as-user/samples:
