@@ -1,0 +1,88 @@
+get:
+  operationId: getFlowCytometryGroupCurationStatusAsCurator
+  parameters:
+    - description: Unique identifier (accession) of the object.
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/CurationSource.yaml
+      description: successful operation
+    '204':
+      content: {}
+      description: The request was successful. The returned value is the object.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '404':
+      content: {}
+      description: No object exists with the given ID.
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Get curation status of a group by ID (accession)
+  tags:
+    - Flow Cytometry SPoT as Curator
+patch:
+  operationId: updateFlowCytometryGroupAsCurator
+  parameters:
+    - description: Unique identifier (accession) of the object.
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/CurationSource.yaml
+    description: |+
+      ## Data
+
+      See CurationSource model for details of the data fields.
+
+    required: false
+  responses:
+    '200':
+      content: {}
+      description: >-
+        The objects was successfully created. The returned value is the updated
+        object, along with any warnings.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '404':
+      content: {}
+      description: No object exists with the given ID.
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Set curation status of a group by ID (accession)
+  tags:
+    - Flow Cytometry SPoT as Curator
+  x-codegen-request-body-name: body

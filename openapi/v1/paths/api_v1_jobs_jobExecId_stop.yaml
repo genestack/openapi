@@ -1,0 +1,22 @@
+put:
+  operationId: stop
+  parameters:
+    - in: path
+      name: jobExecId
+      required: true
+      schema:
+        format: int64
+        type: integer
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Info.yaml
+      description: successful operation
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: stop running job
+  tags:
+    - Job operations

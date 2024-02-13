@@ -1,0 +1,45 @@
+delete:
+  operationId: deleteFile
+  parameters:
+    - description: xrefset ID
+      in: path
+      name: id
+      required: true
+      schema:
+        pattern: .*
+        type: string
+  responses:
+    '204':
+      content: {}
+      description: >-
+        Xrefset file successfully marked for deletion, mappings have been
+        removed
+    '400':
+      content: {}
+      description: Invalid data in the request. See the error message for details.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '403':
+      content: {}
+      description: Not enough permissions to work with the xrefset.
+    '404':
+      content: {}
+      description: The xrefset does not exist.
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: |-
+    Delete a xrefset with all related data.
+    Only users who uploaded the xrefset are allowed to delete it.
+  tags:
+    - Xrefset queries
