@@ -12,7 +12,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/StudyValidationSummary.yaml
+            $ref: "#/components/schemas/StudyValidationSummary"
       description: Study validation result.
     '401':
       content: {}
@@ -32,3 +32,7 @@ get:
   summary: Retrieve validation summary by querying study ID (accession)
   tags:
     - Validation summary as Curator
+components:
+  schemas:
+    StudyValidationSummary:
+      $ref: ../components/schemas/StudyValidationSummary.yaml

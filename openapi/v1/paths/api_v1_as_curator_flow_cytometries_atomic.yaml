@@ -17,7 +17,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/AtomicFlowCytometrySource.yaml
+          $ref: "#/components/schemas/AtomicFlowCytometrySource"
     description: >-
       ## Data
 
@@ -38,7 +38,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/FlowCytometryItem.yaml
+            $ref: "#/components/schemas/FlowCytometryItem"
       description: >-
         The objects were successfully created. The returned value is a list of
         created objects.
@@ -68,3 +68,9 @@ post:
   tags:
     - Flow Cytometry SPoT as Curator
   x-codegen-request-body-name: source
+components:
+  schemas:
+    AtomicFlowCytometrySource:
+      $ref: ../components/schemas/AtomicFlowCytometrySource.yaml
+    FlowCytometryItem:
+      $ref: ../components/schemas/FlowCytometryItem.yaml

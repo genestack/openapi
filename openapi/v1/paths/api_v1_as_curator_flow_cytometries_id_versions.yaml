@@ -13,7 +13,7 @@ get:
         application/json:
           schema:
             items:
-              $ref: ../components/schemas/CommitInfo.yaml
+              $ref: "#/components/schemas/CommitInfo"
             type: array
       description: >-
         The request was successful. The returned value is the list of  object
@@ -36,3 +36,7 @@ get:
   summary: Retrieve a list of object versions by ID
   tags:
     - Flow Cytometry SPoT as Curator
+components:
+  schemas:
+    CommitInfo:
+      $ref: ../components/schemas/CommitInfo.yaml

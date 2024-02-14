@@ -44,12 +44,12 @@ get:
         application/json:
           schema:
             items:
-              $ref: ../components/schemas/Preparation.yaml
+              $ref: "#/components/schemas/Preparation"
             type: array
         text/tab-separated-values:
           schema:
             items:
-              $ref: ../components/schemas/Preparation.yaml
+              $ref: "#/components/schemas/Preparation"
             type: array
       description: The request was successful. The returned value is a list of objects.
     '400':
@@ -73,3 +73,7 @@ get:
   summary: Retrieve preparation metadata by querying related sample ID (accession)
   tags:
     - Preparation integration as Curator
+components:
+  schemas:
+    Preparation:
+      $ref: ../components/schemas/Preparation.yaml

@@ -44,12 +44,12 @@ get:
         application/json:
           schema:
             items:
-              $ref: ../components/schemas/Library.yaml
+              $ref: "#/components/schemas/Library"
             type: array
         text/tab-separated-values:
           schema:
             items:
-              $ref: ../components/schemas/Library.yaml
+              $ref: "#/components/schemas/Library"
             type: array
       description: The request was successful. The returned value is a list of objects.
     '400':
@@ -73,3 +73,7 @@ get:
   summary: Retrieve library metadata by querying related sample ID (accession)
   tags:
     - Library integration as User
+components:
+  schemas:
+    Library:
+      $ref: ../components/schemas/Library.yaml

@@ -163,10 +163,10 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ListResponse.yaml
+            $ref: "#/components/schemas/ListResponse"
         text/tab-separated-values:
           schema:
-            $ref: ../components/schemas/ListResponse.yaml
+            $ref: "#/components/schemas/ListResponse"
       description: The request was successful. The returned value is a list of objects.
     '401':
       content: {}
@@ -207,7 +207,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/SampleSource.yaml
+          $ref: "#/components/schemas/SampleSource"
     required: false
   responses:
     '201':
@@ -215,7 +215,7 @@ post:
         application/json:
           schema:
             items:
-              $ref: ../components/schemas/Sample.yaml
+              $ref: "#/components/schemas/Sample"
             type: array
       description: Object successfully created.
     '400':
@@ -242,3 +242,12 @@ post:
   tags:
     - Sample SPoT as Curator
   x-codegen-request-body-name: source
+    - Preparation SPoT as Curator
+components:
+  schemas:
+    ListResponse:
+      $ref: ../components/schemas/ListResponse.yaml
+    SampleSource:
+      $ref: ../components/schemas/SampleSource.yaml
+    Sample:
+      $ref: ../components/schemas/Sample.yaml

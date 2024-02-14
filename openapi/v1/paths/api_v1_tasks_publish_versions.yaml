@@ -18,7 +18,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/TaskInfo.yaml
+            $ref: "#/components/schemas/TaskInfo"
       description: Task information.
     '401':
       content: {}
@@ -43,3 +43,7 @@ post:
     the instance.
   tags:
     - Tasks API
+components:
+  schemas:
+    TaskInfo:
+      $ref: ../components/schemas/TaskInfo.yaml

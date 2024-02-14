@@ -192,10 +192,10 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ListResponse.yaml
+            $ref: "#/components/schemas/ListResponse"
         text/tab-separated-values:
           schema:
-            $ref: ../components/schemas/ListResponse.yaml
+            $ref: "#/components/schemas/ListResponse"
       description: The request was successful. The returned value is a list of objects.
     '401':
       content: {}
@@ -215,3 +215,7 @@ get:
   summary: Retrieve study metadata objects by querying related samples
   tags:
     - Study integration as User
+components:
+  schemas:
+    ListResponse:
+      $ref: ../components/schemas/ListResponse.yaml

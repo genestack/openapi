@@ -30,7 +30,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/MetadataContent.yaml
+          $ref: "#/components/schemas/MetadataContent"
     description: 'Metadata in the form of `{key: value, key2: value2, ...}`'
     required: false
   responses:
@@ -38,7 +38,7 @@ patch:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/MetadataContent.yaml
+            $ref: "#/components/schemas/MetadataContent"
       description: >-
         The objects was successfully created. The returned value is the updated
         object, along with any warnings.
@@ -67,3 +67,7 @@ patch:
   tags:
     - Sample SPoT as Curator
   x-codegen-request-body-name: body
+components:
+  schemas:
+    MetadataContent:
+      $ref: ../components/schemas/MetadataContent.yaml

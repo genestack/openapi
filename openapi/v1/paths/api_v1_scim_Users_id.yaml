@@ -15,13 +15,13 @@ delete:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: The supplied user ID is invalid.
     '401':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         User is not authenticated. Please supply a valid Access Token in the
         `Authorization` HTTP header (e.g. Authorization: bearer [token])
@@ -30,7 +30,7 @@ delete:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         Operation is not permitted. The "Manage organization" permission is
         required.
@@ -38,13 +38,13 @@ delete:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: There are no users with the specified id.
     '500':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         An internal server error occurred. This indicates an unexpected failure
         in the Genestack system, please file a bug report to
@@ -72,19 +72,19 @@ get:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/UserResponse.yaml
+            $ref: "#/components/schemas/UserResponse"
       description: The request was successful.
     '400':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: The supplied user ID is invalid.
     '401':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         User is not authenticated. Please supply a valid Access Token in the
         `Authorization` HTTP header (e.g. Authorization: bearer [token])
@@ -93,7 +93,7 @@ get:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         Operation is not permitted. The "Manage organization" permission is
         required.
@@ -101,13 +101,13 @@ get:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: There are no available users with the specified id.
     '500':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         An internal server error occurred. This indicates an unexpected failure
         in the Genestack system, please file a bug report to
@@ -144,14 +144,14 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/UserPatch.yaml
+          $ref: "#/components/schemas/UserPatch"
     required: true
   responses:
     '200':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/UserResponse.yaml
+            $ref: "#/components/schemas/UserResponse"
       description: >-
         User is successfully updated. The response body contains the
         representation of the updated user.
@@ -159,7 +159,7 @@ patch:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         The object cannot be updated, the supplied data or metadata are
         incorrect. See the error message for details.
@@ -167,7 +167,7 @@ patch:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         User is not authenticated. Please supply a valid Access Token in the
         `Authorization` HTTP header (e.g. Authorization: bearer [token])
@@ -176,7 +176,7 @@ patch:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         Operation is not permitted. The "Manage organization" permission is
         required.
@@ -184,13 +184,13 @@ patch:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: There are no users with the specified id.
     '500':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         An internal server error occurred. This indicates an unexpected failure
         in the Genestack system, please file a bug report to
@@ -202,3 +202,17 @@ patch:
   tags:
     - Users
   x-codegen-request-body-name: body
+components:
+  schemas:
+    FilterUsersResponse:
+      $ref: ../components/schemas/FilterUsersResponse.yaml
+    SCIMErrorResponse:
+      $ref: ../components/schemas/SCIMErrorResponse.yaml
+    BaseErrorResponse:
+      $ref: ../components/schemas/BaseErrorResponse.yaml
+    User:
+      $ref: ../components/schemas/User.yaml
+    UserPatch:
+      $ref: ../components/schemas/UserPatch.yaml
+    UserResponse:
+      $ref: ../components/schemas/UserResponse.yaml

@@ -41,7 +41,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ListResponse.yaml
+            $ref: "#/components/schemas/ListResponse"
       description: The request was successful. The returned value is a list of objects.
     '400':
       content: {}
@@ -69,3 +69,7 @@ get:
     libraries, not unique pairs.
   tags:
     - Library integration as Curator
+components:
+  schemas:
+    ListResponse:
+      $ref: ../components/schemas/ListResponse.yaml

@@ -41,7 +41,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ListResponse.yaml
+            $ref: "#/components/schemas/ListResponse"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -67,3 +67,7 @@ get:
   summary: Retrieve run objects related to the given group
   tags:
     - Variant SPoT as Curator
+components:
+  schemas:
+    ListResponse:
+      $ref: ../components/schemas/ListResponse.yaml

@@ -240,7 +240,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/VariantResponse.yaml
+            $ref: "#/components/schemas/VariantResponse"
       description: Retrieved variant data.
     '400':
       content: {}
@@ -266,3 +266,7 @@ get:
   summary: Retrieve multiple variant data and metadata objects
   tags:
     - Variant SPoT as User
+components:
+  schemas:
+    VariantResponse:
+      $ref: ../components/schemas/VariantResponse.yaml

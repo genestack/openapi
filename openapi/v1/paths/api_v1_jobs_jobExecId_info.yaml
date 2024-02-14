@@ -12,7 +12,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Info.yaml
+            $ref: "#/components/schemas/Info"
       description: successful operation
   security:
     - Access-token: []
@@ -20,3 +20,7 @@ get:
   summary: get information about one particular job execution
   tags:
     - Job operations
+components:
+  schemas:
+    Info:
+      $ref: ../components/schemas/Info.yaml

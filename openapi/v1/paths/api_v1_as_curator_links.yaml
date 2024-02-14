@@ -103,7 +103,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ListResponse.yaml
+            $ref: "#/components/schemas/ListResponse"
       description: The request was successful. The returned value is a list of objects.
     '400':
       content: {}
@@ -138,7 +138,7 @@ post:
       application/json:
         schema:
           items:
-            $ref: ../components/schemas/Link.yaml
+            $ref: "#/components/schemas/Link"
           type: array
     required: false
   responses:
@@ -175,3 +175,9 @@ post:
   tags:
     - Linkage as Curator
   x-codegen-request-body-name: links
+components:
+  schemas:
+    Link:
+      $ref: ../components/schemas/Link.yaml
+    ListResponse:
+      $ref: ../components/schemas/ListResponse.yaml

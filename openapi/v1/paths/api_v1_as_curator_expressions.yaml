@@ -194,7 +194,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ExpressionResponse.yaml
+            $ref: "#/components/schemas/ExpressionResponse"
       description: Retrieved Expression data.
     '400':
       content: {}
@@ -220,3 +220,7 @@ get:
   summary: Retrieve multiple expression data and metadata objects
   tags:
     - Expression SPoT as Curator
+components:
+  schemas:
+    ExpressionResponse:
+      $ref: ../components/schemas/ExpressionResponse.yaml

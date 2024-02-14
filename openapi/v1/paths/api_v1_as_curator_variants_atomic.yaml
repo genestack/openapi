@@ -17,7 +17,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/VariantSource.yaml
+          $ref: "#/components/schemas/VariantSource"
     description: >-
       ## Data
 
@@ -38,7 +38,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/VariantItem.yaml
+            $ref: "#/components/schemas/VariantItem"
       description: >-
         The objects were successfully created. The returned value is a list of
         created objects.
@@ -68,3 +68,9 @@ post:
   tags:
     - Variant SPoT as Curator
   x-codegen-request-body-name: source
+components:
+  schemas:
+    VariantSource:
+      $ref: ../components/schemas/VariantSource.yaml
+    VariantItem:
+      $ref: ../components/schemas/VariantItem.yaml

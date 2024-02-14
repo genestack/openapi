@@ -43,7 +43,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/FlowCytometryItem.yaml
+            $ref: "#/components/schemas/FlowCytometryItem"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -69,3 +69,7 @@ get:
   summary: Retrieve a single sample flow cytometry by ID (accession)
   tags:
     - Flow Cytometry SPoT as User
+components:
+  schemas:
+    FlowCytometryItem:
+      $ref: ../components/schemas/FlowCytometryItem.yaml

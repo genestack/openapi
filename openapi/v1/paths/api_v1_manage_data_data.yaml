@@ -31,7 +31,7 @@ delete:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ManagedObject.yaml
+            $ref: "#/components/schemas/ManagedObject"
       description: The deletion of the following files and all linked data has started.
     '400':
       content: {}
@@ -68,3 +68,7 @@ delete:
   summary: Delete objects from ODM
   tags:
     - Manage Data
+components:
+  schemas:
+    ManagedObject:
+      $ref: ../components/schemas/ManagedObject.yaml

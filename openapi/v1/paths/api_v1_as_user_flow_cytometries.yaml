@@ -201,7 +201,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/FlowCytometryResponse.yaml
+            $ref: "#/components/schemas/FlowCytometryResponse"
       description: Retrieved Flow Cytometry data.
     '400':
       content: {}
@@ -227,3 +227,7 @@ get:
   summary: Retrieve multiple flow cytometry data and metadata objects
   tags:
     - Flow Cytometry SPoT as User
+components:
+  schemas:
+    FlowCytometryResponse:
+      $ref: ../components/schemas/FlowCytometryResponse.yaml

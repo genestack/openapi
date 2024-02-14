@@ -24,7 +24,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/TaskInfo.yaml
+            $ref: "#/components/schemas/TaskInfo"
       description: Task information.
     '401':
       content: {}
@@ -47,3 +47,7 @@ post:
   summary: Asynchronous task that publishes all pending versions for a single study.
   tags:
     - Metadata versioning as Curator
+components:
+  schemas:
+    TaskInfo:
+      $ref: ../components/schemas/TaskInfo.yaml

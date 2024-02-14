@@ -88,7 +88,7 @@ get:
         application/json:
           schema:
             items:
-              $ref: ../components/schemas/MetadataWithId.yaml
+              $ref: "#/components/schemas/MetadataWithId"
             type: array
       description: The request was successful. The returned value is the object.
     '400':
@@ -112,3 +112,7 @@ get:
   summary: Retrieve group metadata by querying study ID (accession)
   tags:
     - Expression integration as User
+components:
+  schemas:
+    MetadataWithId:
+      $ref: ../components/schemas/MetadataWithId.yaml

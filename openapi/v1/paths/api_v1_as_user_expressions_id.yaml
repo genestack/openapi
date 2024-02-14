@@ -46,7 +46,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ExpressionItem.yaml
+            $ref: "#/components/schemas/ExpressionItem"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -72,3 +72,7 @@ get:
   summary: Retrieve a single expression object by ID (accession)
   tags:
     - Expression SPoT as User
+components:
+  schemas:
+    ExpressionItem:
+      $ref: ../components/schemas/ExpressionItem.yaml

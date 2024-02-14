@@ -50,19 +50,19 @@ get:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/FilterGroupsResponse.yaml
+            $ref: "#/components/schemas/FilterGroupsResponse"
       description: The request was successful.
     '400':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: Incorrect syntax in the request. See the error message for details.
     '401':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         User is not authenticated. Please supply a valid Access Token in the
         `Authorization` HTTP header (e.g. Authorization: bearer [token])
@@ -71,7 +71,7 @@ get:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         An internal server error occurred. This indicates an unexpected failure
         in the Genestack system, please file a bug report to
@@ -96,14 +96,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Group.yaml
+          $ref: "#/components/schemas/Group"
     required: true
   responses:
     '201':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/GroupResponse.yaml
+            $ref: "#/components/schemas/GroupResponse"
       description: >-
         The operation is successful. The response body contains the
         representation of the newly created group.
@@ -111,7 +111,7 @@ post:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         The object cannot be created, the supplied data or metadata are
         incorrect. See the error message for details.
@@ -119,7 +119,7 @@ post:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         User is not authenticated. Please supply a valid Access Token in the
         `Authorization` HTTP header (e.g. Authorization: bearer [token])
@@ -128,7 +128,7 @@ post:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         The object cannot be created, data conflict. See the error message for
         details.
@@ -136,7 +136,7 @@ post:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         An internal server error occurred. This indicates an unexpected failure
         in the Genestack system, please file a bug report to
@@ -148,3 +148,15 @@ post:
   tags:
     - Groups
   x-codegen-request-body-name: body
+components:
+  schemas:
+    FilterGroupsResponse:
+      $ref: ../components/schemas/FilterGroupsResponse.yaml
+    SCIMErrorResponse:
+      $ref: ../components/schemas/SCIMErrorResponse.yaml
+    BaseErrorResponse:
+      $ref: ../components/schemas/BaseErrorResponse.yaml
+    Group:
+      $ref: ../components/schemas/Group.yaml
+    GroupResponse:
+      $ref: ../components/schemas/GroupResponse.yaml

@@ -4,14 +4,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/XrefSetCreateRequest.yaml
+          $ref: "#/components/schemas/XrefSetCreateRequest"
     required: false
   responses:
     '200':
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/XrefSetCreateResponse.yaml
+            $ref: "#/components/schemas/XrefSetCreateResponse"
       description: successful operation
     '201':
       content: {}
@@ -45,3 +45,7 @@ post:
   tags:
     - Xrefset queries
   x-codegen-request-body-name: body
+components:
+  schemas:
+    XrefSetCreateRequest:
+      $ref: ../components/schemas/XrefSetCreateRequest.yaml

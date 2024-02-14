@@ -24,13 +24,13 @@ delete:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: The supplied group ID is invalid.
     '401':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         User is not authenticated. Please supply a valid Access Token in the
         `Authorization` HTTP header (e.g. Authorization: bearer [token])
@@ -39,7 +39,7 @@ delete:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         Operation is not permitted. The "Group admin" role in the group or the
         "Manage groups" permission is required.
@@ -47,13 +47,13 @@ delete:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: There are no groups with the specified id.
     '500':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         An internal server error occurred. This indicates an unexpected failure
         in the Genestack system, please file a bug report to
@@ -92,19 +92,19 @@ get:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/GroupResponse.yaml
+            $ref: "#/components/schemas/GroupResponse"
       description: The request was successful.
     '400':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: The supplied group ID is invalid.
     '401':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         User is not authenticated. Please supply a valid Access Token in the
         `Authorization` HTTP header (e.g. Authorization: bearer [token])
@@ -113,13 +113,13 @@ get:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: There are no available groups with the specified id.
     '500':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         An internal server error occurred. This indicates an unexpected failure
         in the Genestack system, please file a bug report to
@@ -155,7 +155,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/GroupPatch.yaml
+          $ref: "#/components/schemas/GroupPatch"
     required: true
   responses:
     '204':
@@ -165,7 +165,7 @@ patch:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         The object cannot be updated, the supplied data or metadata are
         incorrect. See the error message for details.
@@ -173,7 +173,7 @@ patch:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         User is not authenticated. Please supply a valid Access Token in the
         `Authorization` HTTP header (e.g. Authorization: bearer [token])
@@ -182,7 +182,7 @@ patch:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: >-
         Operation is not permitted. The "Group admin" role in the group or the
         "Manage groups" permission is required.
@@ -190,13 +190,13 @@ patch:
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/SCIMErrorResponse.yaml
+            $ref: "#/components/schemas/SCIMErrorResponse"
       description: There are no groups with the specified id.
     '500':
       content:
         application/scim+json:
           schema:
-            $ref: ../components/schemas/BaseErrorResponse.yaml
+            $ref: "#/components/schemas/BaseErrorResponse"
       description: >-
         An internal server error occurred. This indicates an unexpected failure
         in the Genestack system, please file a bug report to
@@ -208,3 +208,13 @@ patch:
   tags:
     - Groups
   x-codegen-request-body-name: body
+components:
+  schemas:
+    SCIMErrorResponse:
+      $ref: ../components/schemas/SCIMErrorResponse.yaml
+    BaseErrorResponse:
+      $ref: ../components/schemas/BaseErrorResponse.yaml
+    GroupPatch:
+      $ref: ../components/schemas/GroupPatch.yaml
+    GroupResponse:
+      $ref: ../components/schemas/GroupResponse.yaml

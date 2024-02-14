@@ -12,7 +12,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/CurationSource.yaml
+            $ref: "#/components/schemas/CurationSource"
       description: successful operation
     '204':
       content: {}
@@ -51,7 +51,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/CurationSource.yaml
+          $ref: "#/components/schemas/CurationSource"
     description: |+
       ## Data
 
@@ -86,3 +86,7 @@ patch:
   tags:
     - Flow Cytometry SPoT as Curator
   x-codegen-request-body-name: body
+components:
+  schemas:
+    CurationSource:
+      $ref: ../components/schemas/CurationSource.yaml

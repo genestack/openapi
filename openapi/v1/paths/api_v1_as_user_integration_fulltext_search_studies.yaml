@@ -13,14 +13,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/SearchStudyRequest.yaml
+          $ref: "#/components/schemas/SearchStudyRequest"
     required: true
   responses:
     '200':
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/FindObjectsResponse.yaml
+            $ref: "#/components/schemas/FindObjectsResponse"
       description: The request was successful. Retrieved studies and filters
     '400':
       content: {}
@@ -43,3 +43,9 @@ post:
   tags:
     - Study integration as User
   x-codegen-request-body-name: request
+components:
+  schemas:
+    SearchStudyRequest:
+      $ref: ../components/schemas/SearchStudyRequest.yaml
+    FindObjectsResponse:
+      $ref: ../components/schemas/FindObjectsResponse.yaml

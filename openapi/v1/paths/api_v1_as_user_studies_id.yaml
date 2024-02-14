@@ -43,7 +43,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Study.yaml
+            $ref: "#/components/schemas/Study"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -69,3 +69,7 @@ get:
   summary: Retrieve a single study object by ID (accession)
   tags:
     - Study SPoT as User
+components:
+  schemas:
+    Study:
+      $ref: ../components/schemas/Study.yaml

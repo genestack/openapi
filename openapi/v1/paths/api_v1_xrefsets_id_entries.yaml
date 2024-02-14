@@ -55,7 +55,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/XrefSetSearchResult.yaml
+            $ref: "#/components/schemas/XrefSetSearchResult"
       description: >-
         Json object with the cursor and json array of retrieved xrefset data.
         Response entries are ordered by xrefset ID and then by source ID.
@@ -85,3 +85,7 @@ get:
     targetId
   tags:
     - Xrefset queries
+components:
+  schemas:
+    XrefSetSearchResult:
+      $ref: ../components/schemas/XrefSetSearchResult.yaml

@@ -17,7 +17,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/AtomicSampleSource.yaml
+          $ref: "#/components/schemas/AtomicSampleSource"
     description: >-
       ## Metadata
 
@@ -32,7 +32,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/MetadataWithId.yaml
+            $ref: "#/components/schemas/MetadataWithId"
       description: >-
         The objects were successfully created. The returned value is a list of
         created objects.
@@ -62,3 +62,9 @@ post:
   tags:
     - Sample SPoT as Curator
   x-codegen-request-body-name: source
+components:
+  schemas:
+    AtomicSampleSource:
+      $ref: ../components/schemas/AtomicSampleSource.yaml
+    MetadataWithId:
+      $ref: ../components/schemas/MetadataWithId.yaml

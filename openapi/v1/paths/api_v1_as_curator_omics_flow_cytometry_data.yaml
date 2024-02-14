@@ -375,7 +375,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/OmicsResponse.yaml
+            $ref: "#/components/schemas/OmicsResponse"
       description: Omics query result.
     '400':
       content: {}
@@ -398,3 +398,7 @@ get:
   summary: Retrieve flow cytometry data objects by searching across multiple data types
   tags:
     - Omics queries as Curator
+components:
+  schemas:
+    OmicsResponse:
+      $ref: ../components/schemas/OmicsResponse.yaml

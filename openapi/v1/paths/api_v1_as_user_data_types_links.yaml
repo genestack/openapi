@@ -15,7 +15,7 @@ get:
         application/json:
           schema:
             items:
-              $ref: ../components/schemas/SourceTypePair.yaml
+              $ref: "#/components/schemas/SourceTypePair"
             type: array
             uniqueItems: true
       description: The request was successful. The returned value is a list of objects.
@@ -42,3 +42,7 @@ get:
     criteria.
   tags:
     - Linkage as User
+components:
+  schemas:
+    SourceTypePair:
+      $ref: ../components/schemas/SourceTypePair.yaml

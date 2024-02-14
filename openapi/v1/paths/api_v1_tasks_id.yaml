@@ -15,7 +15,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/TaskInfo.yaml
+            $ref: "#/components/schemas/TaskInfo"
       description: Task information.
     '401':
       content: {}
@@ -38,3 +38,7 @@ get:
   summary: Retrieve information about any ODM task.
   tags:
     - Tasks API
+components:
+  schemas:
+    TaskInfo:
+      $ref: ../components/schemas/TaskInfo.yaml

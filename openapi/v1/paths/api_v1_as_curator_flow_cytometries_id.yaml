@@ -43,7 +43,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/FlowCytometryItem.yaml
+            $ref: "#/components/schemas/FlowCytometryItem"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -101,7 +101,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/MetadataContent.yaml
+          $ref: "#/components/schemas/MetadataContent"
     description: 'Metadata in the form of `{key: value, key2: value2, ...}`'
     required: false
   responses:
@@ -109,7 +109,7 @@ patch:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/SignalRun.yaml
+            $ref: "#/components/schemas/SignalRun"
       description: >-
         The objects was successfully created. The returned value is the updated
         object, along with any warnings.
@@ -138,3 +138,11 @@ patch:
   tags:
     - Flow Cytometry SPoT as Curator
   x-codegen-request-body-name: body
+components:
+  schemas:
+    FlowCytometryItem:
+      $ref: ../components/schemas/FlowCytometryItem.yaml
+    MetadataContent:
+      $ref: ../components/schemas/MetadataContent.yaml
+    SignalRun:
+      $ref: ../components/schemas/SignalRun.yaml

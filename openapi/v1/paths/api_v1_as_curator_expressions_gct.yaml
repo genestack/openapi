@@ -18,14 +18,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/ExpressionSignalSource.yaml
+          $ref: "#/components/schemas/ExpressionSignalSource"
     required: false
   responses:
     '201':
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/RunsResponse.yaml
+            $ref: "#/components/schemas/RunsResponse"
       description: >-
         The objects were successfully created. The returned value is a list of
         created objects.
@@ -55,3 +55,9 @@ post:
   tags:
     - Expression SPoT as Curator
   x-codegen-request-body-name: source
+components:
+  schemas:
+    ExpressionSignalSource:
+      $ref: ../components/schemas/ExpressionSignalSource.yaml
+    RunsResponse:
+      $ref: ../components/schemas/RunsResponse.yaml

@@ -15,7 +15,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/StudyCurationStatusResponse.yaml
+            $ref: "#/components/schemas/StudyCurationStatusResponse"
       description: Study curation status.
     '401':
       content: {}
@@ -56,7 +56,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/StudyCurationStatusUpdateRequest.yaml
+          $ref: "#/components/schemas/StudyCurationStatusUpdateRequest"
     description: Curation status of a study.
     required: true
   responses:
@@ -64,7 +64,7 @@ patch:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/StudyCurationStatusResponse.yaml
+            $ref: "#/components/schemas/StudyCurationStatusResponse"
       description: Study curation status.
     '401':
       content: {}
@@ -88,3 +88,9 @@ patch:
   tags:
     - Study integration as Curator
   x-codegen-request-body-name: body
+components:
+  schemas:
+    StudyCurationStatusResponse:
+      $ref: ../components/schemas/StudyCurationStatusResponse.yaml
+    StudyCurationStatusUpdateRequest:
+      $ref: ../components/schemas/StudyCurationStatusUpdateRequest.yaml

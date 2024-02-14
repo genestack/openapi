@@ -49,7 +49,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/SignalRun.yaml
+            $ref: "#/components/schemas/SignalRun"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -75,3 +75,7 @@ get:
   summary: Retrieve a single sample flow cytometry by ID (accession)
   tags:
     - Flow Cytometry SPoT as Curator
+components:
+  schemas:
+    SignalRun:
+      $ref: ../components/schemas/SignalRun.yaml

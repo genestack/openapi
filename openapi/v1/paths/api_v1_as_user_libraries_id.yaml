@@ -43,7 +43,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Library.yaml
+            $ref: "#/components/schemas/Library"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -69,3 +69,7 @@ get:
   summary: Retrieve a single library object by ID (accession)
   tags:
     - Library SPoT as User
+components:
+  schemas:
+    Library:
+      $ref: ../components/schemas/Library.yaml

@@ -28,14 +28,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/ImportSignalRunRequest.yaml
+          $ref: "#/components/schemas/ImportSignalRunRequest"
     required: false
   responses:
     '200':
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Info.yaml
+            $ref: "#/components/schemas/Info"
       description: successful operation
   security:
     - Access-token: []
@@ -44,3 +44,9 @@ post:
   tags:
     - Data import jobs
   x-codegen-request-body-name: body
+components:
+  schemas:
+    ImportSignalRunRequest:
+      $ref: ../components/schemas/ImportSignalRunRequest.yaml
+    Info:
+      $ref: ../components/schemas/Info.yaml

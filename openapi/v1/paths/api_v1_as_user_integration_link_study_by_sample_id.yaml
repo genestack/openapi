@@ -43,7 +43,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Study.yaml
+            $ref: "#/components/schemas/Study"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -66,3 +66,7 @@ get:
   summary: Retrieve study metadata by querying sample ID (accession)
   tags:
     - Study integration as User
+components:
+  schemas:
+    Study:
+      $ref: ../components/schemas/Study.yaml

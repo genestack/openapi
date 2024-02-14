@@ -17,7 +17,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/AtomicExpressionSource.yaml
+          $ref: "#/components/schemas/AtomicExpressionSource"
     description: >-
       ## Data
 
@@ -38,7 +38,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ExpressionItem.yaml
+            $ref: "#/components/schemas/ExpressionItem"
       description: >-
         The objects were successfully created. The returned value is a list of
         created objects.
@@ -68,3 +68,9 @@ post:
   tags:
     - Expression SPoT as Curator
   x-codegen-request-body-name: source
+components:
+  schemas:
+    AtomicExpressionSource:
+      $ref: ../components/schemas/AtomicExpressionSource.yaml
+    ExpressionItem:
+      $ref: ../components/schemas/ExpressionItem.yaml

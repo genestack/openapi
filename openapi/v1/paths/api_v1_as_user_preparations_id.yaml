@@ -43,7 +43,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Preparation.yaml
+            $ref: "#/components/schemas/Preparation"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -69,3 +69,7 @@ get:
   summary: Retrieve a single preparation object by ID (accession)
   tags:
     - Preparation SPoT as User
+components:
+  schemas:
+    Preparation:
+      $ref: ../components/schemas/Preparation.yaml

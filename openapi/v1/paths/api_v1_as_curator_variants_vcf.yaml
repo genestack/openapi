@@ -16,14 +16,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/VariantSignalSource.yaml
+          $ref: "#/components/schemas/VariantSignalSource"
     required: false
   responses:
     '201':
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/RunsResponse.yaml
+            $ref: "#/components/schemas/RunsResponse"
       description: >-
         The objects were successfully created. The returned value is a list of
         created objects.
@@ -53,3 +53,9 @@ post:
   tags:
     - Variant SPoT as Curator
   x-codegen-request-body-name: source
+components:
+  schemas:
+    VariantSignalSource:
+      $ref: ../components/schemas/VariantSignalSource.yaml
+    RunsResponse:
+      $ref: ../components/schemas/RunsResponse.yaml

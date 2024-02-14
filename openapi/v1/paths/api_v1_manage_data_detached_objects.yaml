@@ -61,7 +61,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/DetachedCollection.yaml
+            $ref: "#/components/schemas/DetachedCollection"
       description: Retrieved detached data.
     '400':
       content: {}
@@ -87,3 +87,7 @@ get:
   summary: Retrieve a list of detached objects
   tags:
     - Manage Data
+components:
+  schemas:
+    DetachedCollection:
+      $ref: ../components/schemas/DetachedCollection.yaml

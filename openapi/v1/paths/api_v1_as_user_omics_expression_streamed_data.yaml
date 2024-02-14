@@ -230,7 +230,7 @@ get:
       content:
         text/csv:
           schema:
-            $ref: ../components/schemas/StreamingOutput.yaml
+            $ref: "#/components/schemas/StreamingOutput"
       description: Stream of retrieved Expression data.
     '400':
       content: {}
@@ -253,3 +253,7 @@ get:
   summary: Stream data from a given tabular file
   tags:
     - Omics queries as User
+components:
+  schemas:
+    StreamingOutput:
+      $ref: ../components/schemas/StreamingOutput.yaml

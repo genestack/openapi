@@ -43,7 +43,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Sample.yaml
+            $ref: "#/components/schemas/Sample"
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -69,3 +69,7 @@ get:
   summary: Retrieve a single sample object by ID (accession)
   tags:
     - Sample SPoT as User
+components:
+  schemas:
+    Sample:
+      $ref: ../components/schemas/Sample.yaml
