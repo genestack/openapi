@@ -41,8 +41,7 @@ get:
       content:
         application/json:
           schema:
-            ListResponse:
-              $ref: ../schemas/common/ListResponse.yaml
+            $ref: ../schemas/common/ListResponse.yaml
       description: The request was successful. The returned value is the object.
     '400':
       content: {}

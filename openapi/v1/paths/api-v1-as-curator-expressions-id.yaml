@@ -46,8 +46,7 @@ get:
       content:
         application/json:
           schema:
-            ExpressionItem:
-              $ref: ../schemas/expression/ExpressionItem.yaml
+            $ref: ../schemas/expression/ExpressionItem.yaml
       description: The request was successful. The returned value is the object.
     '400':
       content: {}
@@ -105,8 +104,7 @@ patch:
     content:
       application/json:
         schema:
-          MetadataContent:
-            $ref: ../schemas/common/MetadataContent.yaml
+          $ref: ../schemas/common/MetadataContent.yaml
     description: 'Metadata in the form of `{key: value, key2: value2, ...}`'
     required: false
   responses:
@@ -114,8 +112,7 @@ patch:
       content:
         application/json:
           schema:
-            SignalRun:
-              $ref: ../schemas/common/SignalRun.yaml
+            $ref: ../schemas/common/SignalRun.yaml
       description: >-
         The objects was successfully created. The returned value is the updated
         object, along with any warnings.

@@ -49,8 +49,7 @@ get:
       content:
         application/json:
           schema:
-            SignalRun:
-              $ref: ../schemas/common/SignalRun.yaml
+            $ref: ../schemas/common/SignalRun.yaml
       description: The request was successful. The returned value is the object.
     '400':
       content: {}

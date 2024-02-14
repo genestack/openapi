@@ -80,8 +80,7 @@ get:
       content:
         application/json:
           schema:
-            MetadataWithId:
-              $ref: ../schemas/common/MetadataWithId.yaml
+            $ref: ../schemas/common/MetadataWithId.yaml
       description: The request was successful. The returned value is the object.
     '400':
       content: {}

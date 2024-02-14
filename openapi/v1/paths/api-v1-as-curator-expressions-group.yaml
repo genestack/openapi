@@ -180,8 +180,7 @@ get:
       content:
         application/json:
           schema:
-            ListResponse:
-              $ref: ../schemas/common/ListResponse.yaml
+            $ref: ../schemas/common/ListResponse.yaml
       description: The request was successful. The returned value is a list of objects.
     '400':
       content: {}
