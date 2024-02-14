@@ -127,7 +127,8 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../schemas/expression/ExpressionResponse.yaml"
+            ExpressionResponse:
+              $ref: ../schemas/expression/ExpressionResponse.yaml
       description: Retrieved Expression data.
     "400":
       content: {}
