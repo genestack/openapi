@@ -49,3 +49,5 @@ components:
   schemas:
     XrefSetCreateRequest:
       $ref: ../components/schemas/XrefSetCreateRequest.yaml
+    XrefSetCreateResponse:
+      $ref: ../components/schemas/XrefSetCreateResponse.yaml
