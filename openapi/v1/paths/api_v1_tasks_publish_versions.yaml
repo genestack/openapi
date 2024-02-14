@@ -1,0 +1,45 @@
+post:
+  description: >-
+    This endpoint publishes all information from staging and creates new
+    metadata versions for each study/associated objects with unpublished
+    changes.Only curators with the ACCESS_ALL_DATA permission can use this
+    method.
+  operationId: publishAllStudies
+  parameters:
+    - description: >-
+        Supply text to name this version. If not supplied the version name is
+        set to “Auto-published by API call”
+      in: query
+      name: versionMessage
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/TaskInfo.yaml
+      description: Task information.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '403':
+      content: {}
+      description: Forbidden
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: >-
+    Asynchronous task that publishes all pending versions across all studies in
+    the instance.
+  tags:
+    - Tasks API

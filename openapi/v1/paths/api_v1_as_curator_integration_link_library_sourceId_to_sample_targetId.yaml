@@ -1,0 +1,87 @@
+delete:
+  description: Delete a link between a library and a sample
+  operationId: deleteLibrarySampleLinkAsCurator
+  parameters:
+    - description: The ID (accession) of the library object
+      in: path
+      name: sourceId
+      required: true
+      schema:
+        type: string
+    - description: The ID (accession) of the sample object
+      in: path
+      name: targetId
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content: {}
+      description: Link deleted.
+    '400':
+      content: {}
+      description: Link cannot be deleted.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Delete a link between a library and a sample
+  tags:
+    - Library integration as Curator
+post:
+  description: >-
+    Create a link between a library and a sample.
+
+
+    Library objects of the same group can only be linked to objects of the same
+    study.
+  operationId: createLibrarySampleLinkAsCurator
+  parameters:
+    - description: The ID (accession) of the library object
+      in: path
+      name: sourceId
+      required: true
+      schema:
+        type: string
+    - description: The ID (accession) of the sample object
+      in: path
+      name: targetId
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content: {}
+      description: Link created.
+    '400':
+      content: {}
+      description: Link cannot be created.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Create a link between a library and a sample
+  tags:
+    - Library integration as Curator

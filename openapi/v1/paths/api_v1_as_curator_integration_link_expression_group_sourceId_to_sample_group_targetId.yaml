@@ -1,0 +1,119 @@
+delete:
+  description: >-
+    Delete link between a group of expression objects and a group of sample
+    objects
+  operationId: deleteExpressionGroupSampleGroupLinkAsCurator
+  parameters:
+    - description: >-
+        The ID (accession) of the group of run-level objects (corresponding to a
+        GCT file)
+      in: path
+      name: sourceId
+      required: true
+      schema:
+        type: string
+    - description: The ID (accession) of the sample group object
+      in: path
+      name: targetId
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content: {}
+      description: Link deleted.
+    '400':
+      content: {}
+      description: Link cannot be deleted.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: >-
+    Delete link between a group of expression objects and a group of sample
+    objects
+  tags:
+    - Expression integration as Curator
+post:
+  description: >-
+    Create a link between a group of expression objects and a group of sample
+    objects.
+
+
+    An expression object can be linked to one object only. If an expression
+    object is already linked to another object, this link will be deleted and a
+    new link with the specified object will be created.
+
+    Expression objects of the same group can only be linked to objects of the
+    same study.
+
+     Users can specify a custom metadata field for linking omics data to samples via the “linkingAttribute” parameter, if not specified the “Sample Source ID“ sample metadata attribute will be used by default.
+  operationId: createExpressionGroupSampleGroupLinkAsCurator
+  parameters:
+    - description: >-
+        The ID (accession) of the group of run-level objects (corresponding to a
+        GCT file)
+      in: path
+      name: sourceId
+      required: true
+      schema:
+        type: string
+    - description: The ID (accession) of the sample group object
+      in: path
+      name: targetId
+      required: true
+      schema:
+        type: string
+    - description: >-
+        Metadata field containing sample IDs to link omics data to samples. The
+        template applied to the study must contain this field in the sample
+        section.
+      in: query
+      name: linkingAttribute
+      schema:
+        type: string
+  responses:
+    '200':
+      content: {}
+      description: Not all signal data were linked to the samples.
+    '204':
+      content: {}
+      description: >-
+        All signal data were linked to the samples from the specified sample
+        group.
+    '400':
+      content: {}
+      description: >-
+        Sample group, signal group or samples to the link were not found, or the
+        specified linking attribute was not found.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: >-
+    Create a link between a group of expression objects and a group of sample
+    objects
+  tags:
+    - Expression integration as Curator

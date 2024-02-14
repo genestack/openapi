@@ -1,0 +1,44 @@
+get:
+  description: >-
+    This endpoint should be used for instructional needs, and can be used in
+    order to get the links between the Data Types.
+  operationId: getDataTypesLinksAsUser
+  parameters:
+    - description: Return only links with the specified data type.
+      in: query
+      name: type
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: ../components/schemas/SourceTypePair.yaml
+            type: array
+            uniqueItems: true
+      description: The request was successful. The returned value is a list of objects.
+    '400':
+      content: {}
+      description: Entities cannot be retrieved.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: >-
+    List all possible links between data types that match the specified
+    criteria.
+  tags:
+    - Linkage as User

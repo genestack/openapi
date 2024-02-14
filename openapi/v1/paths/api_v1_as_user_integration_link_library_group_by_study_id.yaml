@@ -1,0 +1,48 @@
+get:
+  operationId: getLibraryGroupsByStudyAsUser
+  parameters:
+    - description: >-
+        Supply this parameter with the value `term_id` as part of the query to
+        return extended information including IDs for values and dictionaries.
+      in: query
+      name: responseFormat
+      schema:
+        enum:
+          - term_id
+        type: string
+    - description: Unique identifier (accession) of the object.
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: ../components/schemas/MetadataWithId.yaml
+            type: array
+      description: The request was successful. The returned value is the object.
+    '400':
+      content: {}
+      description: The supplied object ID is invalid.
+    '401':
+      content: {}
+      description: >-
+        User is not authenticated. Please supply a valid Access Token in the
+        `Authorization` HTTP header (e.g. Authorization: bearer [token])
+         or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+    '500':
+      content: {}
+      description: >-
+        An internal server error occurred. This indicates an unexpected failure
+        in the Genestack system, please file a bug report to
+        support@genestack.com, including the error details.
+  security:
+    - Access-token: []
+    - Genestack-API-Token: []
+  summary: Retrieve group metadata by querying study ID (accession)
+  tags:
+    - Library integration as User
