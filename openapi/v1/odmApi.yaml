@@ -21251,7 +21251,6 @@ components:
       $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
-      type: "object"
     RunsResponse:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
