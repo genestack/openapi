@@ -18,14 +18,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/ExpressionSignalSource.yaml
+          $ref: ../schemas/expression/ExpressionSignalSource.yaml
     required: false
   responses:
     '201':
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/RunsResponse.yaml
+            $ref: ../schemas/common/RunsResponse.yaml
       description: >-
         The objects were successfully created. The returned value is a list of
         created objects.

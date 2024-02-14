@@ -13,7 +13,7 @@ get:
         application/json:
           schema:
             items:
-              $ref: ../components/schemas/CommitInfo.yaml
+              $ref: ../schemas/common/CommitInfo.yaml
             type: array
       description: >-
         The request was successful. The returned value is the list of  object
