@@ -30,9 +30,11 @@ build:
     COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
     RUN Rscript requirements.R && \
+        pypi-login.sh && \
         python3 \
             -m pip install \
-            -r requirements.txt
+            -r requirements.txt && \
+        pypi-clean.sh
 
     ARG --required ODM_OPENAPI_VERSION
     ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
@@ -64,22 +66,22 @@ python-api-client:
     IF echo ${ODM_OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
         RUN --push \
             --secret PYPI_TOKEN \
-            --secret PYPI_TOKEN_TEST \
             --secret NEXUS_USER \
             --secret NEXUS_PASSWORD \
                 cd generated/python/odm-api && \
                 pypi-login.sh && \
                 twine upload dist/* -r nexus-pypi-releases && \
-                twine upload dist/* -r testpypi && \
                 twine upload dist/* && \
                 pypi-clean.sh
     ELSE
         RUN --push \
+            --secret PYPI_TOKEN_TEST \
             --secret NEXUS_USER \
             --secret NEXUS_PASSWORD \
                 cd generated/python/odm-api && \
                 pypi-login.sh && \
                 twine upload dist/* -r nexus-pypi-snapshots && \
+                twine upload dist/* -r testpypi && \
                 pypi-clean.sh
     END
 
