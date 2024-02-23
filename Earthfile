@@ -67,6 +67,7 @@ python-api-client:
             --secret PYPI_TOKEN_TEST \
                 cd generated/python/odm-api && \
                 pypi-login.sh && \
+                twine upload dist/* -r nexus-pypi-releases && \
                 twine upload dist/* -r testpypi && \
                 twine upload dist/* && \
                 pypi-clean.sh
