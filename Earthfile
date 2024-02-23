@@ -26,7 +26,7 @@ build:
     CACHE /root/.cache
 
     COPY requirements.R requirements.txt .
-    COPY --dir openapi scripts gradle gradlew build.gradle.kts settings.gradle.kts .
+    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
     COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
     RUN Rscript requirements.R && \
