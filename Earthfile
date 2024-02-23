@@ -30,12 +30,15 @@ build:
     COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
     COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
-    RUN Rscript requirements.R && \
-        pypi-login.sh && \
-        python3 \
-            -m pip install \
-            -r requirements.txt && \
-        pypi-clean.sh
+    RUN \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            Rscript requirements.R && \
+            pypi-login.sh && \
+            python3 \
+                -m pip install \
+                -r requirements.txt && \
+            pypi-clean.sh
 
     ARG --required ODM_OPENAPI_VERSION
     ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
