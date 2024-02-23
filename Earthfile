@@ -43,20 +43,61 @@ build:
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated
 
-r-api-sdk:
+build-clients:
     FROM +build
-    RUN --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            scripts/push_generated_r.sh
 
-python-api-sdk:
-    FROM +build
-    RUN --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            pypi-login.sh && \
-            scripts/push_generated_python.sh
+    # Build python client
+    RUN \
+        cd generated/python/odm-api && \
+        python3 setup.py sdist
+
+    # Build r client
+    RUN \
+        cd generated/r/odm-api && \
+        R CMD build .
+
+    SAVE IMAGE --cache-hint
+
+python-api-client:
+    FROM +build-clients
+
+    IF echo ${ODM_OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
+        RUN --push \
+            --secret PYPI_TOKEN \
+            --secret PYPI_TOKEN_TEST \
+                pypi-login.sh && \
+                twine upload dist/* -r testpypi && \
+                twine upload dist/* && \
+                pypi-clean.sh
+    ELSE
+        RUN --push \
+            --secret NEXUS_USER \
+            --secret NEXUS_PASSWORD \
+                pypi-login.sh && \
+                twine upload dist/* -r nexus-pypi-snapshots && \
+                pypi-clean.sh
+    END
+
+r-api-client:
+    FROM +build-clients
+
+    IF echo ${ODM_OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
+        RUN --push \
+            --secret NEXUS_USER \
+            --secret NEXUS_PASSWORD \
+               cd generated/r/odm-api && \
+               export archive=$(find . | grep tar.gz | sed 's|./||') && \
+               curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
+                  --upload-file "${archive}" "${R_REGISTRY_RELEASES}/src/contrib/${archive}"
+    ELSE
+        RUN --push \
+            --secret NEXUS_USER \
+            --secret NEXUS_PASSWORD \
+               cd generated/r/odm-api && \
+               export archive=$(find . | grep tar.gz | sed 's|./||') && \
+               curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
+                  --upload-file "${archive}" "${R_REGISTRY_RELEASES}/src/contrib/${archive}"
+    END
 
 swagger-image:
     FROM openapi+swagger-ui
@@ -67,5 +108,5 @@ swagger-image:
 
 main:
     BUILD +swagger-image
-    BUILD +r-api-sdk
-    BUILD +python-api-sdk
+    BUILD +r-api-client
+    BUILD +python-api-client
