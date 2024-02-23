@@ -65,6 +65,8 @@ python-api-client:
         RUN --push \
             --secret PYPI_TOKEN \
             --secret PYPI_TOKEN_TEST \
+            --secret NEXUS_USER \
+            --secret NEXUS_PASSWORD \
                 cd generated/python/odm-api && \
                 pypi-login.sh && \
                 twine upload dist/* -r nexus-pypi-releases && \
