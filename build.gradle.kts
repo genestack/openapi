@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.openapi.generator) apply true
 }
 
-val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
+val openApiVersion: String = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
 val sourceDirectory = "$rootDir/openapi/v1"
 val fileNameList = KotlinPath(sourceDirectory).listDirectoryEntries("*.yaml")
 val mergedFileName = "odmApi.yaml"
@@ -23,7 +23,7 @@ tasks {
         outputDir.set("$rootDir/generated/python/odm-api")
         packageName.set("odm_api")
         gitUserId.set("genestack")
-        gitRepoId.set("odm-openapi")
+        gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
         )
@@ -34,7 +34,7 @@ tasks {
         outputDir.set("$rootDir/generated/r/odm-api")
         packageName.set("odmApi")
         gitUserId.set("genestack")
-        gitRepoId.set("odm-openapi")
+        gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
         )
@@ -45,7 +45,7 @@ tasks {
         outputDir.set("$rootDir/generated/postman-collection/odm-api")
         packageName.set("odm-api")
         gitUserId.set("genestack")
-        gitRepoId.set("odm-openapi")
+        gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
         )

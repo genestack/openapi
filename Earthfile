@@ -40,8 +40,8 @@ build:
                 -r requirements.txt && \
             pypi-clean.sh
 
-    ARG --required ODM_OPENAPI_VERSION
-    ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
+    ARG --required OPENAPI_VERSION
+    ENV OPENAPI_VERSION=${OPENAPI_VERSION}
     RUN ./gradlew \
             generateAll \
             --no-daemon
@@ -67,7 +67,7 @@ build-clients:
 python-api-client:
     FROM +build-clients
 
-    IF echo ${ODM_OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
+    IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
         RUN --push \
             --secret PYPI_TOKEN \
             --secret NEXUS_USER \
@@ -92,7 +92,7 @@ python-api-client:
 r-api-client:
     FROM +build-clients
 
-    IF echo ${ODM_OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
+    IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
         RUN --push \
             --secret NEXUS_USER \
             --secret NEXUS_PASSWORD \
@@ -113,8 +113,8 @@ r-api-client:
 swagger-image:
     FROM openapi+swagger-ui
 
-    ARG --required ODM_OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${ODM_OPENAPI_VERSION}
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 main:
