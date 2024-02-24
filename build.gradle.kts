@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.openapi.generator) apply true
 }
 
-val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
+val openApiVersion: String = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
 val sourceDirectory = "$rootDir/openapi/v1"
 val fileNameList = KotlinPath(sourceDirectory).listDirectoryEntries("*.yaml")
 val mergedFileName = "odmApi.yaml"
