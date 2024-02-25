@@ -87,7 +87,7 @@ python-api-client:
         --secret NEXUS_PASSWORD \
             pypi-login.sh && \
             twine upload dist/* -r ${PYPI_REPOSITORY_FIRST} && \
-            twine upload dist/* ${PYPI_REPOSITORY_SECOND} && \
+            twine upload dist/* -r ${PYPI_REPOSITORY_SECOND} && \
             pypi-clean.sh
 
 r-api-client:
