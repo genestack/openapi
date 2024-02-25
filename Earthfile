@@ -18,18 +18,15 @@ ARG --global --required R_REGISTRY_SNAPSHOTS
 ARG --global --required NEXUS_REPOSITORY_URL
 ARG --global --required NEXUS_URL
 
-build:
+deps:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
 
-    CACHE /root/.gradle/caches
-    CACHE /root/.gradle/wrapper
     CACHE /root/.cache
 
     COPY requirements.R requirements.txt .
-    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
-    COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
+    # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
         apt install -y build-essential libssl-dev libcurl4-openssl-dev
@@ -44,6 +41,17 @@ build:
                 -m pip install \
                 -r requirements.txt && \
             pypi-clean.sh
+
+    SAVE IMAGE --cache-hint
+
+build:
+    FROM +deps
+
+    CACHE /root/.gradle/caches
+    CACHE /root/.gradle/wrapper
+
+    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
+    COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
     ARG --required OPENAPI_VERSION
     ENV OPENAPI_VERSION=${OPENAPI_VERSION}
