@@ -31,6 +31,10 @@ build:
     COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
     RUN \
+        apt update && \
+        apt install -y build-essential libssl-dev
+
+    RUN \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
             Rscript requirements.R && \
