@@ -13,14 +13,8 @@ properties:
   dataType:
     type: string
   contentMap:
-    additionalProperties:
-      properties: {}
-      type: object
     type: object
   metadataContent:
-    additionalProperties:
-      properties: {}
-      type: object
     type: object
   fileIdAssociatedWithTemplate:
     type: string

@@ -3,9 +3,6 @@ example:
     key: {}
 properties:
   attributes:
-    additionalProperties:
-      properties: {}
-      type: object
     type:
     - object
     - string
