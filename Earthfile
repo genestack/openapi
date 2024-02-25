@@ -32,7 +32,7 @@ build:
 
     RUN \
         apt update && \
-        apt install -y build-essential libssl-dev
+        apt install -y build-essential libssl-dev libcurl4-openssl-dev
 
     RUN \
         --secret NEXUS_USER \
