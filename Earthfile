@@ -97,7 +97,6 @@ r-api-client:
            curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
-
 swagger-image:
     FROM openapi+swagger-ui
 
