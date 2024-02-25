@@ -72,9 +72,11 @@ python-api-client:
         python3 setup.py sdist
 
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
-        ARG PYPI_REPOSITORIES="-r nexus-pypi-releases -r pypi"
+        ARG PYPI_REPOSITORY_FIRST="nexus-pypi-releases"
+        ARG PYPI_REPOSITORY_SECOND="pypi"
     ELSE
-        ARG PYPI_REPOSITORIES="-r nexus-pypi-snapshots -r testpypi"
+        ARG PYPI_REPOSITORY_FIRST="nexus-pypi-snapshots"
+        ARG PYPI_REPOSITORY_SECOND="testpypi"
     END
 
     # Push python client
@@ -84,7 +86,8 @@ python-api-client:
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
             pypi-login.sh && \
-            twine upload dist/* ${PYPI_REPOSITORIES} && \
+            twine upload dist/* -r ${PYPI_REPOSITORY_FIRST} && \
+            twine upload dist/* ${PYPI_REPOSITORY_SECOND} && \
             pypi-clean.sh
 
 r-api-client:
