@@ -49,66 +49,54 @@ build:
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated
 
-build-clients:
+python-api-client:
     FROM +build
+    WORKDIR generated/python/odm-api
 
-    # Build python client
+    # Test and build python client
     RUN \
-        cd generated/python/odm-api && \
+        python3 -m tox run-parallel && \
         python3 setup.py sdist
 
-    # Build r client
-    RUN \
-        cd generated/r/odm-api && \
-        R CMD build .
-
-    SAVE IMAGE --cache-hint
-
-python-api-client:
-    FROM +build-clients
-
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
-        RUN --push \
-            --secret PYPI_TOKEN \
-            --secret NEXUS_USER \
-            --secret NEXUS_PASSWORD \
-                cd generated/python/odm-api && \
-                pypi-login.sh && \
-                twine upload dist/* -r nexus-pypi-releases && \
-                twine upload dist/* && \
-                pypi-clean.sh
+        ARG PYPI_REPOSITORIES="-r nexus-pypi-releases -r pypi"
     ELSE
-        RUN --push \
-            --secret PYPI_TOKEN_TEST \
-            --secret NEXUS_USER \
-            --secret NEXUS_PASSWORD \
-                cd generated/python/odm-api && \
-                pypi-login.sh && \
-                twine upload dist/* -r nexus-pypi-snapshots && \
-                twine upload dist/* -r testpypi && \
-                pypi-clean.sh
+        ARG PYPI_REPOSITORIES="-r nexus-pypi-snapshots -r testpypi"
     END
+
+    # Push python client
+    RUN --push \
+        --secret PYPI_TOKEN \
+        --secret PYPI_TOKEN_TEST \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            pypi-login.sh && \
+            twine upload dist/* ${PYPI_REPOSITORIES} && \
+            pypi-clean.sh
 
 r-api-client:
-    FROM +build-clients
+    FROM +build
+    WORKDIR generated/r/odm-api
+
+    # Test and build R client
+    RUN \
+        R CMD build . && \
+        R CMD check *.tar.gz
 
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
-        RUN --push \
-            --secret NEXUS_USER \
-            --secret NEXUS_PASSWORD \
-               cd generated/r/odm-api && \
-               export archive=$(find . | grep tar.gz | sed 's|./||') && \
-               curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
-                  --upload-file "${archive}" "${R_REGISTRY_RELEASES}/src/contrib/${archive}"
+        ARG R_REGISTRY=${R_REGISTRY_RELEASES}
     ELSE
-        RUN --push \
-            --secret NEXUS_USER \
-            --secret NEXUS_PASSWORD \
-               cd generated/r/odm-api && \
-               export archive=$(find . | grep tar.gz | sed 's|./||') && \
-               curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
-                  --upload-file "${archive}" "${R_REGISTRY_RELEASES}/src/contrib/${archive}"
+        ARG R_REGISTRY=${R_REGISTRY_SNAPSHOTS}
     END
+
+    # Push R client
+    RUN --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+           export archive=$(find . | grep tar.gz | sed 's|./||') && \
+           curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
+              --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
+
 
 swagger-image:
     FROM openapi+swagger-ui
