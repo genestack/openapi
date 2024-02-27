@@ -50,7 +50,7 @@ build:
     CACHE /root/.gradle/caches
     CACHE /root/.gradle/wrapper
 
-    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
+    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts custom-templates .
     COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
     ARG --required OPENAPI_VERSION

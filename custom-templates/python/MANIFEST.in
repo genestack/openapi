@@ -1,0 +1,2 @@
+# Add docs to final package
+recursive-include docs/ *
