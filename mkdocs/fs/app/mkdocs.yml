@@ -1,6 +1,6 @@
 site_name: API Clients Documentation
 site_url: https://127.0.0.1/mkdocs/
-dev_addr: 127.0.0.1:8080
+dev_addr: 0.0.0.0:8080
 
 nav:
     - Home: index.md
