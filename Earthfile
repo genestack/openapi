@@ -35,6 +35,7 @@ deps:
     RUN \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
+            Rscript requirements.R && \
             pypi-login.sh && \
             python3 \
                 -m pip install \
@@ -95,7 +96,8 @@ r-api-client:
 
     # Test and build R client
     RUN \
-        R CMD build .
+        R CMD build . && \
+        R CMD check *.tar.gz --no-manual
 
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
         ARG R_REGISTRY=${R_REGISTRY_RELEASES}
