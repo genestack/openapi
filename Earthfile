@@ -137,6 +137,7 @@ mkdocs-image:
     COPY +build/generated /app/docs/generated/
     ENTRYPOINT ["mkdocs", "serve"]
 
+    ARG --required OPENAPI_VERSION
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
 
