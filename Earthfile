@@ -64,7 +64,7 @@ build:
 
 python-api-client:
     FROM +build
-    WORKDIR generated/python/odm-api
+    WORKDIR generated/python
 
     # Test and build python client
     RUN \
@@ -92,7 +92,7 @@ python-api-client:
 
 r-api-client:
     FROM +build
-    WORKDIR generated/r/odm-api
+    WORKDIR generated/r
 
     # Test and build R client
     RUN \

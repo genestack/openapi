@@ -20,7 +20,7 @@ tasks {
     register("generateOdmApiPython", GenerateTask::class) {
         generatorName.set("python")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
-        outputDir.set("$rootDir/generated/python/odm-api")
+        outputDir.set("$rootDir/generated/python")
         packageName.set("odm_api")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
@@ -31,7 +31,7 @@ tasks {
     register("generateOdmApiR", GenerateTask::class) {
         generatorName.set("r")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
-        outputDir.set("$rootDir/generated/r/odm-api")
+        outputDir.set("$rootDir/generated/r")
         packageName.set("odmApi")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
@@ -42,7 +42,7 @@ tasks {
     register("generateOdmApiPostmanCollection", GenerateTask::class) {
         generatorName.set("postman-collection")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
-        outputDir.set("$rootDir/generated/postman-collection/odm-api")
+        outputDir.set("$rootDir/generated/postman-collection")
         packageName.set("odm-api")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
