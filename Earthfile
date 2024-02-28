@@ -64,7 +64,7 @@ build:
 
 python-api-client:
     FROM +build
-    WORKDIR generated/python/odm-api
+    WORKDIR generated/python
 
     # Test and build python client
     RUN \
@@ -92,7 +92,7 @@ python-api-client:
 
 r-api-client:
     FROM +build
-    WORKDIR generated/r/odm-api
+    WORKDIR generated/r
 
     # Test and build R client
     RUN \
@@ -120,7 +120,29 @@ swagger-image:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
+mkdocs-image:
+    ARG --required BASE_IMAGES_VERSION
+    FROM ${HARBOR_DOCKER_REGISTRY}/python3:${BASE_IMAGES_VERSION}
+
+    COPY mkdocs/fs /
+    RUN \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            pypi-login.sh && \
+            python3 \
+                -m pip install \
+                -r requirements.txt && \
+            pypi-clean.sh
+
+    COPY +build/generated /app/docs/generated/
+    ENTRYPOINT ["mkdocs", "serve"]
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
+
 main:
     BUILD +swagger-image
+    BUILD +mkdocs-image
     BUILD +r-api-client
     BUILD +python-api-client
