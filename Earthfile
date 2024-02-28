@@ -120,7 +120,7 @@ swagger-image:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
-mkdocs:
+mkdocs-image:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/python3:${BASE_IMAGES_VERSION}
 
@@ -142,5 +142,6 @@ mkdocs:
 
 main:
     BUILD +swagger-image
+    BUILD +mkdocs-image
     BUILD +r-api-client
     BUILD +python-api-client
