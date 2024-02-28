@@ -2,6 +2,7 @@
 .idea
 
 generated
+venv
 
 # Maven stuff
 .flattened-pom.xml

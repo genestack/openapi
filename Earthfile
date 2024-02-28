@@ -134,7 +134,7 @@ mkdocs:
                 -r requirements.txt && \
             pypi-clean.sh
 
-    COPY build+generated /app/
+    COPY build+generated /app/docs/generated
     ENTRYPOINT ["mkdocs", "serve"]
 
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
