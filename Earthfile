@@ -124,6 +124,7 @@ mkdocs:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/python3:${BASE_IMAGES_VERSION}
 
+    COPY mkdocs/fs /
     RUN \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
@@ -134,7 +135,6 @@ mkdocs:
             pypi-clean.sh
 
     COPY build+generated /app/
-
     ENTRYPOINT ["mkdocs", "serve"]
 
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
