@@ -1,5 +1,5 @@
 site_name: API Clients Documentation
-site_url: https://127.0.0.1/mkdocs/
+site_url: https://0.0.0.0/mkdocs/
 dev_addr: 0.0.0.0:8080
 
 nav:
