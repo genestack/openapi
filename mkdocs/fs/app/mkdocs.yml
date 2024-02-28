@@ -1,4 +1,5 @@
 site_name: API Clients Documentation
+dev_addr: 127.0.0.1:8080
 
 nav:
     - Home: index.md
