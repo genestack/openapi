@@ -1,11 +1,9 @@
-site_name: Open Data Manager Documentation
-site_url: https://genestack.github.io/documentation
+site_name: API Clients Documentation
 
 nav:
     - Home: index.md
-    - Python API Client:
-
-    - R API Client:
+    - Python API Client: generated/python/README.md
+    - R API Client: generated/r/README.md
 
 theme:
     name: material

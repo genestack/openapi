@@ -120,7 +120,7 @@ swagger-image:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
-mkdocs:
+api-clients-documentation:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/python3:${BASE_IMAGES_VERSION}
 
@@ -137,8 +137,8 @@ mkdocs:
     COPY build+generated /app/docs/generated
     ENTRYPOINT ["mkdocs", "serve"]
 
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/api-clients-documentation:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/api-clients-documentation:latest
 
 main:
     BUILD +swagger-image
