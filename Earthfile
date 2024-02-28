@@ -146,8 +146,8 @@ explorer:
     ARG --required BASE_IMAGES_VERSION
     FROM --pass-args openapi+explorer
 
-    ARG --required ODM_OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${ODM_OPENAPI_VERSION}
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
 
 
