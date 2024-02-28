@@ -113,14 +113,14 @@ r-api-client:
            curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
-swagger-image:
-    FROM openapi+swagger-ui
+swagger:
+    FROM openapi+swagger
 
     ARG --required OPENAPI_VERSION
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
-mkdocs-image:
+mkdocs:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/python3:${BASE_IMAGES_VERSION}
 
@@ -141,8 +141,19 @@ mkdocs-image:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
 
+
+explorer:
+    ARG --required BASE_IMAGES_VERSION
+    FROM --pass-args openapi+explorer
+
+    ARG --required ODM_OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${ODM_OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
+
+
 main:
-    BUILD +swagger-image
-    BUILD +mkdocs-image
+    BUILD +swagger
+    BUILD +explorer
+    BUILD +mkdocs
     BUILD +r-api-client
     BUILD +python-api-client
