@@ -120,6 +120,26 @@ swagger-image:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
+mkdocs:
+    ARG --required BASE_IMAGES_VERSION
+    FROM ${HARBOR_DOCKER_REGISTRY}/python3:${BASE_IMAGES_VERSION}
+
+    RUN \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            pypi-login.sh && \
+            python3 \
+                -m pip install \
+                -r requirements.txt && \
+            pypi-clean.sh
+
+    COPY build+generated /app/
+
+    ENTRYPOINT ["mkdocs", "serve"]
+
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
+
 main:
     BUILD +swagger-image
     BUILD +r-api-client
