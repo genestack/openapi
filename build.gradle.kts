@@ -26,6 +26,7 @@ tasks {
         gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
     register("generateOdmApiR", GenerateTask::class) {
@@ -36,7 +37,10 @@ tasks {
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
         configOptions = mapOf(
-            "packageVersion" to openApiVersion
+            "packageVersion" to openApiVersion,
+            "library" to "httr2",
+            "generateWrapper" to "true"
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
     register("generateOdmApiPostmanCollection", GenerateTask::class) {
