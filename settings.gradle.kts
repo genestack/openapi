@@ -1,1 +1,1 @@
-rootProject.name = "odm-openapi"
+rootProject.name = "openapi"

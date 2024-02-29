@@ -1,11 +1,11 @@
 VERSION 0.8
 
 
-swagger-ui:
-    FROM swaggerapi/swagger-ui:v5.11.7
+swagger:
+    FROM swaggerapi/swagger-ui:v5.11.1
 
     COPY v1 /usr/share/nginx/html/yaml/
-    COPY fs /
+    COPY swagger/fs /
     RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
 
     RUN apk add bash --no-cache && \
@@ -17,5 +17,27 @@ swagger-ui:
 
     ENTRYPOINT ["/genestack-docker-entrypoint.sh"]
     CMD ["nginx", "-g", "daemon off;"]
+
+    SAVE IMAGE --cache-hint
+
+
+explorer-build:
+    ARG --required BASE_IMAGES_VERSION
+    ARG --required HARBOR_DOCKER_REGISTRY
+    FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
+
+    COPY explorer/package.json explorer/package-lock.json .
+    RUN npm install
+
+    SAVE ARTIFACT node_modules/openapi-explorer/dist/browser/openapi-explorer.min.js
+
+
+explorer:
+    FROM nginx:1.25.3
+
+    COPY v1/schemas /usr/share/nginx/html/schemas/
+    COPY v1/odmApi.yaml /usr/share/nginx/html/
+    COPY --pass-args +explorer-build/openapi-explorer.min.js /usr/share/nginx/html/
+    COPY explorer/fs /
 
     SAVE IMAGE --cache-hint

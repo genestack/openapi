@@ -16,26 +16,45 @@ ARG --global --required R_REGISTRY_GROUP
 ARG --global --required R_REGISTRY_RELEASES
 ARG --global --required R_REGISTRY_SNAPSHOTS
 ARG --global --required NEXUS_REPOSITORY_URL
+ARG --global --required NEXUS_URL
 
-build:
+deps:
     ARG --required BASE_IMAGES_VERSION
     FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
 
-    CACHE /root/.gradle/caches
-    CACHE /root/.gradle/wrapper
     CACHE /root/.cache
 
     COPY requirements.R requirements.txt .
-    COPY --dir openapi scripts gradle gradlew build.gradle.kts settings.gradle.kts .
+
+    # Gcc and other stuff for R source packages building
+    RUN \
+        apt update && \
+        apt install -y build-essential libssl-dev libcurl4-openssl-dev
+
+    # Install dependencies for R and Python
+    RUN \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            Rscript requirements.R && \
+            pypi-login.sh && \
+            python3 \
+                -m pip install \
+                -r requirements.txt && \
+            pypi-clean.sh
+
+    SAVE IMAGE --cache-hint
+
+build:
+    FROM +deps
+
+    CACHE /root/.gradle/caches
+    CACHE /root/.gradle/wrapper
+
+    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
     COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
-    RUN Rscript requirements.R && \
-        python3 \
-            -m pip install \
-            -r requirements.txt
-
-    ARG --required ODM_OPENAPI_VERSION
-    ENV ODM_OPENAPI_VERSION=${ODM_OPENAPI_VERSION}
+    ARG --required OPENAPI_VERSION
+    ENV OPENAPI_VERSION=${OPENAPI_VERSION}
     RUN ./gradlew \
             generateAll \
             --no-daemon
@@ -43,29 +62,98 @@ build:
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated
 
-r-api-sdk:
+python-api-client:
     FROM +build
-    RUN --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            scripts/push_generated_r.sh
+    WORKDIR generated/python
 
-python-api-sdk:
-    FROM +build
+    # Test and build python client
+    RUN \
+        python3 -m tox run-parallel && \
+        python3 setup.py sdist
+
+    IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
+        ARG PYPI_REPOSITORY_INTERNAL="nexus-pypi-releases"
+        ARG PYPI_REPOSITORY_PUBLIC="pypi"
+    ELSE
+        ARG PYPI_REPOSITORY_INTERNAL="nexus-pypi-snapshots"
+        ARG PYPI_REPOSITORY_PUBLIC="testpypi"
+    END
+
+    # Push python client
     RUN --push \
+        --secret PYPI_TOKEN \
+        --secret PYPI_TOKEN_TEST \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
             pypi-login.sh && \
-            scripts/push_generated_python.sh
+            twine upload dist/* -r ${PYPI_REPOSITORY_INTERNAL} && \
+            twine upload dist/* -r ${PYPI_REPOSITORY_PUBLIC} && \
+            pypi-clean.sh
 
-swagger-image:
-    FROM openapi+swagger-ui
+r-api-client:
+    FROM +build
+    WORKDIR generated/r
 
-    ARG --required ODM_OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${ODM_OPENAPI_VERSION}
+    # Test and build R client
+    RUN \
+        R CMD build . && \
+        R CMD check *.tar.gz --no-manual
+
+    IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
+        ARG R_REGISTRY=${R_REGISTRY_RELEASES}
+    ELSE
+        ARG R_REGISTRY=${R_REGISTRY_SNAPSHOTS}
+    END
+
+    # Push R client
+    RUN --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+           export archive=$(find . | grep tar.gz | sed 's|./||') && \
+           curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
+              --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
+
+swagger:
+    FROM openapi+swagger
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
+mkdocs:
+    ARG --required BASE_IMAGES_VERSION
+    FROM ${HARBOR_DOCKER_REGISTRY}/python3:${BASE_IMAGES_VERSION}
+
+    COPY mkdocs/fs /
+    RUN \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            pypi-login.sh && \
+            python3 \
+                -m pip install \
+                -r requirements.txt && \
+            pypi-clean.sh
+
+    COPY +build/generated /app/docs/generated/
+    ENTRYPOINT ["mkdocs", "serve"]
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
+
+
+explorer:
+    ARG --required BASE_IMAGES_VERSION
+    FROM --pass-args openapi+explorer
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
+
+
 main:
-    BUILD +swagger-image
-    BUILD +r-api-sdk
-    BUILD +python-api-sdk
+    BUILD +swagger
+    BUILD +explorer
+    BUILD +mkdocs
+    BUILD +r-api-client
+    BUILD +python-api-client

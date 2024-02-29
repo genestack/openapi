@@ -1,0 +1,83 @@
+site_name: API Clients Documentation
+dev_addr: 0.0.0.0:8080
+
+nav:
+    - Home: index.md
+    - Python API Client: generated/python/README.md
+    - R API Client: generated/r/README.md
+
+theme:
+    name: material
+    palette:
+        primary: custom
+        accent: custom
+    logo: assets/logo.svg
+    favicon: assets/favicon.ico
+    features:
+        - announce.dismiss
+        - content.action.edit
+        - content.action.view
+        - content.code.annotate
+        - content.code.copy
+        # - content.code.select
+        # - content.tabs.link
+        - content.tooltips
+        # - header.autohide
+        # - navigation.expand
+        - navigation.footer
+        - navigation.indexes
+        # - navigation.instant
+        # - navigation.instant.prefetch
+        # - navigation.instant.progress
+        # - navigation.prune
+        - navigation.sections
+        - navigation.tabs
+        # - navigation.tabs.sticky
+        - navigation.top
+        - navigation.tracking
+        - search.highlight
+        - search.share
+        - search.suggest
+        - toc.follow
+        # - toc.integrate
+extra:
+    version:
+        provider: mike
+extra_css:
+    - stylesheets/extra.css
+markdown_extensions:
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+    - attr_list
+    - md_in_html
+    - pymdownx.highlight:
+        anchor_linenums: true
+        line_spans: __span
+        pygments_lang_class: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.tabbed:
+          alternate_style: true
+    - tables
+    - pymdownx.superfences:
+        custom_fences:
+            - name: mermaid
+              class: mermaid
+              format: !!python/name:pymdownx.superfences.fence_code_format
+    - footnotes
+    - pymdownx.critic
+    - pymdownx.caret
+    - pymdownx.keys
+    - pymdownx.mark
+    - pymdownx.tilde
+    - pymdownx.emoji:
+        emoji_index: !!python/name:material.extensions.emoji.twemoji
+        emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    - def_list
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - codehilite
+    - pymdownx.tabbed
+    - toc:
+        permalink: true

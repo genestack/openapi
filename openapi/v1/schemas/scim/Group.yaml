@@ -6,10 +6,8 @@ example:
   members:
   - display: display
     value: value
-    $ref: https://openapi-generator.tech
   - display: display
     value: value
-    $ref: https://openapi-generator.tech
   externalId: externalId
   id: id
 properties:

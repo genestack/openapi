@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.openapi.generator) apply true
 }
 
-val openApiVersion: String = System.getenv("ODM_OPENAPI_VERSION") ?: "1.0.0"
+val openApiVersion: String = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
 val sourceDirectory = "$rootDir/openapi/v1"
 val fileNameList = KotlinPath(sourceDirectory).listDirectoryEntries("*.yaml")
 val mergedFileName = "odmApi.yaml"
@@ -20,10 +20,10 @@ tasks {
     register("generateOdmApiPython", GenerateTask::class) {
         generatorName.set("python")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
-        outputDir.set("$rootDir/generated/python/odm-api")
+        outputDir.set("$rootDir/generated/python")
         packageName.set("odm_api")
         gitUserId.set("genestack")
-        gitRepoId.set("odm-openapi")
+        gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
         )
@@ -31,10 +31,10 @@ tasks {
     register("generateOdmApiR", GenerateTask::class) {
         generatorName.set("r")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
-        outputDir.set("$rootDir/generated/r/odm-api")
+        outputDir.set("$rootDir/generated/r")
         packageName.set("odmApi")
         gitUserId.set("genestack")
-        gitRepoId.set("odm-openapi")
+        gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
         )
@@ -42,10 +42,10 @@ tasks {
     register("generateOdmApiPostmanCollection", GenerateTask::class) {
         generatorName.set("postman-collection")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
-        outputDir.set("$rootDir/generated/postman-collection/odm-api")
+        outputDir.set("$rootDir/generated/postman-collection")
         packageName.set("odm-api")
         gitUserId.set("genestack")
-        gitRepoId.set("odm-openapi")
+        gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
         )
@@ -55,6 +55,7 @@ tasks {
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
     }
+
     val generateAll by registering(GradleBuild::class) {
         file("$rootDir/generated").deleteRecursively()
         tasks = listOf("generateOdmApiPython", "generateOdmApiR", "generateOdmApiPostmanCollection")
