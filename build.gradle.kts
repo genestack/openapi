@@ -37,9 +37,7 @@ tasks {
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
         configOptions = mapOf(
-            "packageVersion" to openApiVersion,
-            "library" to "httr2",
-            "generateWrapper" to "true"
+            "packageVersion" to openApiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
@@ -52,6 +50,7 @@ tasks {
         gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
     // Should be used in pre-commit
