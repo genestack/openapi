@@ -4,7 +4,7 @@ dev_addr: 0.0.0.0:8080
 nav:
     - Home: index.md
     - Python API Client: generated/python/README.md
-    - R API Client: generated/r/README.md
+#    - R API Client: generated/r/README.md
 
 theme:
     name: material

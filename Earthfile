@@ -32,10 +32,11 @@ deps:
         apt install -y build-essential libssl-dev libcurl4-openssl-dev
 
     # Install dependencies for R and Python
+    # Add after resolving issue
+    # Rscript requirements.R && \
     RUN \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
-            Rscript requirements.R && \
             pypi-login.sh && \
             python3 \
                 -m pip install \
@@ -155,5 +156,7 @@ main:
     BUILD +swagger
     BUILD +explorer
     BUILD +mkdocs
-    BUILD +r-api-client
     BUILD +python-api-client
+    # Require a fix for this bug to proceed with using R API CLient:
+    # https://github.com/OpenAPITools/openapi-generator/issues/18016
+    # BUILD +r-api-client
