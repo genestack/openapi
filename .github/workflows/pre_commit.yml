@@ -11,5 +11,4 @@ jobs:
           distribution: temurin
           java-version: 17.0.10
           cache: "gradle"
-#      - uses: gradle/actions/setup-gradle@v3
       - uses: pre-commit/action@v3.0.1
