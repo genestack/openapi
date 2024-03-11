@@ -14,7 +14,7 @@ repos:
   hooks:
     - id: merge-openapi-definitions
       name: merge-openapi-definitions
-      entry: bash -c "./gradlew mergeDefinitions"
+      entry: sh -c "./gradlew mergeDefinitions --no-daemon"
       always_run: true
       language: system
       require_serial: true
