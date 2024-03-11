@@ -1,20 +1,10 @@
-name: Lint Code Base
-
+name: Pre-commit
 on:
   pull_request:
-  workflow_dispatch:
-
 jobs:
-  build:
-    name: pre_commit_linters
-    runs-on: ubuntu-latest
+  pre-commit:
+    runs-on: ubuntu-22.04
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
-    - uses: gradle/gradle-build-action@v2
-    - name: Install pre-commit
-      run: |
-        pip3 install pre-commit
-    - name: Run common linters
-      run: |
-        pre-commit run -a
+      - uses: actions/checkout@v4
+      - uses: gradle/gradle-build-action@v2
+      - uses: pre-commit/action@v3.0.1

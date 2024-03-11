@@ -15,3 +15,4 @@ repos:
       entry: bash -c "./gradlew mergeDefinitions"
       always_run: true
       language: system
+      require_serial: true
