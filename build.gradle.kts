@@ -10,7 +10,9 @@ plugins {
 
 val openApiVersion: String = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
 val sourceDirectory = "$rootDir/openapi/v1"
-val fileNameList = KotlinPath(sourceDirectory).listDirectoryEntries("*.yaml")
+val fileNameList = KotlinPath(sourceDirectory)
+    .listDirectoryEntries("*.yaml")
+    .sorted()
 val mergedFileName = "odmApi.yaml"
 val sourceFileList = fileNameList.map {
     layout.projectDirectory.file("${sourceDirectory}/${it.name}")
