@@ -7,5 +7,5 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.2")
 }

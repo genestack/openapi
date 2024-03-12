@@ -9,9 +9,7 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.InputFiles
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import kotlin.io.path.name
 
 
 abstract class MergeDefinitions : DefaultTask() {
@@ -25,7 +23,6 @@ abstract class MergeDefinitions : DefaultTask() {
     @TaskAction
     fun merge() {
         val objectMapper = ObjectMapper(YAMLFactory())
-            .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true)
         val mergedNode = inputFiles
             .get().map { it.asFile }
             .filterNot { it == outputFile.get().asFile }
