@@ -557,6 +557,8 @@ paths:
   /api/v1/as-curator/variants/vcf:
     post:
       description: |-
+        ## __This endpoint is no longer supported__
+        Please use [/frontend/rs/genestack/job/default-released/import/variant](#!/startImportVariant) instead.
         ## Data
          This operation requires the URL of a VCF data file. Method differed from the other  SPoT POST methods as it returns additionally an id of created experiment.
          ## Metadata
@@ -576,34 +578,16 @@ paths:
               $ref: "#/components/schemas/VariantSignalSource"
         required: false
       responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/RunsResponse"
-          description: The objects were successfully created. The returned value is
-            a list of created objects.
-        "400":
+        "410":
           content: {}
-          description: The object cannot be created. This error occurs when the supplied
-            data or metadata are incorrect. Please see error message for details.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
+          description: This endpoint is no longer supported.
       security:
       - Access-token: []
       - Genestack-API-Token: []
       summary: Create multiple new objects from a multi-row data file with optional
         supplied metadata
       tags:
-      - Variant SPoT as Curator
+      - Obsolete
       x-codegen-request-body-name: source
   /api/v1/as-curator/variants/{id}:
     get:
@@ -668,7 +652,9 @@ paths:
       - Variant SPoT as Curator
     patch:
       description: |-
+        ## __This endpoint is no longer supported__
         ## Basic operation
+        ## __This endpoint is no longer supported__
         The object metadata is updated using the supplied map of attribute names to attribute values. There are three cases:
         1. The attribute name does not already exist in the object metadata. In this case, the attribute and value are added to the object metadata.
         2. The attribute name already exists in the object metadata. In this case, the value is updated.
@@ -692,35 +678,16 @@ paths:
         description: "Metadata in the form of `{key: value, key2: value2, ...}`"
         required: false
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SignalRun"
-          description: "The objects was successfully created. The returned value is\
-            \ the updated object, along with any warnings."
-        "400":
+        "410":
           content: {}
-          description: The supplied object ID or metadata is invalid.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "404":
-          content: {}
-          description: No object exists with the given ID.
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
+          description: This endpoint is no longer supported.
+
       security:
       - Access-token: []
       - Genestack-API-Token: []
       summary: Update object metadata
       tags:
-      - Variant SPoT as Curator
+      - Obsolete
       x-codegen-request-body-name: body
   /api/v1/as-curator/variants/{id}/versions:
     get:
