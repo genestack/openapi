@@ -20285,7 +20285,7 @@ paths:
       summary: "Create multiple new objects from a multi-row data file with optional\
         \ supplied metadata"
       tags:
-      - "Obsolete"
+      - "Variant SPoT as Curator"
       x-codegen-request-body-name: "source"
   /api/v1/as-curator/variants/{id}:
     get:
@@ -20385,7 +20385,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Update object metadata"
       tags:
-      - "Obsolete"
+      - "Variant SPoT as Curator"
       x-codegen-request-body-name: "body"
   /api/v1/as-curator/variants/{id}/versions:
     get:
