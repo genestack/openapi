@@ -1,38 +1,40 @@
 example:
   cursor: cursor
   data:
-  - reference: reference
+  - ref: reference
     itemId: itemId
     metadata: {}
-    variationId:
+    id:
     - variationId
     - variationId
     groupId: groupId
-    start: 0
-    alteration:
+    Run Source ID: Run Source ID
+    pos: 0
+    alt:
     - alteration
     - alteration
     runId: runId
-    contig: contig
+    chrom: chromosome
     info:
       key:
       - info
       - info
     genotype:
       key: genotype
-  - reference: reference
+  - ref: reference
     itemId: itemId
     metadata: {}
-    variationId:
+    id:
     - variationId
     - variationId
     groupId: groupId
-    start: 0
-    alteration:
+    Run Source ID: Run Source ID
+    pos: 0
+    alt:
     - alteration
     - alteration
     runId: runId
-    contig: contig
+    chrom: chromosome
     info:
       key:
       - info

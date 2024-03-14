@@ -7,6 +7,7 @@ example:
     groupingKey: VRSLGGISPSEDRR
   gene: gene
   groupId: groupId
+  Run Source ID: Run Source ID
   description: description
   runId: runId
   value:
@@ -19,6 +20,8 @@ properties:
   runId:
     type: string
   groupId:
+    type: string
+  Run Source ID:
     type: string
   gene:
     type: string
