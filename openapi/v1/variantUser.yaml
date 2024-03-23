@@ -59,8 +59,7 @@ paths:
           - term_id
           type: string
       - description: Filter by variant metadata (key-value metadata pair(s)). E.g.
-          `"Variant Source"=dbSNP`. Retrieving individual runs via "Run Source ID"="HG00096"  will
-          be deprecated after June 2023
+          `"Variant Source"=dbSNP`.
         in: query
         name: filter
         schema:
@@ -84,6 +83,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
+      - description: List of source ids to be filtered by.
+        explode: true
+        in: query
+        name: runSourceFilter
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Genestack accession that corresponds to the vcf column used to
           link variants from the same run to a sample
         in: query
@@ -248,8 +256,7 @@ paths:
           - term_id
           type: string
       - description: Filter by variant metadata (key-value metadata pair(s)). E.g.
-          `"Variant Source"=dbSNP`. Retrieving individual runs via "Run Source ID"="HG00096"  will
-          be deprecated after June 2023.
+          `"Variant Source"=dbSNP`.
         in: query
         name: filter
         schema:

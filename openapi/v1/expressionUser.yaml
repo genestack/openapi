@@ -63,8 +63,7 @@ paths:
           type: array
         style: form
       - description: Filter by expression metadata (key-value metadata pair(s)). E.g.
-          `"Normalization Method"=TPM`. Retrieving individual runs via "Run Source
-          ID"="HG00096"  will be deprecated after June 2023
+          `"Normalization Method"=TPM`.
         in: query
         name: filter
         schema:
@@ -88,6 +87,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
+      - description: List of source ids to be filtered by.
+        explode: true
+        in: query
+        name: runSourceFilter
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Genestack accession that corresponds to the gct column used to
           link expression data from the same run to a sample.
         in: query
@@ -216,8 +224,7 @@ paths:
           - term_id
           type: string
       - description: Filter by expression metadata (key-value metadata pair(s)). E.g.
-          `"Normalization Method"=TPM`. Retrieving individual runs via "Run Source
-          ID"="HG00096"  will be deprecated after June 2023
+          `"Normalization Method"=TPM`.
         in: query
         name: filter
         schema:
