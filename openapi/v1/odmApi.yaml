@@ -109,8 +109,7 @@ paths:
           type: "array"
         style: "form"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Normalization Method\"=TPM`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023"
+          \ E.g. `\"Normalization Method\"=TPM`."
         in: "query"
         name: "filter"
         schema:
@@ -135,6 +134,15 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "List of source ids to be filtered by."
+        explode: true
+        in: "query"
+        name: "runSourceFilter"
+        schema:
+          items:
+            type: "string"
+          type: "array"
+        style: "form"
       - description: "Genestack accession that corresponds to the gct column used\
           \ to link expression data from the same run to a sample."
         in: "query"
@@ -334,8 +342,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Normalization Method\"=TPM`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023"
+          \ E.g. `\"Normalization Method\"=TPM`."
         in: "query"
         name: "filter"
         schema:
@@ -937,8 +944,7 @@ paths:
           type: "array"
         style: "form"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Normalization Method\"=TPM`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023"
+          \ E.g. `\"Normalization Method\"=TPM`."
         in: "query"
         name: "filter"
         schema:
@@ -963,6 +969,15 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "List of source ids to be filtered by."
+        explode: true
+        in: "query"
+        name: "runSourceFilter"
+        schema:
+          items:
+            type: "string"
+          type: "array"
+        style: "form"
       - description: "Genestack accession that corresponds to the gct column used\
           \ to link expression data from the same run to a sample."
         in: "query"
@@ -1099,8 +1114,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Normalization Method\"=TPM`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023"
+          \ E.g. `\"Normalization Method\"=TPM`."
         in: "query"
         name: "filter"
         schema:
@@ -1604,8 +1618,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "filter"
         schema:
@@ -1630,6 +1643,15 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "List of source ids to be filtered by."
+        explode: true
+        in: "query"
+        name: "runSourceFilter"
+        schema:
+          items:
+            type: "string"
+          type: "array"
+        style: "form"
       - description: "Genestack accession that corresponds to the fcy column used\
           \ to link flow cytometry data from the same run to a sample"
         in: "query"
@@ -1831,8 +1853,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "filter"
         schema:
@@ -2422,8 +2443,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "filter"
         schema:
@@ -2448,6 +2468,15 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "List of source ids to be filtered by."
+        explode: true
+        in: "query"
+        name: "runSourceFilter"
+        schema:
+          items:
+            type: "string"
+          type: "array"
+        style: "form"
       - description: "Genestack accession that corresponds to the fcy column used\
           \ to link flow cytometry data from the same run to a sample"
         in: "query"
@@ -2592,8 +2621,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "filter"
         schema:
@@ -7616,9 +7644,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -7675,9 +7701,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -7690,9 +7714,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -7890,9 +7912,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -7949,9 +7969,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -7964,9 +7982,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -8346,9 +8362,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -8405,9 +8419,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -8420,9 +8432,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -8621,9 +8631,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -8680,9 +8688,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -8695,9 +8701,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -8896,9 +8900,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -8955,9 +8957,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -8970,9 +8970,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -9172,9 +9170,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -9231,9 +9227,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -9246,9 +9240,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -9446,9 +9438,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -9505,9 +9495,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -9520,9 +9508,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -12706,9 +12692,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -12765,9 +12749,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -12780,9 +12762,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -12980,9 +12960,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -13039,9 +13017,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -13054,9 +13030,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -13438,9 +13412,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -13497,9 +13469,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -13512,9 +13482,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -13713,9 +13681,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -13772,9 +13738,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -13787,9 +13751,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -13988,9 +13950,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -14047,9 +14007,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -14062,9 +14020,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -14264,9 +14220,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -14323,9 +14277,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -14338,9 +14290,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -14538,9 +14488,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "vxFilter"
         schema:
@@ -14597,9 +14545,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by expression metadata (key-value metadata pair(s)).\
-          \ E.g. `\"Genome Version\"=hg19-BROAD`. Retrieving individual runs via \"\
-          Run Source ID\"=\"HG00096\"  will be deprecated after June 2023. Use sampleFilter,\
-          \ libraryFilter or preparationFilter for retrieving an individual run"
+          \ E.g. `\"Genome Version\"=hg19-BROAD`."
         in: "query"
         name: "exFilter"
         schema:
@@ -14612,9 +14558,7 @@ paths:
         schema:
           type: "string"
       - description: "Filter by flow cytometry metadata (key-value metadata pair(s)).\
-          \ E.g. `Organ=blood`. Retrieving individual runs via \"Run Source ID\"=\"\
-          HG00096\"  will be deprecated after June 2023. Use sampleFilter, libraryFilter\
-          \ or preparationFilter for retrieving an individual run"
+          \ E.g. `Organ=blood`."
         in: "query"
         name: "fxFilter"
         schema:
@@ -19728,8 +19672,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "filter"
         schema:
@@ -19754,6 +19697,15 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "List of source ids to be filtered by."
+        explode: true
+        in: "query"
+        name: "runSourceFilter"
+        schema:
+          items:
+            type: "string"
+          type: "array"
+        style: "form"
       - description: "Genestack accession that corresponds to the vcf column used\
           \ to link variants from the same run to a sample"
         in: "query"
@@ -19928,8 +19880,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "filter"
         schema:
@@ -20576,8 +20527,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023"
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "filter"
         schema:
@@ -20602,6 +20552,15 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "List of source ids to be filtered by."
+        explode: true
+        in: "query"
+        name: "runSourceFilter"
+        schema:
+          items:
+            type: "string"
+          type: "array"
+        style: "form"
       - description: "Genestack accession that corresponds to the vcf column used\
           \ to link variants from the same run to a sample"
         in: "query"
@@ -20776,8 +20735,7 @@ paths:
           - "term_id"
           type: "string"
       - description: "Filter by variant metadata (key-value metadata pair(s)). E.g.\
-          \ `\"Variant Source\"=dbSNP`. Retrieving individual runs via \"Run Source\
-          \ ID\"=\"HG00096\"  will be deprecated after June 2023."
+          \ `\"Variant Source\"=dbSNP`."
         in: "query"
         name: "filter"
         schema:
