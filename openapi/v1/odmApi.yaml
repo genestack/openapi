@@ -143,6 +143,7 @@ paths:
             type: "string"
           type: "array"
         style: "form"
+        default: "Source id"
       - description: "Genestack accession that corresponds to the gct column used\
           \ to link expression data from the same run to a sample."
         in: "query"
@@ -978,6 +979,7 @@ paths:
             type: "string"
           type: "array"
         style: "form"
+        default: "Source id"
       - description: "Genestack accession that corresponds to the gct column used\
           \ to link expression data from the same run to a sample."
         in: "query"
@@ -1652,6 +1654,7 @@ paths:
             type: "string"
           type: "array"
         style: "form"
+        default: "Source id"
       - description: "Genestack accession that corresponds to the fcy column used\
           \ to link flow cytometry data from the same run to a sample"
         in: "query"
@@ -2477,6 +2480,7 @@ paths:
             type: "string"
           type: "array"
         style: "form"
+        default: "Source id"
       - description: "Genestack accession that corresponds to the fcy column used\
           \ to link flow cytometry data from the same run to a sample"
         in: "query"
@@ -19706,6 +19710,7 @@ paths:
             type: "string"
           type: "array"
         style: "form"
+        default: "Source id"
       - description: "Genestack accession that corresponds to the vcf column used\
           \ to link variants from the same run to a sample"
         in: "query"
@@ -20561,6 +20566,7 @@ paths:
             type: "string"
           type: "array"
         style: "form"
+        default: "Source id"
       - description: "Genestack accession that corresponds to the vcf column used\
           \ to link variants from the same run to a sample"
         in: "query"

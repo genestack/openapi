@@ -91,6 +91,7 @@ paths:
             type: string
           type: array
         style: form
+        default: Source id
       - description: Genestack accession that corresponds to the fcy column used to
           link flow cytometry data from the same run to a sample
         in: query
