@@ -82,6 +82,12 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
+      - description: Genestack accession that corresponds to the fcy column used to
+          link flow cytometry data from the same run to a sample
+        in: query
+        name: runFilter
+        schema:
+          type: string
       - description: List of source ids to be filtered by.
         explode: true
         in: query
@@ -90,14 +96,8 @@ paths:
           items:
             type: string
           type: array
+          default: Source id
         style: form
-        default: Source id
-      - description: Genestack accession that corresponds to the fcy column used to
-          link flow cytometry data from the same run to a sample
-        in: query
-        name: runFilter
-        schema:
-          type: string
       - description: "Required value of \"Readout type\" column. E.g.: `Count`, `Median`"
         in: query
         name: readoutType

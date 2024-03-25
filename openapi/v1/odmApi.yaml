@@ -134,6 +134,12 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "Genestack accession that corresponds to the gct column used\
+          \ to link expression data from the same run to a sample."
+        in: "query"
+        name: "runFilter"
+        schema:
+          type: "string"
       - description: "List of source ids to be filtered by."
         explode: true
         in: "query"
@@ -142,14 +148,8 @@ paths:
           items:
             type: "string"
           type: "array"
+          default: "Source id"
         style: "form"
-        default: "Source id"
-      - description: "Genestack accession that corresponds to the gct column used\
-          \ to link expression data from the same run to a sample."
-        in: "query"
-        name: "runFilter"
-        schema:
-          type: "string"
       - description: "Minimum threshold (inclusive) for returned expression values."
         in: "query"
         name: "minExpressionLevel"
@@ -970,6 +970,12 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "Genestack accession that corresponds to the gct column used\
+          \ to link expression data from the same run to a sample."
+        in: "query"
+        name: "runFilter"
+        schema:
+          type: "string"
       - description: "List of source ids to be filtered by."
         explode: true
         in: "query"
@@ -978,14 +984,8 @@ paths:
           items:
             type: "string"
           type: "array"
+          default: "Source id"
         style: "form"
-        default: "Source id"
-      - description: "Genestack accession that corresponds to the gct column used\
-          \ to link expression data from the same run to a sample."
-        in: "query"
-        name: "runFilter"
-        schema:
-          type: "string"
       - description: "Minimum threshold (inclusive) for returned expression values."
         in: "query"
         name: "minExpressionLevel"
@@ -1645,6 +1645,12 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "Genestack accession that corresponds to the fcy column used\
+          \ to link flow cytometry data from the same run to a sample"
+        in: "query"
+        name: "runFilter"
+        schema:
+          type: "string"
       - description: "List of source ids to be filtered by."
         explode: true
         in: "query"
@@ -1653,14 +1659,8 @@ paths:
           items:
             type: "string"
           type: "array"
+          default: "Source id"
         style: "form"
-        default: "Source id"
-      - description: "Genestack accession that corresponds to the fcy column used\
-          \ to link flow cytometry data from the same run to a sample"
-        in: "query"
-        name: "runFilter"
-        schema:
-          type: "string"
       - description: "Required value of \"Readout type\" column. E.g.: `Count`, `Median`"
         in: "query"
         name: "readoutType"
@@ -2471,6 +2471,12 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "Genestack accession that corresponds to the fcy column used\
+          \ to link flow cytometry data from the same run to a sample"
+        in: "query"
+        name: "runFilter"
+        schema:
+          type: "string"
       - description: "List of source ids to be filtered by."
         explode: true
         in: "query"
@@ -2479,14 +2485,8 @@ paths:
           items:
             type: "string"
           type: "array"
+          default: "Source id"
         style: "form"
-        default: "Source id"
-      - description: "Genestack accession that corresponds to the fcy column used\
-          \ to link flow cytometry data from the same run to a sample"
-        in: "query"
-        name: "runFilter"
-        schema:
-          type: "string"
       - description: "Required value of \"Readout type\" column. E.g.: `Count`, `Median`"
         in: "query"
         name: "readoutType"
@@ -19701,6 +19701,12 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "Genestack accession that corresponds to the vcf column used\
+          \ to link variants from the same run to a sample"
+        in: "query"
+        name: "runFilter"
+        schema:
+          type: "string"
       - description: "List of source ids to be filtered by."
         explode: true
         in: "query"
@@ -19709,14 +19715,8 @@ paths:
           items:
             type: "string"
           type: "array"
+          default: "Source id"
         style: "form"
-        default: "Source id"
-      - description: "Genestack accession that corresponds to the vcf column used\
-          \ to link variants from the same run to a sample"
-        in: "query"
-        name: "runFilter"
-        schema:
-          type: "string"
       - description: "Filter by vcf INFO field key=value(or range) pairs. Multiple\
           \ filters can be separated with semicolons. E.g. `AF=(0.8:0.95);VT=SNP'"
         in: "query"
@@ -20557,6 +20557,12 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "Genestack accession that corresponds to the vcf column used\
+          \ to link variants from the same run to a sample"
+        in: "query"
+        name: "runFilter"
+        schema:
+          type: "string"
       - description: "List of source ids to be filtered by."
         explode: true
         in: "query"
@@ -20565,14 +20571,8 @@ paths:
           items:
             type: "string"
           type: "array"
+          default: "Source id"
         style: "form"
-        default: "Source id"
-      - description: "Genestack accession that corresponds to the vcf column used\
-          \ to link variants from the same run to a sample"
-        in: "query"
-        name: "runFilter"
-        schema:
-          type: "string"
       - description: "Filter by vcf INFO field key=value(or range) pairs. Multiple\
           \ filters can be separated with semicolons. E.g. `AF=(0.8:0.95);VT=SNP'"
         in: "query"

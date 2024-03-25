@@ -86,6 +86,12 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
+      - description: Genestack accession that corresponds to the gct column used to
+          link expression data from the same run to a sample.
+        in: query
+        name: runFilter
+        schema:
+          type: string
       - description: List of source ids to be filtered by.
         explode: true
         in: query
@@ -94,14 +100,8 @@ paths:
           items:
             type: string
           type: array
+          default: Source id
         style: form
-        default: Source id
-      - description: Genestack accession that corresponds to the gct column used to
-          link expression data from the same run to a sample.
-        in: query
-        name: runFilter
-        schema:
-          type: string
       - description: Minimum threshold (inclusive) for returned expression values.
         in: query
         name: minExpressionLevel
