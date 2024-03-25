@@ -95,8 +95,8 @@ paths:
         schema:
           items:
             type: string
+            example: Source id
           type: array
-          default: Source id
         style: form
       - description: Filter by vcf INFO field key=value(or range) pairs. Multiple
           filters can be separated with semicolons. E.g. `AF=(0.8:0.95);VT=SNP'

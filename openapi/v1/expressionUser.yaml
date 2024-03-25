@@ -100,8 +100,8 @@ paths:
         schema:
           items:
             type: string
+            example: Source id
           type: array
-          default: Source id
         style: form
       - description: Minimum threshold (inclusive) for returned expression values.
         in: query

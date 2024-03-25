@@ -147,8 +147,8 @@ paths:
         schema:
           items:
             type: "string"
+            example: "Source id"
           type: "array"
-          default: "Source id"
         style: "form"
       - description: "Minimum threshold (inclusive) for returned expression values."
         in: "query"
@@ -983,8 +983,8 @@ paths:
         schema:
           items:
             type: "string"
+            example: "Source id"
           type: "array"
-          default: "Source id"
         style: "form"
       - description: "Minimum threshold (inclusive) for returned expression values."
         in: "query"
@@ -1658,8 +1658,8 @@ paths:
         schema:
           items:
             type: "string"
+            example: "Source id"
           type: "array"
-          default: "Source id"
         style: "form"
       - description: "Required value of \"Readout type\" column. E.g.: `Count`, `Median`"
         in: "query"
@@ -2484,8 +2484,8 @@ paths:
         schema:
           items:
             type: "string"
+            example: "Source id"
           type: "array"
-          default: "Source id"
         style: "form"
       - description: "Required value of \"Readout type\" column. E.g.: `Count`, `Median`"
         in: "query"
@@ -19714,8 +19714,8 @@ paths:
         schema:
           items:
             type: "string"
+            example: "Source id"
           type: "array"
-          default: "Source id"
         style: "form"
       - description: "Filter by vcf INFO field key=value(or range) pairs. Multiple\
           \ filters can be separated with semicolons. E.g. `AF=(0.8:0.95);VT=SNP'"
@@ -20533,8 +20533,8 @@ paths:
         schema:
           items:
             type: "string"
+            example: "Source id"
           type: "array"
-          default: "Source id"
         style: "form"
       - description: "Filter by vcf INFO field key=value(or range) pairs. Multiple\
           \ filters can be separated with semicolons. E.g. `AF=(0.8:0.95);VT=SNP'"

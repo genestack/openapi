@@ -95,8 +95,8 @@ paths:
         schema:
           items:
             type: string
+            example: Source id
           type: array
-          default: Source id
         style: form
       - description: "Required value of \"Readout type\" column. E.g.: `Count`, `Median`"
         in: query
