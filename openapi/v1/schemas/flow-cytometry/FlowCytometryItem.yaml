@@ -4,6 +4,7 @@ example:
   expression: 0.8008281904610115
   marker: marker
   groupId: groupId
+  Run Source ID: Run Source ID
   cellPopulation: cellPopulation
   readoutType: readoutType
   runId: runId
@@ -15,6 +16,8 @@ properties:
   runId:
     type: string
   groupId:
+    type: string
+  Run Source ID:
     type: string
   readoutType:
     type: string

@@ -1,7 +1,6 @@
 openapi: 3.1.0
 info:
   description: |
-    #### NOTE: these API endpoints are experimental. The parameters, request body and response body may change.
 
     These API endpoints serve to start, control, monitor and retrieve results for a set of available Genestack jobs.
 

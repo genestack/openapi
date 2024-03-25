@@ -1,17 +1,18 @@
 example:
-  reference: reference
+  ref: reference
   itemId: itemId
   metadata: {}
-  variationId:
+  id:
   - variationId
   - variationId
   groupId: groupId
-  start: 0
-  alteration:
+  Run Source ID: Run Source ID
+  pos: 0
+  alt:
   - alteration
   - alteration
   runId: runId
-  contig: contig
+  chrom: chromosome
   info:
     key:
     - info
@@ -27,18 +28,20 @@ properties:
     type: string
   groupId:
     type: string
-  contig:
+  Run Source ID:
     type: string
-  start:
+  chrom:
+    type: string
+  pos:
     format: int64
     type: integer
-  reference:
+  ref:
     type: string
-  alteration:
+  alt:
     type: array
     items:
       type: string
-  variationId:
+  id:
     type: array
     items:
       type: string
