@@ -89,7 +89,7 @@ paths:
         name: runFilter
         schema:
           type: string
-      - description: Sample name from the file, allows to retrieve all rows for a sample. Multiple values can be provided as a list.
+      - description: Sample name from the file which allows retrieval of all the rows related to the sample. Multiple values can be provided as a list.
         explode: true
         in: query
         name: runSourceFilter
