@@ -58,8 +58,7 @@ paths:
           - term_id
           type: string
       - description: Filter by flow cytometry metadata (key-value metadata pair(s)).
-          E.g. `Organ=blood`. Retrieving individual runs via "Run Source ID"="HG00096"  will
-          be deprecated after June 2023
+          E.g. `Organ=blood`.
         in: query
         name: filter
         schema:
@@ -89,6 +88,16 @@ paths:
         name: runFilter
         schema:
           type: string
+      - description: Sample name from the file which allows retrieval of all the rows related to the sample. Multiple values can be provided as a list.
+        explode: true
+        in: query
+        name: runSourceFilter
+        schema:
+          items:
+            type: string
+            example: Run Source ID
+          type: array
+        style: form
       - description: "Required value of \"Readout type\" column. E.g.: `Count`, `Median`"
         in: query
         name: readoutType
@@ -270,8 +279,7 @@ paths:
           - term_id
           type: string
       - description: Filter by flow cytometry metadata (key-value metadata pair(s)).
-          E.g. `Organ=blood`. Retrieving individual runs via "Run Source ID"="HG00096"  will
-          be deprecated after June 2023
+          E.g. `Organ=blood`.
         in: query
         name: filter
         schema:
