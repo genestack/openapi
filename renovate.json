@@ -4,7 +4,7 @@
   "pre-commit": {
     "enabled": true
   },
-  "schedule": ["every weekend"],
+  "schedule": ["* */2 * * 6,0"],
   "labels": ["renovate"],
   "dockerfile": {
     "fileMatch": [
@@ -12,5 +12,12 @@
       "(^|/|\\.)Dockerfile$",
       "(^|/)Dockerfile[^/]*$"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "description": "Automerge non-major updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ]
 }
