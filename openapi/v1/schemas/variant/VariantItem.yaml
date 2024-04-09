@@ -11,6 +11,9 @@ example:
   alt:
   - alteration
   - alteration
+  qual: 10
+  filter:
+   - PASS
   runId: runId
   chrom: chromosome
   info:
@@ -38,6 +41,12 @@ properties:
   ref:
     type: string
   alt:
+    type: array
+    items:
+      type: string
+  qual:
+    type: number
+  filter:
     type: array
     items:
       type: string
