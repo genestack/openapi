@@ -88,7 +88,7 @@ paths:
         schema:
           items:
             type: string
-            example: rs838705
+            example: rs334
           type: array
         style: form
       - description: |-
