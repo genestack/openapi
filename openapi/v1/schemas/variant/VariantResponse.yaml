@@ -25,8 +25,8 @@ example:
         key:
         - info
         - info
-      genotype:
-        key: genotype
+    genotype:
+      key: genotype
   - ref: reference
     itemId: itemId
     metadata: {}
@@ -51,8 +51,8 @@ example:
         key:
           - info
           - info
-      genotype:
-        key: genotype
+    genotype:
+      key: genotype
 properties:
   data:
     items:
