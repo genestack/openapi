@@ -7,19 +7,22 @@ example:
   - variationId
   groupId: groupId
   Run Source ID: Run Source ID
-  pos: 0
-  alt:
-  - alteration
-  - alteration
-  qual: 10
-  filter:
-   - PASS
-  runId: runId
-  chrom: chromosome
-  info:
-    key:
-    - info
-    - info
+  geneVariant:
+    chrom: chromosome
+    pos: 0
+    id:
+    - id
+    ref: A
+    alt:
+    - GC
+    - GAATTTA
+    qual: 10
+    filter:
+     - PASS
+    info:
+      key:
+      - info
+      - info
   genotype:
     key: genotype
 properties:
@@ -33,34 +36,37 @@ properties:
     type: string
   Run Source ID:
     type: string
-  chrom:
-    type: string
-  pos:
-    format: int64
-    type: integer
-  ref:
-    type: string
-  alt:
-    type: array
-    items:
-      type: string
-  qual:
-    type: number
-  filter:
-    type: array
-    items:
-      type: string
-  id:
-    type: array
-    items:
-      type: string
-  info:
+  geneVariant:
     type: object
-    patternProperties:
-      "^.*$":
+    properties:
+      chrom:
+        type: string
+      pos:
+        format: int64
+        type: integer
+      id:
         type: array
         items:
           type: string
+      ref:
+        type: string
+      alt:
+        type: array
+        items:
+          type: string
+      qual:
+        type: number
+      filter:
+        type: array
+        items:
+          type: string
+      info:
+        type: object
+        patternProperties:
+          "^.*$":
+            type: array
+            items:
+              type: string
   genotype:
     type: object
     patternProperties:

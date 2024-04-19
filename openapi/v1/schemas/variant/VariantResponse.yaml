@@ -9,19 +9,22 @@ example:
     - variationId
     groupId: groupId
     Run Source ID: Run Source ID
-    pos: 0
-    alt:
-    - alteration
-    - alteration
-    qual: 10
-    filter:
-    - PASS
-    runId: runId
-    chrom: chromosome
-    info:
-      key:
-      - info
-      - info
+    geneVariant:
+      chrom: chromosome
+      pos: 0
+      id:
+        - id
+      ref: reference
+      alt:
+      - alteration
+      - alteration
+      qual: 10
+      filter:
+      - PASS
+      info:
+        key:
+        - info
+        - info
     genotype:
       key: genotype
   - ref: reference
@@ -32,19 +35,22 @@ example:
     - variationId
     groupId: groupId
     Run Source ID: Run Source ID
-    pos: 0
-    alt:
-    - alteration
-    - alteration
-    qual: 10
-    filter:
-    - PASS
-    runId: runId
-    chrom: chromosome
-    info:
-      key:
-      - info
-      - info
+    geneVariant:
+      chrom: chromosome
+      pos: 0
+      id:
+        - id
+      ref: reference
+      alt:
+        - alteration
+        - alteration
+      qual: 10
+      filter:
+        - PASS
+      info:
+        key:
+          - info
+          - info
     genotype:
       key: genotype
 properties:
