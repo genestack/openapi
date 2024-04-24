@@ -40,16 +40,13 @@ properties:
   value:
     example:
       expression: 1.82
-    anyOf:
-    - type: object
-      patternProperties:
-        "^.*$":
-          format: double
-          type:
-            - number
-            - string
-    - type: "null"
     type: object
+    patternProperties:
+      "^.*$":
+        format: double
+        oneOf:
+        - type: number
+        - type: string # Inf or -Inf
   description:
     type: string
     readOnly: true

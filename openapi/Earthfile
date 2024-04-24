@@ -2,7 +2,7 @@ VERSION 0.8
 
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.15.1
+    FROM swaggerapi/swagger-ui:v5.16.2
 
     COPY v1 /usr/share/nginx/html/yaml/
     COPY swagger/fs /
@@ -33,7 +33,7 @@ explorer-build:
 
 
 explorer:
-    FROM nginx:1.25.4
+    FROM nginx:1.25.5
 
     COPY v1/schemas /usr/share/nginx/html/schemas/
     COPY v1/odmApi.yaml /usr/share/nginx/html/
