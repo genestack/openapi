@@ -1,21 +1,28 @@
 example:
-  reference: reference
+  ref: reference
   itemId: itemId
   metadata: {}
-  variationId:
+  id:
   - variationId
   - variationId
   groupId: groupId
-  start: 0
-  alteration:
-  - alteration
-  - alteration
-  runId: runId
-  contig: contig
-  info:
-    key:
-    - info
-    - info
+  Run Source ID: Run Source ID
+  geneVariant:
+    chrom: chromosome
+    pos: 0
+    id:
+    - id
+    ref: A
+    alt:
+    - GC
+    - GAATTTA
+    qual: 10
+    filter:
+     - PASS
+    info:
+      key:
+      - info
+      - info
   genotype:
     key: genotype
 properties:
@@ -27,28 +34,39 @@ properties:
     type: string
   groupId:
     type: string
-  contig:
+  Run Source ID:
     type: string
-  start:
-    format: int64
-    type: integer
-  reference:
-    type: string
-  alteration:
-    type: array
-    items:
-      type: string
-  variationId:
-    type: array
-    items:
-      type: string
-  info:
+  geneVariant:
     type: object
-    patternProperties:
-      "^.*$":
+    properties:
+      chrom:
+        type: string
+      pos:
+        format: int64
+        type: integer
+      id:
         type: array
         items:
           type: string
+      ref:
+        type: string
+      alt:
+        type: array
+        items:
+          type: string
+      qual:
+        type: number
+      filter:
+        type: array
+        items:
+          type: string
+      info:
+        type: object
+        patternProperties:
+          "^.*$":
+            type: array
+            items:
+              type: string
   genotype:
     type: object
     patternProperties:
