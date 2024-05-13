@@ -9634,7 +9634,7 @@ paths:
       - "Metadata versioning as Curator"
   /api/v1/as-curator/integration/studies/{id}/validation-summary:
     get:
-      operationId: "searchExpressionDataAsCurator"
+      operationId: "getStudyValidationSummary"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
