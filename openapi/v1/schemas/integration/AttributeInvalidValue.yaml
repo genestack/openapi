@@ -8,8 +8,10 @@ example:
     errorMessage: errorMessage
 properties:
   value:
-    properties: {}
-    type: object
+    oneOf:
+      - properties: {}
+        type: object
+      - type: string
   count:
     format: int64
     type: integer
