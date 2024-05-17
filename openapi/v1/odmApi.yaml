@@ -19707,6 +19707,17 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "Specify a chromosome interval to find genes between these positions.\
+          \ E.g. `2:233364596-233385916`. Multiple intervals can be provided as a\
+          \ list."
+        in: "query"
+        name: "geneVariantRegion"
+        schema:
+          items:
+            type: "string"
+            example: "2:233364596-233385916"
+          type: "array"
+        style: "form"
       - description: "One or more specific variation IDs can be specified. E.g. `rs838705`"
         in: "query"
         name: "geneVariantId"
@@ -20499,6 +20510,17 @@ paths:
         name: "searchSpecificTerms"
         schema:
           type: "boolean"
+      - description: "Specify a chromosome interval to find genes between these positions.\
+          \ E.g. `2:233364596-233385916`. Multiple intervals can be provided as a\
+          \ list."
+        in: "query"
+        name: "geneVariantRegion"
+        schema:
+          items:
+            type: "string"
+            example: "2:233364596-233385916"
+          type: "array"
+        style: "form"
       - description: "One or more specific variation IDs can be specified. E.g. `rs838705`"
         in: "query"
         name: "geneVariantId"
