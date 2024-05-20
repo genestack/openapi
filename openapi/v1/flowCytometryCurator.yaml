@@ -88,7 +88,7 @@ paths:
         name: runFilter
         schema:
           items:
-            type: string
+            type: number
             example: runId
           type: array
         style: form
