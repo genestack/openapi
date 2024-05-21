@@ -365,7 +365,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MetadataWithId"
+                $ref: "#/components/schemas/VariantMetadataWithId"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -461,7 +461,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MetadataWithId"
+                $ref: "#/components/schemas/VariantMetadataWithId"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -795,8 +795,8 @@ components:
       $ref: "./schemas/common/MetaResponse.yaml"
     MetadataContent:
       $ref: "./schemas/common/MetadataContent.yaml"
-    MetadataWithId:
-      $ref: "./schemas/common/MetadataWithId.yaml"
+    VariantMetadataWithId:
+      $ref: "./schemas/variant/VariantMetadataWithId.yaml"
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     RunsResponse:
