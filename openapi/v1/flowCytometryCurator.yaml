@@ -87,10 +87,7 @@ paths:
         in: query
         name: runFilter
         schema:
-          items:
-            type: number
-            example: runId
-          type: array
+          $ref: "#/components/schemas/RunFilter"
         style: form
       - description: Sample name from the file which allows retrieval of all the rows related to the sample. Multiple values can be provided as a list.
         explode: true
@@ -831,6 +828,8 @@ components:
       $ref: "./schemas/common/MetadataWithId.yaml"
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
+    RunFilter:
+      $ref: "./schemas/common/RunFilter.yaml"
     RunsResponse:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
