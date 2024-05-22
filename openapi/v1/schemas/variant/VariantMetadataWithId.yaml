@@ -1,0 +1,13 @@
+example:
+  itemId: itemId
+  metadata: {}
+  annotation: {}
+properties:
+  itemId:
+    readOnly: true
+    type: string
+  metadata:
+    type: object
+  annotation:
+    type: object
+type: object

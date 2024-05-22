@@ -20011,7 +20011,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MetadataWithId"
+                $ref: "#/components/schemas/VariantMetadataWithId"
           description: "The request was successful. The returned value is the object."
         "400":
           content: {}
@@ -20110,7 +20110,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MetadataWithId"
+                $ref: "#/components/schemas/VariantMetadataWithId"
           description: "The request was successful. The returned value is the object."
         "400":
           content: {}
@@ -20811,7 +20811,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MetadataWithId"
+                $ref: "#/components/schemas/VariantMetadataWithId"
           description: "The request was successful. The returned value is the object."
         "400":
           content: {}
@@ -20874,7 +20874,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MetadataWithId"
+                $ref: "#/components/schemas/VariantMetadataWithId"
           description: "The request was successful. The returned value is the object."
         "400":
           content: {}
@@ -21296,6 +21296,8 @@ components:
       $ref: "./schemas/scim/UserResponse.yaml"
     StudyGenericSource:
       $ref: "./schemas/study/StudyGenericSource.yaml"
+    VariantMetadataWithId:
+      $ref: "./schemas/variant/VariantMetadataWithId.yaml"
     VariantSignalSource:
       $ref: "./schemas/variant/VariantSignalSource.yaml"
     VariantItem:
