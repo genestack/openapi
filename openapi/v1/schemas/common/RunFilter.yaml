@@ -1,4 +1,4 @@
 items:
-  type: number
+  type: string
   example: runId
 type: array
