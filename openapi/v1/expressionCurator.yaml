@@ -49,18 +49,14 @@ paths:
 
       operationId: getExpressionDataAsCurator
       parameters:
-      - description: |-
-          Allows to get an extended or updated response body. Available values:
-           `term_id` - returns extended information including IDs for values and dictionaries;
-           `multi_values` - returns data with several feature attributes and several sample measurements in the response body in case the original data had them. If not specified, returns only the first feature identifier and the first measurement per sample from the original data.
-        explode: true
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
         in: query
         name: responseFormat
         schema:
-          items:
-            type: string
-          type: array
-        style: form
+          enum:
+          - term_id
+          type: string
       - description: Filter by expression metadata (key-value metadata pair(s)). E.g.
           `"Normalization Method"=TPM`.
         in: query
@@ -596,18 +592,14 @@ paths:
     get:
       operationId: getExpressionAsCurator
       parameters:
-      - description: |-
-          Allows to get an extended or updated response body. Available values:
-           `term_id` - returns extended information including IDs for values and dictionaries;
-           `multi_values` - returns data with several feature attributes and several sample measurements in the response body in case the original data had them. If not specified, returns only the first feature identifier and the first measurement per sample from the original data.
-        explode: true
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
         in: query
         name: responseFormat
         schema:
-          items:
-            type: string
-          type: array
-        style: form
+          enum:
+          - term_id
+          type: string
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
