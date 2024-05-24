@@ -4348,11 +4348,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
-      - description: "Search for objects linked to variant data via data query (key-value\
-          \ pair(s)). E.g.  `VariationId=rs548419688|rs544419019`  `Intervals=12:23432-234324,30:234324-23432`\
-          \ `Gene=ASPM,BRCA1`  `Reference=A|T Alteration=C|G` `Quality=(0.9:1.0)`\
-          \  `Type=SNP|MNP|INS|DEL|MIXED`  `info_VT=DEL`  `info_EUR_AF=(0.9:1.0)`\
-          \ `Start=12340` `AllelesNumber=1` `AlterationNumber=2`"
+      - description: "Search for objects linked to variant data by SNPs properties. Filtering is currently supported by `filter`, `id` , and `region` keywords and their
+          logical combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with standard boolean precedence. Keyword case is ignored.
+          - `filter`  corresponds to the `FILTER` column in the original vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`
+              or `filter != pass`
+          - `id` is a string value that corresponds to the `ID` column. Multiple values could be added via a comma. Expression `id = rs3214,rg1234` is equivalent
+              to `id = rs3214 or id = rg1234`.
+          - region corresponds to CHROM and POS columns. Supports querying by the whole chromosome `region = chr1` , by interval withinn a chromosome
+              `region=chr1:4567-9876543` by exact position `region=chr1:456789` or by indefinite ranges like `region=x:3456789-*` . Multiple regions could be
+              separated via comma, e.g. `region=chr1:34567-98767,chr3` is equivalent to  `region=chr1:34567-98767 or region=chr3`"
         in: query
         name: vxQuery
         schema:
@@ -4609,11 +4613,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
-      - description: "Search for objects linked to variant data via data query (key-value\
-          \ pair(s)). E.g.  `VariationId=rs548419688|rs544419019`  `Intervals=12:23432-234324,30:234324-23432`\
-          \ `Gene=ASPM,BRCA1`  `Reference=A|T Alteration=C|G` `Quality=(0.9:1.0)`\
-          \  `Type=SNP|MNP|INS|DEL|MIXED`  `info_VT=DEL`  `info_EUR_AF=(0.9:1.0)`\
-          \ `Start=12340` `AllelesNumber=1` `AlterationNumber=2`"
+      - description: "Search for objects linked to variant data by SNPs properties. Filtering is currently supported by `filter`, `id` , and `region` keywords and their
+          logical combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with standard boolean precedence. Keyword case is ignored.
+          - `filter`  corresponds to the `FILTER` column in the original vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`
+              or `filter != pass`
+          - `id` is a string value that corresponds to the `ID` column. Multiple values could be added via a comma. Expression `id = rs3214,rg1234` is equivalent
+              to `id = rs3214 or id = rg1234`.
+          - region corresponds to CHROM and POS columns. Supports querying by the whole chromosome `region = chr1` , by interval withinn a chromosome
+              `region=chr1:4567-9876543` by exact position `region=chr1:456789` or by indefinite ranges like `region=x:3456789-*` . Multiple regions could be
+              separated via comma, e.g. `region=chr1:34567-98767,chr3` is equivalent to  `region=chr1:34567-98767 or region=chr3`"
         in: query
         name: vxQuery
         schema:
@@ -5049,11 +5057,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
-      - description: "Search for objects linked to variant data via data query (key-value\
-          \ pair(s)). E.g.  `VariationId=rs548419688|rs544419019`  `Intervals=12:23432-234324,30:234324-23432`\
-          \ `Gene=ASPM,BRCA1`  `Reference=A|T Alteration=C|G` `Quality=(0.9:1.0)`\
-          \  `Type=SNP|MNP|INS|DEL|MIXED`  `info_VT=DEL`  `info_EUR_AF=(0.9:1.0)`\
-          \ `Start=12340` `AllelesNumber=1` `AlterationNumber=2`"
+      - description: "Search for objects linked to variant data by SNPs properties. Filtering is currently supported by `filter`, `id` , and `region` keywords and their
+          logical combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with standard boolean precedence. Keyword case is ignored.
+          - `filter`  corresponds to the `FILTER` column in the original vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`
+              or `filter != pass`
+          - `id` is a string value that corresponds to the `ID` column. Multiple values could be added via a comma. Expression `id = rs3214,rg1234` is equivalent
+              to `id = rs3214 or id = rg1234`.
+          - region corresponds to CHROM and POS columns. Supports querying by the whole chromosome `region = chr1` , by interval withinn a chromosome
+              `region=chr1:4567-9876543` by exact position `region=chr1:456789` or by indefinite ranges like `region=x:3456789-*` . Multiple regions could be
+              separated via comma, e.g. `region=chr1:34567-98767,chr3` is equivalent to  `region=chr1:34567-98767 or region=chr3`"
         in: query
         name: vxQuery
         schema:
@@ -5311,11 +5323,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
-      - description: "Search for objects linked to variant data via data query (key-value\
-          \ pair(s)). E.g.  `VariationId=rs548419688|rs544419019`  `Intervals=12:23432-234324,30:234324-23432`\
-          \ `Gene=ASPM,BRCA1`  `Reference=A|T Alteration=C|G` `Quality=(0.9:1.0)`\
-          \  `Type=SNP|MNP|INS|DEL|MIXED`  `info_VT=DEL`  `info_EUR_AF=(0.9:1.0)`\
-          \ `Start=12340` `AllelesNumber=1` `AlterationNumber=2`"
+      - description: "Search for objects linked to variant data by SNPs properties. Filtering is currently supported by `filter`, `id` , and `region` keywords and their
+          logical combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with standard boolean precedence. Keyword case is ignored.
+          - `filter`  corresponds to the `FILTER` column in the original vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`
+              or `filter != pass`
+          - `id` is a string value that corresponds to the `ID` column. Multiple values could be added via a comma. Expression `id = rs3214,rg1234` is equivalent
+              to `id = rs3214 or id = rg1234`.
+          - region corresponds to CHROM and POS columns. Supports querying by the whole chromosome `region = chr1` , by interval withinn a chromosome
+              `region=chr1:4567-9876543` by exact position `region=chr1:456789` or by indefinite ranges like `region=x:3456789-*` . Multiple regions could be
+              separated via comma, e.g. `region=chr1:34567-98767,chr3` is equivalent to  `region=chr1:34567-98767 or region=chr3`"
         in: query
         name: vxQuery
         schema:
@@ -5572,11 +5588,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
-      - description: "Search for objects linked to variant data via data query (key-value\
-          \ pair(s)). E.g.  `VariationId=rs548419688|rs544419019`  `Intervals=12:23432-234324,30:234324-23432`\
-          \ `Gene=ASPM,BRCA1`  `Reference=A|T Alteration=C|G` `Quality=(0.9:1.0)`\
-          \  `Type=SNP|MNP|INS|DEL|MIXED`  `info_VT=DEL`  `info_EUR_AF=(0.9:1.0)`\
-          \ `Start=12340` `AllelesNumber=1` `AlterationNumber=2`"
+      - description: "Search for objects linked to variant data by SNPs properties. Filtering is currently supported by `filter`, `id` , and `region` keywords and their
+          logical combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with standard boolean precedence. Keyword case is ignored.
+          - `filter`  corresponds to the `FILTER` column in the original vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`
+              or `filter != pass`
+          - `id` is a string value that corresponds to the `ID` column. Multiple values could be added via a comma. Expression `id = rs3214,rg1234` is equivalent
+              to `id = rs3214 or id = rg1234`.
+          - region corresponds to CHROM and POS columns. Supports querying by the whole chromosome `region = chr1` , by interval withinn a chromosome
+              `region=chr1:4567-9876543` by exact position `region=chr1:456789` or by indefinite ranges like `region=x:3456789-*` . Multiple regions could be
+              separated via comma, e.g. `region=chr1:34567-98767,chr3` is equivalent to  `region=chr1:34567-98767 or region=chr3`"
         in: query
         name: vxQuery
         schema:
@@ -5836,11 +5856,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
-      - description: "Search for objects linked to variant data via data query (key-value\
-          \ pair(s)). E.g.  `VariationId=rs548419688|rs544419019`  `Intervals=12:23432-234324,30:234324-23432`\
-          \ `Gene=ASPM,BRCA1`  `Reference=A|T Alteration=C|G` `Quality=(0.9:1.0)`\
-          \  `Type=SNP|MNP|INS|DEL|MIXED`  `info_VT=DEL`  `info_EUR_AF=(0.9:1.0)`\
-          \ `Start=12340` `AllelesNumber=1` `AlterationNumber=2`"
+      - description: "Search for objects linked to variant data by SNPs properties. Filtering is currently supported by `filter`, `id` , and `region` keywords and their
+          logical combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with standard boolean precedence. Keyword case is ignored.
+          - `filter`  corresponds to the `FILTER` column in the original vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`
+              or `filter != pass`
+          - `id` is a string value that corresponds to the `ID` column. Multiple values could be added via a comma. Expression `id = rs3214,rg1234` is equivalent
+              to `id = rs3214 or id = rg1234`.
+          - region corresponds to CHROM and POS columns. Supports querying by the whole chromosome `region = chr1` , by interval withinn a chromosome
+              `region=chr1:4567-9876543` by exact position `region=chr1:456789` or by indefinite ranges like `region=x:3456789-*` . Multiple regions could be
+              separated via comma, e.g. `region=chr1:34567-98767,chr3` is equivalent to  `region=chr1:34567-98767 or region=chr3`"
         in: query
         name: vxQuery
         schema:
@@ -6097,11 +6121,15 @@ paths:
         name: searchSpecificTerms
         schema:
           type: boolean
-      - description: "Search for objects linked to variant data via data query (key-value\
-          \ pair(s)). E.g.  `VariationId=rs548419688|rs544419019`  `Intervals=12:23432-234324,30:234324-23432`\
-          \ `Gene=ASPM,BRCA1`  `Reference=A|T Alteration=C|G` `Quality=(0.9:1.0)`\
-          \  `Type=SNP|MNP|INS|DEL|MIXED`  `info_VT=DEL`  `info_EUR_AF=(0.9:1.0)`\
-          \ `Start=12340` `AllelesNumber=1` `AlterationNumber=2`"
+      - description: "Search for objects linked to variant data by SNPs properties. Filtering is currently supported by `filter`, `id` , and `region` keywords and their
+          logical combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with standard boolean precedence. Keyword case is ignored.
+          - `filter`  corresponds to the `FILTER` column in the original vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`
+              or `filter != pass`
+          - `id` is a string value that corresponds to the `ID` column. Multiple values could be added via a comma. Expression `id = rs3214,rg1234` is equivalent
+              to `id = rs3214 or id = rg1234`.
+          - region corresponds to CHROM and POS columns. Supports querying by the whole chromosome `region = chr1` , by interval withinn a chromosome
+              `region=chr1:4567-9876543` by exact position `region=chr1:456789` or by indefinite ranges like `region=x:3456789-*` . Multiple regions could be
+              separated via comma, e.g. `region=chr1:34567-98767,chr3` is equivalent to  `region=chr1:34567-98767 or region=chr3`"
         in: query
         name: vxQuery
         schema:
