@@ -6,34 +6,31 @@ ARG --global --required HARBOR_DOCKER_REGISTRY
 ARG --global --required MAVEN_REGISTRY_GROUP
 ARG --global --required MAVEN_REGISTRY_RELEASES
 ARG --global --required MAVEN_REGISTRY_SNAPSHOTS
-ARG --global --required NPM_REGISTRY_GROUP
-ARG --global --required NPM_REGISTRY_RELEASES
-ARG --global --required NPM_REGISTRY_SNAPSHOTS
-ARG --global --required PYPI_REGISTRY_GROUP
-ARG --global --required PYPI_REGISTRY_RELEASES
-ARG --global --required PYPI_REGISTRY_SNAPSHOTS
-ARG --global --required R_REGISTRY_GROUP
-ARG --global --required R_REGISTRY_RELEASES
-ARG --global --required R_REGISTRY_SNAPSHOTS
-ARG --global --required NEXUS_REPOSITORY_URL
-ARG --global --required NEXUS_URL
 
-deps:
-    ARG --required BASE_IMAGES_VERSION
-    FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
+build:
+    FROM eclipse-temurin:17.0.11_9-jdk-alpine
+    DO github.com/genestack/earthly-libs+GRADLE_PREPARE
 
-    CACHE /root/.cache
+    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
+    COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
-    COPY requirements.R requirements.txt .
-
-    # Gcc and other stuff for R source packages building
+    ARG --required OPENAPI_VERSION
+    ENV OPENAPI_VERSION=${OPENAPI_VERSION}
     RUN \
-        apt update && \
-        apt install -y build-essential libssl-dev libcurl4-openssl-dev
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            ./gradlew \
+                generateAll \
+                --no-daemon
 
-    # Install dependencies for R and Python
-    # Add after resolving issue
-    # Rscript requirements.R && \
+    SAVE IMAGE --cache-hint
+    SAVE ARTIFACT generated
+
+python-api-client:
+    FROM python:3.12.3-alpine
+    DO github.com/genestack/earthly-libs+PYTHON_PREPARE
+
+    COPY requirements.txt .
     RUN \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
@@ -43,28 +40,7 @@ deps:
                 -r requirements.txt && \
             pypi-clean.sh
 
-    SAVE IMAGE --cache-hint
-
-build:
-    FROM +deps
-
-    CACHE /root/.gradle/caches
-    CACHE /root/.gradle/wrapper
-
-    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
-    COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
-
-    ARG --required OPENAPI_VERSION
-    ENV OPENAPI_VERSION=${OPENAPI_VERSION}
-    RUN ./gradlew \
-            generateAll \
-            --no-daemon
-
-    SAVE IMAGE --cache-hint
-    SAVE ARTIFACT generated
-
-python-api-client:
-    FROM +build
+    COPY +build/generated generated
     WORKDIR generated/python
 
     # Test and build python client
@@ -92,7 +68,17 @@ python-api-client:
             pypi-clean.sh
 
 r-api-client:
-    FROM +build
+    FROM r-base:4.4.0
+    WORKDIR /app
+    COPY requirements.R .
+
+    # Gcc and other stuff for R source packages building
+    RUN \
+        apt update && \
+        apt install -y build-essential libssl-dev libcurl4-openssl-dev && \
+        Rscript requirements.R
+
+    COPY +build/generated generated
     WORKDIR generated/r
 
     # Test and build R client
@@ -122,8 +108,8 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 mkdocs:
-    ARG --required BASE_IMAGES_VERSION
-    FROM ${HARBOR_DOCKER_REGISTRY}/python3:${BASE_IMAGES_VERSION}
+    FROM python:3.12.3-alpine
+    DO github.com/genestack/earthly-libs+PYTHON_PREPARE
 
     COPY mkdocs/fs /
     RUN \
@@ -142,15 +128,12 @@ mkdocs:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
 
-
 explorer:
-    ARG --required BASE_IMAGES_VERSION
     FROM --pass-args openapi+explorer
 
     ARG --required OPENAPI_VERSION
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
-
 
 main:
     BUILD +swagger

@@ -1,6 +1,5 @@
 VERSION 0.8
 
-
 swagger:
     FROM swaggerapi/swagger-ui:v5.17.12
 
@@ -20,17 +19,14 @@ swagger:
 
     SAVE IMAGE --cache-hint
 
-
 explorer-build:
-    ARG --required BASE_IMAGES_VERSION
-    ARG --required HARBOR_DOCKER_REGISTRY
-    FROM ${HARBOR_DOCKER_REGISTRY}/builder:${BASE_IMAGES_VERSION}
+    FROM node:22.2.0-alpine
+    DO github.com/genestack/earthly-libs+NPM_PREPARE
 
     COPY explorer/package.json explorer/package-lock.json .
     RUN npm install
 
     SAVE ARTIFACT node_modules/openapi-explorer/dist/browser/openapi-explorer.min.js
-
 
 explorer:
     FROM nginx:1.26.0
