@@ -2,31 +2,27 @@ example:
   cursor: cursor
   data:
   - itemId: itemId
+    itemOrigin:
+      runSourceId: runSourceId,
+      runId: runId,
+      groupId: groupId
     metadata: {}
-    expression: 1.82
-    feature:
-      genes: MYO9A,
-      groupingKey: VRSLGGISPSEDRR
     gene: gene
-    groupId: groupId
-    Run Source ID: Run Source ID
-    description: description
-    runId: runId
+    feature: feature
+    expression: 1.82
     value:
-      expression: 1.82
+      value: 1.82
   - itemId: itemId
+    itemOrigin:
+      runSourceId: runSourceId,
+      runId: runId,
+      groupId: groupId
     metadata: {}
-    expression: 1.82
-    feature:
-      genes: MYO9A,
-      groupingKey: VRSLGGISPSEDRR
     gene: gene
-    groupId: groupId
-    Run Source ID: Run Source ID
-    description: description
-    runId: runId
+    feature: feature
+    expression: 1.82
     value:
-      expression: 1.82
+      value: 1.82
 properties:
   data:
     items:
