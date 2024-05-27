@@ -1,9 +1,0 @@
-example:
-  attributes:
-    key: {}
-properties:
-  attributes:
-    oneOf:
-      - type: object
-      - type: string
-type: object

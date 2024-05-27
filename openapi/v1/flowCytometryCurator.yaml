@@ -816,8 +816,6 @@ components:
       $ref: "./schemas/flow-cytometry/FlowCytometryResponse.yaml"
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
-    JsonMetadata:
-      $ref: "./schemas/common/JsonMetadata.yaml"
     ListResponse:
       $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
