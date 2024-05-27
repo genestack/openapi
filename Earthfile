@@ -11,6 +11,9 @@ build:
     FROM eclipse-temurin:17.0.11_9-jdk-alpine
     DO github.com/genestack/earthly-libs+GRADLE_PREPARE
 
+    CACHE /root/.gradle/caches
+    CACHE /root/.gradle/wrapper
+
     COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
     COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
 
@@ -29,6 +32,8 @@ build:
 python-api-client:
     FROM python:3.12.3-alpine
     DO github.com/genestack/earthly-libs+PYTHON_PREPARE
+
+    CACHE /root/.cache
 
     COPY requirements.txt .
     RUN \
@@ -70,6 +75,9 @@ python-api-client:
 r-api-client:
     FROM r-base:4.4.0
     WORKDIR /app
+
+    CACHE /root/.cache
+
     COPY requirements.R .
 
     # Gcc and other stuff for R source packages building
@@ -110,6 +118,7 @@ swagger:
 mkdocs:
     FROM python:3.12.3-alpine
     DO github.com/genestack/earthly-libs+PYTHON_PREPARE
+    CACHE /root/.cache
 
     COPY mkdocs/fs /
     RUN \
