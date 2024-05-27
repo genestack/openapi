@@ -54,9 +54,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by variant metadata (key-value metadata pair(s)). E.g.
           `"Variant Source"=dbSNP`.
         in: query
@@ -233,9 +231,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by variant metadata (key-value metadata pair(s)). E.g.
           `"Variant Source"=dbSNP`.
         in: query
@@ -337,9 +333,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -433,9 +427,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -587,9 +579,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -723,9 +713,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -799,6 +787,8 @@ components:
       $ref: "./schemas/variant/VariantMetadataWithId.yaml"
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
+    ResponseFormat:
+      $ref: "./schemas/common/ResponseFormat.yaml"
     RunsResponse:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:

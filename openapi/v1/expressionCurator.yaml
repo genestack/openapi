@@ -54,9 +54,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by expression metadata (key-value metadata pair(s)). E.g.
           `"Normalization Method"=TPM`.
         in: query
@@ -278,9 +276,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by expression metadata (key-value metadata pair(s)). E.g.
           `"Normalization Method"=TPM`.
         in: query
@@ -382,9 +378,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -478,9 +472,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -597,9 +589,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -750,9 +740,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -832,6 +820,8 @@ components:
       $ref: "./schemas/common/PaginationInfo.yaml"
     RunsResponse:
       $ref: "./schemas/common/RunsResponse.yaml"
+    ResponseFormat:
+      $ref: "./schemas/common/ResponseFormat.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
     ExpressionSignalSource:

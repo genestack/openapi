@@ -1,0 +1,3 @@
+enum:
+  - term_id
+type: string
