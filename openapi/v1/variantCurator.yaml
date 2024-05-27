@@ -114,10 +114,7 @@ paths:
         in: query
         name: runFilter
         schema:
-          items:
-            type: string
-            example: runId
-          type: array
+          $ref: "#/components/schemas/RunFilter"
         style: form
       - description: Column name from the file to which all data for a sample is related. Multiple values can be provided as a list to retrieve data from multiple columns.
         explode: true
@@ -789,6 +786,8 @@ components:
       $ref: "./schemas/common/PaginationInfo.yaml"
     ResponseFormat:
       $ref: "./schemas/common/ResponseFormat.yaml"
+    RunFilter:
+      $ref: "./schemas/common/RunFilter.yaml"
     RunsResponse:
       $ref: "./schemas/common/RunsResponse.yaml"
     SignalRun:
