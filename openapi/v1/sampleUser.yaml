@@ -17,7 +17,7 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Sample SPoT as User
+- name: Sample SPoT as User 2
 paths:
   /api/v1/as-user/samples:
     get:
