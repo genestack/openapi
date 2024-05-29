@@ -1,0 +1,21 @@
+description: Link between two objects. Each of them represented as a unique pair of
+  ID (accession) and unique type.
+example:
+  firstId: firstId
+  firstType: firstType
+  secondId: secondId
+  secondType: secondType
+properties:
+  firstId:
+    description: Object ID (accession) (e.g. accession of study)
+    type: string
+  firstType:
+    description: Type of the object (e.g. study)
+    type: string
+  secondId:
+    description: Object ID (accession) (e.g. accession of study)
+    type: string
+  secondType:
+    description: Type of the object (e.g. study)
+    type: string
+type: object

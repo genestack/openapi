@@ -19,6 +19,25 @@ swagger:
 
     SAVE IMAGE --cache-hint
 
+swagger-essential:
+    FROM swaggerapi/swagger-ui:v5.17.12
+
+    COPY v1-essential /usr/share/nginx/html/yaml/
+    COPY swagger/fs /
+    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
+
+    RUN apk add bash --no-cache && \
+        rewrite_entrypoint.sh && \
+        apk del bash
+
+    # IDK why it's required
+    RUN ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml
+
+    ENTRYPOINT ["/genestack-docker-entrypoint.sh"]
+    CMD ["nginx", "-g", "daemon off;"]
+
+    SAVE IMAGE --cache-hint
+
 explorer-build:
     FROM node:22.2.0-alpine
     DO github.com/genestack/earthly-libs+NPM_PREPARE
@@ -35,6 +54,16 @@ explorer:
 
     COPY v1/schemas /usr/share/nginx/html/schemas/
     COPY v1/odmApi.yaml /usr/share/nginx/html/
+    COPY --pass-args +explorer-build/openapi-explorer.min.js /usr/share/nginx/html/
+    COPY explorer/fs /
+
+    SAVE IMAGE --cache-hint
+
+explorer-essential:
+    FROM nginx:1.26.0
+
+    COPY v1-essential/schemas /usr/share/nginx/html/schemas/
+    COPY v1-essential/odmApi.yaml /usr/share/nginx/html/
     COPY --pass-args +explorer-build/openapi-explorer.min.js /usr/share/nginx/html/
     COPY explorer/fs /
 

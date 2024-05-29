@@ -1,0 +1,56 @@
+description: Create XrefSet response body
+example:
+  lastUpdated: 1602838500612
+  metadata:
+    key: metadata
+  createdDate: 1602838500612
+  createdBy: '"User007"'
+  warnings:
+  - warnings
+  - warnings
+  xrefSetType: gene-transcript
+  xrefSetId: '"GSF0000013"'
+properties:
+  xrefSetId:
+    description: Accession of the created XrefSet
+    example: '"GSF0000013"'
+    type: string
+  createdBy:
+    description: Name of the user created XrefSet
+    example: '"User007"'
+    type: string
+  createdDate:
+    description: Date of XrefSet creation
+    example: 1602838500612
+    format: int64
+    type: integer
+  lastUpdated:
+    description: Date of XrefSet last update. For a new entity lastUpdated = createdDate
+    example: 1602838500612
+    format: int64
+    type: integer
+  xrefSetType:
+    description: Type of data stored in XrefSet
+    enum:
+    - gene-transcript
+    type: string
+  metadata:
+    patternProperties:
+      "^.*$":
+        type: string
+    description: Additional user metadata
+    type: object
+  warnings:
+    description: Warnings, if any
+    items:
+      type: string
+    type: array
+required:
+- createdBy
+- createdDate
+- lastUpdated
+- metadata
+- warnings
+- xrefSetId
+- xrefSetType
+type: object

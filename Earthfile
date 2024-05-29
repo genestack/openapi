@@ -115,6 +115,13 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
+swagger-essential:
+    FROM openapi+swagger-essential
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger-essential:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger-essential:latest
+
 mkdocs:
     FROM python:3.12.3-alpine
     DO github.com/genestack/earthly-libs+PYTHON_PREPARE
@@ -144,9 +151,18 @@ explorer:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
 
+explorer-essential:
+    FROM --pass-args openapi+explorer-essential
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer-essential:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer-essential:latest
+
 main:
     BUILD +swagger
     BUILD +explorer
+    BUILD +swagger-essential
+    BUILD +explorer-essential
     BUILD +mkdocs
     BUILD +python-api-client
     # Require a fix for this bug to proceed with using R API CLient:

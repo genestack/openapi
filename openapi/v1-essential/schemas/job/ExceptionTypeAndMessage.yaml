@@ -1,0 +1,9 @@
+example:
+  type: type
+  message: message
+properties:
+  type:
+    type: string
+  message:
+    type: string
+type: object

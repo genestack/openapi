@@ -12,9 +12,15 @@ repos:
     - id: end-of-file-fixer
 - repo: local
   hooks:
-    - id: merge-openapi-definitions
-      name: merge-openapi-definitions
+    - id: merge-definitions
+      name: merge-definitions
       entry: sh -c "./gradlew mergeDefinitions --no-daemon"
+      always_run: true
+      language: system
+      require_serial: true
+    - id: merge-essential-definitions
+      name: merge-essential-definitions
+      entry: sh -c "./gradlew mergeEssentialDefinitions --no-daemon"
       always_run: true
       language: system
       require_serial: true

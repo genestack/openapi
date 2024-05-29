@@ -1,0 +1,53 @@
+example:
+  itemId: itemId
+  metadata: {}
+  expression: 1.82
+  feature:
+    genes: MYO9A,
+    groupingKey: VRSLGGISPSEDRR
+  gene: gene
+  groupId: groupId
+  Run Source ID: Run Source ID
+  description: description
+  runId: runId
+  value:
+    expression: 1.82
+properties:
+  itemId:
+    type: string
+  metadata:
+    type: object
+  runId:
+    type: string
+  groupId:
+    type: string
+  Run Source ID:
+    type: string
+  gene:
+    type: string
+  expression:
+    example: 1.82
+    format: double
+    type: number
+  feature:
+    example:
+      genes: MYO9A,
+      groupingKey: VRSLGGISPSEDRR
+    oneOf:
+    - type: object
+    - type: string
+      readOnly: true
+  value:
+    example:
+      expression: 1.82
+    type: object
+    patternProperties:
+      "^.*$":
+        format: double
+        oneOf:
+        - type: number
+        - type: string # Inf or -Inf
+  description:
+    type: string
+    readOnly: true
+type: object

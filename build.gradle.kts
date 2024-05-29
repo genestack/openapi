@@ -9,13 +9,23 @@ plugins {
 }
 
 val openApiVersion: String = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
+val mergedFileName = "odmApi.yaml"
+
 val sourceDirectory = "$rootDir/openapi/v1"
 val fileNameList = KotlinPath(sourceDirectory)
     .listDirectoryEntries("*.yaml")
     .sorted()
-val mergedFileName = "odmApi.yaml"
 val sourceFileList = fileNameList.map {
     layout.projectDirectory.file("${sourceDirectory}/${it.name}")
+}
+
+// Essential
+val essentialSourceDirectory = "$rootDir/openapi/v1-essential"
+val essentialFileNameList = KotlinPath(essentialSourceDirectory)
+    .listDirectoryEntries("*.yaml")
+    .sorted()
+val essentialSourceFileList = essentialFileNameList.map {
+    layout.projectDirectory.file("${essentialSourceDirectory}/${it.name}")
 }
 
 tasks {
@@ -59,6 +69,11 @@ tasks {
     register("mergeDefinitions", MergeDefinitions::class) {
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
+    }
+
+    register("mergeEssentialDefinitions", MergeDefinitions::class) {
+        inputFiles = essentialSourceFileList
+        outputFile = layout.projectDirectory.file("${essentialSourceDirectory}/${mergedFileName}")
     }
 
     val generateAll by registering(GradleBuild::class) {

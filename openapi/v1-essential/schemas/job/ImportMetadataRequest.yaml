@@ -1,0 +1,21 @@
+example:
+  source: HTTP
+  metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
+  templateId: GSF334953
+properties:
+  source:
+    enum:
+    - ARVADOS
+    - S3
+    - HTTP
+    example: HTTP
+    type: string
+  metadataLink:
+    example: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
+    type: string
+  templateId:
+    example: GSF334953
+    type: string
+required:
+- metadataLink
+type: object

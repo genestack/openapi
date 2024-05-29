@@ -1,0 +1,21 @@
+properties:
+  source:
+    format: uri
+    type: string
+  name:
+    type: string
+  public:
+    type: boolean
+  id:
+    type: string
+  content:
+    type: object
+  dataType:
+    type: string
+  contentMap:
+    type: object
+  metadataContent:
+    type: object
+  fileIdAssociatedWithTemplate:
+    type: string
+type: object

@@ -1,0 +1,40 @@
+allOf:
+- $ref: "#/components/schemas/ImportSignalRunRequest"
+example:
+  source: HTTP
+  metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-metadata.tsv
+  dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-omics-data.gz
+  templateId: GSF334953
+  previousVersion: GSF334953
+  numberOfFeatureAttributes: 5
+  dataClass: Proteomics
+  measurementSeparator: ':'
+properties:
+  numberOfFeatureAttributes:
+    description: Integer value that specifies the number of columns related to the
+      feature in the uploaded data frame, and indicates the starting position of the
+      sample data. This attribute is not needed if the uploaded file is in GCT format.
+    example: 5
+    type: integer
+  dataClass:
+    description: "A mandatory parameter with the following possible values: `Bulk
+      transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
+      pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
+      `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene
+      panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
+      fluid counts`, `Nanopore`, `Other`. \nIn case the parameter is not set the dataClass
+      is automatically defined as `Other`."
+    example: Proteomics
+    type: string
+  measurementSeparator:
+    description: 'This parameter is necessary when your file contains multiple measurement
+      columns for each sample, library, or preparation. It represents the character
+      that distinguishes the sample/library/preparation name from the measurement
+      name in column headers. Supported separators include `. , : ; _ - / \ |`, with
+      the allowance for multi-character separators.'
+    example: ':'
+    type: string
+components:
+  schemas:
+    ImportSignalRunRequest:
+      $ref: "./ImportSignalRunRequest.yaml"

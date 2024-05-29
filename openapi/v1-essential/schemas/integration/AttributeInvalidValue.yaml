@@ -1,0 +1,26 @@
+example:
+  count: 0
+  value: {}
+  errors:
+  - errorType: VALUE_NOT_SET
+    errorMessage: errorMessage
+  - errorType: VALUE_NOT_SET
+    errorMessage: errorMessage
+properties:
+  value:
+    oneOf:
+      - properties: {}
+        type: object
+      - type: string
+  count:
+    format: int64
+    type: integer
+  errors:
+    items:
+      $ref: "#/components/schemas/ValidationError"
+    type: array
+type: object
+components:
+  schemas:
+    ValidationError:
+      $ref: "./ValidationError.yaml"

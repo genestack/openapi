@@ -1,0 +1,41 @@
+example:
+  cursor: cursor
+  data:
+  - itemId: itemId
+    metadata: {}
+    expression: 1.82
+    feature:
+      genes: MYO9A,
+      groupingKey: VRSLGGISPSEDRR
+    gene: gene
+    groupId: groupId
+    Run Source ID: Run Source ID
+    description: description
+    runId: runId
+    value:
+      expression: 1.82
+  - itemId: itemId
+    metadata: {}
+    expression: 1.82
+    feature:
+      genes: MYO9A,
+      groupingKey: VRSLGGISPSEDRR
+    gene: gene
+    groupId: groupId
+    Run Source ID: Run Source ID
+    description: description
+    runId: runId
+    value:
+      expression: 1.82
+properties:
+  data:
+    items:
+      $ref: "#/components/schemas/ExpressionItem"
+    type: array
+  cursor:
+    type: string
+type: object
+components:
+  schemas:
+    ExpressionItem:
+      $ref: "./ExpressionItem.yaml"
