@@ -1,0 +1,48 @@
+description: job execution output
+example:
+  result: {}
+  errors:
+  - stack:
+    - type: type
+      message: message
+    - type: type
+      message: message
+    stage: stage
+  - stack:
+    - type: type
+      message: message
+    - type: type
+      message: message
+    stage: stage
+  status: COMPLETED
+properties:
+  status:
+    description: current job status
+    enum:
+    - COMPLETED
+    - STARTING
+    - RUNNING
+    - STOPPING
+    - STOPPED
+    - FAILED
+    - ABANDONED
+    - UNKNOWN
+    example: COMPLETED
+    type: string
+  result:
+    description: job result object (available if job completed successfully)
+    properties: {}
+    type: object
+  errors:
+    description: array of errors occurred during execution of the job (available if
+      job failed)
+    items:
+      $ref: "#/components/schemas/JobRuntimeError"
+    type: array
+required:
+- status
+type: object
+components:
+  schemas:
+    JobRuntimeError:
+      $ref: "./JobRuntimeError.yaml"

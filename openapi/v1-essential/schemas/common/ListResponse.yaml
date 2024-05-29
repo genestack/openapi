@@ -1,0 +1,23 @@
+example:
+  data:
+  - {}
+  - {}
+  meta:
+    pagination:
+      total: 6
+      offset: 1
+      count: 0
+      limit: 5
+properties:
+  meta:
+    $ref: "#/components/schemas/MetaResponse"
+  data:
+    items:
+      properties: {}
+      type: object
+    type: array
+type: object
+components:
+  schemas:
+    MetaResponse:
+      $ref: "./MetaResponse.yaml"

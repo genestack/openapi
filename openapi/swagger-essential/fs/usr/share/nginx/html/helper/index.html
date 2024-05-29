@@ -1,0 +1,196 @@
+<!--
+  ~ Copyright (c) 2011-2023 Genestack Limited
+  ~ All Rights Reserved
+  ~ THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF GENESTACK LIMITED
+  ~ The copyright notice above does not evidence any
+  ~ actual or intended publication of such source code.
+  -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>API Documentation — Open Data Manager — Genestack</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"
+    >
+    <style>
+      body, html {
+        padding: 30px 0;
+        margin-left: 24px;
+        width: 960px;
+      }
+      .pictures {
+        display: flex;
+        margin-bottom: 32px;
+      }
+      .picture {
+        height: 420px;
+        box-sizing: border-box;
+        image-rendering: -webkit-optimize-contrast;
+      }
+      .picture.first {
+        margin-right: 40px;
+      }
+      .picture.second {
+        outline: 1px solid rgba(199, 202, 209, 1);
+      }
+    </style>
+  </head>
+  <body>
+  <section>
+    <h1>API documentation</h1>
+    <p>
+      Open Data Manager (ODM) is a comprehensive system designed to simplify and optimize the management of data in the Life Sciences field.
+      These pages describe programmatic access to ODM via RESTful APIs.
+    </p>
+  </section>
+
+
+  <section>
+    <h4>How data is organised in ODM</h4>
+    <p>
+      ODM is organised into studies, samples and processed (experiment-derived/signal)
+      data for those samples.
+      The API endpoints below allow you to query or link together data objects.
+    </p>
+    <div class="pictures">
+      <img
+        class="picture first"
+        alt="Data model"
+        src="/swagger-essential/helper/data_model_default.png"
+      />
+      <img
+        class="picture second"
+        alt="Metainfo editor"
+        src="/swagger-essential/helper/metainfo_editor_default.png"
+      />
+    </div>
+  </section>
+
+
+    <section>
+      <h4>Query/retrieve data</h4>
+      <ul>
+
+
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=integrationUser">integrationUser</a> - API endpoints designed for executing inquiries across Life Sciences data (including multi-omics). Use these endpoints to search for and retrieve metadata and data related to studies, samples, and other data types based on a specific query
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=studyUser">studyUser</a> - API endpoints for retrieving only study metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=sampleUser">sampleUser</a> - API endpoints for retrieving only sample metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=libraryUser">libraryUser</a> - API endpoints for retrieving only library metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=preparationUser">preparationUser</a> - API endpoints for retrieving only preparation metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=expressionUser">expressionUser</a> - API endpoints for retrieving any tabular data (not only expression data) except Gene Variant or Flow Cytometry
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=variantUser">variantUser</a> - API endpoints for retrieving only variant data or metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=flowCytometryUser">flowCytometryUser</a> - API endpoints for retrieving only flow cytometry data or metadata
+          </li>
+      </ul>
+    </section>
+    <section>
+      <h4>Import/curate data</h4>
+      <ul>
+
+
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=integrationCurator">integrationCurator</a> - API endpoints to link experimental data/metadata to samples, and samples to studies
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=studyCurator">studyCurator</a> - API endpoints to add, delete and update studies and study metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=sampleCurator">sampleCurator</a> - API endpoints to add, delete and update samples and sample metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=libraryCurator">libraryCurator</a> - API endpoints to add, delete and update libraries and library metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=preparationCurator">preparationCurator</a> - API endpoints to add, delete and update preparations and preparation metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=expressionCurator">expressionCurator</a> - API endpoints to add, delete and update any tabular data (not only expression data) except Gene Variant or Flow Cytometry
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=variantCurator">variantCurator</a> - API endpoints to add, delete and update variant data and metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=flowCytometryCurator">flowCytometryCurator</a> - API endpoints to add, delete and update flow cytometry data and metadata
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=job">job</a> - API endpoints to run asynchronous jobs (import datasets, metadata e.t.c)
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=tasks">tasks</a> - API endpoints to work with asynchronous tasks
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=manageData">manageData</a> - API endpoints for managing data
+          </li>
+      </ul>
+    </section>
+    <section>
+      <h4>Data sources</h4>
+      <ul>
+
+
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=referenceData">referenceData</a> - Experimental API endpoints to create, delete, update and query cross-reference entries
+          </li>
+      </ul>
+    </section>
+    <section>
+      <h4>Manage organisation</h4>
+      <ul>
+
+
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=scimUsers">scimUsers</a> - API endpoints to add, edit and remove users
+          </li>
+          <li>
+            <a href="/swagger-essential/?urls.primaryName=scimGroups">scimGroups</a> - API endpoints to add, edit and remove groups
+          </li>
+      </ul>
+    </section>
+
+
+  <section>
+    <h4>Example scripts</h4>
+    <p>
+      Some example scripts/tutorials that use these APIs can be found at
+      <a
+        href="https://odm-user-guide.readthedocs.io/en/latest/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >our documentation site</a>.
+    </p>
+  </section>
+
+
+  <section>
+    <h4>API Tokens</h4>
+    <p>
+      All API usage (including via the above example scripts) requires authentication.
+      You can use either Access token from an identity provider, e.g. Azure AD, or
+      <a
+        href="https://odm-user-guide.readthedocs.io/en/development/doc-odm-user-guide/getting-a-genestack-api-token.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Genestack API token.</a>
+      To specify the Access token use the “Authorization” header, to specify the Genestack API token use the “Genestack-Api-Token” header.</p>
+      <p>Note: access token takes precedence, meaning that if both tokens are supplied, the access token will be used for processing the request.</p>
+  </section>
+  </body>
+</html>

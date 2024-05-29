@@ -1,0 +1,16 @@
+example:
+  display: display
+  value: value
+properties:
+  value:
+    type: string
+  display:
+    type: string
+  $ref:
+    description: The URI of the member resource
+    format: uri
+    type: string
+required:
+- $ref
+- value
+type: object

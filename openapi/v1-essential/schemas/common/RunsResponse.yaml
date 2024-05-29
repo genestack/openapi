@@ -1,0 +1,27 @@
+example:
+  experiment: experiment
+  warnings:
+  - warnings
+  - warnings
+  versionChainId: versionChainId
+  runs:
+  -
+  -
+properties:
+  runs:
+    items:
+      $ref: "#/components/schemas/SignalRun"
+    type: array
+  experiment:
+    type: string
+  warnings:
+    items:
+      type: string
+    type: array
+  versionChainId:
+    type: string
+type: object
+components:
+  schemas:
+    SignalRun:
+      $ref: "./SignalRun.yaml"

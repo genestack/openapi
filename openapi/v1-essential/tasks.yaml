@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  description: |
+    These API endpoints serve to work with asynchronous tasks.
+  title: Tasks API
+  version: default-released
+tags:
+- name: Tasks API
+paths:
+  /api/v1/tasks/publish-versions:
+    post:
+      description: This endpoint publishes all information from staging and creates
+        new metadata versions for each study/associated objects with unpublished changes.Only
+        curators with the ACCESS_ALL_DATA permission can use this method.
+      operationId: publishAllStudies
+      parameters:
+      - description: Supply text to name this version. If not supplied the version
+          name is set to “Auto-published by API call”
+        in: query
+        name: versionMessage
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskInfo"
+          description: Task information.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Forbidden
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Asynchronous task that publishes all pending versions across all studies
+        in the instance.
+      tags:
+      - Tasks API
+  /api/v1/tasks/{id}:
+    get:
+      description: Supply the accession (id) of an ODM task to retrieve metadata about
+        that task.
+      operationId: getTaskInfo
+      parameters:
+      - description: Accession of the task.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskInfo"
+          description: Task information.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve information about any ODM task.
+      tags:
+      - Tasks API
+components:
+  schemas:
+    IntegrationHelper:
+      $ref: "./schemas/common/IntegrationHelper.yaml"
+    TaskInfo:
+      $ref: "./schemas/tasks/TaskInfo.yaml"
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey

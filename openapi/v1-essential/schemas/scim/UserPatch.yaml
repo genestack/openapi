@@ -1,0 +1,31 @@
+example:
+  schemas:
+  - urn:ietf:params:scim:api:messages:2.0:PatchOp
+  - urn:ietf:params:scim:api:messages:2.0:PatchOp
+  Operations:
+  - op: add
+    path: path
+    value: {}
+  - op: add
+    path: path
+    value: {}
+properties:
+  Operations:
+    description: Patch operations list
+    items:
+      $ref: "#/components/schemas/PatchOperation"
+    type: array
+  schemas:
+    items:
+      enum:
+      - urn:ietf:params:scim:api:messages:2.0:PatchOp
+      type: string
+    type: array
+required:
+- Operations
+- schemas
+type: object
+components:
+  schemas:
+    PatchOperation:
+      $ref: "./PatchOperation.yaml"

@@ -1,0 +1,302 @@
+openapi: 3.1.0
+info:
+  description: |
+    These API endpoints serve to upload and remove xrefsets, search in xrefsets and get details about them. These API endpoints are experimental. The parameters, request body and response body may change.
+  title: Xrefsets API
+  version: default-released
+tags:
+- name: Xrefset queries
+paths:
+  /api/v1/xrefsets:
+    post:
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/XrefSetCreateRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/XrefSetCreateResponse"
+          description: successful operation
+        "201":
+          content: {}
+          description: The objects were successfully created. The returned value is
+            a list of created objects.
+        "400":
+          content: {}
+          description: The object cannot be created. This error occurs when the supplied
+            data or metadata are incorrect. Please see error message for details
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Not enough permissions to work with the xrefset.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Import a new xrefset file
+      tags:
+      - Xrefset queries
+      x-codegen-request-body-name: body
+  /api/v1/xrefsets/entries:
+    get:
+      description: |+
+        ## Conditions
+        It is possible to supply a list of values for "targetId" and "sourceId". If non-empty lists of values for "targetId" and "sourceId" are supplied, the following search rule is applied: (sourceId = "S1" OR .. sourceId = "Sn") AND (targetId = "T1" OR .. targetId = "Tm").
+
+      operationId: searchEntries
+      parameters:
+      - description: "Supply sourceId in the format \"sourceId\". For transcript-gene\
+          \ mapping this is gene ID, e.g. \"ENSG00000146648\""
+        explode: true
+        in: query
+        name: sourceId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Supply targetId in the format \"targetId\". For transcript-gene\
+          \ mapping this is transcript ID, e.g. \"ENST00000617423.4\""
+        explode: true
+        in: query
+        name: targetId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The page tag to resume results from (see paging above).
+        in: query
+        name: cursor
+        schema:
+          type: string
+      - description: "This parameter determines the number of results to retrieve\
+          \ per page, with the default set at 2000."
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/XrefSetSearchResult"
+          description: Json object with the cursor and json array of retrieved xrefset
+            data. Response entries are ordered by xrefset ID and then by source ID.
+        "400":
+          content: {}
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve a list of entries across all xrefsets for given sourceId and
+        targetId
+      tags:
+      - Xrefset queries
+  /api/v1/xrefsets/{id}:
+    delete:
+      operationId: deleteFile
+      parameters:
+      - description: xrefset ID
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: .*
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: "Xrefset file successfully marked for deletion, mappings have\
+            \ been removed"
+        "400":
+          content: {}
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Not enough permissions to work with the xrefset.
+        "404":
+          content: {}
+          description: The xrefset does not exist.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: |-
+        Delete a xrefset with all related data.
+        Only users who uploaded the xrefset are allowed to delete it.
+      tags:
+      - Xrefset queries
+  /api/v1/xrefsets/{id}/entries:
+    get:
+      description: |+
+        ## Conditions
+        It is possible to supply a list of values for "targetId" and "sourceId". If non-empty lists of values for "targetId" and "sourceId" are supplied, the following search rule is applied: (sourceId = "S1" OR .. sourceId = "Sn") AND (targetId = "T1" OR .. targetId = "Tm").
+
+      operationId: searchEntriesWithinFile
+      parameters:
+      - description: xrefset ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: "Supply sourceId in the format \"sourceId\". For transcript-gene\
+          \ mapping this is gene ID, e.g. \"ENSG00000146648\""
+        explode: true
+        in: query
+        name: sourceId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Supply targetId in the format \"targetId\". For transcript-gene\
+          \ mapping this is transcript ID, e.g. \"ENST00000617423.4\""
+        explode: true
+        in: query
+        name: targetId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The page tag to resume results from (see paging above).
+        in: query
+        name: cursor
+        schema:
+          type: string
+      - description: "This parameter determines the number of results to retrieve\
+          \ per page, with the default set at 2000."
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/XrefSetSearchResult"
+          description: Json object with the cursor and json array of retrieved xrefset
+            data. Response entries are ordered by xrefset ID and then by source ID.
+        "400":
+          content: {}
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: The xrefset does not exist.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve a list of entries for the given xrefset and given sourceId
+        and targetId
+      tags:
+      - Xrefset queries
+  /api/v1/xrefsets/{id}/metadata:
+    get:
+      operationId: getDetailsByAccession
+      parameters:
+      - description: xrefset ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/XrefSetMetadata"
+          description: "Object containing xrefset details, including user submitted\
+            \ metadata and system info"
+        "400":
+          content: {}
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: The xrefset does not exist.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve xrefset details
+      tags:
+      - Xrefset queries
+components:
+  schemas:
+    XrefSetCreateRequest:
+      $ref: "./schemas/reference-data/XrefSetCreateRequest.yaml"
+    XrefSetCreateResponse:
+      $ref: "./schemas/reference-data/XrefSetCreateResponse.yaml"
+    XrefSetMetadata:
+      $ref: "./schemas/reference-data/XrefSetMetadata.yaml"
+    XrefSetSearchResult:
+      $ref: "./schemas/reference-data/XrefSetSearchResult.yaml"
+    XrefSetSearchResultEntry:
+      $ref: "./schemas/reference-data/XrefSetSearchResultEntry.yaml"
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey

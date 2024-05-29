@@ -1,0 +1,67 @@
+example:
+  cursor: cursor
+  data:
+  - ref: reference
+    itemId: itemId
+    metadata: {}
+    id:
+    - variationId
+    - variationId
+    groupId: groupId
+    Run Source ID: Run Source ID
+    geneVariant:
+      chrom: chromosome
+      pos: 0
+      id:
+        - id
+      ref: reference
+      alt:
+      - alteration
+      - alteration
+      qual: 10
+      filter:
+      - PASS
+      info:
+        key:
+        - info
+        - info
+    genotype:
+      key: genotype
+  - ref: reference
+    itemId: itemId
+    metadata: {}
+    id:
+    - variationId
+    - variationId
+    groupId: groupId
+    Run Source ID: Run Source ID
+    geneVariant:
+      chrom: chromosome
+      pos: 0
+      id:
+        - id
+      ref: reference
+      alt:
+        - alteration
+        - alteration
+      qual: 10
+      filter:
+        - PASS
+      info:
+        key:
+          - info
+          - info
+    genotype:
+      key: genotype
+properties:
+  data:
+    items:
+      $ref: "#/components/schemas/VariantItem"
+    type: array
+  cursor:
+    type: string
+type: object
+components:
+  schemas:
+    VariantItem:
+      $ref: "VariantItem.yaml"

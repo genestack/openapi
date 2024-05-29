@@ -1,0 +1,75 @@
+example:
+  ref: reference
+  itemId: itemId
+  metadata: {}
+  id:
+  - variationId
+  - variationId
+  groupId: groupId
+  Run Source ID: Run Source ID
+  geneVariant:
+    chrom: chromosome
+    pos: 0
+    id:
+    - id
+    ref: A
+    alt:
+    - GC
+    - GAATTTA
+    qual: 10
+    filter:
+     - PASS
+    info:
+      key:
+      - info
+      - info
+  genotype:
+    key: genotype
+properties:
+  itemId:
+    type: string
+  metadata:
+    type: object
+  runId:
+    type: string
+  groupId:
+    type: string
+  Run Source ID:
+    type: string
+  geneVariant:
+    type: object
+    properties:
+      chrom:
+        type: string
+      pos:
+        format: int64
+        type: integer
+      id:
+        type: array
+        items:
+          type: string
+      ref:
+        type: string
+      alt:
+        type: array
+        items:
+          type: string
+      qual:
+        type: number
+      filter:
+        type: array
+        items:
+          type: string
+      info:
+        type: object
+        patternProperties:
+          "^.*$":
+            type: array
+            items:
+              type: string
+  genotype:
+    type: object
+    patternProperties:
+      "^.*$":
+        type: string
+type: object

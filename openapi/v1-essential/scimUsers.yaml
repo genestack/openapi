@@ -1,0 +1,376 @@
+openapi: 3.1.0
+info:
+  description: "This swagger page describes the API endpoints to add, edit and remove\
+    \ users. The endpoints are developed according to the SCIM 2.0 specification."
+  title: ODM API
+  version: default-released
+tags:
+- name: Users
+paths:
+  /api/v1/scim/Users:
+    get:
+      description: "The endpoint returns a list of active users. The list can be filtered\
+        \ by user attributes using the filter parameter. If no filtering parameters\
+        \ are passed, then all users are returned. If there are no users in the response\
+        \ body, the endpoint returns 200 OK. The \"Manage organization\" permission\
+        \ is required."
+      operationId: findUsers
+      parameters:
+      - description: |-
+          Filter by user attributes. The parameter name is case-sensitive, therefore parameters FILTER, fiLter, and other options are ignored.
+           Supported operators:
+           &nbsp;&nbsp;eq - equal, the attribute and operator values must be identical for a match;
+           &nbsp;&nbsp;and - logical "and", the filter is only a match if both expressions evaluate to true;
+           &nbsp;&nbsp;Using other operators returns an error.
+           Attribute names and attribute operators used in filters are case insensitive.
+           Examples of the request:
+           &nbsp;&nbsp;filter=emails[type eq "work" and value eq "user@example.com"] - returns a user with login = user@example.com
+           &nbsp;&nbsp;filter=userName eq "bjensen"
+           &nbsp;&nbsp;filter=emails[type eq "work" and value eq "user@example.com"] and userName eq "bjensen".
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: The 1-based index of the first result in the current set of list
+          results.
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: The number of resources returned in a list response page. The
+          value by default is 100.
+        in: query
+        name: count
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/FilterUsersResponse"
+          description: The request was successful.
+        "400":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: Incorrect syntax in the request. See the error message for
+            details.
+        "401":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: Operation is not permitted. The "Manage organization" permission
+            is required.
+        "500":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve a list of all active users
+      tags:
+      - Users
+    post:
+      description: |-
+        The endpoint creates a new user in ODM or updates the existing user. A user can be updated by this endpoint if the user has the same login as in the request body. The "Manage organization" permission is required. The endpoint does not allow to specify the user's password and user permissions, these parameters can be set in the web application by a user with the "Manage organization" permission.
+         Only one email can be specified.
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "201":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+          description: The operation is successful. The response body contains the
+            representation of the newly created or updated user.
+        "400":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: "The object cannot be created, the supplied data or metadata\
+            \ are incorrect. See the error message for details."
+        "401":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: Operation is not permitted. The "Manage organization" permission
+            is required.
+        "409":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: "The object cannot be created, data conflict. See the error\
+            \ message for details."
+        "500":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Genestack-API-Token: []
+      - Access-token: []
+      summary: Add a new user
+      tags:
+      - Users
+      x-codegen-request-body-name: body
+  /api/v1/scim/Users/{id}:
+    delete:
+      operationId: deleteUser
+      parameters:
+      - description: "String, unique identifier of the user in ODM."
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: The user has been successfully deactivated. No data is returned.
+        "400":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: The supplied user ID is invalid.
+        "401":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: Operation is not permitted. The "Manage organization" permission
+            is required.
+        "404":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: There are no users with the specified id.
+        "500":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Genestack-API-Token: []
+      - Access-token: []
+      summary: Deactivate a user
+      tags:
+      - Users
+    get:
+      description: "The endpoint returns an active user by id, where id is internal\
+        \ user id in ODM. The \"Manage organization\" permission is required."
+      operationId: getUser
+      parameters:
+      - description: "String, unique identifier of the user in ODM."
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+          description: The request was successful.
+        "400":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: The supplied user ID is invalid.
+        "401":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: Operation is not permitted. The "Manage organization" permission
+            is required.
+        "404":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: There are no available users with the specified id.
+        "500":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve a user by id
+      tags:
+      - Users
+    patch:
+      description: |-
+        The endpoint updates one or several attributes of a specific user, where id is internal user id in ODM.
+
+         Supported operators in the request body: replace, add, remove. For details of the syntax of using these operators, we recommend that you refer to the SCIM 2.0 specification.
+
+         The list of user attributes that can be edited: userName, externalId, displayName, active. If the user tries to edit other attributes, e.g. id, an error is returned. If the user tries to edit attributes that are not supported in the ODM user scheme, e.g. name name.familyName, this attribute is ignored. If the request body includes only attributes that are not supported by ODM, the endpoint returns 200 OK.
+
+         A PATCH request, regardless of the number of operations, is treated as atomic. If a single operation encounters an error condition, the original user attributes are restored, and a failure status is returned.
+
+         It is possible to update attributes of the deactivated users.
+
+         The endpoint requires the "Manage organization" permission.
+      operationId: patchUser
+      parameters:
+      - description: "String, unique identifier of the user in ODM."
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPatch"
+        required: true
+      responses:
+        "200":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+          description: User is successfully updated. The response body contains the
+            representation of the updated user.
+        "400":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: "The object cannot be updated, the supplied data or metadata\
+            \ are incorrect. See the error message for details."
+        "401":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: Operation is not permitted. The "Manage organization" permission
+            is required.
+        "404":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/SCIMErrorResponse"
+          description: There are no users with the specified id.
+        "500":
+          content:
+            application/scim+json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Genestack-API-Token: []
+      - Access-token: []
+      summary: Update a user
+      tags:
+      - Users
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    User:
+      $ref: "./schemas/scim/User.yaml"
+    Email:
+      $ref: "./schemas/scim/Email.yaml"
+    UserPatch:
+      $ref: "./schemas/scim/UserPatch.yaml"
+    PatchOperation:
+      $ref: "./schemas/scim/PatchOperation.yaml"
+    FilterUsersResponse:
+      $ref: "./schemas/scim/FilterUsersResponse.yaml"
+    UserResponse:
+      $ref: "./schemas/scim/UserResponse.yaml"
+    Meta:
+      $ref: "./schemas/scim/Meta.yaml"
+    SCIMErrorResponse:
+      $ref: "./schemas/scim/SCIMErrorResponse.yaml"
+    BaseErrorResponse:
+      $ref: "./schemas/scim/BaseErrorResponse.yaml"
+    ErrorMessage:
+      $ref: "./schemas/scim/ErrorMessage.yaml"
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
