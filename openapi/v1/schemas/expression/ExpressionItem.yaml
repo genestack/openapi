@@ -33,7 +33,7 @@ properties:
     example:
       genes: MYO9A,
       groupingKey: VRSLGGISPSEDRR
-    anyOf:
+    oneOf:
     - type: object
     - type: string
       readOnly: true
