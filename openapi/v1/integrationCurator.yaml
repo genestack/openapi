@@ -128,9 +128,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -229,9 +227,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -331,9 +327,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -429,9 +423,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -1233,9 +1225,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -1332,9 +1322,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -1684,9 +1672,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by sample metadata (key-value metadata pair(s)). E.g. `"Species or strain"="Homo sapiens"`
         in: query
@@ -1777,9 +1763,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -1843,9 +1827,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -2115,9 +2097,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -2181,9 +2161,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -2492,9 +2470,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by sample metadata (key-value metadata pair(s)). E.g. `"Species or strain"="Homo sapiens"`
         in: query
@@ -2788,9 +2764,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by library metadata (key-value metadata pair(s)). E.g.
           `"Library Type"=RNA-Seq-1`
         in: query
@@ -2920,9 +2894,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by preparation metadata (key-value metadata pair(s)).
           E.g. `Digestion=Trypsin`
         in: query
@@ -3018,9 +2990,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -3134,9 +3104,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by library metadata (key-value metadata pair(s)). E.g.
           `"Library Type"=RNA-Seq-1`
         in: query
@@ -3266,9 +3234,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by preparation metadata (key-value metadata pair(s)).
           E.g. `Digestion=Trypsin`
         in: query
@@ -3399,9 +3365,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by sample metadata (key-value metadata pair(s)). E.g.
           "Species or strain"="Homo sapiens"
         in: query
@@ -3492,9 +3456,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -3566,9 +3528,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -3664,9 +3624,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -4271,18 +4229,12 @@ paths:
         \ result.\n\n"
       operationId: omicsSearchExpressionDataAsCurator
       parameters:
-      - description: |-
-          Allows to get an extended or updated response body. Available values:
-           `term_id` - returns extended information including IDs for values and dictionaries;
-           `multi_values` - returns data with several feature attributes and several sample measurements in the response body in case the original data had them. If not specified, returns only the first feature identifier and the first measurement per sample from the original data.
-        explode: true
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
         in: query
         name: responseFormat
         schema:
-          items:
-            type: string
-          type: array
-        style: form
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
         in: query
@@ -4545,9 +4497,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
         in: query
@@ -4989,9 +4939,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
         in: query
@@ -5255,9 +5203,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
         in: query
@@ -5520,9 +5466,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
         in: query
@@ -5788,9 +5732,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
         in: query
@@ -6053,9 +5995,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: |
           Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
         in: query
@@ -6418,6 +6358,8 @@ components:
       $ref: "./schemas/integration/FindObjectsResponse.yaml"
     ObjectsPage:
       $ref: "./schemas/integration/ObjectsPage.yaml"
+    ResponseFormat:
+      $ref: "./schemas/common/ResponseFormat.yaml"
     StudySearchInfo:
       $ref: "./schemas/integration/StudySearchInfo.yaml"
     MetainfoKeyForSummary:
