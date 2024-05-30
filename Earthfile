@@ -115,6 +115,13 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
+explorer:
+    FROM --pass-args openapi+explorer
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
+
 mkdocs:
     FROM python:3.12.3-alpine
     DO github.com/genestack/earthly-libs+PYTHON_PREPARE
@@ -137,17 +144,44 @@ mkdocs:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
 
-explorer:
-    FROM --pass-args openapi+explorer
+docs:
+    FROM alpine:3.20.0
+    WORKDIR /app
+    COPY +build/generated generated
 
-    ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
+    # Documentation for python client
+    WORKDIR /app/generated/python/docs
+    ARG --required RAW_REGISTRY_SNAPSHOTS
+    RUN \
+        --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            export DOC_ARCHIVE=generated-python-client-docs-${OPENAPI_VERSION}.tar.gz && \
+            tar cf ${DOC_ARCHIVE} * && \
+            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
+                -H 'Content-Type: application/gzip' \
+                 --upload-file ${DOC_ARCHIVE} \
+                 ${RAW_REGISTRY_SNAPSHOTS}/documentation/${DOC_ARCHIVE}
+
+    # Documentation for r client
+    WORKDIR /app/generated/r/docs
+    ARG --required RAW_REGISTRY_SNAPSHOTS
+    RUN \
+        --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            export DOC_ARCHIVE=generated-r-client-docs-${OPENAPI_VERSION}.tar.gz && \
+            tar cf ${DOC_ARCHIVE} * && \
+            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
+                -H 'Content-Type: application/gzip' \
+                 --upload-file ${DOC_ARCHIVE} \
+                 ${RAW_REGISTRY_SNAPSHOTS}/documentation/${DOC_ARCHIVE}
 
 main:
     BUILD +swagger
     BUILD +explorer
     BUILD +mkdocs
+    BUILD +docs
     BUILD +python-api-client
     # Require a fix for this bug to proceed with using R API CLient:
     # https://github.com/OpenAPITools/openapi-generator/issues/18016
