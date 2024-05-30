@@ -145,7 +145,7 @@ mkdocs:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
 
 docs:
-    FROM alpine:3.20.0
+    FROM alpine/curl:8.7.1
     WORKDIR /app
     COPY +build/generated generated
 
