@@ -165,7 +165,6 @@ docs:
 
     # Documentation for r client
     WORKDIR /app/generated/r/docs
-    ARG --required RAW_REGISTRY_SNAPSHOTS
     RUN \
         --push \
         --secret NEXUS_USER \
