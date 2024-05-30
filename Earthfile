@@ -115,28 +115,6 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
-mkdocs:
-    FROM python:3.12.3-alpine
-    DO github.com/genestack/earthly-libs+PYTHON_PREPARE
-    CACHE /root/.cache
-
-    COPY mkdocs/fs /
-    RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            pypi-login.sh && \
-            python3 \
-                -m pip install \
-                -r requirements.txt && \
-            pypi-clean.sh
-
-    COPY +build/generated /app/docs/generated/
-    ENTRYPOINT ["mkdocs", "serve"]
-
-    ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
-
 explorer:
     FROM --pass-args openapi+explorer
 
@@ -144,10 +122,43 @@ explorer:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
 
+docs:
+    FROM alpine/curl:8.7.1
+    WORKDIR /app
+    COPY +build/generated generated
+
+    # Documentation for python client
+    WORKDIR /app/generated/python
+    ARG --required RAW_REGISTRY_SNAPSHOTS
+    ARG --required OPENAPI_VERSION
+    RUN \
+        --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            export DOC_ARCHIVE=odm-api-python-${OPENAPI_VERSION}.tar.gz && \
+            tar cf ${DOC_ARCHIVE} README.md docs/* && \
+            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
+                -H 'Content-Type: application/gzip' \
+                 --upload-file ${DOC_ARCHIVE} \
+                 ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-python/${DOC_ARCHIVE}
+
+    # Documentation for r client
+    WORKDIR /app/generated/r
+    RUN \
+        --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            export DOC_ARCHIVE=odm-api-r-${OPENAPI_VERSION}.tar.gz && \
+            tar cf ${DOC_ARCHIVE} README.md docs/* && \
+            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
+                -H 'Content-Type: application/gzip' \
+                 --upload-file ${DOC_ARCHIVE} \
+                 ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
+
 main:
     BUILD +swagger
     BUILD +explorer
-    BUILD +mkdocs
+    BUILD +docs
     BUILD +python-api-client
     # Require a fix for this bug to proceed with using R API CLient:
     # https://github.com/OpenAPITools/openapi-generator/issues/18016
