@@ -152,6 +152,7 @@ docs:
     # Documentation for python client
     WORKDIR /app/generated/python/docs
     ARG --required RAW_REGISTRY_SNAPSHOTS
+    ARG --required OPENAPI_VERSION
     RUN \
         --push \
         --secret NEXUS_USER \
