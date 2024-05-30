@@ -122,28 +122,6 @@ explorer:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
 
-mkdocs:
-    FROM python:3.12.3-alpine
-    DO github.com/genestack/earthly-libs+PYTHON_PREPARE
-    CACHE /root/.cache
-
-    COPY mkdocs/fs /
-    RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            pypi-login.sh && \
-            python3 \
-                -m pip install \
-                -r requirements.txt && \
-            pypi-clean.sh
-
-    COPY +build/generated /app/docs/generated/
-    ENTRYPOINT ["mkdocs", "serve"]
-
-    ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mkdocs:latest
-
 docs:
     FROM alpine/curl:8.7.1
     WORKDIR /app
@@ -180,7 +158,6 @@ docs:
 main:
     BUILD +swagger
     BUILD +explorer
-    BUILD +mkdocs
     BUILD +docs
     BUILD +python-api-client
     # Require a fix for this bug to proceed with using R API CLient:
