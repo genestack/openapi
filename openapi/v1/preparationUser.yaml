@@ -46,9 +46,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by preparation metadata (key-value metadata pair(s)).
           E.g. `Digestion=Trypsin`
         in: query
@@ -163,9 +161,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -240,9 +236,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -337,9 +331,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -409,6 +401,8 @@ components:
       $ref: "./schemas/common/PaginationInfo.yaml"
     Preparation:
       $ref: "./schemas/preparation/Preparation.yaml"
+    ResponseFormat:
+      $ref: "./schemas/common/ResponseFormat.yaml"
   securitySchemes:
     Access-token:
       in: header

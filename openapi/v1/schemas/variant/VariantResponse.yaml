@@ -3,13 +3,15 @@ example:
   data:
   - ref: reference
     itemId: itemId
+    itemOrigin:
+      runSourceId: runSourceId,
+      runId: runId,
+      groupId: groupId
     metadata: {}
     id:
     - variationId
     - variationId
-    groupId: groupId
-    Run Source ID: Run Source ID
-    geneVariant:
+    variant:
       chrom: chromosome
       pos: 0
       id:
@@ -29,13 +31,15 @@ example:
       key: genotype
   - ref: reference
     itemId: itemId
+    itemOrigin:
+      runSourceId: runSourceId,
+      runId: runId,
+      groupId: groupId
     metadata: {}
     id:
     - variationId
     - variationId
-    groupId: groupId
-    Run Source ID: Run Source ID
-    geneVariant:
+    variant:
       chrom: chromosome
       pos: 0
       id:
