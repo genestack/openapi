@@ -2,23 +2,29 @@ example:
   cursor: cursor
   data:
   - itemId: itemId
+    itemOrigin:
+      runSourceId: runSourceId,
+      runId: runId,
+      groupId: groupId
     metadata: {}
-    expression: 0.8008281904610115
-    marker: marker
-    groupId: groupId
-    Run Source ID: Run Source ID
-    cellPopulation: cellPopulation
-    readoutType: readoutType
-    runId: runId
+    feature:
+      readoutType: readoutType
+      cellPopulation: cellPopulation
+      marker: marker
+    value:
+      value: 0.8008281904610115
   - itemId: itemId
+    itemOrigin:
+      runSourceId: runSourceId,
+      runId: runId,
+      groupId: groupId
     metadata: {}
-    expression: 0.8008281904610115
-    marker: marker
-    groupId: groupId
-    Run Source ID: Run Source ID
-    cellPopulation: cellPopulation
-    readoutType: readoutType
-    runId: runId
+    feature:
+      readoutType: readoutType
+      cellPopulation: cellPopulation
+      marker: marker
+    value:
+      value: 0.8008281904610115
 properties:
   data:
     items:
