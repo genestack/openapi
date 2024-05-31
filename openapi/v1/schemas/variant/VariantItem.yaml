@@ -1,13 +1,15 @@
 example:
   ref: reference
   itemId: itemId
+  itemOrigin:
+    runSourceId: runSourceId,
+    runId: runId,
+    groupId: groupId
   metadata: {}
   id:
   - variationId
   - variationId
-  groupId: groupId
-  Run Source ID: Run Source ID
-  geneVariant:
+  variant:
     chrom: chromosome
     pos: 0
     id:
@@ -28,15 +30,18 @@ example:
 properties:
   itemId:
     type: string
+  itemOrigin:
+    type: object
+    properties:
+      runSourceId:
+        type: string
+      runId:
+        type: string
+      groupId:
+        type: string
   metadata:
     type: object
-  runId:
-    type: string
-  groupId:
-    type: string
-  Run Source ID:
-    type: string
-  geneVariant:
+  variant:
     type: object
     properties:
       chrom:

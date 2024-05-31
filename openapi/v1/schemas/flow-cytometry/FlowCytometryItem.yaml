@@ -1,30 +1,43 @@
 example:
   itemId: itemId
+  itemOrigin:
+    runSourceId: runSourceId,
+    runId: runId,
+    groupId: groupId
   metadata: {}
-  expression: 0.8008281904610115
-  marker: marker
-  groupId: groupId
-  Run Source ID: Run Source ID
-  cellPopulation: cellPopulation
-  readoutType: readoutType
+  feature:
+    readoutType: readoutType
+    cellPopulation: cellPopulation
+    marker: marker
+  value:
+    value: 0.8008281904610115
   runId: runId
 properties:
   itemId:
     type: string
+  itemOrigin:
+    type: object
+    properties:
+      runSourceId:
+        type: string
+      runId:
+        type: string
+      groupId:
+        type: string
   metadata:
     type: object
-  runId:
-    type: string
-  groupId:
-    type: string
-  Run Source ID:
-    type: string
-  readoutType:
-    type: string
-  cellPopulation:
-    type: string
-  marker:
-    type: string
-  expression:
-    type: number
+  feature:
+    type: object
+    properties:
+      readoutType:
+        type: string
+      cellPopulation:
+        type: string
+      marker:
+        type: string
+  value:
+    type: object
+    properties:
+      value:
+        type: number
 type: object

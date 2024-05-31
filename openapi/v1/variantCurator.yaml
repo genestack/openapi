@@ -54,9 +54,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by variant metadata (key-value metadata pair(s)). E.g.
           `"Variant Source"=dbSNP`.
         in: query
@@ -84,7 +82,7 @@ paths:
           type: boolean
       - description: Specify a chromosome interval to find genes between these positions. E.g. `2:233364596-233385916`. Multiple intervals can be provided as a list.
         in: query
-        name: geneVariantRegion
+        name: variantRegion
         schema:
           items:
             type: string
@@ -93,7 +91,7 @@ paths:
         style: form
       - description: One or more specific variation IDs can be specified. E.g. `rs838705`
         in: query
-        name: geneVariantId
+        name: variantId
         schema:
           items:
             type: string
@@ -106,7 +104,7 @@ paths:
             1. pass - return gene variants which passed all filters
             2. noPass - return gene variants which failed one or more filters
         in: query
-        name: geneVariantFilter
+        name: variantFilter
         schema:
           enum:
             - pass
@@ -230,9 +228,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Filter by variant metadata (key-value metadata pair(s)). E.g.
           `"Variant Source"=dbSNP`.
         in: query
@@ -334,9 +330,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -430,9 +424,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -584,9 +576,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -720,9 +710,7 @@ paths:
         in: query
         name: responseFormat
         schema:
-          enum:
-          - term_id
-          type: string
+          $ref: "#/components/schemas/ResponseFormat"
       - description: Unique identifier (accession) of the object.
         in: path
         name: id
@@ -794,6 +782,8 @@ components:
       $ref: "./schemas/variant/VariantMetadataWithId.yaml"
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
+    ResponseFormat:
+      $ref: "./schemas/common/ResponseFormat.yaml"
     RunFilter:
       $ref: "./schemas/common/RunFilter.yaml"
     RunsResponse:
