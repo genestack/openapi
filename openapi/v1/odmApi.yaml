@@ -160,6 +160,7 @@ paths:
         schema:
           items:
             type: "string"
+            example: "KRAS"
           type: "array"
         style: "form"
       - description: "Specify which versions of omics data files are used in the query.\
@@ -976,6 +977,7 @@ paths:
         schema:
           items:
             type: "string"
+            example: "KRAS"
           type: "array"
         style: "form"
       - description: "Specify which versions of omics data files are used in the query.\
@@ -8099,6 +8101,7 @@ paths:
         schema:
           items:
             type: "string"
+            example: "KRAS"
           type: "array"
         style: "form"
       - description: "Accession of the expression group object (GCT)"
@@ -13157,6 +13160,7 @@ paths:
         schema:
           items:
             type: "string"
+            example: "KRAS"
           type: "array"
         style: "form"
       - description: "Accession of the expression group object (GCT)"
@@ -20406,7 +20410,7 @@ paths:
         schema:
           items:
             type: "string"
-            example: "rs838705"
+            example: "rs334"
           type: "array"
         style: "form"
       - description: "The parameter allows to retrieve gene variants based on the\
