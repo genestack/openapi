@@ -111,6 +111,7 @@ paths:
         schema:
           items:
             type: string
+            example: KRAS
           type: array
         style: form
       - description: |-
