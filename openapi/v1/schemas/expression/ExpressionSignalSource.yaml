@@ -31,8 +31,8 @@ properties:
     description: "A mandatory parameter with the following possible values: `Bulk
       transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
       pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
-      `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene
-      panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
+      `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, 
+      `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
       fluid counts`, `Nanopore`, `Other`. \nIn case the parameter is not set the dataClass
       is automatically defined as `Other`."
     example: Proteomics
