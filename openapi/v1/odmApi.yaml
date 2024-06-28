@@ -9531,6 +9531,105 @@ paths:
       summary: "Retrieve group objects by searching across multiple data types"
       tags:
       - "Omics queries as Curator"
+  /api/v1/as-curator/omics/variant/streamed-data:
+    get:
+      description: "Stream data from a given group for a VCF file that matches a sample\
+        \ query/filter. If no query/filters are supplied all variant data is returned.\
+        \ If a metadata filter is specified, this endpoint will only return variant\
+        \ data that is associated with a sample via metadata attribute.\n\n## Conditions\n\
+        It is possible to supply conditions for Samples (full-text or metadata key-value\
+        \ pair)\n\n## Metadata full-text queries\nSingle words can be supplied as\
+        \ is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.\
+        \ Speech marks and backslash characters in the query need to be escaped with\
+        \ a backslash (`\\`).\n\n## Metadata filters\nMetadata filters are key-value\
+        \ pairs joined by an operator. The `=` operator matches literal values/string.\
+        \ The `!=` operator matches anything except the literal value/string. The\
+        \ `<` or `>` operators match numerical results that are less or greater than\
+        \ the supplied value. Strings containing whitespace need to be quoted with\
+        \ (`\"`).\n\n## Combinations\nMetadata queries/filters for the same parameter\
+        \ can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space\
+        \ to separate out the terms and operators. Parentheses `( )` can be used for\
+        \ complex expressions.\n\n"
+      operationId: "omicsSearchStreamedVariantDataAsCurator"
+      parameters:
+      - description: "Filter by sample metadata (key-value metadata pair(s)). E.g.\
+          \ `\"Species or strain\"=\"Homo sapiens\"`\n"
+        in: "query"
+        name: "sampleFilter"
+        schema:
+          type: "string"
+      - description: "Search for objects via a full-text query over all sample metadata\
+          \ fields. E.g. `Clozapine`. Queries matching dictionary terms are automatically\
+          \ expanded to include synonyms."
+        in: "query"
+        name: "sampleQuery"
+        schema:
+          type: "string"
+      - description: "If the full-text query term is present in an ODM dictionary,\
+          \ enabling this parameter will modify the query to include child terms of\
+          \ the full-text query.\n\nFor example, the search query \"Body fluid\" can\
+          \ be expanded to include the term \"Blood\" (a child term of  \"Body fluid\"\
+          ) so files containing either \"Body fluid\" or  \"Blood\"  in their metadata\
+          \ will be returned in the search results.\n\nThe parent-child relationship\
+          \ is defined by the key \"broaders\" or \"subClassOf\"  in the dictionary.\n\
+          \nIf the full query term is not present in a dictionary then this parameter\
+          \ has no effect."
+        in: "query"
+        name: "searchSpecificTerms"
+        schema:
+          type: "boolean"
+      - description: "Search for objects linked to variant data by SNPs properties.\
+          \ Filtering is currently supported by `filter`, `id` , and `region` keywords\
+          \ and their logical combinations by means of `not` (`!`), `and` (`&&`),\
+          \ and `or` (`||`) operators with standard boolean precedence. Keyword case\
+          \ is ignored.\n * `filter` corresponds to the `FILTER` column in the original\
+          \ vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`\
+          \ or `filter != pass`\n * `id` is a string value that corresponds to the\
+          \ `ID` column. Multiple values could be added via a comma. Expression `id\
+          \ = rs3214,rg1234` is equivalent to `id = rs3214 or id = rg1234`.\n * `region`\
+          \ corresponds to CHROM and POS columns. Supports querying by the whole chromosome\
+          \ `region = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ or region = chr3`"
+        in: "query"
+        name: "vxQuery"
+        schema:
+          type: "string"
+      - description: "Accession of the variant group object (VCF)"
+        in: "query"
+        name: "groupAccession"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            text/csv:
+              schema:
+                $ref: "#/components/schemas/StreamingOutput"
+          description: "Stream of retrieved Variant data."
+        "400":
+          content: {}
+          description: "Invalid data in request. See error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Stream data from a given VCF file"
+      tags:
+      - "Omics queries as Curator"
   /api/v1/as-curator/integration/studies/{id}/tasks/publish-versions:
     post:
       description: "This endpoint publishes information from staging and creates new\
@@ -14588,6 +14687,105 @@ paths:
       - Access-token: []
       - Genestack-API-Token: []
       summary: "Retrieve group objects by searching across multiple data types"
+      tags:
+      - "Omics queries as User"
+  /api/v1/as-user/omics/variant/streamed-data:
+    get:
+      description: "Stream data from a given group for a VCF file that matches a sample\
+        \ query/filter. If no query/filters are supplied all variant data is returned.\
+        \ If a metadata filter is specified, this endpoint will only return variant\
+        \ data that is associated with a sample via metadata attribute.\n\n## Conditions\n\
+        It is possible to supply conditions for Samples (full-text or metadata key-value\
+        \ pair)\n\n## Metadata full-text queries\nSingle words can be supplied as\
+        \ is; otherwise, use speech marks (`\"`) to quote queries that include whitespace.\
+        \ Speech marks and backslash characters in the query need to be escaped with\
+        \ a backslash (`\\`).\n\n## Metadata filters\nMetadata filters are key-value\
+        \ pairs joined by an operator. The `=` operator matches literal values/string.\
+        \ The `!=` operator matches anything except the literal value/string. The\
+        \ `<` or `>` operators match numerical results that are less or greater than\
+        \ the supplied value. Strings containing whitespace need to be quoted with\
+        \ (`\"`).\n\n## Combinations\nMetadata queries/filters for the same parameter\
+        \ can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space\
+        \ to separate out the terms and operators. Parentheses `( )` can be used for\
+        \ complex expressions.\n\n"
+      operationId: "omicsSearchStreamedVariantDataAsUser"
+      parameters:
+      - description: "Filter by sample metadata (key-value metadata pair(s)). E.g.\
+          \ `\"Species or strain\"=\"Homo sapiens\"`\n"
+        in: "query"
+        name: "sampleFilter"
+        schema:
+          type: "string"
+      - description: "Search for objects via a full-text query over all sample metadata\
+          \ fields. E.g. `Clozapine`. Queries matching dictionary terms are automatically\
+          \ expanded to include synonyms."
+        in: "query"
+        name: "sampleQuery"
+        schema:
+          type: "string"
+      - description: "If the full-text query term is present in an ODM dictionary,\
+          \ enabling this parameter will modify the query to include child terms of\
+          \ the full-text query.\n\nFor example, the search query \"Body fluid\" can\
+          \ be expanded to include the term \"Blood\" (a child term of  \"Body fluid\"\
+          ) so files containing either \"Body fluid\" or  \"Blood\"  in their metadata\
+          \ will be returned in the search results.\n\nThe parent-child relationship\
+          \ is defined by the key \"broaders\" or \"subClassOf\"  in the dictionary.\n\
+          \nIf the full query term is not present in a dictionary then this parameter\
+          \ has no effect."
+        in: "query"
+        name: "searchSpecificTerms"
+        schema:
+          type: "boolean"
+      - description: "Search for objects linked to variant data by SNPs properties.\
+          \ Filtering is currently supported by `filter`, `id` , and `region` keywords\
+          \ and their logical combinations by means of `not` (`!`), `and` (`&&`),\
+          \ and `or` (`||`) operators with standard boolean precedence. Keyword case\
+          \ is ignored.\n * `filter` corresponds to the `FILTER` column in the original\
+          \ vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`\
+          \ or `filter != pass`\n * `id` is a string value that corresponds to the\
+          \ `ID` column. Multiple values could be added via a comma. Expression `id\
+          \ = rs3214,rg1234` is equivalent to `id = rs3214 or id = rg1234`.\n * `region`\
+          \ corresponds to CHROM and POS columns. Supports querying by the whole chromosome\
+          \ `region = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ or region = chr3`"
+        in: "query"
+        name: "vxQuery"
+        schema:
+          type: "string"
+      - description: "Accession of the variant group object (VCF)"
+        in: "query"
+        name: "groupAccession"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            text/csv:
+              schema:
+                $ref: "#/components/schemas/StreamingOutput"
+          description: "Stream of retrieved Variant data."
+        "400":
+          content: {}
+          description: "Invalid data in request. See error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Stream data from a given VCF file"
       tags:
       - "Omics queries as User"
   /api/v1/jobs/import/expression:
