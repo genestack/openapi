@@ -123,7 +123,7 @@ explorer:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
 
 docs:
-    FROM alpine/curl:8.7.1
+    FROM alpine/curl:8.8.0
     WORKDIR /app
     COPY +build/generated generated
 
