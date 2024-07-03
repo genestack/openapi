@@ -31,7 +31,7 @@ explorer-build:
     SAVE ARTIFACT node_modules/openapi-explorer/dist/browser/openapi-explorer.min.js
 
 explorer:
-    FROM nginx:1.27.0
+    FROM nginx:1.27.0-alpine
 
     COPY v1/schemas /usr/share/nginx/html/schemas/
     COPY v1/odmApi.yaml /usr/share/nginx/html/
