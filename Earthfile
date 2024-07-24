@@ -159,7 +159,5 @@ main:
     BUILD +swagger
     BUILD +explorer
     BUILD +docs
+    BUILD +r-api-client
     BUILD +python-api-client
-    # Require a fix for this bug to proceed with using R API CLient:
-    # https://github.com/OpenAPITools/openapi-generator/issues/18016
-    # BUILD +r-api-client

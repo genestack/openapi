@@ -28,7 +28,6 @@ tasks {
         gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
-//            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
     register("generateOdmApiR", GenerateTask::class) {
@@ -40,7 +39,6 @@ tasks {
         gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
-//            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
     register("generateOdmApiPostmanCollection", GenerateTask::class) {
@@ -52,7 +50,6 @@ tasks {
         gitRepoId.set("openapi")
         configOptions = mapOf(
             "packageVersion" to openApiVersion
-//            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
     // Should be used in pre-commit
