@@ -95,9 +95,9 @@ r-api-client:
         R CMD check *.tar.gz --no-manual
 
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
-        ARG R_REGISTRY=${R_REGISTRY_RELEASES}
+        ARG R_REGISTRY="https://nexus.devops.gs.team/repository/r-releases"
     ELSE
-        ARG R_REGISTRY=${R_REGISTRY_SNAPSHOTS}
+        ARG R_REGISTRY="https://nexus.devops.gs.team/repository/r-snapshots"
     END
 
     # Push R client
