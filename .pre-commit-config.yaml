@@ -10,3 +10,11 @@ repos:
     - id: check-toml
     - id: check-merge-conflict
     - id: end-of-file-fixer
+- repo: local
+  hooks:
+    - id: merge-openapi-definitions
+      name: merge-openapi-definitions
+      entry: sh -c "./gradlew mergeDefinitions --no-daemon"
+      always_run: true
+      language: system
+      require_serial: true
