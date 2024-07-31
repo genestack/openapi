@@ -1,7 +1,7 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-openapiGenerator = "7.6.0"
+openapiGenerator = "7.6.2-INTERNAL"
 
 [plugins]
 openapi-generator = { id = "org.openapi.generator", version.ref = "openapiGenerator" }

@@ -83,7 +83,7 @@ r-api-client:
     # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
-        apt install -y build-essential libssl-dev libcurl4-openssl-dev && \
+        apt install -y build-essential libssl-dev libcurl4-openssl-dev curl && \
         Rscript requirements.R
 
     COPY +build/generated generated
@@ -93,6 +93,9 @@ r-api-client:
     RUN \
         R CMD build . && \
         R CMD check *.tar.gz --no-manual
+
+    ARG --required R_REGISTRY_RELEASES
+    ARG --required R_REGISTRY_SNAPSHOTS
 
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
         ARG R_REGISTRY=${R_REGISTRY_RELEASES}
@@ -159,7 +162,5 @@ main:
     BUILD +swagger
     BUILD +explorer
     BUILD +docs
+    BUILD +r-api-client
     BUILD +python-api-client
-    # Require a fix for this bug to proceed with using R API CLient:
-    # https://github.com/OpenAPITools/openapi-generator/issues/18016
-    # BUILD +r-api-client

@@ -6,7 +6,8 @@ on:
 
 jobs:
   pre-commit:
-    if: github.event.pull_request.draft == false
+    # Disabled until the plugin with our fix is publicly available
+    if: false
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.1.7
