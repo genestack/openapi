@@ -8,7 +8,7 @@ ARG --global --required MAVEN_REGISTRY_RELEASES
 ARG --global --required MAVEN_REGISTRY_SNAPSHOTS
 
 build:
-    FROM eclipse-temurin:21.0.3_9-jdk-alpine
+    FROM eclipse-temurin:21.0.4_7-jdk-alpine
     DO github.com/genestack/earthly-libs+GRADLE_PREPARE
 
     CACHE /root/.gradle/caches
@@ -126,7 +126,7 @@ explorer:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
 
 docs:
-    FROM alpine/curl:8.8.0
+    FROM alpine/curl:8.9.0
     WORKDIR /app
     COPY +build/generated generated
 
