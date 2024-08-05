@@ -3931,11 +3931,24 @@ paths:
   /api/v1/as-curator/integration/fulltext/search/studies:
     post:
       description: |-
-        Find studies and retrieve their data by searching via a full-text or facets search of study or linked objects metadata (e.g. samples, libraries, preparations, omics metadata).  Only studies available to a user are returned.
+        Find studies and retrieve their data using full-text search or facet search by metadata of study itself or child object (samples, libraries, preparations, signal groups). Only studies available to that users are returned.
 
-         The endpoint returns:
-         - a list of studies with their metadata summary
-         - a list of facet objects with counts; the facet list can be configured in the "Study Browser" application using the "Configure facets" option (by a user with appropriate permissions). For each facet object only the first 5 most popular values are returned, these are sorted by the number of matching studies in descending order.  Only studies available to the user are counted.
+        The endpoint returns:
+        - a list of studies with their metadata summary;
+        - a list of filter objects with counts; filter list is the same for all users in an and can be configured in “Study Browser” application via "Configure facets" (by a user with corresponding permission); for each filter object, only the first 5 most popular facets are returned, the facts are sorted by the count value in descending order; only studies available to user are counted.
+
+        Filter attributes for fulltext search:
+        - `"type": "FULL_TEXT"`
+        - `"match"`
+        - `"mode"`
+
+        For details on two latter ones, see the request body model. Only one filter with `"type=": "FULL_TEXT"` can be passed in the request body.
+
+        To filter studies via facets, the filter attributes are necessary: type = SELECT, filterOptionId. For details, use the request body model. filterOptionId can be obtained from the response body when the endpoint is first called without filters. Multiple filters with type = SELECT can be passed in the request body. Filters within the same attribute are automatically used with the OR operator. Filters of different attributes are automatically used with the AND operator. This behaviour can not be changed.
+
+        It is possible to call the endpoint without any filters, then all the studies available to the user are returned.
+
+        The endpoint searches by staging version of the object metadata.
       operationId: searchStudiesByFilterAsCurator
       requestBody:
         content:
@@ -3949,7 +3962,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FindObjectsResponse"
-          description: The request was successful. Retrieved studies and filters
+          description: The request was successful. Retrieved studies and filters.
         "400":
           content: {}
           description: Invalid request body
@@ -3965,7 +3978,7 @@ paths:
             \ including the error details."
       security:
       - Genestack-API-Token: []
-      summary: Find and retrieve studies via full-text or facet query
+      summary: Find and retrieve studies by full-text or facet query
       tags:
       - Study integration as Curator
       x-codegen-request-body-name: request
