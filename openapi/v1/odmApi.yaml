@@ -7570,7 +7570,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -7846,7 +7846,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -8053,7 +8053,7 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at`\
@@ -8305,7 +8305,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -8582,7 +8582,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -8859,7 +8859,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -9137,7 +9137,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -9413,7 +9413,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -9591,7 +9591,7 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at`\
@@ -12789,7 +12789,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -13065,7 +13065,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -13274,7 +13274,7 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at`\
@@ -13526,7 +13526,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -13803,7 +13803,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -14080,7 +14080,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -14358,7 +14358,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -14634,7 +14634,7 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
@@ -14812,7 +14812,7 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to expression data and originally\
-          \ uploaded in GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+          \ uploaded in TSV or GCT format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
           \ value>=1.50`\n For the case when the original data is represented by multiple\
           \ attributes per feature scenarios, extended filtering syntax is as follows:\
           \ \n1. By feature attribute value for numeric and string attributes: `features.NAME=1007_s_at`\
