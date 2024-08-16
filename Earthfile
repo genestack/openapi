@@ -97,6 +97,7 @@ r-api-client:
     ARG --required R_REGISTRY_RELEASES
     ARG --required R_REGISTRY_SNAPSHOTS
 
+    ARG --required OPENAPI_VERSION
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
         ARG R_REGISTRY=${R_REGISTRY_RELEASES}
     ELSE
