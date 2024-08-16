@@ -53,6 +53,7 @@ python-api-client:
         python3 -m tox run-parallel && \
         python3 setup.py sdist
 
+    ARG --required OPENAPI_VERSION
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
         ARG PYPI_REPOSITORY_INTERNAL="nexus-pypi-releases"
         ARG PYPI_REPOSITORY_PUBLIC="pypi"
@@ -61,7 +62,6 @@ python-api-client:
         ARG PYPI_REPOSITORY_PUBLIC="testpypi"
     END
 
-    # Push python client
     RUN --push \
         --secret PYPI_TOKEN \
         --secret PYPI_TOKEN_TEST \
