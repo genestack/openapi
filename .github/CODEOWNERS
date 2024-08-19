@@ -23,6 +23,7 @@
 **/*.gradle.kts
 **/gradle-wrapper.properties
 **/libs.versions.toml
+**/gradle-wrapper.jar
 
 # OCI-images
 **/Earthfile
