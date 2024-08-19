@@ -16,6 +16,7 @@
 
 # Maven packages
 **/pom.xml
+**/maven-wrapper.properties
 
 # Gradle packages
 **/*.gradle
