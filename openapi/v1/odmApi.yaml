@@ -7562,7 +7562,7 @@ paths:
           \ or region = chr3`\n * Filter by vcf INFO fields. E.g. to filter all variants\
           \ annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to\
           \ exclude variants having the key from the search results"
-      - in: "query"
+        in: "query"
         name: "vxQuery"
         schema:
           type: "string"
