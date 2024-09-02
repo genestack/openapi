@@ -89,6 +89,15 @@ paths:
             example: 2:233364596-233385916
           type: array
         style: form
+      - description: "`feature` is the name of the reference gene associated with a specific location in the reference genome which corresponds to the VCF file (variant group) from which the variant information is derived. By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB` (to retrieve variants located in the genomic regions of both TP53 and TGFB genes), variants that are located within the same genomic region as the specified gene(s) will be retrieved."
+        in: query
+        name: variantFeature
+        schema:
+          items:
+            type: string
+            example: ENSG00000227232
+          type: array
+        style: form
       - description: One or more specific variation IDs can be specified. E.g. `rs838705`
         in: query
         name: variantId
