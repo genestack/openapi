@@ -20003,9 +20003,11 @@ paths:
           - "noPass"
           type: "string"
       - description: "Filter by vcf `INFO` fields. E.g. to filter all variants annotated\
-          \ in dbSNP add `exists(info.DB)`. Use `!exists(INFO.KEY)` to exclude variants\
-          \ having the key from the search results. Combine multiple filters for `INFO`\
-          \ fields using `AND` (`&&`), `OR` (`||`) logical operators and parentheses"
+          \ in dbSNP add `exists(info.DB)`.\nUse `!exists(INFO.KEY)` to exclude variants\
+          \ having the key from the search results.\nProvide `info.key=value` pair\
+          \ to search for an exact match or `info.key!=value` to exclude it from the\
+          \ search.\nCombine multiple filters for `INFO` fields using `AND` (`&&`),\
+          \ `OR` (`||`) logical operators and parentheses"
         in: "query"
         name: "variantInfo"
         schema:
@@ -20799,9 +20801,11 @@ paths:
           - "noPass"
           type: "string"
       - description: "Filter by vcf `INFO` fields. E.g. to filter all variants annotated\
-          \ in dbSNP add `exists(info.DB)`. Use `!exists(INFO.KEY)` to exclude variants\
-          \ having the key from the search results. Combine multiple filters for `INFO`\
-          \ fields using `AND` (`&&`), `OR` (`||`) logical operators and parentheses"
+          \ in dbSNP add `exists(info.DB)`.\nUse `!exists(INFO.KEY)` to exclude variants\
+          \ having the key from the search results.\nProvide `info.key=value` pair\
+          \ to search for an exact match or `info.key!=value` to exclude it from the\
+          \ search.\nCombine multiple filters for `INFO` fields using `AND` (`&&`),\
+          \ `OR` (`||`) logical operators and parentheses"
         in: "query"
         name: "variantInfo"
         schema:
