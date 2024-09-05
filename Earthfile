@@ -48,6 +48,16 @@ python-api-client:
     COPY +build/generated generated
     WORKDIR generated/python
 
+    # Install requirements of generated client
+    RUN \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            pypi-login.sh && \
+            python3 \
+                -m pip install \
+                -r requirements.txt && \
+            pypi-clean.sh
+
     # Test and build python client
     RUN \
         python3 -m tox run-parallel && \
