@@ -7563,7 +7563,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -7844,7 +7847,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -8308,7 +8314,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -8590,7 +8599,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -8872,7 +8884,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -9155,7 +9170,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -9436,7 +9454,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -9695,7 +9716,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -12822,7 +12846,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -13103,7 +13130,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -13569,7 +13599,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -13851,7 +13884,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -14133,7 +14169,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -14416,7 +14455,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -14697,7 +14739,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -14956,7 +15001,10 @@ paths:
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
-          \ the search."
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -20044,8 +20092,11 @@ paths:
           \ in dbSNP add `exists(info.DB)`.\nUse `!exists(INFO.KEY)` to exclude variants\
           \ having the key from the search results.\nProvide `info.key=value` pair\
           \ to search for an exact match or `info.key!=value` to exclude it from the\
-          \ search.\nCombine multiple filters for `INFO` fields using `AND` (`&&`),\
-          \ `OR` (`||`) logical operators and parentheses"
+          \ search.\nDue to the limits of precision in floating point numbers, we\
+          \ use a small range of 0.0000001 to identify close matches.\nThis means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries.\nCombine multiple filters for `INFO`\
+          \ fields using `AND` (`&&`), `OR` (`||`) logical operators and parentheses"
         in: "query"
         name: "variantInfo"
         schema:
@@ -20842,8 +20893,11 @@ paths:
           \ in dbSNP add `exists(info.DB)`.\nUse `!exists(INFO.KEY)` to exclude variants\
           \ having the key from the search results.\nProvide `info.key=value` pair\
           \ to search for an exact match or `info.key!=value` to exclude it from the\
-          \ search.\nCombine multiple filters for `INFO` fields using `AND` (`&&`),\
-          \ `OR` (`||`) logical operators and parentheses"
+          \ search.\nDue to the limits of precision in floating point numbers, we\
+          \ use a small range of 0.0000001 to identify close matches.\nThis means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries.\nCombine multiple filters for `INFO`\
+          \ fields using `AND` (`&&`), `OR` (`||`) logical operators and parentheses"
         in: "query"
         name: "variantInfo"
         schema:

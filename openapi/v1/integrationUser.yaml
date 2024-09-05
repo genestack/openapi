@@ -2817,7 +2817,8 @@ paths:
               `region = chr1:4567-9876543` by exact position `region = chr1:456789` or by indefinite ranges like `region = x:3456789-*` . Multiple regions could be
               separated via comma, e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767 or region = chr3`.\n
           * Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
-              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search."
+              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search. Due to the limits of precision in floating point numbers,
+              we use a small range of 0.0000001 to identify close matches. This means any differences smaller than that won't be detected. For more precise results, please use range queries."
         in: query
         name: vxQuery
         schema:
@@ -3082,7 +3083,8 @@ paths:
               `region = chr1:4567-9876543` by exact position `region = chr1:456789` or by indefinite ranges like `region = x:3456789-*` . Multiple regions could be
               separated via comma, e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767 or region = chr3`.\n
           * Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
-              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search."
+              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search. Due to the limits of precision in floating point numbers,
+              we use a small range of 0.0000001 to identify close matches. This means any differences smaller than that won't be detected. For more precise results, please use range queries."
         in: query
         name: vxQuery
         schema:
@@ -3531,7 +3533,8 @@ paths:
               `region = chr1:4567-9876543` by exact position `region = chr1:456789` or by indefinite ranges like `region = x:3456789-*` . Multiple regions could be
               separated via comma, e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767 or region = chr3`.\n
           * Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
-              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search."
+              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search. Due to the limits of precision in floating point numbers,
+              we use a small range of 0.0000001 to identify close matches. This means any differences smaller than that won't be detected. For more precise results, please use range queries."
         in: query
         name: vxQuery
         schema:
@@ -3797,7 +3800,8 @@ paths:
               `region = chr1:4567-9876543` by exact position `region = chr1:456789` or by indefinite ranges like `region = x:3456789-*` . Multiple regions could be
               separated via comma, e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767 or region = chr3`.\n
           * Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
-              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search."
+              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search. Due to the limits of precision in floating point numbers,
+              we use a small range of 0.0000001 to identify close matches. This means any differences smaller than that won't be detected. For more precise results, please use range queries."
         in: query
         name: vxQuery
         schema:
@@ -4062,7 +4066,8 @@ paths:
               `region = chr1:4567-9876543` by exact position `region = chr1:456789` or by indefinite ranges like `region = x:3456789-*` . Multiple regions could be
               separated via comma, e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767 or region = chr3`.\n
           * Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
-              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search."
+              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search. Due to the limits of precision in floating point numbers,
+              we use a small range of 0.0000001 to identify close matches. This means any differences smaller than that won't be detected. For more precise results, please use range queries."
         in: query
         name: vxQuery
         schema:
@@ -4330,7 +4335,8 @@ paths:
               `region = chr1:4567-9876543` by exact position `region = chr1:456789` or by indefinite ranges like `region = x:3456789-*` . Multiple regions could be
               separated via comma, e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767 or region = chr3`.\n
           * Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
-              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search."
+              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search. Due to the limits of precision in floating point numbers,
+              we use a small range of 0.0000001 to identify close matches. This means any differences smaller than that won't be detected. For more precise results, please use range queries."
         in: query
         name: vxQuery
         schema:
@@ -4595,7 +4601,8 @@ paths:
               `region = chr1:4567-9876543` by exact position `region = chr1:456789` or by indefinite ranges like `region = x:3456789-*` . Multiple regions could be
               separated via comma, e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767 or region = chr3`.\n
           * Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
-              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search."
+              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search. Due to the limits of precision in floating point numbers,
+              we use a small range of 0.0000001 to identify close matches. This means any differences smaller than that won't be detected. For more precise results, please use range queries."
         in: query
         name: vxQuery
         schema:
@@ -4841,7 +4848,8 @@ paths:
               `region = chr1:4567-9876543` by exact position `region = chr1:456789` or by indefinite ranges like `region = x:3456789-*` . Multiple regions could be
               separated via comma, e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767 or region = chr3`.\n
           * Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
-              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search."
+              Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search. Due to the limits of precision in floating point numbers,
+              we use a small range of 0.0000001 to identify close matches. This means any differences smaller than that won't be detected. For more precise results, please use range queries."
           in: query
           name: vxQuery
           schema:
