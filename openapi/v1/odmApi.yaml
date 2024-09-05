@@ -20791,7 +20791,7 @@ paths:
       - "Variant SPoT as Curator"
   /api/v1/as-user/variants:
     get:
-      description: "Retrieve all variant data and metadata objects that match a query.\n\
+      description: "Retrieve all  variant data and metadata objects that match a query.\n\
         \n## Metadata full-text queries\nSingle words can be supplied as is, otherwise\
         \ use speech marks (`\"`) to quote queries that include whitespace. Speech\
         \ marks and backslash characters in the query need to be escaped with a backslash\
