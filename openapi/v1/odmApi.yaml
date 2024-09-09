@@ -12882,7 +12882,12 @@ paths:
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ or region = chr3`.\n * `feature` is the name of the reference gene associated\
+          \ with a specific location in the reference genome which corresponds to\
+          \ the VCF file (variant group) from which the variant information is derived.\
+          \ By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB`,\
+          \ variants located within the same genomic region as the specified gene(s)\
+          \ will be retrieved.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
@@ -13166,7 +13171,12 @@ paths:
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ or region = chr3`.\n * `feature` is the name of the reference gene associated\
+          \ with a specific location in the reference genome which corresponds to\
+          \ the VCF file (variant group) from which the variant information is derived.\
+          \ By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB`,\
+          \ variants located within the same genomic region as the specified gene(s)\
+          \ will be retrieved.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
@@ -13635,7 +13645,12 @@ paths:
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ or region = chr3`.\n * `feature` is the name of the reference gene associated\
+          \ with a specific location in the reference genome which corresponds to\
+          \ the VCF file (variant group) from which the variant information is derived.\
+          \ By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB`,\
+          \ variants located within the same genomic region as the specified gene(s)\
+          \ will be retrieved.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
@@ -13920,7 +13935,12 @@ paths:
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ or region = chr3`.\n * `feature` is the name of the reference gene associated\
+          \ with a specific location in the reference genome which corresponds to\
+          \ the VCF file (variant group) from which the variant information is derived.\
+          \ By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB`,\
+          \ variants located within the same genomic region as the specified gene(s)\
+          \ will be retrieved.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
@@ -14205,7 +14225,12 @@ paths:
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ or region = chr3`.\n * `feature` is the name of the reference gene associated\
+          \ with a specific location in the reference genome which corresponds to\
+          \ the VCF file (variant group) from which the variant information is derived.\
+          \ By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB`,\
+          \ variants located within the same genomic region as the specified gene(s)\
+          \ will be retrieved.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
@@ -14491,7 +14516,12 @@ paths:
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ or region = chr3`.\n * `feature` is the name of the reference gene associated\
+          \ with a specific location in the reference genome which corresponds to\
+          \ the VCF file (variant group) from which the variant information is derived.\
+          \ By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB`,\
+          \ variants located within the same genomic region as the specified gene(s)\
+          \ will be retrieved.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
@@ -14775,7 +14805,12 @@ paths:
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ or region = chr3`.\n * `feature` is the name of the reference gene associated\
+          \ with a specific location in the reference genome which corresponds to\
+          \ the VCF file (variant group) from which the variant information is derived.\
+          \ By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB`,\
+          \ variants located within the same genomic region as the specified gene(s)\
+          \ will be retrieved.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
@@ -15037,7 +15072,12 @@ paths:
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ or region = chr3`.\n * `feature` is the name of the reference gene associated\
+          \ with a specific location in the reference genome which corresponds to\
+          \ the VCF file (variant group) from which the variant information is derived.\
+          \ By providing the gene name(s), such as `feature=TP53` or `feature=TP53,TGFB`,\
+          \ variants located within the same genomic region as the specified gene(s)\
+          \ will be retrieved.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
           \ to exclude variants having the key from the search results. Provide `info.key=value`\
           \ pair to search for an exact match or `info.key!=value` to exclude it from\
