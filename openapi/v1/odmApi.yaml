@@ -7545,23 +7545,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -7824,23 +7829,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -8286,23 +8296,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -8566,23 +8581,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -8846,23 +8866,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -9127,23 +9152,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -9406,23 +9436,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -9663,20 +9698,28 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id` , and `region` keywords\
-          \ and their logical combinations by means of `not` (`!`), `and` (`&&`),\
-          \ and `or` (`||`) operators with standard boolean precedence. Keyword case\
-          \ is ignored.\n * `filter` corresponds to the `FILTER` column in the original\
-          \ vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`\
-          \ or `filter != pass`\n * `id` is a string value that corresponds to the\
-          \ `ID` column. Multiple values could be added via a comma. Expression `id\
-          \ = rs3214,rg1234` is equivalent to `id = rs3214 or id = rg1234`.\n * `region`\
-          \ corresponds to CHROM and POS columns. Supports querying by the whole chromosome\
-          \ `region = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`"
+          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -12785,23 +12828,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -13064,23 +13112,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -13528,23 +13581,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -13808,23 +13866,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -14088,23 +14151,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -14369,23 +14437,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -14648,23 +14721,28 @@ paths:
         schema:
           type: "boolean"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id`, and `region` keywords,\
-          \ as well as `exists` keyword for `INFO` field and their logical combinations\
-          \ by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators with\
-          \ standard boolean precedence. Keyword case is ignored.\n * `filter` corresponds\
-          \ to the `FILTER` column in the original vcf file. Could be either equals\
-          \ or not equals to `PASS` : `filter = PASS` or `filter != pass`.\n * `id`\
-          \ is a string value that corresponds to the `ID` column. Multiple values\
-          \ could be added via a comma. Expression `id = rs3214,rg1234` is equivalent\
-          \ to `id = rs3214 or id = rg1234`.\n * `region` corresponds to CHROM and\
-          \ POS columns. Supports querying by the whole chromosome `region = chr1`\
-          \ , by interval within a chromosome `region = chr1:4567-9876543` by exact\
-          \ position `region = chr1:456789` or by indefinite ranges like `region =\
-          \ x:3456789-*` . Multiple regions could be separated via comma, e.g. `region\
-          \ = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ by exact position `region = chr1:456789` or by indefinite ranges like\
+          \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
+          \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
           \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
           \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
-          \ to exclude variants having the key from the search results."
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -14905,20 +14983,28 @@ paths:
         schema:
           type: "string"
       - description: "Search for objects linked to variant data by SNPs properties.\
-          \ Filtering is currently supported by `filter`, `id` , and `region` keywords\
-          \ and their logical combinations by means of `not` (`!`), `and` (`&&`),\
-          \ and `or` (`||`) operators with standard boolean precedence. Keyword case\
-          \ is ignored.\n * `filter` corresponds to the `FILTER` column in the original\
-          \ vcf file. Could be either equals or not equals to `PASS` : `filter = PASS`\
-          \ or `filter != pass`\n * `id` is a string value that corresponds to the\
-          \ `ID` column. Multiple values could be added via a comma. Expression `id\
-          \ = rs3214,rg1234` is equivalent to `id = rs3214 or id = rg1234`.\n * `region`\
-          \ corresponds to CHROM and POS columns. Supports querying by the whole chromosome\
-          \ `region = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
+          \ Filtering is currently supported by `filter`, `id`, `region` and `info`\
+          \ keywords, as well as `exists` keyword for `INFO` field and their logical\
+          \ combinations by means of `not` (`!`), `and` (`&&`), and `or` (`||`) operators\
+          \ with standard boolean precedence. Keyword case is ignored.\n * `filter`\
+          \ corresponds to the `FILTER` column in the original vcf file. Could be\
+          \ either equals or not equals to `PASS` : `filter = PASS` or `filter !=\
+          \ pass`.\n * `id` is a string value that corresponds to the `ID` column.\
+          \ Multiple values could be added via a comma. Expression `id = rs3214,rg1234`\
+          \ is equivalent to `id = rs3214 or id = rg1234`.\n * `region` corresponds\
+          \ to CHROM and POS columns. Supports querying by the whole chromosome `region\
+          \ = chr1` , by interval within a chromosome `region = chr1:4567-9876543`\
           \ by exact position `region = chr1:456789` or by indefinite ranges like\
           \ `region = x:3456789-*` . Multiple regions could be separated via comma,\
           \ e.g. `region = chr1:34567-98767,chr3` is equivalent to  `region = chr1:34567-98767\
-          \ or region = chr3`"
+          \ or region = chr3`.\n * Filter by vcf `INFO` fields. E.g. to filter all\
+          \ variants annotated in dbSNP add `exists(INFO.KEY)`. Use `!exists(INFO.KEY)`\
+          \ to exclude variants having the key from the search results. Provide `info.key=value`\
+          \ pair to search for an exact match or `info.key!=value` to exclude it from\
+          \ the search. Due to the limits of precision in floating point numbers,\
+          \ we use a small range of 0.0000001 to identify close matches. This means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries."
         in: "query"
         name: "vxQuery"
         schema:
@@ -20018,8 +20104,13 @@ paths:
           - "noPass"
           type: "string"
       - description: "Filter by vcf `INFO` fields. E.g. to filter all variants annotated\
-          \ in dbSNP add `exists(info.KEY)`. Use `!exists(INFO.KEY)` to exclude variants\
-          \ having the key from the search results. Combine multiple filters for `INFO`\
+          \ in dbSNP add `exists(info.DB)`.\nUse `!exists(INFO.KEY)` to exclude variants\
+          \ having the key from the search results.\nProvide `info.key=value` pair\
+          \ to search for an exact match or `info.key!=value` to exclude it from the\
+          \ search.\nDue to the limits of precision in floating point numbers, we\
+          \ use a small range of 0.0000001 to identify close matches.\nThis means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries.\nCombine multiple filters for `INFO`\
           \ fields using `AND` (`&&`), `OR` (`||`) logical operators and parentheses"
         in: "query"
         name: "variantInfo"
@@ -20829,8 +20920,13 @@ paths:
           - "noPass"
           type: "string"
       - description: "Filter by vcf `INFO` fields. E.g. to filter all variants annotated\
-          \ in dbSNP add `exists(info.KEY)`. Use `!exists(INFO.KEY)` to exclude variants\
-          \ having the key from the search results. Combine multiple filters for `INFO`\
+          \ in dbSNP add `exists(info.DB)`.\nUse `!exists(INFO.KEY)` to exclude variants\
+          \ having the key from the search results.\nProvide `info.key=value` pair\
+          \ to search for an exact match or `info.key!=value` to exclude it from the\
+          \ search.\nDue to the limits of precision in floating point numbers, we\
+          \ use a small range of 0.0000001 to identify close matches.\nThis means\
+          \ any differences smaller than that won't be detected. For more precise\
+          \ results, please use range queries.\nCombine multiple filters for `INFO`\
           \ fields using `AND` (`&&`), `OR` (`||`) logical operators and parentheses"
         in: "query"
         name: "variantInfo"
