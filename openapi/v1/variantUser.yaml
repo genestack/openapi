@@ -111,7 +111,13 @@ paths:
             - pass
             - noPass
           type: string
-      - description: Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(info.KEY)`. Use `!exists(INFO.KEY)` to exclude variants having the key from the search results. Combine multiple filters for `INFO` fields using `AND` (`&&`), `OR` (`||`) logical operators and parentheses
+      - description: |-
+          Filter by vcf `INFO` fields. E.g. to filter all variants annotated in dbSNP add `exists(info.DB)`.
+          Use `!exists(INFO.KEY)` to exclude variants having the key from the search results.
+          Provide `info.key=value` pair to search for an exact match or `info.key!=value` to exclude it from the search.
+          Due to the limits of precision in floating point numbers, we use a small range of 0.0000001 to identify close matches.
+          This means any differences smaller than that won't be detected. For more precise results, please use range queries.
+          Combine multiple filters for `INFO` fields using `AND` (`&&`), `OR` (`||`) logical operators and parentheses
         in: query
         name: variantInfo
         schema:
