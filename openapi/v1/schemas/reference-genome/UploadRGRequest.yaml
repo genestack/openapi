@@ -2,7 +2,7 @@ example:
   annotationUrl: https://ftp.ensembl.org/pub/release-112/gtf/homo_sapiens/Homo_sapiens.GRCh38.112.gtf.gz
   species: Homo_sapiens
   assembly: GRCh38
-  release: 112
+  release: "112"
   name: Homo sapiens reference genome GRCh38.112
 properties:
   annotationUrl:
