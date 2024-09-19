@@ -47,6 +47,7 @@ tags:
 - name: "Preparation SPoT as Curator"
 - name: "Preparation SPoT as User"
 - name: "Xrefset queries"
+- name: "Reference genome"
 - name: "Sample SPoT as Curator"
 - name: "Sample SPoT as User"
 - name: "Groups"
@@ -17786,6 +17787,66 @@ paths:
       summary: "Retrieve xrefset details"
       tags:
       - "Xrefset queries"
+  /api/v1/reference-genomes:
+    post:
+      operationId: "upload"
+      summary: "Upload reference genome to ODM"
+      tags:
+      - "Reference genome"
+      description: "In order to import reference genome file, please fill in the following\
+        \ fields:\n\n* `annotationUrl` - link to the non-vertebrae organism or any\
+        \ custom reference genome in .gtf format, archived in `.gz` format.\nNote:\
+        \ if any of the parameters below are not corresponding to the available Ensembl\
+        \ data (for example, organism name or assembly is changed), the link must\
+        \ be provided.\n* `species` - scientific name with the first uppercase letter\
+        \ and underscore as a delimiter (default: Homo_sapiens).\nPlease see the list\
+        \ of available organisms [here](https://www.ensembl.org/info/about/species.html).\n\
+        Note: for some specific cases (Canis lupus breeds, Mus musculus strains, etc.)\
+        \ please see the species folders name in the Ensembl FTP (release 109) to\
+        \ provide the same organism name as shown in the list.\n* `assembly` - major\
+        \ version (for example, `GRCh38`). Please see the list of available assemblies\
+        \ [here](https://www.ensembl.org/info/website/archives/assembly.html).\n*\
+        \ `release` - Ensembl reference genome minor version (for example, `75` or\
+        \ `109`).  \n* `name` - customized reference genome title that is used for\
+        \ linkage variant files.\nBy default is combined from species, assembly and\
+        \ release parameters: `{species} reference genome {assembly}.{release}`.\n\
+        \nReference genome will be available after initialisation. Please track initialisation\
+        \ task status."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UploadRGRequest"
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessionResponse"
+          description: "The object was successfully created."
+        "400":
+          content: {}
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "403":
+          content: {}
+          description: "Not enough permissions to call method."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      x-codegen-request-body-name: "body"
   /api/v1/as-curator/samples:
     get:
       description: "Retrieve sample metadata objects by searching/listing sample metadata.\n\
@@ -21716,6 +21777,10 @@ components:
       $ref: "./schemas/reference-data/XrefSetSearchResult.yaml"
     XrefSetSearchResultEntry:
       $ref: "./schemas/reference-data/XrefSetSearchResultEntry.yaml"
+    UploadRGRequest:
+      $ref: "./schemas/reference-genome/UploadRGRequest.yaml"
+    AccessionResponse:
+      $ref: "./schemas/common/AccessionResponse.yaml"
     Sample:
       $ref: "./schemas/sample/Sample.yaml"
     Group:
