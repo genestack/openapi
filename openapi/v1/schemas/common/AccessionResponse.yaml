@@ -1,0 +1,8 @@
+example:
+  genestack:accession: genestack:accession
+properties:
+  genestack:accession:
+    type: string
+required:
+  - genestack:accession
+type: object
