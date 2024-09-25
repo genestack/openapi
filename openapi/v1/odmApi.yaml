@@ -17807,10 +17807,10 @@ paths:
         \ version (for example, `GRCh38`). Please see the list of available assemblies\
         \ [here](https://www.ensembl.org/info/website/archives/assembly.html).\n*\
         \ `release` - Ensembl reference genome minor version (for example, `75` or\
-        \ `109`).  \n* `name` - customized reference genome title that is used for\
-        \ linkage variant files.\nBy default is combined from species, assembly and\
-        \ release parameters: `{species} reference genome {assembly}.{release}`.\n\
-        \nReference genome will be available after initialisation. Please track initialisation\
+        \ `109`).\n* `name` - customized reference genome title that is used for linkage\
+        \ variant files.\nBy default is combined from species, assembly and release\
+        \ parameters: `{species} reference genome {assembly}.{release}`.\n\nReference\
+        \ genome will be available after initialisation. Please track initialisation\
         \ task status."
       requestBody:
         content:
@@ -17847,6 +17847,54 @@ paths:
       - Access-token: []
       - Genestack-API-Token: []
       x-codegen-request-body-name: "body"
+    delete:
+      operationId: "delete"
+      summary: "Delete reference genome from ODM"
+      tags:
+      - "Reference genome"
+      description: "Please provide Genestack accession to mark reference genome for\
+        \ deletion. 'Manage organization' and 'Access all data' permissions are required\
+        \ to perform the action.\nNote, that in case reference genome is linked to\
+        \ VCF group, searching for variant by variantFeature (genes) won't be available\
+        \ after deletion."
+      parameters:
+      - description: "Accessions files to be deleted."
+        in: "query"
+        name: "accessions"
+        schema:
+          items:
+            type: "string"
+            example: "accession"
+          type: "array"
+        style: "form"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The object cannot be deleted. Please see error message for\
+            \ details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "403":
+          content: {}
+          description: "Not enough permissions to call method."
+        "404":
+          content: {}
+          description: "No objects exists with the given accessions."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
   /api/v1/as-curator/samples:
     get:
       description: "Retrieve sample metadata objects by searching/listing sample metadata.\n\
