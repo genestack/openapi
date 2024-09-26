@@ -70,7 +70,7 @@ paths:
         Please provide Genestack accession to mark reference genome for deletion. 'Manage organization' and 'Access all data' permissions are required to perform the action.
         Note, that in case reference genome is linked to VCF group, searching for variant by variantFeature (genes) won't be available after deletion.
       parameters:
-        - description: Accessions files to be deleted.
+        - description: Accessions of reference genomes to be deleted.
           in: query
           name: accessions
           schema:

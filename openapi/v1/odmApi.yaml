@@ -17858,7 +17858,7 @@ paths:
         \ VCF group, searching for variant by variantFeature (genes) won't be available\
         \ after deletion."
       parameters:
-      - description: "Accessions files to be deleted."
+      - description: "Accessions of reference genomes to be deleted."
         in: "query"
         name: "accessions"
         schema:
