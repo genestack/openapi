@@ -8,9 +8,9 @@ example:
 properties:
   source:
     enum:
-    - ARVADOS
     - S3
     - HTTP
+    - LOCAL
     example: HTTP
     type: string
   metadataLink:
