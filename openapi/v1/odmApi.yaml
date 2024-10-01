@@ -17788,6 +17788,94 @@ paths:
       tags:
       - "Xrefset queries"
   /api/v1/reference-genomes:
+    get:
+      operationId: "searchRG"
+      summary: "List or search for Reference Genome objects"
+      tags:
+      - "Reference genome"
+      description: "Retrieve Reference Genome metadata objects by searching/listing\
+        \ Reference Genome metadata.\n\n## Metadata full-text queries\nSingle words\
+        \ can be supplied as is, otherwise use speech marks (`\"`) to quote queries\
+        \ that include whitespace. Speech marks and backslash characters in the query\
+        \ need to be escaped with a backslash (`\\`).\n\n## Metadata filters\nMetadata\
+        \ filters are key-value pairs joined by an operator. The `=` operator matches\
+        \ literal values/string. The `!=` operator matches anything except the literal\
+        \ value/string. The `<` or `>` operators match numerical results that are\
+        \ less or greater than the supplied value. Strings containing whitespace need\
+        \ to be quoted with (`\"`).\n\n## Combinations\nMetadata queries/filters for\
+        \ the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators,\
+        \ using white-space to separate out the terms and operators. Parentheses `(\
+        \ )` can be used for complex expressions.\n\n## Paging\nFor performance reasons\
+        \ this endpoint returns results in \"pages\" of limited size. In order to\
+        \ retrieve all matching results the client needs to request multiple pages\
+        \ starting from an offset to the first result. You can do this using the pageOffset\
+        \ query parameter. A value of 0 (the default) instructs the server to return\
+        \ the first page of results, 100 would return a page of results starting from\
+        \ the 101st result and so on. To return all results iterate through pages\
+        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
+        \ response field is true.\n\n## List operation\n\nThis endpoint can be called\
+        \ with no `query` parameter. Doing so returns a list of all Reference Genome\
+        \ objects."
+      parameters:
+      - in: "query"
+        name: "organism"
+        description: "Scientific name of the organism"
+        schema:
+          type: "string"
+      - in: "query"
+        name: "assembly"
+        description: "Major version (for example, `GRCh38`)."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "release"
+        description: "Ensembl reference genome minor version (for example, `75` or\
+          \ `109`)."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "query"
+        description: "Search for Reference Genome objects via a full-text query over\
+          \ all Reference Genome metadata fields."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "pageLimit"
+        description: "Maximum number of results to return per page (see Paging above).\
+          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
+        schema:
+          format: "int32"
+          type: "integer"
+      - in: "query"
+        name: "pageOffset"
+        description: "Show the page {pageOffset+1} results from the start of the results.\
+          \ E.g. 100 will show a page of results starting from the 101st result. The\
+          \ default value is 0."
+        schema:
+          format: "int32"
+          type: "integer"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
     post:
       operationId: "upload"
       summary: "Upload reference genome to ODM"
@@ -17807,10 +17895,10 @@ paths:
         \ version (for example, `GRCh38`). Please see the list of available assemblies\
         \ [here](https://www.ensembl.org/info/website/archives/assembly.html).\n*\
         \ `release` - Ensembl reference genome minor version (for example, `75` or\
-        \ `109`).  \n* `name` - customized reference genome title that is used for\
-        \ linkage variant files.\nBy default is combined from species, assembly and\
-        \ release parameters: `{species} reference genome {assembly}.{release}`.\n\
-        \nReference genome will be available after initialisation. Please track initialisation\
+        \ `109`).\n* `name` - customized reference genome title that is used for linkage\
+        \ variant files.\nBy default is combined from species, assembly and release\
+        \ parameters: `{species} reference genome {assembly}.{release}`.\n\nReference\
+        \ genome will be available after initialisation. Please track initialisation\
         \ task status."
       requestBody:
         content:
@@ -17847,6 +17935,44 @@ paths:
       - Access-token: []
       - Genestack-API-Token: []
       x-codegen-request-body-name: "body"
+  /api/v1/reference-genomes/{id}:
+    get:
+      operationId: "getRG"
+      summary: "Retrieve a single Reference Genome object by ID (accession)"
+      tags:
+      - "Reference genome"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Unique identifier (Genestack accession) of Reference Genome\
+          \ object."
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RGItem"
+          description: "The request was successful. The returned value is the object."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
   /api/v1/as-curator/samples:
     get:
       description: "Retrieve sample metadata objects by searching/listing sample metadata.\n\
@@ -21781,6 +21907,8 @@ components:
       $ref: "./schemas/reference-genome/UploadRGRequest.yaml"
     AccessionResponse:
       $ref: "./schemas/common/AccessionResponse.yaml"
+    RGItem:
+      $ref: "./schemas/reference-genome/RGItem.yaml"
     Sample:
       $ref: "./schemas/sample/Sample.yaml"
     Group:

@@ -1,0 +1,31 @@
+example:
+  genestack:accession: GSF000009
+  annotationUrl: https://ftp.ensembl.org/pub/release-112/gtf/homo_sapiens/Homo_sapiens.GRCh38.112.gtf.gz
+  organism: Homo sapiens
+  assembly: GRCh38
+  release: 112
+  name: Homo sapiens reference genome GRCh38.112
+  Initialization status: Complete
+  createdAt: 2000-01-23T04:56:070Z
+  ownerEmail: ownerEmail
+properties:
+  genestack:accession:
+    type: string
+  annotationUrl:
+    type: string
+    format: uri
+  organism:
+    type: string
+  assembly:
+    type: string
+  release:
+    type: string
+  name:
+    type: string
+  Initialization status:
+    type: string
+  createdAt:
+    type: string
+  ownerEmail:
+    type: string
+type: object
