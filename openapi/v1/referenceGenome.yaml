@@ -83,20 +83,6 @@ paths:
         "204":
           content: { }
           description: The object has been successfully deleted. No data is returned.
-        "400":
-          content: { }
-          description: The object cannot be deleted. Please see error message for details.
-        "401":
-          content: { }
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "403":
-          content: { }
-          description: Not enough permissions to call method.
-        "404":
-          content: { }
-          description: No objects exists with the given accessions.
         "500":
           content: { }
           description: "An internal server error occurred. This indicates an unexpected\
