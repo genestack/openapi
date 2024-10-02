@@ -17871,6 +17871,12 @@ paths:
         "204":
           content: {}
           description: "The object has been successfully deleted. No data is returned."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
