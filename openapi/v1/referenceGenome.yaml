@@ -24,7 +24,7 @@ paths:
 
         ## List operation
 
-        This endpoint can be called with no `query` parameter. Doing so returns a list of all Reference Genome objects.
+        This endpoint can be called without any query parameters. When called this way, it returns a list of all Reference Genome objects.
       parameters:
         - in: query
           name: organism
