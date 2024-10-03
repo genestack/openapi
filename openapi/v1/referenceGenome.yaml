@@ -9,7 +9,7 @@ tags:
 paths:
   /api/v1/reference-genomes:
     get:
-      operationId: searchRG
+      operationId: search_reference_genomes
       summary: List or search for Reference Genome objects
       tags:
         - Reference genome
@@ -19,14 +19,8 @@ paths:
         ## Metadata full-text queries
         Single words can be supplied as is, otherwise use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
 
-        ## Metadata filters
-        Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
-
-        ## Combinations
-        Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
-
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages by increasing the offset in multiples of limit (e.g., `offset = n * limit`), until all results have been retrieved. The total number of pages can be calculated by dividing the total number of results by the limit.
 
         ## List operation
 
@@ -34,7 +28,7 @@ paths:
       parameters:
         - in: query
           name: organism
-          description: Scientific name of the organism
+          description: Scientific name of an organism (species) used in reference genome file (e.g. `Homo sapiens`).
           schema:
             type: string
         - in: query
@@ -49,7 +43,7 @@ paths:
             type: string
         - in: query
           name: query
-          description: Search for Reference Genome objects via a full-text query over all Reference Genome metadata fields.
+          description: Search for reference genome via a full-text query over all reference genome metadata fields (e.g. `GRCh38`).
           schema:
             type: string
         - in: query
@@ -141,7 +135,7 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/reference-genomes/{id}:
     get:
-      operationId: getRG
+      operationId: get_reference_genome_by_accession
       summary: Retrieve a single Reference Genome object by ID (accession)
       tags:
         - Reference genome
