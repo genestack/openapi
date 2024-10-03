@@ -17873,8 +17873,7 @@ paths:
           description: "The object has been successfully deleted. No data is returned."
         "400":
           content: {}
-          description: "The object cannot be deleted. Please see the error message\
-            \ for details."
+          description: "Deletion could not be performed due to Bad Request."
         "401":
           content: {}
           description: "User is not authenticated. Please supply a valid Access Token\
@@ -17884,6 +17883,16 @@ paths:
         "403":
           content: {}
           description: "Not enough permissions to call method."
+        "404":
+          content: {}
+          description: "Some of the provided accessions could not be found in ODM.\
+            \ Deletion will not be preformed. Please review your list and repeat the\
+            \ attempt."
+        "406":
+          content: {}
+          description: "Some of the provided accessions do not belong to the supported\
+            \ object types. Deletion will not be performed. Please review your list\
+            \ and repeat the attempt."
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
