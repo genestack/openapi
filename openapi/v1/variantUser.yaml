@@ -241,7 +241,7 @@ paths:
 
         ## List operation
 
-        This endpoint can be called with no query parameter. Doing so returns a list of all data objects.
+        This endpoint can be called with no `query` parameter. Doing so returns a list of all data objects.
       operationId: searchVariantGroupsAsUser
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the

@@ -21313,7 +21313,7 @@ paths:
         \ the 101st result and so on. To return all results iterate through pages\
         \ using pageOffset values of `n*pageLimit` until the `resultsExhausted` response\
         \ field is true.\n\n## List operation\n\nThis endpoint can be called with\
-        \ no query parameter. Doing so returns a list of all data objects."
+        \ no `query` parameter. Doing so returns a list of all data objects."
       operationId: "searchVariantGroupsAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
