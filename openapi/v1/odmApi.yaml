@@ -16515,7 +16515,7 @@ paths:
       - description: "Accessions files to be deleted."
         explode: false
         in: "query"
-        name: "accession"
+        name: "accessions"
         schema:
           items:
             type: "string"
