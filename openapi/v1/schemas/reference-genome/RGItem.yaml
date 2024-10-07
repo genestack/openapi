@@ -5,7 +5,7 @@ example:
   assembly: GRCh38
   release: 112
   name: Homo sapiens reference genome GRCh38.112
-  Initialization status: Complete
+  initializationStatus: Complete
   createdAt: 2000-01-23T04:56:070Z
   ownerEmail: ownerEmail
 properties:
