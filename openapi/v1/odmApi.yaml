@@ -17798,17 +17798,17 @@ paths:
         \ can be supplied as is, otherwise use speech marks (`\"`) to quote queries\
         \ that include whitespace. Speech marks and backslash characters in the query\
         \ need to be escaped with a backslash (`\\`).\n\n## Paging\nFor performance\
-        \ reasons this endpoint returns results in \"pages\" of limited size. In order\
-        \ to retrieve all matching results the client needs to request multiple pages\
-        \ starting from an offset to the first result. You can do this using the pageOffset\
-        \ query parameter. A value of 0 (the default) instructs the server to return\
-        \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To retrieve all results, iterate through pages\
-        \ by increasing the offset in multiples of limit (e.g., `offset = n * limit`),\
-        \ until all results have been retrieved. The total number of pages can be\
-        \ calculated by dividing the total number of results by the limit.\n\n## List\
-        \ operation\n\nThis endpoint can be called without any query parameters. When\
-        \ called this way, it returns a list of all Reference Genome objects."
+        \ reasons, this endpoint returns results in \"pages\" of limited size. In\
+        \ order to retrieve all matching results the client needs to request multiple\
+        \ pages starting from an offset to the first result. You can do this using\
+        \ the `pageOffset` query parameter. A value of 0 (the default) instructs the\
+        \ server to return the first page of results, 100 would return a page of results\
+        \ starting from the 101st result and so on. To retrieve all results, iterate\
+        \ through pages by increasing the offset in multiples of limit (e.g., `offset\
+        \ = n * limit`), until all results have been retrieved. The total number of\
+        \ pages can be calculated by dividing the total number of results by the limit.\n\
+        \n## List operation\n\nThis endpoint can be called without any query parameters.\
+        \ When called this way, it returns a list of all Reference Genome objects."
       parameters:
       - in: "query"
         name: "organism"
@@ -17842,9 +17842,9 @@ paths:
           type: "integer"
       - in: "query"
         name: "pageOffset"
-        description: "Show the page {pageOffset+1} results from the start of the results.\
-          \ E.g. 100 will show a page of results starting from the 101st result. The\
-          \ default value is 0."
+        description: "Show the page {pageOffset + 1} results from the start of the\
+          \ results. E.g. 100 will show a page of results starting from the 101st\
+          \ result. The default value is 0."
         schema:
           format: "int32"
           type: "integer"
