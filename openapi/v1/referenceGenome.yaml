@@ -22,7 +22,7 @@ paths:
         Please see the list of available organisms [here](https://www.ensembl.org/info/about/species.html).
         Note: for some specific cases (Canis lupus breeds, Mus musculus strains, etc.) please see the species folders name in the Ensembl FTP (release 109) to provide the same organism name as shown in the list.
         * `assembly` - major version (for example, `GRCh38`). Please see the list of available assemblies [here](https://www.ensembl.org/info/website/archives/assembly.html).
-        * `release` - Ensembl reference genome minor version (for example, `75` or `109`).  
+        * `release` - Ensembl reference genome minor version (for example, `75` or `109`).
         * `name` - customized reference genome title that is used for linkage variant files.
         By default is combined from species, assembly and release parameters: `{species} reference genome {assembly}.{release}`.
 
