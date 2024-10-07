@@ -17807,10 +17807,10 @@ paths:
         \ version (for example, `GRCh38`). Please see the list of available assemblies\
         \ [here](https://www.ensembl.org/info/website/archives/assembly.html).\n*\
         \ `release` - Ensembl reference genome minor version (for example, `75` or\
-        \ `109`).  \n* `name` - customized reference genome title that is used for\
-        \ linkage variant files.\nBy default is combined from species, assembly and\
-        \ release parameters: `{species} reference genome {assembly}.{release}`.\n\
-        \nReference genome will be available after initialisation. Please track initialisation\
+        \ `109`).\n* `name` - customized reference genome title that is used for linkage\
+        \ variant files.\nBy default is combined from species, assembly and release\
+        \ parameters: `{species} reference genome {assembly}.{release}`.\n\nReference\
+        \ genome will be available after initialisation. Please track initialisation\
         \ task status."
       requestBody:
         content:
