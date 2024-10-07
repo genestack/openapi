@@ -102,6 +102,7 @@ paths:
           * `TABULAR_DATA`
          * `GENE_VARIANT`
          * `FLOW_CYTOMETRY`
+         * `REFERENCE_GENOME`
 
          Moreover, if the selected object is linked to any other data, the endpoint will also delete the linked data associated with it according to the specified rules:
          * If you delete a `STUDY`, the entire study with all the listed group types, will be removed.
@@ -112,7 +113,7 @@ paths:
       - description: Accessions files to be deleted.
         explode: false
         in: query
-        name: accession
+        name: accessions
         schema:
           items:
             type: string
