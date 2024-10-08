@@ -16501,21 +16501,23 @@ paths:
         \ object has more than one version, the endpoint deletes all of them. The\
         \ following object types can be deleted by the endpoint:\n * `STUDY`\n * `SAMPLE_GROUP`\n\
         \  * `LIBRARY_GROUP`\n  * `PREPARATION_GROUP`\n  * `TABULAR_DATA`\n * `GENE_VARIANT`\n\
-        \ * `FLOW_CYTOMETRY`\n\n Moreover, if the selected object is linked to any\
-        \ other data, the endpoint will also delete the linked data associated with\
-        \ it according to the specified rules:\n * If you delete a `STUDY`, the entire\
-        \ study with all the listed group types, will be removed.\n * Deleting a `SAMPLE_GROUP`\
-        \ will result in the removal of all samples associated with this sample group,\
-        \ along with any linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`/`LIBRARY_GROUP`/`PREPARATION_GROUP`.\
+        \ * `FLOW_CYTOMETRY`\n * `REFERENCE_GENOME`\n\n Moreover, if the selected\
+        \ object is linked to any other data, the endpoint will also delete the linked\
+        \ data associated with it according to the specified rules:\n * If you delete\
+        \ a `STUDY`, the entire study with all the listed group types, will be removed.\n\
+        \ * Deleting a `SAMPLE_GROUP` will result in the removal of all samples associated\
+        \ with this sample group, along with any linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`/`LIBRARY_GROUP`/`PREPARATION_GROUP`.\
         \ The linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY` will be deleted,\
         \ even if it is linked to another metadata group.\n * If you delete `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`,\
-        \ all associated data, such as links and runs will be removed from ODM."
+        \ all associated data, such as links and runs will be removed from ODM.\n\
+        \ * If you delete `REFERENCE_GENOME`, searching for variant by variantFeature\
+        \ (genes) won't be available for linked VCF groups."
       operationId: "deleteData"
       parameters:
       - description: "Accessions files to be deleted."
         explode: false
         in: "query"
-        name: "accession"
+        name: "accessions"
         schema:
           items:
             type: "string"
