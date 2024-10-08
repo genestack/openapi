@@ -6,8 +6,6 @@ on:
 
 jobs:
   pre-commit:
-    # Disabled until the plugin with our fix is publicly available
-    if: false
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.2.0
