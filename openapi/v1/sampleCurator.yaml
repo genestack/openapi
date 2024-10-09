@@ -151,95 +151,7 @@ paths:
       summary: List or search for sample metadata objects
       tags:
       - Sample SPoT as Curator
-    post:
-      description: |-
-        ## Samples metadata import
-         This operation requires the URL of a samples metadata file which will be used to create sample objects.  Each record in the file should corresponds to a distinct sample.
-         ## Metadata content requirements:
-         1. The file should contain a column with name "Sample Source" - an id of external database,  where data came from (GEO, ArrayExpress and so on).
-         2. The file should contain a column with name "Sample Source ID" - the id of that object within that database.
-         3. All records should have distinct ID's (values for "Sample Source ID").
-         4. At least one record should be supplied.
-         ## Metadata file format
-         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
-         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
-         * Header: the first line is treated as table header that contains attribute names
-         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
-         ## File sources
-         * Supported external sources (links): `http`/`https`/`ftp`
-      operationId: addSamplesAsCurator
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SampleSource"
-        required: false
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: "#/components/schemas/Sample"
-                type: array
-          description: Object successfully created.
-        "400":
-          content: {}
-          description: The object cannot be created. This error occurs when the supplied
-            data or metadata are incorrect. Please see error message for details.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Add new sample object
-      tags:
-      - Sample SPoT as Curator
-      x-codegen-request-body-name: source
   /api/v1/as-curator/samples/{id}:
-    delete:
-      operationId: deleteSampleAsCurator
-      parameters:
-      - description: Unique identifier (accession) of the object.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: The object has been successfully deleted. No data is returned.
-        "400":
-          content: {}
-          description: The supplied object ID is invalid.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "404":
-          content: {}
-          description: No object exists with the given ID.
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Delete a sample object
-      tags:
-      - Sample SPoT as Curator
     get:
       operationId: getSampleAsCurator
       parameters:
@@ -475,8 +387,6 @@ components:
       $ref: "./schemas/common/ResponseFormat.yaml"
     Sample:
       $ref: "./schemas/sample/Sample.yaml"
-    SampleSource:
-      $ref: "./schemas/common/SampleSource.yaml"
   securitySchemes:
     Access-token:
       in: header
