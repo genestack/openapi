@@ -228,6 +228,69 @@ paths:
       summary: "Retrieve multiple expression data and metadata objects"
       tags:
       - "Expression SPoT as Curator"
+  /api/v1/as-curator/expressions/gct:
+    post:
+      description: "## Data\n This operation necessitates the URL of a tabular data\
+        \ file, which must be either in TSV or GCT 1.2 format. Consult the user guide\
+        \ for a comprehensive understanding of the file content requirements. The\
+        \ endpoint is capable of handling uploads of any data type, which can be detailed\
+        \ in the parameters section, not only Gene Expression data.\n\n ## Metadata\n\
+        \ It is also possible to optionally supply the URL of a metadata file. This\
+        \  metadata will be used as the original metadata for the created objects.\
+        \ The  file is expected to contain single record with metadata describing\
+        \ the uploaded signal file.\n ## Metadata file format\n * Extension: any,\
+        \ `.zip` and `.gz` extensions are treated as archives and get decompressed\n\
+        \ * Format: plain text, Tab-separated format (TSV), attribute names and record\
+        \ values are separated  with tabs (`U+0009`),  lines are separated with `CRLF`\
+        \ sequence (`U+000D U+000A`)\n * Header: the first line is treated as table\
+        \ header that contains attribute names\n * Records: the second line contains\
+        \ the values for each of the attributes described in the header line.  Values\
+        \ represent single string or list of strings. List values are separated  using\
+        \ the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace\
+        \ before parsing, and a literal `|`  (`U+007C`) character may be escaped by\
+        \ repeating it twice.\n * Skip zeros in original data file: If this option\
+        \ is selected, zeros in the file will be ignored, thus conserving time and\
+        \ space. This option is particularly useful for handling very sparse data\
+        \ such as Single Cell data. \n ## File sources\n * Supported external sources\
+        \ (links): `http`/`https`/`ftp`"
+      operationId: "addExpressionAsCurator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExpressionSignalSource"
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RunsResponse"
+          description: "The objects were successfully created. The returned value\
+            \ is a list of created objects."
+        "400":
+          content: {}
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Create multiple new objects from a multi-row data file with optional\
+        \ supplied metadata"
+      tags:
+      - "Expression SPoT as Curator"
+      x-codegen-request-body-name: "source"
   /api/v1/as-curator/expressions/group:
     get:
       description: "Retrieve all group metadata objects that match a query.\n\n##\
@@ -431,6 +494,42 @@ paths:
       tags:
       - "Expression SPoT as Curator"
   /api/v1/as-curator/expressions/group/{id}:
+    delete:
+      operationId: "deleteExpressionGroupAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete the object"
+      tags:
+      - "Expression SPoT as Curator"
     get:
       operationId: "getExpressionGroupAsCurator"
       parameters:
@@ -1614,6 +1713,63 @@ paths:
       summary: "Retrieve multiple flow cytometry data and metadata objects"
       tags:
       - "Flow Cytometry SPoT as Curator"
+  /api/v1/as-curator/flow-cytometries/facs:
+    post:
+      description: "## Data\n This operation requires the URL of a signal data  file,\
+        \ for example a GCT, VCF or Flow Cytometry file. The required form of this\
+        \ file depends  on the specific SPoT.\n\n ## Metadata\n It is also possible\
+        \ to optionally supply the URL of a metadata file. This  metadata will be\
+        \ used as the original metadata for the created objects. The  file is expected\
+        \ to contain single record with metadata describing the uploaded signal file.\n\
+        \ ## Metadata file format\n * Extension: any, `.zip` and `.gz` extensions\
+        \ are treated as archives and get decompressed\n * Format: plain text, Tab-separated\
+        \ format (TSV), attribute names and record values are separated  with tabs\
+        \ (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n\
+        \ * Header: the first line is treated as table header that contains attribute\
+        \ names\n * Records: the second line contains the values for each of the attributes\
+        \ described in the header line.  Values represent single string or list of\
+        \ strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator.\
+        \ Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`)\
+        \ character may be escaped by repeating it twice.\n ## File sources\n * Supported\
+        \ external sources (links): `http`/`https`/`ftp`"
+      operationId: "addFlowCytometryAsCurator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowCytometrySignalSource"
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RunsResponse"
+          description: "The objects were successfully created. The returned value\
+            \ is a list of created objects."
+        "400":
+          content: {}
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Create multiple new objects from a multi-row data file with optional\
+        \ supplied metadata"
+      tags:
+      - "Flow Cytometry SPoT as Curator"
+      x-codegen-request-body-name: "source"
   /api/v1/as-curator/flow-cytometries/group:
     get:
       description: "Retrieve all group metadata objects that match a query.\n\n##\
@@ -1817,6 +1973,42 @@ paths:
       tags:
       - "Flow Cytometry SPoT as Curator"
   /api/v1/as-curator/flow-cytometries/group/{id}:
+    delete:
+      operationId: "deleteFlowCytometryGroupAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete the object"
+      tags:
+      - "Flow Cytometry SPoT as Curator"
     get:
       operationId: "getFlowCytometryGroupAsCurator"
       parameters:
@@ -15424,6 +15616,62 @@ paths:
       summary: "List or search for library metadata objects"
       tags:
       - "Library SPoT as Curator"
+    post:
+      description: "Libraries metadata import\n\nThis operation requires the URL of\
+        \ a libraries metadata file which will be used to library preparations objects.\n\
+        \n## Metadata content requirements:\n1. The file should contain a column with\
+        \ name \"Library ID\"\n2. The file should contain a column with name \"Sample\
+        \ Source ID\"\n3. All records should have distinct ID's (values for \"Sample\
+        \ Source ID\").\n4. At least one record should be supplied.\n\n## Metadata\
+        \ file format\n* Extension: any, `.zip` and `.gz` extensions are treated as\
+        \ archives and get decompressed\n* Format: plain text, Tab-separated format\
+        \ (TSV), attribute names and record values are separated with tabs `(U+0009)`,\
+        \ lines are separated with `CRLF` sequence `(U+000D U+000A)`\n* Header: the\
+        \ first line is treated as table header that contains attribute names\n* Records:\
+        \ the second line contains the values for each of the attributes described\
+        \ in the header line. Values represent single string or list of strings. List\
+        \ values are separated using the \"pipe\" `|` `(U+007C)` separator. Values\
+        \ are trimmed of whitespace before parsing, and a literal `|` `(U+007C)` character\
+        \ may be escaped by repeating it twice.\n\n## File sources\n* Supported external\
+        \ sources (links): `http/https/ftp`"
+      operationId: "addLibrariesAsCurator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SampleSource"
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Library"
+                type: "array"
+          description: "Object successfully created."
+        "400":
+          content: {}
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Add new library object"
+      tags:
+      - "Library SPoT as Curator"
+      x-codegen-request-body-name: "source"
   /api/v1/as-curator/libraries/by/group/{id}:
     get:
       operationId: "getLibrariesByGroupAsCurator"
@@ -15501,7 +15749,80 @@ paths:
       summary: "Retrieve libraries related to the given group"
       tags:
       - "Library SPoT as Curator"
+  /api/v1/as-curator/libraries/group/{id}:
+    delete:
+      operationId: "deleteLibraryGroupAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete a library group with all related library objects"
+      tags:
+      - "Library SPoT as Curator"
   /api/v1/as-curator/libraries/{id}:
+    delete:
+      operationId: "deleteLibraryAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete a library object"
+      tags:
+      - "Library SPoT as Curator"
     get:
       operationId: "getLibraryAsCurator"
       parameters:
@@ -16381,6 +16702,62 @@ paths:
       summary: "List or search for preparation metadata objects"
       tags:
       - "Preparation SPoT as Curator"
+    post:
+      description: "Preparations metadata import\n\nThis operation requires the URL\
+        \ of a preparations metadata file which will be used to create preparations\
+        \ objects.\n\n## Metadata content requirements:\n1. The file should contain\
+        \ a column with name \"Preparation ID\"\n2. The file should contain a column\
+        \ with name \"Sample Source ID\"\n3. All records should have distinct ID's\
+        \ (values for \"Sample Source ID\").\n4. At least one record should be supplied.\n\
+        \n## Metadata file format\n* Extension: any, `.zip` and `.gz` extensions are\
+        \ treated as archives and get decompressed\n* Format: plain text, Tab-separated\
+        \ format (TSV), attribute names and record values are separated with tabs\
+        \ `(U+0009)`, lines are separated with `CRLF` sequence `(U+000D U+000A)`\n\
+        * Header: the first line is treated as table header that contains attribute\
+        \ names\n* Records: the second line contains the values for each of the attributes\
+        \ described in the header line. Values represent single string or list of\
+        \ strings. List values are separated using the \"pipe\" `|` `(U+007C)` separator.\
+        \ Values are trimmed of whitespace before parsing, and a literal `|` `(U+007C)`\
+        \ character may be escaped by repeating it twice.\n\n## File sources\n* Supported\
+        \ external sources (links): `http/https/ftp`"
+      operationId: "addPreparationsAsCurator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SampleSource"
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Preparation"
+                type: "array"
+          description: "Object successfully created."
+        "400":
+          content: {}
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Add new preparation object"
+      tags:
+      - "Preparation SPoT as Curator"
+      x-codegen-request-body-name: "source"
   /api/v1/as-curator/preparations/by/group/{id}:
     get:
       operationId: "getPreparationsByGroupAsCurator"
@@ -16458,7 +16835,80 @@ paths:
       summary: "Retrieve preparations related to the given group"
       tags:
       - "Preparation SPoT as Curator"
+  /api/v1/as-curator/preparations/group/{id}:
+    delete:
+      operationId: "deletePreparationGroupAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete a preparation group with all related preparation objects"
+      tags:
+      - "Preparation SPoT as Curator"
   /api/v1/as-curator/preparations/{id}:
+    delete:
+      operationId: "deletePreparationAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete a preparation object"
+      tags:
+      - "Preparation SPoT as Curator"
     get:
       operationId: "getPreparationAsCurator"
       parameters:
@@ -17656,7 +18106,102 @@ paths:
       summary: "List or search for sample metadata objects"
       tags:
       - "Sample SPoT as Curator"
+    post:
+      description: "## Samples metadata import\n This operation requires the URL of\
+        \ a samples metadata file which will be used to create sample objects.  Each\
+        \ record in the file should corresponds to a distinct sample.\n ## Metadata\
+        \ content requirements:\n 1. The file should contain a column with name \"\
+        Sample Source\" - an id of external database,  where data came from (GEO,\
+        \ ArrayExpress and so on).\n 2. The file should contain a column with name\
+        \ \"Sample Source ID\" - the id of that object within that database.\n 3.\
+        \ All records should have distinct ID's (values for \"Sample Source ID\").\n\
+        \ 4. At least one record should be supplied.\n ## Metadata file format\n *\
+        \ Extension: any, `.zip` and `.gz` extensions are treated as archives and\
+        \ get decompressed\n * Format: plain text, Tab-separated format (TSV), attribute\
+        \ names and record values are separated  with tabs (`U+0009`),  lines are\
+        \ separated with `CRLF` sequence (`U+000D U+000A`)\n * Header: the first line\
+        \ is treated as table header that contains attribute names\n * Records: the\
+        \ second line contains the values for each of the attributes described in\
+        \ the header line.  Values represent single string or list of strings. List\
+        \ values are separated  using the \"pipe\" `|` (`U+007C`)  separator. Values\
+        \ are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`)\
+        \ character may be escaped by repeating it twice.\n ## File sources\n * Supported\
+        \ external sources (links): `http`/`https`/`ftp`"
+      operationId: "addSamplesAsCurator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SampleSource"
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Sample"
+                type: "array"
+          description: "Object successfully created."
+        "400":
+          content: {}
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Add new sample object"
+      tags:
+      - "Sample SPoT as Curator"
+      x-codegen-request-body-name: "source"
   /api/v1/as-curator/samples/{id}:
+    delete:
+      operationId: "deleteSampleAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete a sample object"
+      tags:
+      - "Sample SPoT as Curator"
     get:
       operationId: "getSampleAsCurator"
       parameters:
@@ -19016,7 +19561,94 @@ paths:
       summary: "List or search for study metadata objects"
       tags:
       - "Study SPoT as Curator"
+    post:
+      description: "## Data\n This operation requires the URL of a Study metadata\
+        \ file.  This will be used as the original metadata for the created study.\n\
+        \ ## Metadata file format\n * Extension: any, `.zip` and `.gz` extensions\
+        \ are treated as archives and get decompressed\n * Format: plain text, Tab-separated\
+        \ format (TSV), attribute names and record values are separated  with tabs\
+        \ (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n\
+        \ * Header: the first line is treated as table header that contains attribute\
+        \ names\n * Records: the second line contains the values for each of the attributes\
+        \ described in the header line.  Values represent single string or list of\
+        \ strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator.\
+        \ Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`)\
+        \ character may be escaped by repeating it twice.\n ## File sources\n * Supported\
+        \ external sources (links): `http`/`https`/`ftp`"
+      operationId: "addStudyAsCurator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudyGenericSource"
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Study"
+          description: "Object successfully created."
+        "400":
+          content: {}
+          description: "The object cannot be created. This error occurs when the supplied\
+            \ data or metadata are incorrect. Please see error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Add new study object"
+      tags:
+      - "Study SPoT as Curator"
+      x-codegen-request-body-name: "source"
   /api/v1/as-curator/studies/{id}:
+    delete:
+      operationId: "deleteStudyAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete a given study object. This will not delete related objects\
+        \ or links to related objects."
+      tags:
+      - "Study SPoT as Curator"
     get:
       operationId: "getStudyAsCurator"
       parameters:
@@ -20033,6 +20665,42 @@ paths:
       tags:
       - "Variant SPoT as Curator"
   /api/v1/as-curator/variants/group/{id}:
+    delete:
+      operationId: "deleteVariantGroupAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "204":
+          content: {}
+          description: "The object has been successfully deleted. No data is returned."
+        "400":
+          content: {}
+          description: "The supplied object ID is invalid."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Delete the object"
+      tags:
+      - "Variant SPoT as Curator"
     get:
       operationId: "getVariantGroupAsCurator"
       parameters:
@@ -20157,6 +20825,45 @@ paths:
       summary: "Retrieve run objects related to the given group"
       tags:
       - "Variant SPoT as Curator"
+  /api/v1/as-curator/variants/vcf:
+    post:
+      description: "## __This endpoint is no longer supported__\nPlease use [/frontend/rs/genestack/job/default-released/import/variant](#!/startImportVariant)\
+        \ instead.\n## Data\n This operation requires the URL of a VCF data file.\
+        \ Method differed from the other  SPoT POST methods as it returns additionally\
+        \ an id of created experiment.\n ## Metadata\n It is also possible to optionally\
+        \ supply the URL of a metadata file. This  metadata will be used as the original\
+        \ metadata for the created objects. The  file is expected to contain single\
+        \ record with metadata describing the uploaded signal file.\n ## Metadata\
+        \ file format\n * Extension: any, `.zip` and `.gz` extensions are treated\
+        \ as archives and get decompressed\n * Format: plain text, Tab-separated format\
+        \ (TSV), attribute names and record values are separated  with tabs (`U+0009`),\
+        \  lines are separated with `CRLF` sequence (`U+000D U+000A`)\n * Header:\
+        \ the first line is treated as table header that contains attribute names\n\
+        \ * Records: the second line contains the values for each of the attributes\
+        \ described in the header line.  Values represent single string or list of\
+        \ strings. List values are separated  using the \"pipe\" `|` (`U+007C`)  separator.\
+        \ Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`)\
+        \ character may be escaped by repeating it twice.\n ## File sources\n * Supported\
+        \ external sources (links): `http`/`https`/`ftp`"
+      operationId: "addVariantsAsCurator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VariantSignalSource"
+        required: false
+      responses:
+        "410":
+          content: {}
+          description: "This endpoint is no longer supported."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Create multiple new objects from a multi-row data file with optional\
+        \ supplied metadata"
+      tags:
+      - "Variant SPoT as Curator"
+      x-codegen-request-body-name: "source"
   /api/v1/as-curator/variants/{id}:
     get:
       operationId: "getVariantAsCurator"
@@ -21090,10 +21797,14 @@ components:
       $ref: "./schemas/common/ResponseFormat.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
+    ExpressionSignalSource:
+      $ref: "./schemas/expression/ExpressionSignalSource.yaml"
     FlowCytometryItem:
       $ref: "./schemas/flow-cytometry/FlowCytometryItem.yaml"
     FlowCytometryResponse:
       $ref: "./schemas/flow-cytometry/FlowCytometryResponse.yaml"
+    FlowCytometrySignalSource:
+      $ref: "./schemas/flow-cytometry/FlowCytometrySignalSource.yaml"
     AttributeInvalidValue:
       $ref: "./schemas/integration/AttributeInvalidValue.yaml"
     AttributeValidationSummary:
@@ -21170,6 +21881,8 @@ components:
       $ref: "./schemas/job/JobRuntimeError.yaml"
     Output:
       $ref: "./schemas/job/Output.yaml"
+    SampleSource:
+      $ref: "./schemas/common/SampleSource.yaml"
     DetachedCollection:
       $ref: "./schemas/manage-data/DetachedCollection.yaml"
     DetachedObject:
@@ -21224,8 +21937,12 @@ components:
       $ref: "./schemas/scim/FilterUsersResponse.yaml"
     UserResponse:
       $ref: "./schemas/scim/UserResponse.yaml"
+    StudyGenericSource:
+      $ref: "./schemas/study/StudyGenericSource.yaml"
     VariantMetadataWithId:
       $ref: "./schemas/variant/VariantMetadataWithId.yaml"
+    VariantSignalSource:
+      $ref: "./schemas/variant/VariantSignalSource.yaml"
     VariantItem:
       $ref: "./schemas/variant/VariantItem.yaml"
     VariantResponse:
