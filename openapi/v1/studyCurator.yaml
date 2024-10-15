@@ -152,89 +152,7 @@ paths:
       summary: List or search for study metadata objects
       tags:
       - Study SPoT as Curator
-    post:
-      description: |-
-        ## Data
-         This operation requires the URL of a Study metadata file.  This will be used as the original metadata for the created study.
-         ## Metadata file format
-         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
-         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
-         * Header: the first line is treated as table header that contains attribute names
-         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
-         ## File sources
-         * Supported external sources (links): `http`/`https`/`ftp`
-      operationId: addStudyAsCurator
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/StudyGenericSource"
-        required: false
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Study"
-          description: Object successfully created.
-        "400":
-          content: {}
-          description: The object cannot be created. This error occurs when the supplied
-            data or metadata are incorrect. Please see error message for details.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Add new study object
-      tags:
-      - Study SPoT as Curator
-      x-codegen-request-body-name: source
   /api/v1/as-curator/studies/{id}:
-    delete:
-      operationId: deleteStudyAsCurator
-      parameters:
-      - description: Unique identifier (accession) of the object.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: The object has been successfully deleted. No data is returned.
-        "400":
-          content: {}
-          description: The supplied object ID is invalid.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "404":
-          content: {}
-          description: No object exists with the given ID.
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Delete a given study object. This will not delete related objects or
-        links to related objects.
-      tags:
-      - Study SPoT as Curator
     get:
       operationId: getStudyAsCurator
       parameters:
@@ -468,8 +386,6 @@ components:
       $ref: "./schemas/common/ResponseFormat.yaml"
     Study:
       $ref: "./schemas/study/Study.yaml"
-    StudyGenericSource:
-      $ref: "./schemas/study/StudyGenericSource.yaml"
   securitySchemes:
     Access-token:
       in: header
