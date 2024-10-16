@@ -177,68 +177,6 @@ paths:
       summary: Retrieve multiple expression data and metadata objects
       tags:
       - Expression SPoT as Curator
-  /api/v1/as-curator/expressions/gct:
-    post:
-      description: "## Data\n This operation necessitates the URL of a tabular data\
-        \ file, which must be either in TSV or GCT 1.2 format. Consult the user guide\
-        \ for a comprehensive understanding of the file content requirements. The\
-        \ endpoint is capable of handling uploads of any data type, which can be detailed\
-        \ in the parameters section, not only Gene Expression data.\n\n ## Metadata\n\
-        \ It is also possible to optionally supply the URL of a metadata file. This\
-        \  metadata will be used as the original metadata for the created objects.\
-        \ The  file is expected to contain single record with metadata describing\
-        \ the uploaded signal file.\n ## Metadata file format\n * Extension: any,\
-        \ `.zip` and `.gz` extensions are treated as archives and get decompressed\n\
-        \ * Format: plain text, Tab-separated format (TSV), attribute names and record\
-        \ values are separated  with tabs (`U+0009`),  lines are separated with `CRLF`\
-        \ sequence (`U+000D U+000A`)\n * Header: the first line is treated as table\
-        \ header that contains attribute names\n * Records: the second line contains\
-        \ the values for each of the attributes described in the header line.  Values\
-        \ represent single string or list of strings. List values are separated  using\
-        \ the \"pipe\" `|` (`U+007C`)  separator. Values are trimmed of whitespace\
-        \ before parsing, and a literal `|`  (`U+007C`) character may be escaped by\
-        \ repeating it twice.\n * Skip zeros in original data file: If this option\
-        \ is selected, zeros in the file will be ignored, thus conserving time and\
-        \ space. This option is particularly useful for handling very sparse data\
-        \ such as Single Cell data. \n ## File sources\n * Supported external sources\
-        \ (links): `http`/`https`/`ftp`"
-      operationId: addExpressionAsCurator
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ExpressionSignalSource"
-        required: false
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/RunsResponse"
-          description: The objects were successfully created. The returned value is
-            a list of created objects.
-        "400":
-          content: {}
-          description: The object cannot be created. This error occurs when the supplied
-            data or metadata are incorrect. Please see error message for details.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Create multiple new objects from a multi-row data file with optional
-        supplied metadata
-      tags:
-      - Expression SPoT as Curator
-      x-codegen-request-body-name: source
   /api/v1/as-curator/expressions/group:
     get:
       description: |-
@@ -431,41 +369,6 @@ paths:
       tags:
       - Expression SPoT as Curator
   /api/v1/as-curator/expressions/group/{id}:
-    delete:
-      operationId: deleteExpressionGroupAsCurator
-      parameters:
-      - description: Unique identifier (accession) of the object.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: The object has been successfully deleted. No data is returned.
-        "400":
-          content: {}
-          description: The supplied object ID is invalid.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "404":
-          content: {}
-          description: No object exists with the given ID.
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Delete the object
-      tags:
-      - Expression SPoT as Curator
     get:
       operationId: getExpressionGroupAsCurator
       parameters:
@@ -826,8 +729,6 @@ components:
       $ref: "./schemas/common/ResponseFormat.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
-    ExpressionSignalSource:
-      $ref: "./schemas/expression/ExpressionSignalSource.yaml"
   securitySchemes:
     Access-token:
       in: header
