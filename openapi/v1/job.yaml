@@ -309,6 +309,47 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
+  /api/v1/jobs/import/file:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "accession": "GSF1234567"
+        }
+        ```
+      operationId: startImportAFile
+      parameters:
+      - description: "Load duplicate data: the data from the links has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: query
+        name: allow_dups
+        schema:
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportAFileRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Import file as an attachment
+      tags:
+      - Data import jobs
+      x-codegen-request-body-name: body
   /api/v1/jobs/{jobExecId}/info:
     get:
       operationId: info
@@ -421,6 +462,8 @@ components:
       $ref: "./schemas/job/ImportSignalRunRequest.yaml"
     ImportExpressionSignalRunRequest:
       $ref: "./schemas/job/ImportExpressionSignalRunRequest.yaml"
+    ImportAFileRequest:
+      $ref: "./schemas/job/ImportAFileRequest.yaml"
     Info:
       $ref: "./schemas/job/Info.yaml"
     JobRuntimeError:

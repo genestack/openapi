@@ -1,0 +1,23 @@
+example:
+  source: HTTP
+  dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object.pdf
+  studyAccession: GSF334953
+properties:
+  source:
+    enum:
+    - S3
+    - HTTP
+    - LOCAL
+    example: HTTP
+    type: string
+  dataLink:
+    example: https://mybucket.s3.amazonaws.com/my-experiment/my-object.pdf
+    type: string
+    description: Provide a link to a file to import it as an attachment. The file will be associated with a study.
+  studyAccession:
+    example: GSF334953
+    type: string
+required:
+- dataLink
+- studyAccession
+type: object
