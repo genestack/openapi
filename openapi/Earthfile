@@ -20,7 +20,7 @@ swagger:
     SAVE IMAGE --cache-hint
 
 explorer-build:
-    FROM node:22.9.0-alpine
+    FROM node:22.10.0-alpine
     DO github.com/genestack/earthly-libs+NPM_PREPARE
 
     CACHE /root/.npm
