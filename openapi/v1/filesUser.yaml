@@ -40,8 +40,8 @@ paths:
             content: {}
             description: "An internal server error occurred. This indicates an unexpected\
               \ failure in the Genestack system, please file a bug report to"
-    tags:
-      - Files as User
+      tags:
+        - Files as User
     get:
       description: |+
         Download a file by its accession.
