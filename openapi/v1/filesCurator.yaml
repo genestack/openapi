@@ -39,6 +39,9 @@ paths:
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
               \ failure in the Genestack system, please file a bug report to"
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
       tags:
         - Files as Curator
     get:
