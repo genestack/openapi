@@ -72,7 +72,7 @@ paths:
                 format: binary
         "400":
           content: {}
-          description: Expression data cannot be retrieved.
+          description: File cannot be retrieved.
         "401":
           content: {}
           description: |-

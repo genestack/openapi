@@ -14,6 +14,7 @@ paths:
 
           This endpoint can be used to check if a file exists and accessible before downloading it.
       operationId: headFileAsUser
+      summary: Check if a file exists by ID (accession).
       parameters:
         - description: Unique identifier (accession) of the object.
           in: path
@@ -72,7 +73,7 @@ paths:
                 format: binary
         "400":
           content: {}
-          description: Expression data cannot be retrieved.
+          description: File cannot be retrieved.
         "401":
           content: {}
           description: |-
