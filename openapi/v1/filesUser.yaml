@@ -7,7 +7,7 @@ info:
 tags:
   - name: Files as User
 paths:
-  /api/v1/as-user/file/{id}/download:
+  /api/v1/as-user/files/{id}/download:
     head:
       description: |+
           Check if a file exists by its accession.
@@ -39,6 +39,8 @@ paths:
             content: {}
             description: "An internal server error occurred. This indicates an unexpected\
               \ failure in the Genestack system, please file a bug report to"
+    tags:
+      - Files as User
     get:
       description: |+
         Download a file by its accession.
