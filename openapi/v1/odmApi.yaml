@@ -1440,7 +1440,7 @@ paths:
       summary: "Retrieve a single expression object by ID (accession)"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-curator/file/{id}/download:
+  /api/v1/as-curator/files/{id}/download:
     head:
       description: "Check if a file exists by its accession.\n\nThis endpoint can\
         \ be used to check if a file exists and accessible before downloading it.\n"
@@ -1472,6 +1472,11 @@ paths:
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - "Files as Curator"
     get:
       description: "Download a file by its accession.\n"
       operationId: "getFileAsCurator"
@@ -1501,7 +1506,7 @@ paths:
                 format: "binary"
         "400":
           content: {}
-          description: "Expression data cannot be retrieved."
+          description: "File cannot be retrieved."
         "401":
           content: {}
           description: "User is not authenticated. Please supply a valid Access Token\
@@ -1522,11 +1527,12 @@ paths:
       summary: "Retrieve a file by ID (accession)"
       tags:
       - "Files as Curator"
-  /api/v1/as-user/file/{id}/download:
+  /api/v1/as-user/files/{id}/download:
     head:
       description: "Check if a file exists by its accession.\n\nThis endpoint can\
         \ be used to check if a file exists and accessible before downloading it.\n"
       operationId: "headFileAsUser"
+      summary: "Check if a file exists by ID (accession)."
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -1554,6 +1560,11 @@ paths:
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
             \ failure in the Genestack system, please file a bug report to"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - "Files as User"
     get:
       description: "Download a file by its accession.\n"
       operationId: "getFileAsUser"
@@ -1583,7 +1594,7 @@ paths:
                 format: "binary"
         "400":
           content: {}
-          description: "Expression data cannot be retrieved."
+          description: "File cannot be retrieved."
         "401":
           content: {}
           description: "User is not authenticated. Please supply a valid Access Token\
