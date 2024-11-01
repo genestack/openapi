@@ -1492,13 +1492,20 @@ paths:
         required: false
         schema:
           type: "string"
-          example: "bytes=0-1024"
+          example: "bytes=0-"
         description: "Request a specific range of bytes to support partial downloads.\n\
           Example: `bytes=0-1024` to download the first 1024 bytes. Supplying several\n\
           ranges is not supported.\n"
       responses:
         "200":
           description: "File downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "206":
+          description: "Partial content downloaded successfully"
           content:
             application/octet-stream:
               schema:
@@ -1587,6 +1594,13 @@ paths:
       responses:
         "200":
           description: "File downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "206":
+          description: "Partial content downloaded successfully"
           content:
             application/octet-stream:
               schema:

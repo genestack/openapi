@@ -74,6 +74,13 @@ paths:
               schema:
                 type: string
                 format: binary
+        "206":
+          description: Partial content downloaded successfully
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
         "400":
           content: {}
           description: File cannot be retrieved.
