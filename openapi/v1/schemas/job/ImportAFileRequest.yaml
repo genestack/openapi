@@ -2,6 +2,7 @@ example:
   source: HTTP
   dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object.pdf
   studyAccession: GSF334953
+  dataClass: Proteomics
 properties:
   source:
     enum:
@@ -17,7 +18,17 @@ properties:
   studyAccession:
     example: GSF334953
     type: string
+  dataClass:
+    description: "A mandatory parameter with the following possible values: `Bulk
+      transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
+      pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
+      `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
+      `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
+      fluid counts`, `Nanopore`, `Other`."
+    example: Proteomics
+    type: string
 required:
 - dataLink
 - studyAccession
+- dataClass
 type: object
