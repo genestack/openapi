@@ -35,6 +35,9 @@ paths:
         "404":
           content: {}
           description: No object exists with the given ID.
+        "406":
+          content: {}
+          description: File cannot be downloaded.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -91,6 +94,9 @@ paths:
         "404":
           content: {}
           description: No object exists with the given ID.
+        "406":
+          content: {}
+          description: File cannot be downloaded.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
