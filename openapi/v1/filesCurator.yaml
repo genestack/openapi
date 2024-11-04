@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   description: |-
-    This swagger page describes the filesCurator APIs.
+    This swagger page describes the APIs for retrieving files.
   title: ODM API
   version: default-released
 tags:
