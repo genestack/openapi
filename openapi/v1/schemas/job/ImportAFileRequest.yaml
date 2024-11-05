@@ -1,5 +1,6 @@
 example:
   source: HTTP
+  metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
   dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object.pdf
   studyAccession: GSF334953
 properties:
@@ -10,10 +11,14 @@ properties:
     - LOCAL
     example: HTTP
     type: string
+  metadataLink:
+    example: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
+    type: string
+    description: Specifies the URL of a metadata file to be used as the original metadata for the created objects. The file must contain a single record describing the uploaded attachment.
   dataLink:
     example: https://mybucket.s3.amazonaws.com/my-experiment/my-object.pdf
     type: string
-    description: Provide a link to a file to import it as an attachment. The file will be associated with a study.
+    description: Specifies a link to a file to import as an attachment. The file will be associated with a study and will be searchable by its name and metadata.
   studyAccession:
     example: GSF334953
     type: string
