@@ -6524,40 +6524,18 @@ paths:
         \ an operator. The `=` operator matches literal values/string. The `!=` operator\
         \ matches anything except the literal value/string. The `<` or `>` operators\
         \ match numerical results that are less or greater than the supplied value.\
-        \ Strings containing whitespace need to be quoted with (`\"`).\n\n## Data\
-        \ queries\nData queries must be a list of key-value pairs, separated by whitespace.\
-        \ The set of valid keys depends on the specific query type, and is documented\
-        \ in the query parameter summary. The values can be simple non-whitespace\
-        \ strings, or strings enclosed by speech marks (`\"`). Depending on the key,\
-        \ the value may be be a comma-delimited list of string values. Others require\
-        \ numerical values. Ranges can be supplied with `(0:1)` syntax, OR values\
-        \ with `|`.\n\n## Combinations\nMetadata queries/filters for the same parameter\
-        \ can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space\
-        \ to separate out the terms and operators. Parentheses `( )` can be used for\
-        \ complex expressions.\n\n## Versioning\nSpecific versions of omics data files\
-        \ (eg. GCT) can be queried via the useVersions parameter. Different versions\
-        \ of an omics data file are associated via their CHAIN_ID metadata value.\
-        \ This CHAIN_ID can be supplied to the useVersions parameter along with the\
-        \ version number or specific omics data file accessions to include them in\
-        \ the query. If nothing is supplied to the useVersions parameter then only\
-        \ the active version (which is usually the last one imported) is queried.\
-        \ This acts as a filter before the rest of the query is carried out.\n\nExample\
-        \ usage:\nuseVersions=* (query all versions, including those without CHAIN_IDs)\n\
-        useVersions=v2 (query the second version. If there is no second version then\
-        \ the data file is not queried)\nuseVersions=v1,v0 (query the first version\
-        \ and any data files without CHAIN_IDs(v0) )\nuseVersions=GSVC002:v3 (for\
-        \ omics data files with a CHAIN_ID of GSCV002 query the third version)\nuseVersions=GSVC002:GSF00494,GSF000496\
-        \ (for omics data files with a CHAIN_ID of GSCV002 query only the specific\
-        \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
-        \ supplied to the parameter using the ; separator.\n\n## Paging\nFor performance\
-        \ reasons this endpoint returns results in \"pages\" of limited size. In order\
-        \ to retrieve all matching results the client needs to request multiple pages\
-        \ starting from an offset to the first result. You can do this using the pageOffset\
-        \ query parameter. A value of 0 (the default) instructs the server to return\
-        \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ Strings containing whitespace need to be quoted with (`\"`).\n\n## Combinations\n\
+        Metadata queries/filters for the same parameter can be combined with `&&`,\
+        \ `AND`, `||` and `OR` operators, using white-space to separate out the terms\
+        \ and operators. Parentheses `( )` can be used for complex expressions.\n\n\
+        ## Paging\nFor performance reasons this endpoint returns results in \"pages\"\
+        \ of limited size. In order to retrieve all matching results the client needs\
+        \ to request multiple pages starting from an offset to the first result. You\
+        \ can do this using the pageOffset query parameter. A value of 0 (the default)\
+        \ instructs the server to return the first page of results, 100 would return\
+        \ a page of results starting from the 101st result and so on. To return all\
+        \ results iterate through pages using pageOffset values of `n * pageLimit`\
+        \ until the `resultsExhausted` response field is true.\n\n"
       operationId: "getStudiesByFilesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
