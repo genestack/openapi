@@ -15,6 +15,8 @@ info:
   title: "ODM API"
   version: "default-released"
 tags:
+- name: "Files as Curator"
+- name: "Files as User"
 - name: "Expression SPoT as Curator"
 - name: "Expression SPoT as User"
 - name: "Flow Cytometry SPoT as Curator"
@@ -58,6 +60,207 @@ tags:
 - name: "Variant SPoT as Curator"
 - name: "Variant SPoT as User"
 paths:
+  /api/v1/as-curator/files/{id}/download:
+    head:
+      description: "Check if a file exists by its accession.\n\nThis endpoint can\
+        \ be used to check if a file exists and accessible before downloading it.\n"
+      operationId: "headFileAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "File exists. Additional metadata is provided in the response\
+            \ headers."
+        "400":
+          content: {}
+          description: "File cannot be downloaded."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "406":
+          content: {}
+          description: "File cannot be downloaded."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - "Files as Curator"
+    get:
+      description: "Download a file by its accession.\n"
+      operationId: "getFileAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      - name: "Range"
+        in: "header"
+        required: false
+        schema:
+          type: "string"
+          example: "bytes=0-"
+        description: "Request a specific range of bytes to support partial downloads.\n\
+          Example: `bytes=0-1024` to download the first 1024 bytes. Supplying several\n\
+          ranges is not supported.\n"
+      responses:
+        "200":
+          description: "File downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "206":
+          description: "Partial content downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "400":
+          content: {}
+          description: "File cannot be retrieved."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "406":
+          content: {}
+          description: "File cannot be downloaded."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve a file by ID (accession)"
+      tags:
+      - "Files as Curator"
+  /api/v1/as-user/files/{id}/download:
+    head:
+      description: "Check if a file exists by its accession.\n\nThis endpoint can\
+        \ be used to check if a file exists and accessible before downloading it.\n"
+      operationId: "headFileAsUser"
+      summary: "Check if a file exists by ID (accession)."
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "File exists. Additional metadata is provided in the response\
+            \ headers."
+        "400":
+          content: {}
+          description: "File cannot be downloaded."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "406":
+          content: {}
+          description: "File cannot be downloaded."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - "Files as User"
+    get:
+      description: "Download a file by its accession.\n"
+      operationId: "getFileAsUser"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      - name: "Range"
+        in: "header"
+        required: false
+        schema:
+          type: "string"
+          example: "bytes=0-"
+        description: "Request a specific range of bytes to support partial downloads.\n\
+          Example: `bytes=0-1024` to download the first 1024 bytes. Supplying several\n\
+          ranges is not supported.\n"
+      responses:
+        "200":
+          description: "File downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "206":
+          description: "Partial content downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "400":
+          content: {}
+          description: "File cannot be retrieved."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "406":
+          content: {}
+          description: "File cannot be downloaded."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve a file by ID (accession)"
+      tags:
+      - "Files as User"
   /api/v1/as-curator/expressions:
     get:
       description: "Retrieve all expression data and metadata objects that match a\
@@ -21111,6 +21314,15 @@ paths:
       tags:
       - "Variant SPoT as User"
 components:
+  securitySchemes:
+    Access-token:
+      in: "header"
+      name: "Authorization"
+      type: "apiKey"
+    Genestack-API-Token:
+      in: "header"
+      name: "Genestack-API-Token"
+      type: "apiKey"
   schemas:
     CommitInfo:
       $ref: "./schemas/common/CommitInfo.yaml"
@@ -21280,15 +21492,6 @@ components:
       $ref: "./schemas/variant/VariantItem.yaml"
     VariantResponse:
       $ref: "./schemas/variant/VariantResponse.yaml"
-  securitySchemes:
-    Access-token:
-      in: "header"
-      name: "Authorization"
-      type: "apiKey"
-    Genestack-API-Token:
-      in: "header"
-      name: "Genestack-API-Token"
-      type: "apiKey"
   parameters:
     AllowDuplicates:
       description: "Load duplicate data: the data from the links has already been\
