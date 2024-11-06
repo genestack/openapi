@@ -3547,18 +3547,6 @@ paths:
         name: query
         schema:
           type: string
-      - description: |-
-          If the full-text query term is present in an ODM dictionary, enabling this parameter will modify the query to include child terms of the full-text query.
-
-          For example, the search query "Body fluid" can be expanded to include the term "Blood" (a child term of  "Body fluid") so files containing either "Body fluid" or  "Blood"  in their metadata will be returned in the search results.
-
-          The parent-child relationship is defined by the key "broaders" or "subClassOf"  in the dictionary.
-
-          If the full query term is not present in a dictionary then this parameter has no effect.
-        in: query
-        name: searchSpecificTerms
-        schema:
-          type: boolean
       - description: Maximum number of results to return. This value must be between
           0 and 2000 (inclusive).
         in: query
