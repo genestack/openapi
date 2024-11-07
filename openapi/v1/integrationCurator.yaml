@@ -6355,6 +6355,11 @@ paths:
         name: fxFilter
         schema:
           type: string
+      - description: "Unique identifier (accession) of Reference Genome object."
+        in: query
+        name: referenceGenomeId
+        schema:
+          type: string
       - description: |-
           Specify which versions of omics data files are used in the query. By default the active version is used. See Versioning above. Syntax:
 

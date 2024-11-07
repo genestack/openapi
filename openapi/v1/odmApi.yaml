@@ -9748,6 +9748,11 @@ paths:
         name: "fxFilter"
         schema:
           type: "string"
+      - description: "Unique identifier (accession) of Reference Genome object."
+        in: "query"
+        name: "referenceGenomeId"
+        schema:
+          type: "string"
       - description: "Specify which versions of omics data files are used in the query.\
           \ By default the active version is used. See Versioning above. Syntax:\n\
           \n\\* or `v<version number>` or `<CHAIN_ID>`:`v<version number>` or `<CHAIN_ID>`:`<accession1,accession2,..>`"
@@ -15236,6 +15241,11 @@ paths:
         name: "fxFilter"
         schema:
           type: "string"
+      - description: "Unique identifier (accession) of Reference Genome object."
+        in: "query"
+        name: "referenceGenomeId"
+        schema:
+          type: "string"
       - description: "Specify which versions of omics data files are used in the query.\
           \ By default the active version is used. See Versioning above. Syntax:\n\
           \n\\* or `v<version number>` or `<CHAIN_ID>`:`v<version number>` or `<CHAIN_ID>`:`<accession1,accession2,..>`"
@@ -15726,7 +15736,13 @@ paths:
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/file:
     post:
-      description: "\nWhen job finishes successfully the following **result** object\
+      description: "\n`dataClass`: A mandatory parameter with the following possible\
+        \ values: `Bulk\ntranscriptomics`, `Single-cell transcriptomics`, `Differential\
+        \ abundance (FC,\npval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell\
+        \ proteomics`, `Metabolomics`,\n`Lipidomics`, `Epigenomics`, `DNA methylation`,\
+        \ `Chemoinformatics`, `Imaging features`,\n`Gene panel data`, `Biomarker data`,\
+        \ `Physical measures`, `Blood counts`, `Other body\nfluid counts`, `Nanopore`,\
+        \ `Other`.\n\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         accession\": \"GSF1234567\"\n}\n```\n"
       operationId: "startImportAFile"

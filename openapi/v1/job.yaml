@@ -313,6 +313,13 @@ paths:
     post:
       description: |2
 
+        `dataClass`: A mandatory parameter with the following possible values: `Bulk
+        transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
+        pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
+        `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
+        `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
+        fluid counts`, `Nanopore`, `Other`.
+
         When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
 
         ```
