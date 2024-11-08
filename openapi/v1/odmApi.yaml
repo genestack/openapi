@@ -15746,15 +15746,6 @@ paths:
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         accession\": \"GSF1234567\"\n}\n```\n"
       operationId: "startImportAFile"
-      parameters:
-      - description: "Load duplicate data: the data from the links has already been\
-          \ previously loaded into ODM, and for **testing purposes**, you need to\
-          \ load this data again."
-        in: "query"
-        name: "allow_dups"
-        schema:
-          default: false
-          type: "boolean"
       requestBody:
         content:
           application/json:
