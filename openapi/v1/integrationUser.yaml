@@ -5064,7 +5064,7 @@ paths:
       summary: Stream data from a given VCF file
       tags:
         - Omics queries as User
-  /api/v1/as-user/integration/files/by/study/{id}:
+  /api/v1/as-user/integration/link/files/by/study/{id}:
     get:
       operationId: getFilesByStudyAsUser
       parameters:
@@ -5103,7 +5103,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Retrieve files by study ID
+      summary: Retrieve file's metadata by study ID
       tags:
         - Files integration as User
 components:

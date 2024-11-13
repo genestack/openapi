@@ -144,7 +144,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Retrieve a single file by ID (accession)
+      summary: Retrieve file's metadata by ID (accession)
       tags:
         - Files as Curator
   /api/v1/as-curator/files:
@@ -211,7 +211,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Retrieve files by metadata
+      summary: Retrieve file's metadata by its fields
       tags:
         - Files as Curator
 components:

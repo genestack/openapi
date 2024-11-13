@@ -6646,7 +6646,7 @@ paths:
       summary: Retrieve validation summary by querying study ID (accession)
       tags:
       - Validation summary as Curator
-  /api/v1/as-curator/integration/files/by/study/by/study/{id}:
+  /api/v1/as-curator/integration/link/files/by/study/{id}:
     get:
       operationId: getFilesByStudyAsCurator
       parameters:
@@ -6685,7 +6685,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Retrieve files by study ID
+      summary: Retrieve file's metadata by study ID
       tags:
         - Files integration as Curator
 components:

@@ -199,7 +199,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve a single file by ID (accession)"
+      summary: "Retrieve file's metadata by ID (accession)"
       tags:
       - "Files as Curator"
   /api/v1/as-curator/files:
@@ -274,7 +274,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve files by metadata"
+      summary: "Retrieve file's metadata by its fields"
       tags:
       - "Files as Curator"
   /api/v1/as-user/files/{id}/download:
@@ -415,7 +415,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve a single file by ID (accession)"
+      summary: "Retrieve file's metadata by ID (accession)"
       tags:
       - "Files as User"
   /api/v1/as-user/files:
@@ -490,7 +490,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve files by metadata"
+      summary: "Retrieve file's metadata by its fields"
       tags:
       - "Files as User"
   /api/v1/as-curator/expressions:
@@ -10291,7 +10291,7 @@ paths:
       summary: "Retrieve validation summary by querying study ID (accession)"
       tags:
       - "Validation summary as Curator"
-  /api/v1/as-curator/integration/files/by/study/by/study/{id}:
+  /api/v1/as-curator/integration/link/files/by/study/{id}:
     get:
       operationId: "getFilesByStudyAsCurator"
       parameters:
@@ -10332,7 +10332,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve files by study ID"
+      summary: "Retrieve file's metadata by study ID"
       tags:
       - "Files integration as Curator"
   /api/v1/as-user/data-types:
@@ -15746,7 +15746,7 @@ paths:
       summary: "Stream data from a given VCF file"
       tags:
       - "Omics queries as User"
-  /api/v1/as-user/integration/files/by/study/{id}:
+  /api/v1/as-user/integration/link/files/by/study/{id}:
     get:
       operationId: "getFilesByStudyAsUser"
       parameters:
@@ -15787,7 +15787,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve files by study ID"
+      summary: "Retrieve file's metadata by study ID"
       tags:
       - "Files integration as User"
   /api/v1/jobs/import/expression:

@@ -145,7 +145,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Retrieve a single file by ID (accession)
+      summary: Retrieve file's metadata by ID (accession)
       tags:
         - Files as User
   /api/v1/as-user/files:
@@ -212,7 +212,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Retrieve files by metadata
+      summary: Retrieve file's metadata by its fields
       tags:
         - Files as User
 components:
