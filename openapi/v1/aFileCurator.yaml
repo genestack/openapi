@@ -108,7 +108,7 @@ paths:
       summary: Retrieve a file by ID (accession)
       tags:
         - Files as Curator
-  /api/v1/as-user/as-user/files/{id}:
+  /api/v1/as-curator/files/{id}:
     get:
       operationId: getFileMetadataByIdAsCurator
       parameters:
@@ -147,7 +147,7 @@ paths:
       summary: Retrieve a single file by ID (accession)
       tags:
         - Files as Curator
-  /api/v1/as-user/as-user/files:
+  /api/v1/as-curator/files:
     get:
       operationId: getFilesMetadataAsCurator
       description: |-
