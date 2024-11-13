@@ -32,7 +32,9 @@ tags:
 - name: "Study integration as Curator"
 - name: "Validation summary as Curator"
 - name: "Variant integration as Curator"
+- name: "Files integration as Curator"
 - name: "Expression integration as User"
+- name: "Files integration as User"
 - name: "Flow Cytometry integration as User"
 - name: "Library integration as User"
 - name: "Linkage as User"
@@ -160,6 +162,158 @@ paths:
       summary: "Retrieve a file by ID (accession)"
       tags:
       - "Files as Curator"
+  /api/v1/as-user/as-user/files/{id}:
+    get:
+      operationId: "getFileMetadataByIdAsUser"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: "object"
+          description: "The request was successful. The returned value is the object."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "Object with provided accession could not be found in ODM."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve a single file by ID (accession)"
+      tags:
+      - "Files as Curator"
+      - "Files as User"
+  /api/v1/as-user/as-user/files:
+    get:
+      operationId: "getFilesMetadataAsUser"
+      description: "## Metadata full-text queries\nSingle words can be supplied as\
+        \ is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
+        \ Speech marks and backslash characters in the query need to be escaped with\
+        \ a backslash (`\\`).\n\n## Paging\nFor performance reasons, this endpoint\
+        \ returns results in \"pages\" of limited size. In order to retrieve all matching\
+        \ results the client needs to request multiple pages starting from an offset\
+        \ to the first result. You can do this using the `pageOffset` query parameter.\
+        \ A value of 0 (the default) instructs the server to return the first page\
+        \ of results, 100 would return a page of results starting from the 101st result\
+        \ and so on. To retrieve all results, iterate through pages by increasing\
+        \ the offset in multiples of limit (e.g., `offset = n * limit`), until all\
+        \ results have been retrieved. The total number of pages can be calculated\
+        \ by dividing the total number of results by the limit.\n\n## List operation\n\
+        \nThis endpoint can be called without any query parameters. When called this\
+        \ way, it returns a list of all files metadata objects."
+      parameters:
+      - in: "path"
+        name: "filter"
+        description: "Filter by files metadata (key-value metadata pair(s))."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "query"
+        description: "Search for files via a full-text query over all file metadata."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "pageLimit"
+        description: "Maximum number of results to return per page (see Paging above).\
+          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
+        schema:
+          format: "int32"
+          type: "integer"
+      - in: "query"
+        name: "pageOffset"
+        description: "Show the page {pageOffset + 1} results from the start of the\
+          \ results. E.g. 100 will show a page of results starting from the 101st\
+          \ result. The default value is 0."
+        schema:
+          format: "int32"
+          type: "integer"
+      - in: "path"
+        name: "filter"
+        description: "Filter by files metadata (key-value metadata pair(s))."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "query"
+        description: "Search for files via a full-text query over all file metadata."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "pageLimit"
+        description: "Maximum number of results to return per page (see Paging above).\
+          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
+        schema:
+          format: "int32"
+          type: "integer"
+      - in: "query"
+        name: "pageOffset"
+        description: "Show the page {pageOffset + 1} results from the start of the\
+          \ results. E.g. 100 will show a page of results starting from the 101st\
+          \ result. The default value is 0."
+        schema:
+          format: "int32"
+          type: "integer"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+            text/tab-separated-values:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve files by metadata"
+      tags:
+      - "Files as Curator"
+      - "Files as User"
   /api/v1/as-user/files/{id}/download:
     head:
       description: "Check if a file exists by its accession.\n\nThis endpoint can\
@@ -10059,6 +10213,50 @@ paths:
       summary: "Retrieve validation summary by querying study ID (accession)"
       tags:
       - "Validation summary as Curator"
+  /api/v1/as-curator/integration/files/by/study/by/study/{id}:
+    get:
+      operationId: "getFilesByStudyAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+            text/tab-separated-values:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "Object with provided accession could not be found in ODM."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve files by study ID"
+      tags:
+      - "Files integration as Curator"
   /api/v1/as-user/data-types:
     get:
       description: "This endpoint is for instructional uses and can be used to get\
@@ -15470,6 +15668,50 @@ paths:
       summary: "Stream data from a given VCF file"
       tags:
       - "Omics queries as User"
+  /api/v1/as-user/integration/files/by/study/{id}:
+    get:
+      operationId: "getFilesByStudyAsUser"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+            text/tab-separated-values:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "Object with provided accession could not be found in ODM."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve files by study ID"
+      tags:
+      - "Files integration as User"
   /api/v1/jobs/import/expression:
     post:
       description: "## Data\n This operation necessitates the URL of a tabular data\
@@ -21637,16 +21879,9 @@ paths:
       tags:
       - "Variant SPoT as User"
 components:
-  securitySchemes:
-    Access-token:
-      in: "header"
-      name: "Authorization"
-      type: "apiKey"
-    Genestack-API-Token:
-      in: "header"
-      name: "Genestack-API-Token"
-      type: "apiKey"
   schemas:
+    ListResponse:
+      $ref: "./schemas/common/ListResponse.yaml"
     CommitInfo:
       $ref: "./schemas/common/CommitInfo.yaml"
     ExpressionItem:
@@ -21655,8 +21890,6 @@ components:
       $ref: "./schemas/expression/ExpressionResponse.yaml"
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
-    ListResponse:
-      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/common/MetaResponse.yaml"
     MetadataContent:
@@ -21815,6 +22048,15 @@ components:
       $ref: "./schemas/variant/VariantItem.yaml"
     VariantResponse:
       $ref: "./schemas/variant/VariantResponse.yaml"
+  securitySchemes:
+    Access-token:
+      in: "header"
+      name: "Authorization"
+      type: "apiKey"
+    Genestack-API-Token:
+      in: "header"
+      name: "Genestack-API-Token"
+      type: "apiKey"
   parameters:
     AllowDuplicates:
       description: "Load duplicate data: the data from the links has already been\
