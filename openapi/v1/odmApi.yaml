@@ -15742,9 +15742,9 @@ paths:
         \ proteomics`, `Metabolomics`,\n`Lipidomics`, `Epigenomics`, `DNA methylation`,\
         \ `Chemoinformatics`, `Imaging features`,\n`Gene panel data`, `Biomarker data`,\
         \ `Physical measures`, `Blood counts`, `Other body\nfluid counts`, `Nanopore`,\
-        \ `Other`.\n\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        accession\": \"GSF1234567\"\n}\n```\n"
+        \ `Document`, `Other`.\n\nWhen job finishes successfully the following **result**\
+        \ object can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n\
+        \    \"accession\": \"GSF1234567\"\n}\n```\n"
       operationId: "startImportAFile"
       requestBody:
         content:
