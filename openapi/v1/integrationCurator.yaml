@@ -15,6 +15,7 @@ info:
   version: default-released
 tags:
 - name: Expression integration as Curator
+- name: Files integration as Curator
 - name: Flow Cytometry integration as Curator
 - name: Library integration as Curator
 - name: Linkage as Curator
@@ -25,7 +26,6 @@ tags:
 - name: Study integration as Curator
 - name: Validation summary as Curator
 - name: Variant integration as Curator
-- name: Files integration as Curator
 paths:
   /api/v1/as-curator/data-types:
     get:
