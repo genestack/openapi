@@ -124,7 +124,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/AFile"
           description: The request was successful. The returned value is the object.
         "400":
           content: { }
@@ -217,6 +217,8 @@ paths:
         - Files as User
 components:
   schemas:
+    AFile:
+      $ref: "./schemas/afile/AFile.yaml"
     ListResponse:
       $ref: "./schemas/common/ListResponse.yaml"
   securitySchemes:

@@ -177,7 +177,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "object"
+                $ref: "#/components/schemas/AFile"
           description: "The request was successful. The returned value is the object."
         "400":
           content: {}
@@ -393,7 +393,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "object"
+                $ref: "#/components/schemas/AFile"
           description: "The request was successful. The returned value is the object."
         "400":
           content: {}
@@ -10306,10 +10306,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListResponse"
+                items:
+                  $ref: "#/components/schemas/AFile"
+                type: "array"
             text/tab-separated-values:
               schema:
-                $ref: "#/components/schemas/ListResponse"
+                items:
+                  $ref: "#/components/schemas/AFile"
+                type: "array"
           description: "The request was successful. The returned value is a list of\
             \ objects."
         "400":
@@ -15761,10 +15765,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListResponse"
+                items:
+                  $ref: "#/components/schemas/AFile"
+                type: "array"
             text/tab-separated-values:
               schema:
-                $ref: "#/components/schemas/ListResponse"
+                items:
+                  $ref: "#/components/schemas/AFile"
+                type: "array"
           description: "The request was successful. The returned value is a list of\
             \ objects."
         "400":
@@ -21958,6 +21966,8 @@ paths:
       - "Variant SPoT as User"
 components:
   schemas:
+    AFile:
+      $ref: "./schemas/afile/AFile.yaml"
     ListResponse:
       $ref: "./schemas/common/ListResponse.yaml"
     CommitInfo:

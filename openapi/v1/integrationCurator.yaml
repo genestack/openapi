@@ -6661,10 +6661,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListResponse"
+                items:
+                  $ref: "#/components/schemas/AFile"
+                type: array
             text/tab-separated-values:
               schema:
-                $ref: "#/components/schemas/ListResponse"
+                items:
+                  $ref: "#/components/schemas/AFile"
+                type: array
           description: The request was successful. The returned value is a list of objects.
         "400":
           content: { }
@@ -6766,6 +6770,8 @@ components:
       $ref: "./schemas/integration/FilterOptionGroup.yaml"
     FilterOption:
       $ref: "./schemas/integration/FilterOption.yaml"
+    AFile:
+      $ref: "./schemas/afile/AFile.yaml"
   securitySchemes:
     Access-token:
       in: header
