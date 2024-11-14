@@ -221,7 +221,7 @@ paths:
         \nThis endpoint can be called without any query parameters. When called this\
         \ way, it returns a list of all files metadata objects."
       parameters:
-      - in: "path"
+      - in: "query"
         name: "filter"
         description: "Filter by files metadata (key-value metadata pair(s))."
         schema:
@@ -437,7 +437,7 @@ paths:
         \nThis endpoint can be called without any query parameters. When called this\
         \ way, it returns a list of all files metadata objects."
       parameters:
-      - in: "path"
+      - in: "query"
         name: "filter"
         description: "Filter by files metadata (key-value metadata pair(s))."
         schema:
