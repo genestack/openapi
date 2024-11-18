@@ -18,6 +18,7 @@ info:
   version: default-released
 tags:
 - name: Expression integration as User
+- name: Files integration as User
 - name: Flow Cytometry integration as User
 - name: Library integration as User
 - name: Linkage as User
@@ -5063,6 +5064,52 @@ paths:
       summary: Stream data from a given VCF file
       tags:
         - Omics queries as User
+  /api/v1/as-user/integration/link/files/by/study/{id}:
+    get:
+      operationId: getFilesByStudyAsUser
+      parameters:
+        - description: Unique identifier (accession) of the object.
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/AFile"
+                type: array
+            text/tab-separated-values:
+              schema:
+                items:
+                  $ref: "#/components/schemas/AFile"
+                type: array
+          description: The request was successful. The returned value is a list of objects.
+        "400":
+          content: { }
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: { }
+          description: Object with provided accession could not be found in ODM.
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Retrieve file's metadata by study ID
+      tags:
+        - Files integration as User
 components:
   schemas:
     BatchOfIds:
@@ -5127,6 +5174,8 @@ components:
       $ref: "./schemas/integration/FilterOptionGroup.yaml"
     FilterOption:
       $ref: "./schemas/integration/FilterOption.yaml"
+    AFile:
+      $ref: "./schemas/afile/AFile.yaml"
   securitySchemes:
     Access-token:
       in: header
