@@ -18334,11 +18334,10 @@ paths:
         \ custom reference genome in .gtf format, archived in `.gz` format.\nNote:\
         \ if any of the parameters below are not corresponding to the available Ensembl\
         \ data (for example, organism name or assembly is changed), the link must\
-        \ be provided.\n* `species` - scientific name with the first uppercase letter\
-        \ and underscore as a delimiter (default: Homo_sapiens).\nPlease see the list\
-        \ of available organisms [here](https://www.ensembl.org/info/about/species.html).\n\
+        \ be provided.\n* `organism` - scientific name (default: Homo sapiens). Please\
+        \ see the list of available organisms [here](https://www.ensembl.org/info/about/species.html).\n\
         Note: for some specific cases (Canis lupus breeds, Mus musculus strains, etc.)\
-        \ please see the species folders name in the Ensembl FTP (release 109) to\
+        \ please see the species folders name in the Ensembl FTP (release 113) to\
         \ provide the same organism name as shown in the list.\n* `assembly` - major\
         \ version (for example, `GRCh38`). Please see the list of available assemblies\
         \ [here](https://www.ensembl.org/info/website/archives/assembly.html).\n*\
