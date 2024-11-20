@@ -21119,43 +21119,6 @@ paths:
       summary: "Retrieve a single variant object by ID (accession)"
       tags:
       - "Variant SPoT as Curator"
-    patch:
-      description: "## __This endpoint is no longer supported__\n## Basic operation\n\
-        ## __This endpoint is no longer supported__\nThe object metadata is updated\
-        \ using the supplied map of attribute names to attribute values. There are\
-        \ three cases:\n1. The attribute name does not already exist in the object\
-        \ metadata. In this case, the attribute and value are added to the object\
-        \ metadata.\n2. The attribute name already exists in the object metadata.\
-        \ In this case, the value is updated.\n3. The attribute value is `null`.In\
-        \ this case, the attribute is removed from the object metadata.\n\n## Attribute\
-        \ values\nThe attribute values are intelligently parsed as booleans, integers,\
-        \ etc."
-      operationId: "updateVariantAsCurator"
-      parameters:
-      - description: "Unique identifier (accession) of the object."
-        in: "path"
-        name: "id"
-        required: true
-        schema:
-          type: "string"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/MetadataContent"
-        description: "Metadata in the form of `{key: value, key2: value2, ...}`"
-        required: false
-      responses:
-        "410":
-          content: {}
-          description: "This endpoint is no longer supported."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Update object metadata"
-      tags:
-      - "Variant SPoT as Curator"
-      x-codegen-request-body-name: "body"
   /api/v1/as-curator/variants/{id}/versions:
     get:
       operationId: "getVariantVersionsAsCurator"
