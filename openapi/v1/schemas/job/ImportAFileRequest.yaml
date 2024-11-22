@@ -26,6 +26,7 @@ properties:
   dataClass:
     example: Proteomics
     type: string
+    description: A mandatory parameter with the value from a limited set of values (see request description).
 required:
 - dataLink
 - studyAccession

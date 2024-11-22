@@ -19,7 +19,7 @@ info:
 tags:
 - name: Expression integration as User
 - name: Files integration as User
-- name: Flow Cytometry integration as User
+- name: Flow Cytometry (FACS) integration as User
 - name: Library integration as User
 - name: Linkage as User
 - name: Omics queries as User
@@ -761,7 +761,7 @@ paths:
       summary: Retrieve flow cytometry run-level data by querying related sample ID
         (accession)
       tags:
-      - Flow Cytometry integration as User
+      - Flow Cytometry (FACS) integration as User
   /api/v1/as-user/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: |+
@@ -840,7 +840,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Flow Cytometry integration as User
+      - Flow Cytometry (FACS) integration as User
   /api/v1/as-user/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: |+
@@ -900,7 +900,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Flow Cytometry integration as User
+      - Flow Cytometry (FACS) integration as User
   /api/v1/as-user/integration/link/libraries/by/samples:
     get:
       description: |+
