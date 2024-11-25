@@ -81,10 +81,10 @@ paths:
         This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
         Consult the user guide for a comprehensive understanding of the file content requirements.
         For flow cytometry data in FCS format use expression endpoint.
-        
+
         When job finishes successfully the following **result** object
         can be obtained using `GET /job/{id}/output` request:
-        
+
         ```
         {
             "groupAccession": "GSF1234567"
