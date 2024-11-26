@@ -15,15 +15,15 @@ info:
   title: "ODM API"
   version: "default-released"
 tags:
-- name: "Expression SPoT as Curator"
-- name: "Expression SPoT as User"
 - name: "Files as Curator"
 - name: "Files as User"
+- name: "Expression SPoT as Curator"
+- name: "Expression SPoT as User"
 - name: "Flow Cytometry SPoT as Curator"
 - name: "Flow Cytometry SPoT as User"
 - name: "Expression integration as Curator"
 - name: "Files integration as Curator"
-- name: "Flow Cytometry (FACS) integration as Curator"
+- name: "Flow Cytometry integration as Curator"
 - name: "Library integration as Curator"
 - name: "Linkage as Curator"
 - name: "Metadata versioning as Curator"
@@ -35,7 +35,7 @@ tags:
 - name: "Variant integration as Curator"
 - name: "Expression integration as User"
 - name: "Files integration as User"
-- name: "Flow Cytometry (FACS) integration as User"
+- name: "Flow Cytometry integration as User"
 - name: "Library integration as User"
 - name: "Linkage as User"
 - name: "Omics queries as User"
@@ -62,6 +62,437 @@ tags:
 - name: "Variant SPoT as Curator"
 - name: "Variant SPoT as User"
 paths:
+  /api/v1/as-curator/files/{id}/download:
+    head:
+      description: "Check if a file exists by its accession.\n\nThis endpoint can\
+        \ be used to check if a file exists and accessible before downloading it.\n"
+      operationId: "headFileAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "File exists. Additional metadata is provided in the response\
+            \ headers."
+        "400":
+          content: {}
+          description: "File cannot be downloaded."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "406":
+          content: {}
+          description: "File cannot be downloaded."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - "Files as Curator"
+    get:
+      description: "Download a file by its accession.\n"
+      operationId: "getFileAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      - name: "Range"
+        in: "header"
+        required: false
+        schema:
+          type: "string"
+          example: "bytes=0-"
+        description: "Request a specific range of bytes to support partial downloads.\n\
+          Example: `bytes=0-1024` to download the first 1024 bytes. Supplying several\n\
+          ranges is not supported.\n"
+      responses:
+        "200":
+          description: "File downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "206":
+          description: "Partial content downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "400":
+          content: {}
+          description: "File cannot be retrieved."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "406":
+          content: {}
+          description: "File cannot be downloaded."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve a file by ID (accession)"
+      tags:
+      - "Files as Curator"
+  /api/v1/as-curator/files/{id}:
+    get:
+      operationId: "getFileMetadataByIdAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFile"
+          description: "The request was successful. The returned value is the object."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "Object with provided accession could not be found in ODM."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve file's metadata by ID (accession)"
+      tags:
+      - "Files as Curator"
+  /api/v1/as-curator/files:
+    get:
+      operationId: "getFilesMetadataAsCurator"
+      description: "## Metadata full-text queries\nSingle words can be supplied as\
+        \ is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
+        \ Speech marks and backslash characters in the query need to be escaped with\
+        \ a backslash (`\\`).\n\n## Paging\nFor performance reasons, this endpoint\
+        \ returns results in \"pages\" of limited size. In order to retrieve all matching\
+        \ results the client needs to request multiple pages starting from an offset\
+        \ to the first result. You can do this using the `pageOffset` query parameter.\
+        \ A value of 0 (the default) instructs the server to return the first page\
+        \ of results, 100 would return a page of results starting from the 101st result\
+        \ and so on. To retrieve all results, iterate through pages by increasing\
+        \ the offset in multiples of limit (e.g., `offset = n * limit`), until all\
+        \ results have been retrieved. The total number of pages can be calculated\
+        \ by dividing the total number of results by the limit.\n\n## List operation\n\
+        \nThis endpoint can be called without any query parameters. When called this\
+        \ way, it returns a list of all files metadata objects."
+      parameters:
+      - in: "query"
+        name: "filter"
+        description: "Filter by files metadata (key-value metadata pair(s))."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "query"
+        description: "Search for files via a full-text query over all file metadata."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "pageLimit"
+        description: "Maximum number of results to return per page (see Paging above).\
+          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
+        schema:
+          format: "int32"
+          type: "integer"
+      - in: "query"
+        name: "pageOffset"
+        description: "Show the page {pageOffset + 1} results from the start of the\
+          \ results. E.g. 100 will show a page of results starting from the 101st\
+          \ result. The default value is 0."
+        schema:
+          format: "int32"
+          type: "integer"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+            text/tab-separated-values:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve file's metadata by its fields"
+      tags:
+      - "Files as Curator"
+  /api/v1/as-user/files/{id}/download:
+    head:
+      description: "Check if a file exists by its accession.\n\nThis endpoint can\
+        \ be used to check if a file exists and accessible before downloading it.\n"
+      operationId: "headFileAsUser"
+      summary: "Check if a file exists by ID (accession)."
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "File exists. Additional metadata is provided in the response\
+            \ headers."
+        "400":
+          content: {}
+          description: "File cannot be downloaded."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "406":
+          content: {}
+          description: "File cannot be downloaded."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - "Files as User"
+    get:
+      description: "Download a file by its accession.\n"
+      operationId: "getFileAsUser"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      - name: "Range"
+        in: "header"
+        required: false
+        schema:
+          type: "string"
+          example: "bytes=0-"
+        description: "Request a specific range of bytes to support partial downloads.\n\
+          Example: `bytes=0-1024` to download the first 1024 bytes. Supplying several\n\
+          ranges is not supported.\n"
+      responses:
+        "200":
+          description: "File downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "206":
+          description: "Partial content downloaded successfully"
+          content:
+            application/octet-stream:
+              schema:
+                type: "string"
+                format: "binary"
+        "400":
+          content: {}
+          description: "File cannot be retrieved."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "406":
+          content: {}
+          description: "File cannot be downloaded."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve a file by ID (accession)"
+      tags:
+      - "Files as User"
+  /api/v1/as-user/files/{id}:
+    get:
+      operationId: "getFileMetadataByIdAsUser"
+      parameters:
+      - description: "Unique identifier (accession) of the object."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFile"
+          description: "The request was successful. The returned value is the object."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "Object with provided accession could not be found in ODM."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve file's metadata by ID (accession)"
+      tags:
+      - "Files as User"
+  /api/v1/as-user/files:
+    get:
+      operationId: "getFilesMetadataAsUser"
+      description: "## Metadata full-text queries\nSingle words can be supplied as\
+        \ is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
+        \ Speech marks and backslash characters in the query need to be escaped with\
+        \ a backslash (`\\`).\n\n## Paging\nFor performance reasons, this endpoint\
+        \ returns results in \"pages\" of limited size. In order to retrieve all matching\
+        \ results the client needs to request multiple pages starting from an offset\
+        \ to the first result. You can do this using the `pageOffset` query parameter.\
+        \ A value of 0 (the default) instructs the server to return the first page\
+        \ of results, 100 would return a page of results starting from the 101st result\
+        \ and so on. To retrieve all results, iterate through pages by increasing\
+        \ the offset in multiples of limit (e.g., `offset = n * limit`), until all\
+        \ results have been retrieved. The total number of pages can be calculated\
+        \ by dividing the total number of results by the limit.\n\n## List operation\n\
+        \nThis endpoint can be called without any query parameters. When called this\
+        \ way, it returns a list of all files metadata objects."
+      parameters:
+      - in: "query"
+        name: "filter"
+        description: "Filter by files metadata (key-value metadata pair(s))."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "query"
+        description: "Search for files via a full-text query over all file metadata."
+        schema:
+          type: "string"
+      - in: "query"
+        name: "pageLimit"
+        description: "Maximum number of results to return per page (see Paging above).\
+          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
+        schema:
+          format: "int32"
+          type: "integer"
+      - in: "query"
+        name: "pageOffset"
+        description: "Show the page {pageOffset + 1} results from the start of the\
+          \ results. E.g. 100 will show a page of results starting from the 101st\
+          \ result. The default value is 0."
+        schema:
+          format: "int32"
+          type: "integer"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+            text/tab-separated-values:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve file's metadata by its fields"
+      tags:
+      - "Files as User"
   /api/v1/as-curator/expressions:
     get:
       description: "Retrieve all expression data and metadata objects that match a\
@@ -1442,437 +1873,6 @@ paths:
       summary: "Retrieve a single expression object by ID (accession)"
       tags:
       - "Expression SPoT as User"
-  /api/v1/as-curator/files/{id}/download:
-    head:
-      description: "Check if a file exists by its accession.\n\nThis endpoint can\
-        \ be used to check if a file exists and accessible before downloading it.\n"
-      operationId: "headFileAsCurator"
-      parameters:
-      - description: "Unique identifier (accession) of the object."
-        in: "path"
-        name: "id"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "File exists. Additional metadata is provided in the response\
-            \ headers."
-        "400":
-          content: {}
-          description: "File cannot be downloaded."
-        "401":
-          content: {}
-          description: "User is not authenticated. Please supply a valid Access Token\
-            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
-            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
-            \ may be obtained from the Genestack UI _Profile_ page)."
-        "404":
-          content: {}
-          description: "No object exists with the given ID."
-        "406":
-          content: {}
-          description: "File cannot be downloaded."
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      tags:
-      - "Files as Curator"
-    get:
-      description: "Download a file by its accession.\n"
-      operationId: "getFileAsCurator"
-      parameters:
-      - description: "Unique identifier (accession) of the object."
-        in: "path"
-        name: "id"
-        required: true
-        schema:
-          type: "string"
-      - name: "Range"
-        in: "header"
-        required: false
-        schema:
-          type: "string"
-          example: "bytes=0-"
-        description: "Request a specific range of bytes to support partial downloads.\n\
-          Example: `bytes=0-1024` to download the first 1024 bytes. Supplying several\n\
-          ranges is not supported.\n"
-      responses:
-        "200":
-          description: "File downloaded successfully"
-          content:
-            application/octet-stream:
-              schema:
-                type: "string"
-                format: "binary"
-        "206":
-          description: "Partial content downloaded successfully"
-          content:
-            application/octet-stream:
-              schema:
-                type: "string"
-                format: "binary"
-        "400":
-          content: {}
-          description: "File cannot be retrieved."
-        "401":
-          content: {}
-          description: "User is not authenticated. Please supply a valid Access Token\
-            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
-            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
-            \ may be obtained from the Genestack UI _Profile_ page)."
-        "404":
-          content: {}
-          description: "No object exists with the given ID."
-        "406":
-          content: {}
-          description: "File cannot be downloaded."
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Retrieve a file by ID (accession)"
-      tags:
-      - "Files as Curator"
-  /api/v1/as-curator/files/{id}:
-    get:
-      operationId: "getFileMetadataByIdAsCurator"
-      parameters:
-      - description: "Unique identifier (accession) of the object."
-        in: "path"
-        name: "id"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFile"
-          description: "The request was successful. The returned value is the object."
-        "400":
-          content: {}
-          description: "Invalid data in the request. See the error message for details."
-        "401":
-          content: {}
-          description: "User is not authenticated. Please supply a valid Access Token\
-            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
-            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
-            \ may be obtained from the Genestack UI _Profile_ page)."
-        "404":
-          content: {}
-          description: "Object with provided accession could not be found in ODM."
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Retrieve file's metadata by ID (accession)"
-      tags:
-      - "Files as Curator"
-  /api/v1/as-curator/files:
-    get:
-      operationId: "getFilesMetadataAsCurator"
-      description: "## Metadata full-text queries\nSingle words can be supplied as\
-        \ is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
-        \ Speech marks and backslash characters in the query need to be escaped with\
-        \ a backslash (`\\`).\n\n## Paging\nFor performance reasons, this endpoint\
-        \ returns results in \"pages\" of limited size. In order to retrieve all matching\
-        \ results the client needs to request multiple pages starting from an offset\
-        \ to the first result. You can do this using the `pageOffset` query parameter.\
-        \ A value of 0 (the default) instructs the server to return the first page\
-        \ of results, 100 would return a page of results starting from the 101st result\
-        \ and so on. To retrieve all results, iterate through pages by increasing\
-        \ the offset in multiples of limit (e.g., `offset = n * limit`), until all\
-        \ results have been retrieved. The total number of pages can be calculated\
-        \ by dividing the total number of results by the limit.\n\n## List operation\n\
-        \nThis endpoint can be called without any query parameters. When called this\
-        \ way, it returns a list of all files metadata objects."
-      parameters:
-      - in: "query"
-        name: "filter"
-        description: "Filter by files metadata (key-value metadata pair(s))."
-        schema:
-          type: "string"
-      - in: "query"
-        name: "query"
-        description: "Search for files via a full-text query over all file metadata."
-        schema:
-          type: "string"
-      - in: "query"
-        name: "pageLimit"
-        description: "Maximum number of results to return per page (see Paging above).\
-          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
-        schema:
-          format: "int32"
-          type: "integer"
-      - in: "query"
-        name: "pageOffset"
-        description: "Show the page {pageOffset + 1} results from the start of the\
-          \ results. E.g. 100 will show a page of results starting from the 101st\
-          \ result. The default value is 0."
-        schema:
-          format: "int32"
-          type: "integer"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ListResponse"
-            text/tab-separated-values:
-              schema:
-                $ref: "#/components/schemas/ListResponse"
-          description: "The request was successful. The returned value is a list of\
-            \ objects."
-        "400":
-          content: {}
-          description: "Invalid data in the request. See the error message for details."
-        "401":
-          content: {}
-          description: "User is not authenticated. Please supply a valid Access Token\
-            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
-            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
-            \ may be obtained from the Genestack UI _Profile_ page)."
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Retrieve file's metadata by its fields"
-      tags:
-      - "Files as Curator"
-  /api/v1/as-user/files/{id}/download:
-    head:
-      description: "Check if a file exists by its accession.\n\nThis endpoint can\
-        \ be used to check if a file exists and accessible before downloading it.\n"
-      operationId: "headFileAsUser"
-      summary: "Check if a file exists by ID (accession)."
-      parameters:
-      - description: "Unique identifier (accession) of the object."
-        in: "path"
-        name: "id"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "File exists. Additional metadata is provided in the response\
-            \ headers."
-        "400":
-          content: {}
-          description: "File cannot be downloaded."
-        "401":
-          content: {}
-          description: "User is not authenticated. Please supply a valid Access Token\
-            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
-            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
-            \ may be obtained from the Genestack UI _Profile_ page)."
-        "404":
-          content: {}
-          description: "No object exists with the given ID."
-        "406":
-          content: {}
-          description: "File cannot be downloaded."
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      tags:
-      - "Files as User"
-    get:
-      description: "Download a file by its accession.\n"
-      operationId: "getFileAsUser"
-      parameters:
-      - description: "Unique identifier (accession) of the object."
-        in: "path"
-        name: "id"
-        required: true
-        schema:
-          type: "string"
-      - name: "Range"
-        in: "header"
-        required: false
-        schema:
-          type: "string"
-          example: "bytes=0-"
-        description: "Request a specific range of bytes to support partial downloads.\n\
-          Example: `bytes=0-1024` to download the first 1024 bytes. Supplying several\n\
-          ranges is not supported.\n"
-      responses:
-        "200":
-          description: "File downloaded successfully"
-          content:
-            application/octet-stream:
-              schema:
-                type: "string"
-                format: "binary"
-        "206":
-          description: "Partial content downloaded successfully"
-          content:
-            application/octet-stream:
-              schema:
-                type: "string"
-                format: "binary"
-        "400":
-          content: {}
-          description: "File cannot be retrieved."
-        "401":
-          content: {}
-          description: "User is not authenticated. Please supply a valid Access Token\
-            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
-            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
-            \ may be obtained from the Genestack UI _Profile_ page)."
-        "404":
-          content: {}
-          description: "No object exists with the given ID."
-        "406":
-          content: {}
-          description: "File cannot be downloaded."
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Retrieve a file by ID (accession)"
-      tags:
-      - "Files as User"
-  /api/v1/as-user/files/{id}:
-    get:
-      operationId: "getFileMetadataByIdAsUser"
-      parameters:
-      - description: "Unique identifier (accession) of the object."
-        in: "path"
-        name: "id"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFile"
-          description: "The request was successful. The returned value is the object."
-        "400":
-          content: {}
-          description: "Invalid data in the request. See the error message for details."
-        "401":
-          content: {}
-          description: "User is not authenticated. Please supply a valid Access Token\
-            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
-            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
-            \ may be obtained from the Genestack UI _Profile_ page)."
-        "404":
-          content: {}
-          description: "Object with provided accession could not be found in ODM."
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Retrieve file's metadata by ID (accession)"
-      tags:
-      - "Files as User"
-  /api/v1/as-user/files:
-    get:
-      operationId: "getFilesMetadataAsUser"
-      description: "## Metadata full-text queries\nSingle words can be supplied as\
-        \ is, otherwise use speech marks (`\"`) to quote queries that include whitespace.\
-        \ Speech marks and backslash characters in the query need to be escaped with\
-        \ a backslash (`\\`).\n\n## Paging\nFor performance reasons, this endpoint\
-        \ returns results in \"pages\" of limited size. In order to retrieve all matching\
-        \ results the client needs to request multiple pages starting from an offset\
-        \ to the first result. You can do this using the `pageOffset` query parameter.\
-        \ A value of 0 (the default) instructs the server to return the first page\
-        \ of results, 100 would return a page of results starting from the 101st result\
-        \ and so on. To retrieve all results, iterate through pages by increasing\
-        \ the offset in multiples of limit (e.g., `offset = n * limit`), until all\
-        \ results have been retrieved. The total number of pages can be calculated\
-        \ by dividing the total number of results by the limit.\n\n## List operation\n\
-        \nThis endpoint can be called without any query parameters. When called this\
-        \ way, it returns a list of all files metadata objects."
-      parameters:
-      - in: "query"
-        name: "filter"
-        description: "Filter by files metadata (key-value metadata pair(s))."
-        schema:
-          type: "string"
-      - in: "query"
-        name: "query"
-        description: "Search for files via a full-text query over all file metadata."
-        schema:
-          type: "string"
-      - in: "query"
-        name: "pageLimit"
-        description: "Maximum number of results to return per page (see Paging above).\
-          \ This value must be between 0 and 2000 (inclusive). The default is 2000."
-        schema:
-          format: "int32"
-          type: "integer"
-      - in: "query"
-        name: "pageOffset"
-        description: "Show the page {pageOffset + 1} results from the start of the\
-          \ results. E.g. 100 will show a page of results starting from the 101st\
-          \ result. The default value is 0."
-        schema:
-          format: "int32"
-          type: "integer"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ListResponse"
-            text/tab-separated-values:
-              schema:
-                $ref: "#/components/schemas/ListResponse"
-          description: "The request was successful. The returned value is a list of\
-            \ objects."
-        "400":
-          content: {}
-          description: "Invalid data in the request. See the error message for details."
-        "401":
-          content: {}
-          description: "User is not authenticated. Please supply a valid Access Token\
-            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
-            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
-            \ may be obtained from the Genestack UI _Profile_ page)."
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Retrieve file's metadata by its fields"
-      tags:
-      - "Files as User"
   /api/v1/as-curator/flow-cytometries:
     get:
       description: "Retrieve all flow cytometry data and metadata objects that match\
@@ -4614,7 +4614,7 @@ paths:
       summary: "Retrieve flow cytometry run-level data by querying related sample\
         \ ID (accession)"
       tags:
-      - "Flow Cytometry (FACS) integration as Curator"
+      - "Flow Cytometry integration as Curator"
   /api/v1/as-curator/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
@@ -4697,7 +4697,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
-      - "Flow Cytometry (FACS) integration as Curator"
+      - "Flow Cytometry integration as Curator"
   /api/v1/as-curator/integration/link/flow-cytometry/group/{sourceId}/to/sample/group/{targetId}:
     delete:
       description: "Delete link between a group of flow-cytometry objects and a group\
@@ -4741,7 +4741,7 @@ paths:
       summary: "Delete link between a group of flow-cytometry objects and a group\
         \ of sample objects"
       tags:
-      - "Flow Cytometry (FACS) integration as Curator"
+      - "Flow Cytometry integration as Curator"
     post:
       description: "Create a link between a group of flow-cytometry objects and a\
         \ group of sample objects.\n\nA flow-cytometry object can be linked to one\
@@ -4803,7 +4803,7 @@ paths:
       summary: "Create a link between a group of flow-cytometry objects and a group\
         \ of sample objects"
       tags:
-      - "Flow Cytometry (FACS) integration as Curator"
+      - "Flow Cytometry integration as Curator"
   /api/v1/as-curator/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
@@ -4869,7 +4869,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - "Flow Cytometry (FACS) integration as Curator"
+      - "Flow Cytometry integration as Curator"
   /api/v1/as-curator/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
     delete:
       description: "Delete link between a flow-cytometry object and a sample"
@@ -4910,7 +4910,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Delete link between a flow-cytometry object and a sample"
       tags:
-      - "Flow Cytometry (FACS) integration as Curator"
+      - "Flow Cytometry integration as Curator"
     post:
       description: "Create a link between a flow-cytometry object and a sample.\n\n\
         A flow-cytometry object can be linked to one object only. If a flow-cytometry\
@@ -4954,7 +4954,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Create a link between a flow-cytometry object and a sample"
       tags:
-      - "Flow Cytometry (FACS) integration as Curator"
+      - "Flow Cytometry integration as Curator"
   /api/v1/as-curator/integration/link/libraries/by/samples:
     get:
       description: "Retrieve library metadata objects whose linked sample metadata\
@@ -11133,7 +11133,7 @@ paths:
       summary: "Retrieve flow cytometry run-level data by querying related sample\
         \ ID (accession)"
       tags:
-      - "Flow Cytometry (FACS) integration as User"
+      - "Flow Cytometry integration as User"
   /api/v1/as-user/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: "## Versioning\nSpecific versions of omics data files (eg. GCT)\
@@ -11216,7 +11216,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Retrieve group metadata by querying study ID (accession)"
       tags:
-      - "Flow Cytometry (FACS) integration as User"
+      - "Flow Cytometry integration as User"
   /api/v1/as-user/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: "## Paging\nFor performance reasons this endpoint returns results\
@@ -11282,7 +11282,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - "Flow Cytometry (FACS) integration as User"
+      - "Flow Cytometry integration as User"
   /api/v1/as-user/integration/link/libraries/by/samples:
     get:
       description: "Retrieve library metadata objects whose linked sample metadata\
@@ -15854,12 +15854,9 @@ paths:
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/flow-cytometry:
     post:
-      description: "This operation necessitates the URL of a gated flow cytometry\
-        \ data file, which must be in FACS format.\nConsult the user guide for a comprehensive\
-        \ understanding of the file content requirements.\nFor flow cytometry data\
-        \ in FCS format use expression endpoint.\n\nWhen job finishes successfully\
-        \ the following **result** object\ncan be obtained using `GET /job/{id}/output`\
-        \ request:\n\n```\n{\n    \"groupAccession\": \"GSF1234567\"\n}\n```"
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n    "
       operationId: "startImportFlowCytometry"
       parameters:
       - description: "Load duplicate data: the data from the links has already been\
@@ -16067,23 +16064,15 @@ paths:
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/file:
     post:
-      description: "In order to import a file as an attachment to a study, please\
-        \ fill in the following fields:\n\n* `source` - file source with the following\
-        \ possible values: `S3`, `HTTP`, `LOCAL`.\n* `dataLink` - a link to a file\
-        \ to import as an attachment.\nThe file will be associated with a study and\
-        \ will be searchable by its name and metadata.\n* `metadataLink` - an optional\
-        \ URL of a metadata file to be used as the original metadata\nfor the created\
-        \ objects. The file must contain a single record describing the uploaded attachment.\n\
-        * `studyAccession` - an accession of a study the file will be associated with.\n\
-        * `dataClass` - file data class with the following possible values: `Bulk\n\
-        transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,\n\
-        pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`,\
-        \ `Metabolomics`,\n`Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`,\
-        \ `Imaging features`,\n`Gene panel data`, `Biomarker data`, `Physical measures`,\
-        \ `Blood counts`, `Other body\nfluid counts`, `Nanopore`, `Document`, `Other`.\n\
-        \nWhen job finishes successfully the following **result** object can be obtained\
-        \ using `GET /job/{id}/output` request:\n\n```\n{\n    \"accession\": \"GSF1234567\"\
-        \n}\n```"
+      description: "\n`dataClass`: A mandatory parameter with the following possible\
+        \ values: `Bulk\ntranscriptomics`, `Single-cell transcriptomics`, `Differential\
+        \ abundance (FC,\npval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell\
+        \ proteomics`, `Metabolomics`,\n`Lipidomics`, `Epigenomics`, `DNA methylation`,\
+        \ `Chemoinformatics`, `Imaging features`,\n`Gene panel data`, `Biomarker data`,\
+        \ `Physical measures`, `Blood counts`, `Other body\nfluid counts`, `Nanopore`,\
+        \ `Flow Cytometry (FCS)`, `Document`, `Other`.\n\nWhen job finishes successfully\
+        \ the following **result** object can be obtained using `GET /job/{id}/output`\
+        \ request:\n\n```\n{\n    \"accession\": \"GSF1234567\"\n}\n```\n"
       operationId: "startImportAFile"
       requestBody:
         content:
@@ -21939,6 +21928,10 @@ paths:
       - "Variant SPoT as User"
 components:
   schemas:
+    AFile:
+      $ref: "./schemas/afile/AFile.yaml"
+    ListResponse:
+      $ref: "./schemas/common/ListResponse.yaml"
     CommitInfo:
       $ref: "./schemas/common/CommitInfo.yaml"
     ExpressionItem:
@@ -21947,8 +21940,6 @@ components:
       $ref: "./schemas/expression/ExpressionResponse.yaml"
     IntegrationHelper:
       $ref: "./schemas/common/IntegrationHelper.yaml"
-    ListResponse:
-      $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/common/MetaResponse.yaml"
     MetadataContent:
@@ -21965,8 +21956,6 @@ components:
       $ref: "./schemas/common/ResponseFormat.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
-    AFile:
-      $ref: "./schemas/afile/AFile.yaml"
     FlowCytometryItem:
       $ref: "./schemas/flow-cytometry/FlowCytometryItem.yaml"
     FlowCytometryResponse:

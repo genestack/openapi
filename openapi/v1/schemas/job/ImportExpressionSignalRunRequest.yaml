@@ -22,8 +22,8 @@ properties:
       pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
       `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
       `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
-      fluid counts`, `Nanopore`, `Document`, `Other`. \nIn case the parameter is not set the dataClass
-      is automatically defined as `Other`."
+      fluid counts`, `Nanopore`, `Flow Cytometry (FCS)`, `Document`, `Other`. \nIn case the parameter is not set
+      the dataClass is automatically defined as `Other`."
     example: Proteomics
     type: string
   measurementSeparator:
