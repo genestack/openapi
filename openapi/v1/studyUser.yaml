@@ -3,7 +3,7 @@ info:
   description: |-
     This swagger page describes the studyUser API endpoints for ODM. These are typically used to find and retrieve study metadata.
 
-    Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software. Further instructions can be found [here](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html).
+    Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
 
     To try out calls in this swagger page:
 

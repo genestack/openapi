@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   description: |-
-    This swagger page describes the flowCytometryCurator APIs.
+    This swagger page describes the flowCytometryCurator API endpoints for ODM. These are typically used to find and retrieve flow cytometry data and metadata as well as update metadata.
     The APIs can be used for gated flow cytometry data in FACS format. For flow cytometry data in FCS format use expression endpoints.
 
     Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
