@@ -16,7 +16,7 @@ info:
 tags:
 - name: Expression integration as Curator
 - name: Files integration as Curator
-- name: Flow Cytometry integration as Curator
+- name: Flow Cytometry (FACS) integration as Curator
 - name: Library integration as Curator
 - name: Linkage as Curator
 - name: Metadata versioning as Curator
@@ -1300,7 +1300,7 @@ paths:
       summary: Retrieve flow cytometry run-level data by querying related sample ID
         (accession)
       tags:
-      - Flow Cytometry integration as Curator
+      - Flow Cytometry (FACS) integration as Curator
   /api/v1/as-curator/integration/link/flow-cytometry/group/by/study/{id}:
     get:
       description: |+
@@ -1379,7 +1379,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
-      - Flow Cytometry integration as Curator
+      - Flow Cytometry (FACS) integration as Curator
   ? /api/v1/as-curator/integration/link/flow-cytometry/group/{sourceId}/to/sample/group/{targetId}
   : delete:
       description: Delete link between a group of flow-cytometry objects and a group
@@ -1422,7 +1422,7 @@ paths:
       summary: Delete link between a group of flow-cytometry objects and a group of
         sample objects
       tags:
-      - Flow Cytometry integration as Curator
+      - Flow Cytometry (FACS) integration as Curator
     post:
       description: |-
         Create a link between a group of flow-cytometry objects and a group of sample objects.
@@ -1481,7 +1481,7 @@ paths:
       summary: Create a link between a group of flow-cytometry objects and a group
         of sample objects
       tags:
-      - Flow Cytometry integration as Curator
+      - Flow Cytometry (FACS) integration as Curator
   /api/v1/as-curator/integration/link/flow-cytometry/run-to-samples/by/group/{id}:
     get:
       description: |+
@@ -1541,7 +1541,7 @@ paths:
       summary: "Retrieve run-sample pairs by group id. Pagination is based on unique\
         \ runs, not unique pairs."
       tags:
-      - Flow Cytometry integration as Curator
+      - Flow Cytometry (FACS) integration as Curator
   /api/v1/as-curator/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
     delete:
       description: Delete link between a flow-cytometry object and a sample
@@ -1581,7 +1581,7 @@ paths:
       - Genestack-API-Token: []
       summary: Delete link between a flow-cytometry object and a sample
       tags:
-      - Flow Cytometry integration as Curator
+      - Flow Cytometry (FACS) integration as Curator
     post:
       description: |-
         Create a link between a flow-cytometry object and a sample.
@@ -1624,7 +1624,7 @@ paths:
       - Genestack-API-Token: []
       summary: Create a link between a flow-cytometry object and a sample
       tags:
-      - Flow Cytometry integration as Curator
+      - Flow Cytometry (FACS) integration as Curator
   /api/v1/as-curator/integration/link/libraries/by/samples:
     get:
       description: |+

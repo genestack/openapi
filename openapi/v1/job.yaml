@@ -77,9 +77,19 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/jobs/import/flow-cytometry:
     post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n    "
+      description: |-
+        This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
+        Consult the user guide for a comprehensive understanding of the file content requirements.
+        For flow cytometry data in FCS format use expression endpoint.
+
+        When job finishes successfully the following **result** object
+        can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
       operationId: startImportFlowCytometry
       parameters:
       - description: "Load duplicate data: the data from the links has already been\
@@ -311,9 +321,16 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/jobs/import/file:
     post:
-      description: |2
+      description: |-
+        In order to import a file as an attachment to a study, please fill in the following fields:
 
-        `dataClass`: A mandatory parameter with the following possible values: `Bulk
+        * `source` - file source with the following possible values: `S3`, `HTTP`, `LOCAL`.
+        * `dataLink` - a link to a file to import as an attachment.
+        The file will be associated with a study and will be searchable by its name and metadata.
+        * `metadataLink` - an optional URL of a metadata file to be used as the original metadata
+        for the created objects. The file must contain a single record describing the uploaded attachment.
+        * `studyAccession` - an accession of a study the file will be associated with.
+        * `dataClass` - file data class with the following possible values: `Bulk
         transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
         pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
         `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
