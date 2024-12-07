@@ -30,7 +30,7 @@ build:
     SAVE ARTIFACT generated
 
 python-api-client:
-    FROM python:3.13.0-alpine
+    FROM python:3.13.1-alpine
     DO github.com/genestack/earthly-libs+PYTHON_PREPARE
 
     CACHE /root/.cache
