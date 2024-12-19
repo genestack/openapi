@@ -4531,8 +4531,8 @@ paths:
           \ the interval between -3 and 3.\n \n2. Note: The `MinValue` keyword has\
           \ been deprecated and should be replaced with the aforementioned comparisons.\n\
           \ \nCombine multiple filters for different feature attributes and measurements\
-          \ using `AND` (`&&`), `OR` (`||`) logical operators and parentheses: \n\
-          * `feature.Name_1!=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
+          \ using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses: \n\
+          * `NOT feature.Name_1=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
           \ Select all rows where Name_1 is not A, B, or C. \n* `feature.Name_1=A\
           \ AND feature.Name_2=B`: Select all rows where Name_1 is A and Name_2 is\
           \ B. \n* `feature.Name_1=A && feature.Name_2=B`: Equivalent to the example\
@@ -4799,8 +4799,8 @@ paths:
           \ the interval between -3 and 3.\n \n2. Note: The `MinValue` keyword has\
           \ been deprecated and should be replaced with the aforementioned comparisons.\n\
           \ \nCombine multiple filters for different feature attributes and measurements\
-          \ using `AND` (`&&`), `OR` (`||`) logical operators and parentheses: \n\
-          * `feature.Name_1!=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
+          \ using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses: \n\
+          * `NOT feature.Name_1=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
           \ Select all rows where Name_1 is not A, B, or C. \n* `feature.Name_1=A\
           \ AND feature.Name_2=B`: Select all rows where Name_1 is A and Name_2 is\
           \ B. \n* `feature.Name_1=A && feature.Name_2=B`: Equivalent to the example\
@@ -5247,8 +5247,8 @@ paths:
           \ the interval between -3 and 3.\n \n2. Note: The `MinValue` keyword has\
           \ been deprecated and should be replaced with the aforementioned comparisons.\n\
           \ \nCombine multiple filters for different feature attributes and measurements\
-          \ using `AND` (`&&`), `OR` (`||`) logical operators and parentheses: \n\
-          * `feature.Name_1!=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
+          \ using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses: \n\
+          * `NOT feature.Name_1=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
           \ Select all rows where Name_1 is not A, B, or C. \n* `feature.Name_1=A\
           \ AND feature.Name_2=B`: Select all rows where Name_1 is A and Name_2 is\
           \ B. \n* `feature.Name_1=A && feature.Name_2=B`: Equivalent to the example\
@@ -5516,8 +5516,8 @@ paths:
           \ the interval between -3 and 3.\n \n2. Note: The `MinValue` keyword has\
           \ been deprecated and should be replaced with the aforementioned comparisons.\n\
           \ \nCombine multiple filters for different feature attributes and measurements\
-          \ using `AND` (`&&`), `OR` (`||`) logical operators and parentheses: \n\
-          * `feature.Name_1!=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
+          \ using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses: \n\
+          * `NOT feature.Name_1=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
           \ Select all rows where Name_1 is not A, B, or C. \n* `feature.Name_1=A\
           \ AND feature.Name_2=B`: Select all rows where Name_1 is A and Name_2 is\
           \ B. \n* `feature.Name_1=A && feature.Name_2=B`: Equivalent to the example\
@@ -5784,8 +5784,8 @@ paths:
           \ the interval between -3 and 3.\n \n2. Note: The `MinValue` keyword has\
           \ been deprecated and should be replaced with the aforementioned comparisons.\n\
           \ \nCombine multiple filters for different feature attributes and measurements\
-          \ using `AND` (`&&`), `OR` (`||`) logical operators and parentheses: \n\
-          * `feature.Name_1!=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
+          \ using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses: \n\
+          * `NOT feature.Name_1=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
           \ Select all rows where Name_1 is not A, B, or C. \n* `feature.Name_1=A\
           \ AND feature.Name_2=B`: Select all rows where Name_1 is A and Name_2 is\
           \ B. \n* `feature.Name_1=A && feature.Name_2=B`: Equivalent to the example\
@@ -6055,8 +6055,8 @@ paths:
           \ the interval between -3 and 3.\n \n2. Note: The `MinValue` keyword has\
           \ been deprecated and should be replaced with the aforementioned comparisons.\n\
           \ \nCombine multiple filters for different feature attributes and measurements\
-          \ using `AND` (`&&`), `OR` (`||`) logical operators and parentheses: \n\
-          * `feature.Name_1!=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
+          \ using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses: \n\
+          * `NOT feature.Name_1=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
           \ Select all rows where Name_1 is not A, B, or C. \n* `feature.Name_1=A\
           \ AND feature.Name_2=B`: Select all rows where Name_1 is A and Name_2 is\
           \ B. \n* `feature.Name_1=A && feature.Name_2=B`: Equivalent to the example\
@@ -6323,8 +6323,8 @@ paths:
           \ the interval between -3 and 3.\n \n2. Note: The `MinValue` keyword has\
           \ been deprecated and should be replaced with the aforementioned comparisons.\n\
           \ \nCombine multiple filters for different feature attributes and measurements\
-          \ using `AND` (`&&`), `OR` (`||`) logical operators and parentheses: \n\
-          * `feature.Name_1!=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
+          \ using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses: \n\
+          * `NOT feature.Name_1=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
           \ Select all rows where Name_1 is not A, B, or C. \n* `feature.Name_1=A\
           \ AND feature.Name_2=B`: Select all rows where Name_1 is A and Name_2 is\
           \ B. \n* `feature.Name_1=A && feature.Name_2=B`: Equivalent to the example\
