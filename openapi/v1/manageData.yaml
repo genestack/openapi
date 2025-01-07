@@ -127,7 +127,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ManagedObject"
+                items:
+                  $ref: "#/components/schemas/ManagedObject"
+                type: array
           description: The deletion of the following files and all linked data has
             started.
         "400":
