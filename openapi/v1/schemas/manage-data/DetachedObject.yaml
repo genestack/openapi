@@ -8,6 +8,7 @@ properties:
     type: string
   detachedObjectType:
     enum:
+    - STUDY
     - SAMPLE_GROUP
     - LIBRARY_GROUP
     - PREPARATION_GROUP
