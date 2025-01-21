@@ -16067,22 +16067,23 @@ paths:
   /api/v1/jobs/import/file:
     post:
       description: "In order to import a file as an attachment to a study, please\
-        \ fill in the following fields:\n\n* `source` - file source with the following\
-        \ possible values: `S3`, `HTTP`, `LOCAL`.\n* `dataLink` - a link to a file\
-        \ to import as an attachment.\nThe file will be associated with a study and\
-        \ will be searchable by its name and metadata.\n* `metadataLink` - an optional\
-        \ URL of a metadata file to be used as the original metadata\nfor the created\
-        \ objects. The file must contain a single record describing the uploaded attachment.\n\
-        * `studyAccession` - an accession of a study the file will be associated with.\n\
-        * `dataClass` - file data class with the following possible values: `Bulk\n\
-        transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,\n\
-        pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`,\
-        \ `Metabolomics`,\n`Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`,\
-        \ `Imaging features`,\n`Gene panel data`, `Biomarker data`, `Physical measures`,\
-        \ `Blood counts`, `Other body\nfluid counts`, `Nanopore`, `Flow Cytometry\
-        \ (FCS)`, `Document`, `Other`.\n\nWhen job finishes successfully the following\
-        \ **result** object can be obtained using `GET /job/{id}/output` request:\n\
-        \n```\n{\n    \"accession\": \"GSF1234567\"\n}\n```"
+        \ fill in the following fields:\n\n* `source` - The source parameter is ignored\
+        \ and will be removed in version 1.61. The source is automatically extracted\
+        \ from the link.\n* `dataLink` - a link to a file to import as an attachment.\n\
+        The file will be associated with a study and will be searchable by its name\
+        \ and metadata.\n* `metadataLink` - an optional URL of a metadata file to\
+        \ be used as the original metadata\nfor the created objects. The file must\
+        \ contain a single record describing the uploaded attachment.\n* `studyAccession`\
+        \ - an accession of a study the file will be associated with.\n* `dataClass`\
+        \ - file data class with the following possible values: `Bulk\ntranscriptomics`,\
+        \ `Single-cell transcriptomics`, `Differential abundance (FC,\npval, etc.)`,\
+        \ `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,\n\
+        `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging\
+        \ features`,\n`Gene panel data`, `Biomarker data`, `Physical measures`, `Blood\
+        \ counts`, `Other body\nfluid counts`, `Nanopore`, `Flow Cytometry (FCS)`,\
+        \ `Document`, `Other`.\n\nWhen job finishes successfully the following **result**\
+        \ object can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n\
+        \    \"accession\": \"GSF1234567\"\n}\n```"
       operationId: "startImportAFile"
       requestBody:
         content:
