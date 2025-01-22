@@ -324,7 +324,7 @@ paths:
       description: |-
         In order to import a file as an attachment to a study, please fill in the following fields:
 
-        * `source` - file source with the following possible values: `S3`, `HTTP`, `LOCAL`.
+        * `source` - The source parameter is ignored and will be removed in version 1.61. The source is automatically extracted from the link.
         * `dataLink` - a link to a file to import as an attachment.
         The file will be associated with a study and will be searchable by its name and metadata.
         * `metadataLink` - an optional URL of a metadata file to be used as the original metadata

@@ -1,5 +1,4 @@
 example:
-  source: HTTP
   metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
   dataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object.pdf
   studyAccession: GSF334953
@@ -12,6 +11,7 @@ properties:
     - LOCAL
     example: HTTP
     type: string
+    description: The source parameter is ignored and will be removed in version 1.61. The source is automatically extracted from the link
   metadataLink:
     example: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
     type: string
