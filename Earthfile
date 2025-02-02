@@ -8,7 +8,7 @@ ARG --global --required MAVEN_REGISTRY_RELEASES
 ARG --global --required MAVEN_REGISTRY_SNAPSHOTS
 
 build:
-    FROM eclipse-temurin:21.0.5_11-jdk-alpine
+    FROM eclipse-temurin:21.0.6_7-jdk-alpine
     DO github.com/genestack/earthly-libs+GRADLE_PREPARE
 
     CACHE /root/.gradle/caches
