@@ -47,6 +47,7 @@ tasks {
         packageName.set("odmApi")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
             "packageVersion" to openApiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
@@ -59,6 +60,7 @@ tasks {
         packageName.set("odm-api")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
             "packageVersion" to openApiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
