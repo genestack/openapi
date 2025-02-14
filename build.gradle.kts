@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2011-2025 Genestack Limited
+ * All Rights Reserved
+ * THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF GENESTACK LIMITED
+ * The copyright notice above does not evidence any
+ * actual or intended publication of such source code.
+ */
+
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 import com.genestack.openapi.MergeDefinitions
 import kotlin.io.path.listDirectoryEntries
@@ -26,6 +34,7 @@ tasks {
         packageName.set("odm_api")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
             "packageVersion" to openApiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
@@ -38,6 +47,7 @@ tasks {
         packageName.set("odmApi")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
             "packageVersion" to openApiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
@@ -50,6 +60,7 @@ tasks {
         packageName.set("odm-api")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
             "packageVersion" to openApiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
