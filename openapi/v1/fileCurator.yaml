@@ -118,6 +118,13 @@ paths:
           required: true
           schema:
             type: string
+        - description: Include file contents in the response.
+          in: query
+          name: includeContents
+          required: false
+          schema:
+            default: false
+            type: boolean
       responses:
         "200":
           content:
@@ -171,6 +178,13 @@ paths:
           description: Search for files via a full-text query over all file metadata.
           schema:
             type: string
+        - in: query
+          name: includeContents
+          description: Include file contents in the response.
+          required: false
+          schema:
+            default: false
+            type: boolean
         - in: query
           name: pageLimit
           description: Maximum number of results to return per page (see Paging above). This value must be
