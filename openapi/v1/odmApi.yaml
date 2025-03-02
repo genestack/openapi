@@ -1558,6 +1558,9 @@ paths:
         schema:
           default: false
           type: "boolean"
+          enum:
+          - true
+          - false
       responses:
         "200":
           content:
