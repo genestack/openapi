@@ -1551,7 +1551,8 @@ paths:
         required: true
         schema:
           type: "string"
-      - description: "Include file contents in the response."
+      - description: "Select `true` in order to include file structure (contents)\
+          \ for .h5, .h5ad, .zip, .gz to the response."
         in: "query"
         name: "includeContents"
         required: false
@@ -1619,7 +1620,8 @@ paths:
           type: "string"
       - in: "query"
         name: "includeContents"
-        description: "Include file contents in the response."
+        description: "Select `true` in order to include file structure (contents)\
+          \ for .h5, .h5ad, .zip, .gz to the response."
         required: false
         schema:
           default: false
@@ -1781,7 +1783,8 @@ paths:
         required: true
         schema:
           type: "string"
-      - description: "Include file contents in the response."
+      - description: "Select `true` in order to include file structure (contents)\
+          \ for .h5, .h5ad, .zip, .gz to the response."
         in: "query"
         name: "includeContents"
         required: false
@@ -1849,7 +1852,8 @@ paths:
           type: "string"
       - in: "query"
         name: "includeContents"
-        description: "Include file contents in the response."
+        description: "Select `true` in order to include file structure (contents)\
+          \ for .h5, .h5ad, .zip, .gz to the response."
         required: false
         schema:
           default: false
@@ -10328,7 +10332,8 @@ paths:
         required: true
         schema:
           type: "string"
-      - description: "Include file contents in the response."
+      - description: "Select `true` in order to include file structure (contents)\
+          \ for .h5, .h5ad, .zip, .gz to the response."
         in: "query"
         name: "includeContents"
         required: false
@@ -15794,7 +15799,8 @@ paths:
         required: true
         schema:
           type: "string"
-      - description: "Include file contents in the response."
+      - description: "Select `true` in order to include file structure (contents)\
+          \ for .h5, .h5ad, .zip, .gz to the response."
         in: "query"
         name: "includeContents"
         required: false
