@@ -119,6 +119,13 @@ paths:
           required: true
           schema:
             type: string
+        - description: Select `true` in order to include file structure (contents) for .h5, .h5ad, .zip, .gz to the response.
+          in: query
+          name: includeContents
+          required: false
+          schema:
+            default: false
+            type: boolean
       responses:
         "200":
           content:
@@ -172,6 +179,13 @@ paths:
           description: Search for files via a full-text query over all file metadata.
           schema:
             type: string
+        - in: query
+          name: includeContents
+          description: Select `true` in order to include file structure (contents) for .h5, .h5ad, .zip, .gz to the response.
+          required: false
+          schema:
+            default: false
+            type: boolean
         - in: query
           name: pageLimit
           description: Maximum number of results to return per page (see Paging above). This value must be

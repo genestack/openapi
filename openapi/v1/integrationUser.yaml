@@ -5074,6 +5074,13 @@ paths:
           required: true
           schema:
             type: string
+        - description: Select `true` in order to include file structure (contents) for .h5, .h5ad, .zip, .gz to the response.
+          in: query
+          name: includeContents
+          required: false
+          schema:
+            default: false
+            type: boolean
       responses:
         "200":
           content:
