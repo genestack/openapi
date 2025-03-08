@@ -1,7 +1,7 @@
 VERSION 0.8
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.19.0
+    FROM swaggerapi/swagger-ui:v5.20.0
 
     COPY v1 /usr/share/nginx/html/yaml/
     COPY swagger/fs /
