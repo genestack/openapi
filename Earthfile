@@ -73,7 +73,7 @@ python-api-client:
             pypi-clean.sh
 
 r-api-client:
-    FROM r-base:4.4.2
+    FROM r-base:4.4.3
     WORKDIR /app
 
     CACHE /root/.cache
