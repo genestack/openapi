@@ -630,7 +630,7 @@ paths:
         \ parsed as booleans, integers, etc."
       operationId: "updateExpressionRunAsCurator"
       parameters:
-      - description: "Expression object runId."
+      - description: "Expression object run ID (runId)."
         in: "path"
         name: "id"
         required: true
@@ -671,7 +671,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Update metadata object by expression object ID (runId)"
+      summary: "Update metadata object by expression object run ID (runId)"
       tags:
       - "Expression SPoT as Curator"
       x-codegen-request-body-name: "body"
@@ -709,7 +709,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve a list of expression object versions by ID (runId)"
+      summary: "Retrieve a list of expression object versions by run ID (runId)"
       tags:
       - "Expression SPoT as Curator"
   /api/v1/as-curator/expressions/{id}/versions/{version}:
