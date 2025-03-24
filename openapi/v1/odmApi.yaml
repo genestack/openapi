@@ -1100,7 +1100,7 @@ paths:
         name: "responseFormat"
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: "Unique identifier (accession) of the object."
+      - description: "Unique identifier (runId) of the run."
         in: "path"
         name: "id"
         required: true
@@ -1148,7 +1148,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve a single group object by run ID (accession)"
+      summary: "Retrieve a single group object by run ID (runId)"
       tags:
       - "Expression SPoT as User"
   /api/v1/as-user/expressions/group/{id}:
@@ -1161,7 +1161,7 @@ paths:
         name: "responseFormat"
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: "Unique identifier (accession) of the object."
+      - description: "Expression group identifier (groupId)."
         in: "path"
         name: "id"
         required: true
@@ -1209,7 +1209,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve a single group object by ID (accession)"
+      summary: "Retrieve a single expression group by ID (groupId)"
       tags:
       - "Expression SPoT as User"
   /api/v1/as-user/expressions/runs/by/group/{id}:
@@ -1286,7 +1286,7 @@ paths:
         name: "responseFormat"
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: "Unique identifier (accession) of the object."
+      - description: "Expression object unique identifier (itemId)."
         in: "path"
         name: "id"
         required: true
@@ -1334,14 +1334,14 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve a single expression object by ID (accession)"
+      summary: "Retrieve a single expression object by ID (itemId)"
       tags:
       - "Expression SPoT as User"
   /api/v1/as-user/expressions/{id}/versions:
     get:
       operationId: "getExpressionVersionsAsUser"
       parameters:
-      - description: "Unique identifier (accession) of the object."
+      - description: "Expression object run ID (runId)."
         in: "path"
         name: "id"
         required: true
@@ -1371,7 +1371,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve a list of object versions by ID"
+      summary: "Retrieve a list of expression object versions by run ID (runId)"
       tags:
       - "Expression SPoT as User"
   /api/v1/as-user/expressions/{id}/versions/{version}:
@@ -1384,7 +1384,7 @@ paths:
         name: "responseFormat"
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: "Unique identifier (accession) of the object."
+      - description: "Expression object run ID (runId)."
         in: "path"
         name: "id"
         required: true
@@ -1438,7 +1438,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Retrieve a single expression object by ID (accession)"
+      summary: "Retrieve a single expression object by run ID and its version"
       tags:
       - "Expression SPoT as User"
   /api/v1/as-curator/files/{id}/download:
