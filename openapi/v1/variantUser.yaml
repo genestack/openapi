@@ -352,7 +352,7 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: Unique identifier (accession) of the object.
+      - description: Unique identifier (runId) of the run.
         in: path
         name: id
         required: true
@@ -398,7 +398,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single group object by run ID (accession)
+      summary: Retrieve a single group object by run ID (runId)
       tags:
       - Variant SPoT as User
   /api/v1/as-user/variants/group/{id}:
@@ -411,7 +411,7 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: Unique identifier (accession) of the object.
+      - description: Variant group identifier (groupId).
         in: path
         name: id
         required: true
@@ -457,7 +457,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single group object by ID (accession)
+      summary: Retrieve a single variant group by ID (groupId)
       tags:
       - Variant SPoT as User
   /api/v1/as-user/variants/runs/by/group/{id}:
@@ -528,7 +528,7 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: Unique identifier (accession) of the object.
+      - description: Variant object unique identifier (itemId).
         in: path
         name: id
         required: true
@@ -574,14 +574,14 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single variant object by ID (accession)
+      summary: Retrieve a single variant object by ID (itemId)
       tags:
       - Variant SPoT as User
   /api/v1/as-user/variants/{id}/versions:
     get:
       operationId: getVariantVersionsAsUser
       parameters:
-      - description: Unique identifier (accession) of the object.
+      - description: Variant object run ID (runId).
         in: path
         name: id
         required: true
@@ -610,7 +610,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a list of object versions by ID
+      summary: Retrieve a list of variant object versions by run ID (runId)
       tags:
       - Variant SPoT as User
   /api/v1/as-user/variants/{id}/versions/{version}:
@@ -623,13 +623,13 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: Unique identifier (accession) of the object.
+      - description: Variant object run ID (runId).
         in: path
         name: id
         required: true
         schema:
           type: string
-      - description: Unique version of the object.
+      - description: Unique version of the variant object.
         in: path
         name: version
         required: true
@@ -675,7 +675,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single variant object by ID (accession)
+      summary: Retrieve a single variant object by run ID and its version
       tags:
       - Variant SPoT as User
 components:
