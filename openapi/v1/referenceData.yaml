@@ -11,6 +11,11 @@ paths:
     post:
       operationId: create
       requestBody:
+        description: |-
+          Request body for creating a new xrefset.
+          
+          ## Important:
+          The length of 'sourceId' strings is limited to 255 characters. Ensure that the provided values adhere to this limitation to avoid data truncation.
         content:
           application/json:
             schema:
@@ -57,6 +62,8 @@ paths:
         ## Conditions
         It is possible to supply a list of values for "targetId" and "sourceId". If non-empty lists of values for "targetId" and "sourceId" are supplied, the following search rule is applied: (sourceId = "S1" OR .. sourceId = "Sn") AND (targetId = "T1" OR .. targetId = "Tm").
 
+        ## Important:
+        The length of 'sourceId' strings is limited to 255 characters. Ensure that the provided values adhere to this limitation to avoid data truncation.
       operationId: searchEntries
       parameters:
       - description: "Supply sourceId in the format \"sourceId\". For transcript-gene\
