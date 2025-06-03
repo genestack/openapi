@@ -120,7 +120,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getExpressionByLibraryAsCurator
       parameters:
@@ -219,7 +219,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getExpressionByPreparation
       parameters:
@@ -319,7 +319,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getExpressionBySampleAsCurator
       parameters:
@@ -770,7 +770,7 @@ paths:
     get:
       description: |+
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getExpressionRunToLibraryPairsAsCurator
       parameters:
@@ -830,7 +830,7 @@ paths:
     get:
       description: |+
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getExpressionRunToPreparationPairsAsCurator
       parameters:
@@ -890,7 +890,7 @@ paths:
     get:
       description: |+
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getExpressionRunToSamplePairsAsCurator
       parameters:
@@ -1217,7 +1217,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getFlowCytometryBySampleAsCurator
       parameters:
@@ -1486,7 +1486,7 @@ paths:
     get:
       description: |+
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getFlowCytometryRunToSamplePairsAsCurator
       parameters:
@@ -1664,7 +1664,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getLibrariesBySamplesAsCurator
       parameters:
@@ -1951,7 +1951,7 @@ paths:
     get:
       description: |+
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getLibraryLinksToSamplesAsCurator
       parameters:
@@ -2285,7 +2285,7 @@ paths:
     get:
       description: |+
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getPreparationLinksToSamplesAsCurator
       parameters:
@@ -2462,7 +2462,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getPreparationsBySamplesAsCurator
       parameters:
@@ -2756,7 +2756,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getSamplesByLibrariesAsCurator
       parameters:
@@ -2886,7 +2886,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getSamplesByPreparationsAsCurator
       parameters:
@@ -2982,7 +2982,7 @@ paths:
     get:
       description: |+
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getSamplesByStudyAsCurator
       parameters:
@@ -3096,7 +3096,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getStudiesByLibrariesAsCurator
       parameters:
@@ -3226,7 +3226,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getStudiesByPreparationsAsCurator
       parameters:
@@ -3357,7 +3357,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getStudiesBySamplesAsCurator
       parameters:
@@ -3525,7 +3525,7 @@ paths:
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getStudiesByFilesAsCurator
       parameters:
@@ -3676,7 +3676,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getVariantBySampleAsCurator
       parameters:
@@ -3944,7 +3944,7 @@ paths:
     get:
       description: |+
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
       operationId: getVariantRunToSamplePairsAsCurator
       parameters:
@@ -4395,8 +4395,8 @@ paths:
         \ reasons this endpoint returns results in \"pages\" of limited size together\
         \ with a `cursor` tag. To retrieve the next page of results please supply\
         \ this `cursor` tag to resume the query from your previous result and get\
-        \ the next page. If there are no more results you will just retrieve an empty\
-        \ result.\n\n"
+        \ the next page. To return all results iterate through pages using \
+        \ cursor values until the `resultsExhausted` response field is true.\n\n"
       operationId: omicsSearchExpressionDataAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
@@ -4663,7 +4663,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
+        For performance reasons this endpoint returns results in "pages" of limited size together with a cursor tag. To retrieve the next page of results please supply this cursor tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result. To return all results iterate through pages using cursor values until the `resultsExhausted` response field is true.
 
       operationId: omicsSearchExpressionGroupsAsCurator
       parameters:
@@ -5111,7 +5111,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
+        For performance reasons this endpoint returns results in "pages" of limited size together with a cursor tag. To retrieve the next page of results please supply this cursor tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result. To return all results iterate through pages using cursor values until the `resultsExhausted` response field is true.
 
       operationId: omicsSearchFlowCytometryDataAsCurator
       parameters:
@@ -5380,7 +5380,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
+        For performance reasons this endpoint returns results in "pages" of limited size together with a cursor tag. To retrieve the next page of results please supply this cursor tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result. To return all results iterate through pages using cursor values until the `resultsExhausted` response field is true.
 
       operationId: omicsSearchFlowCytometryGroupsAsCurator
       parameters:
@@ -5648,7 +5648,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
+        For performance reasons this endpoint returns results in "pages" of limited size together with a cursor tag. To retrieve the next page of results please supply this cursor tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result. To return all results iterate through pages using cursor values until the `resultsExhausted` response field is true.
 
       operationId: omicsSearchSamplesAsCurator
       parameters:
@@ -5919,7 +5919,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
+        For performance reasons this endpoint returns results in "pages" of limited size together with a cursor tag. To retrieve the next page of results please supply this cursor tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result. To return all results iterate through pages using cursor values until the `resultsExhausted` response field is true.
 
       operationId: omicsSearchVariantDataAsCurator
       parameters:
@@ -6187,7 +6187,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
+        For performance reasons this endpoint returns results in "pages" of limited size together with a cursor tag. To retrieve the next page of results please supply this cursor tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result. To return all results iterate through pages using cursor values until the `resultsExhausted` response field is true.
 
       operationId: omicsSearchVariantGroupsAsCurator
       parameters:

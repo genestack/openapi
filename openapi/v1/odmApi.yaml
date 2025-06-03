@@ -266,10 +266,11 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n*pageLimit` until the `resultsExhausted` response\
-        \ field is true.\n\n## List operation\n\nThis endpoint can be called with\
-        \ no `query` parameter. Doing so returns a list of all data objects."
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n## List operation\n\nThis endpoint can be called with no `query` parameter.\
+        \ Doing so returns a list of all data objects."
       operationId: "searchExpressionGroupsAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -984,10 +985,11 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n*pageLimit` until the `resultsExhausted` response\
-        \ field is true.\n\n## List operation\n\nThis endpoint can be called with\
-        \ no `query` parameter. Doing so returns a list of all data objects."
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n## List operation\n\nThis endpoint can be called with no `query` parameter.\
+        \ Doing so returns a list of all data objects."
       operationId: "searchExpressionGroupsAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -2115,10 +2117,11 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n*pageLimit` until the `resultsExhausted` response\
-        \ field is true.\n\n## List operation\n\nThis endpoint can be called with\
-        \ no `query` parameter. Doing so returns a list of all data objects."
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n## List operation\n\nThis endpoint can be called with no `query` parameter.\
+        \ Doing so returns a list of all data objects."
       operationId: "searchFlowCytometryGroupsAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -2351,9 +2354,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "searchFlowCytometryRunsAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -2839,10 +2842,11 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n*pageLimit` until the `resultsExhausted` response\
-        \ field is true.\n\n## List operation\n\nThis endpoint can be called with\
-        \ no `query` parameter. Doing so returns a list of all data objects."
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n## List operation\n\nThis endpoint can be called with no `query` parameter.\
+        \ Doing so returns a list of all data objects."
       operationId: "searchFlowCytometryGroupsAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -3075,9 +3079,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "searchFlowCytometryRunsAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -3398,9 +3402,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getExpressionByLibraryAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -3507,9 +3512,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getExpressionByPreparation"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -3616,9 +3622,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getExpressionBySampleAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -4086,9 +4093,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getExpressionRunToLibraryPairsAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -4152,9 +4159,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getExpressionRunToPreparationPairsAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -4218,9 +4225,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getExpressionRunToSamplePairsAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -4560,9 +4567,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getFlowCytometryBySampleAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -4843,9 +4851,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getFlowCytometryRunToSamplePairsAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -5033,9 +5041,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getLibrariesBySamplesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -5331,9 +5340,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getLibraryLinksToSamplesAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -5674,9 +5683,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getPreparationLinksToSamplesAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -5861,9 +5870,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getPreparationsBySamplesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -6167,9 +6177,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getSamplesByLibrariesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -6309,9 +6320,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getSamplesByPreparationsAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -6413,9 +6425,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getSamplesByStudyAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -6538,9 +6550,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getStudiesByLibrariesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -6680,9 +6693,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getStudiesByPreparationsAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -6823,9 +6837,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getStudiesBySamplesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -6999,9 +7014,10 @@ paths:
         \ to request multiple pages starting from an offset to the first result. You\
         \ can do this using the pageOffset query parameter. A value of 0 (the default)\
         \ instructs the server to return the first page of results, 100 would return\
-        \ a page of results starting from the 101st result and so on. To return all\
-        \ results iterate through pages using pageOffset values of `n * pageLimit`\
-        \ until the `resultsExhausted` response field is true.\n\n"
+        \ a page of results starting from the 101st result and so on. To retrieve\
+        \ all results, iterate through pages using `pageOffset` values of `n * pageLimit`\
+        \ until a page returns fewer results than the page limit, which indicates\
+        \ there are no more results.\n\n"
       operationId: "getStudiesByFilesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -7163,9 +7179,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getVariantBySampleAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -7444,9 +7461,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getVariantRunToSamplePairsAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -7906,8 +7923,8 @@ paths:
         \ reasons this endpoint returns results in \"pages\" of limited size together\
         \ with a `cursor` tag. To retrieve the next page of results please supply\
         \ this `cursor` tag to resume the query from your previous result and get\
-        \ the next page. If there are no more results you will just retrieve an empty\
-        \ result.\n\n"
+        \ the next page. To return all results iterate through pages using  cursor\
+        \ values until the `resultsExhausted` response field is true.\n\n"
       operationId: "omicsSearchExpressionDataAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -8193,10 +8210,12 @@ paths:
         \ of GSCV002 query only the specific accessions GSF00494 and GSF000496)\n\n\
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;\
         \ separator.\n\n## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size together with a `cursor` tag. To retrieve the\
-        \ next page of results please supply this `cursor` tag to resume the query\
-        \ from your previous result and get the next page. If there are no more results\
-        \ you will just retrieve an empty result.\n\n"
+        \ in \"pages\" of limited size together with a cursor tag. To retrieve the\
+        \ next page of results please supply this cursor tag to resume the query from\
+        \ your previous result and get the next page. If there are no more results\
+        \ you will just retrieve an empty result. To return all results iterate through\
+        \ pages using cursor values until the `resultsExhausted` response field is\
+        \ true.\n\n"
       operationId: "omicsSearchExpressionGroupsAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -8665,10 +8684,12 @@ paths:
         \ of GSCV002 query only the specific accessions GSF00494 and GSF000496)\n\n\
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;\
         \ separator.\n\n## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size together with a `cursor` tag. To retrieve the\
-        \ next page of results please supply this `cursor` tag to resume the query\
-        \ from your previous result and get the next page. If there are no more results\
-        \ you will just retrieve an empty result.\n\n"
+        \ in \"pages\" of limited size together with a cursor tag. To retrieve the\
+        \ next page of results please supply this cursor tag to resume the query from\
+        \ your previous result and get the next page. If there are no more results\
+        \ you will just retrieve an empty result. To return all results iterate through\
+        \ pages using cursor values until the `resultsExhausted` response field is\
+        \ true.\n\n"
       operationId: "omicsSearchFlowCytometryDataAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -8955,10 +8976,12 @@ paths:
         \ of GSCV002 query only the specific accessions GSF00494 and GSF000496)\n\n\
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;\
         \ separator.\n\n## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size together with a `cursor` tag. To retrieve the\
-        \ next page of results please supply this `cursor` tag to resume the query\
-        \ from your previous result and get the next page. If there are no more results\
-        \ you will just retrieve an empty result.\n\n"
+        \ in \"pages\" of limited size together with a cursor tag. To retrieve the\
+        \ next page of results please supply this cursor tag to resume the query from\
+        \ your previous result and get the next page. If there are no more results\
+        \ you will just retrieve an empty result. To return all results iterate through\
+        \ pages using cursor values until the `resultsExhausted` response field is\
+        \ true.\n\n"
       operationId: "omicsSearchFlowCytometryGroupsAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -9245,10 +9268,11 @@ paths:
         \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
         \ supplied to the parameter using the ; separator.\n\n## Paging\nFor performance\
         \ reasons this endpoint returns results in \"pages\" of limited size together\
-        \ with a `cursor` tag. To retrieve the next page of results please supply\
-        \ this `cursor` tag to resume the query from your previous result and get\
-        \ the next page. If there are no more results you will just retrieve an empty\
-        \ result.\n\n"
+        \ with a cursor tag. To retrieve the next page of results please supply this\
+        \ cursor tag to resume the query from your previous result and get the next\
+        \ page. If there are no more results you will just retrieve an empty result.\
+        \ To return all results iterate through pages using cursor values until the\
+        \ `resultsExhausted` response field is true.\n\n"
       operationId: "omicsSearchSamplesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -9536,10 +9560,11 @@ paths:
         \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
         \ supplied to the parameter using the ; separator.\n\n## Paging\nFor performance\
         \ reasons this endpoint returns results in \"pages\" of limited size together\
-        \ with a `cursor` tag. To retrieve the next page of results please supply\
-        \ this `cursor` tag to resume the query from your previous result and get\
-        \ the next page. If there are no more results you will just retrieve an empty\
-        \ result.\n\n"
+        \ with a cursor tag. To retrieve the next page of results please supply this\
+        \ cursor tag to resume the query from your previous result and get the next\
+        \ page. If there are no more results you will just retrieve an empty result.\
+        \ To return all results iterate through pages using cursor values until the\
+        \ `resultsExhausted` response field is true.\n\n"
       operationId: "omicsSearchVariantDataAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -9825,10 +9850,12 @@ paths:
         \ of GSCV002 query only the specific accessions GSF00494 and GSF000496)\n\n\
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;\
         \ separator.\n\n## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size together with a `cursor` tag. To retrieve the\
-        \ next page of results please supply this `cursor` tag to resume the query\
-        \ from your previous result and get the next page. If there are no more results\
-        \ you will just retrieve an empty result.\n\n"
+        \ in \"pages\" of limited size together with a cursor tag. To retrieve the\
+        \ next page of results please supply this cursor tag to resume the query from\
+        \ your previous result and get the next page. If there are no more results\
+        \ you will just retrieve an empty result. To return all results iterate through\
+        \ pages using cursor values until the `resultsExhausted` response field is\
+        \ true.\n\n"
       operationId: "omicsSearchVariantGroupsAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -10480,9 +10507,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getExpressionByLibraryAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -10589,9 +10617,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getExpressionByPreparationAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -10698,9 +10727,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getExpressionBySampleAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -10874,9 +10904,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getExpressionRunToLibraryPairsAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -10940,9 +10970,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getExpressionRunToPreparationPairsAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -11006,9 +11036,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getExpressionRunToSamplePairsAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -11087,9 +11117,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getFlowCytometryBySampleAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -11264,9 +11295,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getFlowCytometryRunToSamplePairsAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -11369,9 +11400,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getLibrariesBySamplesAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -11583,9 +11615,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getLibraryLinksToSamplesAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -11760,9 +11792,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getPreparationLinksToSamplesAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -11865,9 +11897,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getPreparationsBySamplesAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -12007,9 +12040,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getSamplesByLibrariesAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -12149,9 +12183,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getSamplesByPreparationsAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -12253,9 +12288,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getSamplesByStudyAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -12378,9 +12413,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getStudiesByLibrariesAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -12520,9 +12556,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getStudiesByPreparationsAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -12663,9 +12700,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getStudiesBySamplesAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -12839,9 +12877,10 @@ paths:
         \ to request multiple pages starting from an offset to the first result. You\
         \ can do this using the pageOffset query parameter. A value of 0 (the default)\
         \ instructs the server to return the first page of results, 100 would return\
-        \ a page of results starting from the 101st result and so on. To return all\
-        \ results iterate through pages using pageOffset values of `n * pageLimit`\
-        \ until the `resultsExhausted` response field is true.\n\n"
+        \ a page of results starting from the 101st result and so on. To retrieve\
+        \ all results, iterate through pages using `pageOffset` values of `n * pageLimit`\
+        \ until a page returns fewer results than the page limit, which indicates\
+        \ there are no more results.\n\n"
       operationId: "getStudiesByFilesAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -13060,9 +13099,10 @@ paths:
         \ starting from an offset to the first result. You can do this using the pageOffset\
         \ query parameter. A value of 0 (the default) instructs the server to return\
         \ the first page of results, 100 would return a page of results starting from\
-        \ the 101st result and so on. To return all results iterate through pages\
-        \ using pageOffset values of `n * pageLimit` until the `resultsExhausted`\
-        \ response field is true.\n\n"
+        \ the 101st result and so on. To retrieve all results, iterate through pages\
+        \ using `pageOffset` values of `n * pageLimit` until a page returns fewer\
+        \ results than the page limit, which indicates there are no more results.\n\
+        \n"
       operationId: "getVariantBySampleAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -13236,9 +13276,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "getVariantRunToSamplePairsAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -13453,8 +13493,8 @@ paths:
         \ reasons this endpoint returns results in \"pages\" of limited size together\
         \ with a `cursor` tag. To retrieve the next page of results please supply\
         \ this `cursor` tag to resume the query from your previous result and get\
-        \ the next page. If there are no more results you will just retrieve an empty\
-        \ result.\n\n"
+        \ the next page. To return all results iterate through pages using cursor\
+        \  values until the `resultsExhausted` response field is true.\n\n"
       operationId: "omicsSearchExpressionDataAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -13740,10 +13780,12 @@ paths:
         \ of GSCV002 query only the specific accessions GSF00494 and GSF000496)\n\n\
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;\
         \ separator.\n\n## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size together with a `cursor` tag. To retrieve the\
-        \ next page of results please supply this `cursor` tag to resume the query\
-        \ from your previous result and get the next page. If there are no more results\
-        \ you will just retrieve an empty result.\n\n"
+        \ in \"pages\" of limited size together with a cursor tag. To retrieve the\
+        \ next page of results please supply this cursor tag to resume the query from\
+        \ your previous result and get the next page. If there are no more results\
+        \ you will just retrieve an empty result. To return all results iterate through\
+        \ pages using cursor values until the `resultsExhausted` response field is\
+        \ true.\n\n"
       operationId: "omicsSearchExpressionGroupsAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -14214,10 +14256,12 @@ paths:
         \ of GSCV002 query only the specific accessions GSF00494 and GSF000496)\n\n\
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;\
         \ separator.\n\n## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size together with a `cursor` tag. To retrieve the\
-        \ next page of results please supply this `cursor` tag to resume the query\
-        \ from your previous result and get the next page. If there are no more results\
-        \ you will just retrieve an empty result.\n\n"
+        \ in \"pages\" of limited size together with a cursor tag. To retrieve the\
+        \ next page of results please supply this cursor tag to resume the query from\
+        \ your previous result and get the next page. If there are no more results\
+        \ you will just retrieve an empty result. To return all results iterate through\
+        \ pages using cursor values until the `resultsExhausted` response field is\
+        \ true.\n\n"
       operationId: "omicsSearchFlowCytometryDataAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -14504,10 +14548,12 @@ paths:
         \ of GSCV002 query only the specific accessions GSF00494 and GSF000496)\n\n\
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;\
         \ separator.\n\n## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size together with a `cursor` tag. To retrieve the\
-        \ next page of results please supply this `cursor` tag to resume the query\
-        \ from your previous result and get the next page. If there are no more results\
-        \ you will just retrieve an empty result.\n\n"
+        \ in \"pages\" of limited size together with a cursor tag. To retrieve the\
+        \ next page of results please supply this cursor tag to resume the query from\
+        \ your previous result and get the next page. If there are no more results\
+        \ you will just retrieve an empty result. To return all results iterate through\
+        \ pages using cursor values until the `resultsExhausted` response field is\
+        \ true.\n\n"
       operationId: "omicsSearchFlowCytometryGroupsAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -14794,10 +14840,11 @@ paths:
         \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
         \ supplied to the parameter using the ; separator.\n\n## Paging\nFor performance\
         \ reasons this endpoint returns results in \"pages\" of limited size together\
-        \ with a `cursor` tag. To retrieve the next page of results please supply\
-        \ this `cursor` tag to resume the query from your previous result and get\
-        \ the next page. If there are no more results you will just retrieve an empty\
-        \ result.\n\n"
+        \ with a cursor tag. To retrieve the next page of results please supply this\
+        \ cursor tag to resume the query from your previous result and get the next\
+        \ page. If there are no more results you will just retrieve an empty result.\
+        \ To return all results iterate through pages using cursor values until the\
+        \ `resultsExhausted` response field is true.\n\n"
       operationId: "omicsSearchSamplesAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -15085,10 +15132,11 @@ paths:
         \ accessions GSF00494 and GSF000496)\n\nRules for multiple CHAIN_IDs can be\
         \ supplied to the parameter using the ; separator.\n\n## Paging\nFor performance\
         \ reasons this endpoint returns results in \"pages\" of limited size together\
-        \ with a `cursor` tag. To retrieve the next page of results please supply\
-        \ this `cursor` tag to resume the query from your previous result and get\
-        \ the next page. If there are no more results you will just retrieve an empty\
-        \ result.\n\n"
+        \ with a cursor tag. To retrieve the next page of results please supply this\
+        \ cursor tag to resume the query from your previous result and get the next\
+        \ page. If there are no more results you will just retrieve an empty result.\
+        \ To return all results iterate through pages using cursor values until the\
+        \ `resultsExhausted` response field is true.\n\n"
       operationId: "omicsSearchVariantDataAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -15374,10 +15422,12 @@ paths:
         \ of GSCV002 query only the specific accessions GSF00494 and GSF000496)\n\n\
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ;\
         \ separator.\n\n## Paging\nFor performance reasons this endpoint returns results\
-        \ in \"pages\" of limited size together with a `cursor` tag. To retrieve the\
-        \ next page of results please supply this `cursor` tag to resume the query\
-        \ from your previous result and get the next page. If there are no more results\
-        \ you will just retrieve an empty result.\n\n"
+        \ in \"pages\" of limited size together with a cursor tag. To retrieve the\
+        \ next page of results please supply this cursor tag to resume the query from\
+        \ your previous result and get the next page. If there are no more results\
+        \ you will just retrieve an empty result. To return all results iterate through\
+        \ pages using cursor values until the `resultsExhausted` response field is\
+        \ true.\n\n"
       operationId: "omicsSearchVariantGroupsAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -16265,10 +16315,11 @@ paths:
         \ to the first result. You can do this using the pageOffset query parameter.\
         \ A value of 0 (the default) instructs the server to return the first page\
         \ of results, 100 would return a page of results starting from the 101st result\
-        \ and so on. To return all results iterate through pages using pageOffset\
-        \ values of `n*pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n## List operation\n\nThis endpoint can be called with no `query` parameter.\
-        \ Doing so returns a list of all variant objects."
+        \ and so on. To retrieve all results, iterate through pages using `pageOffset`\
+        \ values of `n * pageLimit` until a page returns fewer results than the page\
+        \ limit, which indicates there are no more results.\n\n## List operation\n\
+        \nThis endpoint can be called with no `query` parameter. Doing so returns\
+        \ a list of all variant objects."
       operationId: "searchLibrariesAsCurator"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -16700,10 +16751,11 @@ paths:
         \ to the first result. You can do this using the pageOffset query parameter.\
         \ A value of 0 (the default) instructs the server to return the first page\
         \ of results, 100 would return a page of results starting from the 101st result\
-        \ and so on. To return all results iterate through pages using pageOffset\
-        \ values of `n*pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n## List operation\n\nThis endpoint can be called with no `query` parameter.\
-        \ Doing so returns a list of all variant objects."
+        \ and so on. To retrieve all results, iterate through pages using `pageOffset`\
+        \ values of `n * pageLimit` until a page returns fewer results than the page\
+        \ limit, which indicates there are no more results.\n\n## List operation\n\
+        \nThis endpoint can be called with no `query` parameter. Doing so returns\
+        \ a list of all variant objects."
       operationId: "searchLibrariesAsUser"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
@@ -21068,9 +21120,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "searchVariantRunsAsCurator"
       parameters:
       - description: "Unique identifier (accession) of the object."
@@ -21771,9 +21823,9 @@ paths:
         \ first result. You can do this using the pageOffset query parameter. A value\
         \ of 0 (the default) instructs the server to return the first page of results,\
         \ 100 would return a page of results starting from the 101st result and so\
-        \ on. To return all results iterate through pages using pageOffset values\
-        \ of `n * pageLimit` until the `resultsExhausted` response field is true.\n\
-        \n"
+        \ on. To retrieve all results, iterate through pages using `pageOffset` values\
+        \ of `n * pageLimit` until a page returns fewer results than the page limit,\
+        \ which indicates there are no more results.\n\n"
       operationId: "searchVariantRunsAsUser"
       parameters:
       - description: "Unique identifier (accession) of the object."
