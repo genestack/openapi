@@ -205,7 +205,7 @@ paths:
         Rules for multiple CHAIN_IDs can be supplied to the parameter using the ; separator.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n*pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
         ## List operation
 
