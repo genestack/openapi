@@ -16188,6 +16188,20 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ImportAFileRequest"
+          multipart/form-data:
+            schema:
+              type: "object"
+              properties:
+                studyAccession:
+                  type: "string"
+                dataClass:
+                  type: "string"
+                metadata:
+                  type: "string"
+                  format: "binary"
+                data:
+                  type: "string"
+                  format: "binary"
         required: false
       responses:
         "200":
