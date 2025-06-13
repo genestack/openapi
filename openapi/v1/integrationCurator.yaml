@@ -740,11 +740,7 @@ paths:
       responses:
         "200":
           content: {}
-          description: Not all signal data were linked to the samples.
-        "204":
-          content: {}
-          description: All signal data were linked to the samples from the specified
-            sample group.
+          description: Returned both for partial and full linking. A short message body is included indicating status.
         "400":
           content: {}
           description: "Sample group, signal group or samples to the link were not\
@@ -1456,11 +1452,7 @@ paths:
       responses:
         "200":
           content: {}
-          description: Not all signal data were linked to the samples.
-        "204":
-          content: {}
-          description: All signal data were linked to the samples from the specified
-            sample group.
+          description: Returned both for partial and full linking. A short message body is included indicating status.
         "401":
           content: {}
           description: |-
@@ -1927,7 +1919,7 @@ paths:
       responses:
         "204":
           content: {}
-          description: Link created.
+          description: Returned both for partial and full linking. No content body is provided in either case.
         "400":
           content: {}
           description: Link cannot be created.
@@ -2261,7 +2253,7 @@ paths:
       responses:
         "204":
           content: {}
-          description: Link created.
+          description: Returned both for partial and full linking. No content body is provided in either case.
         "400":
           content: {}
           description: Link cannot be created.
@@ -3914,7 +3906,7 @@ paths:
       responses:
         "200":
           content: {}
-          description: Not all signal data were linked to the samples.
+          description: Returned both for partial and full linking. A short message body is included indicating status.
         "204":
           content: {}
           description: All signal data were linked to the samples from the specified
