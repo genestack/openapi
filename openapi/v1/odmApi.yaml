@@ -16077,6 +16077,17 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ImportMetadataRequest"
+          multipart/form-data:
+            schema:
+              type: "object"
+              properties:
+                studyAccession:
+                  type: "string"
+                templateId:
+                  type: "string"
+                metadata:
+                  type: "string"
+                  format: "binary"
         required: false
       responses:
         "200":
