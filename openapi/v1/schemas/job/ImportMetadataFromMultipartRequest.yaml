@@ -1,0 +1,12 @@
+properties:
+  studyAccession:
+    type: string
+    example: GSF1234567
+    description: This parameter is needed for organisation files on S3 and a separate endpoint should be used for linkage to a study.
+  templateId:
+    example: GSF334953
+    type: string
+  metadata:
+    type: string
+    format: binary
+type: object

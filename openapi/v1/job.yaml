@@ -146,6 +146,9 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ImportMetadataRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -187,6 +190,9 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ImportMetadataRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -230,15 +236,7 @@ paths:
               $ref: "#/components/schemas/ImportMetadataRequest"
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                studyAccession:
-                  type: string
-                templateId:
-                  type: string
-                metadata:
-                  type: string
-                  format: binary
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -498,6 +496,8 @@ components:
       $ref: "./schemas/job/ExceptionTypeAndMessage.yaml"
     ImportMetadataRequest:
       $ref: "./schemas/job/ImportMetadataRequest.yaml"
+    ImportMetadataFromMultipartRequest:
+      $ref: "./schemas/job/ImportMetadataFromMultipartRequest.yaml"
     ImportSignalRunRequest:
       $ref: "./schemas/job/ImportSignalRunRequest.yaml"
     ImportExpressionSignalRunRequest:
