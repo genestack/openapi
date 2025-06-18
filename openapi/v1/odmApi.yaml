@@ -16025,7 +16025,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/libraries-from-file:
+  /api/v1/jobs/import/libraries/from-file:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -16089,7 +16089,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/preparations-from-file:
+  /api/v1/jobs/import/preparations/from-file:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -16150,7 +16150,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/samples-from-file:
+  /api/v1/jobs/import/samples/from-file:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\

@@ -164,7 +164,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /api/v1/jobs/import/libraries-from-file:
+  /api/v1/jobs/import/libraries/from-file:
     post:
       description: |2
 
@@ -240,7 +240,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /api/v1/jobs/import/preparations-from-file:
+  /api/v1/jobs/import/preparations/from-file:
     post:
       description: |2
 
@@ -313,7 +313,7 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
-  /api/v1/jobs/import/samples-from-file:
+  /api/v1/jobs/import/samples/from-file:
     post:
       description: |2
 
