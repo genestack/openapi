@@ -164,6 +164,38 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
+  /api/v1/jobs/import/libraries-from-file:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportLibrariesFromFile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import a group of library metadata objects from a TSV file
+      tags:
+        - Data import jobs
+      x-codegen-request-body-name: body
   /api/v1/jobs/import/preparations:
     post:
       description: |2
@@ -208,6 +240,38 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
+  /api/v1/jobs/import/preparations-from-file:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportPreparationsFromFile
+      requestBody:
+        content:
+           multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import a group of preparation metadata objects from a TSV file
+      tags:
+        - Data import jobs
+      x-codegen-request-body-name: body
   /api/v1/jobs/import/samples:
     post:
       description: |2
@@ -234,9 +298,6 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ImportMetadataRequest"
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -251,6 +312,38 @@ paths:
       summary: Import a group of sample metadata objects from a TSV file
       tags:
       - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/samples-from-file:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportSamplesFromFile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import a group of sample metadata objects from a TSV file
+      tags:
+        - Data import jobs
       x-codegen-request-body-name: body
   /api/v1/jobs/import/study:
     post:
