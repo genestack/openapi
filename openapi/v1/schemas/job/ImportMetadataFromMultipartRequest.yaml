@@ -1,12 +1,15 @@
 properties:
-  studyAccession:
+  studyId:
     type: string
     example: GSF1234567
-    description: This parameter is needed for organisation files on S3 and a separate endpoint should be used for linkage to a study.
+    description: The ID (accession) of the study for organising files in the internal storage; linking to the target entity must be done through a separate endpoint.
   templateId:
     example: GSF334953
     type: string
   metadata:
     type: string
     format: binary
+required:
+  - studyId
+  - metadata
 type: object
