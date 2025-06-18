@@ -1,0 +1,21 @@
+properties:
+  studyId:
+    type: string
+    example: GSF1234567
+    description: The ID (accession) of the study for organising files in the internal storage; linking to the target entity must be done through a separate endpoint.
+  metadata:
+    type: string
+    format: binary
+  data:
+    type: string
+    format: binary
+  templateId:
+    example: GSF334953
+    type: string
+  previousVersion:
+    example: GSF334953
+    type: string
+required:
+  - studyId
+  - data
+type: object
