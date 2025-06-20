@@ -94,7 +94,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/ImportExpressionSignalRunFromFileRequest"
+              $ref: "#/components/schemas/ImportExpressionSignalRunFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -548,18 +548,7 @@ paths:
               $ref: "#/components/schemas/ImportAFileRequest"
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                studyAccession:
-                  type: string
-                dataClass:
-                  type: string
-                metadata:
-                  type: string
-                  format: binary
-                data:
-                  type: string
-                  format: binary
+              $ref: "#/components/schemas/ImportAFileFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -574,6 +563,51 @@ paths:
       summary: Import file as an attachment
       tags:
       - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/file/from-file:
+    post:
+      description: |-
+        In order to import a file as an attachment to a study, please fill in the following fields:
+
+        * `data` - a file to import as an attachment.
+        The file will be associated with a study and will be searchable by its name and metadata.
+        * `metadata` - an optional metadata file to be used as the original metadata
+        for the created objects. The file must contain a single record describing the uploaded attachment.
+        * `studyAccession` - an accession of a study the file will be associated with.
+        * `dataClass` - file data class with the following possible values: `Bulk
+        transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
+        pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
+        `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
+        `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
+        fluid counts`, `Nanopore`, `Flow Cytometry (FCS)`, `Document`, `Other`.
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "accession": "GSF1234567"
+        }
+        ```
+      operationId: startImportAFileFromFile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportAFileFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import file as an attachment
+      tags:
+        - Data import jobs
       x-codegen-request-body-name: body
   /api/v1/jobs/{jobExecId}/info:
     get:
@@ -691,10 +725,12 @@ components:
       $ref: "./schemas/job/ImportSignalRunFomMultipartRequest.yaml"
     ImportExpressionSignalRunRequest:
       $ref: "./schemas/job/ImportExpressionSignalRunRequest.yaml"
-    ImportExpressionSignalRunFromFileRequest:
-        $ref: "./schemas/job/ImportExpressionSignalRunFromFileRequest.yaml"
+    ImportExpressionSignalRunFromMultipartRequest:
+        $ref: "./schemas/job/ImportExpressionSignalRunFromMultipartRequest.yaml"
     ImportAFileRequest:
       $ref: "./schemas/job/ImportAFileRequest.yaml"
+    ImportAFileFromMultipartRequest:
+      $ref: "./schemas/job/ImportAFileFromMultipartRequest.yaml"
     Info:
       $ref: "./schemas/job/Info.yaml"
     JobRuntimeError:
