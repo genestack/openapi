@@ -83,7 +83,7 @@ r-api-client:
     # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
-        apt install -y --allow-downgrades build-essential libssl-dev libcurl4-gnutls-dev curl libcom-err2=1.47.2-1+b1 && \
+        apt install -y build-essential libssl-dev libcurl4-gnutls-dev curl && \
         Rscript requirements.R
 
     COPY +build/generated generated
