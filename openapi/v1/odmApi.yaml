@@ -43,6 +43,7 @@ tags:
 - name: "Study integration as User"
 - name: "Variant integration as User"
 - name: "Data import jobs"
+- name: "Data import via direct file upload"
 - name: "Job operations"
 - name: "Library SPoT as Curator"
 - name: "Library SPoT as User"
@@ -15949,7 +15950,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/expression/from-file:
+  /api/v1/jobs/import/expression/multipart:
     post:
       description: "## Data\n This operation necessitates the URL of a tabular data\
         \ file, which must be either in TSV or GCT 1.2 format. Consult the user guide\
@@ -15992,7 +15993,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Import any tabular data from TSV or GCT files"
       tags:
-      - "Data import jobs"
+      - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/flow-cytometry:
     post:
@@ -16032,7 +16033,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/flow-cytometry/from-file:
+  /api/v1/jobs/import/flow-cytometry/multipart:
     post:
       description: "This operation necessitates the URL of a gated flow cytometry\
         \ data file, which must be in FACS format.\nConsult the user guide for a comprehensive\
@@ -16059,7 +16060,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Import flow-cytometry data and metadata from FACS and TSV files"
       tags:
-      - "Data import jobs"
+      - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/libraries:
     post:
@@ -16099,7 +16100,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/libraries/from-file:
+  /api/v1/jobs/import/libraries/multipart:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -16123,7 +16124,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Import a group of library metadata objects from a TSV file"
       tags:
-      - "Data import jobs"
+      - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/preparations:
     post:
@@ -16160,7 +16161,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/preparations/from-file:
+  /api/v1/jobs/import/preparations/multipart:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -16184,7 +16185,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Import a group of preparation metadata objects from a TSV file"
       tags:
-      - "Data import jobs"
+      - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/samples:
     post:
@@ -16221,7 +16222,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/samples/from-file:
+  /api/v1/jobs/import/samples/multipart:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -16245,7 +16246,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Import a group of sample metadata objects from a TSV file"
       tags:
-      - "Data import jobs"
+      - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/study:
     post:
@@ -16317,7 +16318,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/variant/from-file:
+  /api/v1/jobs/import/variant/multipart:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
@@ -16341,7 +16342,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Import variation data and metadata from VCF and TSV files"
       tags:
-      - "Data import jobs"
+      - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
   /api/v1/jobs/import/file:
     post:
@@ -16369,9 +16370,6 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ImportAFileRequest"
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportAFileFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -16387,7 +16385,7 @@ paths:
       tags:
       - "Data import jobs"
       x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/file/from-file:
+  /api/v1/jobs/import/file/multipart:
     post:
       description: "In order to import a file as an attachment to a study, please\
         \ fill in the following fields:\n\n* `data` - a file to import as an attachment.\n\
@@ -16424,7 +16422,7 @@ paths:
       - Genestack-API-Token: []
       summary: "Import file as an attachment"
       tags:
-      - "Data import jobs"
+      - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
   /api/v1/jobs/{jobExecId}/info:
     get:
