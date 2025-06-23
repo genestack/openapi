@@ -15974,7 +15974,7 @@ paths:
         \ is selected, zeros in the file will be ignored, thus conserving time and\
         \ space. This option is particularly useful for handling very sparse data\
         \ such as Single Cell data."
-      operationId: "startImportExpressionFromFile"
+      operationId: "startImportExpressionMultipart"
       requestBody:
         content:
           multipart/form-data:
@@ -16041,7 +16041,7 @@ paths:
         \ in FCS format use expression endpoint.\n\nWhen job finishes successfully\
         \ the following **result** object\ncan be obtained using `GET /job/{id}/output`\
         \ request:\n\n```\n{\n    \"groupAccession\": \"GSF1234567\"\n}\n```"
-      operationId: "startImportFlowCytometryFromFile"
+      operationId: "startImportFlowCytometryMultipart"
       requestBody:
         content:
           multipart/form-data:
@@ -16105,7 +16105,7 @@ paths:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportLibrariesFromFile"
+      operationId: "startImportLibrariesMultipart"
       requestBody:
         content:
           multipart/form-data:
@@ -16166,7 +16166,7 @@ paths:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportPreparationsFromFile"
+      operationId: "startImportPreparationsMultipart"
       requestBody:
         content:
           multipart/form-data:
@@ -16227,7 +16227,7 @@ paths:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportSamplesFromFile"
+      operationId: "startImportSamplesMultipart"
       requestBody:
         content:
           multipart/form-data:
@@ -16323,7 +16323,7 @@ paths:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n    "
-      operationId: "startImportVariantFromFile"
+      operationId: "startImportVariantMultipart"
       requestBody:
         content:
           multipart/form-data:
@@ -16403,7 +16403,7 @@ paths:
         When job finishes successfully the following **result** object can be obtained\
         \ using `GET /job/{id}/output` request:\n\n```\n{\n    \"accession\": \"GSF1234567\"\
         \n}\n```"
-      operationId: "startImportAFileFromFile"
+      operationId: "startImportAFileMultipart"
       requestBody:
         content:
           multipart/form-data:

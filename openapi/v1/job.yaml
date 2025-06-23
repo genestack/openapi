@@ -90,7 +90,7 @@ paths:
          * Header: the first line is treated as table header that contains attribute names
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
-      operationId: startImportExpressionFromFile
+      operationId: startImportExpressionMultipart
       requestBody:
         content:
           multipart/form-data:
@@ -171,7 +171,7 @@ paths:
             "groupAccession": "GSF1234567"
         }
         ```
-      operationId: startImportFlowCytometryFromFile
+      operationId: startImportFlowCytometryMultipart
       requestBody:
         content:
           multipart/form-data:
@@ -247,7 +247,7 @@ paths:
             "groupAccession": "GSF1234567"
         }
         ```
-      operationId: startImportLibrariesFromFile
+      operationId: startImportLibrariesMultipart
       requestBody:
         content:
           multipart/form-data:
@@ -320,7 +320,7 @@ paths:
             "groupAccession": "GSF1234567"
         }
         ```
-      operationId: startImportPreparationsFromFile
+      operationId: startImportPreparationsMultipart
       requestBody:
         content:
            multipart/form-data:
@@ -393,7 +393,7 @@ paths:
             "groupAccession": "GSF1234567"
         }
         ```
-      operationId: startImportSamplesFromFile
+      operationId: startImportSamplesMultipart
       requestBody:
         content:
           multipart/form-data:
@@ -495,7 +495,7 @@ paths:
       description: "\nWhen job finishes successfully the following **result** object\
         \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n    "
-      operationId: startImportVariantFromFile
+      operationId: startImportVariantMultipart
       requestBody:
         content:
           multipart/form-data:
@@ -586,7 +586,7 @@ paths:
             "accession": "GSF1234567"
         }
         ```
-      operationId: startImportAFileFromFile
+      operationId: startImportAFileMultipart
       requestBody:
         content:
           multipart/form-data:
