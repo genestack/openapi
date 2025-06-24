@@ -15991,7 +15991,8 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Import any tabular data from TSV or GCT files"
+      summary: "Import any tabular data from TSV or GCT files via multipart/form-data\
+        \ upload"
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
@@ -16058,7 +16059,8 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Import flow-cytometry data and metadata from FACS and TSV files"
+      summary: "Import flow-cytometry data and metadata from FACS and TSV files via\
+        \ multipart/form-data upload"
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
@@ -16122,7 +16124,8 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Import a group of library metadata objects from a TSV file"
+      summary: "Import a group of library metadata objects from a TSV file via multipart/form-data\
+        \ upload"
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
@@ -16183,7 +16186,8 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Import a group of preparation metadata objects from a TSV file"
+      summary: "Import a group of preparation metadata objects from a TSV file via\
+        \ multipart/form-data upload"
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
@@ -16244,7 +16248,8 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Import a group of sample metadata objects from a TSV file"
+      summary: "Import a group of sample metadata objects from a TSV file via multipart/form-data\
+        \ upload"
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
@@ -16340,7 +16345,8 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Import variation data and metadata from VCF and TSV files"
+      summary: "Import variation data and metadata from VCF and TSV files via multipart/form-data\
+        \ upload"
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
@@ -16420,7 +16426,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: "Import file as an attachment"
+      summary: "Import file as an attachment via multipart/form-data upload"
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
