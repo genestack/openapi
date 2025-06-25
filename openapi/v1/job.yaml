@@ -29,6 +29,7 @@ info:
   version: default-released
 tags:
 - name: Data import jobs
+- name: Data import via direct file upload
 - name: Job operations
 paths:
   /api/v1/jobs/import/expression:
@@ -75,6 +76,41 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
+  /api/v1/jobs/import/expression/multipart:
+    post:
+      description: |-
+        ## Data
+         This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
+
+        ## Metadata
+         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
+        ## Metadata file format
+         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
+         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Header: the first line is treated as table header that contains attribute names
+         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+         * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
+      operationId: startImportExpressionMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportExpressionSignalRunFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: []
+        - Genestack-API-Token: []
+      summary: Import any tabular data from TSV or GCT files via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
+      x-codegen-request-body-name: body
   /api/v1/jobs/import/flow-cytometry:
     post:
       description: |-
@@ -120,6 +156,42 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
+  /api/v1/jobs/import/flow-cytometry/multipart:
+    post:
+      description: |-
+        This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
+        Consult the user guide for a comprehensive understanding of the file content requirements.
+        For flow cytometry data in FCS format use expression endpoint.
+
+        When job finishes successfully the following **result** object
+        can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportFlowCytometryMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportSignalRunFomMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import flow-cytometry data and metadata from FACS and TSV files via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
+      x-codegen-request-body-name: body
   /api/v1/jobs/import/libraries:
     post:
       description: |2
@@ -146,6 +218,9 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ImportMetadataRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -160,6 +235,38 @@ paths:
       summary: Import a group of library metadata objects from a TSV file
       tags:
       - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/libraries/multipart:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportLibrariesMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import a group of library metadata objects from a TSV file via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
       x-codegen-request-body-name: body
   /api/v1/jobs/import/preparations:
     post:
@@ -202,6 +309,38 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
+  /api/v1/jobs/import/preparations/multipart:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportPreparationsMultipart
+      requestBody:
+        content:
+           multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import a group of preparation metadata objects from a TSV file via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
+      x-codegen-request-body-name: body
   /api/v1/jobs/import/samples:
     post:
       description: |2
@@ -242,6 +381,38 @@ paths:
       summary: Import a group of sample metadata objects from a TSV file
       tags:
       - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/samples/multipart:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportSamplesMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import a group of sample metadata objects from a TSV file via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
       x-codegen-request-body-name: body
   /api/v1/jobs/import/study:
     post:
@@ -319,6 +490,32 @@ paths:
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
+  /api/v1/jobs/import/variant/multipart:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n    "
+      operationId: startImportVariantMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportSignalRunFomMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import variation data and metadata from VCF and TSV files via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
+      x-codegen-request-body-name: body
   /api/v1/jobs/import/file:
     post:
       description: |-
@@ -364,6 +561,51 @@ paths:
       summary: Import file as an attachment
       tags:
       - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/file/multipart:
+    post:
+      description: |-
+        In order to import a file as an attachment to a study, please fill in the following fields:
+
+        * `data` - a file to import as an attachment.
+        The file will be associated with a study and will be searchable by its name and metadata.
+        * `metadata` - an optional metadata file to be used as the original metadata
+        for the created objects. The file must contain a single record describing the uploaded attachment.
+        * `studyAccession` - an accession of a study the file will be associated with.
+        * `dataClass` - file data class with the following possible values: `Bulk
+        transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
+        pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
+        `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
+        `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
+        fluid counts`, `Nanopore`, `Flow Cytometry (FCS)`, `Document`, `Other`.
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "accession": "GSF1234567"
+        }
+        ```
+      operationId: startImportAFileMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportAFileFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import file as an attachment via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
       x-codegen-request-body-name: body
   /api/v1/jobs/{jobExecId}/info:
     get:
@@ -473,12 +715,20 @@ components:
       $ref: "./schemas/job/ExceptionTypeAndMessage.yaml"
     ImportMetadataRequest:
       $ref: "./schemas/job/ImportMetadataRequest.yaml"
+    ImportMetadataFromMultipartRequest:
+      $ref: "./schemas/job/ImportMetadataFromMultipartRequest.yaml"
     ImportSignalRunRequest:
       $ref: "./schemas/job/ImportSignalRunRequest.yaml"
+    ImportSignalRunFomMultipartRequest:
+      $ref: "./schemas/job/ImportSignalRunFomMultipartRequest.yaml"
     ImportExpressionSignalRunRequest:
       $ref: "./schemas/job/ImportExpressionSignalRunRequest.yaml"
+    ImportExpressionSignalRunFromMultipartRequest:
+        $ref: "./schemas/job/ImportExpressionSignalRunFromMultipartRequest.yaml"
     ImportAFileRequest:
       $ref: "./schemas/job/ImportAFileRequest.yaml"
+    ImportAFileFromMultipartRequest:
+      $ref: "./schemas/job/ImportAFileFromMultipartRequest.yaml"
     Info:
       $ref: "./schemas/job/Info.yaml"
     JobRuntimeError:
