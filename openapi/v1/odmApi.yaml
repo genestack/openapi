@@ -15922,7 +15922,7 @@ paths:
         \ such as Single Cell data."
       operationId: "startImportExpression"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -16006,7 +16006,7 @@ paths:
         \ request:\n\n```\n{\n    \"groupAccession\": \"GSF1234567\"\n}\n```"
       operationId: "startImportFlowCytometry"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -16071,7 +16071,7 @@ paths:
         groupAccession\": \"GSF1234567\"\n}\n```\n"
       operationId: "startImportLibraries"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -16136,7 +16136,7 @@ paths:
         groupAccession\": \"GSF1234567\"\n}\n```\n"
       operationId: "startImportPreparations"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -16191,6 +16191,70 @@ paths:
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/cells:
+    post:
+      description: "\nThe endpoint initiates a job to import cell data and creates\
+        \ a Cell Group to manage it.\n\nWhen job finishes successfully the following\
+        \ **result** object can be obtained using `GET /job/{id}/output` request:\n\
+        \n```\n{\n    \"groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportCells"
+      parameters:
+      - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: "query"
+        name: "allow_dups"
+        schema:
+          default: false
+          type: "boolean"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportCellsRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of cell data objects from a TSV file"
+      tags:
+      - "Data import jobs"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/cells/multipart:
+    post:
+      description: "\nThe endpoint initiates a job to import cell data and creates\
+        \ a Cell Group to manage it.\n\nWhen job finishes successfully the following\
+        \ **result** object can be obtained using `GET /job/{id}/output` request:\n\
+        \n```\n{\n    \"groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportCellsMultipart"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportCellsFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of cell data objects from a TSV file via multipart/form-data\
+        \ upload"
+      tags:
+      - "Data import via direct file upload"
+      x-codegen-request-body-name: "body"
   /api/v1/jobs/import/samples:
     post:
       description: "\nWhen job finishes successfully the following **result** object\
@@ -16198,7 +16262,7 @@ paths:
         groupAccession\": \"GSF1234567\"\n}\n```\n"
       operationId: "startImportSamples"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -16260,7 +16324,7 @@ paths:
         groupAccession\": \"GSF1234567\"\n}\n```\n"
       operationId: "startImportStudy"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -16295,7 +16359,7 @@ paths:
         groupAccession\": \"GSF1234567\"\n}\n```\n    "
       operationId: "startImportVariant"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -22369,6 +22433,10 @@ components:
       $ref: "./schemas/integration/FilterOption.yaml"
     ExceptionTypeAndMessage:
       $ref: "./schemas/job/ExceptionTypeAndMessage.yaml"
+    ImportCellsRequest:
+      $ref: "./schemas/job/ImportCellsRequest.yaml"
+    ImportCellsFromMultipartRequest:
+      $ref: "./schemas/job/ImportCellsFromMultipartRequest.yaml"
     ImportMetadataRequest:
       $ref: "./schemas/job/ImportMetadataRequest.yaml"
     ImportMetadataFromMultipartRequest:
@@ -22462,7 +22530,7 @@ components:
       type: "apiKey"
   parameters:
     AllowDuplicates:
-      description: "Load duplicate data: the data from the links has already been\
+      description: "Load duplicate data: the data from the link(s) has already been\
         \ previously loaded into ODM, and for **testing purposes**, you need to load\
         \ this data again."
       in: "query"
