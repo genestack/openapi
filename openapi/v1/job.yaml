@@ -32,151 +32,32 @@ tags:
 - name: Data import via direct file upload
 - name: Job operations
 paths:
-  /api/v1/jobs/import/expression:
+  /api/v1/jobs/import/study:
     post:
-      description: |-
-        ## Data
-         This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
+      description: |2
 
-        ## Metadata
-         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
-        ## Metadata file format
-         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
-         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
-         * Header: the first line is treated as table header that contains attribute names
-         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
-         * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
-      operationId: startImportExpression
-      parameters:
-      - description: "Load duplicate data: the data from the link(s) has already been\
-          \ previously loaded into ODM, and for **testing purposes**, you need to\
-          \ load this data again."
-        in: query
-        name: allow_dups
-        schema:
-          default: false
-          type: boolean
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ImportExpressionSignalRunRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: successful operation
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Import any tabular data from TSV or GCT files
-      tags:
-      - Data import jobs
-      x-codegen-request-body-name: body
-  /api/v1/jobs/import/expression/multipart:
-    post:
-      description: |-
-        ## Data
-         This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
-
-        ## Metadata
-         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
-        ## Metadata file format
-         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
-         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
-         * Header: the first line is treated as table header that contains attribute names
-         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
-         * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
-      operationId: startImportExpressionMultipart
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportExpressionSignalRunFromMultipartRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: successful operation
-      security:
-        - Access-token: []
-        - Genestack-API-Token: []
-      summary: Import any tabular data from TSV or GCT files via multipart/form-data upload
-      tags:
-        - Data import via direct file upload
-      x-codegen-request-body-name: body
-  /api/v1/jobs/import/flow-cytometry:
-    post:
-      description: |-
-        This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
-        Consult the user guide for a comprehensive understanding of the file content requirements.
-        For flow cytometry data in FCS format use expression endpoint.
-
-        When job finishes successfully the following **result** object
-        can be obtained using `GET /job/{id}/output` request:
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
 
         ```
         {
             "groupAccession": "GSF1234567"
         }
         ```
-      operationId: startImportFlowCytometry
+      operationId: startImportStudy
       parameters:
-      - description: "Load duplicate data: the data from the link(s) has already been\
+        - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
-        in: query
-        name: allow_dups
-        schema:
-          default: false
-          type: boolean
+          in: query
+          name: allow_dups
+          schema:
+            default: false
+            type: boolean
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ImportSignalRunRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: successful operation
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Import flow-cytometry data and metadata from FACS and TSV files
-      tags:
-      - Data import jobs
-      x-codegen-request-body-name: body
-  /api/v1/jobs/import/flow-cytometry/multipart:
-    post:
-      description: |-
-        This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
-        Consult the user guide for a comprehensive understanding of the file content requirements.
-        For flow cytometry data in FCS format use expression endpoint.
-
-        When job finishes successfully the following **result** object
-        can be obtained using `GET /job/{id}/output` request:
-
-        ```
-        {
-            "groupAccession": "GSF1234567"
-        }
-        ```
-      operationId: startImportFlowCytometryMultipart
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportSignalRunFomMultipartRequest"
+              $ref: "#/components/schemas/ImportMetadataRequest"
         required: false
       responses:
         "200":
@@ -188,7 +69,80 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import flow-cytometry data and metadata from FACS and TSV files via multipart/form-data upload
+      summary: Import study metadata from a TSV file
+      tags:
+        - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/samples:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportSamples
+      parameters:
+        - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+          in: query
+          name: allow_dups
+          schema:
+            default: false
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import a group of sample metadata objects from a TSV file
+      tags:
+        - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/samples/multipart:
+    post:
+      description: |2
+
+        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportSamplesMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import a group of sample metadata objects from a TSV file via multipart/form-data upload
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
@@ -418,64 +372,35 @@ paths:
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
-  /api/v1/jobs/import/samples:
+  /api/v1/jobs/import/expression:
     post:
-      description: |2
+      description: |-
+        ## Data
+         This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
-
-        ```
-        {
-            "groupAccession": "GSF1234567"
-        }
-        ```
-      operationId: startImportSamples
+        ## Metadata
+         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
+        ## Metadata file format
+         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
+         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Header: the first line is treated as table header that contains attribute names
+         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+         * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
+      operationId: startImportExpression
       parameters:
-      - description: "Load duplicate data: the data from the link(s) has already been\
+        - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
-        in: query
-        name: allow_dups
-        schema:
-          default: false
-          type: boolean
+          in: query
+          name: allow_dups
+          schema:
+            default: false
+            type: boolean
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ImportMetadataRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: successful operation
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Import a group of sample metadata objects from a TSV file
-      tags:
-      - Data import jobs
-      x-codegen-request-body-name: body
-  /api/v1/jobs/import/samples/multipart:
-    post:
-      description: |2
-
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
-
-        ```
-        {
-            "groupAccession": "GSF1234567"
-        }
-        ```
-      operationId: startImportSamplesMultipart
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+              $ref: "#/components/schemas/ImportExpressionSignalRunRequest"
         required: false
       responses:
         "200":
@@ -487,36 +412,30 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import a group of sample metadata objects from a TSV file via multipart/form-data upload
+      summary: Import any tabular data from TSV or GCT files
       tags:
-        - Data import via direct file upload
+        - Data import jobs
       x-codegen-request-body-name: body
-  /api/v1/jobs/import/study:
+  /api/v1/jobs/import/expression/multipart:
     post:
-      description: |2
+      description: |-
+        ## Data
+         This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
-
-        ```
-        {
-            "groupAccession": "GSF1234567"
-        }
-        ```
-      operationId: startImportStudy
-      parameters:
-      - description: "Load duplicate data: the data from the link(s) has already been\
-          \ previously loaded into ODM, and for **testing purposes**, you need to\
-          \ load this data again."
-        in: query
-        name: allow_dups
-        schema:
-          default: false
-          type: boolean
+        ## Metadata
+         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
+        ## Metadata file format
+         * Extension: any, `.zip` and `.gz` extensions are treated as archives and get decompressed
+         * Format: plain text, Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Header: the first line is treated as table header that contains attribute names
+         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+         * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
+      operationId: startImportExpressionMultipart
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
-              $ref: "#/components/schemas/ImportMetadataRequest"
+              $ref: "#/components/schemas/ImportExpressionSignalRunFromMultipartRequest"
         required: false
       responses:
         "200":
@@ -526,11 +445,11 @@ paths:
                 $ref: "#/components/schemas/Info"
           description: successful operation
       security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Import study metadata from a TSV file
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import any tabular data from TSV or GCT files via multipart/form-data upload
       tags:
-      - Data import jobs
+        - Data import via direct file upload
       x-codegen-request-body-name: body
   /api/v1/jobs/import/variant:
     post:
@@ -590,6 +509,87 @@ paths:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
       summary: Import variation data and metadata from VCF and TSV files via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/flow-cytometry:
+    post:
+      description: |-
+        This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
+        Consult the user guide for a comprehensive understanding of the file content requirements.
+        For flow cytometry data in FCS format use expression endpoint.
+
+        When job finishes successfully the following **result** object
+        can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportFlowCytometry
+      parameters:
+        - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+          in: query
+          name: allow_dups
+          schema:
+            default: false
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportSignalRunRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import flow-cytometry data and metadata from FACS and TSV files
+      tags:
+        - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/flow-cytometry/multipart:
+    post:
+      description: |-
+        This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
+        Consult the user guide for a comprehensive understanding of the file content requirements.
+        For flow cytometry data in FCS format use expression endpoint.
+
+        When job finishes successfully the following **result** object
+        can be obtained using `GET /job/{id}/output` request:
+
+        ```
+        {
+            "groupAccession": "GSF1234567"
+        }
+        ```
+      operationId: startImportFlowCytometryMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportSignalRunFomMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import flow-cytometry data and metadata from FACS and TSV files via multipart/form-data upload
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
