@@ -15896,6 +15896,294 @@ paths:
       summary: "Retrieve file's metadata by study ID"
       tags:
       - "Files integration as User"
+  /api/v1/jobs/import/study:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportStudy"
+      parameters:
+      - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: "query"
+        name: "allow_dups"
+        schema:
+          default: false
+          type: "boolean"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import study metadata from a TSV file"
+      tags:
+      - "Data import jobs"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/samples:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportSamples"
+      parameters:
+      - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: "query"
+        name: "allow_dups"
+        schema:
+          default: false
+          type: "boolean"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of sample metadata objects from a TSV file"
+      tags:
+      - "Data import jobs"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/samples/multipart:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportSamplesMultipart"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of sample metadata objects from a TSV file via multipart/form-data\
+        \ upload"
+      tags:
+      - "Data import via direct file upload"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/libraries:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportLibraries"
+      parameters:
+      - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: "query"
+        name: "allow_dups"
+        schema:
+          default: false
+          type: "boolean"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of library metadata objects from a TSV file"
+      tags:
+      - "Data import jobs"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/libraries/multipart:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportLibrariesMultipart"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of library metadata objects from a TSV file via multipart/form-data\
+        \ upload"
+      tags:
+      - "Data import via direct file upload"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/preparations:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportPreparations"
+      parameters:
+      - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: "query"
+        name: "allow_dups"
+        schema:
+          default: false
+          type: "boolean"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of preparation metadata objects from a TSV file"
+      tags:
+      - "Data import jobs"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/preparations/multipart:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportPreparationsMultipart"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of preparation metadata objects from a TSV file via\
+        \ multipart/form-data upload"
+      tags:
+      - "Data import via direct file upload"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/cells:
+    post:
+      description: "\nThe endpoint initiates a job to import cell data and creates\
+        \ a Cell Group to manage it.\n\nWhen job finishes successfully the following\
+        \ **result** object can be obtained using `GET /job/{id}/output` request:\n\
+        \n```\n{\n    \"groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportCells"
+      parameters:
+      - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: "query"
+        name: "allow_dups"
+        schema:
+          default: false
+          type: "boolean"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportCellsRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of cell data objects from a TSV file"
+      tags:
+      - "Data import jobs"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/cells/multipart:
+    post:
+      description: "\nThe endpoint initiates a job to import cell data and creates\
+        \ a Cell Group to manage it.\n\nWhen job finishes successfully the following\
+        \ **result** object can be obtained using `GET /job/{id}/output` request:\n\
+        \n```\n{\n    \"groupAccession\": \"GSF1234567\"\n}\n```\n"
+      operationId: "startImportCellsMultipart"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportCellsFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import a group of cell data objects from a TSV file via multipart/form-data\
+        \ upload"
+      tags:
+      - "Data import via direct file upload"
+      x-codegen-request-body-name: "body"
   /api/v1/jobs/import/expression:
     post:
       description: "## Data\n This operation necessitates the URL of a tabular data\
@@ -15922,7 +16210,7 @@ paths:
         \ such as Single Cell data."
       operationId: "startImportExpression"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -15996,6 +16284,68 @@ paths:
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/variant:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n    "
+      operationId: "startImportVariant"
+      parameters:
+      - description: "Load duplicate data: the data from the link(s) has already been\
+          \ previously loaded into ODM, and for **testing purposes**, you need to\
+          \ load this data again."
+        in: "query"
+        name: "allow_dups"
+        schema:
+          default: false
+          type: "boolean"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportSignalRunRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import variation data and metadata from VCF and TSV files"
+      tags:
+      - "Data import jobs"
+      x-codegen-request-body-name: "body"
+  /api/v1/jobs/import/variant/multipart:
+    post:
+      description: "\nWhen job finishes successfully the following **result** object\
+        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+        groupAccession\": \"GSF1234567\"\n}\n```\n    "
+      operationId: "startImportVariantMultipart"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportSignalRunFomMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: "successful operation"
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Import variation data and metadata from VCF and TSV files via multipart/form-data\
+        \ upload"
+      tags:
+      - "Data import via direct file upload"
+      x-codegen-request-body-name: "body"
   /api/v1/jobs/import/flow-cytometry:
     post:
       description: "This operation necessitates the URL of a gated flow cytometry\
@@ -16006,7 +16356,7 @@ paths:
         \ request:\n\n```\n{\n    \"groupAccession\": \"GSF1234567\"\n}\n```"
       operationId: "startImportFlowCytometry"
       parameters:
-      - description: "Load duplicate data: the data from the links has already been\
+      - description: "Load duplicate data: the data from the link(s) has already been\
           \ previously loaded into ODM, and for **testing purposes**, you need to\
           \ load this data again."
         in: "query"
@@ -16061,292 +16411,6 @@ paths:
       - Genestack-API-Token: []
       summary: "Import flow-cytometry data and metadata from FACS and TSV files via\
         \ multipart/form-data upload"
-      tags:
-      - "Data import via direct file upload"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/libraries:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportLibraries"
-      parameters:
-      - description: "Load duplicate data: the data from the links has already been\
-          \ previously loaded into ODM, and for **testing purposes**, you need to\
-          \ load this data again."
-        in: "query"
-        name: "allow_dups"
-        schema:
-          default: false
-          type: "boolean"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataRequest"
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import a group of library metadata objects from a TSV file"
-      tags:
-      - "Data import jobs"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/libraries/multipart:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportLibrariesMultipart"
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import a group of library metadata objects from a TSV file via multipart/form-data\
-        \ upload"
-      tags:
-      - "Data import via direct file upload"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/preparations:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportPreparations"
-      parameters:
-      - description: "Load duplicate data: the data from the links has already been\
-          \ previously loaded into ODM, and for **testing purposes**, you need to\
-          \ load this data again."
-        in: "query"
-        name: "allow_dups"
-        schema:
-          default: false
-          type: "boolean"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import a group of preparation metadata objects from a TSV file"
-      tags:
-      - "Data import jobs"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/preparations/multipart:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportPreparationsMultipart"
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import a group of preparation metadata objects from a TSV file via\
-        \ multipart/form-data upload"
-      tags:
-      - "Data import via direct file upload"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/samples:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportSamples"
-      parameters:
-      - description: "Load duplicate data: the data from the links has already been\
-          \ previously loaded into ODM, and for **testing purposes**, you need to\
-          \ load this data again."
-        in: "query"
-        name: "allow_dups"
-        schema:
-          default: false
-          type: "boolean"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import a group of sample metadata objects from a TSV file"
-      tags:
-      - "Data import jobs"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/samples/multipart:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportSamplesMultipart"
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataFromMultipartRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import a group of sample metadata objects from a TSV file via multipart/form-data\
-        \ upload"
-      tags:
-      - "Data import via direct file upload"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/study:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n"
-      operationId: "startImportStudy"
-      parameters:
-      - description: "Load duplicate data: the data from the links has already been\
-          \ previously loaded into ODM, and for **testing purposes**, you need to\
-          \ load this data again."
-        in: "query"
-        name: "allow_dups"
-        schema:
-          default: false
-          type: "boolean"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ImportMetadataRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import study metadata from a TSV file"
-      tags:
-      - "Data import jobs"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/variant:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n    "
-      operationId: "startImportVariant"
-      parameters:
-      - description: "Load duplicate data: the data from the links has already been\
-          \ previously loaded into ODM, and for **testing purposes**, you need to\
-          \ load this data again."
-        in: "query"
-        name: "allow_dups"
-        schema:
-          default: false
-          type: "boolean"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ImportSignalRunRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import variation data and metadata from VCF and TSV files"
-      tags:
-      - "Data import jobs"
-      x-codegen-request-body-name: "body"
-  /api/v1/jobs/import/variant/multipart:
-    post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
-        groupAccession\": \"GSF1234567\"\n}\n```\n    "
-      operationId: "startImportVariantMultipart"
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/ImportSignalRunFomMultipartRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Info"
-          description: "successful operation"
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: "Import variation data and metadata from VCF and TSV files via multipart/form-data\
-        \ upload"
       tags:
       - "Data import via direct file upload"
       x-codegen-request-body-name: "body"
@@ -22369,6 +22433,10 @@ components:
       $ref: "./schemas/integration/FilterOption.yaml"
     ExceptionTypeAndMessage:
       $ref: "./schemas/job/ExceptionTypeAndMessage.yaml"
+    ImportCellsRequest:
+      $ref: "./schemas/job/ImportCellsRequest.yaml"
+    ImportCellsFromMultipartRequest:
+      $ref: "./schemas/job/ImportCellsFromMultipartRequest.yaml"
     ImportMetadataRequest:
       $ref: "./schemas/job/ImportMetadataRequest.yaml"
     ImportMetadataFromMultipartRequest:
@@ -22462,7 +22530,7 @@ components:
       type: "apiKey"
   parameters:
     AllowDuplicates:
-      description: "Load duplicate data: the data from the links has already been\
+      description: "Load duplicate data: the data from the link(s) has already been\
         \ previously loaded into ODM, and for **testing purposes**, you need to load\
         \ this data again."
       in: "query"
