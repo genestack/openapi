@@ -1,0 +1,69 @@
+type: object
+required:
+  - cellId
+  - barcode
+  - sampleSourceId
+properties:
+  cellId:
+    type: string
+    description: "Unique cell identifier. Consists of a cell group accession and a cell barcode, separated by a hyphen"
+    example: "GSF123456-AAACCTGAGCGCTCCA-1"
+  barcode:
+    type: string
+    description: "Raw barcode of the cell"
+    example: "AAACCTGAGCGCTCCA-1"
+  sampleSourceId:
+    type: string
+    description: "Identifier of an origin object, such as a sample or a library, that this cell belongs to"
+    example: "SAMPLE_001"
+  cellType:
+    type: string
+    nullable: true
+    description: "Inferred or annotated type"
+    example: "T cell"
+  cluster:
+    type: string
+    nullable: true
+    description: "Clustering labels"
+    example: "leiden_res1"
+  nCounts:
+    type: integer
+    nullable: true
+    description: "Total UMI count (Unique Molecular Identifier)"
+    example: 1250
+  percentMito:
+    type: number
+    format: double
+    nullable: true
+    description: "Percentage of mitochondrial gene expression"
+    example: 5.2
+  umap:
+    type: array
+    items:
+      type: number
+      format: double
+    nullable: true
+    description: "Dimensionality reduction results (Uniform Manifold Approximation and Projection). Consists of two coordinates."
+    example: [1.23, 0.45]
+  pca:
+    type: array
+    items:
+      type: number
+      format: double
+    nullable: true
+    description: "Dimensionality reduction results (Principal Component Analysis results). Consists of two coordinates."
+    example: [0.12, 0.34]
+additionalProperties:
+  type: object
+  description: "Additional dynamic attributes for the cell"
+example:
+  cellId: "GSF123456-AAACCTGAGCGCTCCA-1"
+  barcode: "AAACCTGAGCGCTCCA-1"
+  sampleSourceId: "SAMPLE_001"
+  cellType: "T cell"
+  cluster: "leiden_res1"
+  nCounts: 1250
+  percentMito: 5.2
+  umap: [1.23, 0.45]
+  pca: [0.12, 0.34]
+  assay_custom: "10x 3' v2"

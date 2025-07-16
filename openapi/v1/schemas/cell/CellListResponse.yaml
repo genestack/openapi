@@ -1,0 +1,33 @@
+type: object
+properties:
+  data:
+    items:
+      $ref: "#/components/schemas/Cell"
+    type: array
+  cursor:
+    type: string
+components:
+  schemas:
+    Cell:
+      $ref: "./Cell.yaml"
+example:
+  cursor: "GSF123456-AAAGATGGTTCCTCCA-1"
+  data:
+    - cellId: "GSF123456-AAACCTGAGCGCTCCA-1"
+      barcode: "AAACCTGAGCGCTCCA-1"
+      sampleSourceId: "SAMPLE_001"
+      cellType: "T cell"
+      cluster: "leiden_res1"
+      nCounts: 1250
+      percentMito: 5.2
+      umap: [1.23, 0.45]
+      pca: [0.12, 0.34]
+      assay_custom: "10x 3' v2"
+    - cellId: "GSF222333-AAAGATGGTTCCTCCA-1"
+      barcode: "AAAGATGGTTCCTCCA-1"
+      sampleSourceId: "SAMPLE_001"
+      cellType: "naive B cell"
+      nCounts: 340
+      pca: [0.2, 2.8]
+      primary_custom: "True"
+      tissue_custom: "blood"
