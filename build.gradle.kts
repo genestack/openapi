@@ -40,7 +40,7 @@ tasks {
             "disallowAdditionalPropertiesIfNotPresent" to "false"
         )
     }
-    register("generateOdmApiR", GenerateTask::class) {
+    /*register("generateOdmApiR", GenerateTask::class) {
         generatorName.set("r")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
         outputDir.set("$rootDir/generated/r")
@@ -52,7 +52,7 @@ tasks {
             "packageVersion" to openApiVersion,
             "disallowAdditionalPropertiesIfNotPresent" to "false"
         )
-    }
+    }*/
     // Should be used in pre-commit
     register("mergeDefinitions", MergeDefinitions::class) {
         inputFiles = sourceFileList
@@ -61,6 +61,6 @@ tasks {
 
     val generateAll by registering(GradleBuild::class) {
         file("$rootDir/generated").deleteRecursively()
-        tasks = listOf("generateOdmApiPython", "generateOdmApiR")
+        tasks = listOf("generateOdmApiPython")
     }
 }
