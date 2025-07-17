@@ -72,6 +72,46 @@ python-api-client:
             twine upload dist/* -r ${PYPI_REPOSITORY_PUBLIC} && \
             pypi-clean.sh
 
+r-api-client:
+    FROM r-base:4.5.1
+    WORKDIR /app
+
+    CACHE /root/.cache
+
+    COPY requirements.R .
+
+    # Gcc and other stuff for R source packages building
+    RUN \
+        apt update && \
+        apt install -y build-essential libssl-dev libcurl4-gnutls-dev curl && \
+        Rscript requirements.R
+
+    COPY +build/generated generated
+    WORKDIR generated/r
+
+    # Test and build R client
+    RUN \
+        R CMD build . && \
+        R CMD check *.tar.gz --no-manual
+
+    ARG --required R_REGISTRY_RELEASES
+    ARG --required R_REGISTRY_SNAPSHOTS
+
+    ARG --required OPENAPI_VERSION
+    IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
+        ARG R_REGISTRY=${R_REGISTRY_RELEASES}
+    ELSE
+        ARG R_REGISTRY=${R_REGISTRY_SNAPSHOTS}
+    END
+
+    # Push R client
+    RUN --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+           export archive=$(find . | grep tar.gz | sed 's|./||') && \
+           curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
+              --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
+
 swagger:
     FROM openapi+swagger
 
@@ -106,8 +146,22 @@ docs:
                  --upload-file ${DOC_ARCHIVE} \
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-python/${DOC_ARCHIVE}
 
+    # Documentation for r client
+    WORKDIR /app/generated/r
+    RUN \
+        --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+            export DOC_ARCHIVE=odm-api-r-${OPENAPI_VERSION}.tar.gz && \
+            tar cf ${DOC_ARCHIVE} README.md docs/* && \
+            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
+                -H 'Content-Type: application/gzip' \
+                 --upload-file ${DOC_ARCHIVE} \
+                 ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
+
 main:
     BUILD +swagger
     BUILD +explorer
     BUILD +docs
+    BUILD +r-api-client
     BUILD +python-api-client

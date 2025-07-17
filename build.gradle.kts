@@ -36,11 +36,11 @@ tasks {
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
-            "packageVersion" to openApiVersion,
-            "disallowAdditionalPropertiesIfNotPresent" to "false"
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
-    /*register("generateOdmApiR", GenerateTask::class) {
+    register("generateOdmApiR", GenerateTask::class) {
         generatorName.set("r")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
         outputDir.set("$rootDir/generated/r")
@@ -49,10 +49,23 @@ tasks {
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
-            "packageVersion" to openApiVersion,
-            "disallowAdditionalPropertiesIfNotPresent" to "false"
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
-    }*/
+    }
+    register("generateOdmApiPostmanCollection", GenerateTask::class) {
+        generatorName.set("postman-collection")
+        inputSpec.set("${sourceDirectory}/odmApi.yaml")
+        outputDir.set("$rootDir/generated/postman-collection")
+        packageName.set("odm-api")
+        gitUserId.set("genestack")
+        gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
+        configOptions = mapOf(
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
+        )
+    }
     // Should be used in pre-commit
     register("mergeDefinitions", MergeDefinitions::class) {
         inputFiles = sourceFileList
@@ -61,6 +74,6 @@ tasks {
 
     val generateAll by registering(GradleBuild::class) {
         file("$rootDir/generated").deleteRecursively()
-        tasks = listOf("generateOdmApiPython")
+        tasks = listOf("generateOdmApiPython", "generateOdmApiR", "generateOdmApiPostmanCollection")
     }
 }
