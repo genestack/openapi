@@ -54,6 +54,7 @@ properties:
     description: "Dimensionality reduction results (Principal Component Analysis results). Consists of two coordinates."
     example: [0.12, 0.34]
   attributeMap:
+    type: object
     description: "Additional dynamic attributes for the cell as key-value pairs"
     example:
       customAttribute: "customValue"
