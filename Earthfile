@@ -146,19 +146,6 @@ docs:
                  --upload-file ${DOC_ARCHIVE} \
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-python/${DOC_ARCHIVE}
 
-    # Documentation for r client
-    WORKDIR /app/generated/r
-    RUN \
-        --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            export DOC_ARCHIVE=odm-api-r-${OPENAPI_VERSION}.tar.gz && \
-            tar cf ${DOC_ARCHIVE} README.md docs/* && \
-            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
-                -H 'Content-Type: application/gzip' \
-                 --upload-file ${DOC_ARCHIVE} \
-                 ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
-
 main:
     BUILD +swagger
     BUILD +explorer
