@@ -50,7 +50,7 @@ tasks {
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
             "packageVersion" to openApiVersion,
-            "disallowAdditionalPropertiesIfNotPresent" to "true"
+            "disallowAdditionalPropertiesIfNotPresent" to "false"
         )
     }
     // Should be used in pre-commit

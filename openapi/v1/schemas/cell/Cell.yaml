@@ -54,7 +54,16 @@ properties:
     description: "Dimensionality reduction results (Principal Component Analysis results). Consists of two coordinates."
     example: [0.12, 0.34]
 additionalProperties:
-  type: string
+  $ref: '#/components/schemas/AttributeValue'
+components:
+  schemas:
+    AttributeValue:
+      oneOf:
+        - type: string
+        - type: number
+        - type: integer
+        - type: boolean
+      description: "Dynamic attribute value that can be string, number, integer, or boolean"
 example:
   cellId: "GSF123456-AAACCTGAGCGCTCCA-1"
   barcode: "AAACCTGAGCGCTCCA-1"
