@@ -53,8 +53,7 @@ properties:
     nullable: true
     description: "Dimensionality reduction results (Principal Component Analysis results). Consists of two coordinates."
     example: [0.12, 0.34]
-#not supported by openapi-generator
-#additionalProperties: true
+additionalProperties: true
 example:
   cellId: "GSF123456-AAACCTGAGCGCTCCA-1"
   barcode: "AAACCTGAGCGCTCCA-1"
