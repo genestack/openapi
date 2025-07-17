@@ -36,8 +36,8 @@ tasks {
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
-            "packageVersion" to openApiVersion,
-            "disallowAdditionalPropertiesIfNotPresent" to "false"
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "false"
         )
     }
     register("generateOdmApiR", GenerateTask::class) {
@@ -49,8 +49,8 @@ tasks {
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
-            "packageVersion" to openApiVersion,
-            "disallowAdditionalPropertiesIfNotPresent" to "false"
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "false"
         )
     }
     // Should be used in pre-commit
