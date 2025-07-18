@@ -15,7 +15,7 @@ example:
   data:
     - cellId: "GSF123456-AAACCTGAGCGCTCCA-1"
       barcode: "AAACCTGAGCGCTCCA-1"
-      sampleSourceId: "SAMPLE_001"
+      batch: "SAMPLE_001"
       cellType: "T cell"
       cluster: "leiden_res1"
       nCounts: 1250
@@ -25,7 +25,7 @@ example:
       assay_custom: "10x 3' v2"
     - cellId: "GSF222333-AAAGATGGTTCCTCCA-1"
       barcode: "AAAGATGGTTCCTCCA-1"
-      sampleSourceId: "SAMPLE_001"
+      batch: "SAMPLE_001"
       cellType: "naive B cell"
       nCounts: 340
       pca: [0.2, 2.8]
