@@ -2,18 +2,21 @@ type: object
 #schema is not described because of dynamic attributes' limited support in openapi-generator
 description: |+
   Cell object having required, optional and dynamic attributes.
-  Required:
+  
+  **Required:**
     - `cellId`: string - unique cell identifier, which consists of a cell group accession and a cell barcode, separated by a hyphen, e.g. `GSF123456-AAACCTGAGCGCTCCA-1`.
     - `barcode`: string - raw barcode of the cell, e.g. `AAACCTGAGCGCTCCA-1`.
     - `batch`: string - identifier of an origin object, such as a sample or a library, that this cell belongs to, e.g. `SAMPLE_001`.
-  Optional:
+  
+  **Optional:**
     - `cellType`: string - inferred or annotated type, e.g. `T cell`.
     - `cluster`: string - clustering labels, e.g. `leiden_res1`.
     - `nCounts`: integer - total UMI count (Unique Molecular Identifier), e.g. `1250`.
     - `percentMito`: number - percentage of mitochondrial gene expression, e.g. `5.2`.
     - `umap`: array of two numbers - dimensionality reduction results (Uniform Manifold Approximation and Projection), e.g. `[1.23, 0.45]`.
     - `pca`: array of two numbers - dimensionality reduction results (Principal Component Analysis results), e.g. `[0.12, 0.34]`.
-  Dynamic:
+  
+  **Dynamic:**
     - Any additional attributes in a form of key-value pairs, which can vary between different cell objects.
 example:
   cellId: "GSF123456-AAACCTGAGCGCTCCA-1"
