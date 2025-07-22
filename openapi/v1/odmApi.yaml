@@ -14,6 +14,8 @@ info:
   title: "ODM API"
   version: "default-released"
 tags:
+- name: "Cells as Curator"
+- name: "Cells as User"
 - name: "Expression SPoT as Curator"
 - name: "Expression SPoT as User"
 - name: "Files as Curator"
@@ -62,6 +64,206 @@ tags:
 - name: "Variant SPoT as Curator"
 - name: "Variant SPoT as User"
 paths:
+  /api/v1/as-curator/cells/{id}:
+    get:
+      operationId: "getCellByIdAsCurator"
+      parameters:
+      - description: "Unique cell identifier. Consists of a cell group accession and\
+          \ a cell barcode, separated by a hyphen, e.g. `GSF123456-AAACCTGAGCGCTCCA-1`."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cell"
+          description: "The request was successful. The returned value is the object."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "Object with provided ID could not be found in ODM."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve a cell by ID"
+      tags:
+      - "Cells as Curator"
+  /api/v1/as-curator/cells/by/group/{id}:
+    get:
+      description: "## Paging\nFor performance reasons this endpoint returns results\
+        \ in \"pages\" of limited size together with a `cursor` tag.\nTo retrieve\
+        \ the next page of results please supply this `cursor` tag to resume the query\
+        \ from your previous result and get the next page.\nIf there are no more results\
+        \ you will just retrieve an empty result.\n"
+      operationId: "getCellsByGroupAsCurator"
+      parameters:
+      - description: "Unique identifier (accession) of the cell group."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      - description: "Maximum number of results to return per page (see Paging above).\
+          \ This value must be between 0 and 10000 (inclusive). The default is 2000."
+        in: "query"
+        name: "pageLimit"
+        schema:
+          format: "int32"
+          type: "integer"
+      - description: "The page tag to resume results from (see Paging above). Cell\
+          \ ID is currently used as a cursor."
+        in: "query"
+        name: "cursor"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CellListResponse"
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+        "400":
+          content: {}
+          description: "Cell data cannot be retrieved."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve cells from a given group"
+      tags:
+      - "Cells as Curator"
+  /api/v1/as-user/cells/{id}:
+    get:
+      operationId: "getCellByIdAsUser"
+      parameters:
+      - description: "Unique cell identifier. Consists of a cell group accession and\
+          \ a cell barcode, separated by a hyphen, e.g. `GSF123456-AAACCTGAGCGCTCCA-1`."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cell"
+          description: "The request was successful. The returned value is the object."
+        "400":
+          content: {}
+          description: "Invalid data in the request. See the error message for details."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "Object with provided ID could not be found in ODM."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve a cell by ID"
+      tags:
+      - "Cells as User"
+  /api/v1/as-user/cells/by/group/{id}:
+    get:
+      description: "## Paging\nFor performance reasons this endpoint returns results\
+        \ in \"pages\" of limited size together with a `cursor` tag.\nTo retrieve\
+        \ the next page of results please supply this `cursor` tag to resume the query\
+        \ from your previous result and get the next page.\nIf there are no more results\
+        \ you will just retrieve an empty result.\n"
+      operationId: "getCellsByGroupAsUser"
+      parameters:
+      - description: "Unique identifier (accession) of the cell group."
+        in: "path"
+        name: "id"
+        required: true
+        schema:
+          type: "string"
+      - description: "Maximum number of results to return per page (see Paging above).\
+          \ This value must be between 0 and 10000 (inclusive). The default is 2000."
+        in: "query"
+        name: "pageLimit"
+        schema:
+          format: "int32"
+          type: "integer"
+      - description: "The page tag to resume results from (see Paging above). Cell\
+          \ ID is currently used as a cursor."
+        in: "query"
+        name: "cursor"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CellListResponse"
+          description: "The request was successful. The returned value is a list of\
+            \ objects."
+        "400":
+          content: {}
+          description: "Cell data cannot be retrieved."
+        "401":
+          content: {}
+          description: "User is not authenticated. Please supply a valid Access Token\
+            \ in the `Authorization` HTTP header (e.g. Authorization: bearer [token])\n\
+            \ or  Genestack API token in the `Genestack-API-Token` header (this token\
+            \ may be obtained from the Genestack UI _Profile_ page)."
+        "404":
+          content: {}
+          description: "No object exists with the given ID."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: "Retrieve cells from a given group"
+      tags:
+      - "Cells as User"
   /api/v1/as-curator/expressions:
     get:
       description: "Retrieve all expression data and metadata objects that match a\
@@ -22337,6 +22539,10 @@ paths:
       - "Variant SPoT as User"
 components:
   schemas:
+    Cell:
+      $ref: "./schemas/cell/Cell.yaml"
+    CellListResponse:
+      $ref: "./schemas/cell/CellListResponse.yaml"
     CommitInfo:
       $ref: "./schemas/common/CommitInfo.yaml"
     ExpressionItem:
