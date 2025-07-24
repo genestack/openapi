@@ -149,15 +149,15 @@ swagger:
     FROM swaggerapi/swagger-ui:v5.27.0
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
-    RUN rm -f /usr/share/nginx/html/yaml/processorsController.yaml # TODO: Remove this line after 1.61 release
     COPY openapi/swagger/fs /
 
+    RUN rm -f /usr/share/nginx/html/yaml/processorsController.yaml # TODO: Remove this line after 1.61 release
+    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
         apk del bash
 
     # Remove merged api spec
-    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
     # IDK why it's required
     RUN ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml
 
