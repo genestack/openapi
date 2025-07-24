@@ -182,7 +182,7 @@ explorer:
     COPY +build/v1/schemas /usr/share/nginx/html/schemas/
     COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
     COPY --pass-args +explorer-build/openapi-explorer.min.js /usr/share/nginx/html/
-    COPY explorer/fs /
+    COPY openapi/explorer/fs /
 
     ARG --required OPENAPI_VERSION
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
