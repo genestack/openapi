@@ -19,9 +19,9 @@ plugins {
 
 val sourceDirectory = "$rootDir/openapi/v1"
 
-val processorControllerVersion = System.getenv("PROCESSOR_CONTROLLER_VERSION") ?: "1.0.0"
-val processorControllerFileName = "processorController.yaml"
-val processorControllerFilePath = "${sourceDirectory}/${processorControllerFileName}"
+val processorsControllerVersion = System.getenv("PROCESSORS_CONTROLLER_VERSION") ?: "1.0.0"
+val processorsControllerFileName = "processorsController.yaml"
+val processorsControllerFilePath = "${sourceDirectory}/${processorsControllerFileName}"
 
 val openApiVersion = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
 val mergedFileName = "odmApi.yaml"
@@ -73,16 +73,16 @@ tasks {
         )
     }
     val downloadSpec by registering(DownloadSpecification::class) {
-        version.set(processorControllerVersion)
+        version.set(processorsControllerVersion)
         registryUsername.set(System.getenv("NEXUS_USER"))
         registryPassword.set(System.getenv("NEXUS_PASSWORD"))
         releaseRegistryUrl.set(System.getenv("RAW_REGISTRY_RELEASES"))
         snapshotRegistryUrl.set(System.getenv("RAW_REGISTRY_SNAPSHOTS"))
-        outputFile.set(layout.projectDirectory.file(processorControllerFilePath))
+        outputFile.set(layout.projectDirectory.file(processorsControllerFilePath))
     }
     val mergeSpecifications by registering(MergeSpecifications::class) {
         dependsOn(downloadSpec)
-        val fileList = sourceFileList.filter { it.asFile.name != processorControllerFileName } // TODO: use sourceFileList after 1.61 release
+        val fileList = sourceFileList.filter { it.asFile.name != processorsControllerFileName } // TODO: use sourceFileList after 1.61 release
         inputFiles = fileList
         //inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file(mergedFilePath)
