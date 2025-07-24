@@ -157,6 +157,7 @@ swagger:
 
     # Remove merged api spec
     RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
+    RUN rm -f /usr/share/nginx/html/yaml/processorsController.yaml # TODO: Remove this line after 1.61 release
     # IDK why it's required
     RUN ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml
 
