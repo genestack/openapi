@@ -23,3 +23,7 @@ build
 
 node_modules
 **/gen/**
+
+# Ignore merged file and one downloaded for processor-controller
+/openapi/v1/odmApi.yaml
+/openapi/v1/processorsController.yaml

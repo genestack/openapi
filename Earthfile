@@ -1,11 +1,11 @@
 VERSION 0.8
 
-IMPORT ./openapi
-
 ARG --global --required HARBOR_DOCKER_REGISTRY
 ARG --global --required MAVEN_REGISTRY_GROUP
 ARG --global --required MAVEN_REGISTRY_RELEASES
 ARG --global --required MAVEN_REGISTRY_SNAPSHOTS
+ARG --global --required RAW_REGISTRY_RELEASES
+ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM eclipse-temurin:21.0.7_6-jdk-alpine
@@ -14,11 +14,10 @@ build:
     CACHE /root/.gradle/caches
     CACHE /root/.gradle/wrapper
 
-    COPY --dir openapi gradle gradlew build.gradle.kts settings.gradle.kts .
-    COPY --dir buildSrc/src buildSrc/build.gradle.kts buildSrc/settings.gradle.kts buildSrc/.
+    COPY --dir openapi gradle gradlew buildSrc build.gradle.kts settings.gradle.kts .
 
     ARG --required OPENAPI_VERSION
-    ENV OPENAPI_VERSION=${OPENAPI_VERSION}
+    # ARG --required PROCESSORS_CONTROLLER_VERSION  # Commented to check complete flow
     RUN \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
@@ -28,6 +27,7 @@ build:
 
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated
+    SAVE ARTIFACT openapi/v1
 
 python-api-client:
     FROM python:3.13.5-alpine
@@ -112,20 +112,6 @@ r-api-client:
            curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
-swagger:
-    FROM openapi+swagger
-
-    ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
-
-explorer:
-    FROM --pass-args openapi+explorer
-
-    ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
-
 docs:
     FROM alpine/curl:8.14.1
     WORKDIR /app
@@ -158,6 +144,52 @@ docs:
                 -H 'Content-Type: application/gzip' \
                  --upload-file ${DOC_ARCHIVE} \
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
+
+swagger:
+    FROM swaggerapi/swagger-ui:v5.27.0
+
+    COPY +build/v1 /usr/share/nginx/html/yaml/
+    COPY openapi/swagger/fs /
+
+    RUN rm -f /usr/share/nginx/html/yaml/processorsController.yaml # TODO: Remove this line after 1.61 release
+    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
+    RUN apk add bash --no-cache && \
+        rewrite_entrypoint.sh && \
+        apk del bash
+
+    # Remove merged api spec
+    # IDK why it's required
+    RUN ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml
+
+    ENTRYPOINT ["/genestack-docker-entrypoint.sh"]
+    CMD ["nginx", "-g", "daemon off;"]
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
+
+explorer-build:
+    FROM node:22.17.1-alpine
+    DO github.com/genestack/earthly-libs+NPM_PREPARE
+
+    CACHE /root/.npm
+
+    COPY openapi/explorer/package.json openapi/explorer/package-lock.json .
+    RUN npm install
+
+    SAVE ARTIFACT node_modules/openapi-explorer/dist/browser/openapi-explorer.min.js
+
+explorer:
+    FROM nginxinc/nginx-unprivileged:1.29.0-alpine
+
+    COPY +build/v1/schemas /usr/share/nginx/html/schemas/
+    COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
+    COPY --pass-args +explorer-build/openapi-explorer.min.js /usr/share/nginx/html/
+    COPY openapi/explorer/fs /
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
 
 main:
     BUILD +swagger
