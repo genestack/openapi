@@ -17,7 +17,7 @@ build:
     COPY --dir openapi gradle gradlew buildSrc build.gradle.kts settings.gradle.kts .
 
     ARG --required OPENAPI_VERSION
-    ARG --required PROCESSORS_CONTROLLER_VERSION
+    # ARG --required PROCESSORS_CONTROLLER_VERSION  # Commented to check complete flow
     RUN \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
