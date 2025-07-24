@@ -171,7 +171,7 @@ explorer-build:
 
     CACHE /root/.npm
 
-    COPY openapi/explorer/package.json explorer/package-lock.json .
+    COPY openapi/explorer/package.json openapi/explorer/package-lock.json .
     RUN npm install
 
     SAVE ARTIFACT node_modules/openapi-explorer/dist/browser/openapi-explorer.min.js
