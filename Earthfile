@@ -6,6 +6,8 @@ ARG --global --required HARBOR_DOCKER_REGISTRY
 ARG --global --required MAVEN_REGISTRY_GROUP
 ARG --global --required MAVEN_REGISTRY_RELEASES
 ARG --global --required MAVEN_REGISTRY_SNAPSHOTS
+ARG --global --required RAW_REGISTRY_RELEASES
+ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM eclipse-temurin:21.0.7_6-jdk-alpine
