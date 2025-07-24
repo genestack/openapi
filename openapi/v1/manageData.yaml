@@ -32,6 +32,7 @@ paths:
          * `SAMPLE_GROUP`
          * `LIBRARY_GROUP`
          * `PREPARATION_GROUP`
+         * `CELL_GROUP`
          * `TABULAR_DATA`
          * `GENE_VARIANT`
          * `FLOW_CYTOMETRY`
