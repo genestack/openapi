@@ -21,12 +21,11 @@ val sourceDirectory = "$rootDir/openapi/v1"
 
 val processorControllerVersion = System.getenv("PROCESSOR_CONTROLLER_VERSION") ?: "1.0.0"
 val processorControllerFileName = "processorController.yaml"
+val processorControllerFilePath = "${sourceDirectory}/${processorControllerFileName}"
 
 val openApiVersion = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
 val mergedFileName = "odmApi.yaml"
-
 val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
-val processorControllerFilePath = "${sourceDirectory}/${processorControllerFileName}"
 
 val sourceFileList = KotlinPath(sourceDirectory)
     .listDirectoryEntries("*.yaml")
