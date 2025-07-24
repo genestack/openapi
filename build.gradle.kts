@@ -6,8 +6,9 @@
  * actual or intended publication of such source code.
  */
 
+import com.genestack.openapi.DownloadSpecification
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
-import com.genestack.openapi.MergeDefinitions
+import com.genestack.openapi.MergeSpecifications
 import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.name
 import kotlin.io.path.Path as KotlinPath
@@ -16,7 +17,10 @@ plugins {
     alias(libs.plugins.openapi.generator) apply true
 }
 
-val openApiVersion: String = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
+val processorControllerVersion = System.getenv("PROCESSOR_CONTROLLER_VERSION") ?: "1.0.0"
+val processorControllerFilename = "processorController.yaml"
+
+val openApiVersion = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
 val sourceDirectory = "$rootDir/openapi/v1"
 val fileNameList = KotlinPath(sourceDirectory)
     .listDirectoryEntries("*.yaml")
@@ -27,7 +31,7 @@ val sourceFileList = fileNameList.map {
 }
 
 tasks {
-    register("generateOdmApiPython", GenerateTask::class) {
+    val generateOdmApiPython = register("generateOdmApiPython", GenerateTask::class) {
         generatorName.set("python")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
         outputDir.set("$rootDir/generated/python")
@@ -40,7 +44,7 @@ tasks {
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
-    register("generateOdmApiR", GenerateTask::class) {
+    val generateOdmApiR = register("generateOdmApiR", GenerateTask::class) {
         generatorName.set("r")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
         outputDir.set("$rootDir/generated/r")
@@ -53,7 +57,7 @@ tasks {
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
-    register("generateOdmApiPostmanCollection", GenerateTask::class) {
+    val generateOdmApiPostmanCollection = register("generateOdmApiPostmanCollection", GenerateTask::class) {
         generatorName.set("postman-collection")
         inputSpec.set("${sourceDirectory}/odmApi.yaml")
         outputDir.set("$rootDir/generated/postman-collection")
@@ -66,14 +70,26 @@ tasks {
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
-    // Should be used in pre-commit
-    register("mergeDefinitions", MergeDefinitions::class) {
+    val downloadSpec = register("downloadSpecification", DownloadSpecification::class) {
+        version.set(processorControllerVersion)
+        registryUsername.set(System.getenv("NEXUS_USER"))
+        registryPassword.set(System.getenv("NEXUS_PASSWORD"))
+        releaseRegistryUrl.set(System.getenv("RAW_REGISTRY_RELEASES"))
+        snapshotRegistryUrl.set(System.getenv("RAW_REGISTRY_SNAPSHOTS"))
+        outputFile.set(layout.projectDirectory.file("${sourceDirectory}/${processorControllerFilename}"))
+    }
+    register("mergeSpecifications", MergeSpecifications::class) {
+        dependsOn(downloadSpec)
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
     }
 
     val generateAll by registering(GradleBuild::class) {
         file("$rootDir/generated").deleteRecursively()
-        tasks = listOf("generateOdmApiPython", "generateOdmApiR", "generateOdmApiPostmanCollection")
+        tasks = listOf(
+            generateOdmApiPython.name,
+            generateOdmApiR.name,
+            generateOdmApiPostmanCollection.name
+        )
     }
 }
