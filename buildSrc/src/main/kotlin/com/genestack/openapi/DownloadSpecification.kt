@@ -58,12 +58,14 @@ abstract class DownloadSpecification : DefaultTask() {
         // Create HTTP connection and set basic authentication
         val connection = url.openConnection() as HttpURLConnection
 
-        // Create basic auth header
-        val credentials = "${registryUsername.get()}:${registryPassword.get()}"
-        val encodedCredentials = Base64.getEncoder().encodeToString(credentials.toByteArray())
-        connection.setRequestProperty("Authorization", "Basic $encodedCredentials")
-
         try {
+
+            // Create basic auth header
+            val credentials = "${registryUsername.get()}:${registryPassword.get()}"
+            val encodedCredentials = Base64.getEncoder().encodeToString(credentials.toByteArray())
+            connection.setRequestProperty("Authorization", "Basic $encodedCredentials")
+
+            // Use as a stream
             connection.inputStream.use { inputStream ->
                 GZIPInputStream(inputStream).use { gzipStream ->
                     TarArchiveInputStream(gzipStream).use { tarStream ->
