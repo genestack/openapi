@@ -17,23 +17,26 @@ plugins {
     alias(libs.plugins.openapi.generator) apply true
 }
 
+val sourceDirectory = "$rootDir/openapi/v1"
+
 val processorControllerVersion = System.getenv("PROCESSOR_CONTROLLER_VERSION") ?: "1.0.0"
-val processorControllerFilename = "processorController.yaml"
+val processorControllerFileName = "processorController.yaml"
 
 val openApiVersion = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
-val sourceDirectory = "$rootDir/openapi/v1"
-val fileNameList = KotlinPath(sourceDirectory)
+val mergedFileName = "odmApi.yaml"
+
+val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
+val processorControllerFilePath = "${sourceDirectory}/${processorControllerFileName}"
+
+val sourceFileList = KotlinPath(sourceDirectory)
     .listDirectoryEntries("*.yaml")
     .sorted()
-val mergedFileName = "odmApi.yaml"
-val sourceFileList = fileNameList.map {
-    layout.projectDirectory.file("${sourceDirectory}/${it.name}")
-}
+    .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
 
 tasks {
     val generateOdmApiPython = register("generateOdmApiPython", GenerateTask::class) {
         generatorName.set("python")
-        inputSpec.set("${sourceDirectory}/odmApi.yaml")
+        inputSpec.set(mergedFilePath)
         outputDir.set("$rootDir/generated/python")
         packageName.set("odm_api")
         gitUserId.set("genestack")
@@ -46,7 +49,7 @@ tasks {
     }
     val generateOdmApiR = register("generateOdmApiR", GenerateTask::class) {
         generatorName.set("r")
-        inputSpec.set("${sourceDirectory}/odmApi.yaml")
+        inputSpec.set(mergedFilePath)
         outputDir.set("$rootDir/generated/r")
         packageName.set("odmApi")
         gitUserId.set("genestack")
@@ -59,7 +62,7 @@ tasks {
     }
     val generateOdmApiPostmanCollection = register("generateOdmApiPostmanCollection", GenerateTask::class) {
         generatorName.set("postman-collection")
-        inputSpec.set("${sourceDirectory}/odmApi.yaml")
+        inputSpec.set(mergedFilePath)
         outputDir.set("$rootDir/generated/postman-collection")
         packageName.set("odm-api")
         gitUserId.set("genestack")
@@ -76,12 +79,12 @@ tasks {
         registryPassword.set(System.getenv("NEXUS_PASSWORD"))
         releaseRegistryUrl.set(System.getenv("RAW_REGISTRY_RELEASES"))
         snapshotRegistryUrl.set(System.getenv("RAW_REGISTRY_SNAPSHOTS"))
-        outputFile.set(layout.projectDirectory.file("${sourceDirectory}/${processorControllerFilename}"))
+        outputFile.set(layout.projectDirectory.file(processorControllerFilePath))
     }
     register("mergeSpecifications", MergeSpecifications::class) {
         dependsOn(downloadSpec)
         inputFiles = sourceFileList
-        outputFile = layout.projectDirectory.file("${sourceDirectory}/${mergedFileName}")
+        outputFile = layout.projectDirectory.file(mergedFilePath)
     }
 
     val generateAll by registering(GradleBuild::class) {
