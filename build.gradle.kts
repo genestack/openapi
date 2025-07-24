@@ -19,11 +19,11 @@ plugins {
 
 val sourceDirectory = "$rootDir/openapi/v1"
 
-val processorsControllerVersion = System.getenv("PROCESSORS_CONTROLLER_VERSION") ?: "1.0.0"
+val processorsControllerVersion: String = System.getenv("PROCESSORS_CONTROLLER_VERSION")
 val processorsControllerFileName = "processorsController.yaml"
 val processorsControllerFilePath = "${sourceDirectory}/${processorsControllerFileName}"
 
-val openApiVersion = System.getenv("OPENAPI_VERSION") ?: "1.0.0"
+val openApiVersion: String = System.getenv("OPENAPI_VERSION")
 val mergedFileName = "odmApi.yaml"
 val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
 
