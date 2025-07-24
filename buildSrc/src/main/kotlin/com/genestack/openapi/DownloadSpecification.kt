@@ -63,28 +63,32 @@ abstract class DownloadSpecification : DefaultTask() {
         val encodedCredentials = Base64.getEncoder().encodeToString(credentials.toByteArray())
         connection.setRequestProperty("Authorization", "Basic $encodedCredentials")
 
-        connection.inputStream.use { inputStream ->
-            GZIPInputStream(inputStream).use { gzipStream ->
-                TarArchiveInputStream(gzipStream).use { tarStream ->
-                    var entry = tarStream.nextEntry
+        try {
+            connection.inputStream.use { inputStream ->
+                GZIPInputStream(inputStream).use { gzipStream ->
+                    TarArchiveInputStream(gzipStream).use { tarStream ->
+                        var entry = tarStream.nextEntry
 
-                    while (entry != null) {
-                        if (!entry.isDirectory) {
-                            // Extract the first file found
-                            val outputFileHandle = outputFile.get().asFile
-                            outputFileHandle.parentFile.mkdirs()
+                        while (entry != null) {
+                            if (!entry.isDirectory) {
+                                // Extract the first file found
+                                val outputFileHandle = outputFile.get().asFile
+                                outputFileHandle.parentFile.mkdirs()
 
-                            FileOutputStream(outputFileHandle).use { outputStream ->
-                                IOUtils.copy(tarStream, outputStream)
+                                FileOutputStream(outputFileHandle).use { outputStream ->
+                                    IOUtils.copy(tarStream, outputStream)
+                                }
+
+                                logger.info("Extracted file: ${entry.name} to ${outputFileHandle.absolutePath}")
+                                break
                             }
-
-                            logger.info("Extracted file: ${entry.name} to ${outputFileHandle.absolutePath}")
-                            break
+                            entry = tarStream.nextEntry
                         }
-                        entry = tarStream.nextEntry
                     }
                 }
             }
+        } finally {
+            connection.disconnect()
         }
     }
 }
