@@ -112,20 +112,6 @@ r-api-client:
            curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
-swagger:
-    FROM openapi+swagger
-
-    ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
-
-explorer:
-    FROM --pass-args openapi+explorer
-
-    ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
-
 docs:
     FROM alpine/curl:8.14.1
     WORKDIR /app
@@ -175,7 +161,9 @@ swagger:
     ENTRYPOINT ["/genestack-docker-entrypoint.sh"]
     CMD ["nginx", "-g", "daemon off;"]
 
-    SAVE IMAGE --cache-hint
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 explorer-build:
     FROM node:22.17.1-alpine
@@ -196,7 +184,9 @@ explorer:
     COPY --pass-args +explorer-build/openapi-explorer.min.js /usr/share/nginx/html/
     COPY explorer/fs /
 
-    SAVE IMAGE --cache-hint
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
 
 main:
     BUILD +swagger
