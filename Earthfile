@@ -151,7 +151,6 @@ swagger:
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
 
-    RUN rm -f /usr/share/nginx/html/yaml/processorsController.yaml # TODO: Remove this line after 1.61 release
     RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
