@@ -34,7 +34,7 @@ val sourceFileList = KotlinPath(sourceDirectory)
     .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
 
 tasks {
-    val generateOdmApiPython = register("generateOdmApiPython", GenerateTask::class) {
+    val generateOdmApiPython by registering(GenerateTask::class) {
         generatorName.set("python")
         inputSpec.set(mergedFilePath)
         outputDir.set("$rootDir/generated/python")
@@ -47,7 +47,7 @@ tasks {
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
-    val generateOdmApiR = register("generateOdmApiR", GenerateTask::class) {
+    val generateOdmApiR by registering(GenerateTask::class) {
         generatorName.set("r")
         inputSpec.set(mergedFilePath)
         outputDir.set("$rootDir/generated/r")
@@ -60,7 +60,7 @@ tasks {
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
-    val generateOdmApiPostmanCollection = register("generateOdmApiPostmanCollection", GenerateTask::class) {
+    val generateOdmApiPostmanCollection by registering(GenerateTask::class) {
         generatorName.set("postman-collection")
         inputSpec.set(mergedFilePath)
         outputDir.set("$rootDir/generated/postman-collection")
@@ -73,7 +73,7 @@ tasks {
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
-    val downloadSpec = register("downloadSpecification", DownloadSpecification::class) {
+    val downloadSpec by registering(DownloadSpecification::class) {
         version.set(processorControllerVersion)
         registryUsername.set(System.getenv("NEXUS_USER"))
         registryPassword.set(System.getenv("NEXUS_PASSWORD"))
@@ -81,13 +81,14 @@ tasks {
         snapshotRegistryUrl.set(System.getenv("RAW_REGISTRY_SNAPSHOTS"))
         outputFile.set(layout.projectDirectory.file(processorControllerFilePath))
     }
-    register("mergeSpecifications", MergeSpecifications::class) {
+    val mergeSpecifications by registering(MergeSpecifications::class) {
         dependsOn(downloadSpec)
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file(mergedFilePath)
     }
 
     val generateAll by registering(GradleBuild::class) {
+        dependsOn(mergeSpecifications)
         file("$rootDir/generated").deleteRecursively()
         tasks = listOf(
             generateOdmApiPython.name,
