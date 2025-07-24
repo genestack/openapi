@@ -82,8 +82,9 @@ tasks {
     }
     val mergeSpecifications by registering(MergeSpecifications::class) {
         dependsOn(downloadSpec)
-        val fileList = sourceFileList.filter { it.asFile.name != processorControllerFileName } // TODO: use sourceFileList after 1.61 release
-        inputFiles = fileList
+        //val fileList = sourceFileList.filter { it.asFile.name != processorControllerFileName } // TODO: use sourceFileList after 1.61 release
+        //inputFiles = fileList
+        inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file(mergedFilePath)
     }
 
