@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 
 
-abstract class MergeDefinitions : DefaultTask() {
+abstract class MergeSpecifications : DefaultTask() {
 
     @get:InputFiles
     abstract val inputFiles: ListProperty<RegularFile>
