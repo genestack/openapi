@@ -8,5 +8,5 @@ repositories {
 
 dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.19.2")
-    implementation("org.apache.commons:commons-compress:1.28.0")
+    implementation("org.apache.commons:commons-compress:1.27.1")
 }
