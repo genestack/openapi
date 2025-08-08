@@ -6705,7 +6705,7 @@ paths:
       description: |-
         Create links between cells and samples.
 
-        Cell objects of the same group can only be linked to objects of the same study.
+        Cell objects of the same group can be linked to sample objects from multiple sample groups, but only within the same study.
       operationId: createCellGroupSampleGroupLinkAsCurator
       parameters:
         - description: The ID (accession) of the cell group object
@@ -6723,7 +6723,10 @@ paths:
       responses:
         "200":
           content: { }
-          description: Cell data has been linked to the samples (either partially or completely).
+          description: Cell objects have been partially linked to samples.
+        "204":
+          content: { }
+          description: Cell objects have been fully linked to samples.
         "400":
           content: { }
           description: Sample group, cell group or samples to the link were not found.
