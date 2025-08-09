@@ -168,7 +168,7 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 explorer-build:
-    FROM node:22.17.1-alpine
+    FROM node:22.18.0-alpine
     DO github.com/genestack/earthly-libs+NPM_PREPARE
 
     CACHE /root/.npm
