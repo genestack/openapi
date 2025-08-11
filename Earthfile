@@ -8,7 +8,7 @@ ARG --global --required RAW_REGISTRY_RELEASES
 ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
-    FROM eclipse-temurin:21.0.7_6-jdk-alpine
+    FROM eclipse-temurin:21.0.8_9-jdk-alpine
     DO github.com/genestack/earthly-libs+GRADLE_PREPARE
 
     CACHE /root/.gradle/caches
@@ -30,7 +30,7 @@ build:
     SAVE ARTIFACT openapi/v1
 
 python-api-client:
-    FROM python:3.13.5-alpine
+    FROM python:3.13.6-alpine
     DO github.com/genestack/earthly-libs+PYTHON_PREPARE
 
     CACHE /root/.cache
@@ -146,7 +146,7 @@ docs:
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.27.0
+    FROM swaggerapi/swagger-ui:v5.27.1
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
@@ -168,7 +168,7 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 explorer-build:
-    FROM node:22.17.1-alpine
+    FROM node:22.18.0-alpine
     DO github.com/genestack/earthly-libs+NPM_PREPARE
 
     CACHE /root/.npm
