@@ -33,45 +33,6 @@ val sourceFileList = KotlinPath(sourceDirectory)
     .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
 
 tasks {
-    val generateOdmApiPython by registering(GenerateTask::class) {
-        generatorName.set("python")
-        inputSpec.set(mergedFilePath)
-        outputDir.set("$rootDir/generated/python")
-        packageName.set("odm_api")
-        gitUserId.set("genestack")
-        gitRepoId.set("openapi")
-        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
-        configOptions = mapOf(
-            "packageVersion" to openApiVersion
-//            "disallowAdditionalPropertiesIfNotPresent" to "true"
-        )
-    }
-    val generateOdmApiR by registering(GenerateTask::class) {
-        generatorName.set("r")
-        inputSpec.set(mergedFilePath)
-        outputDir.set("$rootDir/generated/r")
-        packageName.set("odmApi")
-        gitUserId.set("genestack")
-        gitRepoId.set("openapi")
-        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
-        configOptions = mapOf(
-            "packageVersion" to openApiVersion
-//            "disallowAdditionalPropertiesIfNotPresent" to "true"
-        )
-    }
-    val generateOdmApiPostmanCollection by registering(GenerateTask::class) {
-        generatorName.set("postman-collection")
-        inputSpec.set(mergedFilePath)
-        outputDir.set("$rootDir/generated/postman-collection")
-        packageName.set("odm-api")
-        gitUserId.set("genestack")
-        gitRepoId.set("openapi")
-        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
-        configOptions = mapOf(
-            "packageVersion" to openApiVersion
-//            "disallowAdditionalPropertiesIfNotPresent" to "true"
-        )
-    }
     val downloadSpec by registering(DownloadSpecification::class) {
         version.set(processorsControllerVersion)
         registryUsername.set(System.getenv("NEXUS_USER"))
@@ -85,9 +46,49 @@ tasks {
         inputFiles = sourceFileList
         outputFile = layout.projectDirectory.file(mergedFilePath)
     }
-
-    val generateAll by registering(GradleBuild::class) {
+    val generateOdmApiPython by registering(GenerateTask::class) {
         dependsOn(mergeSpecifications)
+        generatorName.set("python")
+        inputSpec.set(mergedFilePath)
+        outputDir.set("$rootDir/generated/python")
+        packageName.set("odm_api")
+        gitUserId.set("genestack")
+        gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
+        configOptions = mapOf(
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
+        )
+    }
+    val generateOdmApiR by registering(GenerateTask::class) {
+        dependsOn(mergeSpecifications)
+        generatorName.set("r")
+        inputSpec.set(mergedFilePath)
+        outputDir.set("$rootDir/generated/r")
+        packageName.set("odmApi")
+        gitUserId.set("genestack")
+        gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
+        configOptions = mapOf(
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
+        )
+    }
+    val generateOdmApiPostmanCollection by registering(GenerateTask::class) {
+        dependsOn(mergeSpecifications)
+        generatorName.set("postman-collection")
+        inputSpec.set(mergedFilePath)
+        outputDir.set("$rootDir/generated/postman-collection")
+        packageName.set("odm-api")
+        gitUserId.set("genestack")
+        gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
+        configOptions = mapOf(
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
+        )
+    }
+    val generateAll by registering(GradleBuild::class) {
         file("$rootDir/generated").deleteRecursively()
         tasks = listOf(
             generateOdmApiPython.name,
