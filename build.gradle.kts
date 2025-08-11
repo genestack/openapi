@@ -56,7 +56,11 @@ tasks {
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
-            "packageVersion" to openApiVersion
+            "packageVersion" to openApiVersion,
+            // Workaround for https://github.com/OpenAPITools/openapi-generator/issues/21619
+            // The second version asks for license, which we can't provide due to unavailability of
+            // "licenseName" and "licenseUrl" fields in the specification for python generator.
+            "poetry1" to "true"
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
