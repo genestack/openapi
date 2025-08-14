@@ -82,7 +82,7 @@ r-api-client:
 
     # Gcc and other stuff for R source packages building
     RUN \
-        apt update && \
+        apt update && apt dist-upgrade -y && \
         apt install -y build-essential libssl-dev libcurl4-gnutls-dev curl && \
         Rscript requirements.R
 
