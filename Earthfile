@@ -167,32 +167,20 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
-explorer-build:
-    FROM node:22.18.0-alpine
-    DO github.com/genestack/earthly-libs+NPM_PREPARE
-
-    CACHE /root/.npm
-
-    COPY openapi/explorer/package.json openapi/explorer/package-lock.json .
-    RUN npm install
-
-    SAVE ARTIFACT node_modules/openapi-explorer/dist/browser/openapi-explorer.min.js
-
-explorer:
+stoplight:
     FROM nginxinc/nginx-unprivileged:1.29.0-alpine
 
     COPY +build/v1/schemas /usr/share/nginx/html/schemas/
     COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
-    COPY --pass-args +explorer-build/openapi-explorer.min.js /usr/share/nginx/html/
-    COPY openapi/explorer/fs /
+    COPY openapi/stoplight/fs /
 
     ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/explorer:latest
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/stoplight:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/stoplight:latest
 
 main:
     BUILD +swagger
-    BUILD +explorer
+    BUILD +stoplight
     BUILD +docs
     BUILD +r-api-client
     BUILD +python-api-client
