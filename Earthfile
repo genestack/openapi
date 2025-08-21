@@ -151,7 +151,9 @@ swagger:
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
 
-    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
+    RUN cp /usr/share/nginx/html/yaml/odmApi.yaml /tmp/odmApi.yaml && \
+        rm -f /usr/share/nginx/html/yaml/*.yaml && \
+        cp /tmp/odmApi.yaml /usr/share/nginx/html/yaml/odmApi.yaml
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
         apk del bash
