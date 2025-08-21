@@ -6746,6 +6746,98 @@ paths:
       summary: Create links between cells and samples
       tags:
         - Cell integration as Curator
+  /api/v1/as-curator/integration/link/cell/group/{sourceId}/to/library/group/{targetId}:
+    post:
+      description: |-
+        Create links between cells and libraries.
+
+        Cell objects of the same group can be linked to library objects from multiple library groups, but only within the same study.
+      operationId: createCellGroupLibraryGroupLinkAsCurator
+      parameters:
+        - description: The ID (accession) of the cell group object
+          in: path
+          name: sourceId
+          required: true
+          schema:
+            type: string
+        - description: The ID (accession) of the library group object
+          in: path
+          name: targetId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content: { }
+          description: Cell objects have been partially linked to libraries.
+        "204":
+          content: { }
+          description: Cell objects have been fully linked to libraries.
+        "400":
+          content: { }
+          description: Sample group, cell group or libraries to the link were not found.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+            or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Create links between cells and libraries
+      tags:
+        - Cell integration as Curator
+  /api/v1/as-curator/integration/link/cell/group/{sourceId}/to/preparation/group/{targetId}:
+    post:
+      description: |-
+        Create links between cells and preparations.
+
+        Cell objects of the same group can be linked to preparation objects from multiple preparation groups, but only within the same study.
+      operationId: createCellGroupPreparationGroupLinkAsCurator
+      parameters:
+        - description: The ID (accession) of the cell group object
+          in: path
+          name: sourceId
+          required: true
+          schema:
+            type: string
+        - description: The ID (accession) of the preparation group object
+          in: path
+          name: targetId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content: { }
+          description: Cell objects have been partially linked to preparations.
+        "204":
+          content: { }
+          description: Cell objects have been fully linked to preparations.
+        "400":
+          content: { }
+          description: Sample group, cell group or preparations to the link were not found.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+            or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Create links between cells and preparations
+      tags:
+        - Cell integration as Curator
 components:
   schemas:
     AttributeInvalidValue:
