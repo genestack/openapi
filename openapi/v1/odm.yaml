@@ -24229,7 +24229,7 @@ components:
           type: string
         result:
           items:
-            $ref: "XrefSetSearchResultEntry.yaml"
+            $ref: "#/components/schemas/XrefSetSearchResultEntry"
           type: array
       type: object
     XrefSetSearchResultEntry:

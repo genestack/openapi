@@ -151,12 +151,12 @@ swagger:
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
 
-    RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
+    RUN rm -f /usr/share/nginx/html/yaml/odm.yaml && \
+        rm -f /usr/share/nginx/html/yaml/processorsController.yaml
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
         apk del bash
 
-    # Remove merged api spec
     # IDK why it's required
     RUN ln -s /usr/share/nginx/html/yaml /usr/share/nginx/html/helper/yaml
 
@@ -170,8 +170,7 @@ swagger:
 stoplight:
     FROM nginxinc/nginx-unprivileged:1.29.1-alpine
 
-    COPY +build/v1/schemas /usr/share/nginx/html/schemas/
-    COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
+    COPY +build/v1/openapi.yaml /usr/share/nginx/html/
     COPY openapi/stoplight/fs /
 
     ARG --required OPENAPI_VERSION
