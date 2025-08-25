@@ -1,5 +1,5 @@
 ---
-openapi: "3.1.0"
+openapi: "3.0.3"
 info:
   description: "This swagger page describes the variantUser API endpoints for ODM.\
     \ These are typically used to find and retrieve variant data and metadata.\n\n\
@@ -22714,12 +22714,11 @@ components:
           example:
             value: 1.82
           type: object
-          patternProperties:
-            "^.*$":
-              format: double
-              oneOf:
-                - type: number
-                - type: string # Inf or -Inf
+          additionalProperties:
+            format: double
+            oneOf:
+              - type: number
+              - type: string # Inf or -Inf
         description:
           type: string
           readOnly: true
@@ -24116,9 +24115,8 @@ components:
           example: '"http://example-url.com/my-mapping.tsv"'
           type: string
         metadata:
-          patternProperties:
-            "^.*$":
-              type: string
+          additionalProperties:
+            type: string
           description: Additional user metadata
           type: object
       required:
@@ -24163,9 +24161,8 @@ components:
             - gene-transcript
           type: string
         metadata:
-          patternProperties:
-            "^.*$":
-              type: string
+          additionalProperties:
+            type: string
           description: Additional user metadata
           type: object
         warnings:
@@ -24207,9 +24204,8 @@ components:
           format: int64
           type: integer
         data:
-          patternProperties:
-            "^.*$":
-              type: string
+          additionalProperties:
+            type: string
           type: object
       type: object
     XrefSetSearchResult:
@@ -24714,18 +24710,16 @@ components:
                 type: string
             info:
               type: object
-              patternProperties:
-                "^.*$":
-                  type: array
-                  items:
-                    oneOf:
-                      - type: string
-                      - type: number
+            additionalProperties:
+              type: array
+              items:
+                oneOf:
+                  - type: string
+                  - type: number
         genotype:
           type: object
-          patternProperties:
-            "^.*$":
-              type: string
+          additionalProperties:
+            type: string
       type: object
     VariantResponse:
       example:

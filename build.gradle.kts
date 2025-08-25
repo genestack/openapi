@@ -54,7 +54,6 @@ tasks {
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
-        skipValidateSpec.set(true)
         configOptions = mapOf(
             "packageVersion" to openapiVersion,
             // Workaround for https://github.com/OpenAPITools/openapi-generator/issues/21619
@@ -73,7 +72,6 @@ tasks {
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
-        skipValidateSpec.set(true)
         configOptions = mapOf(
             "packageVersion" to openapiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
@@ -88,7 +86,6 @@ tasks {
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
-        skipValidateSpec.set(true)
         configOptions = mapOf(
             "packageVersion" to openapiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
