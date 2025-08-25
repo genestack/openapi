@@ -1,4 +1,3 @@
----
 openapi: "3.0.3"
 info:
   description: "This swagger page describes the variantUser API endpoints for ODM.\
@@ -68,6 +67,7 @@ paths:
   /api/v1/as-curator/cells/{id}:
     get:
       operationId: "getCellByIdAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique cell identifier. Consists of a cell group accession and\
           \ a cell barcode, separated by a hyphen, e.g. `GSF123456-AAACCTGAGCGCTCCA-1`."
@@ -168,6 +168,7 @@ paths:
   /api/v1/as-user/cells/{id}:
     get:
       operationId: "getCellByIdAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique cell identifier. Consists of a cell group accession and\
           \ a cell barcode, separated by a hyphen, e.g. `GSF123456-AAACCTGAGCGCTCCA-1`."
@@ -580,6 +581,7 @@ paths:
   /api/v1/as-curator/expressions/group/by/run/{id}:
     get:
       operationId: "getExpressionGroupByRunAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -641,6 +643,7 @@ paths:
   /api/v1/as-curator/expressions/group/{id}:
     get:
       operationId: "getExpressionGroupAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -766,6 +769,7 @@ paths:
   /api/v1/as-curator/expressions/{id}:
     get:
       operationId: "getExpressionAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -883,6 +887,7 @@ paths:
   /api/v1/as-curator/expressions/{id}/versions:
     get:
       operationId: "getExpressionVersionsAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Expression object run ID (runId)."
         in: "path"
@@ -920,6 +925,7 @@ paths:
   /api/v1/as-curator/expressions/{id}/versions/{version}:
     get:
       operationId: "getExpressionByVersionAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1299,6 +1305,7 @@ paths:
   /api/v1/as-user/expressions/group/by/run/{id}:
     get:
       operationId: "getExpressionGroupByRunAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1360,6 +1367,7 @@ paths:
   /api/v1/as-user/expressions/group/{id}:
     get:
       operationId: "getExpressionGroupAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1485,6 +1493,7 @@ paths:
   /api/v1/as-user/expressions/{id}:
     get:
       operationId: "getExpressionAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1546,6 +1555,7 @@ paths:
   /api/v1/as-user/expressions/{id}/versions:
     get:
       operationId: "getExpressionVersionsAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Expression object run ID (runId)."
         in: "path"
@@ -1583,6 +1593,7 @@ paths:
   /api/v1/as-user/expressions/{id}/versions/{version}:
     get:
       operationId: "getExpressionByVersionAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -1750,6 +1761,7 @@ paths:
   /api/v1/as-curator/files/{id}:
     get:
       operationId: "getFileMetadataByIdAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -1982,6 +1994,7 @@ paths:
   /api/v1/as-user/files/{id}:
     get:
       operationId: "getFileMetadataByIdAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -2431,6 +2444,7 @@ paths:
   /api/v1/as-curator/flow-cytometries/group/by/run/{id}:
     get:
       operationId: "getFlowCytometryGroupByRunAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2492,6 +2506,7 @@ paths:
   /api/v1/as-curator/flow-cytometries/group/{id}:
     get:
       operationId: "getFlowCytometryGroupAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2617,6 +2632,7 @@ paths:
   /api/v1/as-curator/flow-cytometries/{id}:
     get:
       operationId: "getFlowCytometryAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -2734,6 +2750,7 @@ paths:
   /api/v1/as-curator/flow-cytometries/{id}/versions:
     get:
       operationId: "getFlowCytometryVersionsAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -2771,6 +2788,7 @@ paths:
   /api/v1/as-curator/flow-cytometries/{id}/versions/{version}:
     get:
       operationId: "getFlowCytometryByVersionAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -3156,6 +3174,7 @@ paths:
   /api/v1/as-user/flow-cytometries/group/by/run/{id}:
     get:
       operationId: "getFlowCytometryGroupByRunAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -3217,6 +3236,7 @@ paths:
   /api/v1/as-user/flow-cytometries/group/{id}:
     get:
       operationId: "getFlowCytometryGroupAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -3342,6 +3362,7 @@ paths:
   /api/v1/as-user/flow-cytometries/{id}:
     get:
       operationId: "getFlowCytometryAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -3403,6 +3424,7 @@ paths:
   /api/v1/as-user/flow-cytometries/{id}/versions:
     get:
       operationId: "getFlowCytometryVersionsAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -3440,6 +3462,7 @@ paths:
   /api/v1/as-user/flow-cytometries/{id}/versions/{version}:
     get:
       operationId: "getFlowCytometryByVersionAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -5344,6 +5367,7 @@ paths:
   /api/v1/as-curator/integration/link/library/by/sample/{id}:
     get:
       operationId: "getLibraryBySampleAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -5410,6 +5434,7 @@ paths:
   /api/v1/as-curator/integration/link/library/group/by/study/{id}:
     get:
       operationId: "getLibraryGroupsByStudyAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -5687,6 +5712,7 @@ paths:
   /api/v1/as-curator/integration/link/preparation/by/sample/{id}:
     get:
       operationId: "getPreparationBySampleAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -5753,6 +5779,7 @@ paths:
   /api/v1/as-curator/integration/link/preparation/group/by/study/{id}:
     get:
       operationId: "getPreparationGroupsByStudyAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -7141,6 +7168,7 @@ paths:
   /api/v1/as-curator/integration/link/study/by/sample/{id}:
     get:
       operationId: "getStudyBySampleAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -7305,6 +7333,7 @@ paths:
   /api/v1/as-curator/integration/link/study/by/file/{id}:
     get:
       operationId: "getStudyByFileAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -10522,6 +10551,7 @@ paths:
   /api/v1/as-curator/integration/studies/{id}/validation-summary:
     get:
       operationId: "getStudyValidationSummary"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -10556,6 +10586,7 @@ paths:
   /api/v1/as-curator/integration/link/files/by/study/{id}:
     get:
       operationId: "getFilesByStudyAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -11749,6 +11780,7 @@ paths:
   /api/v1/as-user/integration/link/library/by/sample/{id}:
     get:
       operationId: "getLibraryBySampleAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -11815,6 +11847,7 @@ paths:
   /api/v1/as-user/integration/link/library/group/by/study/{id}:
     get:
       operationId: "getLibraryGroupsByStudyAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -11926,6 +11959,7 @@ paths:
   /api/v1/as-user/integration/link/preparation/by/sample/{id}:
     get:
       operationId: "getPreparationBySampleAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -11992,6 +12026,7 @@ paths:
   /api/v1/as-user/integration/link/preparation/group/by/study/{id}:
     get:
       operationId: "getPreparationGroupsByStudyAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -13050,6 +13085,7 @@ paths:
   /api/v1/as-user/integration/link/study/by/sample/{id}:
     get:
       operationId: "getStudyBySampleAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -13214,6 +13250,7 @@ paths:
   /api/v1/as-user/integration/link/study/by/file/{id}:
     get:
       operationId: "getStudyByFileAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -16092,6 +16129,7 @@ paths:
   /api/v1/as-user/integration/link/files/by/study/{id}:
     get:
       operationId: "getFilesByStudyAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -16746,6 +16784,7 @@ paths:
   /api/v1/jobs/{jobExecId}/info:
     get:
       operationId: "info"
+      description: "TODO: Add description"
       parameters:
       - in: "path"
         name: "jobExecId"
@@ -16769,6 +16808,7 @@ paths:
   /api/v1/jobs/{jobExecId}/output:
     get:
       operationId: "output"
+      description: "TODO: Add description"
       parameters:
       - in: "path"
         name: "jobExecId"
@@ -16792,6 +16832,7 @@ paths:
   /api/v1/jobs/{jobExecId}/restart:
     put:
       operationId: "restart"
+      description: "TODO: Add description"
       parameters:
       - in: "path"
         name: "jobExecId"
@@ -16815,6 +16856,7 @@ paths:
   /api/v1/jobs/{jobExecId}/stop:
     put:
       operationId: "stop"
+      description: "TODO: Add description"
       parameters:
       - in: "path"
         name: "jobExecId"
@@ -16976,6 +17018,7 @@ paths:
   /api/v1/as-curator/libraries/by/group/{id}:
     get:
       operationId: "getLibrariesByGroupAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -17053,6 +17096,7 @@ paths:
   /api/v1/as-curator/libraries/{id}:
     get:
       operationId: "getLibraryAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -17170,6 +17214,7 @@ paths:
   /api/v1/as-curator/libraries/{id}/versions:
     get:
       operationId: "getLibraryVersionsAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -17207,6 +17252,7 @@ paths:
   /api/v1/as-curator/libraries/{id}/versions/{version}:
     get:
       operationId: "getLibraryByVersionAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -17412,6 +17458,7 @@ paths:
   /api/v1/as-user/libraries/by/group/{id}:
     get:
       operationId: "getLibrariesByGroupAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -17489,6 +17536,7 @@ paths:
   /api/v1/as-user/libraries/{id}:
     get:
       operationId: "getLibraryAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -17550,6 +17598,7 @@ paths:
   /api/v1/as-user/libraries/{id}/versions:
     get:
       operationId: "getLibraryVersionsAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -17587,6 +17636,7 @@ paths:
   /api/v1/as-user/libraries/{id}/versions/{version}:
     get:
       operationId: "getLibraryByVersionAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -17939,6 +17989,7 @@ paths:
   /api/v1/as-curator/preparations/by/group/{id}:
     get:
       operationId: "getPreparationsByGroupAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -18016,6 +18067,7 @@ paths:
   /api/v1/as-curator/preparations/{id}:
     get:
       operationId: "getPreparationAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -18133,6 +18185,7 @@ paths:
   /api/v1/as-curator/preparations/{id}/versions:
     get:
       operationId: "getPreparationVersionsAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -18170,6 +18223,7 @@ paths:
   /api/v1/as-curator/preparations/{id}/versions/{version}:
     get:
       operationId: "getPreparationByVersionAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -18375,6 +18429,7 @@ paths:
   /api/v1/as-user/preparations/by/group/{id}:
     get:
       operationId: "getPreparationsByGroupAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -18452,6 +18507,7 @@ paths:
   /api/v1/as-user/preparations/{id}:
     get:
       operationId: "getPreparationAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -18513,6 +18569,7 @@ paths:
   /api/v1/as-user/preparations/{id}/versions:
     get:
       operationId: "getPreparationVersionsAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -18550,6 +18607,7 @@ paths:
   /api/v1/as-user/preparations/{id}/versions/{version}:
     get:
       operationId: "getPreparationByVersionAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -18617,6 +18675,7 @@ paths:
   /api/v1/xrefsets:
     post:
       operationId: "create"
+      description: "TODO: Add description"
       requestBody:
         description: "Request body for creating a new xrefset.\n## Important:\nThe\
           \ length of 'sourceId' strings is limited to 255 characters. Ensure that\
@@ -18738,6 +18797,7 @@ paths:
   /api/v1/xrefsets/{id}:
     delete:
       operationId: "deleteFile"
+      description: "TODO: Add description"
       parameters:
       - description: "xrefset ID"
         in: "path"
@@ -18861,6 +18921,7 @@ paths:
   /api/v1/xrefsets/{id}/metadata:
     get:
       operationId: "getDetailsByAccession"
+      description: "TODO: Add description"
       parameters:
       - description: "xrefset ID"
         in: "path"
@@ -19043,6 +19104,7 @@ paths:
   /api/v1/reference-genomes/{id}:
     get:
       operationId: "get_reference_genome_by_accession"
+      description: "TODO: Add description"
       summary: "Retrieve a single Reference Genome object by ID (accession)"
       tags:
       - "Reference genome"
@@ -19218,6 +19280,7 @@ paths:
   /api/v1/as-curator/samples/{id}:
     get:
       operationId: "getSampleAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -19335,6 +19398,7 @@ paths:
   /api/v1/as-curator/samples/{id}/versions:
     get:
       operationId: "getSampleVersionsAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -19372,6 +19436,7 @@ paths:
   /api/v1/as-curator/samples/{id}/versions/{version}:
     get:
       operationId: "getSampleByVersionAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -19576,6 +19641,7 @@ paths:
   /api/v1/as-user/samples/{id}:
     get:
       operationId: "getSampleAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -19637,6 +19703,7 @@ paths:
   /api/v1/as-user/samples/{id}/versions:
     get:
       operationId: "getSampleVersionsAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -19674,6 +19741,7 @@ paths:
   /api/v1/as-user/samples/{id}/versions/{version}:
     get:
       operationId: "getSampleByVersionAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -20244,6 +20312,7 @@ paths:
   /api/v1/scim/Users/{id}:
     delete:
       operationId: "deleteUser"
+      description: "TODO: Add description"
       parameters:
       - description: "String, unique identifier of the user in ODM."
         in: "path"
@@ -20578,6 +20647,7 @@ paths:
   /api/v1/as-curator/studies/{id}:
     get:
       operationId: "getStudyAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -20695,6 +20765,7 @@ paths:
   /api/v1/as-curator/studies/{id}/versions:
     get:
       operationId: "getStudyVersionsAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -20732,6 +20803,7 @@ paths:
   /api/v1/as-curator/studies/{id}/versions/{version}:
     get:
       operationId: "getStudyByVersionAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -20936,6 +21008,7 @@ paths:
   /api/v1/as-user/studies/{id}:
     get:
       operationId: "getStudyAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -20997,6 +21070,7 @@ paths:
   /api/v1/as-user/studies/{id}/versions:
     get:
       operationId: "getStudyVersionsAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Unique identifier (accession) of the object."
         in: "path"
@@ -21034,6 +21108,7 @@ paths:
   /api/v1/as-user/studies/{id}/versions/{version}:
     get:
       operationId: "getStudyByVersionAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -21533,6 +21608,7 @@ paths:
   /api/v1/as-curator/variants/group/by/run/{id}:
     get:
       operationId: "getVariantGroupByRunAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -21594,6 +21670,7 @@ paths:
   /api/v1/as-curator/variants/group/{id}:
     get:
       operationId: "getVariantGroupAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -21719,6 +21796,7 @@ paths:
   /api/v1/as-curator/variants/{id}:
     get:
       operationId: "getVariantAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -21780,6 +21858,7 @@ paths:
   /api/v1/as-curator/variants/{id}/versions:
     get:
       operationId: "getVariantVersionsAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Variant object run ID (runId)."
         in: "path"
@@ -21817,6 +21896,7 @@ paths:
   /api/v1/as-curator/variants/{id}/versions/{version}:
     get:
       operationId: "getVariantByVersionAsCurator"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -22236,6 +22316,7 @@ paths:
   /api/v1/as-user/variants/group/by/run/{id}:
     get:
       operationId: "getVariantGroupByRunAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -22297,6 +22378,7 @@ paths:
   /api/v1/as-user/variants/group/{id}:
     get:
       operationId: "getVariantGroupAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -22422,6 +22504,7 @@ paths:
   /api/v1/as-user/variants/{id}:
     get:
       operationId: "getVariantAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
@@ -22483,6 +22566,7 @@ paths:
   /api/v1/as-user/variants/{id}/versions:
     get:
       operationId: "getVariantVersionsAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Variant object run ID (runId)."
         in: "path"
@@ -22520,6 +22604,7 @@ paths:
   /api/v1/as-user/variants/{id}/versions/{version}:
     get:
       operationId: "getVariantByVersionAsUser"
+      description: "TODO: Add description"
       parameters:
       - description: "Supply this parameter with the value `term_id` as part of the\
           \ query to return extended information including IDs for values and dictionaries."
