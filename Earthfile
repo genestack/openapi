@@ -181,5 +181,5 @@ main:
     BUILD +swagger
     BUILD +stoplight
     BUILD +docs
-    BUILD +r-api-client
+    #BUILD +r-api-client
     BUILD +python-api-client
