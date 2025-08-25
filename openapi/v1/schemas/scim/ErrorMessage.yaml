@@ -1,7 +1,0 @@
-properties:
-  message:
-    description: Detailed error message
-    type: string
-required:
-- message
-type: object

@@ -23,14 +23,12 @@ val processorsControllerVersion: String = System.getenv("PROCESSORS_CONTROLLER_V
 val processorsControllerFileName = "processorsController.yaml"
 val processorsControllerFilePath = "${sourceDirectory}/${processorsControllerFileName}"
 
-val openApiVersion: String = System.getenv("OPENAPI_VERSION")
-val mergedFileName = "odmApi.yaml"
-val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
+val odmFileName = "odm.yaml"
+val odmFilePath = "${sourceDirectory}/${odmFileName}"
 
-val sourceFileList = KotlinPath(sourceDirectory)
-    .listDirectoryEntries("*.yaml")
-    .sorted()
-    .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
+val openapiVersion: String = System.getenv("OPENAPI_VERSION")
+val openapiFileName = "openapi.yaml"
+val openapiFilePath = "${sourceDirectory}/${openapiFileName}"
 
 tasks {
     val downloadSpec by registering(DownloadSpecification::class) {
@@ -43,20 +41,21 @@ tasks {
     }
     val mergeSpecifications by registering(MergeSpecifications::class) {
         dependsOn(downloadSpec)
-        inputFiles = sourceFileList
-        outputFile = layout.projectDirectory.file(mergedFilePath)
+        inputFiles = listOf(odmFilePath, processorsControllerFilePath)
+            .sorted().map { layout.projectDirectory.file(it) }
+        outputFile = layout.projectDirectory.file(openapiFilePath)
     }
     val generateOdmApiPython by registering(GenerateTask::class) {
         dependsOn(mergeSpecifications)
         generatorName.set("python")
-        inputSpec.set(mergedFilePath)
+        inputSpec.set(openapiFilePath)
         outputDir.set("$rootDir/generated/python")
         packageName.set("odm_api")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
-            "packageVersion" to openApiVersion,
+            "packageVersion" to openapiVersion,
             // Workaround for https://github.com/OpenAPITools/openapi-generator/issues/21619
             // The second version asks for license, which we can't provide due to unavailability of
             // "licenseName" and "licenseUrl" fields in the specification for python generator.
@@ -67,28 +66,28 @@ tasks {
     val generateOdmApiR by registering(GenerateTask::class) {
         dependsOn(mergeSpecifications)
         generatorName.set("r")
-        inputSpec.set(mergedFilePath)
+        inputSpec.set(openapiFilePath)
         outputDir.set("$rootDir/generated/r")
         packageName.set("odmApi")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
-            "packageVersion" to openApiVersion
+            "packageVersion" to openapiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
     val generateOdmApiPostmanCollection by registering(GenerateTask::class) {
         dependsOn(mergeSpecifications)
         generatorName.set("postman-collection")
-        inputSpec.set(mergedFilePath)
+        inputSpec.set(openapiFilePath)
         outputDir.set("$rootDir/generated/postman-collection")
         packageName.set("odm-api")
         gitUserId.set("genestack")
         gitRepoId.set("openapi")
         nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
         configOptions = mapOf(
-            "packageVersion" to openApiVersion
+            "packageVersion" to openapiVersion
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
