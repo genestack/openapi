@@ -18,11 +18,11 @@ repos:
       language: node
       files: openapi/v1/odm.yaml
       additional_dependencies: ['@stoplight/spectral-cli@6.15.0']
-#- repo: local
-#  hooks:
-#    - id: redocly-lint
-#      name: redocly-lint
-#      entry: npx @redocly/cli lint
-#      language: node
-#      files: openapi/v1/odm.yaml
-#      additional_dependencies: ['@redocly/cli@2.0.7']
+- repo: local
+  hooks:
+    - id: redocly-lint
+      name: redocly-lint
+      entry: npx @redocly/cli lint
+      language: node
+      files: openapi/v1/odm.yaml
+      additional_dependencies: ['@redocly/cli@2.0.7']
