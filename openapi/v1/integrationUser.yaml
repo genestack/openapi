@@ -2844,6 +2844,77 @@ paths:
       tags:
       - Linkage as User
       x-codegen-request-body-name: request
+  /api/v1/as-user/omics/cells:
+    get:
+      description: |-
+        Retrieve cell objects whose linked data matches all supplied conditions.
+        
+        ## Conditions
+        It is possible to supply conditions for:
+        Parent studies (full-text or metadata key-value pair)
+        Samples (full-text or metadata key-value pair)
+        Libraries (full-text or metadata key-value pair)
+        Preparations (full-text or metadata key-value pair)
+  
+        ## Metadata full-text queries
+        Single words can be supplied as is; otherwise, use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
+  
+        ## Metadata filters
+        Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
+  
+        ## Data queries
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with (`0:1`) syntax, OR values with `|`.
+  
+        ## Combinations
+        Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
+  
+        ## Paging
+        For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
+      operationId: omicsSearchCellsAsUser
+      parameters:
+        - description: |
+            Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
+          in: query
+          name: studyFilter
+          schema:
+            type: string
+        - description: The page tag to resume results from (see paging above).
+          in: query
+          name: cursor
+          schema:
+            type: string
+        - description: This parameter determines the number of results to retrieve per page, with the default set at 2000.
+          in: query
+          name: pageLimit
+          schema:
+            format: int32
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OmicsResponse"
+          description: Omics query result.
+        "400":
+          content: { }
+          description: Invalid data in request. See error message for details.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Retrieve Cell objects by searching across multiple data types
+      tags:
+        - Omics queries as User
   /api/v1/as-user/omics/expression/data:
     get:
       description: "Retrieve any data objects whose linked data matches all supplied\
