@@ -4385,6 +4385,12 @@ paths:
           name: studyFilter
           schema:
             type: string
+        - description: |
+            Apply cell metadata filters. E.g. `"percentMito" > 0.6 AND cellType="red blood cell"`
+          in: query
+          name: cellFilter
+          schema:
+            type: string
         - description: The page tag to resume results from (see paging above).
           in: query
           name: cursor
