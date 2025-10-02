@@ -2851,10 +2851,10 @@ paths:
 
         ## Conditions
         It is possible to supply conditions for:
-        Parent studies (full-text or metadata key-value pair)
-        Samples (full-text or metadata key-value pair)
-        Libraries (full-text or metadata key-value pair)
-        Preparations (full-text or metadata key-value pair)
+        1. Parent studies (full-text or metadata key-value pair)
+        2. Samples (full-text or metadata key-value pair)
+        3. Libraries (full-text or metadata key-value pair)
+        4. Preparations (full-text or metadata key-value pair)
 
         ## Metadata full-text queries
         Single words can be supplied as is; otherwise, use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
