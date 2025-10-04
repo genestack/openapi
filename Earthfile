@@ -8,7 +8,7 @@ ARG --global --required RAW_REGISTRY_RELEASES
 ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
-    FROM eclipse-temurin:21.0.8_9-jdk-alpine
+    FROM eclipse-temurin:25-jdk-alpine
     DO github.com/genestack/earthly-libs+GRADLE_PREPARE
 
     CACHE /root/.gradle/caches
