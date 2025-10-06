@@ -381,8 +381,8 @@ paths:
         ## Metadata
          It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
         ## Metadata file format
-         * Extension: `.zip`, `.gz`, `.br`, `.lz4` are supported, treated as archives and get decompressed
          * Format: plain text, Gene Cluster Text (GCT), Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Extension: `.zip`, `.gz`, `.br`, `.lz4` are supported, treated as archives and get decompressed
          * Header: the first line is treated as table header that contains attribute names
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
@@ -425,8 +425,8 @@ paths:
         ## Metadata
          It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
         ## Metadata file format
-         * Extension: `.zip`, `.gz`, `.br`, `.lz4` are supported, treated as archives and get decompressed
          * Format: plain text, Gene Cluster Text (GCT), Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Extension: `.zip`, `.gz`, `.br`, `.lz4` are supported, treated as archives and get decompressed
          * Header: the first line is treated as table header that contains attribute names
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
