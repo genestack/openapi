@@ -486,7 +486,7 @@ paths:
   : post:
       description: |-
         Create a link between a group of cell expression objects and a group of cell metadata.
-        
+
         A cell expression object can be linked to one cell metadata object only.
       operationId: createExpressionGroupCellGroupLinkAsCurator
       parameters:
