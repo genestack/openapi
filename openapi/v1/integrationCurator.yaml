@@ -482,6 +482,52 @@ paths:
       summary: Retrieve group metadata by querying study ID (accession)
       tags:
       - Expression integration as Curator
+  ? /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/cell/group/{targetId}
+    : post:
+        description: |-
+          Create a link between a group of cell expression objects and a group of cell metadata.
+          
+          A cell expression object can be linked to one cell metadata object only.
+        operationId: createExpressionGroupCellGroupLinkAsCurator
+        parameters:
+          - description: The ID (accession) of the cell expression group object
+            in: path
+            name: sourceId
+            required: true
+            schema:
+              type: string
+          - description: The ID (accession) of the cell metadata group object
+            in: path
+            name: targetId
+            required: true
+            schema:
+              type: string
+        responses:
+          "200":
+            content: {}
+            description: Some (not all) cell links were created.
+          "204":
+            content: {}
+            description: All links were created.
+          "400":
+            content: {}
+            description: "Incorrect Cell or Expression group provided, see error message for details."
+          "401":
+            content: {}
+            description: |-
+              User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+               or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+          "500":
+            content: {}
+            description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+        security:
+          - Access-token: []
+          - Genestack-API-Token: []
+        summary: Create a link between a group of cell expression objects and a group of cell metadata.
+        tags:
+          - Expression integration as Curator
   ? /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}
   : delete:
       description: Delete link between a group of expression objects and a group of
