@@ -4504,6 +4504,22 @@ paths:
             * `cluster=1 || cluster=2` or `cluster=1 OR cluster=2`: select all objects where cluster 1 or 2.
             * `percentMito>0.2 && nCounts>=1000`: select all objects where percentMito is greater than 0.2 and nCounts is more or equal to 1000.
             * `batch=BatchA && (cluster=3 || -3 < percentMito < 8)`: combine logical operators in one query.
+
+            Embedding constraints:
+
+            * UMAP
+              - Allowed number of dimensions per cell: **0** (absent) or **≥ 2**.
+              - If exactly **1** UMAP dimension is provided, the request is invalid.
+              - At most **3** UMAP dimensions are stored; if more than 3 are provided, only the first 3 are kept and the rest are ignored.
+
+            * PCA
+              - Allowed number of components per cell: **0** (absent) or **≥ 2**.
+              - If exactly **1** PCA component is provided, the request is invalid.
+              - At most **100** PCA components are stored; components beyond 100 are ignored.
+
+            Notes:
+            - “Dimensions/components” refer to the length of the embedding vector for each cell.
+            - Ignoring excess dimensions/components does not cause an error; validation errors occur only when the number is exactly **1**.
           in: query
           name: cellQuery
           schema:
