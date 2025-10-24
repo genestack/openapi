@@ -1,12 +1,11 @@
-DifferentialExpressionResult:
-  type: object
-  properties:
-    resultsPerGene:
-      type: array
-      items:
-        $ref: '#/components/schemas/GeneEntry'
-  required:
-    - resultsPerGene
+type: object
+properties:
+  resultsPerGene:
+    type: array
+    items:
+      $ref: '#/components/schemas/GeneEntry'
+required:
+  - resultsPerGene
 components:
   schemas:
     GeneEntry:
