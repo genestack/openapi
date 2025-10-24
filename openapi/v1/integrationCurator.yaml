@@ -6761,6 +6761,48 @@ paths:
       summary: Stream data from a given VCF file
       tags:
         - Omics queries as Curator
+  /api/v1/as-user/omics/cells/analytics/differential-expression:
+    post:
+      operationId: differentialExpressionAsUser
+      summary: "[BETA] Perform differential gene expression analysis between case and control cell groups"
+      tags:
+        - "[BETA] Analysis omics queries as User"
+      description: |+
+        This endpoint computes differential gene expression between two specified cell groups (case vs control) within single-cell data.
+
+        The response includes per-gene metrics that characterize expression differences between the two groups.
+        Results are sorted by fold change in descending order, allowing easy identification of the most differentially expressed genes.
+
+        Request and response parameters are subject to change as this feature is in BETA.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DifferentialExpressionRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DifferentialExpressionResult"
+          description: Differential expression result
+        "400":
+          content: { }
+          description: Entities cannot be retrieved.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
   /api/v1/as-curator/integration/studies/{id}/tasks/publish-versions:
     post:
       description: This endpoint publishes information from staging and creates new
@@ -7112,6 +7154,10 @@ components:
       $ref: "./schemas/integration/FilterOption.yaml"
     AFile:
       $ref: "./schemas/afile/AFile.yaml"
+    DifferentialExpressionRequest:
+      $ref: "./schemas/cell/DifferentialExpressionRequest.yaml"
+    DifferentialExpressionResult:
+      $ref: "./schemas/cell/DifferentialExpressionResult.yaml"
   securitySchemes:
     Access-token:
       in: header

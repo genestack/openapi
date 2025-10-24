@@ -1,0 +1,47 @@
+DifferentialExpressionResult:
+  type: object
+  properties:
+    resultsPerGene:
+      type: array
+      items:
+        $ref: '#/components/schemas/GeneEntry'
+  required:
+    - resultsPerGene
+components:
+  schemas:
+    GeneEntry:
+      type: object
+      properties:
+        geneId:
+          type: string
+          description: Gene identifier
+        caseCellCount:
+          type: integer
+          description: Number of cells expressing the gene in the case group
+        controlCellCount:
+          type: integer
+          description: Number of cells expressing the gene in the control group
+        caseAvgExpression:
+          type: number
+          format: double
+          description: Average expression level across case cells
+        controlAvgExpression:
+          type: number
+          format: double
+          description: Average expression level across control cells
+        expressionDifference:
+          type: number
+          format: double
+          description: Numerical difference between average expressions
+        foldChange:
+          type: number
+          format: double
+          description: Ratio of average expressions between case and control groups
+      required:
+        - geneId
+        - caseCellCount
+        - controlCellCount
+        - caseAvgExpression
+        - controlAvgExpression
+        - expressionDifference
+        - foldChange

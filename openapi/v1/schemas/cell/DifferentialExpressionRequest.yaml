@@ -1,0 +1,36 @@
+type: object
+properties:
+  caseGroup:
+    $ref: '#/components/schemas/CellGroupRequest'
+  controlGroup:
+    $ref: '#/components/schemas/CellGroupRequest'
+  exQuery:
+    type: string
+required:
+  - caseGroup
+  - controlGroup
+components:
+  schemas:
+    CellGroupRequest:
+      type: object
+      properties:
+        studyFilter:
+          type: string
+        studyQuery:
+          type: string
+        sampleFilter:
+          type: string
+        sampleQuery:
+          type: string
+        libraryFilter:
+          type: string
+        libraryQuery:
+          type: string
+        preparationFilter:
+          type: string
+        preparationQuery:
+          type: string
+        cellQuery:
+          type: string
+        searchSpecificTerms:
+          type: boolean
