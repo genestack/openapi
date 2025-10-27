@@ -8,7 +8,7 @@ ARG --global --required RAW_REGISTRY_RELEASES
 ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
-    FROM eclipse-temurin:21.0.8_9-jdk-alpine
+    FROM eclipse-temurin:25_36-jdk-alpine
     DO github.com/genestack/earthly-libs+GRADLE_PREPARE
 
     CACHE /root/.gradle/caches
@@ -83,7 +83,8 @@ r-api-client:
     # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
-        apt install -y libssl-dev libcurl4-gnutls-dev curl libcurl4t64:amd64=8.16.0-4 --allow-downgrades && \
+        apt-get install -y \
+            libssl-dev libcurl4-gnutls-dev curl libcurl4t64:amd64=8.16.0-4 --allow-downgrades && \
         Rscript requirements.R
 
     COPY +build/generated generated
