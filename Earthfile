@@ -155,7 +155,7 @@ swagger:
     RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
-        apk del bash
+        apk del bash sqlite-libs nodejs
 
     # Remove merged api spec
     # IDK why it's required
