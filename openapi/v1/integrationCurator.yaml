@@ -4718,14 +4718,6 @@ paths:
           name: searchSpecificTerms
           schema:
             type: boolean
-        - description: |-
-            Specify which versions of omics data files are used in the query. By default the active version is used. See Versioning above. Syntax:
-
-            \* or `v<version number>` or `<CHAIN_ID>`:`v<version number>` or `<CHAIN_ID>`:`<accession1,accession2,..>`
-          in: query
-          name: useVersions
-          schema:
-            type: string
         - description: The page tag to resume results from (see paging above).
           in: query
           name: cursor
