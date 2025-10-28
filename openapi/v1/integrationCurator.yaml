@@ -1693,7 +1693,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -2491,7 +2491,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -2785,7 +2785,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -2915,7 +2915,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -3125,7 +3125,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -3255,7 +3255,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -3386,7 +3386,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -4416,7 +4416,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with (`0:1`) syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -4564,7 +4564,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with (`0:1`) syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -4780,8 +4780,7 @@ paths:
         \ in the query parameter summary. The values can be simple non-whitespace\
         \ strings, or strings enclosed by speech marks (`\"`). Depending on the key,\
         \ the value may be be a comma-delimited list of string values. Others require\
-        \ numerical values. Ranges can be supplied with `(0:1)` syntax, OR values\
-        \ with `|`.\n\n## Combinations\nMetadata queries/filters for the same parameter\
+        \ numerical values.\n\n## Combinations\nMetadata queries/filters for the same parameter\
         \ can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space\
         \ to separate out the terms and operators. Parentheses `( )` can be used for\
         \ complex expressions.\n\n## Versioning\nSpecific versions of omics data files\
@@ -5053,7 +5052,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -5501,7 +5500,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -5770,7 +5769,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -6038,7 +6037,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -6309,7 +6308,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -6577,7 +6576,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values. Ranges can be supplied with `(0:1)` syntax, OR values with `|`.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
