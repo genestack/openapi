@@ -155,7 +155,9 @@ swagger:
     RUN rm -f /usr/share/nginx/html/yaml/odmApi.yaml
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
-        apk del bash
+        apk del bash && \
+        echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
+        apk update && apk upgrade sqlite-libs
 
     # Remove merged api spec
     # IDK why it's required
