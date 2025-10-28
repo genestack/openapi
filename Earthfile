@@ -84,7 +84,7 @@ r-api-client:
     RUN \
         apt update && \
         apt-get install -y \
-            libssl-dev libcurl4-gnutls-dev curl libcurl4t64:amd64=8.16.0-4 --allow-downgrades && \
+            libssl-dev libcurl4-gnutls-dev curl && \
         Rscript requirements.R
 
     COPY +build/generated generated
