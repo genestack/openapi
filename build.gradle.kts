@@ -14,7 +14,7 @@ import kotlin.io.path.name
 import kotlin.io.path.Path as KotlinPath
 
 plugins {
-    alias(libs.plugins.openapi.generator) apply true
+    alias(libs.plugins.openapi.generator)
 }
 
 val sourceDirectory = "$rootDir/openapi/v1"
