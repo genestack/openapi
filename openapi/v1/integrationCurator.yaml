@@ -4512,14 +4512,6 @@ paths:
               - If exactly **1** UMAP dimension is provided, the request is invalid.
               - At most **3** UMAP dimensions are stored; if more than 3 are provided, only the first 3 are kept and the rest are ignored.
 
-            * PCA
-              - Allowed number of components per cell: **0** (absent) or **≥ 2**.
-              - If exactly **1** PCA component is provided, the request is invalid.
-              - At most **100** PCA components are stored; components beyond 100 are ignored.
-
-            Notes:
-            - “Dimensions/components” refer to the length of the embedding vector for each cell.
-            - Ignoring excess dimensions/components does not cause an error; validation errors occur only when the number is exactly **1**.
           in: query
           name: cellQuery
           schema:
