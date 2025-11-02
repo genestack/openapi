@@ -73,7 +73,7 @@ python-api-client:
             pypi-clean.sh
 
 r-api-client:
-    FROM r-base:4.5.1
+    FROM r-base:4.5.2
     WORKDIR /app
 
     CACHE /root/.cache
@@ -146,7 +146,7 @@ docs:
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.29.5
+    FROM swaggerapi/swagger-ui:v5.30.1
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
