@@ -5434,8 +5434,9 @@ paths:
       description: |+
         This endpoint computes differential gene expression between two specified cell groups (case vs control) within single-cell data.
 
+        Consult `/omics` search endpoints to find description of parameters within the cell groups.
         The response includes per-gene metrics that characterize expression differences between the two groups.
-        Results are sorted by fold change in descending order, allowing easy identification of the most differentially expressed genes.
+        Results are sorted by absolute value of fold change in descending order, allowing easy identification of the most differentially expressed genes.
 
         Request and response parameters are subject to change as this feature is in BETA.
       requestBody:

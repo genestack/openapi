@@ -6,6 +6,17 @@ properties:
     $ref: '#/components/schemas/CellGroupRequest'
   exQuery:
     type: string
+    example: 'feature=ENSG00000230368,ENSG00000188976'
+  limit:
+    type: integer
+    format: int32
+    description: This parameter determines the number of results to retrieve per page, with the default set at 2000.
+    example: 2000
+  offset:
+    type: integer
+    format: int32
+    description: This parameter allows skipping a specified number of results, with the default set at 0.
+    example: 0
 required:
   - caseGroup
   - controlGroup
@@ -16,21 +27,31 @@ components:
       properties:
         studyFilter:
           type: string
+          example: '"Study Source"=ArrayExpress'
         studyQuery:
           type: string
+          example: 'RNA-Seq of human dendritic cells'
         sampleFilter:
           type: string
+          example: '"Species or strain"="Homo sapiens"'
         sampleQuery:
           type: string
+          example: 'Clozapine'
         libraryFilter:
           type: string
+          example: '"Library Type"=RNA-Seq-1'
         libraryQuery:
           type: string
+          example: 'illumina HiSeq500'
         preparationFilter:
           type: string
+          example: 'Digestion=Trypsin'
         preparationQuery:
           type: string
+          example: 'reversed-phase liquid chromatography'
         cellQuery:
           type: string
+          example: 'cellType=Macrophage,Monocyte'
         searchSpecificTerms:
           type: boolean
+          example: false
