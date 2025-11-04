@@ -27,22 +27,30 @@ components:
           description: Number of cells expressing the gene in the control group.
           example: 8123
         caseAvgExpression:
-          type: number
+          oneOf:
+            - type: number
+            - type: string # Nan
           format: double
           description: Average expression level across case cells.
           example: 1.24
         controlAvgExpression:
-          type: number
+          oneOf:
+            - type: number
+            - type: string # Nan
           format: double
           description: Average expression level across control cells.
           example: 0.62
         expressionDifference:
-          type: number
+          oneOf:
+            - type: number
+            - type: string # Nan
           format: double
           description: Numerical difference between average expressions.
           example: 0.62
         foldChange:
-          type: number
+          oneOf:
+            - type: number
+            - type: string # Nan, Inf and -Inf
           format: double
           description: Ratio of average expressions between case and control groups.
           example: 2.0
