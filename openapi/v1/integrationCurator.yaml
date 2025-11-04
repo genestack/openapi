@@ -6974,9 +6974,9 @@ paths:
       summary: Stream data from a given VCF file
       tags:
         - Omics queries as Curator
-  /api/v1/as-user/omics/cells/analytics/differential-expression:
+  /api/v1/as-curator/omics/cells/analytics/differential-expression:
     post:
-      operationId: differentialExpressionAsUser
+      operationId: differentialExpressionAsCurator
       summary: "[BETA] Perform differential gene expression analysis between case and control cell groups"
       tags:
         - "[BETA] Analysis omics queries as User"
