@@ -6979,7 +6979,7 @@ paths:
       operationId: differentialExpressionAsCurator
       summary: "[BETA] Perform differential gene expression analysis between case and control cell groups"
       tags:
-        - "[BETA] Analysis omics queries as User"
+        - "[BETA] Analysis omics queries as Curator"
       description: |+
         This endpoint computes differential gene expression between two specified cell groups (case vs control) within single-cell data.
 
