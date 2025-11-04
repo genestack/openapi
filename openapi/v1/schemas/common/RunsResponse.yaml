@@ -6,15 +6,11 @@ example:
     - runId: "2"
       sampleSourceId: "exp4-human-100well.TTACCTAAGTTTGATATATT"
 properties:
-  data:
-    items:
-      properties:
-        runId:
-          type: string
-        sampleSourceId:
-          type: string
-      type: object
-    type: array
   cursor:
     type: string
+  data:
+    items:
+      properties: { }
+      type: object
+    type: array
 type: object
