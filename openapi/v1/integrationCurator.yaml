@@ -6990,9 +6990,9 @@ paths:
       requestBody:
         required: true
         content:
-          text/plain:
+          application/json:
             schema:
-              type: string
+              $ref: "#/components/schemas/GeneSummaryRequest"
       responses:
         "200":
           content:
@@ -7369,6 +7369,8 @@ components:
       $ref: "./schemas/integration/FilterOption.yaml"
     AFile:
       $ref: "./schemas/afile/AFile.yaml"
+    GeneSummaryRequest:
+      $ref: "./schemas/cell/GeneSummaryRequest.yaml"
   securitySchemes:
     Access-token:
       in: header
