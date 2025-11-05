@@ -5441,16 +5441,16 @@ paths:
       requestBody:
         required: true
         content:
-          text/plain:
+          application/json:
             schema:
-              type: string
+              $ref: "#/components/schemas/GeneSummaryRequest"
       responses:
         "200":
-          content:
-            text/plain:
-              schema:
-                type: string
           description: Gene summary result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneSummaryResponse"
         "400":
           content: { }
           description: Invalid data in the request. See the error message for details.
@@ -5588,6 +5588,10 @@ components:
       $ref: "./schemas/integration/FilterOption.yaml"
     AFile:
       $ref: "./schemas/afile/AFile.yaml"
+    GeneSummaryRequest:
+      $ref: "./schemas/cell/GeneSummaryRequest.yaml"
+    GeneSummaryResponse:
+      $ref: "./schemas/cell/GeneSummaryResponse.yaml"
   securitySchemes:
     Access-token:
       in: header
