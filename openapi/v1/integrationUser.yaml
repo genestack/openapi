@@ -5425,6 +5425,50 @@ paths:
       summary: Stream data from a given VCF file
       tags:
         - Omics queries as User
+  /api/v1/as-curator/omics/cells/analytics/gene-summary:
+    post:
+      operationId: geneSummaryAsCurator
+      tags:
+        - "[BETA] Analysis omics queries as Curator"
+      description: |+
+        This endpoint provides gene summary statistical metrics for gene expression across single-cell datasets.
+        It provides basic statistical terms - cell count, mean, median, standard deviation, quantiles, histogram. 
+
+        Consult `/omics` search endpoints to find description of parameters within the cell groups.
+        The response includes per-gene statistics.
+
+        Request and response parameters are subject to change as this feature is in BETA.
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Gene summary result
+        "400":
+          content: { }
+          description: Invalid data in the request. See the error message for details.
+        "401":
+          content: { }
+          description: |+
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` 
+            HTTP header (e.g. Authorization: bearer [token]) or  Genestack API token in the `Genestack-API-Token` 
+            header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: { }
+          description: |+
+            An internal server error occurred. This indicates an unexpected
+            failure in the Genestack system, please file a bug report to support@genestack.com,
+            including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
   /api/v1/as-user/integration/link/files/by/study/{id}:
     get:
       operationId: getFilesByStudyAsUser
