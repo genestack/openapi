@@ -46,6 +46,16 @@ components:
           format: double
           description: Ratio of average expressions between case and control groups.
           example: 2.0
+        mannWhitneyU:
+          type: number
+          format: double
+          description: Mann–Whitney U test statistic that measures the difference between Case and Control groups.
+          example: 1.5
+        pValue:
+          type: number
+          format: double
+          description: The probability of observing results as extreme as (or more extreme than) those obtained, assuming that the null hypothesis is true.
+          example: 0.95
       required:
         - geneId
         - caseCellCount
@@ -54,6 +64,8 @@ components:
         - controlAvgExpression
         - expressionDifference
         - foldChange
+        - mannWhitneyU
+        - pValue
     Pagination:
         type: object
         properties:
