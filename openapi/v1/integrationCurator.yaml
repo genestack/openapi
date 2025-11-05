@@ -6992,14 +6992,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DifferentialExpressionRequest"
+              $ref: "#/components/schemas/DERequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DifferentialExpressionResult"
+                $ref: "#/components/schemas/DEResponse"
           description: Differential expression result
         "400":
           content: { }
@@ -7368,10 +7368,10 @@ components:
       $ref: "./schemas/integration/FilterOption.yaml"
     AFile:
       $ref: "./schemas/afile/AFile.yaml"
-    DifferentialExpressionRequest:
-      $ref: "./schemas/cell/DifferentialExpressionRequest.yaml"
-    DifferentialExpressionResult:
-      $ref: "./schemas/cell/DifferentialExpressionResult.yaml"
+    DERequest:
+      $ref: "./schemas/cell/DERequest.yaml"
+    DEResponse:
+      $ref: "./schemas/cell/DEResponse.yaml"
   securitySchemes:
     Access-token:
       in: header
