@@ -28,19 +28,17 @@ components:
           example: 8123
         caseAvgExpression:
           type: number
+          format: double
           description: Average expression level across case cells.
           example: 1.24
         controlAvgExpression:
-          oneOf:
-            - type: number
-            - type: string # Nan
+          type: number
           format: double
           description: Average expression level across control cells.
           example: 0.62
         expressionDifference:
-          oneOf:
-            - type: number
-            - type: string # Nan
+          type: number
+          format: double
           description: Numerical difference between average expressions.
           example: 0.62
         foldChange:
