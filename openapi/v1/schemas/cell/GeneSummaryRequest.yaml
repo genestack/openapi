@@ -9,6 +9,7 @@ properties:
     example:
       - "ENSG00000230368"
       - "ENSG00000188976"
+      - "ENSG00000188982"
   exQuery:
     type: string
     example: '-3 < value < 3'
