@@ -1,15 +1,12 @@
 VERSION 0.8
 
 ARG --global --required HARBOR_DOCKER_REGISTRY
-ARG --global --required MAVEN_REGISTRY_GROUP
-ARG --global --required MAVEN_REGISTRY_RELEASES
-ARG --global --required MAVEN_REGISTRY_SNAPSHOTS
 ARG --global --required RAW_REGISTRY_RELEASES
 ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM eclipse-temurin:25_36-jdk-alpine
-    DO github.com/genestack/earthly-libs+GRADLE_PREPARE
+    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+GRADLE_PREPARE
 
     CACHE /root/.gradle/caches
     CACHE /root/.gradle/wrapper
@@ -31,7 +28,7 @@ build:
 
 python-api-client:
     FROM python:3.13.7-alpine
-    DO github.com/genestack/earthly-libs+PYTHON_PREPARE
+    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
 
     CACHE /root/.cache
 
