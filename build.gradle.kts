@@ -19,7 +19,6 @@ plugins {
 
 val sourceDirectory = "$rootDir/openapi/v1"
 
-l
 val processorsControllerVersion: String = System.getenv("PROCESSORS_CONTROLLER_VERSION")
 val processorsControllerFileName = "processorsController.yaml"
 val processorsControllerFilePath = "${sourceDirectory}/${processorsControllerFileName}"
