@@ -6977,6 +6977,7 @@ paths:
   /api/v1/as-curator/omics/cells/analytics/gene-summary:
     post:
       operationId: geneSummaryAsCurator
+      summary: "[BETA] Perform gene summary analysis"
       tags:
         - "[BETA] Analysis omics queries as Curator"
       description: |+
