@@ -4,7 +4,7 @@ properties:
     type: integer
     format: int32
     description: Count of Cells selected with all queries.
-    example: 8968167
+    example: 1243393
   countAvailable:
     type: integer
     format: int32
