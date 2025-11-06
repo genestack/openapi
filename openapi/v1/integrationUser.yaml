@@ -5513,6 +5513,48 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
+  /api/v1/as-curator/omics/cells/analytics/cell-ratio:
+    post:
+      operationId: cellRatioAsUser
+      summary: "Compute cell ratio statistics across groups or metadata attributes in single-cell data."
+      tags:
+        - "[BETA] Analysis omics queries as Curator"
+      description: |+
+        This endpoint calculates cell ratio statistics based on single-cell metadata.
+        It allows quantifying the proportion of cells that meet specific criteria (e.g. expression threshold, cell type, or cluster)
+        relative to a defined reference group or the total cell population defined by study, samples, library, or preparation metadata
+        Request and response parameters are subject to change as this feature is in BETA.
+
+        The endpoint supports grouping by Study, Sample, Library, or Preparation metadata and filtering by cell expression or cell metadata fields.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CellRatioRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CellRatioResponse"
+          description: Cell ratio result
+        "400":
+          content: { }
+          description: Entities cannot be retrieved.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
   /api/v1/as-user/integration/link/files/by/study/{id}:
     get:
       operationId: getFilesByStudyAsUser
@@ -5640,6 +5682,10 @@ components:
       $ref: "./schemas/cell/GeneSummaryRequest.yaml"
     GeneSummaryResponse:
       $ref: "./schemas/cell/GeneSummaryResponse.yaml"
+    CellRatioRequest:
+      $ref: "./schemas/cell/CellRatioRequest.yaml"
+    CellRatioResponse:
+      $ref: "./schemas/cell/CellRatioResponse.yaml"
   securitySchemes:
     Access-token:
       in: header

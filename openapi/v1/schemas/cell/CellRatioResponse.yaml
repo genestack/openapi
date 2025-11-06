@@ -1,0 +1,17 @@
+type: object
+properties:
+  countSelected:
+    type: integer
+    format: int32
+    description: Count of Cells selected with all queries.
+    example: 8968167
+  countAvailable:
+    type: integer
+    format: int32
+    description: Count of all available Cells limited by Study and SLP queries and filters.
+    example: 9234945
+  ratio:
+    type: number
+    format: double
+    description: Ratio value
+    example: 0.13465
