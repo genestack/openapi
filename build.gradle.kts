@@ -61,6 +61,7 @@ tasks {
             // The second version asks for license, which we can't provide due to unavailability of
             // "licenseName" and "licenseUrl" fields in the specification for python generator.
             "poetry1" to "true",
+            // All float fields accept "NaN", "Infinity", "-Infinity" values
             "mapNumberTo" to "float"
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )

@@ -1,27 +1,16 @@
 example:
-  experiment: experiment
-  warnings:
-  - warnings
-  - warnings
-  versionChainId: versionChainId
-  runs:
-  -
-  -
+  cursor: "1"
+  data:
+    - runId: "1"
+      sampleSourceId: "exp4-human-100well.ATATCCTACTACTTAACTAG"
+    - runId: "2"
+      sampleSourceId: "exp4-human-100well.TTACCTAAGTTTGATATATT"
 properties:
-  runs:
-    items:
-      $ref: "#/components/schemas/SignalRun"
-    type: array
-  experiment:
+  cursor:
     type: string
-  warnings:
+  data:
     items:
-      type: string
+      properties: { }
+      type: object
     type: array
-  versionChainId:
-    type: string
 type: object
-components:
-  schemas:
-    SignalRun:
-      $ref: "./SignalRun.yaml"
