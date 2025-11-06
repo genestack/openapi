@@ -6981,7 +6981,7 @@ paths:
         - "[BETA] Analysis omics queries as Curator"
       description: |+
         This endpoint provides gene summary statistical metrics for gene expression across single-cell datasets.
-        It provides basic statistical terms - cell count, mean, median, standard deviation, quantiles, histogram. 
+        It provides basic statistical terms - cell count, mean, median, standard deviation, quantiles, histogram.
 
         Consult `/omics` search endpoints to find description of parameters within the cell groups.
         The response includes per-gene statistics.
@@ -7006,8 +7006,8 @@ paths:
         "401":
           content: { }
           description: |+
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` 
-            HTTP header (e.g. Authorization: bearer [token]) or  Genestack API token in the `Genestack-API-Token` 
+            User is not authenticated. Please supply a valid Access Token in the `Authorization`
+            HTTP header (e.g. Authorization: bearer [token]) or  Genestack API token in the `Genestack-API-Token`
             header (this token may be obtained from the Genestack UI _Profile_ page).
         "500":
           content: { }

@@ -56,10 +56,10 @@ components:
         histogram:
           type: array
           description: |
-            Histogram as a list of [binStart, binEnd, count] triples. 
+            Histogram as a list of [binStart, binEnd, count] triples.
             Length depends of the selected sample size, maximum is 20.
           example: |
-            [(1, 15.50289002318, 7686678.375), (15.50289002318, 35.49570418233824, 1229164), 
+            [(1, 15.50289002318, 7686678.375), (15.50289002318, 35.49570418233824, 1229164),
             (35.49570418233824, 56.93121325335453, 36531.25), (56.93121325335453, 77.21467372919479, 6910.625)]
           items:
             type: array
