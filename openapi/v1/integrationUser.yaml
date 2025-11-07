@@ -5468,7 +5468,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /api/v1/as-curator/omics/cells/analytics/gene-summary:
+  /api/v1/as-user/omics/cells/analytics/gene-summary:
     post:
       operationId: geneSummaryAsUser
       summary: "[BETA] Perform gene summary analysis"
