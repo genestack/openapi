@@ -5428,9 +5428,9 @@ paths:
   /api/v1/as-user/omics/cells/analytics/differential-expression:
     post:
       operationId: differentialExpressionAsUser
-      summary: "[BETA] Perform differential gene expression analysis between case and control cell groups"
+      summary: "[BETA] Perform differential gene expression analytics between case and control cell groups"
       tags:
-        - "[BETA] Analysis omics queries as User"
+        - "[BETA] Analytics omics queries as User"
       description: |+
         This endpoint computes differential gene expression between two specified cell groups (case vs control) within single-cell data.
 
