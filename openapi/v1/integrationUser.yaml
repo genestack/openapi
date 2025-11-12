@@ -5684,9 +5684,9 @@ components:
     DEResponse:
       $ref: "./schemas/cell/DEResponse.yaml"
     GeneSummaryRequest:
-      $ref: "./schemas/cell/GeneSummaryRequest.yaml"
+      $ref: "./schemas/cell/GSRequest.yaml"
     GeneSummaryResponse:
-      $ref: "./schemas/cell/GeneSummaryResponse.yaml"
+      $ref: "./schemas/cell/GSResponse.yaml"
   securitySchemes:
     Access-token:
       in: header
