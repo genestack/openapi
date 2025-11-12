@@ -7077,17 +7077,25 @@ paths:
   /api/v1/as-curator/omics/cells/analytics/gene-summary:
     post:
       operationId: geneSummaryAsCurator
-      summary: "[BETA] Perform gene summary analytics"
+      summary: "[BETA] Compute and retrieve descriptive statistics and visual summaries for single-cell data."
       tags:
         - "[BETA] Analytics omics queries as Curator"
       description: |+
-        This endpoint provides gene summary statistical metrics for gene expression across single-cell datasets.
-        It provides basic statistical terms - cell count, mean, median, standard deviation, quantiles, histogram.
+        This endpoint provides descriptive statistical metrics for gene expression across single-cell datasets.
+        It aggregates and summarizes expression data for each gene to help assess variability, distribution,
+        and intensity of expression within the population of cells.
 
-        Consult `/omics` search endpoints to find description of parameters within the cell groups.
-        The response includes per-gene statistics.
+        The computed metrics include:
+          - Gene name - gene identifier.
+          - Cell count - number of cells with measurable expression for each gene.
+          - Mean expression value.
+          - Median expression value.
+          - Quantiles — configurable expression percentiles.
+          - Histogram (density) — binned distribution of expression levels for visualization.
+          - Standard deviation — dispersion of expression values.
+          - Minimum and maximum values — range of expression across cells.
 
-        Request and response parameters are subject to change as this feature is in BETA.
+        Results are sorted by gene name.
       requestBody:
         required: true
         content:
