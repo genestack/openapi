@@ -13,6 +13,7 @@ components:
   schemas:
     GeneEntry:
       type: object
+      # The descriptions below are also duplicated in the endpoint description, make sure to keep them in sync.
       properties:
         geneId:
           type: string
@@ -29,12 +30,12 @@ components:
         caseAvgExpression:
           type: number
           format: double
-          description: Average expression level across case cells.
+          description: Mean expression level across case cells.
           example: 1.24
         controlAvgExpression:
           type: number
           format: double
-          description: Average expression level across control cells.
+          description: Mean expression level across control cells.
           example: 0.62
         expressionDifference:
           type: number
