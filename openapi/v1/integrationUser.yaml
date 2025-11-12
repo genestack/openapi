@@ -5493,6 +5493,7 @@ paths:
         - `Fold change` - ratio of average expressions between case and control groups.
         - `U statistic` - Mann–Whitney U test statistic that measures the difference between Case and Control groups.
         - `p-value` - the probability of observing results as extreme as (or more extreme than) those obtained, assuming that the null hypothesis is true.
+
         Results are sorted by absolute value of fold change in descending order, allowing easy identification of the most differentially expressed genes.
 
         Request and response parameters are subject to change as this feature is in BETA.
