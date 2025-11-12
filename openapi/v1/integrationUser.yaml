@@ -5518,9 +5518,9 @@ paths:
   /api/v1/as-user/omics/cells/analytics/gene-summary:
     post:
       operationId: geneSummaryAsUser
-      summary: "[BETA] Perform gene summary analysis"
+      summary: "[BETA] Perform gene summary analytics"
       tags:
-        - "[BETA] Analysis omics queries as User"
+        - "[BETA] Analytics omics queries as User"
       description: |+
         This endpoint provides gene summary statistical metrics for gene expression across single-cell datasets.
         It provides basic statistical terms - cell count, mean, median, standard deviation, quantiles, histogram.
