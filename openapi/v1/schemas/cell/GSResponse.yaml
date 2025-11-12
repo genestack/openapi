@@ -3,10 +3,10 @@ properties:
   resultsPerGene:
     type: array
     items:
-      $ref: '#/components/schemas/GeneEntry'
+      $ref: '#/components/schemas/GeneSummaryEntry'
 components:
   schemas:
-    GeneEntry:
+    GeneSummaryEntry:
       type: object
       description: Per-gene summary statistics.
       properties:

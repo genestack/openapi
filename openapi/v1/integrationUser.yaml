@@ -2956,6 +2956,53 @@ paths:
           name: cellQuery
           schema:
             type: string
+        - description: "Search for objects linked to cell expression data and originally\
+            \ uploaded in TSV format via data query, e.g., `feature=ENSG00000230368,ENSG00000188976\
+            \ value>=1.50`\n For the case when the original data is represented by multiple\
+            \ attributes per feature scenarios, extended filtering syntax is as follows:\
+            \ \n1. By feature attribute value for numeric and string attributes: `feature.NAME=1007_s_at`\
+            \ or `feature.\"Average Mz\"=2.218`. As in the case of sample metadata queries,\
+            \ single words can be supplied as is; otherwise, use speech marks (`\"`)\
+            \ to quote queries that include whitespace. \n2. It is possible to specify\
+            \ a set of possible values, separated by comma: `feature.NAME=1007_s_at,121_at`.\
+            \ \n3. Utilize range filters to search numeric attributes. Apply `<` (less\
+            \ than), `>` (greater than), and `=` (equal to) symbols to specify the desired\
+            \ ranges as follows: \n`feature.Name_1 > 3`: Select all rows where the feature\
+            \ attribute Name_1 values are greater than 3. \n`feature.Name_2 >= 6`: Select\
+            \ all rows where the feature attribute Name_2 values are greater than or\
+            \ equal to 6. \n`-3 < feature.Name_3 < 3`: Select all rows where the feature\
+            \ attribute Name_3 values lie within the interval between -3 and 3. \n4.\
+            \ Use substring search to get the records where the attribute field contains\
+            \ the provided substring: `feature.attribute1 =~ \"some text\"`. \n5. The\
+            \ first column for each original data file is identified as feature accession\
+            \ (typically, it contains gene or protein names, accession IDs, etc.). Searching\
+            \ by such feature accession would significantly outperform more complex\
+            \ queries by combining the other feature attributes. To enable such a search,\
+            \ use `feature` without any attribute extension, e.g., `feature=ENSG00000230368,ENSG00000188976`.\n\
+            \ \nThe `value` keyword can be used to select rows where the cell
+            \ measurements has values from a certain range. Examples:\
+            \ `value = 3`, `value > 3`, `-3 < value < 3`.\n
+            \ \nCombine multiple filters for different feature attributes and measurements\
+            \ using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses: \n\
+            * `NOT feature.Name_1=A`: Select all rows where Name_1 is not A. \n* `feature.Name_1!=A,B,C`:\
+            \ Select all rows where Name_1 is not A, B, or C. \n* `feature.Name_1=A\
+            \ AND feature.Name_2=B`: Select all rows where Name_1 is A and Name_2 is\
+            \ B. \n* `feature.Name_1=A && feature.Name_2=B`: Equivalent to the example\
+            \ above. \n* `feature.Name_1=A OR feature.Name_2=B`: Select all rows where\
+            \ Name_1 is A or Name_2 is B. \n* `feature.Name_1=A || feature.Name_2=B`:\
+            \ Equivalent to the example above. \n* `feature.Name_1=A AND (feature.Name_2=B\
+            \ OR value>=1.0)`: Select all rows where Name_1 is A and either Name_2 is\
+            \ B or minimal possible measurement value is 1.0."
+          in: query
+          name: exQuery
+          schema:
+            type: string
+        - description: "Filter by expression metadata (key-value metadata pair(s)).\
+            \ E.g. `\"Genome Version\"=hg19-BROAD`."
+          in: query
+          name: exFilter
+          schema:
+            type: string
         - description: The page tag to resume results from (see paging above).
           in: query
           name: cursor
@@ -5428,14 +5475,24 @@ paths:
   /api/v1/as-user/omics/cells/analytics/differential-expression:
     post:
       operationId: differentialExpressionAsUser
-      summary: "[BETA] Perform differential gene expression analysis between case and control cell groups"
+      summary: "[BETA] Perform differential gene expression analytics between case and control cell groups"
       tags:
-        - "[BETA] Analysis omics queries as User"
+        - "[BETA] Analytics omics queries as User"
+      # The descriptions below are also duplicated in the schema description, make sure to keep them in sync.
       description: |+
         This endpoint computes differential gene expression between two specified cell groups (case vs control) within single-cell data.
 
         Consult `/omics` search endpoints to find description of parameters within the cell groups.
-        The response includes per-gene metrics that characterize expression differences between the two groups.
+        The response includes per-gene metrics that characterize expression differences between the two groups:
+        - `Gene name` - gene identifier.
+        - `Case cell count` - number of cells expressing the gene in the case group.
+        - `Control cell count` - number of cells expressing the gene in the control group.
+        - `Average expression (case)` - mean expression level across case cells.
+        - `Average expression (control)` - mean expression level across control cells.
+        - `Expression difference` - numerical difference between average expressions.
+        - `Fold change` - ratio of average expressions between case and control groups.
+        - `U statistic` - Mann–Whitney U test statistic that measures the difference between Case and Control groups.
+        - `p-value` - the probability of observing results as extreme as (or more extreme than) those obtained, assuming that the null hypothesis is true.
         Results are sorted by absolute value of fold change in descending order, allowing easy identification of the most differentially expressed genes.
 
         Request and response parameters are subject to change as this feature is in BETA.
@@ -5468,33 +5525,41 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-  /api/v1/as-curator/omics/cells/analytics/gene-summary:
+  /api/v1/as-user/omics/cells/analytics/gene-summary:
     post:
       operationId: geneSummaryAsUser
-      summary: "[BETA] Perform gene summary analysis"
+      summary: "[BETA] Compute and retrieve descriptive statistics and visual summaries for single-cell data."
       tags:
-        - "[BETA] Analysis omics queries as User"
+        - "[BETA] Analytics omics queries as User"
       description: |+
-        This endpoint provides gene summary statistical metrics for gene expression across single-cell datasets.
-        It provides basic statistical terms - cell count, mean, median, standard deviation, quantiles, histogram.
+        This endpoint provides descriptive statistical metrics for gene expression across single-cell datasets.
+        It aggregates and summarizes expression data for each gene to help assess variability, distribution,
+        and intensity of expression within the population of cells.
 
-        Consult `/omics` search endpoints to find description of parameters within the cell groups.
-        The response includes per-gene statistics.
+        The computed metrics include:
+          - `Gene name` - gene identifier.
+          - `Cell count` - number of cells with measurable expression for each gene.
+          - `Mean expression value`
+          - `Median expression value`
+          - `Quantiles` - configurable expression percentiles.
+          - `Histogram (density)` - binned distribution of expression levels for visualization.
+          - `Standard deviation` - dispersion of expression values.
+          - `Minimum and maximum values` - range of expression across cells.
 
-        Request and response parameters are subject to change as this feature is in BETA.
+        Results are sorted by gene name.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/GeneSummaryRequest"
+              $ref: "#/components/schemas/GSRequest"
       responses:
         "200":
           description: Gene summary result
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GeneSummaryResponse"
+                $ref: "#/components/schemas/GSResponse"
         "400":
           content: { }
           description: Invalid data in the request. See the error message for details.
@@ -5678,10 +5743,10 @@ components:
       $ref: "./schemas/cell/DERequest.yaml"
     DEResponse:
       $ref: "./schemas/cell/DEResponse.yaml"
-    GeneSummaryRequest:
-      $ref: "./schemas/cell/GeneSummaryRequest.yaml"
-    GeneSummaryResponse:
-      $ref: "./schemas/cell/GeneSummaryResponse.yaml"
+    GSRequest:
+      $ref: "./schemas/cell/GSRequest.yaml"
+    GSResponse:
+      $ref: "./schemas/cell/GSResponse.yaml"
     CellRatioRequest:
       $ref: "./schemas/cell/CellRatioRequest.yaml"
     CellRatioResponse:
