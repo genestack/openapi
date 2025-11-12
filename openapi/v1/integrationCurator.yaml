@@ -7144,14 +7144,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CellRatioRequest"
+              $ref: "#/components/schemas/CRRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CellRatioResponse"
+                $ref: "#/components/schemas/CRResponse"
           description: Cell ratio result
         "400":
           content: { }
@@ -7528,10 +7528,10 @@ components:
       $ref: "./schemas/cell/GSRequest.yaml"
     GSResponse:
       $ref: "./schemas/cell/GSResponse.yaml"
-    CellRatioRequest:
-      $ref: "./schemas/cell/CellRatioRequest.yaml"
-    CellRatioResponse:
-      $ref: "./schemas/cell/CellRatioResponse.yaml"
+    CRRequest:
+      $ref: "./schemas/cell/CRRequest.yaml"
+    CRResponse:
+      $ref: "./schemas/cell/CRResponse.yaml"
   securitySchemes:
     Access-token:
       in: header

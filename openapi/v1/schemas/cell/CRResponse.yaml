@@ -1,9 +1,13 @@
 type: object
+required:
+  - countSelected
+  - countAvailable
+  - ratio
 properties:
   countSelected:
     type: integer
     format: int32
-    description: Count of Cells selected with all queries.
+    description: Count of Cells selected with all queries and filters.
     example: 1243393
   countAvailable:
     type: integer
