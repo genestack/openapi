@@ -5478,11 +5478,21 @@ paths:
       summary: "[BETA] Perform differential gene expression analytics between case and control cell groups"
       tags:
         - "[BETA] Analytics omics queries as User"
+      # The descriptions below are also duplicated in the schema description, make sure to keep them in sync.
       description: |+
         This endpoint computes differential gene expression between two specified cell groups (case vs control) within single-cell data.
 
         Consult `/omics` search endpoints to find description of parameters within the cell groups.
-        The response includes per-gene metrics that characterize expression differences between the two groups.
+        The response includes per-gene metrics that characterize expression differences between the two groups:
+        - `Gene name` - gene identifier.
+        - `Case cell count` - number of cells expressing the gene in the case group.
+        - `Control cell count` - number of cells expressing the gene in the control group.
+        - `Average expression (case)` - mean expression level across case cells.
+        - `Average expression (control)` - mean expression level across control cells.
+        - `Expression difference` - numerical difference between average expressions.
+        - `Fold change` - ratio of average expressions between case and control groups.
+        - `U statistic` - Mann–Whitney U test statistic that measures the difference between Case and Control groups.
+        - `p-value` - the probability of observing results as extreme as (or more extreme than) those obtained, assuming that the null hypothesis is true.
         Results are sorted by absolute value of fold change in descending order, allowing easy identification of the most differentially expressed genes.
 
         Request and response parameters are subject to change as this feature is in BETA.
