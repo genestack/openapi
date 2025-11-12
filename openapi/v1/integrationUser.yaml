@@ -5534,14 +5534,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/GeneSummaryRequest"
+              $ref: "#/components/schemas/GSRequest"
       responses:
         "200":
           description: Gene summary result
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GeneSummaryResponse"
+                $ref: "#/components/schemas/GSResponse"
         "400":
           content: { }
           description: Invalid data in the request. See the error message for details.
@@ -5683,9 +5683,9 @@ components:
       $ref: "./schemas/cell/DERequest.yaml"
     DEResponse:
       $ref: "./schemas/cell/DEResponse.yaml"
-    GeneSummaryRequest:
+    GSRequest:
       $ref: "./schemas/cell/GSRequest.yaml"
-    GeneSummaryResponse:
+    GSResponse:
       $ref: "./schemas/cell/GSResponse.yaml"
   securitySchemes:
     Access-token:
