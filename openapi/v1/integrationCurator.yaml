@@ -7086,14 +7086,14 @@ paths:
         and intensity of expression within the population of cells.
 
         The computed metrics include:
-          - Gene name - gene identifier.
-          - Cell count - number of cells with measurable expression for each gene.
-          - Mean expression value.
-          - Median expression value.
-          - Quantiles — configurable expression percentiles.
-          - Histogram (density) — binned distribution of expression levels for visualization.
-          - Standard deviation — dispersion of expression values.
-          - Minimum and maximum values — range of expression across cells.
+          - `Gene name` - gene identifier.
+          - `Cell count` - number of cells with measurable expression for each gene.
+          - `Mean expression value`
+          - `Median expression value`
+          - `Quantiles` - configurable expression percentiles.
+          - `Histogram (density)` - binned distribution of expression levels for visualization.
+          - `Standard deviation` - dispersion of expression values.
+          - `Minimum and maximum values` - range of expression across cells.
 
         Results are sorted by gene name.
       requestBody:
