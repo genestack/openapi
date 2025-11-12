@@ -1,0 +1,91 @@
+type: object
+properties:
+  resultsPerGene:
+    type: array
+    items:
+      $ref: '#/components/schemas/GeneEntry'
+  pagination:
+    $ref: '#/components/schemas/Pagination'
+required:
+  - resultsPerGene
+  - pagination
+components:
+  schemas:
+    GeneEntry:
+      type: object
+      # The descriptions below are also duplicated in the endpoint description, make sure to keep them in sync.
+      properties:
+        geneId:
+          type: string
+          description: Gene identifier.
+          example: ENSG00000230368
+        caseCellCount:
+          type: integer
+          description: Number of cells expressing the gene in the case group.
+          example: 8450
+        controlCellCount:
+          type: integer
+          description: Number of cells expressing the gene in the control group.
+          example: 8123
+        caseAvgExpression:
+          type: number
+          format: double
+          description: Mean expression level across case cells.
+          example: 1.24
+        controlAvgExpression:
+          type: number
+          format: double
+          description: Mean expression level across control cells.
+          example: 0.62
+        expressionDifference:
+          type: number
+          format: double
+          description: Numerical difference between average expressions.
+          example: 0.62
+        foldChange:
+          type: number
+          format: double
+          description: Ratio of average expressions between case and control groups.
+          example: 2.0
+        mannWhitneyU:
+          type: number
+          format: double
+          description: Mann–Whitney U test statistic that measures the difference between Case and Control groups.
+          example: 1.5
+        pValue:
+          type: number
+          format: double
+          description: The probability of observing results as extreme as (or more extreme than) those obtained, assuming that the null hypothesis is true.
+          example: 0.95
+      required:
+        - geneId
+        - caseCellCount
+        - controlCellCount
+        - caseAvgExpression
+        - controlAvgExpression
+        - expressionDifference
+        - foldChange
+        - mannWhitneyU
+        - pValue
+    Pagination:
+        type: object
+        properties:
+          currentResultsCount:
+            type: integer
+            format: int32
+            description: Number of results returned in the current response.
+            example: 1
+          limit:
+            type: integer
+            format: int32
+            description: Results limit, used in the request.
+            example: 2000
+          offset:
+            type: integer
+            format: int32
+            description: Results offset, used in the request.
+            example: 0
+        required:
+          - currentResultsCount
+          - limit
+          - offset
