@@ -7133,7 +7133,7 @@ paths:
       operationId: cellRatioAsCurator
       summary: "Compute cell ratio statistics across groups or metadata attributes in single-cell data."
       tags:
-        - "[BETA] Analysis omics queries as Curator"
+        - "[BETA] Analytics omics queries as Curator"
       description: |+
         This endpoint calculates cell ratio statistics based on single-cell metadata.
         It allows quantifying the proportion of cells that meet specific criteria (e.g. expression threshold, cell type, or cluster)
