@@ -6,7 +6,7 @@ import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.InputFiles
+import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.OutputDirectory
 import java.io.File
 
@@ -16,19 +16,20 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 
 abstract class TemplateSpecification : DefaultTask() {
 
-    @get:InputFiles
-    abstract val inputFiles: ListProperty<RegularFile>
+    @get:InputDirectory
+    abstract val inputDir: RegularFileProperty
 
     @get:OutputDirectory
     abstract val outputDir: RegularFileProperty
 
     @TaskAction
     fun template() {
-        inputFiles.get().map { it.asFile }
-            .forEach {
-                writeTemplated(it, "User")
-                writeTemplated(it, "Curator")
-            }
+        inputDir.get().asFile.listFiles { file ->
+            file.name.contains("{Role}") && file.name.endsWith(".yaml")
+        }.forEach {
+            writeTemplated(it, "User")
+            writeTemplated(it, "Curator")
+        }
     }
 
     private fun writeTemplated(spec: File, role: String) {

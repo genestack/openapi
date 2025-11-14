@@ -28,19 +28,12 @@ val openApiVersion: String = System.getenv("OPENAPI_VERSION")
 val mergedFileName = "odmApi.yaml"
 val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
 
-fun specFiles(selectTemplates: Boolean = false) = KotlinPath(sourceDirectory)
-    .listDirectoryEntries("*.yaml")
-    .filter { (!selectTemplates).xor(it.name.contains("{Role}")) }
-    .sorted()
-    .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
-
 tasks {
     val templateSpecs by registering(TemplateSpecification::class) {
-        inputFiles = specFiles(true)
+        inputDir = layout.projectDirectory.file(sourceDirectory)
         outputDir = layout.projectDirectory.file(sourceDirectory)
     }
     val downloadSpec by registering(DownloadSpecification::class) {
-        dependsOn(templateSpecs)
         version.set(processorsControllerVersion)
         registryUsername.set(System.getenv("NEXUS_USER"))
         registryPassword.set(System.getenv("NEXUS_PASSWORD"))
@@ -49,8 +42,8 @@ tasks {
         outputFile.set(layout.projectDirectory.file(processorsControllerFilePath))
     }
     val mergeSpecifications by registering(MergeSpecifications::class) {
-        dependsOn(downloadSpec)
-        inputFiles = specFiles()
+        dependsOn(templateSpecs, downloadSpec)
+        inputDir = layout.projectDirectory.file(sourceDirectory)
         outputFile = layout.projectDirectory.file(mergedFilePath)
     }
     val generateOdmApiPython by registering(GenerateTask::class) {
