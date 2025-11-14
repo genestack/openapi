@@ -29,10 +29,10 @@ val mergedFileName = "odmApi.yaml"
 val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
 
 fun specFiles(selectTemplates: Boolean = false) = KotlinPath(sourceDirectory)
-        .listDirectoryEntries("*.yaml")
-        .filter { (!selectTemplates).xor(it.name.contains("{Role}")) }
-        .sorted()
-        .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
+    .listDirectoryEntries("*.yaml")
+    .filter { (!selectTemplates).xor(it.name.contains("{Role}")) }
+    .sorted()
+    .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
 
 tasks {
     val templateSpecs by registering(TemplateSpecification::class) {
