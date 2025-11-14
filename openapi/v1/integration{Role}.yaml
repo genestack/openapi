@@ -3727,7 +3727,8 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve study metadata by querying attachment file ID (accession)
       tags:
-      - Study integration as User
+      - Study integration as {Role}
+##{Role=User}
   /api/v1/as-user/integration/fulltext/search/studies:
     post:
       description: |-
@@ -3782,7 +3783,8 @@ paths:
       tags:
       - Study integration as User
       x-codegen-request-body-name: request
-  /api/v1/as-user/integration/link/variant/by/sample/{id}:
+## end {Role=User}
+  /api/v1/as-{role}/integration/link/variant/by/sample/{id}:
     get:
       description: |+
         ## Versioning
@@ -3961,7 +3963,7 @@ paths:
       tags:
       - Variant integration as {Role}
 ##{Role=Curator}
-  api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}:
+  /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}:
     delete:
       description: Delete link between a group of variant objects and a group of sample
         objects
