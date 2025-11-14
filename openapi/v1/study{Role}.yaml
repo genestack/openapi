@@ -1,28 +1,27 @@
 openapi: 3.1.0
 info:
   description: |-
-    This swagger page describes the preparationUser API endpoints for ODM. These are typically used to find and retrieve preparation metadata.
+    This swagger page describes the study{Role} API endpoints for ODM. These are typically used to find and retrieve study metadata.
 
     Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
 
     To try out calls in this swagger page:
 
-    1.  Click the 'Authorize' button below to enter your API token
-    2.  Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
-    3.  Enter parameter values that you wish to try
-    4.  Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
+    1. Click the 'Authorize' button below to enter your API token
+    2. Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
+    3. Enter parameter values that you wish to try
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
 
-
-     The server response will be in the section that follows.
+    The server response will be in the section that follows.
   title: ODM API
   version: default-released
 tags:
-- name: Preparation SPoT as User
+- name: Study SPoT as {Role}
 paths:
-  /api/v1/as-user/preparations:
+  /api/v1/as-{role}/studies:
     get:
       description: |-
-        Retrieve preparation metadata objects by searching/listing preparation metadata.
+        Retrieve study metadata objects by searching/listing study metadata.
 
         ## Metadata full-text queries
         Single words can be supplied as is, otherwise use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
@@ -34,12 +33,12 @@ paths:
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
 
         ## Paging
-        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n*pageLimit` until the `resultsExhausted` response field is true.
+        For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To return all results iterate through pages using pageOffset values of `n * pageLimit` until the `resultsExhausted` response field is true.
 
         ## List operation
 
-        This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchPreparationsAsUser
+        This endpoint can be called with no `query` parameter. Doing so returns a list of all study objects.
+      operationId: searchStudiesAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -47,16 +46,17 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: Filter by preparation metadata (key-value metadata pair(s)).
-          E.g. `Digestion=Trypsin`
+      - description: |+
+          Filter by study metadata (key-value metadata pair(s)). E.g. `"Study Source"=ArrayExpress`
+
+
         in: query
         name: filter
         schema:
           type: string
-      - description: Search for preparation objects via a full-text query over all
-          preparation metadata fields. E.g. `"reversed-phase liquid chromatography"`.
-          Queries matching dictionary terms are automatically expanded to include
-          synonyms.
+      - description: Search for study objects via a full-text query over all study
+          metadata fields. E.g. `"RNA-Seq of human dendritic cells"`. Queries matching
+          dictionary terms are automatically expanded to include synonyms.
         in: query
         name: query
         schema:
@@ -110,8 +110,8 @@ paths:
           - -last_update
           - -name
           type: string
-      - description: Maximum number of results to return per page (see Paging above).
-          This value must be between 0 and 2000 (inclusive). The default is 2000.
+      - description: Maximum number of results to return. This value must be between
+          0 and 2000 (inclusive).
         in: query
         name: pageLimit
         schema:
@@ -149,87 +149,12 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: List or search for preparation metadata objects
+      summary: List or search for study metadata objects
       tags:
-      - Preparation SPoT as User
-  /api/v1/as-user/preparations/by/group/{id}:
+      - Study SPoT as {Role}
+  /api/v1/as-{role}/studies/{id}:
     get:
-      operationId: getPreparationsByGroupAsUser
-      parameters:
-      - description: Supply this parameter with the value `term_id` as part of the
-          query to return extended information including IDs for values and dictionaries.
-        in: query
-        name: responseFormat
-        schema:
-          $ref: "#/components/schemas/ResponseFormat"
-      - description: Unique identifier (accession) of the object.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - description: |-
-          The parameter defines amount of metadata attributes to return:
-
-          1. `minimal_data` - return metadata attributes according to the default template.
-          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
-          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
-        in: query
-        name: returnedMetadataFields
-        schema:
-          enum:
-          - minimal_data
-          - extended_data_included
-          - original_data_included
-          type: string
-      - description: "Show the page {pageOffset+1} results from the start of the results.\
-          \ E.g. 100 will show a page of results  starting from the 101st result.\
-          \ The default value is 0."
-        in: query
-        name: pageOffset
-        schema:
-          format: int32
-          type: integer
-      - description: Maximum number of results to return per page (see Paging above).
-          This value must be between 0 and 2000 (inclusive). The default is 2000.
-        in: query
-        name: pageLimit
-        schema:
-          format: int32
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ListResponse"
-          description: The request was successful. The returned value is a list of
-            objects.
-        "400":
-          content: {}
-          description: The supplied object ID is invalid.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "404":
-          content: {}
-          description: No object exists with the given ID.
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      summary: Retrieve preparations related to the given group
-      tags:
-      - Preparation SPoT as User
-  /api/v1/as-user/preparations/{id}:
-    get:
-      operationId: getPreparationAsUser
+      operationId: getStudyAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -262,7 +187,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Preparation"
+                $ref: "#/components/schemas/Study"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -283,12 +208,70 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single preparation object by ID (accession)
+      summary: Retrieve a single study object by ID (accession)
       tags:
-      - Preparation SPoT as User
-  /api/v1/as-user/preparations/{id}/versions:
+      - Study SPoT as {Role}
+##{Role=Curator}
+    patch:
+      description: |-
+        ## Basic operation
+        The object metadata is updated using the supplied map of attribute names to attribute values. There are three cases:
+        1. The attribute name does not already exist in the object metadata. In this case, the attribute and value are added to the object metadata.
+        2. The attribute name already exists in the object metadata. In this case, the value is updated.
+        3. The attribute value is `null`.In this case, the attribute is removed from the object metadata.
+
+        ## Attribute values
+        The attribute values are intelligently parsed as booleans, integers, etc.
+      operationId: updateStudyAs{Role}
+      parameters:
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MetadataContent"
+        description: "Metadata in the form of `{key: value, key2: value2, ...}`"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Study"
+          description: "The objects was successfully created. The returned value is\
+            \ the updated object, along with any warnings."
+        "400":
+          content: {}
+          description: The supplied object ID or metadata is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Update a study object
+      tags:
+      - Study SPoT as {Role}
+      x-codegen-request-body-name: body
+## end {Role=Curator}
+  /api/v1/as-{role}/studies/{id}/versions:
     get:
-      operationId: getPreparationVersionsAsUser
+      operationId: getStudyVersionsAs{Role}
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -321,10 +304,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Preparation SPoT as User
-  /api/v1/as-user/preparations/{id}/versions/{version}:
+      - Study SPoT as {Role}
+  /api/v1/as-{role}/studies/{id}/versions/{version}:
     get:
-      operationId: getPreparationByVersionAsUser
+      operationId: getStudyByVersionAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -363,7 +346,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Preparation"
+                $ref: "#/components/schemas/Study"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -384,9 +367,9 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single preparation object by ID (accession)
+      summary: Retrieve a single study object by ID (accession)
       tags:
-      - Preparation SPoT as User
+      - Study SPoT as {Role}
 components:
   schemas:
     CommitInfo:
@@ -397,12 +380,16 @@ components:
       $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/common/MetaResponse.yaml"
+##{Role=Curator}
+    MetadataContent:
+      $ref: "./schemas/common/MetadataContent.yaml"
+## end {Role=Curator}
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
-    Preparation:
-      $ref: "./schemas/preparation/Preparation.yaml"
     ResponseFormat:
       $ref: "./schemas/common/ResponseFormat.yaml"
+    Study:
+      $ref: "./schemas/study/Study.yaml"
   securitySchemes:
     Access-token:
       in: header

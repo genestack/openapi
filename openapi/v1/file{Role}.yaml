@@ -5,15 +5,16 @@ info:
   title: ODM API
   version: default-released
 tags:
-  - name: Files as Curator
+  - name: Files as {Role}
 paths:
-  /api/v1/as-curator/files/{id}/download:
+  /api/v1/as-{role}/files/{id}/download:
     head:
       description: |+
         Check if a file exists by its accession.
 
         This endpoint can be used to check if a file exists and accessible before downloading it.
-      operationId: headFileAsCurator
+      operationId: headFileAs{Role}
+      summary: Check if a file exists by ID (accession).
       parameters:
         - description: Unique identifier (accession) of the object.
           in: path
@@ -46,11 +47,11 @@ paths:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
       tags:
-        - Files as Curator
+        - Files as {Role}
     get:
       description: |+
         Download a file by its accession.
-      operationId: getFileAsCurator
+      operationId: getFileAs{Role}
       parameters:
         - description: Unique identifier (accession) of the object.
           in: path
@@ -107,10 +108,10 @@ paths:
         - Genestack-API-Token: []
       summary: Retrieve a file by ID (accession)
       tags:
-        - Files as Curator
-  /api/v1/as-curator/files/{id}:
+        - Files as {Role}
+  /api/v1/as-{role}/files/{id}:
     get:
-      operationId: getFileMetadataByIdAsCurator
+      operationId: getFileMetadataByIdAs{Role}
       parameters:
         - description: Unique identifier (accession) of the object.
           in: path
@@ -153,10 +154,10 @@ paths:
         - Genestack-API-Token: [ ]
       summary: Retrieve file's metadata by ID (accession)
       tags:
-        - Files as Curator
-  /api/v1/as-curator/files:
+        - Files as {Role}
+  /api/v1/as-{role}/files:
     get:
-      operationId: getFilesMetadataAsCurator
+      operationId: getFilesMetadataAs{Role}
       description: |-
         ## Metadata full-text queries
         Single words can be supplied as is, otherwise use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
@@ -227,7 +228,7 @@ paths:
         - Genestack-API-Token: [ ]
       summary: Retrieve file's metadata by its fields
       tags:
-        - Files as Curator
+        - Files as {Role}
 components:
   schemas:
     AFile:

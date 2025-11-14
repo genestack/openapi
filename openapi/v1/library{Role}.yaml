@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   description: |-
-    This swagger page describes the libraryCurator APIs.
+    This swagger page describes the library{Role} API endpoints for ODM. These are typically used to find and retrieve library metadata.
 
     Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
 
@@ -16,9 +16,9 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Library SPoT as Curator
+- name: Library SPoT as {Role}
 paths:
-  /api/v1/as-curator/libraries:
+  /api/v1/as-{role}/libraries:
     get:
       description: |-
         Retrieve library metadata objects by searching/listing library metadata.
@@ -38,7 +38,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchLibrariesAsCurator
+      operationId: searchLibrariesAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -149,10 +149,10 @@ paths:
       - Genestack-API-Token: []
       summary: List or search for library metadata objects
       tags:
-      - Library SPoT as Curator
-  /api/v1/as-curator/libraries/by/group/{id}:
+      - Library SPoT as {Role}
+  /api/v1/as-{role}/libraries/by/group/{id}:
     get:
-      operationId: getLibrariesByGroupAsCurator
+      operationId: getLibrariesByGroupAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -224,10 +224,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve libraries related to the given group
       tags:
-      - Library SPoT as Curator
-  /api/v1/as-curator/libraries/{id}:
+      - Library SPoT as {Role}
+  /api/v1/as-{role}/libraries/{id}:
     get:
-      operationId: getLibraryAsCurator
+      operationId: getLibraryAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -283,7 +283,8 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single library object by ID (accession)
       tags:
-      - Library SPoT as Curator
+      - Library SPoT as {Role}
+##{Role=Curator}
     patch:
       description: |-
         ## Basic operation
@@ -294,7 +295,7 @@ paths:
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
-      operationId: updateLibraryAsCurator
+      operationId: updateLibraryAs{Role}
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -338,11 +339,12 @@ paths:
       - Genestack-API-Token: []
       summary: Update a library object
       tags:
-      - Library SPoT as Curator
+      - Library SPoT as {Role}
       x-codegen-request-body-name: body
-  /api/v1/as-curator/libraries/{id}/versions:
+## end {Role=Curator}
+  /api/v1/as-{role}/libraries/{id}/versions:
     get:
-      operationId: getLibraryVersionsAsCurator
+      operationId: getLibraryVersionsAs{Role}
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -375,10 +377,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Library SPoT as Curator
-  /api/v1/as-curator/libraries/{id}/versions/{version}:
+      - Library SPoT as {Role}
+  /api/v1/as-{role}/libraries/{id}/versions/{version}:
     get:
-      operationId: getLibraryByVersionAsCurator
+      operationId: getLibraryByVersionAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -440,7 +442,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single library object by ID (accession)
       tags:
-      - Library SPoT as Curator
+      - Library SPoT as {Role}
 components:
   schemas:
     CommitInfo:
@@ -453,8 +455,10 @@ components:
       $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/common/MetaResponse.yaml"
+##{Role=Curator}
     MetadataContent:
       $ref: "./schemas/common/MetadataContent.yaml"
+## end {Role=Curator}
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
     ResponseFormat:

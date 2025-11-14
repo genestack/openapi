@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   description: |-
-    This swagger page describes the expressionCurator APIs.
+    This swagger page describes the expression{Role} API endpoints for ODM. These are typically used to find and retrieve any tabular data (not only expression data) except Gene Variant or Flow Cytometry.
 
     Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
 
@@ -16,9 +16,9 @@ info:
   title: ODM API
   version: default-released
 tags:
-- name: Expression SPoT as Curator
+- name: Expression SPoT as {Role}
 paths:
-  /api/v1/as-curator/expressions:
+  /api/v1/as-{role}/expressions:
     get:
       description: |+
         Retrieve all expression data and metadata objects that match a query.
@@ -47,7 +47,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: getExpressionDataAsCurator
+      operationId: getExpressionDataAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -176,8 +176,8 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve multiple expression data and metadata objects
       tags:
-      - Expression SPoT as Curator
-  /api/v1/as-curator/expressions/group:
+      - Expression SPoT as {Role}
+  /api/v1/as-{role}/expressions/group:
     get:
       description: |-
         Retrieve all group metadata objects that match a query.
@@ -209,7 +209,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all data objects.
-      operationId: searchExpressionGroupsAsCurator
+      operationId: searchExpressionGroupsAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -308,10 +308,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve groups that match a query
       tags:
-      - Expression SPoT as Curator
-  /api/v1/as-curator/expressions/group/by/run/{id}:
+      - Expression SPoT as {Role}
+  /api/v1/as-{role}/expressions/group/by/run/{id}:
     get:
-      operationId: getExpressionGroupByRunAsCurator
+      operationId: getExpressionGroupByRunAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -367,10 +367,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single group object by run ID (runId)
       tags:
-      - Expression SPoT as Curator
-  /api/v1/as-curator/expressions/group/{id}:
+      - Expression SPoT as {Role}
+  /api/v1/as-{role}/expressions/group/{id}:
     get:
-      operationId: getExpressionGroupAsCurator
+      operationId: getExpressionGroupAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -426,14 +426,14 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single expression group by ID (groupId)
       tags:
-      - Expression SPoT as Curator
-  /api/v1/as-curator/expressions/runs/by/group/{id}:
+      - Expression SPoT as {Role}
+  /api/v1/as-{role}/expressions/runs/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag. To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page. If there are no more results you will just retrieve an empty result.
 
-      operationId: searchExpressionRunsAsCurator
+      operationId: searchExpressionRunsAs{Role}
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -481,10 +481,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve run objects related to the given group
       tags:
-      - Expression SPoT as Curator
-  /api/v1/as-curator/expressions/{id}:
+      - Expression SPoT as {Role}
+  /api/v1/as-{role}/expressions/{id}:
     get:
-      operationId: getExpressionAsCurator
+      operationId: getExpressionAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -540,7 +540,8 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single expression object by ID (itemId)
       tags:
-      - Expression SPoT as Curator
+      - Expression SPoT as {Role}
+##{Role=Curator}
     patch:
       description: |-
         ## Basic operation
@@ -597,9 +598,10 @@ paths:
       tags:
       - Expression SPoT as Curator
       x-codegen-request-body-name: body
-  /api/v1/as-curator/expressions/{id}/versions:
+## end {Role=Curator}
+  /api/v1/as-{role}/expressions/{id}/versions:
     get:
-      operationId: getExpressionVersionsAsCurator
+      operationId: getExpressionVersionsAs{Role}
       parameters:
       - description: Expression object run ID (runId).
         in: path
@@ -632,10 +634,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of expression object versions by run ID (runId)
       tags:
-      - Expression SPoT as Curator
-  /api/v1/as-curator/expressions/{id}/versions/{version}:
+      - Expression SPoT as {Role}
+  /api/v1/as-{role}/expressions/{id}/versions/{version}:
     get:
-      operationId: getExpressionByVersionAsCurator
+      operationId: getExpressionByVersionAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -697,7 +699,7 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a single expression object by run ID and its version
       tags:
-      - Expression SPoT as Curator
+      - Expression SPoT as {Role}
 components:
   schemas:
     CommitInfo:

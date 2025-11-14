@@ -1,28 +1,27 @@
 openapi: 3.1.0
 info:
   description: |-
-    This swagger page describes the sampleUser API endpoints for ODM. These are typically used to find and retrieve sample metadata.
+    This swagger page describes the preparation{Role} API endpoints for ODM. These are typically used to find and retrieve preparation metadata.
 
     Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
 
     To try out calls in this swagger page:
 
-    1.  Click the 'Authorize' button below to enter your API token
-    2.  Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
-    3.  Enter parameter values that you wish to try
-    4.  Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
+    1. Click the 'Authorize' button below to enter your API token
+    2. Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
+    3. Enter parameter values that you wish to try
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
 
-
-     The server response will be in the section that follows.
+    The server response will be in the section that follows.
   title: ODM API
   version: default-released
 tags:
-- name: Sample SPoT as User
+- name: Preparation SPoT as {Role}
 paths:
-  /api/v1/as-user/samples:
+  /api/v1/as-{role}/preparations:
     get:
       description: |-
-        Retrieve sample metadata objects by searching/listing sample metadata.
+        Retrieve preparation metadata objects by searching/listing preparation metadata.
 
         ## Metadata full-text queries
         Single words can be supplied as is, otherwise use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
@@ -39,7 +38,7 @@ paths:
         ## List operation
 
         This endpoint can be called with no `query` parameter. Doing so returns a list of all variant objects.
-      operationId: searchSamplesAsUser
+      operationId: searchPreparationsAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -47,16 +46,16 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: |+
-          Filter by sample metadata (key-value metadata pair(s)). E.g. `"Species or strain"="Homo sapiens"`
-
+      - description: Filter by preparation metadata (key-value metadata pair(s)).
+          E.g. `Digestion=Trypsin`
         in: query
         name: filter
         schema:
           type: string
-      - description: Search for sample objects via a full-text query over all sample
-          metadata fields. E.g. `Clozapine`. Queries matching dictionary terms are
-          automatically expanded to include synonyms.
+      - description: Search for preparation objects via a full-text query over all
+          preparation metadata fields. E.g. `"reversed-phase liquid chromatography"`.
+          Queries matching dictionary terms are automatically expanded to include
+          synonyms.
         in: query
         name: query
         schema:
@@ -110,8 +109,8 @@ paths:
           - -last_update
           - -name
           type: string
-      - description: Maximum number of results to return. This value must be between
-          0 and 2000 (inclusive).
+      - description: Maximum number of results to return per page (see Paging above).
+          This value must be between 0 and 2000 (inclusive). The default is 2000.
         in: query
         name: pageLimit
         schema:
@@ -149,12 +148,87 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: List or search for sample metadata objects
+      summary: List or search for preparation metadata objects
       tags:
-      - Sample SPoT as User
-  /api/v1/as-user/samples/{id}:
+      - Preparation SPoT as {Role}
+  /api/v1/as-{role}/preparations/by/group/{id}:
     get:
-      operationId: getSampleAsUser
+      operationId: getPreparationsByGroupAs{Role}
+      parameters:
+      - description: Supply this parameter with the value `term_id` as part of the
+          query to return extended information including IDs for values and dictionaries.
+        in: query
+        name: responseFormat
+        schema:
+          $ref: "#/components/schemas/ResponseFormat"
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: |-
+          The parameter defines amount of metadata attributes to return:
+
+          1. `minimal_data` - return metadata attributes according to the default template.
+          2. `extended_data_included` - return metadata attributes according to applied template, if object doesn’t have applied template, default template will be used. This is the default for User endpoints.
+          3. `original_data_included` - return all metadata attributes with values and null attributes, if they are present in the applied template. This is the default for Curator endpoints.
+        in: query
+        name: returnedMetadataFields
+        schema:
+          enum:
+          - minimal_data
+          - extended_data_included
+          - original_data_included
+          type: string
+      - description: "Show the page {pageOffset+1} results from the start of the results.\
+          \ E.g. 100 will show a page of results  starting from the 101st result.\
+          \ The default value is 0."
+        in: query
+        name: pageOffset
+        schema:
+          format: int32
+          type: integer
+      - description: Maximum number of results to return per page (see Paging above).
+          This value must be between 0 and 2000 (inclusive). The default is 2000.
+        in: query
+        name: pageLimit
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+          description: The request was successful. The returned value is a list of
+            objects.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve preparations related to the given group
+      tags:
+      - Preparation SPoT as {Role}
+  /api/v1/as-{role}/preparations/{id}:
+    get:
+      operationId: getPreparationAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -187,7 +261,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Sample"
+                $ref: "#/components/schemas/Preparation"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -208,12 +282,70 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single sample object by ID (accession)
+      summary: Retrieve a single preparation object by ID (accession)
       tags:
-      - Sample SPoT as User
-  /api/v1/as-user/samples/{id}/versions:
+      - Preparation SPoT as {Role}
+##{Role=Curator}
+    patch:
+      description: |-
+        ## Basic operation
+        The object metadata is updated using the supplied map of attribute names to attribute values. There are three cases:
+        1. The attribute name does not already exist in the object metadata. In this case, the attribute and value are added to the object metadata.
+        2. The attribute name already exists in the object metadata. In this case, the value is updated.
+        3. The attribute value is `null`.In this case, the attribute is removed from the object metadata.
+
+        ## Attribute values
+        The attribute values are intelligently parsed as booleans, integers, etc.
+      operationId: updatePreparationAs{Role}
+      parameters:
+      - description: Unique identifier (accession) of the object.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MetadataContent"
+        description: "Metadata in the form of `{key: value, key2: value2, ...}`"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Preparation"
+          description: "The objects was successfully created. The returned value is\
+            \ the updated object, along with any warnings."
+        "400":
+          content: {}
+          description: The supplied object ID or metadata is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No object exists with the given ID.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Update a preparation object
+      tags:
+      - Preparation SPoT as {Role}
+      x-codegen-request-body-name: body
+## end {Role=Curator}
+  /api/v1/as-{role}/preparations/{id}/versions:
     get:
-      operationId: getSampleVersionsAsUser
+      operationId: getPreparationVersionsAs{Role}
       parameters:
       - description: Unique identifier (accession) of the object.
         in: path
@@ -246,10 +378,10 @@ paths:
       - Genestack-API-Token: []
       summary: Retrieve a list of object versions by ID
       tags:
-      - Sample SPoT as User
-  /api/v1/as-user/samples/{id}/versions/{version}:
+      - Preparation SPoT as {Role}
+  /api/v1/as-{role}/preparations/{id}/versions/{version}:
     get:
-      operationId: getSampleByVersionAsUser
+      operationId: getPreparationByVersionAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -288,7 +420,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Sample"
+                $ref: "#/components/schemas/Preparation"
           description: The request was successful. The returned value is the object.
         "400":
           content: {}
@@ -309,9 +441,9 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single sample object by ID (accession)
+      summary: Retrieve a single preparation object by ID (accession)
       tags:
-      - Sample SPoT as User
+      - Preparation SPoT as {Role}
 components:
   schemas:
     CommitInfo:
@@ -322,12 +454,16 @@ components:
       $ref: "./schemas/common/ListResponse.yaml"
     MetaResponse:
       $ref: "./schemas/common/MetaResponse.yaml"
+##{Role=Curator}
+    MetadataContent:
+      $ref: "./schemas/common/MetadataContent.yaml"
+## end {Role=Curator}
     PaginationInfo:
       $ref: "./schemas/common/PaginationInfo.yaml"
+    Preparation:
+      $ref: "./schemas/preparation/Preparation.yaml"
     ResponseFormat:
       $ref: "./schemas/common/ResponseFormat.yaml"
-    Sample:
-      $ref: "./schemas/sample/Sample.yaml"
   securitySchemes:
     Access-token:
       in: header
