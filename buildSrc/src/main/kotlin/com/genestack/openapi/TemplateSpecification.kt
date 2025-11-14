@@ -94,7 +94,7 @@ abstract class TemplateSpecification : DefaultTask() {
                 val commentRole = lineCommentMatch.groupValues[1]
                 if (commentRole == role) {
                     // Keep the line but remove the comment
-                    val processedLine = line.replace(lineCommentPattern, "")
+                    val processedLine = line.replace(lineCommentPattern, "").trimEnd()
                     outputContent.appendLine(processedLine)
                 }
                 // If role doesn't match, skip this line
