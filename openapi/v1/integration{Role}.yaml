@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   description: |-
-    ##{Role=Curator}
+    ##{Role=User}
     This swagger page describes the integrationUser APIs for ODM. These are typically used to find and retrieve study, sample and processed (signal) data and metadata for a given query.
     ## end {Role=User}
     Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
@@ -27,8 +27,8 @@ tags:
 - name: Omics queries as {Role}
 - name: Preparation integration as {Role}
 - name: Sample integration as {Role}
-- name: Study integration as {Role} #{Role=Curator}
-- name: Validation summary as Curator
+- name: Study integration as {Role}
+- name: Validation summary as Curator #{Role=Curator}
 - name: Variant integration as {Role}
 paths:
   /api/v1/as-{role}/data-types:
@@ -225,7 +225,7 @@ paths:
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the pageOffset query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages using `pageOffset` values of `n * pageLimit` until a page returns fewer results than the page limit, which indicates there are no more results.
 
-      operationId: getExpressionByPreparation
+      operationId: getExpressionByPreparationAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -306,7 +306,7 @@ paths:
       summary: Retrieve expression run-level data by querying related preparation
         ID (accession)
       tags:
-      - Expression integration as {role}
+      - Expression integration as {Role}
   /api/v1/as-{role}/integration/link/expression/by/sample/{id}:
     get:
       description: |+
@@ -1815,7 +1815,7 @@ paths:
       - Library integration as {Role}
   /api/v1/as-{role}/integration/link/library/by/sample/{id}:
     get:
-      operationId: getLibraryBySampleAsCurator
+      operationId: getLibraryBySampleAs{Role}
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
           query to return extended information including IDs for values and dictionaries.
@@ -4264,7 +4264,9 @@ paths:
       tags:
       - Study integration as Curator
       x-codegen-request-body-name: request
+## end {Role=Curator}
   /api/v1/as-curator/links:
+## {Role=Curator}
     delete:
       description: "This method should be used in case you want to delete the links\
         \ of an object. Please, keep in mind that deleting a link between Study and\
@@ -5453,7 +5455,7 @@ paths:
         \ )` can be used for complex expressions.\n  \n\n## Error Handling\n  In case\
         \ of unexpected internal error during data retrieval, the last line of the\
         \ body will contain an error message, prefixed by the `#` character \n\n"
-        ##{Role=User}
+        ## end {Role=User}
         ##{Role=Curator}
         Stream data from a given group for a tabular file that matches a sample/library/preparations query/filter. If no query/filters are supplied all expression data is returned. If a metadata filter is specified, this endpoint will only return expression data that is associated with a sample via the Sample Source ID attribute.
         ## Conditions
