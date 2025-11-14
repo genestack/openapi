@@ -4267,7 +4267,7 @@ paths:
       - Study integration as Curator
       x-codegen-request-body-name: request
 ## end {Role=Curator}
-  /api/v1/as-curator/links:
+  /api/v1/as-{role}/links:
 ## {Role=Curator}
     delete:
       description: "This method should be used in case you want to delete the links\
