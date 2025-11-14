@@ -7,13 +7,12 @@ info:
 
     To try out calls in this swagger page:
 
-    1.  Click the 'Authorize' button below to enter your API token
-    2.  Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
-    3.  Enter parameter values that you wish to try
-    4.  Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
+    1. Click the 'Authorize' button below to enter your API token
+    2. Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
+    3. Enter parameter values that you wish to try
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
 
-
-     The server response will be in the section that follows.
+    The server response will be in the section that follows.
   title: ODM Integration API
   version: default-released
 tags:
@@ -3820,7 +3819,7 @@ paths:
       operationId: omicsSearchStreamedExpressionDataAsUser
       parameters:
       - description: |
-          Filter by sample metadata (key-value metadata pair(s)). E.g.`"Species or strain"="Homo sapiens"`
+          Filter by sample metadata (key-value metadata pair(s)). E.g. `"Species or strain"="Homo sapiens"`
         in: query
         name: sampleFilter
         schema:
@@ -5735,10 +5734,10 @@ components:
       $ref: "./schemas/integration/FindObjectsResponse.yaml"
     ObjectsPage:
       $ref: "./schemas/integration/ObjectsPage.yaml"
-    StudySearchInfo:
-      $ref: "./schemas/integration/StudySearchInfo.yaml"
     ResponseFormat:
       $ref: "./schemas/common/ResponseFormat.yaml"
+    StudySearchInfo:
+      $ref: "./schemas/integration/StudySearchInfo.yaml"
     MetainfoKeyForSummary:
       $ref: "./schemas/integration/MetainfoKeyForSummary.yaml"
     FilterOptionGroup:
