@@ -34,6 +34,7 @@ tasks {
         outputDir = layout.projectDirectory.file(sourceDirectory)
     }
     val downloadSpec by registering(DownloadSpecification::class) {
+        dependsOn(templateSpecs)
         version.set(processorsControllerVersion)
         registryUsername.set(System.getenv("NEXUS_USER"))
         registryPassword.set(System.getenv("NEXUS_PASSWORD"))
@@ -42,7 +43,7 @@ tasks {
         outputFile.set(layout.projectDirectory.file(processorsControllerFilePath))
     }
     val mergeSpecifications by registering(MergeSpecifications::class) {
-        dependsOn(templateSpecs, downloadSpec)
+        dependsOn(downloadSpec)
         inputDir = layout.projectDirectory.file(sourceDirectory)
         outputFile = layout.projectDirectory.file(mergedFilePath)
     }
