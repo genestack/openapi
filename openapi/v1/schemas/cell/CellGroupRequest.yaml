@@ -1,0 +1,32 @@
+type: object
+properties:
+  studyFilter:
+    type: string
+    example: '"Study Source"=ArrayExpress'
+  studyQuery:
+    type: string
+    example: 'RNA-Seq of human dendritic cells'
+  sampleFilter:
+    type: string
+    example: '"Species or strain"="Homo sapiens"'
+  sampleQuery:
+    type: string
+    example: 'Clozapine'
+  libraryFilter:
+    type: string
+    example: '"Library Type"=RNA-Seq-1'
+  libraryQuery:
+    type: string
+    example: 'illumina HiSeq500'
+  preparationFilter:
+    type: string
+    example: 'Digestion=Trypsin'
+  preparationQuery:
+    type: string
+    example: 'reversed-phase liquid chromatography'
+  cellQuery:
+    type: string
+    example: 'cellType=Macrophage,Monocyte'
+  searchSpecificTerms:
+    type: boolean
+    example: false
