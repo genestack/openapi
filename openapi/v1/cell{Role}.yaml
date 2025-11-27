@@ -5,11 +5,11 @@ info:
   title: ODM API
   version: default-released
 tags:
-  - name: Cells as Curator
+  - name: Cells as {Role}
 paths:
-  /api/v1/as-curator/cells/{id}:
+  /api/v1/as-{role}/cells/{id}:
     get:
-      operationId: getCellByIdAsCurator
+      operationId: getCellByIdAs{Role}
       parameters:
         - description: Unique cell identifier. Consists of a cell group accession and a cell barcode, separated by a hyphen, e.g. `GSF123456-AAACCTGAGCGCTCCA-1`.
           in: path
@@ -45,15 +45,15 @@ paths:
         - Genestack-API-Token: [ ]
       summary: Retrieve a cell by ID
       tags:
-        - Cells as Curator
-  /api/v1/as-curator/cells/by/group/{id}:
+        - Cells as {Role}
+  /api/v1/as-{role}/cells/by/group/{id}:
     get:
       description: |+
         ## Paging
         For performance reasons this endpoint returns results in "pages" of limited size together with a `cursor` tag.
         To retrieve the next page of results please supply this `cursor` tag to resume the query from your previous result and get the next page.
         If there are no more results you will just retrieve an empty result.
-      operationId: getCellsByGroupAsCurator
+      operationId: getCellsByGroupAs{Role}
       parameters:
         - description: Unique identifier (accession) of the cell group.
           in: path
@@ -102,7 +102,7 @@ paths:
         - Genestack-API-Token: [ ]
       summary: Retrieve cells from a given group
       tags:
-        - Cells as Curator
+        - Cells as {Role}
 components:
   schemas:
     Cell:

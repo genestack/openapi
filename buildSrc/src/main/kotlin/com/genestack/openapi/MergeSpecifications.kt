@@ -6,7 +6,7 @@ import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.InputFiles
+import org.gradle.api.tasks.InputDirectory
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
@@ -14,8 +14,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 
 abstract class MergeSpecifications : DefaultTask() {
 
-    @get:InputFiles
-    abstract val inputFiles: ListProperty<RegularFile>
+    @get:InputDirectory
+    abstract val inputDir: RegularFileProperty
 
     @get:OutputFile
     abstract val outputFile: RegularFileProperty
@@ -23,9 +23,9 @@ abstract class MergeSpecifications : DefaultTask() {
     @TaskAction
     fun merge() {
         val objectMapper = ObjectMapper(YAMLFactory())
-        val mergedNode = inputFiles
-            .get().map { it.asFile }
-            .filterNot { it == outputFile.get().asFile }
+        val mergedNode = inputDir.get().asFile.listFiles { file ->
+            !file.name.contains("{Role}") && file.name.endsWith(".yaml")
+        }.sorted()
             .map { objectMapper.readTree(it) }
             .reduce { acc, node -> objectMapper.updateValue(acc, node) }
         objectMapper.writeValue(outputFile.get().asFile, mergedNode)
