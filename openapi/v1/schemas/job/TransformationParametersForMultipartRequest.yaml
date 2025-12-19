@@ -1,0 +1,11 @@
+properties:
+  sourceAttachmentAccession:
+    type: string
+    description: The property is automatically populated by the attachment transformation pipeline and must not be provided during regular multipart uploads.
+  transformationName:
+    type: string
+    description: The property is automatically populated by the attachment transformation pipeline and must not be provided during regular multipart uploads.
+  transformationVersion:
+    type: string
+    description: The property is automatically populated by the attachment transformation pipeline and must not be provided during regular multipart uploads.
+type: object
