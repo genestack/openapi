@@ -110,7 +110,7 @@ r-api-client:
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
 docs:
-    FROM alpine/curl:8.14.1
+    FROM alpine/curl:8.17.0
     WORKDIR /app
     COPY +build/generated generated
 
