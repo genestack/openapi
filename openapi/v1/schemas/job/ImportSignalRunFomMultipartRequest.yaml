@@ -19,3 +19,9 @@ required:
   - studyId
   - data
 type: object
+allOf:
+  - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"
+components:
+  schemas:
+    TransformationParametersForMultipartRequest:
+      $ref: "./TransformationParametersForMultipartRequest.yaml"
