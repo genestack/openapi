@@ -21,7 +21,10 @@ properties:
       pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
       `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
       `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
-      fluid counts`, `Nanopore`, `Flow Cytometry (FCS)`, `Document`, `Other`. \nIn case the parameter is not set
+      fluid counts`, `Long-read sequencing (Nanopore, PacBio)`, `Flow Cytometry (FCS)`,
+      `Spatial transcriptomics`, `Phenomics`, `Copy number alterations`,
+      `Microbiome / Metagenomics`, `Immune repertoire`, `Genetic screens (CRISPR / RNAi)`, `Cell imaging`,
+      `Document`, `Other`. \nIn case the parameter is not set
       the dataClass is automatically defined as `Other`."
     example: Proteomics
     type: string
