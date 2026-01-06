@@ -4151,8 +4151,6 @@ paths:
         To filter studies via facets, the filter attributes are necessary: type = SELECT, filterOptionId. For details, use the request body model. filterOptionId can be obtained from the response body when the endpoint is first called without filters. Multiple filters with type = SELECT can be passed in the request body. Filters within the same attribute are automatically used with the OR operator. Filters of different attributes are automatically used with the AND operator. This behaviour can not be changed.
 
         It is possible to call the endpoint without any filters, then all the studies available to the user are returned.
-
-        The endpoint searches by staging version of the object metadata.
       operationId: searchStudiesByFilterAsCurator
       requestBody:
         content:
@@ -7179,7 +7177,7 @@ paths:
         - Genestack-API-Token: [ ]
   /api/v1/as-curator/integration/studies/{id}/tasks/publish-versions:
     post:
-      description: This endpoint publishes information from staging and creates new
+      description: This endpoint publishes information from drafts and creates new
         metadata versions for the specified study and all associated objects. The
         version name is set to “Auto-published by API call”. Only curators with access
         to the specified studies can use this method.

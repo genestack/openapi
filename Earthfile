@@ -80,7 +80,7 @@ r-api-client:
     # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
-        apt install -y libssl-dev libcurl4-gnutls-dev curl && \
+        apt install -y libssl-dev libcurl4-gnutls-dev curl libcurl4t64:amd64=8.18.0~rc2-1 --allow-downgrades && \
         Rscript requirements.R
 
     COPY +build/generated generated
@@ -110,7 +110,7 @@ r-api-client:
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
 docs:
-    FROM alpine/curl:8.14.1
+    FROM alpine/curl:8.17.0
     WORKDIR /app
     COPY +build/generated generated
 
@@ -143,7 +143,7 @@ docs:
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.30.3
+    FROM swaggerapi/swagger-ui:v5.31.0
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
