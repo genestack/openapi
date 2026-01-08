@@ -27,7 +27,7 @@ build:
     SAVE ARTIFACT openapi/v1
 
 python-api-client:
-    FROM python:3.13.7-alpine
+    FROM python:3.14.2-alpine
     DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
 
     CACHE /root/.cache
@@ -80,7 +80,7 @@ r-api-client:
     # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
-        apt install -y libssl-dev libcurl4-gnutls-dev curl libcurl4t64:amd64=8.18.0~rc2-1 --allow-downgrades && \
+        apt install -y libssl-dev libcurl4-gnutls-dev curl && \
         Rscript requirements.R
 
     COPY +build/generated generated
