@@ -98,10 +98,11 @@ paths:
         The objects will be marked for deletion. In case the selected object has more than one version, the endpoint deletes all of them. The following object types can be deleted by the endpoint:
          * `STUDY`
          * `SAMPLE_GROUP`
-          * `LIBRARY_GROUP`
-          * `PREPARATION_GROUP`
-          * `CELL_GROUP`
-          * `TABULAR_DATA`
+         * `SAMPLE_OBJECT`
+         * `LIBRARY_GROUP`
+         * `PREPARATION_GROUP`
+         * `CELL_GROUP`
+         * `TABULAR_DATA`
          * `GENE_VARIANT`
          * `FLOW_CYTOMETRY`
          * `REFERENCE_GENOME`
@@ -110,6 +111,7 @@ paths:
          Moreover, if the selected object is linked to any other data, the endpoint will also delete the linked data associated with it according to the specified rules:
          * If you delete a `STUDY`, the entire study with all the listed group types and files, will be removed.
          * Deleting a `SAMPLE_GROUP` will result in the removal of all samples associated with this sample group, along with any linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`/`LIBRARY_GROUP`/`PREPARATION_GROUP`/`CELL_GROUP`. The linked `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`/`CELL_GROUP` will be deleted, even if it is linked to another metadata group.
+         * Deleting a `SAMPLE_OBJECT` will result in the removal of that sample from study and will not displayed in version history.
          * Deleting a `LIBRARY_GROUP` or `PREPARATION_GROUP` will result in the removal of all libraries or preparations associated with this group, along with any linked `TABULAR_DATA`/`CELL_GROUP`.
          * Deleting a `CELL_GROUP` will result in the removal of linked `TABULAR_DATA` (cell expression group).
          * If you delete `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`, all associated data, such as links and runs will be removed from ODM.
