@@ -311,10 +311,10 @@ paths:
 
         Embedding constraints:
 
-        * UMAP
+        * UMAP/t-SNE
           - Allowed number of dimensions per cell: **0** (absent) or **≥ 2**.
-          - If exactly **1** UMAP dimension is provided, the request is invalid.
-          - At most **3** UMAP dimensions are stored; if more than 3 are provided, only the first 3 are kept and the rest are ignored.
+          - If exactly **1** UMAP/t-SNE dimension is provided, the request is invalid.
+          - At most **3** UMAP/t-SNE dimensions are stored; if more than 3 are provided, only the first 3 are kept and the rest are ignored.
 
         * PCA
           - Allowed number of components per cell: **0** (absent) or **≥ 2**.
@@ -370,10 +370,10 @@ paths:
 
         Embedding constraints:
 
-        * UMAP
+        * UMAP/t-SNE
           - Allowed number of dimensions per cell: **0** (absent) or **≥ 2**.
-          - If exactly **1** UMAP dimension is provided, the request is invalid.
-          - At most **3** UMAP dimensions are stored; if more than 3 are provided, only the first 3 are kept and the rest are ignored.
+          - If exactly **1** UMAP/t-SNE dimension is provided, the request is invalid.
+          - At most **3** UMAP/t-SNE dimensions are stored; if more than 3 are provided, only the first 3 are kept and the rest are ignored.
 
         * PCA
           - Allowed number of components per cell: **0** (absent) or **≥ 2**.
