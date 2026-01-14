@@ -4488,13 +4488,13 @@ paths:
             1. Strings: `barcode`, `batch`, `cellType`, `cluster`, and all custom attributes.
             2. Integers: `nCounts`
             3. Floats: `percentMito`
-            4. Float coordinates: `UMAP`, `PCA`.
+            4. Float coordinates: `UMAP`, `PCA`, `TSNE`.
             5. All other attributes are considered to be custom and stored as string data type.
 
             To use filters for cell metadata objects use the following query types:
             1. By key=value pair for attributes. Single words can be supplied as is; otherwise, use speech marks (`"`) to quote queries that include whitespace: `cellType=T_cell`, `batch="PBMC batch 01"` - quote values that include spaces, `nCounts=3000`, `custom_attribute="disease"` - custom attribute with string data type.
             2. It is possible to specify a set of possible values, separated by comma: `cellType=Macrophage,Monocyte`.
-            3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols to specify the desired ranges as follows: `nCounts > 2000`, `-3 < percentMito < 10`. To retrieve UMAP or PCA values use `umap.1`, `umap.2`, `pca.1`, `pca.2`, e.g. `umap.1 > 0.5`.
+            3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols to specify the desired ranges as follows: `nCounts > 2000`, `-3 < percentMito < 10`. To retrieve UMAP, PCA or TSNE values use `umap.1`, `umap.2`, `pca.1`, `pca.2`, `tsne.1`, `tsne.2`, e.g. `umap.1 > 0.5`.
             4. Use substring search to get the records where the attribute field contains the provided substring: `cellType =~ "B cell"`.
             5. Combine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses:
             * `NOT cellType=Erythrocyte` or `cellType!=B_cell,T_cell`: exclude objects with defined values from search.
@@ -4677,13 +4677,13 @@ paths:
             1. Strings: `barcode`, `batch`, `cellType`, `cluster`, and all custom attributes.
             2. Integers: `nCounts`
             3. Floats: `percentMito`
-            4. Float coordinates: `UMAP`, `PCA`.
+            4. Float coordinates: `UMAP`, `PCA`, `TSNE`.
             5. All other attributes are considered to be custom and stored as string data type.
 
             To use filters for cell metadata objects use the following query types:
             1. By key=value pair for attributes. Single words can be supplied as is; otherwise, use speech marks (`"`) to quote queries that include whitespace: `cellType=T_cell`, `batch="PBMC batch 01"` - quote values that include spaces, `nCounts=3000`, `custom_attribute="disease"` - custom attribute with string data type.
             2. It is possible to specify a set of possible values, separated by comma: `cellType=Macrophage,Monocyte`.
-            3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols to specify the desired ranges as follows: `nCounts > 2000`, `-3 < percentMito < 10`. To retrieve UMAP or PCA values use `umap.1`, `umap.2`, `pca.1`, `pca.2`, e.g. `umap.1 > 0.5`.
+            3. Utilize range filters to search numeric attributes. Apply `<` (less than), `>` (greater than), and `=` (equal to) symbols to specify the desired ranges as follows: `nCounts > 2000`, `-3 < percentMito < 10`. To retrieve UMAP, PCA or TSNE values use `umap.1`, `umap.2`, `pca.1`, `pca.2`, `tsne.1`, `tsne.2`, e.g. `umap.1 > 0.5`.
             4. Use substring search to get the records where the attribute field contains the provided substring: `cellType =~ "B cell"`.
             5. Combine multiple filters for different feature attributes and measurements using `AND` (`&&`), `OR` (`||`), `NOT` (`!`) logical operators and parentheses:
             * `NOT cellType=Erythrocyte` or `cellType!=B_cell,T_cell`: exclude objects with defined values from search.
