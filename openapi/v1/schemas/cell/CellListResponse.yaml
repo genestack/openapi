@@ -22,6 +22,7 @@ example:
       percentMito: 5.2
       umap: [1.23, 0.45]
       pca: [0.12, 0.34]
+      tsne: [1.23, 0.45]
       assay_custom: "10x 3' v2"
     - cellId: "GSF222333-AAAGATGGTTCCTCCA-1"
       barcode: "AAAGATGGTTCCTCCA-1"
