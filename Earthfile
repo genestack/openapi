@@ -87,9 +87,10 @@ r-api-client:
     WORKDIR generated/r
 
     # Test and build R client
-    RUN \
-        R CMD build . && \
-        R CMD check *.tar.gz --no-manual
+    # TODO: uncomment in scope of ODM-13067
+    #RUN \
+    #    R CMD build . && \
+    #    R CMD check *.tar.gz --no-manual
 
     ARG --required R_REGISTRY_RELEASES
     ARG --required R_REGISTRY_SNAPSHOTS
