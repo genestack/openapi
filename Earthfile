@@ -80,7 +80,7 @@ r-api-client:
     # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
-        apt install -y libssl-dev libcurl4-gnutls-dev curl && \
+        apt install -y libssl-dev libcurl4-openssl-dev curl && \
         Rscript requirements.R
 
     COPY +build/generated generated
