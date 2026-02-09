@@ -37,7 +37,7 @@ components:
           format: double
           description: Mean expression level across control cells.
           example: 0.62
-        expressionDifference:
+        exDifference:
           type: number
           format: double
           description: Numerical difference between average expressions.
