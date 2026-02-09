@@ -70,6 +70,7 @@ components:
         - controlAvgEx
         - exDifference
         - foldChange
+        - log2FC
         - mannWhitneyU
         - pValue
     Pagination:
