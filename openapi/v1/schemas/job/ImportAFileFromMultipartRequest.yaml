@@ -1,12 +1,4 @@
 properties:
-  metadata:
-    type: string
-    format: binary
-    description: The metadata file to be used as the original metadata for the created objects. The file must contain a single record describing the uploaded attachment.
-  data:
-    type: string
-    format: binary
-    description: A file to import as an attachment. The file will be associated with a study and will be searchable by its name and metadata.
   studyAccession:
     example: GSF334953
     type: string
@@ -15,6 +7,14 @@ properties:
     example: Proteomics
     type: string
     description: A mandatory parameter with the value from a limited set of values (see request description).
+  metadata:
+    type: string
+    format: binary
+    description: The metadata file to be used as the original metadata for the created objects. The file must contain a single record describing the uploaded attachment.
+  data:
+    type: string
+    format: binary
+    description: A file to import as an attachment. The file will be associated with a study and will be searchable by its name and metadata.
 required:
 - data
 - studyAccession
