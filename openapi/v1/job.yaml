@@ -479,7 +479,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import a TSV data file, optionally with a separate TSV metadata file via multipart/form-data upload
+      summary: Import a TSV file containing any tabular data, optionally with a separate TSV metadata file via multipart/form-data upload
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
@@ -540,7 +540,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import a VCF for variation data, optionally with a separate TSV metadata file via multipart/form-data
+      summary: Import a VCF file containing variant data, optionally with a separate TSV metadata file via multipart/form-data
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
@@ -621,7 +621,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import a FACS file for flow-cytometry data, optionally with a separate TSV metadata file via multipart/form-data upload
+      summary: Import a FACS file containing flow-cytometry data, optionally with a separate TSV metadata file via multipart/form-data upload
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
@@ -716,7 +716,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import file as an attachment, optionally with a separate TSV metadata file via multipart/form-data upload
+      summary: Import a file as an attachment, optionally with a separate TSV metadata file via multipart/form-data upload
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
