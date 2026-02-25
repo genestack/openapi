@@ -320,10 +320,6 @@ paths:
           - Allowed number of components per cell: **0** (absent) or **≥ 2**.
           - If exactly **1** PCA component is provided, the request is invalid.
           - At most **100** PCA components are stored; components beyond 100 are ignored.
-
-        Notes:
-        - “Dimensions/components” refer to the length of the embedding vector for each cell.
-        - Ignoring excess dimensions/components does not cause an error; validation errors occur only when the number is exactly **1**.
       operationId: startImportCells
       parameters:
       - description: "Load duplicate data: the data from the link(s) has already been\
@@ -379,10 +375,6 @@ paths:
           - Allowed number of components per cell: **0** (absent) or **≥ 2**.
           - If exactly **1** PCA component is provided, the request is invalid.
           - At most **100** PCA components are stored; components beyond 100 are ignored.
-
-        Notes:
-        - “Dimensions/components” refer to the length of the embedding vector for each cell.
-        - Ignoring excess dimensions/components does not cause an error; validation errors occur only when the number is exactly **1**.
       operationId: startImportCellsMultipart
       requestBody:
         content:
