@@ -9,15 +9,15 @@ properties:
   previousVersion:
     example: GSF334953
     type: string
-  metadata:
+  metadataFile:
     type: string
     format: binary
-  data:
+  file:
     type: string
     format: binary
 required:
   - studyId
-  - data
+  - file
 type: object
 allOf:
   - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"

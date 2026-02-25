@@ -7,18 +7,18 @@ properties:
     example: Proteomics
     type: string
     description: A mandatory parameter with the value from a limited set of values (see request description).
-  metadata:
+  metadataFile:
     type: string
     format: binary
     description: The metadata file to be used as the original metadata for the created objects. The file must contain a single record describing the uploaded attachment.
-  data:
+  file:
     type: string
     format: binary
     description: A file to import as an attachment. The file will be associated with a study and will be searchable by its name and metadata.
 required:
-- data
 - studyAccession
 - dataClass
+- file
 type: object
 allOf:
   - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"

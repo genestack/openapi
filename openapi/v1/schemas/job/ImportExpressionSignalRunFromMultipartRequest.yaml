@@ -1,6 +1,14 @@
-allOf:
-- $ref: "#/components/schemas/ImportSignalRunFomMultipartRequest"
 properties:
+  studyId:
+    type: string
+    example: GSF1234567
+    description: The ID (accession) of the study for organising files in the internal storage; linking to the target entity must be done through a separate endpoint.
+  templateId:
+    example: GSF334953
+    type: string
+  previousVersion:
+    example: GSF334953
+    type: string
   numberOfFeatureAttributes:
     description: Integer value that specifies the number of columns related to the
       feature in the uploaded data frame, and indicates the starting position of the
@@ -28,7 +36,19 @@ properties:
       the allowance for multi-character separators.'
     example: ':'
     type: string
+  metadataFile:
+    type: string
+    format: binary
+  file:
+    type: string
+    format: binary
+required:
+  - studyId
+  - file
+type: object
+allOf:
+  - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"
 components:
   schemas:
-    ImportSignalRunFomMultipartRequest:
-      $ref: "./ImportSignalRunFomMultipartRequest.yaml"
+    TransformationParametersForMultipartRequest:
+      $ref: "./TransformationParametersForMultipartRequest.yaml"
