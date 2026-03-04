@@ -23925,10 +23925,6 @@ components:
           type: array
         cursor:
           type: string
-      components:
-        schemas:
-          Cell:
-            $ref: "./Cell.yaml"
       example:
         cursor: "GSF123456-AAAGATGGTTCCTCCA-1"
         data:
@@ -24061,10 +24057,6 @@ components:
         cursor:
           type: string
       type: object
-      components:
-        schemas:
-          ExpressionItem:
-            $ref: "./ExpressionItem.yaml"
     IntegrationHelper:
       type: object
     ListResponse:
@@ -24087,10 +24079,6 @@ components:
             type: object
           type: array
       type: object
-      components:
-        schemas:
-          MetaResponse:
-            $ref: "./MetaResponse.yaml"
     MetaResponse:
       example:
         pagination:
@@ -24102,10 +24090,6 @@ components:
         pagination:
           $ref: "#/components/schemas/PaginationInfo"
       type: object
-      components:
-        schemas:
-          PaginationInfo:
-            $ref: "./PaginationInfo.yaml"
     MetadataContent:
       type: object
     MetadataWithId:
@@ -24249,10 +24233,6 @@ components:
         cursor:
           type: string
       type: object
-      components:
-        schemas:
-          FlowCytometryItem:
-            $ref: "./FlowCytometryItem.yaml"
     AttributeInvalidValue:
       example:
         count: 0
@@ -24276,10 +24256,6 @@ components:
             $ref: "#/components/schemas/ValidationError"
           type: array
       type: object
-      components:
-        schemas:
-          ValidationError:
-            $ref: "./ValidationError.yaml"
     AttributeValidationSummary:
       example:
         attributeName: attributeName
@@ -24306,10 +24282,6 @@ components:
             $ref: "#/components/schemas/AttributeInvalidValue"
           type: array
       type: object
-      components:
-        schemas:
-          AttributeInvalidValue:
-            $ref: "./AttributeInvalidValue.yaml"
     BatchOfIds:
       description: Request model for getting links by many IDs.
       example:
@@ -24360,10 +24332,6 @@ components:
         relationships:
           $ref: "#/components/schemas/Relationships"
       type: object
-      components:
-        schemas:
-          Relationships:
-            $ref: "./Relationships.yaml"
     GroupValidationSummary:
       example:
         groupAccession: groupAccession
@@ -24408,10 +24376,6 @@ components:
             $ref: "#/components/schemas/AttributeValidationSummary"
           type: array
       type: object
-      components:
-        schemas:
-          AttributeValidationSummary:
-            $ref: "./AttributeValidationSummary.yaml"
     IMetadata:
       properties:
         source:
@@ -24473,12 +24437,6 @@ components:
         relationships:
           $ref: "#/components/schemas/Relationships"
       type: object
-      components:
-        schemas:
-          IMetadata:
-            $ref: "./IMetadata.yaml"
-          Relationships:
-            $ref: "./Relationships.yaml"
     OmicsResponse:
       example:
         cursor: cursor
@@ -24519,10 +24477,6 @@ components:
         cursor:
           type: string
       type: object
-      components:
-        schemas:
-          DataPresentation:
-            $ref: "./DataPresentation.yaml"
     OmicsResponseMetadataPresentation:
       properties:
         data:
@@ -24538,10 +24492,6 @@ components:
         cursor:
           type: string
       type: object
-      components:
-        schemas:
-          MetadataPresentation:
-            $ref: "./MetadataPresentation.yaml"
     OmicsResponseMetadataWithId:
       properties:
         data:
@@ -24557,10 +24507,6 @@ components:
         cursor:
           type: string
       type: object
-      components:
-        schemas:
-          MetadataWithId:
-            $ref: "../common/MetadataWithId.yaml"
     Preparation:
       type: object
     Relationships:
@@ -24673,10 +24619,6 @@ components:
             $ref: "#/components/schemas/GroupValidationSummary"
           type: array
       type: object
-      components:
-        schemas:
-          GroupValidationSummary:
-            $ref: "./GroupValidationSummary.yaml"
     TaskInfo:
       example:
         application: application
@@ -24762,12 +24704,6 @@ components:
         page:
           $ref: "#/components/schemas/PageRequest"
       type: object
-      components:
-        schemas:
-          AppliedFilter:
-            $ref: "./AppliedFilter.yaml"
-          PageRequest:
-            $ref: "./PageRequest.yaml"
     AppliedFilter:
       properties:
         type:
@@ -24874,12 +24810,6 @@ components:
             $ref: "#/components/schemas/FilterOptionGroup"
           type: array
       type: object
-      components:
-        schemas:
-          ObjectsPage:
-            $ref: "./ObjectsPage.yaml"
-          FilterOptionGroup:
-            $ref: "./FilterOptionGroup.yaml"
     ObjectsPage:
       example:
         filteredCount: 0
@@ -24932,12 +24862,6 @@ components:
             $ref: "#/components/schemas/StudySearchInfo"
           type: array
       type: object
-      components:
-        schemas:
-          PageRequest:
-            $ref: "./PageRequest.yaml"
-          StudySearchInfo:
-            $ref: "./StudySearchInfo.yaml"
     StudySearchInfo:
       example:
         owner: owner
@@ -24981,10 +24905,6 @@ components:
             $ref: "#/components/schemas/MetainfoKeyForSummary"
           type: array
       type: object
-      components:
-        schemas:
-          MetainfoKeyForSummary:
-            $ref: "./MetainfoKeyForSummary.yaml"
     MetainfoKeyForSummary:
       example:
         values:
@@ -25022,10 +24942,6 @@ components:
             $ref: "#/components/schemas/FilterOption"
           type: array
       type: object
-      components:
-        schemas:
-          FilterOption:
-            $ref: "./FilterOption.yaml"
     FilterOption:
       example:
         filterId: filterId
@@ -25047,9 +24963,9 @@ components:
       type: object
       properties:
         caseGroup:
-          $ref: 'CellGroupRequest.yaml'
+          $ref: '#/components/schemas/CellGroupRequest'
         controlGroup:
-          $ref: 'CellGroupRequest.yaml'
+          $ref: '#/components/schemas/CellGroupRequest'
         exQuery:
           type: string
           example: 'feature=ENSG00000230368,ENSG00000188976'
@@ -25078,97 +24994,95 @@ components:
       required:
         - resultsPerGene
         - pagination
-      components:
-        schemas:
-          GeneEntry:
-            type: object
-            # The descriptions below are also duplicated in the endpoint description, make sure to keep them in sync.
-            properties:
-              geneId:
-                type: string
-                description: Gene identifier.
-                example: ENSG00000230368
-              caseCellCount:
-                type: integer
-                description: Number of cells expressing the gene in the case group.
-                example: 8450
-              controlCellCount:
-                type: integer
-                description: Number of cells expressing the gene in the control group.
-                example: 8123
-              caseAvgEx:
-                type: number
-                format: double
-                description: Mean expression level across case cells.
-                example: 1.24
-              controlAvgEx:
-                type: number
-                format: double
-                description: Mean expression level across control cells.
-                example: 0.62
-              exDifference:
-                type: number
-                format: double
-                description: Numerical difference between average expressions.
-                example: 0.62
-              foldChange:
-                type: number
-                format: double
-                description: Ratio of average expressions between case and control groups.
-                example: 2.0
-              log2FC:
-                type: number
-                format: double
-                description: Logarithm with base 2 of the Fold change value.
-                example: 1.4594316186372973
-              mannWhitneyU:
-                type: number
-                format: double
-                description: Mann–Whitney U test statistic that measures the difference between Case and Control groups.
-                example: 1.5
-              pValue:
-                type: number
-                format: double
-                description: The probability of observing results as extreme as (or more extreme than) those obtained, assuming that the null hypothesis is true.
-                example: 0.5536169919657803
-            required:
-              - geneId
-              - caseCellCount
-              - controlCellCount
-              - caseAvgEx
-              - controlAvgEx
-              - exDifference
-              - foldChange
-              - log2FC
-              - mannWhitneyU
-              - pValue
-          Pagination:
-            type: object
-            properties:
-              currentResultsCount:
-                type: integer
-                format: int32
-                description: Number of results returned in the current response.
-                example: 1
-              limit:
-                type: integer
-                format: int32
-                description: Results limit, used in the request.
-                example: 2000
-              offset:
-                type: integer
-                format: int32
-                description: Results offset, used in the request.
-                example: 0
-            required:
-              - currentResultsCount
-              - limit
-              - offset
+    GeneEntry:
+      type: object
+      # The descriptions below are also duplicated in the endpoint description, make sure to keep them in sync.
+      properties:
+        geneId:
+          type: string
+          description: Gene identifier.
+          example: ENSG00000230368
+        caseCellCount:
+          type: integer
+          description: Number of cells expressing the gene in the case group.
+          example: 8450
+        controlCellCount:
+          type: integer
+          description: Number of cells expressing the gene in the control group.
+          example: 8123
+        caseAvgEx:
+          type: number
+          format: double
+          description: Mean expression level across case cells.
+          example: 1.24
+        controlAvgEx:
+          type: number
+          format: double
+          description: Mean expression level across control cells.
+          example: 0.62
+        exDifference:
+          type: number
+          format: double
+          description: Numerical difference between average expressions.
+          example: 0.62
+        foldChange:
+          type: number
+          format: double
+          description: Ratio of average expressions between case and control groups.
+          example: 2.0
+        log2FC:
+          type: number
+          format: double
+          description: Logarithm with base 2 of the Fold change value.
+          example: 1.4594316186372973
+        mannWhitneyU:
+          type: number
+          format: double
+          description: Mann–Whitney U test statistic that measures the difference between Case and Control groups.
+          example: 1.5
+        pValue:
+          type: number
+          format: double
+          description: The probability of observing results as extreme as (or more extreme than) those obtained, assuming that the null hypothesis is true.
+          example: 0.5536169919657803
+      required:
+        - geneId
+        - caseCellCount
+        - controlCellCount
+        - caseAvgEx
+        - controlAvgEx
+        - exDifference
+        - foldChange
+        - log2FC
+        - mannWhitneyU
+        - pValue
+    Pagination:
+      type: object
+      properties:
+        currentResultsCount:
+          type: integer
+          format: int32
+          description: Number of results returned in the current response.
+          example: 1
+        limit:
+          type: integer
+          format: int32
+          description: Results limit, used in the request.
+          example: 2000
+        offset:
+          type: integer
+          format: int32
+          description: Results offset, used in the request.
+          example: 0
+      required:
+        - currentResultsCount
+        - limit
+        - offset
     GSRequest:
       type: object
       properties:
         cellGroup:
-          $ref: 'CellGroupRequest.yaml'
+          $ref: '#/components/schemas/CellGroupRequest'
         geneNames:
           type: array
           items:
@@ -25189,73 +25103,71 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GeneSummaryEntry'
-      components:
-        schemas:
-          GeneSummaryEntry:
-            type: object
-            description: Per-gene summary statistics.
-            properties:
-              geneId:
-                type: string
-                description: Gene identifier.
-                example: "ENSG00000111640"
-              cellCount:
-                type: integer
-                format: int32
-                description: Number of cells expressing the gene.
-                example: 8968167
-              mean:
-                type: number
-                format: double
-                description: Mean expression
-                example: 7.747614311820911
-              median:
-                type: number
-                format: double
-                description: Median expression
-                example: 7
-              stdDev:
-                type: number
-                format: double
-                description: Standard deviation
-                example: 6.499314669429827
-              min:
-                type: number
-                format: double
-                description: Minimum value
-                example: 1
-              max:
-                type: number
-                format: double
-                description: Maximum value
-                example: 496
-              quantiles:
-                type: array
-                description: |
-                  List of quantile values from 0 to 1 (inclusive), with step 0.1
-                example: |
-                  [1, 1, 2, 3, 5, 7, 10, 12, 15, 27, 192]
-                items:
-                  type: number
-                  format: double
-              histogram:
-                type: array
-                description: |
-                  Histogram as a list of [binStart, binEnd, count] triples.
-                  Length depends of the selected sample size, maximum is 20.
-                example: |
-                  [(1, 15.50289002318, 7686678.375), (15.50289002318, 35.49570418233824, 1229164),
-                  (35.49570418233824, 56.93121325335453, 36531.25), (56.93121325335453, 77.21467372919479, 6910.625)]
-                items:
-                  type: array
-                  items:
-                    type: number
-                    format: double
+    GeneSummaryEntry:
+      type: object
+      description: Per-gene summary statistics.
+      properties:
+        geneId:
+          type: string
+          description: Gene identifier.
+          example: "ENSG00000111640"
+        cellCount:
+          type: integer
+          format: int32
+          description: Number of cells expressing the gene.
+          example: 8968167
+        mean:
+          type: number
+          format: double
+          description: Mean expression
+          example: 7.747614311820911
+        median:
+          type: number
+          format: double
+          description: Median expression
+          example: 7
+        stdDev:
+          type: number
+          format: double
+          description: Standard deviation
+          example: 6.499314669429827
+        min:
+          type: number
+          format: double
+          description: Minimum value
+          example: 1
+        max:
+          type: number
+          format: double
+          description: Maximum value
+          example: 496
+        quantiles:
+          type: array
+          description: |
+            List of quantile values from 0 to 1 (inclusive), with step 0.1
+          example: |
+            [1, 1, 2, 3, 5, 7, 10, 12, 15, 27, 192]
+          items:
+            type: number
+            format: double
+        histogram:
+          type: array
+          description: |
+            Histogram as a list of [binStart, binEnd, count] triples.
+            Length depends of the selected sample size, maximum is 20.
+          example: |
+            [(1, 15.50289002318, 7686678.375), (15.50289002318, 35.49570418233824, 1229164),
+            (35.49570418233824, 56.93121325335453, 36531.25), (56.93121325335453, 77.21467372919479, 6910.625)]
+          items:
+            type: array
+            items:
+              type: number
+              format: double
     CRRequest:
       type: object
       properties:
         cellGroup:
-          $ref: 'CellGroupRequest.yaml'
+          $ref: '#/components/schemas/CellGroupRequest'
         exQuery:
           type: string
           example: '-3 < value < 3'
@@ -25316,10 +25228,6 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"
-      components:
-        schemas:
-          TransformationParametersForMultipartRequest:
-            $ref: "./TransformationParametersForMultipartRequest.yaml"
     ImportMetadataRequest:
       example:
         metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
@@ -25360,10 +25268,6 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"
-      components:
-        schemas:
-          TransformationParametersForMultipartRequest:
-            $ref: "./TransformationParametersForMultipartRequest.yaml"
     ImportSignalRunRequest:
       description: import signal data request
       example:
@@ -25419,10 +25323,6 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"
-      components:
-        schemas:
-          TransformationParametersForMultipartRequest:
-            $ref: "./TransformationParametersForMultipartRequest.yaml"
     ImportExpressionSignalRunRequest:
       allOf:
         - $ref: "#/components/schemas/ImportSignalRunRequest"
@@ -25462,10 +25362,6 @@ components:
             the allowance for multi-character separators.'
           example: ':'
           type: string
-      components:
-        schemas:
-          ImportSignalRunRequest:
-            $ref: "./ImportSignalRunRequest.yaml"
     ImportExpressionSignalRunFromMultipartRequest:
       allOf:
         - $ref: "#/components/schemas/ImportSignalRunFomMultipartRequest"
@@ -25497,10 +25393,6 @@ components:
             the allowance for multi-character separators.'
           example: ':'
           type: string
-      components:
-        schemas:
-          ImportSignalRunFomMultipartRequest:
-            $ref: "./ImportSignalRunFomMultipartRequest.yaml"
     ImportAFileRequest:
       example:
         metadataLink: https://mybucket.s3.amazonaws.com/my-experiment/my-object-metadata.tsv
@@ -25561,10 +25453,6 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"
-      components:
-        schemas:
-          TransformationParametersForMultipartRequest:
-            $ref: "./TransformationParametersForMultipartRequest.yaml"
     Info:
       description: job execution information
       example:
@@ -25630,10 +25518,6 @@ components:
             $ref: "#/components/schemas/ExceptionTypeAndMessage"
           type: array
       type: object
-      components:
-        schemas:
-          ExceptionTypeAndMessage:
-            $ref: "./ExceptionTypeAndMessage.yaml"
     Output:
       description: job execution output
       example:
@@ -25679,10 +25563,6 @@ components:
       required:
         - status
       type: object
-      components:
-        schemas:
-          JobRuntimeError:
-            $ref: "./JobRuntimeError.yaml"
     DetachedCollection:
       example:
         cursor: cursor
@@ -25705,10 +25585,6 @@ components:
       required:
         - data
       type: object
-      components:
-        schemas:
-          DetachedObject:
-            $ref: "./DetachedObject.yaml"
     DetachedObject:
       example:
         createdAt: 2000-01-23T04:56:07+00:00
@@ -25893,7 +25769,7 @@ components:
           type: string
         result:
           items:
-            $ref: "XrefSetSearchResultEntry.yaml"
+            $ref: "#/components/schemas/XrefSetSearchResultEntry"
           type: array
       type: object
     XrefSetSearchResultEntry:
@@ -26016,10 +25892,6 @@ components:
       required:
         - displayName
       type: object
-      components:
-        schemas:
-          Member:
-            $ref: "./Member.yaml"
     Member:
       example:
         display: display
@@ -26065,10 +25937,6 @@ components:
         - Operations
         - schemas
       type: object
-      components:
-        schemas:
-          PatchOperation:
-            $ref: "./PatchOperation.yaml"
     PatchOperation:
       example:
         op: add
@@ -26113,10 +25981,6 @@ components:
           format: int64
           type: integer
       type: object
-      components:
-        schemas:
-          GroupResponse:
-            $ref: "./GroupResponse.yaml"
     GroupResponse:
       allOf:
         - $ref: "#/components/schemas/Group"
@@ -26124,12 +25988,6 @@ components:
             meta:
               $ref: "#/components/schemas/Meta"
           type: object
-      components:
-        schemas:
-          Group:
-            $ref: "./Group.yaml"
-          Meta:
-            $ref: "./Meta.yaml"
     Meta:
       description: resource metadata
       properties:
@@ -26176,7 +26034,6 @@ components:
       required:
         - status
       type: object
-
     BaseErrorResponse:
       properties:
         error:
@@ -26184,11 +26041,6 @@ components:
       required:
         - error
       type: object
-      components:
-        schemas:
-          ErrorMessage:
-            $ref: "./ErrorMessage.yaml"
-
     ErrorMessage:
       properties:
         message:
@@ -26197,7 +26049,6 @@ components:
       required:
         - message
       type: object
-
     User:
       example:
         emails:
@@ -26244,11 +26095,6 @@ components:
         - displayName
         - emails
       type: object
-      components:
-        schemas:
-          Email:
-            $ref: "./Email.yaml"
-
     Email:
       example:
         type: work
@@ -26264,7 +26110,6 @@ components:
         primary:
           type: boolean
       type: object
-
     UserPatch:
       example:
         schemas:
@@ -26293,11 +26138,6 @@ components:
         - Operations
         - schemas
       type: object
-      components:
-        schemas:
-          PatchOperation:
-            $ref: "./PatchOperation.yaml"
-
     FilterUsersResponse:
       properties:
         Resources:
@@ -26321,11 +26161,6 @@ components:
           format: int64
           type: integer
       type: object
-      components:
-        schemas:
-          UserResponse:
-            $ref: "./UserResponse.yaml"
-
     UserResponse:
       allOf:
         - $ref: "#/components/schemas/User"
@@ -26333,13 +26168,6 @@ components:
             meta:
               $ref: "#/components/schemas/Meta"
           type: object
-      components:
-        schemas:
-          User:
-            $ref: "./User.yaml"
-          Meta:
-            $ref: "./Meta.yaml"
-
     VariantMetadataWithId:
       example:
         itemId: itemId
@@ -26509,10 +26337,54 @@ components:
         cursor:
           type: string
       type: object
-      components:
-        schemas:
-          VariantItem:
-            $ref: "VariantItem.yaml"
+    CellGroupRequest:
+      type: object
+      properties:
+        studyFilter:
+          type: string
+          example: '"Study Source"=ArrayExpress'
+        studyQuery:
+          type: string
+          example: 'RNA-Seq of human dendritic cells'
+        sampleFilter:
+          type: string
+          example: '"Species or strain"="Homo sapiens"'
+        sampleQuery:
+          type: string
+          example: 'Clozapine'
+        libraryFilter:
+          type: string
+          example: '"Library Type"=RNA-Seq-1'
+        libraryQuery:
+          type: string
+          example: 'illumina HiSeq500'
+        preparationFilter:
+          type: string
+          example: 'Digestion=Trypsin'
+        preparationQuery:
+          type: string
+          example: 'reversed-phase liquid chromatography'
+        cellQuery:
+          type: string
+          example: 'cellType=Macrophage,Monocyte'
+        searchSpecificTerms:
+          type: boolean
+          example: false
+    TransformationParametersForMultipartRequest:
+      properties:
+        sourceAttachmentAccession:
+          type: string
+          description: The property is automatically populated by the attachment transformation pipeline and must not be provided during regular multipart uploads.
+          readOnly: true
+        transformationName:
+          type: string
+          description: The property is automatically populated by the attachment transformation pipeline and must not be provided during regular multipart uploads.
+          readOnly: true
+        transformationVersion:
+          type: string
+          description: The property is automatically populated by the attachment transformation pipeline and must not be provided during regular multipart uploads.
+          readOnly: true
+      type: object
   securitySchemes:
     Access-token:
       in: "header"
