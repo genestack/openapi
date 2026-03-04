@@ -169,7 +169,6 @@ swagger:
 stoplight:
     FROM nginxinc/nginx-unprivileged:1.29.5-alpine
 
-    COPY +build/v1/schemas /usr/share/nginx/html/schemas/
     COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
     COPY +build/v1/odmApi.json /usr/share/nginx/html/
     COPY openapi/stoplight/fs /
