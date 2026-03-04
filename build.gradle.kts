@@ -26,6 +26,7 @@ val processorsControllerFilePath = "${sourceDirectory}/${processorsControllerFil
 val openApiVersion: String = System.getenv("OPENAPI_VERSION")
 val mergedFileName = "odmApi.yaml"
 val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
+val mergedFilePathJson = "${sourceDirectory}/odmApi.json"
 
 tasks {
     val downloadSpec by registering(DownloadSpecification::class) {
@@ -45,6 +46,7 @@ tasks {
                 .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
         })
         outputFile.set(layout.projectDirectory.file(mergedFilePath))
+        outputFileJson.set(layout.projectDirectory.file(mergedFilePathJson))
     }
     val generateOdmApiPython by registering(GenerateTask::class) {
         dependsOn(mergeSpecifications)

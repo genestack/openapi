@@ -22,9 +22,11 @@ abstract class DownloadSpecification : DefaultTask() {
     val version = project.objects.property<String>()
 
     @Input
+    @Optional
     val registryUsername = project.objects.property<String>()
 
     @Input
+    @Optional
     val registryPassword = project.objects.property<String>()
 
     @Input
