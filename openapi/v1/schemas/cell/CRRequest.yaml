@@ -1,7 +1,0 @@
-type: object
-properties:
-  cellGroup:
-    $ref: 'CellGroupRequest.yaml'
-  exQuery:
-    type: string
-    example: '-3 < value < 3'
