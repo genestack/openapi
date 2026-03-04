@@ -1,9 +1,0 @@
-example:
-  dataLink: https://mybucket.s3.amazonaws.com/my-experiment/cells.tsv
-properties:
-  dataLink:
-    example: https://mybucket.s3.amazonaws.com/my-experiment/cells.tsv
-    type: string
-required:
-- dataLink
-type: object
