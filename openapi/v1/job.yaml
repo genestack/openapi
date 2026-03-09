@@ -634,7 +634,7 @@ paths:
         `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
         `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
         fluid counts`, `Long-read sequencing (Nanopore, PacBio)`, `Flow Cytometry (FCS)`,
-        `Spatial transcriptomics`, `Phenomics`, `Copy number alterations`, `Microbiome / Metagenomics',
+        `Spatial transcriptomics`, `Phenomics`, `Copy number alterations`, `Microbiome / Metagenomics`,
         `Immune repertoire`, `Genetic screens (CRISPR / RNAi)`, `Cell imaging`, `Document`, `Other`.
 
         When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
@@ -681,7 +681,7 @@ paths:
         `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
         `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body
         fluid counts`, `Long-read sequencing (Nanopore, PacBio)`, `Flow Cytometry (FCS)`,
-        `Spatial transcriptomics`, `Phenomics`, `Copy number alterations`, `Microbiome / Metagenomics',
+        `Spatial transcriptomics`, `Phenomics`, `Copy number alterations`, `Microbiome / Metagenomics`,
         `Immune repertoire`, `Genetic screens (CRISPR / RNAi)`, `Cell imaging`, `Document`, `Other`.
 
         When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
