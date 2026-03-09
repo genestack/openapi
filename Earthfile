@@ -80,7 +80,7 @@ r-api-client:
     # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
-        apt install -y --allow-downgrades libssl-dev libcurl4-gnutls-dev curl libcurl4t64:amd64=8.18.0-2 libnghttp2-14:amd64=1.64.0-1.1+b1 && \
+        apt install -y libssl-dev libcurl4-gnutls-dev curl && \
         Rscript requirements.R
 
     COPY +build/generated generated
