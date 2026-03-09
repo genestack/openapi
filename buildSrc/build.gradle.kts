@@ -7,6 +7,6 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.20.1")
+    implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.1.0")
     implementation("org.apache.commons:commons-compress:1.28.0")
 }

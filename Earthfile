@@ -5,7 +5,7 @@ ARG --global --required RAW_REGISTRY_RELEASES
 ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
-    FROM eclipse-temurin:25.0.1_8-jdk-alpine
+    FROM eclipse-temurin:25.0.2_10-jdk-alpine
     DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+GRADLE_PREPARE
 
     CACHE /root/.gradle/caches
@@ -27,7 +27,7 @@ build:
     SAVE ARTIFACT openapi/v1
 
 python-api-client:
-    FROM python:3.14.2-alpine
+    FROM python:3.14.3-alpine
     DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
 
     CACHE /root/.cache
@@ -80,7 +80,7 @@ r-api-client:
     # Gcc and other stuff for R source packages building
     RUN \
         apt update && \
-        apt install -y libssl-dev libcurl4-gnutls-dev curl && \
+        apt install -y --allow-downgrades libssl-dev libcurl4-gnutls-dev curl libcurl4t64:amd64=8.18.0-2 && \
         Rscript requirements.R
 
     COPY +build/generated generated
@@ -143,7 +143,7 @@ docs:
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.31.0
+    FROM swaggerapi/swagger-ui:v5.32.0
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
@@ -167,7 +167,7 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 stoplight:
-    FROM nginxinc/nginx-unprivileged:1.29.3-alpine
+    FROM nginxinc/nginx-unprivileged:1.29.5-alpine
 
     COPY +build/v1/schemas /usr/share/nginx/html/schemas/
     COPY +build/v1/odmApi.yaml /usr/share/nginx/html/

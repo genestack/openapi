@@ -27,11 +27,6 @@ val openApiVersion: String = System.getenv("OPENAPI_VERSION")
 val mergedFileName = "odmApi.yaml"
 val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
 
-val sourceFileList = KotlinPath(sourceDirectory)
-    .listDirectoryEntries("*.yaml")
-    .sorted()
-    .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
-
 tasks {
     val downloadSpec by registering(DownloadSpecification::class) {
         version.set(processorsControllerVersion)
@@ -43,8 +38,13 @@ tasks {
     }
     val mergeSpecifications by registering(MergeSpecifications::class) {
         dependsOn(downloadSpec)
-        inputFiles = sourceFileList
-        outputFile = layout.projectDirectory.file(mergedFilePath)
+        inputFiles.set(provider { // provider to calculate during runtime, not configuration loading time
+            KotlinPath(sourceDirectory)
+                .listDirectoryEntries("*.yaml")
+                .sorted()
+                .map { layout.projectDirectory.file("${sourceDirectory}/${it.name}") }
+        })
+        outputFile.set(layout.projectDirectory.file(mergedFilePath))
     }
     val generateOdmApiPython by registering(GenerateTask::class) {
         dependsOn(mergeSpecifications)
