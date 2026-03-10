@@ -5,6 +5,7 @@ import httpx
 import yaml
 from fastmcp import FastMCP
 from fastmcp.resources import HttpResource
+from pydantic import AnyUrl
 
 odm_url = os.environ.get("ODM_URL")
 # odm_url = os.environ.get("ODM_URL", 'https://develop-oak.dev.gs.team'). # for local testing
@@ -31,13 +32,12 @@ mcp = FastMCP.from_openapi(
 )
 
 mcp.add_resource(HttpResource(
-    uri="resource://documentation-yaml",
-    url=odm_url + "/swagger/yaml/odm.yaml",
+    uri=AnyUrl("resource://documentation-yaml"),
+    url=odm_url + "/swagger/yaml/odmApi.yaml",
     name="ODM API Documentation",
-    description="ODM API documentation in yaml ",
+    description="ODM API documentation in yaml",
     mime_type="application/yaml"
 ))
-
 
 if __name__ == "__main__":
     mcp.run(transport="streamable-http", host=server_host, port=server_port)
