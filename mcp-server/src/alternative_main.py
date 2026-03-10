@@ -7,8 +7,11 @@ from fastmcp import FastMCP
 from pathlib import Path
 
 DOCS_DIR = Path("docs").resolve()
+
+odm_url = os.environ.get("ODM_URL", 'https://develop-oak.dev.gs.team') # for local testing
+odm_token = os.environ.get("ODM_TOKEN", "tknRoot")
 server_host = os.environ.get("SERVER_HOST", "0.0.0.0")
-server_port = os.environ.get("SERVER_PORT", 8080)
+server_port = os.environ.get("SERVER_PORT", 9080)
 
 # Load OpenAPI spec from the same directory as this file
 spec_path = DOCS_DIR / "odmApi.yaml"
@@ -26,9 +29,9 @@ mcp = FastMCP(
 
 type Tag = str
 
-@mcp.resource("data://server-uri")
-def server_uri() -> str:
-    return server_host
+@mcp.tool(description="Fetch url of the ODM API server")
+def get_base_url() -> str:
+    return odm_url
     
 @mcp.tool(description="Get an overview of functions available in ODM")
 def get_odm_api_overview() -> str:
