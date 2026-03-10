@@ -8,8 +8,8 @@ from fastmcp import FastMCP
 from fastmcp.resources import HttpResource, FileResource
 from pydantic import AnyUrl
 
-odm_url = os.environ.get("ODM_URL")
-# odm_url = os.environ.get("ODM_URL", 'https://develop-oak.dev.gs.team') # for local testing
+# odm_url = os.environ.get("ODM_URL")
+odm_url = os.environ.get("ODM_URL", 'https://develop-oak.dev.gs.team') # for local testing
 odm_token = os.environ.get("ODM_TOKEN", "tknRoot")
 server_host = os.environ.get("SERVER_HOST", "0.0.0.0")
 server_port = os.environ.get("SERVER_PORT", 8080)
