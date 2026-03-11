@@ -7,6 +7,7 @@ from typing import Any
 import httpx
 import yaml
 from fastmcp import FastMCP
+from fastmcp.server.openapi import RouteMap, MCPType
 from fastmcp.server.middleware import Middleware, MiddlewareContext, CallNext
 from fastmcp.server.dependencies import get_http_headers
 
@@ -62,6 +63,23 @@ mcp = FastMCP.from_openapi(
     openapi_spec=openapi_spec,
     client=client,
     middleware=[TokenExtractMiddleware()],
+    route_maps=[
+        # Include "as User" endpoints
+        RouteMap(
+            pattern=r"^/api/v1/as-user/.*", 
+            mcp_type=MCPType.TOOL,
+        ),
+        # Include "as Curator" endpoints
+        # RouteMap(
+        #     pattern=r"^/api/v1/as-curator/.*", 
+        #     mcp_type=MCPType.TOOL,
+        # ),
+        # exclude anything else
+        RouteMap(
+            pattern=r".*", 
+            mcp_type=MCPType.EXCLUDE,
+        )
+    ]
 )
 
 @mcp.tool(description="Returns url of ODM API server")
