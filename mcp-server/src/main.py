@@ -69,10 +69,5 @@ def get_base_url() -> str:
     return odm_url
 
 
-@mcp.tool(description="First tool to call, when starting to work with ODM API Documentation. Gets all documentation in json format")
-def inspect_documentation() -> str:
-    return json.dumps(openapi_spec)
-
-
 if __name__ == "__main__":
     mcp.run(transport="streamable-http", host=server_host, port=server_port)
