@@ -197,6 +197,8 @@ openapi-mcp-server:
     COPY mcp-server/src /app/src
     COPY +build/v1/schemas /app/src/schemas
     COPY +build/v1/odmApi.yaml /app/src/.
+    RUN uv run src/enrich_spec.py
+    RUN rm -rf /app/src/schemas
 
     # Run the application using uv
     ENTRYPOINT ["uv"]

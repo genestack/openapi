@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(grep \"^tags:\" /Users/i.panchenko/Work/openapi/openapi/v1/*.yaml -l)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(grep -n \"^    [A-Z][A-Za-z]*:$\" /Users/i.panchenko/Work/openapi/mcp-server/src/odmApi.yaml)",
+      "Bash(grep -n \"^    [A-Z][A-Za-z]*:$\" /Users/i.panchenko/Work/openapi/mcp-server/src/odmApi_old.yaml)",
+      "Bash(grep -c \"^    [A-Z][A-Za-z]*:$\" /Users/i.panchenko/Work/openapi/mcp-server/src/odmApi.yaml)",
+      "Bash(grep -c \"^    [A-Z][A-Za-z]*:$\" /Users/i.panchenko/Work/openapi/mcp-server/src/odmApi_old.yaml)",
+      "Bash(grep \"^    [A-Z][A-Za-z]*:$\" /Users/i.panchenko/Work/openapi/mcp-server/src/odmApi.yaml)",
+      "Bash(grep \"^    [A-Z][A-Za-z]*:$\" /Users/i.panchenko/Work/openapi/mcp-server/src/odmApi_old.yaml)",
+      "Read(//Users/i.panchenko/Work/openapi/**)"
     ]
   }
 }
