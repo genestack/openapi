@@ -31,3 +31,6 @@ node_modules
 # Ignore python cache files and env from mcp-server
 .venv/*
 __pycache__/*
+mcp-server/src/schemas/*
+mcp-server/src/odmApi.yaml
+mcp-server/src/odmApi_old.yaml
