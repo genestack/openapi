@@ -1,5 +1,4 @@
 import os
-import json
 from contextvars import ContextVar
 from pathlib import Path
 from typing import Any
@@ -7,7 +6,8 @@ from typing import Any
 import httpx
 import yaml
 from fastmcp import FastMCP
-from fastmcp.server.providers.openapi import RouteMap, MCPType
+from fastmcp.server.providers.openapi import MCPType
+from fastmcp.utilities.openapi.models import HTTPRoute
 from fastmcp.server.middleware import Middleware, MiddlewareContext, CallNext
 from fastmcp.server.dependencies import get_http_headers
 
@@ -15,7 +15,7 @@ from fastmcp.server.dependencies import get_http_headers
 # ContextVar is asyncio-safe: each concurrent request gets its own isolated value.
 current_token: ContextVar[str] = ContextVar("current_token", default="")
 
-odm_url = os.environ.get("ODM_URL")
+odm_url = os.environ.get("ODM_URL", "https://odm.demo.genestack.com/")
 server_host = os.environ.get("SERVER_HOST", "0.0.0.0")
 server_port = int(os.environ.get("SERVER_PORT", 8080))
 
@@ -55,6 +55,58 @@ class TokenExtractMiddleware(Middleware):
             current_token.reset(token_var)
 
 
+INCLUDED_ENDPOINTS: set[str] = {
+    # Core Resources — list + get by ID
+    "/api/v1/as-user/cells/{id}",
+    "/api/v1/as-user/expressions",
+    "/api/v1/as-user/expressions/{id}",
+    "/api/v1/as-user/files",
+    "/api/v1/as-user/files/{id}",
+    "/api/v1/as-user/files/{id}/download",
+    "/api/v1/as-user/flow-cytometries",
+    "/api/v1/as-user/flow-cytometries/{id}",
+    "/api/v1/as-user/libraries",
+    "/api/v1/as-user/libraries/{id}",
+    "/api/v1/as-user/preparations",
+    "/api/v1/as-user/preparations/{id}",
+    "/api/v1/as-user/samples",
+    "/api/v1/as-user/samples/{id}",
+    "/api/v1/as-user/studies",
+    "/api/v1/as-user/studies/{id}",
+    "/api/v1/as-user/variants",
+    "/api/v1/as-user/variants/{id}",
+    # Link Discovery
+    "/api/v1/as-user/links",
+    "/api/v1/as-user/links/get-batch",
+    # Schema Discovery
+    "/api/v1/as-user/data-types",
+    "/api/v1/as-user/data-types/links",
+    # Search
+    "/api/v1/as-user/integration/fulltext/search/studies",
+    # Omics Data & Analytics
+    "/api/v1/as-user/omics/cells",
+    "/api/v1/as-user/omics/cells/expression/data",
+    "/api/v1/as-user/omics/expression/data",
+    "/api/v1/as-user/omics/expression/group",
+    "/api/v1/as-user/omics/expression/streamed-data",
+    "/api/v1/as-user/omics/flow-cytometry/data",
+    "/api/v1/as-user/omics/flow-cytometry/group",
+    "/api/v1/as-user/omics/samples",
+    "/api/v1/as-user/omics/variant/data",
+    "/api/v1/as-user/omics/variant/group",
+    "/api/v1/as-user/omics/variant/streamed-data",
+    "/api/v1/as-user/omics/cells/analytics/cell-ratio",
+    "/api/v1/as-user/omics/cells/analytics/differential-expression",
+    "/api/v1/as-user/omics/cells/analytics/gene-summary",
+}
+
+
+def endpoint_filter(route: HTTPRoute, mcp_type: MCPType) -> MCPType | None:
+    if route.path in INCLUDED_ENDPOINTS:
+        return MCPType.TOOL
+    return MCPType.EXCLUDE
+
+
 # Single shared client — connection pooling is safe because auth is per-request via DynamicTokenAuth.
 client = httpx.AsyncClient(base_url=odm_url, auth=DynamicTokenAuth())
 
@@ -63,23 +115,7 @@ mcp = FastMCP.from_openapi(
     openapi_spec=openapi_spec,
     client=client,
     middleware=[TokenExtractMiddleware()],
-    route_maps=[
-        # Include "as User" endpoints
-        RouteMap(
-            pattern=r"^/api/v1/as-user/.*", 
-            mcp_type=MCPType.TOOL,
-        ),
-        # Include "as Curator" endpoints
-        # RouteMap(
-        #     pattern=r"^/api/v1/as-curator/.*", 
-        #     mcp_type=MCPType.TOOL,
-        # ),
-        # exclude anything else
-        RouteMap(
-            pattern=r".*", 
-            mcp_type=MCPType.EXCLUDE,
-        )
-    ]
+    route_map_fn=endpoint_filter,
 )
 
 @mcp.tool(description="Returns url of ODM API server")
