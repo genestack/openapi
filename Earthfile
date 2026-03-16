@@ -195,6 +195,7 @@ openapi-mcp-server:
     RUN uv sync --frozen --no-cache --no-dev
 
     COPY mcp-server/src /app/src
+    COPY +build/v1/schemas /app/src/schemas
     COPY +build/v1/odmApi.yaml /app/src/.
 
     # Run the application using uv
