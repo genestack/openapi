@@ -7,7 +7,7 @@ from typing import Any
 import httpx
 import yaml
 from fastmcp import FastMCP
-from fastmcp.server.openapi import RouteMap, MCPType
+from fastmcp.server.providers.openapi import RouteMap, MCPType
 from fastmcp.server.middleware import Middleware, MiddlewareContext, CallNext
 from fastmcp.server.dependencies import get_http_headers
 
@@ -15,7 +15,7 @@ from fastmcp.server.dependencies import get_http_headers
 # ContextVar is asyncio-safe: each concurrent request gets its own isolated value.
 current_token: ContextVar[str] = ContextVar("current_token", default="")
 
-odm_url = os.environ.get("ODM_URL", "https://develop-ip.dev.gs.team")
+odm_url = os.environ.get("ODM_URL")
 server_host = os.environ.get("SERVER_HOST", "0.0.0.0")
 server_port = int(os.environ.get("SERVER_PORT", 8080))
 
