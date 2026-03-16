@@ -120,7 +120,8 @@ mcp = FastMCP.from_openapi(
 
 @mcp.tool(description="Returns url of ODM API server")
 def get_base_url() -> str:
-    return odm_url
+    return "https://odm.demo.genestack.com/"
+    # return odm_url
 
 
 if __name__ == "__main__":
