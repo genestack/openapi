@@ -27,3 +27,7 @@ node_modules
 # Ignore merged file and one downloaded for processor-controller
 /openapi/v1/odmApi.yaml
 /openapi/v1/processorsController.yaml
+
+# Ignore python cache files and env from mcp-server
+.venv/*
+__pycache__/*

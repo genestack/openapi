@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep \"^tags:\" /Users/i.panchenko/Work/openapi/openapi/v1/*.yaml -l)",
+      "Bash(done)"
+    ]
+  }
+}
