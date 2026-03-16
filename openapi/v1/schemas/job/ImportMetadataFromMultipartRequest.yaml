@@ -6,12 +6,12 @@ properties:
   templateId:
     example: GSF334953
     type: string
-  metadata:
+  file:
     type: string
     format: binary
 required:
   - studyId
-  - metadata
+  - file
 type: object
 allOf:
   - $ref: "#/components/schemas/TransformationParametersForMultipartRequest"

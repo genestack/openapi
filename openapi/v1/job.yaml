@@ -320,10 +320,6 @@ paths:
           - Allowed number of components per cell: **0** (absent) or **≥ 2**.
           - If exactly **1** PCA component is provided, the request is invalid.
           - At most **100** PCA components are stored; components beyond 100 are ignored.
-
-        Notes:
-        - “Dimensions/components” refer to the length of the embedding vector for each cell.
-        - Ignoring excess dimensions/components does not cause an error; validation errors occur only when the number is exactly **1**.
       operationId: startImportCells
       parameters:
       - description: "Load duplicate data: the data from the link(s) has already been\
@@ -379,10 +375,6 @@ paths:
           - Allowed number of components per cell: **0** (absent) or **≥ 2**.
           - If exactly **1** PCA component is provided, the request is invalid.
           - At most **100** PCA components are stored; components beyond 100 are ignored.
-
-        Notes:
-        - “Dimensions/components” refer to the length of the embedding vector for each cell.
-        - Ignoring excess dimensions/components does not cause an error; validation errors occur only when the number is exactly **1**.
       operationId: startImportCellsMultipart
       requestBody:
         content:
@@ -412,7 +404,7 @@ paths:
 
         ## Metadata
          It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
-        ## Metadata file format
+        ## Data file format
          * Format: Gene Cluster Text (GCT) and Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
          * Extension: `.zip`, `.gz`, `.br`, `.lz4` are supported, treated as archives and get decompressed
          * Header: the first line is treated as table header that contains attribute names
@@ -451,13 +443,13 @@ paths:
   /api/v1/jobs/import/expression/multipart:
     post:
       description: |-
-        ## Data
-         This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
+        ## File
+         This operation necessitates a tabular data file. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
 
-        ## Metadata
-         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
-        ## Metadata file format
-         * Format: Gene Cluster Text (GCT) and Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+        ## MetadataFile
+         It is also possible to optionally provide a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
+        ## File format
+         * Format: Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
          * Extension: `.zip`, `.gz`, `.br`, `.lz4` are supported, treated as archives and get decompressed
          * Header: the first line is treated as table header that contains attribute names
          * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
@@ -479,7 +471,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import any tabular data from TSV or GCT files via multipart/form-data upload
+      summary: Import a TSV file containing any tabular data, optionally with a separate TSV metadata file via multipart/form-data upload
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
@@ -540,7 +532,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import variation data and metadata from VCF and TSV files via multipart/form-data upload
+      summary: Import a VCF file containing variant data, optionally with a separate TSV metadata file via multipart/form-data
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
@@ -592,7 +584,7 @@ paths:
   /api/v1/jobs/import/flow-cytometry/multipart:
     post:
       description: |-
-        This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
+        This operation necessitates a gated flow cytometry data file, which must be in FACS format.
         Consult the user guide for a comprehensive understanding of the file content requirements.
         For flow cytometry data in FCS format use expression endpoint.
 
@@ -621,7 +613,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import flow-cytometry data and metadata from FACS and TSV files via multipart/form-data upload
+      summary: Import a FACS file containing flow-cytometry data, optionally with a separate TSV metadata file via multipart/form-data upload
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
@@ -716,7 +708,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Import file as an attachment via multipart/form-data upload
+      summary: Import a file as an attachment, optionally with a separate TSV metadata file via multipart/form-data upload
       tags:
         - Data import via direct file upload
       x-codegen-request-body-name: body
