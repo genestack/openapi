@@ -1,7 +1,7 @@
 library(parallel)
 Ncpus <- detectCores()
 
-publicRepo <- "https://packagemanager.rstudio.com/all/__linux__/jammy/latest"
+publicRepo <- "https://packagemanager.rstudio.com/all/__linux__/noble/latest"
 options("repos" = c(PUBLIC = publicRepo))
 
 install.packages("remotes", Ncpus = Ncpus)
