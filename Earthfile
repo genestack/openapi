@@ -70,7 +70,7 @@ python-api-client:
             pypi-clean.sh
 
 r-api-client:
-    FROM r-base:4.5.3
+    FROM rocker/r-ver:4.5.3
     WORKDIR /app
 
     CACHE /root/.cache
