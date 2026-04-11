@@ -143,7 +143,7 @@ docs:
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.32.1
+    FROM swaggerapi/swagger-ui:v5.32.2
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
