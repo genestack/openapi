@@ -1,3 +1,3 @@
 twine==6.2.0
-tox==4.52.0
+tox==4.52.1
 setuptools==82.0.1
