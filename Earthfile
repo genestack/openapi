@@ -167,7 +167,7 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 stoplight:
-    FROM nginxinc/nginx-unprivileged:1.29.8-alpine
+    FROM nginxinc/nginx-unprivileged:1.30.0-alpine
 
     COPY +build/v1/schemas /usr/share/nginx/html/schemas/
     COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
