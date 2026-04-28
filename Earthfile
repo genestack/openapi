@@ -177,7 +177,7 @@ stoplight:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/stoplight:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/stoplight:latest
 
-openapi-mcp-server:
+mcp-server:
     FROM astral/uv:0.10.7-python3.13-trixie-slim
 
     RUN groupadd --system --gid 999 nonroot \
@@ -201,8 +201,8 @@ openapi-mcp-server:
     CMD ["run", "src/main.py"]
 
     ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/openapi-mcp-server:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/openapi-mcp-server:latest
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mcp-server:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/mcp-server:latest
 
 main:
     BUILD +swagger
@@ -210,4 +210,4 @@ main:
     BUILD +docs
     BUILD +r-api-client
     BUILD +python-api-client
-    BUILD +openapi-mcp-server
+    BUILD +mcp-server
