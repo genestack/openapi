@@ -177,9 +177,37 @@ stoplight:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/stoplight:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/stoplight:latest
 
+openapi-mcp-server:
+    FROM astral/uv:0.10.7-python3.13-trixie-slim
+
+    RUN groupadd --system --gid 999 nonroot \
+        && useradd --system --gid 999 --uid 999 --create-home nonroot
+    USER nonroot
+
+    WORKDIR /app
+
+    ENV PYTHONUNBUFFERED=1
+    ENV PYTHONDONTWRITEBYTECODE=1
+    ENV UV_SYSTEM_PYTHON=1
+    ENV UV_LINK_MODE=copy
+
+    COPY mcp-server/pyproject.toml mcp-server/uv.lock .
+    RUN uv sync --frozen --no-cache --no-dev
+
+    COPY mcp-server/src /app/src
+
+    # Run the application using uv
+    ENTRYPOINT ["uv"]
+    CMD ["run", "src/main.py"]
+
+    ARG --required OPENAPI_VERSION
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/openapi-mcp-server:${OPENAPI_VERSION}
+    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/openapi-mcp-server:latest
+
 main:
     BUILD +swagger
     BUILD +stoplight
     BUILD +docs
     BUILD +r-api-client
     BUILD +python-api-client
+    BUILD +openapi-mcp-server
