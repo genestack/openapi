@@ -367,4 +367,4 @@ async def test_func():
 
 if __name__ == "__main__":
     # asyncio.run(test_func())
-    mcp.run()
+    mcp.run(transport="streamable-http", host=server_host, port=server_port)
