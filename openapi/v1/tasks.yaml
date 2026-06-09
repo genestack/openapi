@@ -9,7 +9,11 @@ tags:
 paths:
   /api/v1/tasks/publish-versions:
     post:
-      description: This endpoint publishes all information from drafts and creates
+      deprecated: true
+      description: |-
+        This endpoint is deprecated and is going to be removed in the next release version 1.64
+
+        This endpoint publishes all information from drafts and creates
         new metadata versions for each study/associated objects with unpublished changes. Only
         curators with the ACCESS_ALL_DATA permission can use this method.
       operationId: publishAllStudies
