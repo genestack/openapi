@@ -1,0 +1,63 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  type:
+    type: string
+  createTime:
+    type: string
+    format: date-time
+  user:
+    type: object
+    properties:
+      id:
+        type: integer
+      displayName:
+        type: string
+  clientIp:
+    type: string
+  source:
+    type: string
+  sourceType:
+    type: string
+  studyAccession:
+    type: string
+  target:
+    type: object
+    properties:
+      dataType:
+        type: string
+      id:
+        type: string
+  details:
+    type: object
+  result:
+    type: object
+    properties:
+      status:
+        type: string
+      statusCode:
+        type: integer
+      errorMessage:
+        type: string
+example:
+  id: 9f2b1c7a-4e3d-4a91-b2f0-7c6d5e4a1b22
+  type: OWNER_CHANGED
+  createTime: '2026-07-28T16:32:07Z'
+  user:
+    id: 182
+    displayName: Jane Doe
+  clientIp: 10.42.7.118
+  source: UI
+  sourceType: application/study-metainfo-editor
+  studyAccession: GSF2006789
+  target:
+    dataType: STUDY
+    id: GSF2006789
+  details:
+    oldUserId: 182
+    newUserId: 180
+  result:
+    status: SUCCESS
+    statusCode: 200
