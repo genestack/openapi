@@ -78,16 +78,16 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      components:
-        schemas:
-          AuditEventsResponse:
-            $ref: "./schemas/audit/AuditEventsResponse.yaml"
-        securitySchemes:
-          Access-token:
-            in: header
-            name: Authorization
-            type: apiKey
-          Genestack-API-Token:
-            in: header
-            name: Genestack-API-Token
-            type: apiKey
+components:
+  schemas:
+    AuditEventsResponse:
+      $ref: "./schemas/audit/AuditEventsResponse.yaml"
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
