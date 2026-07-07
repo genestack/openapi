@@ -20,13 +20,13 @@ paths:
       parameters:
         - in: query
           name: from
-          description: Start of search range (exclusive). Defaults to to − 30 days.
+          description: Start of search range (exclusive). Defaults to `to − 30 days`.
           schema:
             type: string
             format: date-time
         - in: query
           name: to
-          description: End of search range (inclusive). Defaults to now.
+          description: End of search range (inclusive). Defaults to `now`.
           schema:
             type: string
             format: date-time
