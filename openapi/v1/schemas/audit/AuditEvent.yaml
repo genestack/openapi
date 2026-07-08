@@ -17,6 +17,8 @@ properties:
         type: string
   clientIp:
     type: string
+    description: The IP address of the client that initiated the audit event.
+      Can contain a list of IP addresses separated by commas.
   source:
     type: string
   sourceType:
@@ -48,7 +50,7 @@ example:
   user:
     id: 182
     displayName: Jane Doe
-  clientIp: 10.42.7.118
+  clientIp: 10.42.7.118,104.244.42.129
   source: UI
   sourceType: application/study-metainfo-editor
   studyAccession: GSF2006789

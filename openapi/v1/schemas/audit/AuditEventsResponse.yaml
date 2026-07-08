@@ -50,7 +50,7 @@ example:
       user:
         id: 210
         displayName: Laura Bennett
-      clientIp: 10.42.7.215
+      clientIp: 10.42.7.215,104.244.42.129
       source: API
       sourceType: application/manageData
       studyAccession: GSF2006789
