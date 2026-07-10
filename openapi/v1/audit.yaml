@@ -57,6 +57,7 @@ paths:
           description: The page tag to resume results from. Event ID is currently used as a cursor.
           schema:
             type: string
+            format: uuid
       responses:
         "200":
           content:
