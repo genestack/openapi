@@ -50,6 +50,8 @@ paths:
           schema:
             format: int32
             type: integer
+            minimum: 1
+            maximum: 2000
         - in: query
           name: cursor
           description: The page tag to resume results from. Event ID is currently used as a cursor.
