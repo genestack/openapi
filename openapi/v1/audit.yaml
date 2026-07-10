@@ -20,13 +20,13 @@ paths:
       parameters:
         - in: query
           name: from
-          description: Start of search range (exclusive). Defaults to `to − 30 days`.
+          description: Start of search range (exclusive), in UTC. Defaults to `to − 30 days`.
           schema:
             type: string
             format: date-time
         - in: query
           name: to
-          description: End of search range (inclusive). Defaults to `now`.
+          description: End of search range (inclusive), in UTC. Defaults to `now`.
           schema:
             type: string
             format: date-time
@@ -35,12 +35,14 @@ paths:
           description: Filter by study accession.
           schema:
             type: string
+            pattern: "GSF\\d+"
         - in: query
           name: userId
           description: Filter by acting user ID.
           schema:
             format: int32
             type: integer
+            minimum: 1
         - in: query
           name: pageLimit
           description: Maximum number of results to return. This value must be between 0 and 2000 (inclusive).
