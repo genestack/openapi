@@ -143,7 +143,7 @@ docs:
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.32.8
+    FROM swaggerapi/swagger-ui:v5.32.9
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
@@ -167,7 +167,7 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 stoplight:
-    FROM nginxinc/nginx-unprivileged:1.31.2-alpine
+    FROM nginxinc/nginx-unprivileged:1.31.3-alpine
 
     COPY +build/v1/schemas /usr/share/nginx/html/schemas/
     COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
