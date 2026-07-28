@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  description: |-
+    This swagger page describes the API for retrieving audit event records.
+  title: ODM API
+  version: default-released
+tags:
+  - name: Audit
+paths:
+  /api/v1/audit/events:
+    get:
+      operationId: search_audit_events
+      summary: Return audit event records.
+      tags:
+        - Audit
+      description: |-
+        Returns a list of audit event records matching the supplied filters. Results are always ordered by
+        `createTime DESC` (newest first). Datetime parameters are provided without a timezone designator
+        (format `yyyy-MM-ddTHH:mm:ss`, e.g. `2026-06-29T14:32:07`) and are always interpreted as `UTC`.
+      parameters:
+        - in: query
+          name: from
+          description: Start of search range (exclusive), in `UTC`. Defaults to `to − 30 days`.
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: to
+          description: End of search range (inclusive), in `UTC`. Defaults to `now`.
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: studyAccession
+          description: Filter by study accession.
+          schema:
+            type: string
+            pattern: "GSF\\d+"
+        - in: query
+          name: userId
+          description: Filter by acting user ID.
+          schema:
+            format: int32
+            type: integer
+            minimum: 1
+        - in: query
+          name: pageLimit
+          description: Maximum number of results to return. This value must be between 0 and 2000 (inclusive).
+            The default is 2000.
+          schema:
+            format: int32
+            type: integer
+            minimum: 1
+            maximum: 2000
+        - in: query
+          name: cursor
+          description: The page tag to resume results from. Event ID is currently used as a cursor.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuditEventsResponse"
+          description: The request was successful. The returned value is a list of objects.
+        "400":
+          content: { }
+          description: Audit event records cannot be retrieved.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+                  \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+                  \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+components:
+  schemas:
+    AuditEventsResponse:
+      $ref: "./schemas/audit/AuditEventsResponse.yaml"
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
