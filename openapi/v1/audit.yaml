@@ -17,7 +17,6 @@ paths:
         Returns a list of audit event records matching the supplied filters. Results are always ordered by
         `createTime DESC` (newest first). Datetime parameters are provided without a timezone designator
         (format `yyyy-MM-ddTHH:mm:ss`, e.g. `2026-06-29T14:32:07`) and are always interpreted as `UTC`.
-
         Only user with View Audit Log permission can execute this endpoint.
       parameters:
         - in: query
