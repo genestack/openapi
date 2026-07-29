@@ -17,6 +17,7 @@ paths:
         Returns a list of audit event records matching the supplied filters. Results are always ordered by
         `createTime DESC` (newest first). Datetime parameters are provided without a timezone designator
         (format `yyyy-MM-ddTHH:mm:ss`, e.g. `2026-06-29T14:32:07`) and are always interpreted as `UTC`.
+        Only user with View Audit Log permission can execute this endpoint.
       parameters:
         - in: query
           name: from
@@ -73,6 +74,9 @@ paths:
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: { }
+          description: User does not have the View Audit Log permission required to access this endpoint.
         "500":
           content: { }
           description: "An internal server error occurred. This indicates an unexpected\
