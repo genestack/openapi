@@ -44,21 +44,21 @@ properties:
         type: string
 example:
   id: 9f2b1c7a-4e3d-4a91-b2f0-7c6d5e4a1b22
-  type: OWNER_CHANGED
+  type: CHANGE_OWNER
   createTime: '2026-07-28T16:32:07Z'
   user:
     id: 182
     displayName: Jane Doe
-  clientIp: 10.42.7.118,104.244.42.129
+  clientIp: 10.42.7.118
   source: UI
-  sourceType: application/study-metainfo-editor
+  sourceType: genestack/study-metainfo-editor
   studyAccession: GSF2006789
   target:
     dataType: STUDY
     id: GSF2006789
   details:
-    oldUserId: 182
-    newUserId: 180
+    newUserId: 184
+    oldUserId: 180
+    ownershipChangerId: 182
   result:
     status: SUCCESS
-    statusCode: 200

@@ -26,38 +26,39 @@ example:
   cursor: "9f2b1c7a-4e3d-4a91-b2f0-7c6d5e4a1b22"
   events:
     - id: 9f2b1c7a-4e3d-4a91-b2f0-7c6d5e4a1b22
-      type: OWNER_CHANGED
+      type: CHANGE_OWNER
       createTime: '2026-07-28T16:32:07Z'
       user:
         id: 182
         displayName: Jane Doe
       clientIp: 10.42.7.118
       source: UI
-      sourceType: application/study-metainfo-editor
+      sourceType: genestack/study-metainfo-editor
       studyAccession: GSF2006789
       target:
         dataType: STUDY
         id: GSF2006789
       details:
-        oldUserId: 182
-        newUserId: 180
+        newUserId: 184
+        oldUserId: 180
+        ownershipChangerId: 182
       result:
         status: SUCCESS
-        statusCode: 200
     - id: 7c9e2b14-5a3f-4d80-8f21-6e0a9b1c2d33
-      type: ENTITY_DELETED
+      type: DELETE_ENTITY
       createTime: '2026-07-28T16:12:44Z'
       user:
         id: 210
         displayName: Laura Bennett
-      clientIp: 10.42.7.215,104.244.42.129
+      clientIp: 104.244.42.129
       source: API
-      sourceType: application/manageData
+      sourceType: genestack/manageData
       studyAccession: GSF2006789
       target:
         dataType: STUDY
         id: GSF2006789
-      details: { }
+      details:
+        objectId: 59
       result:
         status: FAILURE
         statusCode: 403
