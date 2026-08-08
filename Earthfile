@@ -27,7 +27,7 @@ build:
     SAVE ARTIFACT openapi/v1
 
 python-api-client:
-    FROM python:3.14.6-alpine
+    FROM python:3.14.7-alpine
     DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
 
     CACHE /root/.cache
