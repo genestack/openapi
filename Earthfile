@@ -27,7 +27,7 @@ build:
     SAVE ARTIFACT openapi/v1
 
 python-api-client:
-    FROM python:3.14.6-alpine
+    FROM python:3.14.7-alpine
     DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
 
     CACHE /root/.cache
@@ -143,7 +143,7 @@ docs:
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.32.11
+    FROM swaggerapi/swagger-ui:v5.32.12
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
