@@ -7179,7 +7179,7 @@ paths:
     post:
       description: This endpoint publishes information from drafts and creates new
         metadata versions for the specified study and all associated objects. The
-        version name is set to “Auto-published by API call”. Only curators with access
+        version name is set to "Auto-published by API call". Only curators with access
         to the specified studies can use this method.
       operationId: publishStudyByAccessionAsCurator
       parameters:
@@ -7190,7 +7190,7 @@ paths:
         schema:
           type: string
       - description: Supply text to name this version. If not supplied the version
-          name is set to “Auto-published by API call”
+          name is set to "Auto-published by API call"
         in: query
         name: versionMessage
         schema:
