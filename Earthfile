@@ -5,7 +5,7 @@ ARG --global --required RAW_REGISTRY_RELEASES
 ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
-    FROM eclipse-temurin:25.0.3_9-jdk-alpine
+    FROM eclipse-temurin:25.0.4_7-jdk-alpine
     DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+GRADLE_PREPARE
 
     CACHE /root/.gradle/caches
@@ -143,7 +143,7 @@ docs:
                  ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.32.13
+    FROM swaggerapi/swagger-ui:v5.32.14
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
@@ -167,7 +167,7 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
 stoplight:
-    FROM nginxinc/nginx-unprivileged:1.31.3-alpine
+    FROM nginxinc/nginx-unprivileged:1.31.4-alpine
 
     COPY +build/v1/schemas /usr/share/nginx/html/schemas/
     COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
