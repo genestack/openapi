@@ -232,7 +232,7 @@ paths:
                   $ref: "#/components/schemas/CommitInfo"
                 type: array
           description: The request was successful. The returned value is the list
-            of  object versions.
+            of object or group versions.
         "401":
           content: {}
           description: |-
