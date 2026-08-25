@@ -268,9 +268,11 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/as-curator/samples/{id}/versions:
     get:
+      description: Use this endpoint to retrieve a list of version IDs of sample
+        objects or sample groups.
       operationId: getSampleVersionsAsCurator
       parameters:
-      - description: Unique identifier (accession) of the object.
+      - description: Unique identifier (accession) of sample object or sample group.
         in: path
         name: id
         required: true
@@ -299,11 +301,13 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a list of object versions by ID
+      summary: Retrieve a list of sample object or sample group versions by ID
       tags:
       - Sample SPoT as Curator
   /api/v1/as-curator/samples/{id}/versions/{version}:
     get:
+      description: Use this endpoint to retrieve metadata of sample object or sample
+        group by version ID.
       operationId: getSampleByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
@@ -312,13 +316,13 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: Unique identifier (accession) of the object.
+      - description: Unique identifier (accession) of sample object or sample group.
         in: path
         name: id
         required: true
         schema:
           type: string
-      - description: Unique version of the object.
+      - description: Unique version of sample object or sample group.
         in: path
         name: version
         required: true
@@ -364,7 +368,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single sample object by ID (accession)
+      summary: Retrieve a single sample object or sample group by version ID
       tags:
       - Sample SPoT as Curator
 components:

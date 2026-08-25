@@ -342,9 +342,11 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/as-curator/libraries/{id}/versions:
     get:
+      description: Use this endpoint to retrieve a list of version IDs of library
+        objects or library groups.
       operationId: getLibraryVersionsAsCurator
       parameters:
-      - description: Unique identifier (accession) of the object.
+      - description: Unique identifier (accession) of library object or library group.
         in: path
         name: id
         required: true
@@ -373,11 +375,13 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a list of object versions by ID
+      summary: Retrieve a list of library object or library group versions by ID
       tags:
       - Library SPoT as Curator
   /api/v1/as-curator/libraries/{id}/versions/{version}:
     get:
+      description: Use this endpoint to retrieve metadata of library object or library
+        group by version ID.
       operationId: getLibraryByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
@@ -386,13 +390,13 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: Unique identifier (accession) of the object.
+      - description: Unique identifier (accession) of library object or library group.
         in: path
         name: id
         required: true
         schema:
           type: string
-      - description: Unique version of the object.
+      - description: Unique version of library object or library group.
         in: path
         name: version
         required: true
@@ -438,7 +442,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single library object by ID (accession)
+      summary: Retrieve a single library object or library group by version ID
       tags:
       - Library SPoT as Curator
 components:

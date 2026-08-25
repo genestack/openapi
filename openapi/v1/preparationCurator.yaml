@@ -343,9 +343,12 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/as-curator/preparations/{id}/versions:
     get:
+      description: Use this endpoint to retrieve a list of version IDs of preparation
+        objects or preparation groups.
       operationId: getPreparationVersionsAsCurator
       parameters:
-      - description: Unique identifier (accession) of the object.
+      - description: Unique identifier (accession) of preparation object or preparation
+          group.
         in: path
         name: id
         required: true
@@ -374,11 +377,14 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a list of object versions by ID
+      summary: Retrieve a list of preparation object or preparation group versions
+        by ID
       tags:
       - Preparation SPoT as Curator
   /api/v1/as-curator/preparations/{id}/versions/{version}:
     get:
+      description: Use this endpoint to retrieve metadata of preparation object or
+        preparation group by version ID.
       operationId: getPreparationByVersionAsCurator
       parameters:
       - description: Supply this parameter with the value `term_id` as part of the
@@ -387,13 +393,14 @@ paths:
         name: responseFormat
         schema:
           $ref: "#/components/schemas/ResponseFormat"
-      - description: Unique identifier (accession) of the object.
+      - description: Unique identifier (accession) of preparation object or preparation
+          group.
         in: path
         name: id
         required: true
         schema:
           type: string
-      - description: Unique version of the object.
+      - description: Unique version of preparation object or preparation group.
         in: path
         name: version
         required: true
@@ -439,7 +446,8 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a single preparation object by ID (accession)
+      summary: Retrieve a single preparation object or preparation group by version
+        ID
       tags:
       - Preparation SPoT as Curator
 components:
