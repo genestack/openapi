@@ -31,6 +31,7 @@ example:
       user:
         id: 182
         displayName: Jane Doe
+        email: jane.doe@example.com
       clientIp: 10.42.7.118
       source: UI
       sourceType: genestack/study-metainfo-editor
@@ -50,6 +51,7 @@ example:
       user:
         id: 210
         displayName: Laura Bennett
+        email: laura.bennett@example.com
       clientIp: 104.244.42.129
       source: API
       sourceType: genestack/manageData
