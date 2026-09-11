@@ -45,6 +45,24 @@ paths:
             type: integer
             minimum: 1
         - in: query
+          name: eventType
+          description: Filter by event type.
+          schema:
+            type: string
+            enum:
+              - USER_LOGIN
+              - USER_LOGOUT
+              - ADD_USER
+              - CREATE_GROUP
+              - CHANGE_OWNER
+              - CREATE_ENTITY
+              - DELETE_ENTITY
+              - CHANGE_ENTITY_METADATA
+              - CHANGE_ENTITY_ACCESS
+              - EXECUTE_ENTITY_QUERY
+              - DOWNLOAD_FILE
+              - VIEW_AUDIT_LOG
+        - in: query
           name: pageLimit
           description: Maximum number of results to return. This value must be between 0 and 2000 (inclusive).
             The default is 2000.
