@@ -4139,7 +4139,7 @@ paths:
 
         The endpoint returns:
         - a list of studies with their metadata summary;
-        - a list of filter objects with counts; filter list is the same for all users in an and can be configured in “Study Browser” application via "Configure facets" (by a user with corresponding permission); for each filter object, only the first 5 most popular facets are returned, the facts are sorted by the count value in descending order; only studies available to user are counted.
+        - a list of filter objects with counts; filter list is the same for all users in an and can be configured in “Study Browser” application via "Configure facets" (by a user with corresponding role); for each filter object, only the first 5 most popular facets are returned, the facts are sorted by the count value in descending order; only studies available to user are counted.
 
         Filter attributes for fulltext search:
         - `"type": "FULL_TEXT"`

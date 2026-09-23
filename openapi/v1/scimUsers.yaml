@@ -12,7 +12,7 @@ paths:
       description: "The endpoint returns a list of active users. The list can be filtered\
         \ by user attributes using the filter parameter. If no filtering parameters\
         \ are passed, then all users are returned. If there are no users in the response\
-        \ body, the endpoint returns 200 OK. The \"Manage organization\" permission\
+        \ body, the endpoint returns 200 OK. The \"Organisation Administrator\" role\
         \ is required."
       operationId: findUsers
       parameters:
@@ -72,7 +72,7 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Manage organization" permission
+          description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "500":
           content:
@@ -90,7 +90,7 @@ paths:
       - Users
     post:
       description: |-
-        The endpoint creates a new user in ODM or updates the existing user. A user can be updated by this endpoint if the user has the same login as in the request body. The "Manage organization" permission is required. The endpoint does not allow to specify the user's password and user permissions, these parameters can be set in the web application by a user with the "Manage organization" permission.
+        The endpoint creates a new user in ODM or updates the existing user. A user can be updated by this endpoint if the user has the same login as in the request body. The "Organisation Administrator" role is required. The endpoint does not allow to specify the user's password and user permissions, these parameters can be set in the web application by a user with the "Manage organization" permission.
          Only one email can be specified.
       operationId: createUser
       requestBody:
@@ -127,7 +127,7 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Manage organization" permission
+          description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "409":
           content:
@@ -184,7 +184,7 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Manage organization" permission
+          description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "404":
           content:
@@ -208,7 +208,7 @@ paths:
       - Users
     get:
       description: "The endpoint returns an active user by id, where id is internal\
-        \ user id in ODM. The \"Manage organization\" permission is required."
+        \ user id in ODM. The \"Organisation Administrator\" role is required."
       operationId: getUser
       parameters:
       - description: "String, unique identifier of the user in ODM."
@@ -243,7 +243,7 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Manage organization" permission
+          description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "404":
           content:
@@ -320,7 +320,7 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Manage organization" permission
+          description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "404":
           content:
