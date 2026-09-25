@@ -148,11 +148,12 @@ paths:
       description: |-
         The endpoint deletes a group in ODM. The group can be deleted, even if it has members: admins and not admins. Users of this group are not deactivated.
          Permissions to call the endpoint:
-         - If the user does not have the "Group Administrator" role:
-           - the user has "Group admin" role - the user can delete the group;
-           - the user has "Group member" role - the group can not be deleted, an error is returned;
-           - the user is not a member of the specified group - the group can not be deleted, an error is returned.
-         - If the user has the "Group Administrator" role - the user can delete the group regardless of user’s membership in this group.
+
+         - A user with the system-level "Group Administrator" role can delete any group, regardless of whether they are a member of it.
+         - Otherwise, the user must be an admin of the specified group ("Group admin" role within that group):
+           - "Group admin" of the group – the group is deleted;
+           - "Group member" of the group – an error is returned;
+           - not a member of the group – an error is returned.
       operationId: deleteGroup
       parameters:
       - description: "String, unique identifier of the group in ODM."
@@ -184,8 +185,8 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Group admin" role in the group
-            or the "Group Administrator" role is required.
+          description: Operation is not permitted. The "Group admin" role in this group
+            or the system-level "Group Administrator" role is required.
         "404":
           content:
             application/scim+json:
@@ -317,8 +318,8 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Group admin" role in the group
-            or the "Group Administrator" role is required.
+          description: Operation is not permitted. The "Group admin" role in this group
+            or the system-level "Group Administrator" role is required.
         "404":
           content:
             application/scim+json:
