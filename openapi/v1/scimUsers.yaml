@@ -90,7 +90,7 @@ paths:
       - Users
     post:
       description: |-
-        The endpoint creates a new user in ODM or updates the existing user. A user can be updated by this endpoint if the user has the same login as in the request body. The "Organisation Administrator" role is required. The endpoint does not allow to specify the user's password and user permissions, these parameters can be set in the web application by a user with the "Manage organization" permission.
+        The endpoint creates a new user in ODM or updates the existing user. A user can be updated by this endpoint if the user has the same login as in the request body. The "Organisation Administrator" role is required. The endpoint does not allow to specify the user's password and user permissions, these parameters can be set in the web application by a user with the "Organisation Administrator" role.
          Only one email can be specified.
       operationId: createUser
       requestBody:
@@ -277,7 +277,7 @@ paths:
 
          It is possible to update attributes of the deactivated users.
 
-         The endpoint requires the "Manage organization" permission.
+         The endpoint requires the "Organisation Administrator" role.
       operationId: patchUser
       parameters:
       - description: "String, unique identifier of the user in ODM."
