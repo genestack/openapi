@@ -72,8 +72,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
-          description: Operation is not permitted. The "Organisation Administrator" role
-            is required.
+          description: "Access denied. Required system role: 'Organisation Administrator'."
         "500":
           content:
             application/json:
@@ -127,8 +126,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
-          description: Operation is not permitted. The "Organisation Administrator" role
-            is required.
+          description: "Access denied. Required system role: 'Organisation Administrator'."
         "409":
           content:
             application/scim+json:
@@ -184,8 +182,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
-          description: Operation is not permitted. The "Organisation Administrator" role
-            is required.
+          description: "Access denied. Required system role: 'Organisation Administrator'."
         "404":
           content:
             application/scim+json:
@@ -243,8 +240,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
-          description: Operation is not permitted. The "Organisation Administrator" role
-            is required.
+          description: "Access denied. Required system role: 'Organisation Administrator'."
         "404":
           content:
             application/scim+json:
@@ -320,8 +316,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
-          description: Operation is not permitted. The "Organisation Administrator" role
-            is required.
+          description: "Access denied. Required system role: 'Organisation Administrator'."
         "404":
           content:
             application/scim+json:
