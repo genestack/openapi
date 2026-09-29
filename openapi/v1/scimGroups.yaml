@@ -88,7 +88,7 @@ paths:
     post:
       description: |-
         The endpoint creates a new user group in ODM. The endpoint does not update an existing group. A user who calls the endpoint is added to the group automatically with the "Group admin" role. The "members" attribute in the request body must be empty, otherwise the endpoint returns an error.
-         The endpoint does not require any user permission.
+         The endpoint does not require any system role.
          The endpoint does not check the uniqueness of the group name. The user can create any number of groups with the same name.
          If there are attributes in the request body that ODM does not support, then ODM ignores them.
       operationId: createGroup
