@@ -61,7 +61,7 @@ paths:
             details.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -69,14 +69,14 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content:
-            application/scim+json:
+            application/json:
               schema:
-                $ref: "#/components/schemas/SCIMErrorResponse"
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -116,7 +116,7 @@ paths:
             \ are incorrect. See the error message for details."
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -124,9 +124,9 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content:
-            application/scim+json:
+            application/json:
               schema:
-                $ref: "#/components/schemas/SCIMErrorResponse"
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "409":
@@ -138,7 +138,7 @@ paths:
             \ message for details."
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -173,7 +173,7 @@ paths:
           description: The supplied user ID is invalid.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -181,9 +181,9 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content:
-            application/scim+json:
+            application/json:
               schema:
-                $ref: "#/components/schemas/SCIMErrorResponse"
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "404":
@@ -194,7 +194,7 @@ paths:
           description: There are no users with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -232,7 +232,7 @@ paths:
           description: The supplied user ID is invalid.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -240,9 +240,9 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content:
-            application/scim+json:
+            application/json:
               schema:
-                $ref: "#/components/schemas/SCIMErrorResponse"
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "404":
@@ -253,7 +253,7 @@ paths:
           description: There are no available users with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -309,7 +309,7 @@ paths:
             \ are incorrect. See the error message for details."
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -317,9 +317,9 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content:
-            application/scim+json:
+            application/json:
               schema:
-                $ref: "#/components/schemas/SCIMErrorResponse"
+                $ref: "#/components/schemas/BaseErrorResponse"
           description: Operation is not permitted. The "Organisation Administrator" role
             is required.
         "404":
@@ -330,7 +330,7 @@ paths:
           description: There are no users with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\

@@ -65,7 +65,7 @@ paths:
             details.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -73,7 +73,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -115,7 +115,7 @@ paths:
             \ are incorrect. See the error message for details."
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -130,7 +130,7 @@ paths:
             \ message for details."
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -174,7 +174,7 @@ paths:
           description: The supplied group ID is invalid.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -195,7 +195,7 @@ paths:
           description: There are no groups with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -245,7 +245,7 @@ paths:
           description: The supplied group ID is invalid.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -259,7 +259,7 @@ paths:
           description: There are no available groups with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -315,7 +315,7 @@ paths:
             \ are incorrect. See the error message for details."
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -336,7 +336,7 @@ paths:
           description: There are no groups with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
