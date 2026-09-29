@@ -94,7 +94,7 @@ paths:
              or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: { }
-          description: User does not have the Audit Log Administrator role required to access this endpoint.
+          description: "Access denied. Required system role: 'Audit Log Administrator'."
         "500":
           content: { }
           description: "An internal server error occurred. This indicates an unexpected\
