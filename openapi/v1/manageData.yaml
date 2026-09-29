@@ -80,7 +80,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: Not enough permissions to call method.
+          description: "Access denied. Required system roles: 'Access all data', 'Organisation Administrator'."
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -148,7 +148,8 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: Not enough permissions to call method or the file is not meant to be deleted.
+          description: "Access denied. Required system roles: 'Access all data', 'Organisation Administrator'.
+            The same status is returned if the file is not meant to be deleted."
         "404":
           content: {}
           description: Some of the provided accessions could not be found in ODM.

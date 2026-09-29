@@ -10,7 +10,7 @@ paths:
   /api/v1/scim/Groups:
     get:
       description: |-
-        The endpoint returns a list of groups that the user has access to: where the user is a member of the group or if the user has the "Manage Groups" permission, then a list of all groups.
+        The endpoint returns a list of groups that the user has access to: where the user is a member of the group or if the user has the system-level "Group Administrator" role, then a list of all groups.
          The list can be filtered by group attributes using the filter parameter. If no filtering parameters are passed, then all available groups are returned. If there are no groups in the response body, the endpoint returns 200 OK.
       operationId: findGroups
       parameters:
@@ -65,7 +65,7 @@ paths:
             details.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -73,7 +73,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -88,7 +88,7 @@ paths:
     post:
       description: |-
         The endpoint creates a new user group in ODM. The endpoint does not update an existing group. A user who calls the endpoint is added to the group automatically with the "Group admin" role. The "members" attribute in the request body must be empty, otherwise the endpoint returns an error.
-         The endpoint does not require any user permission.
+         The endpoint does not require any system role.
          The endpoint does not check the uniqueness of the group name. The user can create any number of groups with the same name.
          If there are attributes in the request body that ODM does not support, then ODM ignores them.
       operationId: createGroup
@@ -115,7 +115,7 @@ paths:
             \ are incorrect. See the error message for details."
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -130,7 +130,7 @@ paths:
             \ message for details."
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -148,11 +148,12 @@ paths:
       description: |-
         The endpoint deletes a group in ODM. The group can be deleted, even if it has members: admins and not admins. Users of this group are not deactivated.
          Permissions to call the endpoint:
-         &nbsp;&nbsp;- If the user does not have the "Manage groups" permission:
-         &nbsp;&nbsp;&nbsp;&nbsp;* the user has "Group admin" role - the user can delete the group;
-         &nbsp;&nbsp;&nbsp;&nbsp;* the user has "Group member" role - the group can not be deleted, an error is returned;
-         &nbsp;&nbsp;&nbsp;&nbsp;* the user is not a member of the specified group - the group can not be deleted, an error is returned.
-         &nbsp;&nbsp;- If the user has the "Manage groups" permission - the user can delete the group regardless of user’s membership in this group.
+
+         - A user with the system-level "Group Administrator" role can delete any group, regardless of whether they are a member of it.
+         - Otherwise, the user must be an admin of the specified group ("Group admin" role within that group):
+           - "Group admin" of the group – the group is deleted;
+           - "Group member" of the group – an error is returned;
+           - not a member of the group – an error is returned.
       operationId: deleteGroup
       parameters:
       - description: "String, unique identifier of the group in ODM."
@@ -173,7 +174,7 @@ paths:
           description: The supplied group ID is invalid.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -184,8 +185,8 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Group admin" role in the group
-            or the "Manage groups" permission is required.
+          description: Operation is not permitted. The "Group admin" role in this group
+            or the system-level "Group Administrator" role is required.
         "404":
           content:
             application/scim+json:
@@ -194,7 +195,7 @@ paths:
           description: There are no groups with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -208,9 +209,11 @@ paths:
       - Groups
     get:
       description: |-
-        The endpoint returns a not deleted group by id, where id is an internal group id in ODM. Access to the group is required:
-         &nbsp;&nbsp;- If the user has the "Manage groups" permission, the endpoint returns not deleted group on the instance regardless of user’s membership in this group;
-         &nbsp;&nbsp;- If the user does not have the "Manage groups" permission, the endpoint returns only groups in which the user is a member. Otherwise, 404 Not Found is returned.
+        The endpoint returns a not deleted group by id, where id is an internal group id in ODM.
+         Permissions to call the endpoint:
+
+         - A user with the system-level "Group Administrator" role can get any group, regardless of whether they are a member of it.
+         - Otherwise, the user must be a member of the specified group ("Group admin" or "Group member" role within that group); if not, 404 Not Found is returned.
       operationId: getGroup
       parameters:
       - description: "String, unique identifier of the group in ODM."
@@ -242,7 +245,7 @@ paths:
           description: The supplied group ID is invalid.
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -256,7 +259,7 @@ paths:
           description: There are no available groups with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
@@ -270,7 +273,7 @@ paths:
       - Groups
     patch:
       description: |-
-        The endpoint updates one or several attributes of a specific group, where id is internal group id in ODM. Also the endpoints adds a new user to the group and removes users from the group.
+        The endpoint updates one or several attributes of a specific group, where id is internal group id in ODM. Also the endpoint adds a new user to the group and removes users from the group.
 
          Supported operators in the request body: replace, add, remove. For details of the syntax of using these operators, we recommend that you refer to the SCIM 2.0 specification.
 
@@ -278,7 +281,13 @@ paths:
 
          A PATCH request, regardless of the number of operations, is treated as atomic. If a single operation encounters an error condition, the original user attributes are restored, and a failure status is returned.
 
-         The endpoint requires access to the group as admin of the group: the user has the "Admin group" role in the group or the user has the "Manage groups" permission.
+         Permissions to call the endpoint:
+
+         - A user with the system-level "Group Administrator" role can update any group, regardless of whether they are a member of it.
+         - Otherwise, the user must be an admin of the specified group ("Group admin" role within that group):
+           - "Group admin" of the group – the group is updated;
+           - "Group member" of the group – 403 Forbidden is returned;
+           - not a member of the group – 404 Not Found is returned.
       operationId: patchGroup
       parameters:
       - description: "String, unique identifier of the group in ODM."
@@ -306,7 +315,7 @@ paths:
             \ are incorrect. See the error message for details."
         "401":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: |-
@@ -317,8 +326,8 @@ paths:
             application/scim+json:
               schema:
                 $ref: "#/components/schemas/SCIMErrorResponse"
-          description: Operation is not permitted. The "Group admin" role in the group
-            or the "Manage groups" permission is required.
+          description: Operation is not permitted. The "Group admin" role in this group
+            or the system-level "Group Administrator" role is required.
         "404":
           content:
             application/scim+json:
@@ -327,7 +336,7 @@ paths:
           description: There are no groups with the specified id.
         "500":
           content:
-            application/scim+json:
+            application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
           description: "An internal server error occurred. This indicates an unexpected\
