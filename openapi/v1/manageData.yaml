@@ -54,7 +54,6 @@ paths:
         in: query
         name: limit
         schema:
-          default: 2000
           format: int32
           maximum: 2000
           minimum: 0
@@ -111,7 +110,6 @@ paths:
         in: query
         name: limit
         schema:
-          default: 2000
           format: int32
           maximum: 2000
           minimum: 0
