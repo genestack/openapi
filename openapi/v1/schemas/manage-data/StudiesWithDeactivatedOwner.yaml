@@ -1,0 +1,25 @@
+example:
+  cursor: GSF015641
+  data:
+  - genestack:accession: GSF014648
+    studyTitle: BLUEPRINT haematopoietic epigenomes
+    createdAt: "2024-03-18 09:41:12"
+    ownerEmail: j.doe@example.org
+  - genestack:accession: GSF015641
+    studyTitle: Untitled study
+    createdAt: "2023-11-02 14:05:37"
+    ownerEmail: a.smith@example.org
+properties:
+  data:
+    items:
+      $ref: "#/components/schemas/StudyWithDeactivatedOwner"
+    type: array
+  cursor:
+    type: string
+required:
+- data
+type: object
+components:
+  schemas:
+    StudyWithDeactivatedOwner:
+      $ref: "./StudyWithDeactivatedOwner.yaml"

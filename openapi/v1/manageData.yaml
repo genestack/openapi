@@ -49,12 +49,14 @@ paths:
             type: string
           type: array
         style: form
-      - description: "This parameter determines the number of results to retrieve\
-          \ per page, with the default set at 2000."
+      - description: Maximum number of results to return. This value must be between
+          0 and 2000 (inclusive).
         in: query
         name: limit
         schema:
           format: int32
+          maximum: 2000
+          minimum: 0
           type: integer
       - description: |-
           This parameter enables retrieval of objects starting from a specific point.
@@ -90,6 +92,70 @@ paths:
       - Access-token: []
       - Genestack-API-Token: []
       summary: Retrieve a list of detached objects
+      tags:
+      - Manage Data
+  /api/v1/manage-data/ownership-recovery/studies:
+    get:
+      description: |-
+        Returns the list of studies whose current Study Owner is deactivated, so that a new owner can be assigned. Requires the Ownership Recovery Administrator system role. The role grants limited visibility of all matching studies in the organisation, regardless of whether they are shared with the user.
+      operationId: listStudiesWithDeactivatedOwner
+      parameters:
+      - description: Deactivated user email.
+        in: query
+        name: ownerEmail
+        schema:
+          type: string
+      - description: Maximum number of results to return. This value must be between
+          0 and 2000 (inclusive).
+        in: query
+        name: limit
+        schema:
+          format: int32
+          maximum: 2000
+          minimum: 0
+          type: integer
+      - description: This parameter enables retrieval of objects starting from a specific
+          point. Currently, it represents the accession of the last obtained object.
+          However, please note that its functionality might change over time, so it
+          is advisable to consider the cursor's content as a general string.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudiesWithDeactivatedOwner"
+          description: |-
+            Retrieved studies with a deactivated owner, sorted by `genestack:accession` in ascending order.
+             The `cursor` field contains the accession of the last returned study. If the page is empty, `cursor` contains the cursor from the request.
+        "400":
+          content: {}
+          description: |-
+            Studies cannot be retrieved due to Bad Request: `limit` is outside the range 0–2000, or `cursor` is not a Genestack accession.
+             For example: "limit `2001` must be between 0 and 2000" or "cursor `abc` does not match Genestack accession format".
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: "Access denied. Required system role: 'Ownership Recovery Administrator'."
+        "404":
+          content: {}
+          description: The object with the accession provided in `cursor` could not be found.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: List studies with a deactivated owner
       tags:
       - Manage Data
   /api/v1/manage-data/data:
@@ -182,6 +248,10 @@ components:
       $ref: "./schemas/manage-data/DetachedObject.yaml"
     ManagedObject:
       $ref: "./schemas/manage-data/ManagedObject.yaml"
+    StudiesWithDeactivatedOwner:
+      $ref: "./schemas/manage-data/StudiesWithDeactivatedOwner.yaml"
+    StudyWithDeactivatedOwner:
+      $ref: "./schemas/manage-data/StudyWithDeactivatedOwner.yaml"
   securitySchemes:
     Access-token:
       in: header

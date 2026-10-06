@@ -1,0 +1,20 @@
+example:
+  genestack:accession: GSF014648
+  studyTitle: BLUEPRINT haematopoietic epigenomes
+  createdAt: "2024-03-18 09:41:12"
+  ownerEmail: j.doe@example.org
+properties:
+  genestack:accession:
+    type: string
+  studyTitle:
+    type: string
+  createdAt:
+    format: date-time
+    type: string
+  ownerEmail:
+    type: string
+required:
+- createdAt
+- genestack:accession
+- ownerEmail
+type: object
