@@ -49,12 +49,15 @@ paths:
             type: string
           type: array
         style: form
-      - description: "This parameter determines the number of results to retrieve\
-          \ per page, with the default set at 2000."
+      - description: Maximum number of results to return. This value must be between
+          0 and 2000 (inclusive).
         in: query
         name: limit
         schema:
+          default: 2000
           format: int32
+          maximum: 2000
+          minimum: 0
           type: integer
       - description: |-
           This parameter enables retrieval of objects starting from a specific point.
