@@ -27,7 +27,9 @@ paths:
         The detached objects are sorted according to their `detachedObjectType` and `genestack:accession`.
         Specific ordering can be observed in the list of supported detached types found below.
         Pagination of the results can be conveniently managed using the `cursor` and `limit` parameters.
-        Requires the Orphan Data Administrator system role. The role grants visibility of all detached objects in the organisation, regardless of whether they are shared with the user.
+
+        Requires the `Orphan Data Administrator` system role. The role grants visibility of all detached objects in the organisation, regardless of whether they are shared with the user.
+
          Supported types of detached objects (listed in the order of retrieval) include:
          * `STUDY`
          * `SAMPLE_GROUP`
