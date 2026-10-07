@@ -328,7 +328,7 @@ paths:
       - Preparation SPoT as User
   /api/v1/as-user/preparations/{id}/versions/{version}:
     get:
-      description: Use this endpoint to retrieve metadata of preparation object or
+      description: Use this endpoint to retrieve metadata of a preparation object or
         preparation group by version ID.
       operationId: getPreparationByVersionAsUser
       parameters:

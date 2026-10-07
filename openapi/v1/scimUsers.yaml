@@ -204,7 +204,7 @@ paths:
       tags:
       - Users
     get:
-      description: "The endpoint returns an active user by id, where id is internal\
+      description: "The endpoint returns an active user by id, where id is an internal\
         \ user id in ODM. The \"Organisation Administrator\" role is required."
       operationId: getUser
       parameters:
@@ -263,7 +263,7 @@ paths:
       - Users
     patch:
       description: |-
-        The endpoint updates one or several attributes of a specific user, where id is internal user id in ODM.
+        The endpoint updates one or several attributes of a specific user, where id is an internal user id in ODM.
 
          Supported operators in the request body: replace, add, remove. For details of the syntax of using these operators, we recommend that you refer to the SCIM 2.0 specification.
 
@@ -271,7 +271,7 @@ paths:
 
          A PATCH request, regardless of the number of operations, is treated as atomic. If a single operation encounters an error condition, the original user attributes are restored, and a failure status is returned.
 
-         It is possible to update attributes of the deactivated users.
+         It is possible to update attributes of deactivated users.
 
          The endpoint requires the "Organisation Administrator" role.
       operationId: patchUser

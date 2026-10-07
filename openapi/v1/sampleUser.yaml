@@ -251,7 +251,7 @@ paths:
       - Sample SPoT as User
   /api/v1/as-user/samples/{id}/versions/{version}:
     get:
-      description: Use this endpoint to retrieve metadata of sample object or sample
+      description: Use this endpoint to retrieve metadata of a sample object or sample
         group by version ID.
       operationId: getSampleByVersionAsUser
       parameters:
