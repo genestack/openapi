@@ -325,7 +325,7 @@ paths:
       - Library SPoT as User
   /api/v1/as-user/libraries/{id}/versions/{version}:
     get:
-      description: Use this endpoint to retrieve metadata of library object or library
+      description: Use this endpoint to retrieve metadata of a library object or library
         group by version ID.
       operationId: getLibraryByVersionAsUser
       parameters:

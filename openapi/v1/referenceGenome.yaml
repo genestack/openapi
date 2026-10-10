@@ -20,7 +20,7 @@ paths:
         Single words can be supplied as is, otherwise use speech marks (`"`) to quote queries that include whitespace. Speech marks and backslash characters in the query need to be escaped with a backslash (`\`).
 
         ## Paging
-        For performance reasons, this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the `pageOffset` query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages by increasing the offset in multiples of limit (e.g., `offset = n * limit`), until all results have been retrieved. The total number of pages can be calculated by dividing the total number of results by the limit.
+        For performance reasons, this endpoint returns results in "pages" of limited size. In order to retrieve all matching results the client needs to request multiple pages starting from an offset to the first result. You can do this using the `pageOffset` query parameter. A value of 0 (the default) instructs the server to return the first page of results, 100 would return a page of results starting from the 101st result and so on. To retrieve all results, iterate through pages by increasing the offset in multiples of the limit (e.g., `offset = n * limit`), until all results have been retrieved. The total number of pages can be calculated by dividing the total number of results by the limit.
 
         ## List operation
 
@@ -82,22 +82,22 @@ paths:
         - Genestack-API-Token: [ ]
     post:
       operationId: upload
-      summary: Upload reference genome to ODM
+      summary: Upload a reference genome to ODM
       tags:
         - Reference genome
       description: |-
-        In order to import reference genome file, please fill in the following fields:
+        In order to import a reference genome file, please fill in the following fields:
 
-        * `annotationUrl` - link to the non-vertebrae organism or any custom reference genome in .gtf format, archived in `.gz` format.
+        * `annotationUrl` - a link to the non-vertebrate organism or any custom reference genome in .gtf format, archived in `.gz` format.
         Note: if any of the parameters below are not corresponding to the available Ensembl data (for example, organism name or assembly is changed), the link must be provided.
         * `organism` - scientific name (default: Homo sapiens). Please see the list of available organisms [here](https://www.ensembl.org/info/about/species.html).
         Note: for some specific cases (Canis lupus breeds, Mus musculus strains, etc.) please see the species folders name in the Ensembl FTP (release 113) to provide the same organism name as shown in the list.
         * `assembly` - major version (for example, `GRCh38`). Please see the list of available assemblies [here](https://www.ensembl.org/info/website/archives/assembly.html).
         * `release` - Ensembl reference genome minor version (for example, `75` or `109`).
-        * `name` - customized reference genome title that is used for linkage variant files.
-        By default is combined from species, assembly and release parameters: `{species} reference genome {assembly}.{release}`.
+        * `name` - a customized reference genome title that is used for linking variant files.
+        By default, the name is composed of the species, assembly and release values: `{species} reference genome {assembly}.{release}`.
 
-        Reference genome will be available after initialisation. Please track initialisation task status.
+        The reference genome will be available after initialisation. Please track the initialisation task status.
       requestBody:
         content:
           application/json:

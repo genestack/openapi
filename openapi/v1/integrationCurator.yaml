@@ -530,7 +530,7 @@ paths:
         - Expression integration as Curator
   ? /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}
   : delete:
-      description: Delete link between a group of expression objects and a group of
+      description: Delete a link between a group of expression objects and a group of
         library objects
       operationId: deleteExpressionGroupLibraryGroupLinkAsCurator
       parameters:
@@ -567,7 +567,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a group of expression objects and a group of library
+      summary: Delete a link between a group of expression objects and a group of library
         objects
       tags:
       - Expression integration as Curator
@@ -621,7 +621,7 @@ paths:
       - Expression integration as Curator
   ? /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}
   : delete:
-      description: Delete link between a group of expression objects and a group of
+      description: Delete a link between a group of expression objects and a group of
         preparation objects
       operationId: deleteExpressionGroupPreparationGroupLinkAsCurator
       parameters:
@@ -658,7 +658,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a group of expression objects and a group of preparation
+      summary: Delete a link between a group of expression objects and a group of preparation
         objects
       tags:
       - Expression integration as Curator
@@ -713,7 +713,7 @@ paths:
       - Expression integration as Curator
   ? /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}
   : delete:
-      description: Delete link between a group of expression objects and a group of
+      description: Delete a link between a group of expression objects and a group of
         sample objects
       operationId: deleteExpressionGroupSampleGroupLinkAsCurator
       parameters:
@@ -750,7 +750,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a group of expression objects and a group of sample
+      summary: Delete a link between a group of expression objects and a group of sample
         objects
       tags:
       - Expression integration as Curator
@@ -995,7 +995,7 @@ paths:
       - Expression integration as Curator
   /api/v1/as-curator/integration/link/expression/{sourceId}/to/library/{targetId}:
     delete:
-      description: Delete link between an expression object and a library
+      description: Delete a link between an expression object and a library
       operationId: deleteExpressionLibraryLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1031,7 +1031,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between an expression object and a library
+      summary: Delete a link between an expression object and a library
       tags:
       - Expression integration as Curator
     post:
@@ -1080,7 +1080,7 @@ paths:
       - Expression integration as Curator
   /api/v1/as-curator/integration/link/expression/{sourceId}/to/preparation/{targetId}:
     delete:
-      description: Delete link between an expression object and a preparation
+      description: Delete a link between an expression object and a preparation
       operationId: deleteExpressionPreparationLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1116,7 +1116,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between an expression object and a preparation
+      summary: Delete a link between an expression object and a preparation
       tags:
       - Expression integration as Curator
     post:
@@ -1165,7 +1165,7 @@ paths:
       - Expression integration as Curator
   /api/v1/as-curator/integration/link/expression/{sourceId}/to/sample/{targetId}:
     delete:
-      description: Delete link between an expression object and a sample
+      description: Delete a link between an expression object and a sample
       operationId: deleteExpressionSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1201,7 +1201,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between an expression object and a sample
+      summary: Delete a link between an expression object and a sample
       tags:
       - Expression integration as Curator
     post:
@@ -1429,7 +1429,7 @@ paths:
       - Flow Cytometry (FACS) integration as Curator
   ? /api/v1/as-curator/integration/link/flow-cytometry/group/{sourceId}/to/sample/group/{targetId}
   : delete:
-      description: Delete link between a group of flow-cytometry objects and a group
+      description: Delete a link between a group of flow-cytometry objects and a group
         of sample objects
       operationId: deleteFlowCytometryGroupSampleGroupLinkAsCurator
       parameters:
@@ -1466,7 +1466,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a group of flow-cytometry objects and a group of
+      summary: Delete a link between a group of flow-cytometry objects and a group of
         sample objects
       tags:
       - Flow Cytometry (FACS) integration as Curator
@@ -1591,7 +1591,7 @@ paths:
       - Flow Cytometry (FACS) integration as Curator
   /api/v1/as-curator/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
     delete:
-      description: Delete link between a flow-cytometry object and a sample
+      description: Delete a link between a flow-cytometry object and a sample
       operationId: deleteFlowCytometrySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level data block
@@ -1626,7 +1626,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a flow-cytometry object and a sample
+      summary: Delete a link between a flow-cytometry object and a sample
       tags:
       - Flow Cytometry (FACS) integration as Curator
     post:
@@ -1693,7 +1693,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -2491,7 +2491,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -2602,7 +2602,7 @@ paths:
       - Preparation integration as Curator
   /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}:
     delete:
-      description: Delete link between a group of sample objects and a study
+      description: Delete a link between a group of sample objects and a study
       operationId: deleteSampleGroupStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample group object
@@ -2637,7 +2637,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a group of sample objects and a study
+      summary: Delete a link between a group of sample objects and a study
       tags:
       - Sample integration as Curator
     post:
@@ -2684,7 +2684,7 @@ paths:
       - Sample integration as Curator
   /api/v1/as-curator/integration/link/sample/{sourceId}/to/study/{targetId}:
     delete:
-      description: Delete link between a sample and a study
+      description: Delete a link between a sample and a study
       operationId: deleteSampleStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample object
@@ -2719,7 +2719,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a sample and a study
+      summary: Delete a link between a sample and a study
       tags:
       - Sample integration as Curator
     post:
@@ -2785,7 +2785,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -2915,7 +2915,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -3125,7 +3125,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -3255,7 +3255,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -3386,7 +3386,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -3887,7 +3887,7 @@ paths:
       - Variant integration as Curator
   /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}:
     delete:
-      description: Delete link between a group of variant objects and a group of sample
+      description: Delete a link between a group of variant objects and a group of sample
         objects
       operationId: deleteVariantGroupSampleGroupLinkAsCurator
       parameters:
@@ -3924,7 +3924,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a group of variant objects and a group of sample
+      summary: Delete a link between a group of variant objects and a group of sample
         objects
       tags:
       - Variant integration as Curator
@@ -4049,7 +4049,7 @@ paths:
       - Variant integration as Curator
   /api/v1/as-curator/integration/link/variant/{sourceId}/to/sample/{targetId}:
     delete:
-      description: Delete link between a variant object and a sample
+      description: Delete a link between a variant object and a sample
       operationId: deleteVariantSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -4085,7 +4085,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Delete link between a variant object and a sample
+      summary: Delete a link between a variant object and a sample
       tags:
       - Variant integration as Curator
     post:
@@ -4135,18 +4135,18 @@ paths:
   /api/v1/as-curator/integration/fulltext/search/studies:
     post:
       description: |-
-        Find studies and retrieve their data using full-text search or facet search by metadata of study itself or child object (samples, libraries, preparations, signal groups). Only studies available to that users are returned.
+        Find studies and retrieve their data using full-text search or facet search by metadata of the study itself or its child objects (samples, libraries, preparations, signal groups). Only studies available to the user are returned.
 
         The endpoint returns:
         - a list of studies with their metadata summary;
-        - a list of filter objects with counts; filter list is the same for all users in an and can be configured in “Study Browser” application via "Configure facets" (by a user with corresponding role); for each filter object, only the first 5 most popular facets are returned, the facts are sorted by the count value in descending order; only studies available to user are counted.
+        - a list of filter objects with counts; the filter list is the same for all users in an organisation and can be configured in the “Study Browser” application via "Configure facets" (by a user with corresponding role); for each filter object, only the first 5 most popular facets are returned, the facets are sorted by the count value in descending order; only studies available to the user are counted.
 
         Filter attributes for fulltext search:
         - `"type": "FULL_TEXT"`
         - `"match"`
         - `"mode"`
 
-        For details on two latter ones, see the request body model. Only one filter with `"type=": "FULL_TEXT"` can be passed in the request body.
+        For details on the latter two, see the request body model. Only one filter with `"type=": "FULL_TEXT"` can be passed in the request body.
 
         To filter studies via facets, the filter attributes are necessary: type = SELECT, filterOptionId. For details, use the request body model. filterOptionId can be obtained from the response body when the endpoint is first called without filters. Multiple filters with type = SELECT can be passed in the request body. Filters within the same attribute are automatically used with the OR operator. Filters of different attributes are automatically used with the AND operator. This behaviour can not be changed.
 
@@ -4180,15 +4180,15 @@ paths:
             \ including the error details."
       security:
       - Genestack-API-Token: []
-      summary: Find and retrieve studies by full-text or facet query
+      summary: Find and retrieve studies by a full-text or facet query
       tags:
       - Study integration as Curator
       x-codegen-request-body-name: request
   /api/v1/as-curator/links:
     delete:
       description: "This method should be used in case you want to delete the links\
-        \ of an object. Please, keep in mind that deleting a link between Study and\
-        \ Sample will not delete a link between corresponding Sample and it’s signal."
+        \ of an object. Please, keep in mind that deleting a link between a Study and a\
+        \ Sample will not delete the link between the corresponding Sample and its signal."
       operationId: deleteLinkAsCurator
       parameters:
       - description: Object ID (accession) (e.g. accession of study)
@@ -4242,7 +4242,7 @@ paths:
     get:
       description: Please make sure that this endpoint should be used only for getting
         all links to a specific object. In case you specify both firstId and secondId
-        an expected answer would be true for existing links and false for no link
+        the expected answer would be true for existing links and false for no link
         between the objects.
       operationId: getLinksByParamsAsCurator
       parameters:
@@ -4414,7 +4414,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -4610,7 +4610,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -4805,8 +4805,8 @@ paths:
   /api/v1/as-curator/omics/expression/data:
     get:
       description: "Retrieve any data objects whose linked data matches all supplied\
-        \ conditions.This endpoint does not support search by expression linked to Cell\
-        \ group. Use /omics/cells/expression/data endpoint for search by Cell expression.\
+        \ conditions. This endpoint does not support search by expression linked to a Cell\
+        \ group. Use the /omics/cells/expression/data endpoint for search by Cell expression.\
         \n\nNote: An expression data query must be supplied.\n\n## Conditions\n\
         It is possible to supply conditions for:\n\n1. Samples (full-text or metadata\
         \ key-value pair)\n2. Parent studies (full-text or metadata key-value pair)\n\
@@ -4825,7 +4825,7 @@ paths:
         \ The set of valid keys depends on the specific query type, and is documented\
         \ in the query parameter summary. The values can be simple non-whitespace\
         \ strings, or strings enclosed by speech marks (`\"`). Depending on the key,\
-        \ the value may be be a comma-delimited list of string values. Others require\
+        \ the value may be a comma-delimited list of string values. Others require\
         \ numerical values.\n\n## Combinations\nMetadata queries/filters for the same parameter\
         \ can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space\
         \ to separate out the terms and operators. Parentheses `( )` can be used for\
@@ -5098,7 +5098,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -5546,7 +5546,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -5815,7 +5815,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -6083,7 +6083,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -6354,7 +6354,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -6622,7 +6622,7 @@ paths:
         Metadata filters are key-value pairs joined by an operator. The `=` operator matches literal values/string. The `!=` operator matches anything except the literal value/string. The `<` or `>` operators match numerical results that are less or greater than the supplied value. Strings containing whitespace need to be quoted with (`"`).
 
         ## Data queries
-        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be be a comma-delimited list of string values. Others require numerical values.
+        Data queries must be a list of key-value pairs, separated by whitespace. The set of valid keys depends on the specific query type, and is documented in the query parameter summary. The values can be simple non-whitespace strings, or strings enclosed by speech marks (`"`). Depending on the key, the value may be a comma-delimited list of string values. Others require numerical values.
 
         ## Combinations
         Metadata queries/filters for the same parameter can be combined with `&&`, `AND`, `||` and `OR` operators, using white-space to separate out the terms and operators. Parentheses `( )` can be used for complex expressions.
@@ -6877,7 +6877,7 @@ paths:
   /api/v1/as-curator/omics/variant/streamed-data:
     get:
       description: |+
-        Stream data from a given group for a VCF file that matches a sample query/filter. If no query/filters are supplied all variant data is returned. If a metadata filter is specified, this endpoint will only return variant data that is associated with a sample via metadata attribute.
+        Stream data from a given group for a VCF file that matches a sample query/filter. If no query/filters are supplied all variant data is returned. If a metadata filter is specified, this endpoint will only return variant data that is associated with a sample via a metadata attribute.
 
         ## Conditions
         It is possible to supply conditions for Samples (full-text or metadata key-value pair)
@@ -7031,8 +7031,8 @@ paths:
         It allows quantifying the proportion of cells that meet specific criteria (`countSelected`, e.g. expression threshold, cell type, or cluster)
         relative to a defined reference group or the total cell population (`countAvailable`) defined by study, samples, library, or preparation metadata.
 
-        `countAvailable` parameter returns all cells specified in study, sample, library, or preparation queries and filters.
-        In case `exQuery` is selected, only cells linked to cell expression will be counted in `countSelected` parameter.
+        The `countAvailable` parameter returns all cells specified in study, sample, library, or preparation queries and filters.
+        In case `exQuery` is selected, only cells linked to cell expression will be counted in the `countSelected` parameter.
 
         The endpoint supports filtering by study, sample, library, or preparation metadata and filtering by cell expression or cell metadata fields.
 
@@ -7076,7 +7076,7 @@ paths:
       description: |+
         This endpoint computes differential gene expression between two specified cell groups (case vs control) within single-cell data.
 
-        Consult `/omics` search endpoints to find description of parameters within the cell groups.
+        Consult the `/omics` search endpoints to find a description of the parameters within the cell groups.
         The response includes per-gene metrics that characterize expression differences between the two groups:
         - `Gene name` - gene identifier.
         - `Case cell count` - number of cells expressing the gene in the case group.
@@ -7088,7 +7088,7 @@ paths:
         - `U statistic` - Mann–Whitney U test statistic that measures the difference between Case and Control groups.
         - `p-value` - the probability of observing results as extreme as (or more extreme than) those obtained, assuming that the null hypothesis is true.
 
-        Results are sorted by absolute value of fold change in descending order, allowing easy identification of the most differentially expressed genes.
+        Results are sorted by the absolute value of the fold change in descending order, allowing easy identification of the most differentially expressed genes.
 
         Request and response parameters are subject to change as this feature is in BETA.
       requestBody:
@@ -7305,7 +7305,7 @@ paths:
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
-      summary: Retrieve file's metadata by study ID
+      summary: Retrieve file metadata by study ID
       tags:
         - Files integration as Curator
   /api/v1/as-curator/integration/link/cell/group/{sourceId}/to/sample/group/{targetId}:
