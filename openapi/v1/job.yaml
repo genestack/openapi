@@ -36,7 +36,7 @@ paths:
     post:
       description: |2
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -77,7 +77,7 @@ paths:
     post:
       description: |2
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -118,7 +118,7 @@ paths:
     post:
       description: |2
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -150,7 +150,7 @@ paths:
     post:
       description: |2
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -194,7 +194,7 @@ paths:
     post:
       description: |2
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -226,7 +226,7 @@ paths:
     post:
       description: |2
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -267,7 +267,7 @@ paths:
     post:
       description: |2
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -301,7 +301,7 @@ paths:
 
         The endpoint initiates a job to import cell data and creates a Cell Group to manage it.
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -356,7 +356,7 @@ paths:
 
         The endpoint initiates a job to import cell data and creates a Cell Group to manage it.
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -403,12 +403,12 @@ paths:
          This operation necessitates the URL of a tabular data file, which must be either in TSV or GCT 1.2 format. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
 
         ## Metadata
-         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
+         It is also possible to optionally supply the URL of a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain a single record with metadata describing the uploaded signal file.
         ## Data file format
-         * Format: Gene Cluster Text (GCT) and Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Format: Gene Cluster Text (GCT) and Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with the `CRLF` sequence (`U+000D U+000A`)
          * Extension: `.zip`, `.gz`, `.br`, `.lz4` are supported, treated as archives and get decompressed
-         * Header: the first line is treated as table header that contains attribute names
-         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+         * Header: the first line is treated as the table header that contains attribute names
+         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent a single string or a list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
       operationId: startImportExpression
       parameters:
@@ -447,12 +447,12 @@ paths:
          This operation necessitates a tabular data file. Consult the user guide for a comprehensive understanding of the file content requirements. The endpoint is capable of handling uploads of any data type, which can be detailed in the parameters section, not only Gene Expression data.
 
         ## MetadataFile
-         It is also possible to optionally provide a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain single record with metadata describing the uploaded signal file.
+         It is also possible to optionally provide a metadata file. This metadata will be used as the original metadata for the created objects. The file is expected to contain a single record with metadata describing the uploaded signal file.
         ## File format
-         * Format: Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with `CRLF` sequence (`U+000D U+000A`)
+         * Format: Tab-separated format (TSV), attribute names and record values are separated  with tabs (`U+0009`),  lines are separated with the `CRLF` sequence (`U+000D U+000A`)
          * Extension: `.zip`, `.gz`, `.br`, `.lz4` are supported, treated as archives and get decompressed
-         * Header: the first line is treated as table header that contains attribute names
-         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent single string or list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
+         * Header: the first line is treated as the table header that contains attribute names
+         * Records: the second line contains the values for each of the attributes described in the header line.  Values represent a single string or a list of strings. List values are separated  using the "pipe" `|` (`U+007C`)  separator. Values are trimmed of whitespace before parsing, and a literal `|`  (`U+007C`) character may be escaped by repeating it twice.
          * Skip zeros in original data file: If this option is selected, zeros in the file will be ignored, thus conserving time and space. This option is particularly useful for handling very sparse data such as Single Cell data.
       operationId: startImportExpressionMultipart
       requestBody:
@@ -477,8 +477,8 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/jobs/import/variant:
     post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+      description: "\nWhen the job finishes successfully, the following **result** object\
+        \ can be obtained using a `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n    "
       operationId: startImportVariant
       parameters:
@@ -512,8 +512,8 @@ paths:
       x-codegen-request-body-name: body
   /api/v1/jobs/import/variant/multipart:
     post:
-      description: "\nWhen job finishes successfully the following **result** object\
-        \ can be obtained using `GET /job/{id}/output` request:\n\n```\n{\n    \"\
+      description: "\nWhen the job finishes successfully, the following **result** object\
+        \ can be obtained using a `GET /job/{id}/output` request:\n\n```\n{\n    \"\
         groupAccession\": \"GSF1234567\"\n}\n```\n    "
       operationId: startImportVariantMultipart
       requestBody:
@@ -541,10 +541,10 @@ paths:
       description: |-
         This operation necessitates the URL of a gated flow cytometry data file, which must be in FACS format.
         Consult the user guide for a comprehensive understanding of the file content requirements.
-        For flow cytometry data in FCS format use expression endpoint.
+        For flow cytometry data in FCS format use the expression endpoint.
 
-        When job finishes successfully the following **result** object
-        can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object
+        can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -586,10 +586,10 @@ paths:
       description: |-
         This operation necessitates a gated flow cytometry data file, which must be in FACS format.
         Consult the user guide for a comprehensive understanding of the file content requirements.
-        For flow cytometry data in FCS format use expression endpoint.
+        For flow cytometry data in FCS format use the expression endpoint.
 
-        When job finishes successfully the following **result** object
-        can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object
+        can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -627,8 +627,8 @@ paths:
         The file will be associated with a study and will be searchable by its name and metadata.
         * `metadataLink` - an optional URL of a metadata file to be used as the original metadata
         for the created objects. The file must contain a single record describing the uploaded attachment.
-        * `studyAccession` - an accession of a study the file will be associated with.
-        * `dataClass` - file data class with the following possible values: `Bulk
+        * `studyAccession` - the accession of the study the file will be associated with.
+        * `dataClass` - the file data class with the following possible values: `Bulk
         transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
         pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
         `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
@@ -637,7 +637,7 @@ paths:
         `Spatial transcriptomics`, `Phenomics`, `Copy number alterations`, `Microbiome / Metagenomics`,
         `Immune repertoire`, `Genetic screens (CRISPR / RNAi)`, `Cell imaging`, `Document`, `Other`.
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -661,7 +661,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Import file as an attachment
+      summary: Import a file as an attachment
       tags:
       - Data import jobs
       x-codegen-request-body-name: body
@@ -674,8 +674,8 @@ paths:
         The file will be associated with a study and will be searchable by its name and metadata.
         * `metadata` - an optional metadata file to be used as the original metadata
         for the created objects. The file must contain a single record describing the uploaded attachment.
-        * `studyAccession` - an accession of a study the file will be associated with.
-        * `dataClass` - file data class with the following possible values: `Bulk
+        * `studyAccession` - the accession of the study the file will be associated with.
+        * `dataClass` - the file data class with the following possible values: `Bulk
         transcriptomics`, `Single-cell transcriptomics`, `Differential abundance (FC,
         pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single-cell proteomics`, `Metabolomics`,
         `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`,
@@ -684,7 +684,7 @@ paths:
         `Spatial transcriptomics`, `Phenomics`, `Copy number alterations`, `Microbiome / Metagenomics`,
         `Immune repertoire`, `Genetic screens (CRISPR / RNAi)`, `Cell imaging`, `Document`, `Other`.
 
-        When job finishes successfully the following **result** object can be obtained using `GET /job/{id}/output` request:
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
 
         ```
         {
@@ -755,7 +755,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: retrieve job output (result)
+      summary: retrieve the job output (result)
       tags:
       - Job operations
   /api/v1/jobs/{jobExecId}/restart:
@@ -778,7 +778,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: restart stopped (failed) job
+      summary: restart a stopped (failed) job
       tags:
       - Job operations
   /api/v1/jobs/{jobExecId}/stop:
@@ -801,7 +801,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: stop running job
+      summary: stop a running job
       tags:
       - Job operations
 components:

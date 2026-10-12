@@ -273,7 +273,7 @@ paths:
       - Groups
     patch:
       description: |-
-        The endpoint updates one or several attributes of a specific group, where id is internal group id in ODM. Also the endpoint adds a new user to the group and removes users from the group.
+        The endpoint updates one or several attributes of a specific group, where id is an internal group id in ODM. Also the endpoint adds a new user to the group and removes users from the group.
 
          Supported operators in the request body: replace, add, remove. For details of the syntax of using these operators, we recommend that you refer to the SCIM 2.0 specification.
 

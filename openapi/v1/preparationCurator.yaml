@@ -291,7 +291,7 @@ paths:
         The object metadata is updated using the supplied map of attribute names to attribute values. There are three cases:
         1. The attribute name does not already exist in the object metadata. In this case, the attribute and value are added to the object metadata.
         2. The attribute name already exists in the object metadata. In this case, the value is updated.
-        3. The attribute value is `null`.In this case, the attribute is removed from the object metadata.
+        3. The attribute value is `null`. In this case, the attribute is removed from the object metadata.
 
         ## Attribute values
         The attribute values are intelligently parsed as booleans, integers, etc.
@@ -383,7 +383,7 @@ paths:
       - Preparation SPoT as Curator
   /api/v1/as-curator/preparations/{id}/versions/{version}:
     get:
-      description: Use this endpoint to retrieve metadata of preparation object or
+      description: Use this endpoint to retrieve metadata of a preparation object or
         preparation group by version ID.
       operationId: getPreparationByVersionAsCurator
       parameters:

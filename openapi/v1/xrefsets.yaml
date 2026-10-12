@@ -120,7 +120,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a list of entries across all xrefsets for given sourceId and
+      summary: Retrieve a list of entries across all xrefsets for the given sourceId and
         targetId
       tags:
       - Xrefset queries
@@ -240,7 +240,7 @@ paths:
       security:
       - Access-token: []
       - Genestack-API-Token: []
-      summary: Retrieve a list of entries for the given xrefset and given sourceId
+      summary: Retrieve a list of entries for the given xrefset and the given sourceId
         and targetId
       tags:
       - Xrefset queries
