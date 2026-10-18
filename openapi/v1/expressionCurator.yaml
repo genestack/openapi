@@ -427,6 +427,63 @@ paths:
       summary: Retrieve a single expression group by ID (groupId)
       tags:
       - Expression SPoT as Curator
+    patch:
+      description: |-
+        ## Basic operation
+        The group metadata is updated using the supplied map of attribute names to attribute values. There are two cases:
+        1. The attribute name does not already exist in the group metadata. In this case, the attribute and value are added to the group metadata.
+        2. The attribute name already exists in the group metadata. In this case, the value is updated.
+
+        The change applies to all runs of the group, and creates a new metadata version.
+
+        ## Attribute values
+        The attribute values are intelligently parsed as booleans, integers, etc.
+      operationId: updateExpressionGroupAsCurator
+      parameters:
+      - description: Accession of the expression group (groupId).
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MetadataContent"
+        description: "Metadata in the form of `{key: value, key2: value2, ...}`"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SignalGroup"
+          description: "The metadata of the group was updated. The returned value is\
+            \ the updated group metadata, along with any validation warnings."
+        "400":
+          content: {}
+          description: "The supplied metadata is invalid, or it changes a read-only key."
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: No expression group exists with the given ID.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Update the metadata of an expression group by ID (groupId)
+      tags:
+      - Expression SPoT as Curator
+      x-codegen-request-body-name: body
   /api/v1/as-curator/expressions/runs/by/group/{id}:
     get:
       description: |+
@@ -724,6 +781,8 @@ components:
       $ref: "./schemas/common/RunsResponse.yaml"
     ResponseFormat:
       $ref: "./schemas/common/ResponseFormat.yaml"
+    SignalGroup:
+      $ref: "./schemas/common/SignalGroup.yaml"
     SignalRun:
       $ref: "./schemas/common/SignalRun.yaml"
   securitySchemes:
