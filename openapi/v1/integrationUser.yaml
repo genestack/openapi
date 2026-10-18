@@ -17,6 +17,7 @@ info:
   title: ODM Integration API
   version: default-released
 tags:
+- name: Cell integration as User
 - name: Expression integration as User
 - name: Files integration as User
 - name: Flow Cytometry (FACS) integration as User
@@ -5679,6 +5680,44 @@ paths:
       summary: Retrieve file metadata by study ID
       tags:
         - Files integration as User
+  /api/v1/as-user/integration/link/cell/group/by/study/{id}:
+    get:
+      operationId: getCellGroupsByStudyAsUser
+      parameters:
+      - description: Unique identifier (accession) of the Study.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/MetadataWithId"
+                type: array
+          description: The request was successful. The returned value is the object.
+        "400":
+          content: {}
+          description: The supplied object ID is invalid.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Retrieve cell group metadata by querying Study ID (accession)
+      tags:
+      - Cell integration as User
 components:
   schemas:
     BatchOfIds:
