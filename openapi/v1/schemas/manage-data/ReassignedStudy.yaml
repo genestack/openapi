@@ -1,0 +1,26 @@
+example:
+  genestack:accession: GSF014648
+  studyTitle: BLUEPRINT haematopoietic epigenomes
+  createdAt: "2024-03-18 09:41:12"
+  ownerEmail: newOwner@genestack.com
+  previousOwnerEmail: oldOwner@genestack.com
+properties:
+  genestack:accession:
+    type: string
+  studyTitle:
+    type: string
+  createdAt:
+    format: date-time
+    type: string
+  ownerEmail:
+    description: Email of the new Study Owner.
+    type: string
+  previousOwnerEmail:
+    description: Email of the deactivated user who owned the study before.
+    type: string
+required:
+- createdAt
+- genestack:accession
+- ownerEmail
+- previousOwnerEmail
+type: object
