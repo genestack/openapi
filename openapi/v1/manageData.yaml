@@ -188,7 +188,7 @@ paths:
          * If you delete `TABULAR_DATA`/`GENE_VARIANT`/`FLOW_CYTOMETRY`, all associated data, such as links and runs will be removed from ODM.
          * If you delete a `REFERENCE_GENOME`, searching for variant by variantFeature (genes) won't be available for linked VCF groups.
          * If you delete a `FILE`, the file will be removed from ODM.
-         * If you delete a `TEMPLATE`, it will be removed from all Studies where it was previously applied, and the Default Template will be automatically applied to those Studies instead.
+         * If you delete a `TEMPLATE`, it will be removed from all Studies where it was previously applied, and the Default Template will be automatically applied to those Studies instead. Only a user with the `Template Administrator` system role can delete a `TEMPLATE`.
          * If you delete `DICTIONARY`, its terms will no longer be available. `DICTIONARY` that is used in any template cannot be deleted and should be removed from those templates first.
       operationId: deleteData
       parameters:
