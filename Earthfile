@@ -6,7 +6,7 @@ ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM eclipse-temurin:25.0.4_7-jdk-alpine
-    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+GRADLE_PREPARE
+    WORKDIR /app
 
     CACHE /root/.gradle/caches
     CACHE /root/.gradle/wrapper
@@ -28,19 +28,12 @@ build:
 
 python-api-client:
     FROM python:3.15.0-alpine
-    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
+    WORKDIR /app
 
     CACHE /root/.cache
 
     COPY requirements.txt .
-    RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            pypi-login.sh && \
-            python3 \
-                -m pip install \
-                -r requirements.txt && \
-            pypi-clean.sh
+    RUN python3 -m pip install -r requirements.txt
 
     COPY +build/generated generated
     WORKDIR generated/python
@@ -50,13 +43,17 @@ python-api-client:
         python3 -m tox run-parallel && \
         python3 setup.py sdist
 
+    # Releases go to PyPI, development builds to TestPyPI, and both to Nexus, which
+    # functional-tests and processors-sdk install from
     ARG --required OPENAPI_VERSION
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
-        ARG PYPI_REPOSITORY_INTERNAL="nexus-pypi-releases"
-        ARG PYPI_REPOSITORY_PUBLIC="pypi"
+        ARG PYPI_REPOSITORY_INTERNAL="https://nexus.devops.gs.team/repository/pypi-releases/"
+        ARG PYPI_REPOSITORY_PUBLIC="https://upload.pypi.org/legacy/"
+        ARG PYPI_TOKEN_SECRET="PYPI_TOKEN"
     ELSE
-        ARG PYPI_REPOSITORY_INTERNAL="nexus-pypi-snapshots"
-        ARG PYPI_REPOSITORY_PUBLIC="testpypi"
+        ARG PYPI_REPOSITORY_INTERNAL="https://nexus.devops.gs.team/repository/pypi-snapshots/"
+        ARG PYPI_REPOSITORY_PUBLIC="https://test.pypi.org/legacy/"
+        ARG PYPI_TOKEN_SECRET="PYPI_TOKEN_TEST"
     END
 
     RUN --push \
@@ -64,10 +61,10 @@ python-api-client:
         --secret PYPI_TOKEN_TEST \
         --secret NEXUS_USER \
         --secret NEXUS_PASSWORD \
-            pypi-login.sh && \
-            twine upload dist/* -r ${PYPI_REPOSITORY_INTERNAL} && \
-            twine upload dist/* -r ${PYPI_REPOSITORY_PUBLIC} && \
-            pypi-clean.sh
+            TWINE_USERNAME="${NEXUS_USER}" TWINE_PASSWORD="${NEXUS_PASSWORD}" \
+                twine upload dist/* --repository-url ${PYPI_REPOSITORY_INTERNAL} && \
+            TWINE_USERNAME=__token__ TWINE_PASSWORD="pypi-$(printenv ${PYPI_TOKEN_SECRET})" \
+                twine upload dist/* --repository-url ${PYPI_REPOSITORY_PUBLIC}
 
 r-api-client:
     FROM rocker/r-ver:4.6.1
