@@ -47,26 +47,17 @@ python-api-client:
     ARG --required OPENAPI_VERSION
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
         ARG PYPI_REPOSITORY="https://upload.pypi.org/legacy/"
-        ARG PYPI_INDEX="https://pypi.org/simple/"
         ARG PYPI_TOKEN_SECRET="PYPI_TOKEN"
     ELSE
         ARG PYPI_REPOSITORY="https://test.pypi.org/legacy/"
-        ARG PYPI_INDEX="https://test.pypi.org/simple/"
         ARG PYPI_TOKEN_SECRET="PYPI_TOKEN_TEST"
     END
 
-    # The index is served through a CDN that caches it for up to 10 minutes, and the next
-    # builds in the chain install from it at once: wait until it lists the new file.
     RUN --push \
         --secret PYPI_TOKEN \
         --secret PYPI_TOKEN_TEST \
             TWINE_USERNAME=__token__ TWINE_PASSWORD="pypi-$(printenv ${PYPI_TOKEN_SECRET})" \
-                twine upload dist/* --repository-url ${PYPI_REPOSITORY} && \
-            file=$(basename dist/*.tar.gz) && \
-            for i in $(seq 60); do \
-                wget -qO- ${PYPI_INDEX}odm-api/ | grep -q "${file}" && break; \
-                [ $i -lt 60 ] && sleep 10 || exit 1; \
-            done
+                twine upload dist/* --repository-url ${PYPI_REPOSITORY}
 
 r-api-client:
     FROM rocker/r-ver:4.6.1
