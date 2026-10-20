@@ -43,28 +43,21 @@ python-api-client:
         python3 -m tox run-parallel && \
         python3 setup.py sdist
 
-    # Releases go to PyPI, development builds to TestPyPI, and both to Nexus, which
-    # functional-tests and processors-sdk install from
+    # Releases go to PyPI, development builds to TestPyPI
     ARG --required OPENAPI_VERSION
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
-        ARG PYPI_REPOSITORY_INTERNAL="https://nexus.devops.gs.team/repository/pypi-releases/"
-        ARG PYPI_REPOSITORY_PUBLIC="https://upload.pypi.org/legacy/"
+        ARG PYPI_REPOSITORY="https://upload.pypi.org/legacy/"
         ARG PYPI_TOKEN_SECRET="PYPI_TOKEN"
     ELSE
-        ARG PYPI_REPOSITORY_INTERNAL="https://nexus.devops.gs.team/repository/pypi-snapshots/"
-        ARG PYPI_REPOSITORY_PUBLIC="https://test.pypi.org/legacy/"
+        ARG PYPI_REPOSITORY="https://test.pypi.org/legacy/"
         ARG PYPI_TOKEN_SECRET="PYPI_TOKEN_TEST"
     END
 
     RUN --push \
         --secret PYPI_TOKEN \
         --secret PYPI_TOKEN_TEST \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            TWINE_USERNAME="${NEXUS_USER}" TWINE_PASSWORD="${NEXUS_PASSWORD}" \
-                twine upload dist/* --repository-url ${PYPI_REPOSITORY_INTERNAL} && \
             TWINE_USERNAME=__token__ TWINE_PASSWORD="pypi-$(printenv ${PYPI_TOKEN_SECRET})" \
-                twine upload dist/* --repository-url ${PYPI_REPOSITORY_PUBLIC}
+                twine upload dist/* --repository-url ${PYPI_REPOSITORY}
 
 r-api-client:
     FROM rocker/r-ver:4.6.1
