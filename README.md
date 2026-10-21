@@ -1,8 +1,6 @@
 # Swagger API specification and documentation
 
-This directory contains source files to generate the following artifacts:
-- Python API SDK
-- Postman collection
+This directory contains source files to generate the Python API SDK.
 
 ## Mandatory! Working with the repository: setting up pre-commit
 To work with this repository it's **mandatory** to install pre-commit.

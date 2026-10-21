@@ -52,25 +52,10 @@ tasks {
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
-    val generateOdmApiPostmanCollection by registering(GenerateTask::class) {
-        dependsOn(mergeSpecifications)
-        generatorName.set("postman-collection")
-        inputSpec.set(mergedFilePath)
-        outputDir.set("$rootDir/generated/postman-collection")
-        packageName.set("odm-api")
-        gitUserId.set("genestack")
-        gitRepoId.set("openapi")
-        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
-        configOptions = mapOf(
-            "packageVersion" to openApiVersion
-//            "disallowAdditionalPropertiesIfNotPresent" to "true"
-        )
-    }
     val generateAll by registering(GradleBuild::class) {
         file("$rootDir/generated").deleteRecursively()
         tasks = listOf(
-            generateOdmApiPython.name,
-            generateOdmApiPostmanCollection.name
+            generateOdmApiPython.name
         )
     }
 }
