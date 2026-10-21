@@ -142,8 +142,7 @@ swagger:
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
         apk del bash && \
-        echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-        apk update && apk upgrade sqlite-libs
+        apk upgrade --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main sqlite-libs
 
     # Remove merged api spec
     # IDK why it's required
