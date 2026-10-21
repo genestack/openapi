@@ -52,10 +52,25 @@ tasks {
 //            "disallowAdditionalPropertiesIfNotPresent" to "true"
         )
     }
+    val generateOdmApiR by registering(GenerateTask::class) {
+        dependsOn(mergeSpecifications)
+        generatorName.set("r")
+        inputSpec.set(mergedFilePath)
+        outputDir.set("$rootDir/generated/r")
+        packageName.set("odmApi")
+        gitUserId.set("genestack")
+        gitRepoId.set("openapi")
+        nameMappings.set(mapOf("genestack:accession" to "genestackaccession"))
+        configOptions = mapOf(
+            "packageVersion" to openApiVersion
+//            "disallowAdditionalPropertiesIfNotPresent" to "true"
+        )
+    }
     val generateAll by registering(GradleBuild::class) {
         file("$rootDir/generated").deleteRecursively()
         tasks = listOf(
-            generateOdmApiPython.name
+            generateOdmApiPython.name,
+            generateOdmApiR.name
         )
     }
 }

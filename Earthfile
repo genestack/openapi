@@ -58,6 +58,46 @@ python-api-client:
             TWINE_USERNAME=__token__ TWINE_PASSWORD="pypi-$(printenv ${PYPI_TOKEN_SECRET})" \
                 twine upload dist/* --repository-url ${PYPI_REPOSITORY}
 
+r-api-client:
+    FROM rocker/r-ver:4.6.1
+    WORKDIR /app
+
+    CACHE /root/.cache
+
+    COPY requirements.R .
+
+    # Gcc and other stuff for R source packages building
+    RUN \
+        apt update && \
+        apt install -y libssl-dev libcurl4-gnutls-dev curl && \
+        Rscript requirements.R
+
+    COPY +build/generated generated
+    WORKDIR generated/r
+
+    # Test and build R client
+    RUN \
+        R CMD build . && \
+        R CMD check *.tar.gz --no-manual
+
+    ARG --required R_REGISTRY_RELEASES
+    ARG --required R_REGISTRY_SNAPSHOTS
+
+    ARG --required OPENAPI_VERSION
+    IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
+        ARG R_REGISTRY=${R_REGISTRY_RELEASES}
+    ELSE
+        ARG R_REGISTRY=${R_REGISTRY_SNAPSHOTS}
+    END
+
+    # Push R client
+    RUN --push \
+        --secret NEXUS_USER \
+        --secret NEXUS_PASSWORD \
+           export archive=$(find . | grep tar.gz | sed 's|./||') && \
+           curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
+              --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
+
 swagger:
     FROM swaggerapi/swagger-ui:v5.33.3
 
@@ -95,4 +135,5 @@ stoplight:
 main:
     BUILD +swagger
     BUILD +stoplight
+    BUILD +r-api-client
     BUILD +python-api-client
