@@ -239,6 +239,7 @@ paths:
          * `REFERENCE_GENOME`
          * `FILE`
          * `TEMPLATE`
+         * `DICTIONARY`
 
          Moreover, if the selected object is linked to any other data, the endpoint will also delete the linked data associated with it according to the specified rules:
          * If you delete a `STUDY`, the entire study with all the listed group types and files, will be removed.
@@ -250,6 +251,7 @@ paths:
          * If you delete a `REFERENCE_GENOME`, searching for variant by variantFeature (genes) won't be available for linked VCF groups.
          * If you delete a `FILE`, the file will be removed from ODM.
          * If you delete a `TEMPLATE`, it will be removed from all Studies where it was previously applied, and the Default Template will be automatically applied to those Studies instead.
+         * If you delete `DICTIONARY`, its terms will no longer be available. `DICTIONARY` that is used in any template cannot be deleted and should be removed from those templates first.
       operationId: deleteData
       parameters:
       - description: Accessions files to be deleted.
@@ -282,8 +284,8 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: "Access denied. Required system roles: 'Access all data', 'Organisation Administrator'.
-            The same status is returned if the file is not meant to be deleted."
+          description: The user does not have enough permissions to delete some of
+            the provided objects. Deletion will not be performed.
         "404":
           content: {}
           description: Some of the provided accessions could not be found in ODM.
@@ -293,6 +295,11 @@ paths:
           content: {}
           description: Some of the provided accessions do not belong to the supported
             object types. Deletion will not be performed. Please review your list
+            and repeat the attempt.
+        "409":
+          content: {}
+          description: Some of the provided dictionaries are used in templates.
+            Deletion will not be performed. Remove the dictionaries from these templates
             and repeat the attempt.
         "500":
           content: {}
