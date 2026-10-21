@@ -7,6 +7,6 @@ repositories {
 }
 
 dependencies {
-    implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.2.3")
+    implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.2.4")
     implementation("org.apache.commons:commons-compress:1.28.0")
 }
