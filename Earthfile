@@ -1,8 +1,6 @@
 VERSION 0.8
 
 ARG --global --required HARBOR_DOCKER_REGISTRY
-ARG --global --required RAW_REGISTRY_RELEASES
-ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM eclipse-temurin:25.0.4_7-jdk-alpine
@@ -12,19 +10,20 @@ build:
     CACHE /root/.gradle/wrapper
 
     COPY --dir openapi gradle gradlew buildSrc build.gradle.kts settings.gradle.kts .
+    COPY +processors-controller-spec/openapi.yaml openapi/v1/processorsController.yaml
 
     ARG --required OPENAPI_VERSION
-    ARG --required PROCESSORS_CONTROLLER_VERSION
-    RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            ./gradlew \
-                generateAll \
-                --no-daemon
+    RUN ./gradlew generateAll --no-daemon
 
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated
     SAVE ARTIFACT openapi/v1
+
+# processors-controller's ODM OpenAPI spec, from the data image its build pushes
+processors-controller-spec:
+    ARG --required PROCESSORS_CONTROLLER_VERSION
+    FROM ${HARBOR_DOCKER_REGISTRY}/odm-oas/processors-controller:${PROCESSORS_CONTROLLER_VERSION}
+    SAVE ARTIFACT /openapi.yaml
 
 python-api-client:
     FROM python:3.15.0-alpine
@@ -99,39 +98,6 @@ r-api-client:
            curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
-docs:
-    FROM alpine/curl:8.22.0
-    WORKDIR /app
-    COPY +build/generated generated
-
-    # Documentation for python client
-    WORKDIR /app/generated/python
-    ARG --required RAW_REGISTRY_SNAPSHOTS
-    ARG --required OPENAPI_VERSION
-    RUN \
-        --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            export DOC_ARCHIVE=odm-api-python-${OPENAPI_VERSION}.tar.gz && \
-            tar cf ${DOC_ARCHIVE} README.md docs/* && \
-            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
-                -H 'Content-Type: application/gzip' \
-                 --upload-file ${DOC_ARCHIVE} \
-                 ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-python/${DOC_ARCHIVE}
-
-    # Documentation for r client
-    WORKDIR /app/generated/r
-    RUN \
-        --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            export DOC_ARCHIVE=odm-api-r-${OPENAPI_VERSION}.tar.gz && \
-            tar cf ${DOC_ARCHIVE} README.md docs/* && \
-            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
-                -H 'Content-Type: application/gzip' \
-                 --upload-file ${DOC_ARCHIVE} \
-                 ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
-
 swagger:
     FROM swaggerapi/swagger-ui:v5.33.3
 
@@ -169,6 +135,5 @@ stoplight:
 main:
     BUILD +swagger
     BUILD +stoplight
-    BUILD +docs
     BUILD +r-api-client
     BUILD +python-api-client

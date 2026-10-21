@@ -6,7 +6,6 @@
  * actual or intended publication of such source code.
  */
 
-import com.genestack.openapi.DownloadSpecification
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 import com.genestack.openapi.MergeSpecifications
 import kotlin.io.path.listDirectoryEntries
@@ -19,25 +18,12 @@ plugins {
 
 val sourceDirectory = "$rootDir/openapi/v1"
 
-val processorsControllerVersion: String = System.getenv("PROCESSORS_CONTROLLER_VERSION")
-val processorsControllerFileName = "processorsController.yaml"
-val processorsControllerFilePath = "${sourceDirectory}/${processorsControllerFileName}"
-
 val openApiVersion: String = System.getenv("OPENAPI_VERSION")
 val mergedFileName = "odmApi.yaml"
 val mergedFilePath = "${sourceDirectory}/${mergedFileName}"
 
 tasks {
-    val downloadSpec by registering(DownloadSpecification::class) {
-        version.set(processorsControllerVersion)
-        registryUsername.set(System.getenv("NEXUS_USER"))
-        registryPassword.set(System.getenv("NEXUS_PASSWORD"))
-        releaseRegistryUrl.set(System.getenv("RAW_REGISTRY_RELEASES"))
-        snapshotRegistryUrl.set(System.getenv("RAW_REGISTRY_SNAPSHOTS"))
-        outputFile.set(layout.projectDirectory.file(processorsControllerFilePath))
-    }
     val mergeSpecifications by registering(MergeSpecifications::class) {
-        dependsOn(downloadSpec)
         inputFiles.set(provider { // provider to calculate during runtime, not configuration loading time
             KotlinPath(sourceDirectory)
                 .listDirectoryEntries("*.yaml")
