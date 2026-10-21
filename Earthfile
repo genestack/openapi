@@ -1,46 +1,38 @@
 VERSION 0.8
 
 ARG --global --required HARBOR_DOCKER_REGISTRY
-ARG --global --required RAW_REGISTRY_RELEASES
-ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM eclipse-temurin:25.0.4_7-jdk-alpine
-    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+GRADLE_PREPARE
+    WORKDIR /app
 
     CACHE /root/.gradle/caches
     CACHE /root/.gradle/wrapper
 
     COPY --dir openapi gradle gradlew buildSrc build.gradle.kts settings.gradle.kts .
+    COPY +processors-controller-spec/openapi.yaml openapi/v1/processorsController.yaml
 
     ARG --required OPENAPI_VERSION
-    ARG --required PROCESSORS_CONTROLLER_VERSION
-    RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            ./gradlew \
-                generateAll \
-                --no-daemon
+    RUN ./gradlew generateAll --no-daemon
 
     SAVE IMAGE --cache-hint
     SAVE ARTIFACT generated
     SAVE ARTIFACT openapi/v1
 
+# processors-controller's ODM OpenAPI spec, from the data image its build pushes
+processors-controller-spec:
+    ARG --required PROCESSORS_CONTROLLER_VERSION
+    FROM ${HARBOR_DOCKER_REGISTRY}/odm-oas/processors-controller:${PROCESSORS_CONTROLLER_VERSION}
+    SAVE ARTIFACT /openapi.yaml
+
 python-api-client:
     FROM python:3.15.0-alpine
-    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
+    WORKDIR /app
 
     CACHE /root/.cache
 
     COPY requirements.txt .
-    RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            pypi-login.sh && \
-            python3 \
-                -m pip install \
-                -r requirements.txt && \
-            pypi-clean.sh
+    RUN python3 -m pip install -r requirements.txt
 
     COPY +build/generated generated
     WORKDIR generated/python
@@ -50,27 +42,24 @@ python-api-client:
         python3 -m tox run-parallel && \
         python3 setup.py sdist
 
+    # Releases go to PyPI, development builds to TestPyPI
     ARG --required OPENAPI_VERSION
     IF echo ${OPENAPI_VERSION} | grep -Exq "^([0-9]+(.)?){3}$"
-        ARG PYPI_REPOSITORY_INTERNAL="nexus-pypi-releases"
-        ARG PYPI_REPOSITORY_PUBLIC="pypi"
+        ARG PYPI_REPOSITORY="https://upload.pypi.org/legacy/"
+        ARG PYPI_TOKEN_SECRET="PYPI_TOKEN"
     ELSE
-        ARG PYPI_REPOSITORY_INTERNAL="nexus-pypi-snapshots"
-        ARG PYPI_REPOSITORY_PUBLIC="testpypi"
+        ARG PYPI_REPOSITORY="https://test.pypi.org/legacy/"
+        ARG PYPI_TOKEN_SECRET="PYPI_TOKEN_TEST"
     END
 
     RUN --push \
         --secret PYPI_TOKEN \
         --secret PYPI_TOKEN_TEST \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            pypi-login.sh && \
-            twine upload dist/* -r ${PYPI_REPOSITORY_INTERNAL} && \
-            twine upload dist/* -r ${PYPI_REPOSITORY_PUBLIC} && \
-            pypi-clean.sh
+            TWINE_USERNAME=__token__ TWINE_PASSWORD="pypi-$(printenv ${PYPI_TOKEN_SECRET})" \
+                twine upload dist/* --repository-url ${PYPI_REPOSITORY}
 
 r-api-client:
-    FROM rocker/r-ver:4.5.3
+    FROM rocker/r-ver:4.6.1
     WORKDIR /app
 
     CACHE /root/.cache
@@ -109,39 +98,6 @@ r-api-client:
            curl --user "${NEXUS_USER}:${NEXUS_PASSWORD}" \
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
-docs:
-    FROM alpine/curl:8.22.0
-    WORKDIR /app
-    COPY +build/generated generated
-
-    # Documentation for python client
-    WORKDIR /app/generated/python
-    ARG --required RAW_REGISTRY_SNAPSHOTS
-    ARG --required OPENAPI_VERSION
-    RUN \
-        --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            export DOC_ARCHIVE=odm-api-python-${OPENAPI_VERSION}.tar.gz && \
-            tar cf ${DOC_ARCHIVE} README.md docs/* && \
-            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
-                -H 'Content-Type: application/gzip' \
-                 --upload-file ${DOC_ARCHIVE} \
-                 ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-python/${DOC_ARCHIVE}
-
-    # Documentation for r client
-    WORKDIR /app/generated/r
-    RUN \
-        --push \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            export DOC_ARCHIVE=odm-api-r-${OPENAPI_VERSION}.tar.gz && \
-            tar cf ${DOC_ARCHIVE} README.md docs/* && \
-            curl -v --fail --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
-                -H 'Content-Type: application/gzip' \
-                 --upload-file ${DOC_ARCHIVE} \
-                 ${RAW_REGISTRY_SNAPSHOTS}/docs/odm-api-r/${DOC_ARCHIVE}
-
 swagger:
     FROM swaggerapi/swagger-ui:v5.33.3
 
@@ -152,8 +108,7 @@ swagger:
     RUN apk add bash --no-cache && \
         rewrite_entrypoint.sh && \
         apk del bash && \
-        echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-        apk update && apk upgrade sqlite-libs
+        apk upgrade --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main sqlite-libs
 
     # Remove merged api spec
     # IDK why it's required
@@ -180,6 +135,5 @@ stoplight:
 main:
     BUILD +swagger
     BUILD +stoplight
-    BUILD +docs
     BUILD +r-api-client
     BUILD +python-api-client
