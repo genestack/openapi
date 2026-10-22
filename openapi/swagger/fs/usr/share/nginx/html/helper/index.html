@@ -188,17 +188,6 @@
 
 
   <section>
-    <h4>Trying out calls</h4>
-    <ol>
-      <li>Sign in to ODM in this browser: these pages call the API with your ODM session.</li>
-      <li>Open the page of the API you need from the lists above.</li>
-      <li>Open a method, click the 'Try it out' button and enter the parameter values you wish to try.</li>
-      <li>Click the 'Execute' bar at the bottom of the Parameters section. The server response appears in the section that follows.</li>
-    </ol>
-  </section>
-
-
-  <section id="api-tokens">
     <h4>API Tokens</h4>
     <p>
       All API usage (including via the above example scripts) requires authentication.
@@ -210,10 +199,6 @@
       >Genestack API token.</a>
       To specify the Access token use the “Authorization” header, to specify the Genestack API token use the “Genestack-Api-Token” header.</p>
       <p>Note: access token takes precedence, meaning that if both tokens are supplied, the access token will be used for processing the request.</p>
-      <p>
-        Tokens are for calling the API from anywhere else, such as a script. The 'Try it out' calls on these pages need no token:
-        they are authenticated with your ODM session. A token supplied with a request is used instead of the session.
-      </p>
   </section>
   </body>
 </html>
