@@ -196,6 +196,7 @@ paths:
         explode: false
         in: query
         name: accessions
+        required: true
         schema:
           items:
             type: string
@@ -214,7 +215,7 @@ paths:
         "400":
           content: {}
           description: Deletion could not be performed due to Bad Request, e.g.
-            an attempt to delete the Default Template.
+            the `accessions` parameter is missing or an attempt to delete the Default Template.
         "401":
           content: {}
           description: |-
