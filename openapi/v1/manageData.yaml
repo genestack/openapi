@@ -100,7 +100,7 @@ paths:
   /api/v1/manage-data/ownership-recovery/studies:
     get:
       description: |-
-        Returns the list of studies whose current Study Owner is deactivated, so that a new owner can be assigned. Requires the Ownership Recovery Administrator system role. The role grants limited visibility of all matching studies in the organisation, regardless of whether they are shared with the user.
+        Returns the list of studies whose current study owner is deactivated, so that a new owner can be assigned. Requires the Ownership Recovery Administrator system role. The role grants limited visibility of all matching studies in the organisation, regardless of whether they are shared with the user.
       operationId: listStudiesWithDeactivatedOwner
       parameters:
       - description: Deactivated user email.
@@ -190,6 +190,14 @@ paths:
          * If you delete a `FILE`, the file will be removed from ODM.
          * If you delete a `TEMPLATE`, it will be removed from all Studies where it was previously applied, and the Default Template will be automatically applied to those Studies instead.
          * If you delete `DICTIONARY`, its terms will no longer be available. `DICTIONARY` that is used in any template cannot be deleted and should be removed from those templates first.
+
+         Each object can be deleted only by a user with the required permissions:
+         * A `STUDY` and the objects that belong to it (`SAMPLE_GROUP`, `SAMPLE_OBJECT`, `LIBRARY_GROUP`, `PREPARATION_GROUP`, `CELL_GROUP`, `TABULAR_DATA`, `GENE_VARIANT`, `FLOW_CYTOMETRY`, `FILE`) can be deleted only by the study owner.
+         * Detached objects (objects without a link to a study, and studies without any linked objects; see `GET /api/v1/manage-data/detached-objects`) can be deleted only by a user with the `Orphan Data Administrator` system role. A detached `STUDY` can also be deleted by its owner.
+         * A `REFERENCE_GENOME` or a `DICTIONARY` can be deleted only by a user with the `Reference Data Administrator` system role.
+         * A `TEMPLATE` can be deleted only by a user with the `Template Administrator` system role.
+
+         If the user lacks the required permissions for any of the provided objects, the deletion will not be performed.
       operationId: deleteData
       parameters:
       - description: Accessions files to be deleted.
