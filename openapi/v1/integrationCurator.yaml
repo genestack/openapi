@@ -1,16 +1,18 @@
 openapi: 3.1.0
 info:
-  description: |
-    Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
+  description: |-
+    This swagger page describes the integrationCurator API endpoints for ODM. These are typically used to link experimental data and metadata to samples, and samples to studies.
 
-    To try out calls in this swagger page:
+    If you are signed in to ODM in this browser, you can try out calls on this page straight away. To call the API from anywhere else, such as a script, you need an API token. API tokens can be obtained under your profile in ODM.
 
-    1. Click the 'Authorize' button below to enter your API token
-    2. Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
-    3. Enter parameter values that you wish to try
-    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
+    To try out calls on this page:
 
-    The server response will be in the section that follows.
+    1. If you are not signed in to ODM in this browser, click the 'Authorize' button below and enter your API token.
+    2. Scroll to the 'Parameters' section of the method you wish to try out and click the 'Try it out' button.
+    3. Enter the parameter values you wish to try.
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears.
+
+    The server response appears in the section that follows.
   title: ODM Integration API
   version: default-released
 tags:
