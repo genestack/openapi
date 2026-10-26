@@ -13,7 +13,7 @@ properties:
     format: date-time
     type: string
   ownerEmail:
-    description: Email of the new Study Owner.
+    description: Email of the new study owner.
     type: string
   previousOwnerEmail:
     description: Email of the deactivated user who owned the study before.

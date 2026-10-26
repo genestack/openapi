@@ -11,7 +11,7 @@ properties:
       pattern: "GSF\\d+"
     type: array
   newOwnerEmail:
-    description: Email of the active user who becomes the new Study Owner.
+    description: Email of the active user who becomes the new study owner.
     type: string
 required:
 - accessions
