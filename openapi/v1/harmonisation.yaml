@@ -5,6 +5,9 @@ info:
     Each run is a Pod that ODM starts, and that calls ODM with a token of the Curator who started it. A Curator sees
     and steers only the runs they started.
 
+    A run calls an LLM with the credentials its Curator saved: a provider, a model and their own API key, which
+    ODM never returns. Harmonisation Administrators set up the providers and models Curators choose from.
+
     If you are signed in to ODM in this browser, you can try out calls on this page straight away. To call the API from anywhere else, such as a script, you need an API token. API tokens can be obtained under your profile in ODM.
 
     To try out calls on this page:
@@ -61,7 +64,8 @@ paths:
       description: |-
         Starts a run for the user: an API token of theirs named `Harmonise-<run id>`, and the run's Pod, which
         calls ODM with that token. The run is PENDING until its Pod has connected and reported ready. Its token is
-        deleted once the run is over.
+        deleted once the run is over. The run takes the user's LLM credentials as they are now and keeps them to
+        its end: credentials saved later apply to the runs started after.
       operationId: startHarmonisationRun
       responses:
         "201":
@@ -78,6 +82,10 @@ paths:
         "403":
           content: {}
           description: Only curator users are allowed to access this API.
+        "409":
+          content: {}
+          description: "The user has no usable LLM credentials: none are saved, or their provider or model is no\
+            \ longer offered. Save them on the Profile page."
         "503":
           content: {}
           description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
@@ -285,6 +293,57 @@ paths:
       tags:
       - Harmonisation
       summary: Upload what a Harmonise run listed to ODM.
+  /api/v1/harmonisation/runs/{id}/check-llm:
+    post:
+      description: |-
+        Queues a check-llm step on a READY or RUNNING run, after the steps asked for before: the run's Pod checks
+        its LLM credentials with one request that costs no tokens, the provider's lookup of the model. The step
+        SUCCEEDED, or FAILED with a `failure` that names the cause. The run keeps the credentials it started with,
+        so credentials saved since apply to the next run, not this one.
+      operationId: checkHarmonisationRunLlm
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: "The run cannot take a step. It is not ready yet, it is finished or cancelled, or\
+            \ ODM's applications service restarted since it started."
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Check a Harmonise run's LLM credentials.
   /api/v1/harmonisation/runs/{id}/finish:
     post:
       description: |-
@@ -383,6 +442,279 @@ paths:
       tags:
       - Harmonisation
       summary: Cancel a Harmonise run.
+  /api/v1/harmonisation/llm-providers:
+    get:
+      description: |-
+        Returns the LLM providers Curators choose from, each with its models, ordered by name.
+      operationId: listHarmonisationLlmProviders
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/HarmonisationLlmProvider"
+                type: array
+          description: The request was successful. The returned value is a list of providers.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users and Harmonisation Administrators are allowed to access this API.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: List the LLM providers.
+    post:
+      description: |-
+        Adds an LLM provider and its models. Its base URL is where every run of a Curator who chooses it sends
+        their API key, so only Harmonisation Administrators may add one.
+      operationId: addHarmonisationLlmProvider
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationLlmProvider"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationLlmProvider"
+          description: The provider was added. The returned value is the provider.
+        "400":
+          content: {}
+          description: An invalid id, name, API, base URL or model.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only Harmonisation Administrators are allowed to change LLM providers.
+        "409":
+          content: {}
+          description: A provider with this id exists already.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Add an LLM provider.
+  /api/v1/harmonisation/llm-providers/{id}:
+    put:
+      description: |-
+        Replaces an LLM provider's name, API, base URL and models; its id stays. Curators who chose a model it no
+        longer lists cannot start runs until they choose again. Runs already started keep what they started with.
+      operationId: updateHarmonisationLlmProvider
+      parameters:
+      - description: Id of the provider.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationLlmProvider"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationLlmProvider"
+          description: The provider was updated. The returned value is the provider.
+        "400":
+          content: {}
+          description: An invalid name, API, base URL or model, or an id in the body that is not the path's.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only Harmonisation Administrators are allowed to change LLM providers.
+        "404":
+          content: {}
+          description: No provider with this id.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Update an LLM provider.
+    delete:
+      description: |-
+        Removes an LLM provider and its models. Curators who chose it keep their credentials, which read
+        PROVIDER_REMOVED, and cannot start runs until they choose another. Runs already started keep what they
+        started with.
+      operationId: deleteHarmonisationLlmProvider
+      parameters:
+      - description: Id of the provider.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: The provider was removed.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only Harmonisation Administrators are allowed to change LLM providers.
+        "404":
+          content: {}
+          description: No provider with this id.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Remove an LLM provider.
+  /api/v1/harmonisation/llm-credentials:
+    get:
+      description: |-
+        Returns the user's LLM credentials, without the key, which ODM never returns.
+      operationId: getHarmonisationLlmCredentials
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationLlmCredentials"
+          description: The request was successful. The returned value is the user's credentials.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: The user has no LLM credentials saved.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Retrieve the user's LLM credentials.
+    put:
+      description: |-
+        Saves the user's LLM credentials, replacing any saved before. The provider and model must be ones a
+        Harmonisation Administrator set up. Saving makes no call to the provider: a run's check-llm step does. Runs
+        already started keep the credentials they started with.
+      operationId: saveHarmonisationLlmCredentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationLlmCredentialsUpdate"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationLlmCredentials"
+          description: The credentials were saved. The returned value is them, without the key.
+        "400":
+          content: {}
+          description: "An unknown provider, a model it does not list, or an invalid key, or no key where one\
+            \ is needed: with none saved, or with another provider."
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Save the user's LLM credentials.
+    delete:
+      description: |-
+        Deletes the user's LLM credentials. Runs already started keep the credentials they started with; the user
+        cannot start another until they save new ones.
+      operationId: deleteHarmonisationLlmCredentials
+      responses:
+        "204":
+          content: {}
+          description: The credentials were deleted.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: The user has no LLM credentials saved.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Delete the user's LLM credentials.
 components:
   schemas:
     HarmonisationRun:
@@ -494,14 +826,15 @@ components:
       description: A step that applications sent the run's Pod, or will, in the order the Curator asked for them.
       properties:
         id:
-          description: Unique within the run, `list-files-1`, `list-files-2`, ..., `upload-to-odm-1`, ..., and
-            `shutdown`, which ends every finished run.
+          description: Unique within the run, `list-files-1`, `list-files-2`, ..., `upload-to-odm-1`, ...,
+            `check-llm-1`, ..., and `shutdown`, which ends every finished run.
           readOnly: true
           type: string
         action:
           enum:
           - list-files
           - upload-to-odm
+          - check-llm
           - shutdown
           readOnly: true
           type: string
@@ -527,6 +860,19 @@ components:
           type: string
         error:
           description: Why the step failed, as the run's Pod reported it.
+          readOnly: true
+          type: string
+        failure:
+          description: |-
+            The cause of a failed step that called the LLM, where the run's Pod can tell it; absent otherwise.
+            LLM_KEY_MISSING: the run's Curator had no usable credentials when it started. LLM_KEY_REJECTED: the
+            provider refused the key. LLM_MODEL_UNAVAILABLE: the provider does not know the model, or the key may
+            not use it. LLM_UNREACHABLE: no answer from the provider. A key saved since applies to the next run.
+          enum:
+          - LLM_KEY_MISSING
+          - LLM_KEY_REJECTED
+          - LLM_MODEL_UNAVAILABLE
+          - LLM_UNREACHABLE
           readOnly: true
           type: string
         bucket:
@@ -634,6 +980,125 @@ components:
       type: object
       example:
         path: harmonisation-demo/study-1
+    HarmonisationLlmProvider:
+      description: |-
+        An LLM provider Curators choose from, and its models. A run of a Curator who chose it sends their API key to
+        its base URL.
+      properties:
+        id:
+          description: Chosen when the provider is added, and fixed after; an update carries its path's id.
+          maxLength: 64
+          pattern: "^[a-z0-9-]+$"
+          type: string
+        name:
+          description: The name Curators see.
+          maxLength: 128
+          type: string
+        api:
+          description: The API the run's Pod speaks to the provider. OPENAI also covers endpoints compatible with
+            OpenAI's API.
+          enum:
+          - ANTHROPIC
+          - OPENAI
+          type: string
+        baseUrl:
+          description: The root of the provider's API, https and without a version, e.g. https://api.anthropic.com.
+            The run's Pod appends the API's own paths, such as /v1/models/<model>. No user info, query or fragment.
+          format: uri
+          maxLength: 512
+          pattern: "^https://"
+          type: string
+        models:
+          description: The models Curators may choose, as the provider names them, in printable ASCII without
+            spaces. ODM returns them sorted.
+          items:
+            maxLength: 128
+            pattern: "^[!-~]+$"
+            type: string
+          minItems: 1
+          type: array
+          uniqueItems: true
+        updatedAt:
+          description: When the provider was last added or changed, ISO 8601 in UTC.
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - api
+      - baseUrl
+      - models
+      type: object
+      example:
+        id: anthropic
+        name: Anthropic
+        api: ANTHROPIC
+        baseUrl: https://api.anthropic.com
+        models:
+        - claude-sonnet-4-5
+        updatedAt: "2026-10-26T12:00:00Z"
+    HarmonisationLlmCredentials:
+      description: A user's LLM credentials, as ODM returns them, which is without the key.
+      properties:
+        provider:
+          description: Id of the provider.
+          readOnly: true
+          type: string
+        model:
+          readOnly: true
+          type: string
+        status:
+          description: |-
+            USABLE: runs can start with them. PROVIDER_REMOVED or MODEL_REMOVED: a Harmonisation Administrator
+            removed the provider or the model since, and the user cannot start a run until they choose again.
+          enum:
+          - USABLE
+          - PROVIDER_REMOVED
+          - MODEL_REMOVED
+          readOnly: true
+          type: string
+        updatedAt:
+          description: When the user last saved them, ISO 8601 in UTC.
+          readOnly: true
+          type: string
+      required:
+      - provider
+      - model
+      - status
+      - updatedAt
+      type: object
+      example:
+        provider: anthropic
+        model: claude-sonnet-4-5
+        status: USABLE
+        updatedAt: "2026-10-26T12:00:00Z"
+    HarmonisationLlmCredentialsUpdate:
+      description: The LLM credentials a user saves.
+      properties:
+        provider:
+          description: Id of a provider a Harmonisation Administrator set up.
+          type: string
+        model:
+          description: One of that provider's models.
+          type: string
+        apiKey:
+          description: |-
+            The user's own key for the provider: 1 to 1024 printable ASCII characters, without spaces, once
+            trimmed. Required with no credentials saved, or with another provider than the saved one; left out, the
+            saved key stays. ODM never returns it.
+          format: password
+          maxLength: 1024
+          minLength: 1
+          type: string
+          writeOnly: true
+      required:
+      - provider
+      - model
+      type: object
+      example:
+        provider: anthropic
+        model: claude-sonnet-4-5
+        apiKey: sk-ant-...
   securitySchemes:
     Access-token:
       in: header
