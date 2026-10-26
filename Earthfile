@@ -99,7 +99,7 @@ r-api-client:
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.33.3
+    FROM swaggerapi/swagger-ui:v5.34.0
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
