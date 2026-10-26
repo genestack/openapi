@@ -3,8 +3,7 @@ info:
   description: |-
     Harmonise management: Curators start Harmonise runs, steer them one step at a time, and finish or cancel them.
     Each run is a Pod that ODM starts, and that calls ODM with a token of the Curator who started it. A Curator sees
-    and steers only the runs they started. Available where Harmonise is enabled (`frontend.harmonisation.enabled` in
-    applications' configuration); elsewhere every path answers 404.
+    and steers only the runs they started.
 
     If you are signed in to ODM in this browser, you can try out calls on this page straight away. To call the API from anywhere else, such as a script, you need an API token. API tokens can be obtained under your profile in ODM.
 
