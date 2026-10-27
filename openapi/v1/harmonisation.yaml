@@ -1035,7 +1035,7 @@ components:
         api: ANTHROPIC
         baseUrl: https://api.anthropic.com
         models:
-        - claude-sonnet-4-5
+        - claude-sonnet-5-5
         updatedAt: "2026-10-26T12:00:00Z"
     HarmonisationLlmCredentials:
       description: A user's LLM credentials, as ODM returns them, which is without the key.
@@ -1069,7 +1069,7 @@ components:
       type: object
       example:
         provider: anthropic
-        model: claude-sonnet-4-5
+        model: claude-sonnet-5-5
         status: USABLE
         updatedAt: "2026-10-26T12:00:00Z"
     HarmonisationLlmCredentialsUpdate:
@@ -1097,7 +1097,7 @@ components:
       type: object
       example:
         provider: anthropic
-        model: claude-sonnet-4-5
+        model: claude-sonnet-5-5
         apiKey: sk-ant-...
   securitySchemes:
     Access-token:
