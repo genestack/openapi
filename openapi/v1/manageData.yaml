@@ -161,6 +161,68 @@ paths:
       summary: List studies with a deactivated owner
       tags:
       - Manage Data
+    patch:
+      description: |-
+        Assigns a new study owner to studies whose current owner is deactivated.
+        Requires the Ownership Recovery Administrator system role. The role grants the right to reassign any matching study in the organisation, regardless of whether the study is shared with the user.
+        The new owner must be an existing, active user of the same organisation.
+        Studies whose current owner is active cannot be reassigned through this endpoint and their ownership is transferred by the study owner only.
+      operationId: reassignStudiesWithDeactivatedOwner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssignStudyOwnerRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/ReassignedStudy"
+                type: array
+          description: |-
+            The studies with the new owner, in the order of the request; duplicate accessions are ignored.
+             Each item has the same shape as an item of the GET response, plus the previous owner for confirmation.
+        "400":
+          content: {}
+          description: |-
+            The request is empty or malformed, a required field is missing, or the accessions list is empty.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: "Access denied. Required system role: 'Ownership Recovery Administrator'."
+        "404":
+          content: {}
+          description: |-
+            Studies are not found: an accession does not exist, has an invalid format, or is not a study. No study is reassigned.
+             The message lists all such accessions in the order of the request. For example: "Studies [GSF000001, GSF000002] not found."
+        "409":
+          content: {}
+          description: |-
+            The current study owner of a study is active. No study is reassigned.
+             The message lists all such studies in the order of the request. For example: "Ownership of studies [GSF000001, GSF000002] cannot be reassigned: each has an active study owner."
+        "422":
+          content: {}
+          description: |-
+            The new owner does not exist or is not active. No study is reassigned.
+             For example: "User newOwner@genestack.com not found or deactivated. The new study owner must be an active user."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Assign a new owner to studies with deactivated owner
+      tags:
+      - Manage Data
   /api/v1/manage-data/data:
     delete:
       description: |-
@@ -260,12 +322,16 @@ paths:
       - Manage Data
 components:
   schemas:
+    AssignStudyOwnerRequest:
+      $ref: "./schemas/manage-data/AssignStudyOwnerRequest.yaml"
     DetachedCollection:
       $ref: "./schemas/manage-data/DetachedCollection.yaml"
     DetachedObject:
       $ref: "./schemas/manage-data/DetachedObject.yaml"
     ManagedObject:
       $ref: "./schemas/manage-data/ManagedObject.yaml"
+    ReassignedStudy:
+      $ref: "./schemas/manage-data/ReassignedStudy.yaml"
     StudiesWithDeactivatedOwner:
       $ref: "./schemas/manage-data/StudiesWithDeactivatedOwner.yaml"
     StudyWithDeactivatedOwner:
