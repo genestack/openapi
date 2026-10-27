@@ -26,7 +26,7 @@ processors-controller-spec:
     SAVE ARTIFACT /openapi.yaml
 
 python-api-client:
-    FROM python:3.15.0-alpine
+    FROM python:3.15.1-alpine
     WORKDIR /app
 
     CACHE /root/.cache
@@ -99,7 +99,7 @@ r-api-client:
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.33.3
+    FROM swaggerapi/swagger-ui:v5.34.0
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /

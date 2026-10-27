@@ -1,0 +1,19 @@
+example:
+  accessions:
+  - GSF1977157
+  - GSF1977158
+  newOwnerEmail: newOwner@genestack.com
+properties:
+  accessions:
+    description: Accessions of studies with deactivated owner.
+    items:
+      type: string
+      pattern: "GSF\\d+"
+    type: array
+  newOwnerEmail:
+    description: Email of the active user who becomes the new study owner.
+    type: string
+required:
+- accessions
+- newOwnerEmail
+type: object

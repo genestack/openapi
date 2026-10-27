@@ -3,16 +3,16 @@ info:
   description: |-
     This swagger page describes the manageData APIs.
 
-    Before carrying out any API calls you will need an API token. API tokens can be obtained under your profile within the Genestack software.
+    If you are signed in to ODM in this browser, you can try out calls on this page straight away. To call the API from anywhere else, such as a script, you need an API token. API tokens can be obtained under your profile in ODM.
 
-    To try out calls in this swagger page:
+    To try out calls on this page:
 
-    1. Click the 'Authorize' button below to enter your API token
-    2. Scroll to the 'Parameters' section for the method you wish to try out and click the 'Try it out' button
-    3. Enter parameter values that you wish to try
-    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears
+    1. If you are not signed in to ODM in this browser, click the 'Authorize' button below and enter your API token.
+    2. Scroll to the 'Parameters' section of the method you wish to try out and click the 'Try it out' button.
+    3. Enter the parameter values you wish to try.
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears.
 
-    The server response will be in the section that follows.
+    The server response appears in the section that follows.
   title: ODM API
   version: default-released
 tags:
@@ -100,7 +100,7 @@ paths:
   /api/v1/manage-data/ownership-recovery/studies:
     get:
       description: |-
-        Returns the list of studies whose current Study Owner is deactivated, so that a new owner can be assigned. Requires the Ownership Recovery Administrator system role. The role grants limited visibility of all matching studies in the organisation, regardless of whether they are shared with the user.
+        Returns the list of studies whose current study owner is deactivated, so that a new owner can be assigned. Requires the Ownership Recovery Administrator system role. The role grants limited visibility of all matching studies in the organisation, regardless of whether they are shared with the user.
       operationId: listStudiesWithDeactivatedOwner
       parameters:
       - description: Deactivated user email.
@@ -161,6 +161,68 @@ paths:
       summary: List studies with a deactivated owner
       tags:
       - Manage Data
+    patch:
+      description: |-
+        Assigns a new study owner to studies whose current owner is deactivated.
+        Requires the Ownership Recovery Administrator system role. The role grants the right to reassign any matching study in the organisation, regardless of whether the study is shared with the user.
+        The new owner must be an existing, active user of the same organisation.
+        Studies whose current owner is active cannot be reassigned through this endpoint and their ownership is transferred by the study owner only.
+      operationId: reassignStudiesWithDeactivatedOwner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssignStudyOwnerRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/ReassignedStudy"
+                type: array
+          description: |-
+            The studies with the new owner, in the order of the request; duplicate accessions are ignored.
+             Each item has the same shape as an item of the GET response, plus the previous owner for confirmation.
+        "400":
+          content: {}
+          description: |-
+            The request is empty or malformed, a required field is missing, or the accessions list is empty.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: "Access denied. Required system role: 'Ownership Recovery Administrator'."
+        "404":
+          content: {}
+          description: |-
+            Studies are not found: an accession does not exist, has an invalid format, or is not a study. No study is reassigned.
+             The message lists all such accessions in the order of the request. For example: "Studies [GSF000001, GSF000002] not found."
+        "409":
+          content: {}
+          description: |-
+            The current study owner of a study is active. No study is reassigned.
+             The message lists all such studies in the order of the request. For example: "Ownership of studies [GSF000001, GSF000002] cannot be reassigned: each has an active study owner."
+        "422":
+          content: {}
+          description: |-
+            The new owner does not exist or is not active. No study is reassigned.
+             For example: "User newOwner@genestack.com not found or deactivated. The new study owner must be an active user."
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      summary: Assign a new owner to studies with deactivated owner
+      tags:
+      - Manage Data
   /api/v1/manage-data/data:
     delete:
       description: |-
@@ -190,6 +252,14 @@ paths:
          * If you delete a `FILE`, the file will be removed from ODM.
          * If you delete a `TEMPLATE`, it will be removed from all Studies where it was previously applied, and the Default Template will be automatically applied to those Studies instead.
          * If you delete `DICTIONARY`, its terms will no longer be available. `DICTIONARY` that is used in any template cannot be deleted and should be removed from those templates first.
+
+         Each object can be deleted only by a user with the required permissions:
+         * A `STUDY` and the objects that belong to it (`SAMPLE_GROUP`, `SAMPLE_OBJECT`, `LIBRARY_GROUP`, `PREPARATION_GROUP`, `CELL_GROUP`, `TABULAR_DATA`, `GENE_VARIANT`, `FLOW_CYTOMETRY`, `FILE`) can be deleted only by the study owner.
+         * Detached objects (objects without a link to a study, and studies without any linked objects; see `GET /api/v1/manage-data/detached-objects`) can be deleted only by a user with the `Orphan Data Administrator` system role. A detached `STUDY` can also be deleted by its owner.
+         * A `REFERENCE_GENOME` or a `DICTIONARY` can be deleted only by a user with the `Reference Data Administrator` system role.
+         * A `TEMPLATE` can be deleted only by a user with the `Template Administrator` system role.
+
+         If the user lacks the required permissions for any of the provided objects, the deletion will not be performed.
       operationId: deleteData
       parameters:
       - description: Accessions files to be deleted.
@@ -253,12 +323,16 @@ paths:
       - Manage Data
 components:
   schemas:
+    AssignStudyOwnerRequest:
+      $ref: "./schemas/manage-data/AssignStudyOwnerRequest.yaml"
     DetachedCollection:
       $ref: "./schemas/manage-data/DetachedCollection.yaml"
     DetachedObject:
       $ref: "./schemas/manage-data/DetachedObject.yaml"
     ManagedObject:
       $ref: "./schemas/manage-data/ManagedObject.yaml"
+    ReassignedStudy:
+      $ref: "./schemas/manage-data/ReassignedStudy.yaml"
     StudiesWithDeactivatedOwner:
       $ref: "./schemas/manage-data/StudiesWithDeactivatedOwner.yaml"
     StudyWithDeactivatedOwner:
