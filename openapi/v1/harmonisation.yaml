@@ -385,7 +385,9 @@ paths:
       description: |-
         Cancels a run the user started that is not over, FINISHING included: its Pod is deleted at once, with no
         shutdown step, its step in progress is CANCELLED and the steps not started SKIPPED, and the run is
-        CANCELLED. A run that is over is returned unchanged.
+        CANCELLED. A run that is over is returned unchanged. A cancel takes effect even while ClickHouse, where run
+        history is kept, cannot be written: it is recorded there, with who asked and when, once it can be, unless
+        applications restarts first, which records the run FAILED by the restart.
       operationId: cancelHarmonisationRun
       parameters:
       - description: Id of the run.
