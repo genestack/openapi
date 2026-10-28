@@ -3,7 +3,9 @@ info:
   description: |-
     Harmonise management: Curators start Harmonise runs, steer them one step at a time, and finish or cancel them.
     Each run is a Pod that ODM starts, and that calls ODM with a token of the Curator who started it. A Curator sees
-    and steers only the runs they started.
+    and steers only the runs they started. Runs are numbered 1, 2, 3, ... and kept for good: what a run did, its steps
+    and what they found and imported, stays readable after the run is over and its Pod is gone, and who asked for what
+    and when is recorded. Its log is not kept.
 
     A run calls an LLM with the credentials its Curator saved: a provider, a model and their own API key, which
     ODM never returns. Harmonisation Administrators set up the providers and models Curators choose from.
@@ -26,8 +28,8 @@ paths:
   /api/v1/harmonisation/runs:
     get:
       description: |-
-        Returns the runs the user started, newest first, without the files each listing found and without the log.
-        A finished run stays listed until ODM's applications service restarts.
+        Returns every run the user started, newest first, those that are over included, without the files each
+        listing found and without the log.
       operationId: listHarmonisationRuns
       responses:
         "200":
@@ -48,7 +50,8 @@ paths:
           description: Only curator users are allowed to access this API.
         "503":
           content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -88,7 +91,8 @@ paths:
             \ longer offered. Save them on the Profile page."
         "503":
           content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -103,8 +107,8 @@ paths:
   /api/v1/harmonisation/runs/{id}:
     get:
       description: |-
-        Returns a run the user started, with its steps, what each listing found, and the latest log records
-        its Pod sent.
+        Returns a run the user started, with its steps and what each listing found, and, while the run is not over,
+        the latest log records its Pod sent.
       operationId: getHarmonisationRun
       parameters:
       - description: Id of the run.
@@ -112,7 +116,9 @@ paths:
         name: id
         required: true
         schema:
-          type: string
+          format: int64
+          minimum: 1
+          type: integer
       responses:
         "200":
           content:
@@ -120,6 +126,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/HarmonisationRun"
           description: The request was successful. The returned value is the run.
+        "400":
+          content: {}
+          description: The run id is not a number.
         "401":
           content: {}
           description: |-
@@ -133,7 +142,8 @@ paths:
           description: No run with this id, or not one the user started.
         "503":
           content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -145,47 +155,6 @@ paths:
       tags:
       - Harmonisation
       summary: Retrieve a Harmonise run.
-    delete:
-      description: |-
-        Removes a run the user started at once, whatever its status: its Pod is deleted, which stops it, and its
-        record and its token go.
-      operationId: deleteHarmonisationRun
-      parameters:
-      - description: Id of the run.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: The run was deleted.
-        "401":
-          content: {}
-          description: |-
-            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
-        "403":
-          content: {}
-          description: Only curator users are allowed to access this API.
-        "404":
-          content: {}
-          description: No run with this id, or not one the user started.
-        "503":
-          content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
-        "500":
-          content: {}
-          description: "An internal server error occurred. This indicates an unexpected\
-            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
-            \ including the error details."
-      security:
-      - Access-token: []
-      - Genestack-API-Token: []
-      tags:
-      - Harmonisation
-      summary: Delete a Harmonise run.
   /api/v1/harmonisation/runs/{id}/steps:
     post:
       description: |-
@@ -198,7 +167,9 @@ paths:
         name: id
         required: true
         schema:
-          type: string
+          format: int64
+          minimum: 1
+          type: integer
       requestBody:
         content:
           application/json:
@@ -214,7 +185,7 @@ paths:
           description: The step was queued. The returned value is the step.
         "400":
           content: {}
-          description: Invalid bucket name, or no bucket given and none configured.
+          description: The run id is not a number, an invalid bucket name, or no bucket given and none configured.
         "401":
           content: {}
           description: |-
@@ -232,7 +203,8 @@ paths:
             \ ODM's applications service restarted since it started."
         "503":
           content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -257,7 +229,9 @@ paths:
         name: id
         required: true
         schema:
-          type: string
+          format: int64
+          minimum: 1
+          type: integer
       responses:
         "201":
           content:
@@ -265,6 +239,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/HarmonisationRunStep"
           description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number.
         "401":
           content: {}
           description: |-
@@ -281,7 +258,8 @@ paths:
           description: The run cannot take a step, or no listing has found any files yet.
         "503":
           content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -307,7 +285,9 @@ paths:
         name: id
         required: true
         schema:
-          type: string
+          format: int64
+          minimum: 1
+          type: integer
       responses:
         "201":
           content:
@@ -315,6 +295,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/HarmonisationRunStep"
           description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number.
         "401":
           content: {}
           description: |-
@@ -332,7 +315,8 @@ paths:
             \ ODM's applications service restarted since it started."
         "503":
           content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -357,7 +341,9 @@ paths:
         name: id
         required: true
         schema:
-          type: string
+          format: int64
+          minimum: 1
+          type: integer
       responses:
         "200":
           content:
@@ -365,6 +351,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/HarmonisationRun"
           description: The request was successful. The returned value is the run.
+        "400":
+          content: {}
+          description: The run id is not a number.
         "401":
           content: {}
           description: |-
@@ -376,12 +365,10 @@ paths:
         "404":
           content: {}
           description: No run with this id, or not one the user started.
-        "409":
-          content: {}
-          description: "ODM's applications service restarted since the run started; delete it instead."
         "503":
           content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -406,7 +393,9 @@ paths:
         name: id
         required: true
         schema:
-          type: string
+          format: int64
+          minimum: 1
+          type: integer
       responses:
         "200":
           content:
@@ -414,6 +403,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/HarmonisationRun"
           description: The request was successful. The returned value is the run.
+        "400":
+          content: {}
+          description: The run id is not a number.
         "401":
           content: {}
           description: |-
@@ -425,12 +417,10 @@ paths:
         "404":
           content: {}
           description: No run with this id, or not one the user started.
-        "409":
-          content: {}
-          description: "ODM's applications service restarted since the run started; delete it instead."
         "503":
           content: {}
-          description: Kubernetes, where the runs' Pods live, cannot be reached or refused the request.
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -720,20 +710,21 @@ components:
     HarmonisationRun:
       description: |-
         A Harmonise run: a Pod that applications started for the Curator, steered over its stream one step at a
-        time. Its record lives in applications' memory, so a run started before applications last restarted reads
-        as its Pod does, and a finished one is listed until applications restarts.
+        time. Its record is kept in ClickHouse for good, and reads the same once the run is over and its Pod is gone.
+        A run that was not over when applications restarted is FAILED, and its Pod is deleted.
       properties:
         id:
-          description: Id of the run, a UUID; its Pod is harmonisation-run-<id>.
+          description: Id of the run, numbered 1, 2, 3, ... in the order runs start, where a start that failed may
+            leave a gap; its Pod is harmonisation-run-<id>.
+          format: int64
           readOnly: true
-          type: string
+          type: integer
         status:
           description: |-
             PENDING until the run's Pod has connected and reported ready; READY to take a step, RUNNING while it
             takes one; FINISHING once the Curator finished it, until its Pod has shut down; then FINISHED. FAILED when
-            its Pod died, went or ran past its deadline. CANCELLED once the Curator cancelled it: its Pod was deleted
-            at once. FINISHED, FAILED and CANCELLED are final. UNKNOWN for a run applications holds no record of
-            whose Pod is in an unknown state.
+            its Pod died, went or ran past its deadline, or applications restarted before it was over. CANCELLED once
+            the Curator cancelled it: its Pod was deleted at once. FINISHED, FAILED and CANCELLED are final.
           enum:
           - PENDING
           - READY
@@ -742,7 +733,6 @@ components:
           - FINISHED
           - FAILED
           - CANCELLED
-          - UNKNOWN
           readOnly: true
           type: string
         startedBy:
@@ -777,7 +767,7 @@ components:
           readOnly: true
           type: string
         connected:
-          description: Whether the run's Pod has its stream open now; absent for a run applications holds no record of.
+          description: Whether the run's Pod has its stream open now; false once the run is over.
           readOnly: true
           type: boolean
         steps:
@@ -788,7 +778,9 @@ components:
           readOnly: true
           type: array
         log:
-          description: The latest log records the run's Pod sent over its stream, oldest first; absent in run lists.
+          description: |-
+            The latest log records the run's Pod sent over its stream, oldest first, while the run is not over. A run's
+            log is not kept: absent once the run is over, and in run lists.
           items:
             $ref: "#/components/schemas/HarmonisationRunLogLine"
           readOnly: true
@@ -796,9 +788,13 @@ components:
       required:
       - id
       - status
+      - startedBy
+      - createdAt
+      - connected
+      - steps
       type: object
       example:
-        id: 0b5a1f9e-4c7d-4e2a-9f3b-6d8c2e1a7b40
+        id: 42
         status: READY
         startedBy: curator@example.com
         createdAt: "2026-10-24T17:19:08Z"
