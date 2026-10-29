@@ -5,7 +5,7 @@ info:
     Each run is a Pod that ODM starts, and that calls ODM with a token of the Curator who started it. A Curator sees
     and steers only the runs they started. Runs are numbered 1, 2, 3, ... and kept for good: what a run did, its steps
     and what they found and imported, stays readable after the run is over and its Pod is gone, and who asked for what
-    and when is recorded. Its log is not kept.
+    and when is recorded. A run's log is not ODM's: its Pod writes it to stderr, for the cluster's log collection.
 
     A run calls an LLM with the credentials its Curator saved: a provider, a model and their own API key, which
     ODM never returns. Harmonisation Administrators set up the providers and models Curators choose from.
@@ -29,7 +29,7 @@ paths:
     get:
       description: |-
         Returns every run the user started, newest first, those that are over included, without the files each
-        listing found and without the log.
+        listing found.
       operationId: listHarmonisationRuns
       responses:
         "200":
@@ -107,8 +107,7 @@ paths:
   /api/v1/harmonisation/runs/{id}:
     get:
       description: |-
-        Returns a run the user started, with its steps and what each listing found, and, while the run is not over,
-        the latest log records its Pod sent.
+        Returns a run the user started, with its steps and what each listing found.
       operationId: getHarmonisationRun
       parameters:
       - description: Id of the run.
@@ -779,14 +778,6 @@ components:
             $ref: "#/components/schemas/HarmonisationRunStep"
           readOnly: true
           type: array
-        log:
-          description: |-
-            The latest log records the run's Pod sent over its stream, oldest first, while the run is not over. A run's
-            log is not kept: absent once the run is over, and in run lists.
-          items:
-            $ref: "#/components/schemas/HarmonisationRunLogLine"
-          readOnly: true
-          type: array
       required:
       - id
       - status
@@ -815,11 +806,6 @@ components:
           - key: harmonisation-demo/study-1/study.tsv
             size: 191
             lastModified: "2026-10-24T17:16:03Z"
-        log:
-        - time: "2026-10-24T17:19:11.198Z"
-          level: INFO
-          logger: pipeline.main
-          message: Ready for steps
     HarmonisationRunStep:
       description: A step that applications sent the run's Pod, or will, in the order the Curator asked for them.
       properties:
@@ -905,28 +891,6 @@ components:
         status: PENDING
         bucket: odm
         path: harmonisation-demo/study-1
-    HarmonisationRunLogLine:
-      description: A log record the run's Pod sent over its stream.
-      properties:
-        time:
-          description: ISO 8601 in UTC.
-          readOnly: true
-          type: string
-        level:
-          readOnly: true
-          type: string
-        logger:
-          readOnly: true
-          type: string
-        message:
-          readOnly: true
-          type: string
-      required:
-      - time
-      - level
-      - logger
-      - message
-      type: object
     HarmonisationFile:
       description: A file a list-files step found under its path.
       properties:
