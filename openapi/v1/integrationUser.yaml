@@ -3962,6 +3962,13 @@ paths:
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: {}
+          description: The group or its data could not be found.
+        "422":
+          content: {}
+          description: The group has more than one data matrix, which is not
+            supported.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -5458,6 +5465,13 @@ paths:
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: { }
+          description: The group or its data could not be found.
+        "422":
+          content: { }
+          description: The group has more than one data matrix, which is not
+            supported.
         "500":
           content: { }
           description: "An internal server error occurred. This indicates an unexpected\
