@@ -21,10 +21,6 @@ repository guidance.
 | Merging, SDK generation, dependencies, containers, documentation assets | [Build and delivery guide](docs/agents/build-and-delivery.md) |
 | Agent documentation changes | Keep these reading routes and source links accurate; validate links and whitespace without regenerating SDKs |
 
-Codex and supported Claude Code installations use this same rule set. When
-changing agent entry points or troubleshooting loading, read the
-[loading note](docs/agents/entry-points.md).
-
 The build and delivery guide has shared authority over `build.gradle.kts`,
 `settings.gradle.kts`, `buildSrc/**`, `gradle/**`, `gradlew`, `gradlew.bat`,
 `Earthfile`, `requirements.txt`, `requirements.R`, `renovate.json`,
