@@ -198,12 +198,11 @@ paths:
           description: No run with this id, or not one the user started.
         "409":
           content: {}
-          description: "The run cannot take a step. It is not ready yet, it is finished, or ODM's applications\
-            \ service restarted since it started."
+          description: The run cannot take a step. It is not ready yet, or it is finished.
         "503":
           content: {}
           description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
-            be reached or refused the request.
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -258,7 +257,7 @@ paths:
         "503":
           content: {}
           description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
-            be reached or refused the request.
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -310,12 +309,11 @@ paths:
           description: No run with this id, or not one the user started.
         "409":
           content: {}
-          description: "The run cannot take a step. It is not ready yet, it is finished, or ODM's applications\
-            \ service restarted since it started."
+          description: The run cannot take a step. It is not ready yet, or it is finished.
         "503":
           content: {}
           description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
-            be reached or refused the request.
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -371,7 +369,7 @@ paths:
         "503":
           content: {}
           description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
-            be reached or refused the request.
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -662,7 +660,9 @@ components:
       description: |-
         A Harmonise run: a Pod that applications started for the Curator, steered over its stream one step at a
         time. Its record is kept in ClickHouse for good, and reads the same once the run is over and its Pod is gone.
-        A run that was not over when applications restarted is FAILED, and its Pod is deleted.
+        A run that was open when applications restarted resumes once its Pod reconnects, with its Pod and its token.
+        One whose Pod had not reported ready, unless it was finished already, or does not reconnect within 15 minutes,
+        is FAILED, and its Pod deleted.
       properties:
         id:
           description: Id of the run, numbered 1, 2, 3, ... in the order runs start, where a start that failed may
@@ -675,7 +675,8 @@ components:
             PENDING until the run's Pod has connected and reported ready; READY to take a step, RUNNING while it
             takes one; FINISHING once the Curator finished it, until its Pod has shut down; then FINISHED. FAILED when
             its Pod died, went or ran past its deadline before it shut down, its shutdown step failed, or applications
-            restarted before it was over. FINISHED and FAILED are final.
+            restarted before its Pod was ready, or its Pod did not reconnect within 15 minutes of a restart. FINISHED
+            and FAILED are final.
           enum:
           - PENDING
           - READY
@@ -716,7 +717,8 @@ components:
           readOnly: true
           type: string
         connected:
-          description: Whether the run's Pod has its stream open now; false once the run is over.
+          description: Whether the run's Pod has its stream open now; false once the run is over, and after an
+            applications restart until the Pod has reconnected.
           readOnly: true
           type: boolean
         steps:
