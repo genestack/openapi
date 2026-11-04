@@ -121,19 +121,7 @@ swagger:
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:${OPENAPI_VERSION}
     SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/swagger:latest
 
-stoplight:
-    FROM nginxinc/nginx-unprivileged:1.31.7-alpine
-
-    COPY +build/v1/schemas /usr/share/nginx/html/schemas/
-    COPY +build/v1/odmApi.yaml /usr/share/nginx/html/
-    COPY openapi/stoplight/fs /
-
-    ARG --required OPENAPI_VERSION
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/stoplight:${OPENAPI_VERSION}
-    SAVE IMAGE --push ${HARBOR_DOCKER_REGISTRY}/stoplight:latest
-
 main:
     BUILD +swagger
-    BUILD +stoplight
     BUILD +r-api-client
     BUILD +python-api-client
