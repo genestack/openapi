@@ -325,6 +325,259 @@ paths:
       tags:
       - Harmonisation
       summary: Check a Harmonise run's LLM credentials.
+  /api/v1/harmonisation/runs/{id}/extract:
+    post:
+      description: |-
+        Queues an extract step on a READY run with no step queued or running: the run's Pod reads a folder of a
+        bucket into tables, and sends what it read for review (`reviewKind` `extraction`, at `.../review`). The
+        first extraction names the folder in `path`, and `bucket` defaults to the run's default bucket. Changes to an
+        extraction name it in `feedback.attemptStepId`, which must be the latest successful extract step: the new
+        attempt revises its reading plan with the comments, on the same bucket and path unless the request gives
+        others. Once a transform step has succeeded, the run takes no more extract steps: to extract again, start a
+        new run.
+      operationId: extractInHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationExtractRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number, an invalid bucket name, no bucket given and none configured, no `path` for the first extraction, or feedback outside its limits.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: |-
+            The run cannot take this step: it is not READY, or has a step queued or running; an extraction succeeded
+            already and the request has no `feedback`; a transform step succeeded already; or `feedback.attemptStepId` is
+            not the latest successful extract step.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Extract a folder in a Harmonise run, or extract it again with changes.
+  /api/v1/harmonisation/runs/{id}/transform:
+    post:
+      description: |-
+        Queues a transform step on a READY run with no step queued or running: the run's Pod plans how the approved
+        extraction maps to a template, executes the plan and checks the result, and sends it for review (`reviewKind`
+        `transformation`). Without `feedback` it approves the latest successful extraction and needs `templateId`.
+        With `feedback` it revises the latest successful transform step, named in `feedback.attemptStepId`, on the same
+        extraction and template: its plan is made again with the comments, then executed and checked again. Needs an
+        LLM provider with the OPENAI API: otherwise the step fails with `LLM_API_UNSUPPORTED`. Once an export step has
+        succeeded, the run takes no more transform steps.
+      operationId: transformInHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationTransformRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number, no `templateId` for the first transformation, or feedback outside its limits.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: |-
+            The run cannot take this step: it is not READY, or has a step queued or running; no extraction has succeeded;
+            a transformation succeeded already and the request has no `feedback`; an export step succeeded already; or
+            `feedback.attemptStepId` is not the latest successful transform step.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Transform a Harmonise run's extraction, or transform it again with changes.
+  /api/v1/harmonisation/runs/{id}/export:
+    post:
+      description: |-
+        Queues an export step on a READY run with no step queued or running, approving its latest successful
+        transformation: the run's Pod writes the Package to the run's default bucket under
+        `harmonisation/runs/<run id>/<step id>/`, and imports its study and samples into ODM as the user, linked. The
+        step's `upload` says what was imported and where the Package is. After a successful export the run takes no
+        more pipeline steps, only finishing.
+      operationId: exportHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number, or the run has no default bucket.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: |-
+            The run cannot take this step: it is not READY, or has a step queued or running; no transformation has
+            succeeded; or an export succeeded already.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Export a Harmonise run's transformation to ODM.
+  /api/v1/harmonisation/runs/{id}/steps/{stepId}/review:
+    get:
+      description: |-
+        Returns what the Curator reviews after an extract or a transform step: the JSON object the run's Pod sent,
+        in the format `kind` names, whose JSON Schema the pipeline publishes. It never changes once the step has it,
+        so it can be cached for good. The run's steps carry `reviewKind` once theirs exists.
+      operationId: getHarmonisationRunStepReview
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      - description: Id of the step, e.g. `extract-1`.
+        in: path
+        name: stepId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationStepReview"
+          description: The request was successful. The returned value is the step's review payload.
+        "400":
+          content: {}
+          description: The run id is not a number.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started; no step with this id in it; or the step has no review payload.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Retrieve the review payload of a Harmonise run's step.
   /api/v1/harmonisation/runs/{id}/finish:
     post:
       description: |-
@@ -723,7 +976,7 @@ components:
           type: boolean
         steps:
           description: The steps the Curator asked for, in order; the shutdown step last once a run whose Pod connected is finished.
-            In run lists, without the files each listing found.
+            In run lists, without the files each listing found and without the Curator's feedback.
           items:
             $ref: "#/components/schemas/HarmonisationRunStep"
           readOnly: true
@@ -761,7 +1014,8 @@ components:
       properties:
         id:
           description: Unique within the run, `list-files-1`, `list-files-2`, ..., `upload-to-odm-1`, ...,
-            `check-llm-1`, ..., and `shutdown`, which ends every run finished after its Pod connected.
+            `check-llm-1`, ..., `extract-1`, ..., `transform-1`, ..., `export-1`, ..., and `shutdown`, which ends
+            every run finished after its Pod connected.
           readOnly: true
           type: string
         action:
@@ -769,6 +1023,9 @@ components:
           - list-files
           - upload-to-odm
           - check-llm
+          - extract
+          - transform
+          - export
           - shutdown
           readOnly: true
           type: string
@@ -800,16 +1057,18 @@ components:
             The cause of a failed step that called the LLM, where the run's Pod can tell it; absent otherwise.
             LLM_KEY_MISSING: the run's Curator had no usable credentials when it started. LLM_KEY_REJECTED: the
             provider refused the key. LLM_MODEL_UNAVAILABLE: the provider does not know the model, or the key may
-            not use it. LLM_UNREACHABLE: no answer from the provider. A key saved since applies to the next run.
+            not use it. LLM_UNREACHABLE: no answer from the provider. LLM_API_UNSUPPORTED: the step needs an API
+            the provider does not speak, as transform needs OPENAI. A key saved since applies to the next run.
           enum:
           - LLM_KEY_MISSING
           - LLM_KEY_REJECTED
           - LLM_MODEL_UNAVAILABLE
           - LLM_UNREACHABLE
+          - LLM_API_UNSUPPORTED
           readOnly: true
           type: string
         bucket:
-          description: What a list-files step lists, or the listing an upload-to-odm step uploads.
+          description: What a list-files or an extract step reads, or the listing an upload-to-odm step uploads.
           readOnly: true
           type: string
         path:
@@ -829,6 +1088,46 @@ components:
           type: array
         upload:
           $ref: "#/components/schemas/HarmonisationOdmUpload"
+        templateId:
+          description: The template a transform step harmonises to, e.g. `public_studies`.
+          readOnly: true
+          type: string
+        basedOn:
+          description: The attempt a transform or an export step is built on, the one the Curator approved, e.g.
+            `extract-2` for a transform, `transform-1` for an export.
+          readOnly: true
+          type: string
+        revises:
+          description: The attempt of the same phase an extract or a transform step revises with the Curator's
+            feedback; absent for the first attempt of a phase.
+          readOnly: true
+          type: string
+        feedback:
+          $ref: "#/components/schemas/HarmonisationFeedback"
+        reviewKind:
+          description: The format of the step's review payload, once it has one, at `.../steps/{stepId}/review`.
+          enum:
+          - extraction
+          - transformation
+          readOnly: true
+          type: string
+        review:
+          description: |-
+            Where the Curator's review of a successful extract or transform step stands, as ODM computes it.
+            AWAITING: nothing has been asked on it yet. APPROVED: a later step is built on it (`basedOn`).
+            CHANGES_REQUESTED: a later step's feedback names it. When both happened, the latest wins. Absent for
+            other steps.
+          enum:
+          - AWAITING
+          - APPROVED
+          - CHANGES_REQUESTED
+          readOnly: true
+          type: string
+        superseded:
+          description: True for an extract or a transform step once a later attempt of the same phase has
+            succeeded. A superseded attempt stays readable, but nothing can be built on it or comment on it.
+          readOnly: true
+          type: boolean
       required:
       - id
       - action
@@ -861,7 +1160,7 @@ components:
       - lastModified
       type: object
     HarmonisationOdmUpload:
-      description: What an upload-to-odm step imported into ODM, once it has.
+      description: What an upload-to-odm or an export step imported into ODM, once it has.
       properties:
         studyAccession:
           readOnly: true
@@ -870,7 +1169,17 @@ components:
           readOnly: true
           type: string
         expressionGroupAccessions:
-          description: One per imported GCT file; empty without any.
+          description: One per imported GCT file; empty without any, and for export.
+          items:
+            type: string
+          readOnly: true
+          type: array
+        packageBucket:
+          description: The bucket an export step wrote its Package to.
+          readOnly: true
+          type: string
+        packageKeys:
+          description: Every key an export step wrote its Package's files to.
           items:
             type: string
           readOnly: true
@@ -891,6 +1200,94 @@ components:
       type: object
       example:
         path: harmonisation-demo/study-1
+    HarmonisationExtractRequest:
+      description: An extract step. The first extraction of a run names `path`; changes to an extraction give
+        `feedback`.
+      properties:
+        bucket:
+          description: Bucket to read; the run's default bucket for the first extraction, and the revised
+            attempt's bucket for changes, when absent.
+          type: string
+        path:
+          description: Folder within the bucket. Required for the first extraction; the revised attempt's path for
+            changes, when absent.
+          type: string
+        feedback:
+          $ref: "#/components/schemas/HarmonisationFeedback"
+      type: object
+      example:
+        path: harmonisation-demo/study-1
+    HarmonisationTransformRequest:
+      description: A transform step. The first transformation names `templateId`; changes to a transformation
+        give `feedback`, and keep its template.
+      properties:
+        templateId:
+          description: The template to harmonise to. Required for the first transformation.
+          type: string
+        feedback:
+          $ref: "#/components/schemas/HarmonisationFeedback"
+      type: object
+      example:
+        templateId: public_studies
+    HarmonisationFeedback:
+      description: The Curator's request for changes to an attempt, which the step that carries it runs again.
+      properties:
+        attemptStepId:
+          description: The attempt reviewed, a successful step of the same phase, e.g. `extract-1`.
+          type: string
+        comments:
+          items:
+            $ref: "#/components/schemas/HarmonisationComment"
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - attemptStepId
+      - comments
+      type: object
+      example:
+        attemptStepId: transform-1
+        comments:
+        - context: field:Sample.Disease
+          comment: Map `diagnosis` here, not `condition`.
+    HarmonisationComment:
+      description: One comment of the Curator's feedback.
+      properties:
+        context:
+          description: What the comment is about, as `<kind>:<ref>` free text, e.g. `object:samples` or
+            `field:Sample.Disease`; empty or absent for the whole attempt.
+          maxLength: 500
+          type: string
+        comment:
+          maxLength: 4000
+          minLength: 1
+          type: string
+      required:
+      - comment
+      type: object
+    HarmonisationStepReview:
+      description: What the Curator reviews after an extract or a transform step.
+      properties:
+        stepId:
+          readOnly: true
+          type: string
+        kind:
+          description: The format of `payload`, whose JSON Schema the pipeline publishes as schemas/<kind>.json.
+          enum:
+          - extraction
+          - transformation
+          readOnly: true
+          type: string
+        payload:
+          additionalProperties: true
+          description: The JSON object the run's Pod sent, as it sent it.
+          readOnly: true
+          type: object
+      required:
+      - stepId
+      - kind
+      - payload
+      type: object
     HarmonisationLlmProvider:
       description: |-
         An LLM provider Curators choose from, and its models. A run of a Curator who chose it sends their API key to
