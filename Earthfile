@@ -3,7 +3,7 @@ VERSION 0.8
 ARG --global --required HARBOR_DOCKER_REGISTRY
 
 build:
-    FROM eclipse-temurin:25.0.4_7-jdk-alpine
+    FROM eclipse-temurin:25.0.5_8-jdk-alpine
     WORKDIR /app
 
     CACHE /root/.gradle/caches
@@ -26,7 +26,7 @@ processors-controller-spec:
     SAVE ARTIFACT /openapi.yaml
 
 python-api-client:
-    FROM python:3.15.1-alpine
+    FROM python:3.15.2-alpine
     WORKDIR /app
 
     CACHE /root/.cache
@@ -59,7 +59,7 @@ python-api-client:
                 twine upload dist/* --repository-url ${PYPI_REPOSITORY}
 
 r-api-client:
-    FROM rocker/r-ver:4.6.1
+    FROM rocker/r-ver:4.6.2
     WORKDIR /app
 
     CACHE /root/.cache
@@ -99,7 +99,7 @@ r-api-client:
               --upload-file "${archive}" "${R_REGISTRY}/src/contrib/${archive}"
 
 swagger:
-    FROM swaggerapi/swagger-ui:v5.34.0
+    FROM swaggerapi/swagger-ui:v5.34.1
 
     COPY +build/v1 /usr/share/nginx/html/yaml/
     COPY openapi/swagger/fs /
