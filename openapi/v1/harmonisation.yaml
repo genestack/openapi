@@ -73,8 +73,9 @@ paths:
         With a body naming `path`, the run's first extract step, `extract-1`, of that folder in `bucket` (the
         run's default bucket when absent), is queued at once, and sent to the Pod as soon as it reports ready: the
         run is PENDING meanwhile, and lists its source from the start. `templateId` is kept as the run's template:
-        a first transform step that names none harmonises to it. Without a body the run starts with no step, as
-        before.
+        a first transform step that names none harmonises to it. `approval` says who approves its attempts
+        (`HarmonisationApproval`): with `AUTOMATIC`, ODM takes the run from that extraction to the import into
+        ODM, and finishes it, by itself. Without a body the run starts with no step, as before.
       operationId: startHarmonisationRun
       requestBody:
         content:
@@ -99,7 +100,8 @@ paths:
           description: Only curator users are allowed to access this API.
         "400":
           content: {}
-          description: The body names a blank `path`, or a bucket the run cannot read.
+          description: The body names a blank `path`, or a bucket the run cannot read; or asks for `approval`
+            `AUTOMATIC` without `path` or `templateId`, or with no default bucket for its export.
         "409":
           content: {}
           description: "The user has no usable LLM credentials: none are saved, or their provider or model is no\
@@ -1039,6 +1041,12 @@ components:
             that names none harmonises to it. Absent when none was chosen.
           readOnly: true
           type: string
+        approval:
+          allOf:
+            - $ref: '#/components/schemas/HarmonisationApproval'
+          description: Who approves the run's attempts, as chosen when it was started; `MANUAL` for a run started
+            without a choice.
+          readOnly: true
         defaultBucket:
           description: The bucket a list-files step lists when it names none.
           readOnly: true
@@ -1307,6 +1315,20 @@ components:
       - name
       - path
       type: object
+    HarmonisationApproval:
+      description: |
+        Who approves the run's attempts. `MANUAL`, the default: the Curator reviews each attempt and asks for
+        the next step. `AUTOMATIC`: ODM approves each successful attempt as it ends, with the agent's own
+        answers to its questions (each question's recommended option, which its Plan applies already): a
+        successful extraction is transformed, a successful transformation exported and imported into ODM, and
+        the run is finished once that export succeeds. A step that fails stops it there, and the run waits for
+        the Curator, as a `MANUAL` one does; so does a step ODM cannot ask for, such as one whose request cannot
+        be written to the run's history. An `AUTOMATIC` run is started with `path` and `templateId`, and
+        needs the run's default bucket for its export.
+      enum:
+        - MANUAL
+        - AUTOMATIC
+      type: string
     HarmonisationStartRunRequest:
       description: What a new run works on, chosen when it is started. Every field is optional; without `path`
         the run starts with no step.
@@ -1322,10 +1344,13 @@ components:
           description: The template to harmonise to, e.g. `public_studies`; a first transform step that names
             none uses it.
           type: string
+        approval:
+          $ref: '#/components/schemas/HarmonisationApproval'
       type: object
       example:
         path: harmonisation-demo/study-1
         templateId: public_studies
+        approval: AUTOMATIC
     HarmonisationExtractRequest:
       description: An extract step. The first extraction of a run names `path`; changes to an extraction give
         `feedback`.
