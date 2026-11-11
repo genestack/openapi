@@ -50,7 +50,7 @@ paths:
 
         ```
         {
-            "groupAccession": "GSF1234567"
+            "accession": "GSF1234567"
         }
         ```
       operationId: startImportStudy
@@ -82,6 +82,38 @@ paths:
       summary: Import study metadata from a TSV file
       tags:
         - Data import jobs
+      x-codegen-request-body-name: body
+  /api/v1/jobs/import/study/multipart:
+    post:
+      description: |2
+
+        When the job finishes successfully, the following **result** object can be obtained using a `GET /job/{id}/output` request:
+
+        ```
+        {
+            "accession": "GSF1234567"
+        }
+        ```
+      operationId: startImportStudyMultipart
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ImportStudyFromMultipartRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Info"
+          description: successful operation
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+      summary: Import study metadata from a TSV file via multipart/form-data upload
+      tags:
+        - Data import via direct file upload
       x-codegen-request-body-name: body
   /api/v1/jobs/import/samples:
     post:
@@ -836,6 +868,8 @@ components:
       $ref: "./schemas/job/ImportMetadataRequest.yaml"
     ImportMetadataFromMultipartRequest:
       $ref: "./schemas/job/ImportMetadataFromMultipartRequest.yaml"
+    ImportStudyFromMultipartRequest:
+      $ref: "./schemas/job/ImportStudyFromMultipartRequest.yaml"
     ImportSignalRunRequest:
       $ref: "./schemas/job/ImportSignalRunRequest.yaml"
     ImportSignalRunFomMultipartRequest:
