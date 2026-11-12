@@ -36,7 +36,7 @@ ARG OPENAPI_VERSION
 
 # Merges openapi/v1 into odmApi.yaml and generates generated/python and generated/r from
 # it. Gradle's cross-process locks do not reach another build's container, so the caches
-# are this repo's own (id) and one build uses them at a time (locked, as Earthly's CACHE).
+# are this repo's own (id) and one build uses them at a time (locked).
 RUN --mount=type=cache,id=openapi-gradle-caches,target=/root/.gradle/caches,sharing=locked \
     --mount=type=cache,id=openapi-gradle-wrapper,target=/root/.gradle/wrapper,sharing=locked \
     : "${OPENAPI_VERSION:?is not set}" \

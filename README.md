@@ -24,4 +24,4 @@ make swagger PROCESSORS_CONTROLLER_VERSION=<version>  # the Swagger UI image CI 
 make test PROCESSORS_CONTROLLER_VERSION=<version>     # generate both clients, then tox run-parallel and R CMD check
 ```
 
-`make swagger` loads the image into the local Docker. `IMAGE_PUSH=registry` publishes it instead, and `IMAGE_VERSION` sets its tag and both clients' version. `make push` also uploads the Python client to PyPI (TestPyPI for a development version) and the R client to Nexus, with the secrets in `.secret` and the R repositories in `.arg`. It also tags `latest`; `make help` lists every target.
+`make swagger` loads the image into the local Docker. `IMAGE_PUSH=registry` publishes it instead, and `IMAGE_VERSION` sets its tag and both clients' version. It also tags `latest`. `make push` also builds both clients, and with `IMAGE_PUSH` registry or full uploads the Python client to PyPI (TestPyPI for a development version) and the R client to Nexus, with the secrets in `.secret` and the R repositories in `.arg`. `make help` lists every target.

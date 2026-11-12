@@ -29,6 +29,10 @@ BUILD_INPUTS = \
 	--build-context=processors_controller_spec=docker-image://$(IMAGE_REGISTRY)/genestack/odm-oas/processors-controller:$(or $(PROCESSORS_CONTROLLER_VERSION),$(error PROCESSORS_CONTROLLER_VERSION is not set)) \
 	--build-arg=OPENAPI_VERSION=$(IMAGE_VERSION)
 
+# Uploads run only when IMAGE_PUSH sends images to the registry (registry, full), as CI's Push
+# build sets it. A local `make push` builds the artifacts and uploads nothing.
+UPLOAD                 := $(filter registry full,$(IMAGE_PUSH))
+
 .PHONY: main
 main: push
 
@@ -52,7 +56,7 @@ help: ## Display this help.
 ##@ Build
 
 .PHONY: push
-push: swagger python-client r-client ## Publish the image and upload both clients, without checks or tests.
+push: swagger python-client r-client ## Build the image and both clients, without checks or tests; publish and upload them with IMAGE_PUSH registry or full.
 
 .PHONY: swagger
 swagger: ## Build the Swagger UI image, tagged IMAGE_VERSION and latest, to IMAGE_PUSH (docker, registry, full, none).
@@ -68,10 +72,10 @@ swagger: ## Build the Swagger UI image, tagged IMAGE_VERSION and latest, to IMAG
 # In CI the Vault step writes every secret to .secret and the R repositories to .arg in
 # the checkout (teamcity-main's templates/Vault.kt).
 .PHONY: python-client
-python-client: ## Upload the Python client to PyPI (release IMAGE_VERSION) or TestPyPI, with PYPI_TOKEN and PYPI_TOKEN_TEST from .secret or the environment.
+python-client: ## Build the Python client and, with IMAGE_PUSH registry or full, upload it to PyPI (release IMAGE_VERSION) or TestPyPI, with PYPI_TOKEN and PYPI_TOKEN_TEST from .secret or the environment.
 	@if [ -f .secret ]; then set -a; . ./.secret; set +a; fi; \
 	docker buildx build \
-	--target=python-client-upload \
+	--target=$(if $(UPLOAD),python-client-upload,python-client) \
 	$(BUILD_INPUTS) \
 	--secret=id=PYPI_TOKEN,env=PYPI_TOKEN \
 	--secret=id=PYPI_TOKEN_TEST,env=PYPI_TOKEN_TEST \
@@ -80,11 +84,11 @@ python-client: ## Upload the Python client to PyPI (release IMAGE_VERSION) or Te
 	.
 
 .PHONY: r-client
-r-client: ## Upload the R client to R_REGISTRY_RELEASES (release IMAGE_VERSION) or R_REGISTRY_SNAPSHOTS from .arg, with NEXUS_USER and NEXUS_PASSWORD from .secret.
+r-client: ## Build the R client and, with IMAGE_PUSH registry or full, upload it to R_REGISTRY_RELEASES (release IMAGE_VERSION) or R_REGISTRY_SNAPSHOTS from .arg, with NEXUS_USER and NEXUS_PASSWORD from .secret.
 	@if [ -f .secret ]; then set -a; . ./.secret; set +a; fi; \
 	if [ -f .arg ]; then set -a; . ./.arg; set +a; fi; \
 	docker buildx build \
-	--target=r-client-upload \
+	--target=$(if $(UPLOAD),r-client-upload,r-client) \
 	$(BUILD_INPUTS) \
 	--build-arg=R_REGISTRY_RELEASES \
 	--build-arg=R_REGISTRY_SNAPSHOTS \
@@ -101,4 +105,3 @@ test: ## Generate both clients, then run tox run-parallel on the Python one and 
 	$(BUILD_INPUTS) \
 	--output=type=cacheonly \
 	.
-
