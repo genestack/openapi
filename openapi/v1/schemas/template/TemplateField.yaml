@@ -4,7 +4,6 @@ example:
   metainfoType: com.genestack.api.metainfo.StringValue
   isRequired: true
   isReadOnly: false
-  isTechnical: false
   description: Scientific name of the organism the sample comes from
   dictionaryName: NCBI Taxonomy
 properties:
@@ -46,19 +45,14 @@ properties:
   isReadOnly:
     description: Whether users cannot edit the field's values in ODM.
     type: boolean
-  isTechnical:
-    description: |-
-      Whether ODM fills the field's values itself, so a metadata file does not supply them:
-      `genestack:accession` for every data type, `Data Class` for expression, variant and flow cytometry groups,
-      and `Features (string)`, `Features (numeric)` and `Values (numeric)` for expression groups.
-    type: boolean
   description:
     description: Absent when the field has no description.
     type: string
   dictionaryName:
     description: |-
       Name of the dictionary the field's values are checked against.
-      Absent when the field has no dictionary or the current user cannot read it.
+      Absent when the field has no dictionary or the current user cannot read it; a template saved by such a user
+      and uploaded again loses that field's dictionary.
     type: string
 required:
 - name
@@ -66,5 +60,4 @@ required:
 - metainfoType
 - isRequired
 - isReadOnly
-- isTechnical
 type: object
