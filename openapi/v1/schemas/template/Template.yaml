@@ -1,3 +1,17 @@
+example:
+  id: GSF000123
+  name: Default template
+  description: Template applied to studies imported without one
+  isDefault: true
+  fields:
+  - name: Organism
+    dataType: genestack:sampleObject
+    type: string
+    isRequired: true
+    isReadOnly: false
+    isTechnical: false
+    dictionaryId: GSF000456
+    dictionaryName: NCBI Taxonomy
 allOf:
 - $ref: "#/components/schemas/TemplateInfo"
 - properties:
