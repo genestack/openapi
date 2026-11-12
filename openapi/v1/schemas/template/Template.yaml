@@ -6,11 +6,10 @@ example:
   fields:
   - name: Organism
     dataType: genestack:sampleObject
-    type: string
+    metainfoType: com.genestack.api.metainfo.StringValue
     isRequired: true
     isReadOnly: false
     isTechnical: false
-    dictionaryId: GSF000456
     dictionaryName: NCBI Taxonomy
 allOf:
 - $ref: "#/components/schemas/TemplateInfo"

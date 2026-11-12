@@ -1,12 +1,11 @@
 example:
   name: Organism
   dataType: genestack:sampleObject
-  type: string
+  metainfoType: com.genestack.api.metainfo.StringValue
   isRequired: true
   isReadOnly: false
   isTechnical: false
   description: Scientific name of the organism the sample comes from
-  dictionaryId: GSF000456
   dictionaryName: NCBI Taxonomy
 properties:
   name:
@@ -23,23 +22,23 @@ properties:
       * `genestack:transcriptomicsParent`, `genestack:genomicsParent`, `genestack:facsParent`: expression, variant and flow cytometry groups
       * `genestack:transcriptomicsObject`, `genestack:genomicsObject`, `genestack:facsObject`: the expression, variant and flow cytometry objects inside those groups
     type: string
-  type:
+  metainfoType:
     description: |-
-      Type of the field's values:
+      Java class of the field's values, as the SDK's template JSON files and the Template Editor's export name it:
 
-      * `string`: text
-      * `integer`: a whole number
-      * `decimal`: a number
-      * `boolean`: `true` or `false`
-      * `datetime`: a date, with or without a time
-      * `externalLink`: a URL
+      * `com.genestack.api.metainfo.StringValue`: text
+      * `com.genestack.api.metainfo.IntegerValue`: a whole number
+      * `com.genestack.api.metainfo.DecimalValue`: a number
+      * `com.genestack.api.metainfo.BooleanValue`: `true` or `false`
+      * `com.genestack.api.metainfo.DateTimeValue`: a date, with or without a time
+      * `com.genestack.api.metainfo.ExternalLink`: a URL
     enum:
-    - string
-    - integer
-    - decimal
-    - boolean
-    - datetime
-    - externalLink
+    - com.genestack.api.metainfo.StringValue
+    - com.genestack.api.metainfo.IntegerValue
+    - com.genestack.api.metainfo.DecimalValue
+    - com.genestack.api.metainfo.BooleanValue
+    - com.genestack.api.metainfo.DateTimeValue
+    - com.genestack.api.metainfo.ExternalLink
     type: string
   isRequired:
     description: Whether every object of the data type must have a value for this field.
@@ -56,16 +55,15 @@ properties:
   description:
     description: Absent when the field has no description.
     type: string
-  dictionaryId:
-    description: Accession of the dictionary the field's values are checked against. Absent when the field has no dictionary.
-    type: string
   dictionaryName:
-    description: Name of that dictionary. Absent when the field has no dictionary or the current user cannot read it.
+    description: |-
+      Name of the dictionary the field's values are checked against.
+      Absent when the field has no dictionary or the current user cannot read it.
     type: string
 required:
 - name
 - dataType
-- type
+- metainfoType
 - isRequired
 - isReadOnly
 - isTechnical

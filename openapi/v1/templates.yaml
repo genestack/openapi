@@ -55,7 +55,7 @@ paths:
       summary: Retrieve a metadata template with its fields
       description: |-
         Returns a template and every field it defines, for every data type.
-        Each field gives its value type, whether a value is required, whether it is read-only,
+        Each field gives the Java class of its values, whether a value is required, whether it is read-only,
         and the dictionary its values are checked against, if any.
       tags:
         - Templates
