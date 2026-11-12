@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  description: |-
+    These API endpoints list the metadata templates of the organization and return a template with its fields.
+
+    If you are signed in to ODM in this browser, you can try out calls on this page straight away. To call the API from anywhere else, such as a script, you need an API token. API tokens can be obtained under your profile in ODM.
+
+    To try out calls on this page:
+
+    1. If you are not signed in to ODM in this browser, click the 'Authorize' button below and enter your API token.
+    2. Scroll to the 'Parameters' section of the method you wish to try out and click the 'Try it out' button.
+    3. Enter the parameter values you wish to try.
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears.
+
+    The server response appears in the section that follows.
+  title: ODM API
+  version: default-released
+tags:
+  - name: Templates
+paths:
+  /api/v1/templates:
+    get:
+      operationId: listTemplates
+      summary: List the metadata templates
+      description: |-
+        Returns every metadata template the current user can read, without its fields.
+        The template with `isDefault` set is the organization's default, the one import uses when no template is given.
+      tags:
+        - Templates
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TemplateInfo"
+          description: The request was successful. The returned value is a list of templates.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+  /api/v1/templates/{id}:
+    get:
+      operationId: getTemplate
+      summary: Retrieve a metadata template with its fields
+      description: |-
+        Returns a template and every field it defines, for every data type.
+        Each field gives its value type, whether a value is required, whether it is read-only,
+        and the dictionary its values are checked against, if any.
+      tags:
+        - Templates
+      parameters:
+        - in: path
+          name: id
+          description: Unique identifier (Genestack accession) of the template.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Template"
+          description: The request was successful. The returned value is the template.
+        "401":
+          content: { }
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "404":
+          content: { }
+          description: No template exists with the given ID, or the current user cannot read it.
+        "500":
+          content: { }
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+        - Access-token: [ ]
+        - Genestack-API-Token: [ ]
+components:
+  schemas:
+    TemplateInfo:
+      $ref: "./schemas/template/TemplateInfo.yaml"
+    Template:
+      $ref: "./schemas/template/Template.yaml"
+    TemplateField:
+      $ref: "./schemas/template/TemplateField.yaml"
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
