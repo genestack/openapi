@@ -1,0 +1,23 @@
+# The build context is this repo. Host build state stays out of the image and the cache
+# key: the image runs its own Gradle build.
+.git
+**/.gradle
+**/.kotlin
+**/build
+generated
+venv
+.venv
+**/__pycache__
+node_modules
+# The host Gradle build writes these two. The image merges its own and copies
+# processors-controller's from the processors_controller_spec named context.
+openapi/v1/odmApi.yaml
+openapi/v1/processorsController.yaml
+.idea
+.vscode
+.DS_Store
+# CI's Vault step writes its secrets into the checkout. No stage reads them.
+.env
+.env-woq
+.arg
+.secret
