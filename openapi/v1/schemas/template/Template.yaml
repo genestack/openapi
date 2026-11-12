@@ -1,42 +1,19 @@
-example:
-  id: GSF000123
-  name: Default template
-  description: Template applied to studies imported without one
-  isDefault: true
-  fields:
-  - name: Organism
-    dataType: genestack:sampleObject
-    type: string
-    isRequired: true
-    isReadOnly: false
-    dictionaryId: GSF000456
-    dictionaryName: NCBI Taxonomy
-properties:
-  id:
-    description: Unique identifier (Genestack accession) of the template.
-    type: string
-  name:
-    type: string
-  description:
-    description: Absent when the template has no description.
-    type: string
-  isDefault:
-    description: Whether this is the organization's default template, the one import uses when no template is given.
-    type: boolean
-  fields:
-    description: |-
-      Every field the template defines, for every data type. This includes the read-only fields ODM fills itself,
-      such as `genestack:accession` for each data type and `Data Class` for expression, variant and flow cytometry groups.
-    items:
-      $ref: "#/components/schemas/TemplateField"
-    type: array
-required:
-- id
-- name
-- isDefault
-- fields
-type: object
+allOf:
+- $ref: "#/components/schemas/TemplateInfo"
+- properties:
+    fields:
+      description: |-
+        Every field the template defines, for every data type. This includes the technical fields ODM fills itself,
+        such as `genestack:accession` for each data type, which have `isTechnical` set.
+      items:
+        $ref: "#/components/schemas/TemplateField"
+      type: array
+  required:
+  - fields
+  type: object
 components:
   schemas:
+    TemplateInfo:
+      $ref: "./TemplateInfo.yaml"
     TemplateField:
       $ref: "./TemplateField.yaml"
