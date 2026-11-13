@@ -109,6 +109,8 @@ paths:
         By default, the name is composed of the species, assembly and release values: `{species} reference genome {assembly}.{release}`.
 
         The reference genome will be available after initialisation. Please track the initialisation task status.
+
+        Only a user with the system role Reference Data Administrator can upload a reference genome.
       requestBody:
         content:
           application/json:
@@ -133,7 +135,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: { }
-          description: Not enough permissions to call method.
+          description: "Access denied. Required system role: 'Reference Data Administrator'."
         "500":
           content: { }
           description: "An internal server error occurred. This indicates an unexpected\
