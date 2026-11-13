@@ -611,7 +611,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: "Library group, signal group or libraries to link not found"
+          description: "Library group, signal group or libraries to link not found; or `targetId` is in no study, and a link is created only to an object in a study."
         "401":
           content: {}
           description: |-
@@ -711,7 +711,7 @@ paths:
         "400":
           content: {}
           description: "Preparation group, signal group or preparations to link not\
-            \ found"
+            \ found; or `targetId` is in no study, and a link is created only to an object in a study."
         "401":
           content: {}
           description: |-
@@ -821,7 +821,7 @@ paths:
         "400":
           content: {}
           description: "Sample group, signal group or samples to the link were not\
-            \ found, or the specified linking attribute was not found."
+            \ found, or the specified linking attribute was not found; or `targetId` is in no study, and a link is created only to an object in a study."
         "401":
           content: {}
           description: |-
@@ -1096,7 +1096,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -1190,7 +1190,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -1284,7 +1284,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -1569,6 +1569,9 @@ paths:
           content: {}
           description: All signal data were linked to the samples from the specified
             sample group.
+        "400":
+          content: {}
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -1725,7 +1728,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -2055,7 +2058,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -2206,7 +2209,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -2406,7 +2409,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -2557,7 +2560,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -4096,6 +4099,9 @@ paths:
           content: {}
           description: All signal data were linked to the samples from the specified
             sample group.
+        "400":
+          content: {}
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
@@ -4254,7 +4260,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is in no study, and a link is created only to an object in a study.
         "401":
           content: {}
           description: |-
