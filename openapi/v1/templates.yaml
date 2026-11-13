@@ -55,9 +55,10 @@ paths:
       summary: Retrieve a metadata template with its fields
       description: |-
         Returns a template and every field a metadata file supplies, for every data type, in the format the SDK's
-        template upload script takes. The technical fields ODM fills itself, such as `genestack:accession`, are left out.
+        template upload script takes, plus each field's `dictionaryAccession`. The technical fields ODM fills itself,
+        such as `genestack:accession`, are left out.
         Each field gives the Java class of its values, whether a value is required, whether it is read-only,
-        and the dictionary its values are checked against, if any.
+        and the dictionary its values are checked against, if any, by accession and name.
       tags:
         - Templates
       parameters:

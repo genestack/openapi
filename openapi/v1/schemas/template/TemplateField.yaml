@@ -5,6 +5,7 @@ example:
   isRequired: true
   isReadOnly: false
   description: Scientific name of the organism the sample comes from
+  dictionaryAccession: GSF000456
   dictionaryName: NCBI Taxonomy
 properties:
   name:
@@ -47,6 +48,12 @@ properties:
     type: boolean
   description:
     description: Absent when the field has no description.
+    type: string
+  dictionaryAccession:
+    description: |-
+      Accession of the dictionary the field's values are checked against. Absent when the field has no dictionary.
+      The template upload format has no such property: drop it from each field before uploading a template with
+      the SDK's template script.
     type: string
   dictionaryName:
     description: |-

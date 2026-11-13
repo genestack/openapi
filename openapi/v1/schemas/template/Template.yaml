@@ -9,13 +9,15 @@ example:
     metainfoType: com.genestack.api.metainfo.StringValue
     isRequired: true
     isReadOnly: false
+    dictionaryAccession: GSF000456
     dictionaryName: NCBI Taxonomy
 allOf:
 - $ref: "#/components/schemas/TemplateInfo"
 - properties:
     fields:
       description: |-
-        Every field of the template that a metadata file supplies, for every data type, in the template upload format.
+        Every field of the template that a metadata file supplies, for every data type, in the template upload format
+        plus `dictionaryAccession`.
         The technical fields ODM fills itself are left out, as that format leaves them out: `genestack:accession` for
         every data type, `Data Class` for expression, variant and flow cytometry groups, and `Features (string)`,
         `Features (numeric)` and `Values (numeric)` for expression groups.
