@@ -557,7 +557,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -656,7 +656,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -756,7 +756,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -1046,7 +1046,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -1140,7 +1140,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -1234,7 +1234,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -1507,7 +1507,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -1676,7 +1676,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -2006,7 +2006,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -2158,7 +2158,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -2357,7 +2357,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -2509,7 +2509,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -4034,7 +4034,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -4204,7 +4204,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
