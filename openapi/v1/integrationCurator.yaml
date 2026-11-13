@@ -513,7 +513,7 @@ paths:
           description: All links were created.
         "400":
           content: {}
-          description: "Incorrect Cell or Expression group provided, see error message for details."
+          description: "Incorrect Cell or Expression group provided, see error message for details; or `targetId` is in no study, and a link is created only to an object in a study."
         "401":
           content: {}
           description: |-
@@ -2733,7 +2733,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -2824,7 +2824,7 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted, for example because `targetId` is in no study and has no links.
+          description: Link cannot be deleted.
         "401":
           content: {}
           description: |-
@@ -7496,7 +7496,7 @@ paths:
           description: Cell objects have been fully linked to samples.
         "400":
           content: { }
-          description: Sample group, cell group or samples to the link were not found.
+          description: "Sample group, cell group or samples to the link were not found; or `targetId` is in no study, and a link is created only to an object in a study."
         "401":
           content: { }
           description: |-
@@ -7542,7 +7542,7 @@ paths:
           description: Cell objects have been fully linked to libraries.
         "400":
           content: { }
-          description: Sample group, cell group or libraries to the link were not found.
+          description: "Sample group, cell group or libraries to the link were not found; or `targetId` is in no study, and a link is created only to an object in a study."
         "401":
           content: { }
           description: |-
@@ -7588,7 +7588,7 @@ paths:
           description: Cell objects have been fully linked to preparations.
         "400":
           content: { }
-          description: Sample group, cell group or preparations to the link were not found.
+          description: "Sample group, cell group or preparations to the link were not found; or `targetId` is in no study, and a link is created only to an object in a study."
         "401":
           content: { }
           description: |-
