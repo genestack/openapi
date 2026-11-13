@@ -1,6 +1,8 @@
 openapi: 3.1.0
 info:
   description: |-
+    **Disclaimer:** This is a beta version of the Templates APIs and is subject to change as development progresses. Backward compatibility is not guaranteed at this stage.
+
     These API endpoints list the metadata templates of the organization and return a template with its fields.
 
     If you are signed in to ODM in this browser, you can try out calls on this page straight away. To call the API from anywhere else, such as a script, you need an API token. API tokens can be obtained under your profile in ODM.
