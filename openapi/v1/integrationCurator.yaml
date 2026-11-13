@@ -535,7 +535,7 @@ paths:
       description: |-
         Delete a link between a group of expression objects and a group of library objects.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteExpressionGroupLibraryGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -565,7 +565,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -634,7 +634,7 @@ paths:
       description: |-
         Delete a link between a group of expression objects and a group of preparation objects.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteExpressionGroupPreparationGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -664,7 +664,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -734,7 +734,7 @@ paths:
       description: |-
         Delete a link between a group of expression objects and a group of sample objects.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteExpressionGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -764,7 +764,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -1024,7 +1024,7 @@ paths:
       description: |-
         Delete a link between an expression object and a library.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteExpressionLibraryLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1054,7 +1054,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -1118,7 +1118,7 @@ paths:
       description: |-
         Delete a link between an expression object and a preparation.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteExpressionPreparationLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1148,7 +1148,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -1212,7 +1212,7 @@ paths:
       description: |-
         Delete a link between an expression object and a sample.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteExpressionSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1242,7 +1242,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -1485,7 +1485,7 @@ paths:
       description: |-
         Delete a link between a group of flow-cytometry objects and a group of sample objects.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteFlowCytometryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -1515,7 +1515,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -1655,7 +1655,7 @@ paths:
       description: |-
         Delete a link between a flow-cytometry object and a sample.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteFlowCytometrySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level data block
@@ -1684,7 +1684,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -1985,7 +1985,7 @@ paths:
       description: |-
         Delete links between samples and libraries related to the specified group.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteLibraryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the library group object
@@ -2014,7 +2014,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -2137,7 +2137,7 @@ paths:
       description: |-
         Delete a link between a library and a sample.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteLibrarySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the library object
@@ -2166,7 +2166,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -2336,7 +2336,7 @@ paths:
       description: |-
         Delete links between samples and preparations related to the specified group.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deletePreparationGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation group object
@@ -2365,7 +2365,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -2488,7 +2488,7 @@ paths:
       description: |-
         Delete a link between a preparation and a sample.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deletePreparationSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation object
@@ -2517,7 +2517,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -2709,7 +2709,7 @@ paths:
       description: |-
         Delete a link between a group of sample objects and a study.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteSampleGroupStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample group object
@@ -2738,7 +2738,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -2800,7 +2800,7 @@ paths:
       description: |-
         Delete a link between a sample and a study.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteSampleStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample object
@@ -2829,7 +2829,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -4012,7 +4012,7 @@ paths:
       description: |-
         Delete a link between a group of variant objects and a group of sample objects.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteVariantGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -4042,7 +4042,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
@@ -4182,7 +4182,7 @@ paths:
       description: |-
         Delete a link between a variant object and a sample.
 
-        Only the owner of the study that `targetId` belongs to can delete the link.
+        Only the owner of the study that `targetId` belongs to can delete the link. When `targetId` belongs to no study, only its owner can.
       operationId: deleteVariantSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -4212,7 +4212,7 @@ paths:
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "403":
           content: {}
-          description: The user is not the owner of the study that `targetId` belongs to, or `targetId` belongs to no study.
+          description: The user is not the owner of the study that `targetId` belongs to, or of `targetId` itself when it belongs to no study.
         "404":
           content: {}
           description: No object exists with the given ID, or the user has no access to it.
