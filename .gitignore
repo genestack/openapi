@@ -9,7 +9,7 @@ venv
 .ci-friendly-pom.xml
 target
 
-# Earthly stuff
+# CI's Vault step writes these into the checkout
 .env
 .env-woq
 .arg
