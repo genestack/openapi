@@ -7,5 +7,5 @@ repositories {
 }
 
 dependencies {
-    implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.2.4")
+    implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.3.0")
 }
