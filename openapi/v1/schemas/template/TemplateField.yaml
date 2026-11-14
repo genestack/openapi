@@ -1,0 +1,70 @@
+example:
+  name: Organism
+  dataType: genestack:sampleObject
+  metainfoType: com.genestack.api.metainfo.StringValue
+  isRequired: true
+  isReadOnly: false
+  description: Scientific name of the organism the sample comes from
+  dictionaryAccession: GSF000456
+  dictionaryName: NCBI Taxonomy
+properties:
+  name:
+    description: Name of the metadata key, unique within its data type.
+    type: string
+  dataType:
+    description: |-
+      Data type the field applies to:
+
+      * `study`: studies
+      * `genestack:sampleObject`: samples
+      * `genestack:libraryObject`: libraries
+      * `genestack:preparationObject`: preparations
+      * `genestack:transcriptomicsParent`, `genestack:genomicsParent`, `genestack:facsParent`: expression, variant and flow cytometry groups
+      * `genestack:transcriptomicsObject`, `genestack:genomicsObject`, `genestack:facsObject`: the expression, variant and flow cytometry objects inside those groups
+    type: string
+  metainfoType:
+    description: |-
+      Java class of the field's values, as the SDK's template JSON files and the Template Editor's export name it:
+
+      * `com.genestack.api.metainfo.StringValue`: text
+      * `com.genestack.api.metainfo.IntegerValue`: a whole number
+      * `com.genestack.api.metainfo.DecimalValue`: a number
+      * `com.genestack.api.metainfo.BooleanValue`: `true` or `false`
+      * `com.genestack.api.metainfo.DateTimeValue`: a date, with or without a time
+      * `com.genestack.api.metainfo.ExternalLink`: a URL
+    enum:
+    - com.genestack.api.metainfo.StringValue
+    - com.genestack.api.metainfo.IntegerValue
+    - com.genestack.api.metainfo.DecimalValue
+    - com.genestack.api.metainfo.BooleanValue
+    - com.genestack.api.metainfo.DateTimeValue
+    - com.genestack.api.metainfo.ExternalLink
+    type: string
+  isRequired:
+    description: Whether every object of the data type must have a value for this field.
+    type: boolean
+  isReadOnly:
+    description: Whether users cannot edit the field's values in ODM.
+    type: boolean
+  description:
+    description: Absent when the field has no description.
+    type: string
+  dictionaryAccession:
+    description: |-
+      Accession of the dictionary the field's values are checked against. Absent when the field has no dictionary.
+      The template upload format has no such property: drop it from each field before uploading a template with
+      the SDK's template script.
+    type: string
+  dictionaryName:
+    description: |-
+      Name of the dictionary the field's values are checked against.
+      Absent when the field has no dictionary or the current user cannot read it; a template saved by such a user
+      and uploaded again loses that field's dictionary.
+    type: string
+required:
+- name
+- dataType
+- metainfoType
+- isRequired
+- isReadOnly
+type: object
