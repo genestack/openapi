@@ -1,0 +1,18 @@
+properties:
+  templateId:
+    example: GSF334953
+    type: string
+  file:
+    type: string
+    format: binary
+  transformationName:
+    type: string
+    description: The property is automatically populated by the attachment transformation pipeline and must not be provided during regular multipart uploads.
+    readOnly: true
+  transformationVersion:
+    type: string
+    description: The property is automatically populated by the attachment transformation pipeline and must not be provided during regular multipart uploads.
+    readOnly: true
+required:
+  - file
+type: object
