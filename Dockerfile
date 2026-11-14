@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.28
+# syntax=docker/dockerfile:1.29
 #
 # ODM's OpenAPI specs and the three artifacts built from them: the Swagger UI image
 # (genestack/swagger), the Python client (PyPI, or TestPyPI for a development version)
@@ -18,7 +18,7 @@
 ARG JDK_IMAGE=eclipse-temurin:25.0.5_8-jdk-alpine
 ARG PYTHON_IMAGE=python:3.15.2-alpine
 ARG R_IMAGE=rocker/r-ver:4.6.2
-ARG SWAGGER_UI_IMAGE=swaggerapi/swagger-ui:v5.34.1
+ARG SWAGGER_UI_IMAGE=swaggerapi/swagger-ui:v5.35.0
 
 FROM ${JDK_IMAGE} AS build
 
