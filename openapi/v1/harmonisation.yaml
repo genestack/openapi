@@ -1,0 +1,1418 @@
+openapi: 3.1.0
+info:
+  description: |-
+    Harmonise management: Curators start Harmonise runs, steer them one step at a time, and finish them.
+    Each run is a Pod that ODM starts, and that calls ODM with a token of the Curator who started it. A Curator sees
+    and steers only the runs they started. Runs are numbered 1, 2, 3, ... and kept for good: what a run did, its steps
+    and what they found and imported, stays readable after the run is over and its Pod is gone, and who asked for what
+    and when is recorded. A run's log is not ODM's: its Pod writes it to stderr, for the cluster's log collection.
+
+    A run calls an LLM with the credentials its Curator saved: a provider, a model and their own API key, which
+    ODM never returns. Harmonisation Administrators set up the providers and models Curators choose from.
+
+    If you are signed in to ODM in this browser, you can try out calls on this page straight away. To call the API from anywhere else, such as a script, you need an API token. API tokens can be obtained under your profile in ODM.
+
+    To try out calls on this page:
+
+    1. If you are not signed in to ODM in this browser, click the 'Authorize' button below and enter your API token.
+    2. Scroll to the 'Parameters' section of the method you wish to try out and click the 'Try it out' button.
+    3. Enter the parameter values you wish to try.
+    4. Scroll to the bottom of the Parameters section and click the 'Execute' bar that appears.
+
+    The server response appears in the section that follows.
+  title: Harmonisation API
+  version: default-released
+tags:
+- name: Harmonisation
+paths:
+  /api/v1/harmonisation/runs:
+    get:
+      description: |-
+        Returns every run the user started, newest first, those that are over included, without the files each
+        listing found.
+      operationId: listHarmonisationRuns
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/HarmonisationRun"
+                type: array
+          description: The request was successful. The returned value is a list of runs.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: List the user's Harmonise runs.
+    post:
+      description: |-
+        Starts a run for the user: an API token of theirs named `Harmonise-<run id>`, and the run's Pod, which
+        calls ODM with that token. The run is PENDING until its Pod has connected and reported ready. Its token is
+        deleted once the run is over. The run takes the user's LLM credentials as they are now and keeps them to
+        its end: credentials saved later apply to the runs started after.
+      operationId: startHarmonisationRun
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRun"
+          description: The run was started. The returned value is the run.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "409":
+          content: {}
+          description: "The user has no usable LLM credentials: none are saved, or their provider or model is no\
+            \ longer offered. Save them on the Profile page."
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Start a Harmonise run.
+  /api/v1/harmonisation/runs/{id}:
+    get:
+      description: |-
+        Returns a run the user started, with its steps and what each listing found.
+      operationId: getHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRun"
+          description: The request was successful. The returned value is the run.
+        "400":
+          content: {}
+          description: The run id is not a number.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Retrieve a Harmonise run.
+  /api/v1/harmonisation/runs/{id}/steps:
+    post:
+      description: |-
+        Queues a list-files step on a READY or RUNNING run, after the steps asked for before: the run's Pod lists
+        the files under a path of a bucket. Both are optional: the run's default bucket, the whole bucket.
+      operationId: listFilesInHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationListFilesRequest"
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number, an invalid bucket name, or no bucket given and none configured.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: The run cannot take a step. It is not ready yet, or it is finished.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: List files in a Harmonise run.
+  /api/v1/harmonisation/runs/{id}/upload:
+    post:
+      description: |-
+        Queues an upload-to-odm step on a READY or RUNNING run: the run's Pod imports the files of its latest
+        successful listing into ODM as a study, as the user. The listing must hold `study.tsv` and `samples.tsv`;
+        every `*.gct` is imported as expression data of those samples, with `<name>_metadata.tsv` as its metadata.
+      operationId: uploadHarmonisationRunToOdm
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: The run cannot take a step, or no listing has found any files yet.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Upload what a Harmonise run listed to ODM.
+  /api/v1/harmonisation/runs/{id}/check-llm:
+    post:
+      description: |-
+        Queues a check-llm step on a READY or RUNNING run, after the steps asked for before: the run's Pod checks
+        its LLM credentials with one request that costs no tokens, the provider's lookup of the model. The step
+        SUCCEEDED, or FAILED with a `failure` that names the cause. The run keeps the credentials it started with,
+        so credentials saved since apply to the next run, not this one.
+      operationId: checkHarmonisationRunLlm
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: The run cannot take a step. It is not ready yet, or it is finished.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Check a Harmonise run's LLM credentials.
+  /api/v1/harmonisation/runs/{id}/extract:
+    post:
+      description: |-
+        Queues an extract step on a READY run with no step queued or running: the run's Pod reads a folder of a
+        bucket into tables, and sends what it read for review (`reviewKind` `extraction`, at `.../review`). The
+        first extraction names the folder in `path`, and `bucket` defaults to the run's default bucket. Changes to an
+        extraction name it in `feedback.attemptStepId`, which must be the latest successful extract step: the new
+        attempt revises its reading plan with the comments, on the same bucket and path unless the request gives
+        others. Once a transform step has succeeded, the run takes no more extract steps: to extract again, start a
+        new run.
+      operationId: extractInHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationExtractRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number, an invalid bucket name, no bucket given and none configured, no `path` for the first extraction, or feedback outside its limits.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: |-
+            The run cannot take this step: it is not READY, or has a step queued or running; an extraction succeeded
+            already and the request has no `feedback`; a transform step succeeded already; or `feedback.attemptStepId` is
+            not the latest successful extract step.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Extract a folder in a Harmonise run, or extract it again with changes.
+  /api/v1/harmonisation/runs/{id}/transform:
+    post:
+      description: |-
+        Queues a transform step on a READY run with no step queued or running: the run's Pod plans how the approved
+        extraction maps to a template, executes the plan and checks the result, and sends it for review (`reviewKind`
+        `transformation`). Without `feedback` it approves the latest successful extraction and needs `templateId`.
+        With `feedback` it revises the latest successful transform step, named in `feedback.attemptStepId`, on the same
+        extraction and template: its plan is made again with the comments, then executed and checked again. Needs an
+        LLM provider with the OPENAI API: otherwise the step fails with `LLM_API_UNSUPPORTED`. Once an export step has
+        succeeded, the run takes no more transform steps.
+      operationId: transformInHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationTransformRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number, no `templateId` for the first transformation, or feedback outside its limits.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: |-
+            The run cannot take this step: it is not READY, or has a step queued or running; no extraction has succeeded;
+            a transformation succeeded already and the request has no `feedback`; an export step succeeded already; or
+            `feedback.attemptStepId` is not the latest successful transform step.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Transform a Harmonise run's extraction, or transform it again with changes.
+  /api/v1/harmonisation/runs/{id}/export:
+    post:
+      description: |-
+        Queues an export step on a READY run with no step queued or running, approving its latest successful
+        transformation: the run's Pod writes the Package to the run's default bucket under
+        `harmonisation/runs/<run id>/<step id>/`, and imports its study and samples into ODM as the user, linked. The
+        step's `upload` says what was imported and where the Package is. After a successful export the run takes no
+        more pipeline steps, only finishing.
+      operationId: exportHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRunStep"
+          description: The step was queued. The returned value is the step.
+        "400":
+          content: {}
+          description: The run id is not a number, or the run has no default bucket.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "409":
+          content: {}
+          description: |-
+            The run cannot take this step: it is not READY, or has a step queued or running; no transformation has
+            succeeded; or an export succeeded already.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Export a Harmonise run's transformation to ODM.
+  /api/v1/harmonisation/runs/{id}/steps/{stepId}/review:
+    get:
+      description: |-
+        Returns what the Curator reviews after an extract or a transform step: the JSON object the run's Pod sent,
+        in the format `kind` names, whose JSON Schema the pipeline publishes. It never changes once the step has it,
+        so it can be cached for good. The run's steps carry `reviewKind` once theirs exists.
+      operationId: getHarmonisationRunStepReview
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      - description: Id of the step, e.g. `extract-1`.
+        in: path
+        name: stepId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationStepReview"
+          description: The request was successful. The returned value is the step's review payload.
+        "400":
+          content: {}
+          description: The run id is not a number.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started; no step with this id in it; or the step has no review payload.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Retrieve the review payload of a Harmonise run's step.
+  /api/v1/harmonisation/runs/{id}/finish:
+    post:
+      description: |-
+        Finishes a run the user started: it shuts down after the step in progress, the steps not sent yet are
+        skipped, and its Pod is deleted once its process has exited. The run is FINISHING until then, then FINISHED.
+        A run whose Pod never connected gets no shutdown step: its Pod is deleted at once, and the run is FINISHED,
+        with the reason `Finished before its Pod was ready`. One whose Pod connected but is not ready yet shuts down
+        once it is. Finishing a run again, or a run that is over, returns it unchanged. A run has no cancel: a step in
+        progress runs to its end. The Pod's deadline, which bounds the whole run once its Pod runs, also ends a step,
+        or a shutdown, that never does: the run is then FAILED.
+      operationId: finishHarmonisationRun
+      parameters:
+      - description: Id of the run.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationRun"
+          description: The request was successful. The returned value is the run.
+        "400":
+          content: {}
+          description: The run id is not a number.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: No run with this id, or not one the user started.
+        "503":
+          content: {}
+          description: Kubernetes, where the runs' Pods live, or ClickHouse, where their history is kept, cannot
+            be reached or refused the request. Or applications restarted and has not read the run back yet; try again.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Finish a Harmonise run.
+  /api/v1/harmonisation/llm-providers:
+    get:
+      description: |-
+        Returns the LLM providers Curators choose from, each with its models, ordered by name.
+      operationId: listHarmonisationLlmProviders
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/HarmonisationLlmProvider"
+                type: array
+          description: The request was successful. The returned value is a list of providers.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users and Harmonisation Administrators are allowed to access this API.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: List the LLM providers.
+    post:
+      description: |-
+        Adds an LLM provider and its models. Its base URL is where every run of a Curator who chooses it sends
+        their API key, so only Harmonisation Administrators may add one.
+      operationId: addHarmonisationLlmProvider
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationLlmProvider"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationLlmProvider"
+          description: The provider was added. The returned value is the provider.
+        "400":
+          content: {}
+          description: An invalid id, name, API, base URL or model.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only Harmonisation Administrators are allowed to change LLM providers.
+        "409":
+          content: {}
+          description: A provider with this id exists already.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Add an LLM provider.
+  /api/v1/harmonisation/llm-providers/{id}:
+    put:
+      description: |-
+        Replaces an LLM provider's name, API, base URL and models; its id stays. Curators who chose a model it no
+        longer lists cannot start runs until they choose again. Runs already started keep what they started with.
+      operationId: updateHarmonisationLlmProvider
+      parameters:
+      - description: Id of the provider.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationLlmProvider"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationLlmProvider"
+          description: The provider was updated. The returned value is the provider.
+        "400":
+          content: {}
+          description: An invalid name, API, base URL or model, or an id in the body that is not the path's.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only Harmonisation Administrators are allowed to change LLM providers.
+        "404":
+          content: {}
+          description: No provider with this id.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Update an LLM provider.
+    delete:
+      description: |-
+        Removes an LLM provider and its models. Curators who chose it keep their credentials, which read
+        PROVIDER_REMOVED, and cannot start runs until they choose another. Runs already started keep what they
+        started with.
+      operationId: deleteHarmonisationLlmProvider
+      parameters:
+      - description: Id of the provider.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: The provider was removed.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only Harmonisation Administrators are allowed to change LLM providers.
+        "404":
+          content: {}
+          description: No provider with this id.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Remove an LLM provider.
+  /api/v1/harmonisation/llm-credentials:
+    get:
+      description: |-
+        Returns the user's LLM credentials, without the key, which ODM never returns.
+      operationId: getHarmonisationLlmCredentials
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationLlmCredentials"
+          description: The request was successful. The returned value is the user's credentials.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: The user has no LLM credentials saved.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Retrieve the user's LLM credentials.
+    put:
+      description: |-
+        Saves the user's LLM credentials, replacing any saved before. The provider and model must be ones a
+        Harmonisation Administrator set up. Saving makes no call to the provider: a run's check-llm step does. Runs
+        already started keep the credentials they started with.
+      operationId: saveHarmonisationLlmCredentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationLlmCredentialsUpdate"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HarmonisationLlmCredentials"
+          description: The credentials were saved. The returned value is them, without the key.
+        "400":
+          content: {}
+          description: "An unknown provider, a model it does not list, or an invalid key, or no key where one\
+            \ is needed: with none saved, or with another provider."
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Save the user's LLM credentials.
+    delete:
+      description: |-
+        Deletes the user's LLM credentials. Runs already started keep the credentials they started with; the user
+        cannot start another until they save new ones.
+      operationId: deleteHarmonisationLlmCredentials
+      responses:
+        "204":
+          content: {}
+          description: The credentials were deleted.
+        "401":
+          content: {}
+          description: |-
+            User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: Only curator users are allowed to access this API.
+        "404":
+          content: {}
+          description: The user has no LLM credentials saved.
+        "500":
+          content: {}
+          description: "An internal server error occurred. This indicates an unexpected\
+            \ failure in the Genestack system, please file a bug report to support@genestack.com,\
+            \ including the error details."
+      security:
+      - Access-token: []
+      - Genestack-API-Token: []
+      tags:
+      - Harmonisation
+      summary: Delete the user's LLM credentials.
+components:
+  schemas:
+    HarmonisationRun:
+      description: |-
+        A Harmonise run: a Pod that applications started for the Curator, steered over its stream one step at a
+        time. Its record is kept in ClickHouse for good, and reads the same once the run is over and its Pod is gone.
+        A run that was open when applications restarted resumes once its Pod reconnects, with its Pod and its token.
+        One whose Pod had not reported ready, unless it was finished already, or does not reconnect within 15 minutes,
+        is FAILED, and its Pod deleted.
+      properties:
+        id:
+          description: Id of the run, numbered 1, 2, 3, ... in the order runs start, where a start that failed may
+            leave a gap; its Pod is harmonisation-run-<id>.
+          format: int64
+          readOnly: true
+          type: integer
+        status:
+          description: |-
+            PENDING until the run's Pod has connected and reported ready; READY to take a step, RUNNING while it
+            takes one; FINISHING once the Curator finished it, until its Pod has shut down; then FINISHED. FAILED when
+            its Pod died, went or ran past its deadline before it shut down, its shutdown step failed, or applications
+            restarted before its Pod was ready, or its Pod did not reconnect within 15 minutes of a restart. FINISHED
+            and FAILED are final.
+          enum:
+          - PENDING
+          - READY
+          - RUNNING
+          - FINISHING
+          - FINISHED
+          - FAILED
+          readOnly: true
+          type: string
+        startedBy:
+          description: E-mail of the Curator who started the run, the only user who sees and steers it.
+          readOnly: true
+          type: string
+        createdAt:
+          description: When the run started, ISO 8601 in UTC.
+          readOnly: true
+          type: string
+        readyAt:
+          description: When the run's Pod reported it can take steps, ISO 8601 in UTC.
+          readOnly: true
+          type: string
+        finishedAt:
+          description: When the run ended, ISO 8601 in UTC; set once it is FINISHED or FAILED.
+          readOnly: true
+          type: string
+        exitCode:
+          description: Exit code of the run's process; 0 after a clean finish. Absent if it never ran.
+          format: int32
+          readOnly: true
+          type: integer
+        reason:
+          description: Why the run waits, failed or ended as it did, e.g. `ErrImagePull` or `Finished before its
+            Pod was ready`.
+          readOnly: true
+          type: string
+        defaultBucket:
+          description: The bucket a list-files step lists when it names none.
+          readOnly: true
+          type: string
+        connected:
+          description: Whether the run's Pod has its stream open now; false once the run is over, and after an
+            applications restart until the Pod has reconnected.
+          readOnly: true
+          type: boolean
+        steps:
+          description: The steps the Curator asked for, in order; the shutdown step last once a run whose Pod connected is finished.
+            In run lists, without the files each listing found and without the Curator's feedback.
+          items:
+            $ref: "#/components/schemas/HarmonisationRunStep"
+          readOnly: true
+          type: array
+      required:
+      - id
+      - status
+      - startedBy
+      - createdAt
+      - connected
+      - steps
+      type: object
+      example:
+        id: 42
+        status: READY
+        startedBy: curator@example.com
+        createdAt: "2026-10-24T17:19:08Z"
+        readyAt: "2026-10-24T17:19:11.204Z"
+        defaultBucket: odm
+        connected: true
+        steps:
+        - id: list-files-1
+          action: list-files
+          status: SUCCEEDED
+          startedAt: "2026-10-24T17:19:26.010Z"
+          finishedAt: "2026-10-24T17:19:26.412Z"
+          bucket: odm
+          path: harmonisation-demo/study-1
+          files:
+          - key: harmonisation-demo/study-1/study.tsv
+            size: 191
+            lastModified: "2026-10-24T17:16:03Z"
+    HarmonisationRunStep:
+      description: A step that applications sent the run's Pod, or will, in the order the Curator asked for them.
+      properties:
+        id:
+          description: Unique within the run, `list-files-1`, `list-files-2`, ..., `upload-to-odm-1`, ...,
+            `check-llm-1`, ..., `extract-1`, ..., `transform-1`, ..., `export-1`, ..., and `shutdown`, which ends
+            every run finished after its Pod connected.
+          readOnly: true
+          type: string
+        action:
+          enum:
+          - list-files
+          - upload-to-odm
+          - check-llm
+          - extract
+          - transform
+          - export
+          - shutdown
+          readOnly: true
+          type: string
+        status:
+          description: PENDING and RUNNING are not final. FAILED also when the run's Pod failed while the step was
+            sent to it, started or not. SKIPPED never ran, as the run was finished, or failed, before its turn.
+          enum:
+          - PENDING
+          - RUNNING
+          - SUCCEEDED
+          - FAILED
+          - SKIPPED
+          readOnly: true
+          type: string
+        startedAt:
+          description: ISO 8601 in UTC.
+          readOnly: true
+          type: string
+        finishedAt:
+          description: ISO 8601 in UTC.
+          readOnly: true
+          type: string
+        error:
+          description: Why the step failed, as the run's Pod reported it.
+          readOnly: true
+          type: string
+        failure:
+          description: |-
+            The cause of a failed step that called the LLM, where the run's Pod can tell it; absent otherwise.
+            LLM_KEY_MISSING: the run's Curator had no usable credentials when it started. LLM_KEY_REJECTED: the
+            provider refused the key. LLM_MODEL_UNAVAILABLE: the provider does not know the model, or the key may
+            not use it. LLM_UNREACHABLE: no answer from the provider. LLM_API_UNSUPPORTED: the step needs an API
+            the provider does not speak, as transform needs OPENAI. A key saved since applies to the next run.
+          enum:
+          - LLM_KEY_MISSING
+          - LLM_KEY_REJECTED
+          - LLM_MODEL_UNAVAILABLE
+          - LLM_UNREACHABLE
+          - LLM_API_UNSUPPORTED
+          readOnly: true
+          type: string
+        bucket:
+          description: What a list-files or an extract step reads, or the listing an upload-to-odm step uploads.
+          readOnly: true
+          type: string
+        path:
+          readOnly: true
+          type: string
+        files:
+          description: What a list-files step listed, so far; empty when it found nothing; absent in run lists.
+          items:
+            $ref: "#/components/schemas/HarmonisationFile"
+          readOnly: true
+          type: array
+        keys:
+          description: The keys an upload-to-odm step uploads.
+          items:
+            type: string
+          readOnly: true
+          type: array
+        upload:
+          $ref: "#/components/schemas/HarmonisationOdmUpload"
+        templateId:
+          description: The template a transform step harmonises to, e.g. `public_studies`.
+          readOnly: true
+          type: string
+        basedOn:
+          description: The attempt a transform or an export step is built on, the one the Curator approved, e.g.
+            `extract-2` for a transform, `transform-1` for an export.
+          readOnly: true
+          type: string
+        revises:
+          description: The attempt of the same phase an extract or a transform step revises with the Curator's
+            feedback; absent for the first attempt of a phase.
+          readOnly: true
+          type: string
+        feedback:
+          $ref: "#/components/schemas/HarmonisationFeedback"
+        reviewKind:
+          description: The format of the step's review payload, once it has one, at `.../steps/{stepId}/review`.
+          enum:
+          - extraction
+          - transformation
+          readOnly: true
+          type: string
+        review:
+          description: |-
+            Where the Curator's review of a successful extract or transform step stands, as ODM computes it.
+            AWAITING: nothing has been asked on it yet. APPROVED: a later step is built on it (`basedOn`).
+            CHANGES_REQUESTED: a later step's feedback names it. When both happened, the latest wins. Absent for
+            other steps.
+          enum:
+          - AWAITING
+          - APPROVED
+          - CHANGES_REQUESTED
+          readOnly: true
+          type: string
+        superseded:
+          description: True for an extract or a transform step once a later attempt of the same phase has
+            succeeded. A superseded attempt stays readable, but nothing can be built on it or comment on it.
+          readOnly: true
+          type: boolean
+      required:
+      - id
+      - action
+      - status
+      type: object
+      example:
+        id: list-files-1
+        action: list-files
+        status: PENDING
+        bucket: odm
+        path: harmonisation-demo/study-1
+    HarmonisationFile:
+      description: A file a list-files step found under its path.
+      properties:
+        key:
+          readOnly: true
+          type: string
+        size:
+          description: Size in bytes.
+          format: int64
+          readOnly: true
+          type: integer
+        lastModified:
+          description: ISO 8601 in UTC.
+          readOnly: true
+          type: string
+      required:
+      - key
+      - size
+      - lastModified
+      type: object
+    HarmonisationOdmUpload:
+      description: What an upload-to-odm or an export step imported into ODM, once it has.
+      properties:
+        studyAccession:
+          readOnly: true
+          type: string
+        sampleGroupAccession:
+          readOnly: true
+          type: string
+        expressionGroupAccessions:
+          description: One per imported GCT file; empty without any, and for export.
+          items:
+            type: string
+          readOnly: true
+          type: array
+        packageBucket:
+          description: The bucket an export step wrote its Package to.
+          readOnly: true
+          type: string
+        packageKeys:
+          description: Every key an export step wrote its Package's files to.
+          items:
+            type: string
+          readOnly: true
+          type: array
+      required:
+      - studyAccession
+      - sampleGroupAccession
+      type: object
+    HarmonisationListFilesRequest:
+      description: A list-files step. Both fields are optional.
+      properties:
+        bucket:
+          description: Bucket to list; the run's default bucket when absent.
+          type: string
+        path:
+          description: Folder within the bucket; the whole bucket when absent.
+          type: string
+      type: object
+      example:
+        path: harmonisation-demo/study-1
+    HarmonisationExtractRequest:
+      description: An extract step. The first extraction of a run names `path`; changes to an extraction give
+        `feedback`.
+      properties:
+        bucket:
+          description: Bucket to read; the run's default bucket for the first extraction, and the revised
+            attempt's bucket for changes, when absent.
+          type: string
+        path:
+          description: Folder within the bucket. Required for the first extraction; the revised attempt's path for
+            changes, when absent.
+          type: string
+        feedback:
+          $ref: "#/components/schemas/HarmonisationFeedback"
+      type: object
+      example:
+        path: harmonisation-demo/study-1
+    HarmonisationTransformRequest:
+      description: A transform step. The first transformation names `templateId`; changes to a transformation
+        give `feedback`, and keep its template.
+      properties:
+        templateId:
+          description: The template to harmonise to. Required for the first transformation.
+          type: string
+        feedback:
+          $ref: "#/components/schemas/HarmonisationFeedback"
+      type: object
+      example:
+        templateId: public_studies
+    HarmonisationFeedback:
+      description: The Curator's request for changes to an attempt, which the step that carries it runs again.
+      properties:
+        attemptStepId:
+          description: The attempt reviewed, a successful step of the same phase, e.g. `extract-1`.
+          type: string
+        comments:
+          items:
+            $ref: "#/components/schemas/HarmonisationComment"
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - attemptStepId
+      - comments
+      type: object
+      example:
+        attemptStepId: transform-1
+        comments:
+        - context: field:Sample.Disease
+          comment: Map `diagnosis` here, not `condition`.
+    HarmonisationComment:
+      description: One comment of the Curator's feedback.
+      properties:
+        context:
+          description: What the comment is about, as `<kind>:<ref>` free text, e.g. `object:samples` or
+            `field:Sample.Disease`; empty or absent for the whole attempt.
+          maxLength: 500
+          type: string
+        comment:
+          maxLength: 4000
+          minLength: 1
+          type: string
+      required:
+      - comment
+      type: object
+    HarmonisationStepReview:
+      description: What the Curator reviews after an extract or a transform step.
+      properties:
+        stepId:
+          readOnly: true
+          type: string
+        kind:
+          description: The format of `payload`, whose JSON Schema the pipeline publishes as schemas/<kind>.json.
+          enum:
+          - extraction
+          - transformation
+          readOnly: true
+          type: string
+        payload:
+          additionalProperties: true
+          description: The JSON object the run's Pod sent, as it sent it.
+          readOnly: true
+          type: object
+      required:
+      - stepId
+      - kind
+      - payload
+      type: object
+    HarmonisationLlmProvider:
+      description: |-
+        An LLM provider Curators choose from, and its models. A run of a Curator who chose it sends their API key to
+        its base URL.
+      properties:
+        id:
+          description: Chosen when the provider is added, and fixed after; an update carries its path's id.
+          maxLength: 64
+          pattern: "^[a-z0-9-]+$"
+          type: string
+        name:
+          description: The name Curators see.
+          maxLength: 128
+          type: string
+        api:
+          description: The API the run's Pod speaks to the provider. OPENAI also covers endpoints compatible with
+            OpenAI's API.
+          enum:
+          - ANTHROPIC
+          - OPENAI
+          type: string
+        baseUrl:
+          description: The root of the provider's API, https and without a version, e.g. https://api.anthropic.com.
+            The run's Pod appends the API's own paths, such as /v1/models/<model>. No user info, query or fragment.
+          format: uri
+          maxLength: 512
+          pattern: "^https://"
+          type: string
+        models:
+          description: The models Curators may choose, as the provider names them, in printable ASCII without
+            spaces. ODM returns them sorted.
+          items:
+            maxLength: 128
+            pattern: "^[!-~]+$"
+            type: string
+          minItems: 1
+          type: array
+          uniqueItems: true
+        updatedAt:
+          description: When the provider was last added or changed, ISO 8601 in UTC.
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - api
+      - baseUrl
+      - models
+      type: object
+      example:
+        id: anthropic
+        name: Anthropic
+        api: ANTHROPIC
+        baseUrl: https://api.anthropic.com
+        models:
+        - claude-sonnet-5-5
+        updatedAt: "2026-10-26T12:00:00Z"
+    HarmonisationLlmCredentials:
+      description: A user's LLM credentials, as ODM returns them, which is without the key.
+      properties:
+        provider:
+          description: Id of the provider.
+          readOnly: true
+          type: string
+        model:
+          readOnly: true
+          type: string
+        status:
+          description: |-
+            USABLE: runs can start with them. PROVIDER_REMOVED or MODEL_REMOVED: a Harmonisation Administrator
+            removed the provider or the model since, and the user cannot start a run until they choose again.
+          enum:
+          - USABLE
+          - PROVIDER_REMOVED
+          - MODEL_REMOVED
+          readOnly: true
+          type: string
+        updatedAt:
+          description: When the user last saved them, ISO 8601 in UTC.
+          readOnly: true
+          type: string
+      required:
+      - provider
+      - model
+      - status
+      - updatedAt
+      type: object
+      example:
+        provider: anthropic
+        model: claude-sonnet-5-5
+        status: USABLE
+        updatedAt: "2026-10-26T12:00:00Z"
+    HarmonisationLlmCredentialsUpdate:
+      description: The LLM credentials a user saves.
+      properties:
+        provider:
+          description: Id of a provider a Harmonisation Administrator set up.
+          type: string
+        model:
+          description: One of that provider's models.
+          type: string
+        apiKey:
+          description: |-
+            The user's own key for the provider: 1 to 1024 printable ASCII characters, without spaces, once
+            trimmed. Required with no credentials saved, or with another provider than the saved one; left out, the
+            saved key stays. ODM never returns it.
+          format: password
+          maxLength: 1024
+          minLength: 1
+          type: string
+          writeOnly: true
+      required:
+      - provider
+      - model
+      type: object
+      example:
+        provider: anthropic
+        model: claude-sonnet-5-5
+        apiKey: sk-ant-...
+  securitySchemes:
+    Access-token:
+      in: header
+      name: Authorization
+      type: apiKey
+    Genestack-API-Token:
+      in: header
+      name: Genestack-API-Token
+      type: apiKey
