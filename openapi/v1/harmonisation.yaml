@@ -69,7 +69,19 @@ paths:
         calls ODM with that token. The run is PENDING until its Pod has connected and reported ready. Its token is
         deleted once the run is over. The run takes the user's LLM credentials as they are now and keeps them to
         its end: credentials saved later apply to the runs started after.
+
+        With a body naming `path`, the run's first extract step, `extract-1`, of that folder in the run's default
+        bucket, is queued at once, and sent to the Pod as soon as it reports ready: the run is PENDING meanwhile,
+        and lists its source from the start. `approval` says who approves its attempts (`HarmonisationApproval`):
+        with `AUTOMATIC`, ODM takes the run from that extraction to the import into ODM, and finishes it, by
+        itself. Without a body the run starts with no step, as before.
       operationId: startHarmonisationRun
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationStartRunRequest"
+        required: false
       responses:
         "201":
           content:
@@ -85,6 +97,10 @@ paths:
         "403":
           content: {}
           description: Only curator users are allowed to access this API.
+        "400":
+          content: {}
+          description: The body names a blank `path`, or names a `path` and the run has no default bucket; or
+            asks for `approval` `AUTOMATIC` without `path`.
         "409":
           content: {}
           description: "The user has no usable LLM credentials: none are saved, or their provider or model is no\
@@ -158,7 +174,7 @@ paths:
     post:
       description: |-
         Queues a list-files step on a READY or RUNNING run, after the steps asked for before: the run's Pod lists
-        the files under a path of a bucket. Both are optional: the run's default bucket, the whole bucket.
+        the files under a path of the run's default bucket, the whole bucket when `path` is absent.
       operationId: listFilesInHarmonisationRun
       parameters:
       - description: Id of the run.
@@ -184,7 +200,7 @@ paths:
           description: The step was queued. The returned value is the step.
         "400":
           content: {}
-          description: The run id is not a number, an invalid bucket name, or no bucket given and none configured.
+          description: The run id is not a number, or the run has no default bucket.
         "401":
           content: {}
           description: |-
@@ -328,12 +344,11 @@ paths:
   /api/v1/harmonisation/runs/{id}/extract:
     post:
       description: |-
-        Queues an extract step on a READY run with no step queued or running: the run's Pod reads a folder of a
-        bucket into tables, and sends what it read for review (`reviewKind` `extraction`, at `.../review`). The
-        first extraction names the folder in `path`, and `bucket` defaults to the run's default bucket. Changes to an
-        extraction name it in `feedback.attemptStepId`, which must be the latest successful extract step: the new
-        attempt revises its reading plan with the comments, on the same bucket and path unless the request gives
-        others. Once a transform step has succeeded, the run takes no more extract steps: to extract again, start a
+        Queues an extract step on a READY run with no step queued or running: the run's Pod reads a folder of the
+        run's default bucket into tables, and sends what it read for review (`reviewKind` `extraction`, at
+        `.../review`). The first extraction names the folder in `path`. Changes to an extraction name it in
+        `feedback.attemptStepId`, which must be the latest successful extract step: the new attempt revises its
+        reading plan with the comments, on the same path unless the request gives another. Once a transform step has succeeded, the run takes no more extract steps: to extract again, start a
         new run.
       operationId: extractInHarmonisationRun
       parameters:
@@ -360,7 +375,7 @@ paths:
           description: The step was queued. The returned value is the step.
         "400":
           content: {}
-          description: The run id is not a number, an invalid bucket name, no bucket given and none configured, no `path` for the first extraction, or feedback outside its limits.
+          description: The run id is not a number, the run has no default bucket, no `path` for the first extraction, or feedback outside its limits.
         "401":
           content: {}
           description: |-
@@ -397,10 +412,11 @@ paths:
     post:
       description: |-
         Queues a transform step on a READY run with no step queued or running: the run's Pod plans how the approved
-        extraction maps to a template, executes the plan and checks the result, and sends it for review (`reviewKind`
-        `transformation`). Without `feedback` it approves the latest successful extraction and needs `templateId`.
-        With `feedback` it revises the latest successful transform step, named in `feedback.attemptStepId`, on the same
-        extraction and template: its plan is made again with the comments, then executed and checked again. Needs an
+        extraction maps to the public studies template, executes the plan and checks the result, and sends it for
+        review (`reviewKind` `transformation`). The run's Pod picks the template itself; the request names none.
+        Without `feedback` it approves the latest successful extraction. With `feedback` it revises the latest
+        successful transform step, named in `feedback.attemptStepId`, on the same extraction: its plan is made again
+        with the comments, then executed and checked again. Needs an
         LLM provider with the OPENAI API: otherwise the step fails with `LLM_API_UNSUPPORTED`. Once an export step has
         succeeded, the run takes no more transform steps.
       operationId: transformInHarmonisationRun
@@ -418,7 +434,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/HarmonisationTransformRequest"
-        required: true
+        required: false
       responses:
         "201":
           content:
@@ -428,7 +444,7 @@ paths:
           description: The step was queued. The returned value is the step.
         "400":
           content: {}
-          description: The run id is not a number, no `templateId` for the first transformation, or feedback outside its limits.
+          description: The run id is not a number, or feedback outside its limits.
         "401":
           content: {}
           description: |-
@@ -965,8 +981,14 @@ components:
             Pod was ready`.
           readOnly: true
           type: string
+        approval:
+          allOf:
+            - $ref: '#/components/schemas/HarmonisationApproval'
+          description: Who approves the run's attempts, as chosen when it was started; `MANUAL` for a run started
+            without a choice.
+          readOnly: true
         defaultBucket:
-          description: The bucket a list-files step lists when it names none.
+          description: The bucket every list-files and extract step reads, and every export step writes to.
           readOnly: true
           type: string
         connected:
@@ -1088,10 +1110,6 @@ components:
           type: array
         upload:
           $ref: "#/components/schemas/HarmonisationOdmUpload"
-        templateId:
-          description: The template a transform step harmonises to, e.g. `public_studies`.
-          readOnly: true
-          type: string
         basedOn:
           description: The attempt a transform or an export step is built on, the one the Curator approved, e.g.
             `extract-2` for a transform, `transform-1` for an export.
@@ -1189,27 +1207,47 @@ components:
       - sampleGroupAccession
       type: object
     HarmonisationListFilesRequest:
-      description: A list-files step. Both fields are optional.
+      description: A list-files step, in the run's default bucket.
       properties:
-        bucket:
-          description: Bucket to list; the run's default bucket when absent.
-          type: string
         path:
           description: Folder within the bucket; the whole bucket when absent.
           type: string
       type: object
       example:
         path: harmonisation-demo/study-1
+    HarmonisationApproval:
+      description: |
+        Who approves the run's attempts. `MANUAL`, the default: the Curator reviews each attempt and asks for
+        the next step. `AUTOMATIC`: ODM approves each successful attempt as it ends, with the agent's own
+        answers to its questions (each question's recommended option, which its Plan applies already): a
+        successful extraction is transformed, a successful transformation exported and imported into ODM, and
+        the run is finished once that export succeeds. A step that fails stops it there, and the run waits for
+        the Curator, as a `MANUAL` one does; so does a step ODM cannot ask for, such as one whose request cannot
+        be written to the run's history. An `AUTOMATIC` run is started with `path`.
+      enum:
+        - MANUAL
+        - AUTOMATIC
+      type: string
+    HarmonisationStartRunRequest:
+      description: What a new run works on, chosen when it is started. Every field is optional; without `path`
+        the run starts with no step.
+      properties:
+        path:
+          description: Folder within the run's default bucket, the dataset to harmonise. The run queues its first
+            extract step of it at once.
+          type: string
+        approval:
+          $ref: '#/components/schemas/HarmonisationApproval'
+      type: object
+      example:
+        path: harmonisation-demo/study-1
+        approval: AUTOMATIC
     HarmonisationExtractRequest:
       description: An extract step. The first extraction of a run names `path`; changes to an extraction give
         `feedback`.
       properties:
-        bucket:
-          description: Bucket to read; the run's default bucket for the first extraction, and the revised
-            attempt's bucket for changes, when absent.
-          type: string
         path:
-          description: Folder within the bucket. Required for the first extraction; the revised attempt's path for
+          description: Folder within the run's default bucket. Required for the first extraction; the revised attempt's path for
             changes, when absent.
           type: string
         feedback:
@@ -1218,17 +1256,12 @@ components:
       example:
         path: harmonisation-demo/study-1
     HarmonisationTransformRequest:
-      description: A transform step. The first transformation names `templateId`; changes to a transformation
-        give `feedback`, and keep its template.
+      description: A transform step, to the public studies template, which the run's Pod picks. The first
+        transformation has an empty body; changes to a transformation give `feedback`.
       properties:
-        templateId:
-          description: The template to harmonise to. Required for the first transformation.
-          type: string
         feedback:
           $ref: "#/components/schemas/HarmonisationFeedback"
       type: object
-      example:
-        templateId: public_studies
     HarmonisationFeedback:
       description: The Curator's request for changes to an attempt, which the step that carries it runs again.
       properties:
