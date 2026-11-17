@@ -1,0 +1,52 @@
+  # Replaces the base image's template: Swagger UI is served under /swagger, the path the Ingress
+  # and compose's nginx pass on as it is. envsubst fills in the port, and 40-swagger-ui.sh adds
+  # the IPv6 listen line after it.
+  types {
+    text/plain yaml;
+    text/plain yml;
+  }
+
+  gzip on;
+  gzip_static on;
+  gzip_disable "msie6";
+
+  gzip_vary on;
+  gzip_types text/plain text/css application/javascript;
+
+  map $request_method $access_control_max_age {
+    OPTIONS 1728000; # 20 days
+  }
+  server_tokens off; # Hide Nginx version
+
+  server {
+    listen            $PORT;
+    server_name       localhost;
+    index             index.html index.htm;
+    absolute_redirect off;
+
+    # The helper page, which links each application's spec
+    location = /swagger {
+      rewrite ^ /swagger/helper/ last;
+    }
+
+    location = /swagger/helper {
+      rewrite ^ /swagger/helper/ last;
+    }
+
+    # Swagger UI itself takes the spec from the query, such as ?urls.primaryName=studyUser
+    location = /swagger/ {
+      if ($is_args = "") {
+        return 301 /swagger;
+      }
+      rewrite ^ /swagger/index.html last;
+    }
+
+    location /swagger/ {
+      alias            /usr/share/nginx/html/;
+      # Every response is revalidated, so an upgrade shows its specs at once
+      expires -1;
+
+      include templates/cors.conf;
+      include templates/embedding.conf;
+    }
+  }
