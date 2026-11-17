@@ -58,8 +58,8 @@ paths:
       description: |-
         Returns a template and every field a metadata file supplies, for every data type, in the format the SDK's
         template upload script takes, plus each field's `dictionaryAccession`. The technical fields ODM fills itself,
-        such as `genestack:accession`, are left out.
-        Each field gives the Java class of its values, whether a value is required, whether it is read-only,
+        such as `genestack:accession` and `genestack:dataClass`, are left out.
+        Each field gives the type of its values, whether a value is required, whether it is read-only,
         and the dictionary its values are checked against, if any, by accession and name.
       tags:
         - Templates
@@ -68,8 +68,10 @@ paths:
           name: id
           description: Unique identifier (Genestack accession) of the template.
           required: true
+          example: GSF000123
           schema:
             type: string
+            pattern: "GSF\\d+"
       responses:
         "200":
           content:
@@ -81,7 +83,7 @@ paths:
           content: { }
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
-             or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+             or Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
         "404":
           content: { }
           description: No template exists with the given ID, or the current user cannot read it.

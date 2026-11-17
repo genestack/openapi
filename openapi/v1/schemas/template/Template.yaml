@@ -11,6 +11,11 @@ example:
     isReadOnly: false
     dictionaryAccession: GSF000456
     dictionaryName: NCBI Taxonomy
+  - name: Age
+    dataType: genestack:sampleObject
+    metainfoType: com.genestack.api.metainfo.IntegerValue
+    isRequired: false
+    isReadOnly: false
 allOf:
 - $ref: "#/components/schemas/TemplateInfo"
 - properties:
@@ -18,9 +23,7 @@ allOf:
       description: |-
         Every field of the template that a metadata file supplies, for every data type, in the template upload format
         plus `dictionaryAccession`.
-        The technical fields ODM fills itself are left out, as that format leaves them out: `genestack:accession` for
-        every data type, `Data Class` for expression, variant and flow cytometry groups, and `Features (string)`,
-        `Features (numeric)` and `Values (numeric)` for expression groups.
+        The technical fields ODM fills itself, such as `genestack:accession` and `genestack:dataClass`, are left out.
       items:
         $ref: "#/components/schemas/TemplateField"
       type: array

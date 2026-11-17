@@ -24,7 +24,7 @@ properties:
     type: string
   metainfoType:
     description: |-
-      Java class of the field's values, as the SDK's template JSON files and the Template Editor's export name it:
+      Type of the field's values, as the SDK's template JSON files and the Template Editor's export name it:
 
       * `com.genestack.api.metainfo.StringValue`: text
       * `com.genestack.api.metainfo.IntegerValue`: a whole number
@@ -52,14 +52,11 @@ properties:
   dictionaryAccession:
     description: |-
       Accession of the dictionary the field's values are checked against. Absent when the field has no dictionary.
-      The template upload format has no such property: drop it from each field before uploading a template with
-      the SDK's template script.
     type: string
   dictionaryName:
     description: |-
       Name of the dictionary the field's values are checked against.
-      Absent when the field has no dictionary or the current user cannot read it; a template saved by such a user
-      and uploaded again loses that field's dictionary.
+      Absent when the field has no dictionary.
     type: string
 required:
 - name
