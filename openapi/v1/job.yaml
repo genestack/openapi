@@ -785,6 +785,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "409":
+          content: {}
+          description: |-
+            The job started before ODM 1.66, and its parameters hold file links where 1.66 holds file ids. It cannot restart: start a new import.
+             For example: "Job 24 started before ODM 1.66 and holds file links: start a new import".
       security:
       - Access-token: []
       - Genestack-API-Token: []
