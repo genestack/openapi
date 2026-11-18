@@ -56,9 +56,10 @@ paths:
       operationId: getTemplate
       summary: Retrieve a metadata template with its fields
       description: |-
-        Returns a template and every field a metadata file supplies, for every data type, in the format the SDK's
-        template upload script takes, plus each field's `dictionaryAccession`. The technical fields ODM fills itself,
-        such as `genestack:accession` and `genestack:dataClass`, are left out.
+        Returns a template with its fields, for every data type. By default the fields are the ones the template
+        export returns, in the same order, including the technical fields ODM fills itself, such as
+        `genestack:accession` and `Data Class`. Each field also has `dictionaryAccession`.
+        Set `returnedTemplateFields` to `exclude_technical_fields` to leave out the technical fields.
         Each field gives the type of its values, whether a value is required, whether it is read-only,
         and the dictionary its values are checked against, if any, by accession and name.
       tags:
@@ -68,10 +69,24 @@ paths:
           name: id
           description: Unique identifier (Genestack accession) of the template.
           required: true
-          example: GSF000123
           schema:
             type: string
             pattern: "GSF\\d+"
+        - in: query
+          name: returnedTemplateFields
+          description: |-
+            The parameter defines which fields of the template to return:
+
+            1. `all_fields` - return every field, as the template export does. This is the default.
+            2. `exclude_technical_fields` - return every field except the technical fields ODM fills itself,
+               such as `genestack:accession` and `Data Class`.
+          required: false
+          schema:
+            type: string
+            enum:
+              - all_fields
+              - exclude_technical_fields
+            default: all_fields
       responses:
         "200":
           content:
@@ -79,6 +94,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Template"
           description: The request was successful. The returned value is the template.
+        "400":
+          content: { }
+          description: Invalid data in the request. See the error message for details.
         "401":
           content: { }
           description: |-

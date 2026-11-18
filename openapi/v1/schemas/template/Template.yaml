@@ -4,6 +4,12 @@ example:
   description: Template applied to studies imported without one
   isDefault: true
   fields:
+  - name: genestack:accession
+    dataType: genestack:sampleObject
+    metainfoType: com.genestack.api.metainfo.StringValue
+    isRequired: true
+    isReadOnly: true
+    description: Genestack-generated accession
   - name: Organism
     dataType: genestack:sampleObject
     metainfoType: com.genestack.api.metainfo.StringValue
@@ -16,14 +22,20 @@ example:
     metainfoType: com.genestack.api.metainfo.IntegerValue
     isRequired: false
     isReadOnly: false
+  - name: Data Class
+    dataType: genestack:transcriptomicsParent
+    metainfoType: com.genestack.api.metainfo.StringValue
+    isRequired: true
+    isReadOnly: true
+    description: Technical field specifying the exact type of data you have uploaded.
 allOf:
 - $ref: "#/components/schemas/TemplateInfo"
 - properties:
     fields:
       description: |-
-        Every field of the template that a metadata file supplies, for every data type, in the template upload format
-        plus `dictionaryAccession`.
-        The technical fields ODM fills itself, such as `genestack:accession` and `genestack:dataClass`, are left out.
+        The fields of the template, for every data type, as the template export returns them, plus
+        `dictionaryAccession`. The technical fields ODM fills itself, such as `genestack:accession` and
+        `Data Class`, are included unless `returnedTemplateFields` is `exclude_technical_fields`.
       items:
         $ref: "#/components/schemas/TemplateField"
       type: array
