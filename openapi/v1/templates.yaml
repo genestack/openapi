@@ -78,8 +78,9 @@ paths:
             The parameter defines which fields of the template to return:
 
             1. `all` - return every field, as the template export does. This is the default.
-            2. `non_technical` - return every field except the technical fields ODM fills itself,
-               such as `genestack:accession` and `Data Class`.
+            2. `non_technical` - return every field except the technical fields ODM fills itself:
+               every field whose name starts with `genestack:`, such as `genestack:accession` and
+               `genestack:chain`, and fields such as `Data Class`.
           required: false
           schema:
             type: string
