@@ -35,7 +35,7 @@ allOf:
       description: |-
         The fields of the template, for every data type, as the template export returns them, plus
         `dictionaryAccession`. The technical fields ODM fills itself, such as `genestack:accession` and
-        `Data Class`, are included unless `returnedFields` is `exclude_technical`.
+        `Data Class`, are included unless `returnedFields` is `non_technical`.
       items:
         $ref: "#/components/schemas/TemplateField"
       type: array

@@ -59,7 +59,7 @@ paths:
         Returns a template with its fields, for every data type. By default the fields are the ones the template
         export returns, in the same order, including the technical fields ODM fills itself, such as
         `genestack:accession` and `Data Class`. Each field also has `dictionaryAccession`.
-        Set `returnedFields` to `exclude_technical` to leave out the technical fields.
+        Set `returnedFields` to `non_technical` to leave out the technical fields.
         Each field gives the type of its values, whether a value is required, whether it is read-only,
         and the dictionary its values are checked against, if any, by accession and name.
       tags:
@@ -78,14 +78,14 @@ paths:
             The parameter defines which fields of the template to return:
 
             1. `all` - return every field, as the template export does. This is the default.
-            2. `exclude_technical` - return every field except the technical fields ODM fills itself,
+            2. `non_technical` - return every field except the technical fields ODM fills itself,
                such as `genestack:accession` and `Data Class`.
           required: false
           schema:
             type: string
             enum:
               - all
-              - exclude_technical
+              - non_technical
             default: all
       responses:
         "200":
