@@ -1,0 +1,22 @@
+example:
+  id: GSF000123
+  name: Default template
+  description: Template applied to studies imported without one
+  isDefault: true
+properties:
+  id:
+    description: Unique identifier (Genestack accession) of the template.
+    type: string
+  name:
+    type: string
+  description:
+    description: Absent when the template has no description.
+    type: string
+  isDefault:
+    description: Whether this is the organization's default template, the one import uses when no template is given.
+    type: boolean
+required:
+- id
+- name
+- isDefault
+type: object
