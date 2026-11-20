@@ -568,7 +568,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -667,7 +667,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -767,7 +767,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1057,7 +1057,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1151,7 +1151,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1245,7 +1245,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1518,7 +1518,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1690,7 +1690,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2020,7 +2020,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2172,7 +2172,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2371,7 +2371,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2523,7 +2523,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2744,7 +2744,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2835,7 +2835,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -4048,7 +4048,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -4221,7 +4221,7 @@ paths:
           description: The user is not the owner of the study that `targetId` belongs to.
         "404":
           content: {}
-          description: No object exists with the given ID, or the user has no access to it.
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
