@@ -24,6 +24,14 @@
     index             index.html index.htm;
     absolute_redirect off;
 
+    # The security headers on every response, error pages included. add_header_inherit merge
+    # keeps them in the location that includes the base image's cors.conf and embedding.conf.
+    # The image's EMBEDDING=false keeps embedding.conf, which sends X-Frame-Options: DENY and
+    # frame-ancestors 'none', so this sets no X-Frame-Options of its own.
+    add_header_inherit merge;
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    add_header X-Content-Type-Options nosniff always;
+
     # The helper page, which links each application's spec
     location = /swagger {
       rewrite ^ /swagger/helper/ last;
