@@ -15,10 +15,10 @@
 # OPENAPI_VERSION is the version of all three. Gradle reads it from the environment
 # (build.gradle.kts), and the uploads pick the release or development repository by it.
 
-ARG JDK_IMAGE=eclipse-temurin:25.0.5_8-jdk-alpine
+ARG JDK_IMAGE=eclipse-temurin:25.0.5.1_2-jdk-alpine
 ARG PYTHON_IMAGE=python:3.15.2-alpine
 ARG R_IMAGE=rocker/r-ver:4.6.2
-ARG SWAGGER_UI_IMAGE=swaggerapi/swagger-ui:v5.35.0
+ARG SWAGGER_UI_IMAGE=swaggerapi/swagger-ui:v5.35.1
 
 FROM ${JDK_IMAGE} AS build
 
