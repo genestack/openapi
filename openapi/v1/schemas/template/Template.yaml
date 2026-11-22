@@ -1,0 +1,50 @@
+example:
+  id: GSF000123
+  name: Default template
+  description: Template applied to studies imported without one
+  isDefault: true
+  fields:
+  - name: genestack:accession
+    dataType: genestack:sampleObject
+    metainfoType: com.genestack.api.metainfo.StringValue
+    isRequired: true
+    isReadOnly: true
+    description: Genestack-generated accession
+  - name: Organism
+    dataType: genestack:sampleObject
+    metainfoType: com.genestack.api.metainfo.StringValue
+    isRequired: true
+    isReadOnly: false
+    dictionaryAccession: GSF000456
+    dictionaryName: NCBI Taxonomy
+  - name: Age
+    dataType: genestack:sampleObject
+    metainfoType: com.genestack.api.metainfo.IntegerValue
+    isRequired: false
+    isReadOnly: false
+  - name: Data Class
+    dataType: genestack:transcriptomicsParent
+    metainfoType: com.genestack.api.metainfo.StringValue
+    isRequired: true
+    isReadOnly: true
+    description: Technical field specifying the exact type of data you have uploaded.
+allOf:
+- $ref: "#/components/schemas/TemplateInfo"
+- properties:
+    fields:
+      description: |-
+        The fields of the template, for every data type, as the template export returns them, plus
+        `dictionaryAccession`. The technical fields ODM fills itself, such as `genestack:accession` and
+        `Data Class`, are included unless `returnedTemplateFields` is `technical_excluded`.
+      items:
+        $ref: "#/components/schemas/TemplateField"
+      type: array
+  required:
+  - fields
+  type: object
+components:
+  schemas:
+    TemplateInfo:
+      $ref: "./TemplateInfo.yaml"
+    TemplateField:
+      $ref: "./TemplateField.yaml"
