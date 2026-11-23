@@ -481,7 +481,8 @@ paths:
         transformation: the run's Pod writes the Package to the run's default bucket under
         `harmonisation/runs/<run id>/<step id>/`, and imports its study and samples into ODM as the user, linked. The
         step's `upload` says what was imported and where the Package is. After a successful export the run takes no
-        more pipeline steps, only finishing.
+        more pipeline steps. ODM then finishes the run itself, as `.../finish` does, without a call to it: the run is
+        FINISHING until its Pod has shut down, then FINISHED.
       operationId: exportHarmonisationRun
       parameters:
       - description: Id of the run.
@@ -939,7 +940,8 @@ components:
         status:
           description: |-
             PENDING until the run's Pod has connected and reported ready; READY to take a step, RUNNING while it
-            takes one; FINISHING once the Curator finished it, until its Pod has shut down; then FINISHED. FAILED when
+            takes one; FINISHING once the Curator finished it, or ODM did after a successful export, until its Pod has
+            shut down; then FINISHED. FAILED when
             its Pod died, went or ran past its deadline before it shut down, its shutdown step failed, or applications
             restarted before its Pod was ready, or its Pod did not reconnect within 15 minutes of a restart. FINISHED
             and FAILED are final.
