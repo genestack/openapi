@@ -68,8 +68,16 @@ paths:
         Starts a run for the user: an API token of theirs named `Harmonise-<run id>`, and the run's Pod, which
         calls ODM with that token. The run is PENDING until its Pod has connected and reported ready. Its token is
         deleted once the run is over. The run takes the user's LLM credentials as they are now and keeps them to
-        its end: credentials saved later apply to the runs started after.
+        its end: credentials saved later apply to the runs started after. The request names the dataset folder
+        the run harmonises: once the Pod reports ready, ODM queues the run's first extract step on that folder
+        itself, with no call to `.../extract`.
       operationId: startHarmonisationRun
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HarmonisationStartRequest"
+        required: true
       responses:
         "201":
           content:
@@ -77,6 +85,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/HarmonisationRun"
           description: The run was started. The returned value is the run.
+        "400":
+          content: {}
+          description: The request names no dataset folder or a blank one, or an invalid bucket name, or no bucket
+            and none is configured.
         "401":
           content: {}
           description: |-
@@ -330,7 +342,8 @@ paths:
       description: |-
         Queues an extract step on a READY run with no step queued or running: the run's Pod reads a folder of a
         bucket into tables, and sends what it read for review (`reviewKind` `extraction`, at `.../review`). The
-        first extraction names the folder in `path`, and `bucket` defaults to the run's default bucket. Changes to an
+        first extraction is queued by ODM on the folder the start named, once the Pod is ready; one asked for here
+        names the folder in `path`, and `bucket` defaults to the run's default bucket. Changes to an
         extraction name it in `feedback.attemptStepId`, which must be the latest successful extract step: the new
         attempt revises its reading plan with the comments, on the same bucket and path unless the request gives
         others. Once a transform step has succeeded, the run takes no more extract steps: to extract again, start a
@@ -468,7 +481,8 @@ paths:
         transformation: the run's Pod writes the Package to the run's default bucket under
         `harmonisation/runs/<run id>/<step id>/`, and imports its study and samples into ODM as the user, linked. The
         step's `upload` says what was imported and where the Package is. After a successful export the run takes no
-        more pipeline steps, only finishing.
+        more pipeline steps. ODM then finishes the run itself, as `.../finish` does, without a call to it: the run is
+        FINISHING until its Pod has shut down, then FINISHED.
       operationId: exportHarmonisationRun
       parameters:
       - description: Id of the run.
@@ -926,7 +940,8 @@ components:
         status:
           description: |-
             PENDING until the run's Pod has connected and reported ready; READY to take a step, RUNNING while it
-            takes one; FINISHING once the Curator finished it, until its Pod has shut down; then FINISHED. FAILED when
+            takes one; FINISHING once the Curator finished it, or ODM did after a successful export, until its Pod has
+            shut down; then FINISHED. FAILED when
             its Pod died, went or ran past its deadline before it shut down, its shutdown step failed, or applications
             restarted before its Pod was ready, or its Pod did not reconnect within 15 minutes of a restart. FINISHED
             and FAILED are final.
@@ -962,11 +977,20 @@ components:
           type: integer
         reason:
           description: Why the run waits, failed or ended as it did, e.g. `ErrImagePull` or `Finished before its
-            Pod was ready`.
+            Pod was ready`; on a READY run, why its first extract step could not be queued yet.
           readOnly: true
           type: string
         defaultBucket:
           description: The bucket a list-files step lists when it names none.
+          readOnly: true
+          type: string
+        bucket:
+          description: The bucket of the run's dataset folder, as the start named it or the default bucket.
+          readOnly: true
+          type: string
+        path:
+          description: The run's dataset folder within `bucket`, as the start named it. Its first extract step
+            reads it, queued by ODM once the Pod is ready.
           readOnly: true
           type: string
         connected:
@@ -1188,6 +1212,20 @@ components:
       - studyAccession
       - sampleGroupAccession
       type: object
+    HarmonisationStartRequest:
+      description: A new run, on the dataset folder it harmonises.
+      properties:
+        bucket:
+          description: Bucket of the folder; the run's default bucket when absent.
+          type: string
+        path:
+          description: The dataset folder within the bucket. Not blank.
+          type: string
+      required:
+      - path
+      type: object
+      example:
+        path: harmonisation-demo/study-1
     HarmonisationListFilesRequest:
       description: A list-files step. Both fields are optional.
       properties:
