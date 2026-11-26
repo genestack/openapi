@@ -513,7 +513,7 @@ paths:
           description: All links were created.
         "400":
           content: {}
-          description: "Incorrect Cell or Expression group provided, see error message for details."
+          description: "Incorrect Cell or Expression group provided, see error message for details; or `targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
@@ -532,8 +532,10 @@ paths:
         - Expression integration as Curator
   ? /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}
   : delete:
-      description: Delete a link between a group of expression objects and a group of
-        library objects
+      description: |-
+        Delete a link between a group of expression objects and a group of library objects.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteExpressionGroupLibraryGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -555,12 +557,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -603,7 +611,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: "Library group, signal group or libraries to link not found"
+          description: "Library group, signal group or libraries to link not found; or `targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
@@ -623,8 +631,10 @@ paths:
       - Expression integration as Curator
   ? /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}
   : delete:
-      description: Delete a link between a group of expression objects and a group of
-        preparation objects
+      description: |-
+        Delete a link between a group of expression objects and a group of preparation objects.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteExpressionGroupPreparationGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -646,12 +656,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -695,7 +711,7 @@ paths:
         "400":
           content: {}
           description: "Preparation group, signal group or preparations to link not\
-            \ found"
+            \ found; or `targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
@@ -715,8 +731,10 @@ paths:
       - Expression integration as Curator
   ? /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}
   : delete:
-      description: Delete a link between a group of expression objects and a group of
-        sample objects
+      description: |-
+        Delete a link between a group of expression objects and a group of sample objects.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteExpressionGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -738,12 +756,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -797,7 +821,7 @@ paths:
         "400":
           content: {}
           description: "Sample group, signal group or samples to the link were not\
-            \ found, or the specified linking attribute was not found."
+            \ found, or the specified linking attribute was not found; or `targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
@@ -997,7 +1021,10 @@ paths:
       - Expression integration as Curator
   /api/v1/as-curator/integration/link/expression/{sourceId}/to/library/{targetId}:
     delete:
-      description: Delete a link between an expression object and a library
+      description: |-
+        Delete a link between an expression object and a library.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteExpressionLibraryLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1019,12 +1046,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1063,7 +1096,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -1082,7 +1115,10 @@ paths:
       - Expression integration as Curator
   /api/v1/as-curator/integration/link/expression/{sourceId}/to/preparation/{targetId}:
     delete:
-      description: Delete a link between an expression object and a preparation
+      description: |-
+        Delete a link between an expression object and a preparation.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteExpressionPreparationLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1104,12 +1140,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1148,7 +1190,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -1167,7 +1209,10 @@ paths:
       - Expression integration as Curator
   /api/v1/as-curator/integration/link/expression/{sourceId}/to/sample/{targetId}:
     delete:
-      description: Delete a link between an expression object and a sample
+      description: |-
+        Delete a link between an expression object and a sample.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteExpressionSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -1189,12 +1234,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1233,7 +1284,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -1431,8 +1482,10 @@ paths:
       - Flow Cytometry (FACS) integration as Curator
   ? /api/v1/as-curator/integration/link/flow-cytometry/group/{sourceId}/to/sample/group/{targetId}
   : delete:
-      description: Delete a link between a group of flow-cytometry objects and a group
-        of sample objects
+      description: |-
+        Delete a link between a group of flow-cytometry objects and a group of sample objects.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteFlowCytometryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -1454,12 +1507,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1510,6 +1569,9 @@ paths:
           content: {}
           description: All signal data were linked to the samples from the specified
             sample group.
+        "400":
+          content: {}
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -1593,7 +1655,10 @@ paths:
       - Flow Cytometry (FACS) integration as Curator
   /api/v1/as-curator/integration/link/flow-cytometry/{sourceId}/to/sample/{targetId}:
     delete:
-      description: Delete a link between a flow-cytometry object and a sample
+      description: |-
+        Delete a link between a flow-cytometry object and a sample.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteFlowCytometrySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level data block
@@ -1614,12 +1679,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1657,7 +1728,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -1914,8 +1985,10 @@ paths:
       - Library integration as Curator
   /api/v1/as-curator/integration/link/library/group/{sourceId}/to/sample/group/{targetId}:
     delete:
-      description: Delete links between samples and libraries related to the specified
-        group
+      description: |-
+        Delete links between samples and libraries related to the specified group.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteLibraryGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the library group object
@@ -1936,12 +2009,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -1979,7 +2058,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -2058,7 +2137,10 @@ paths:
       - Library integration as Curator
   /api/v1/as-curator/integration/link/library/{sourceId}/to/sample/{targetId}:
     delete:
-      description: Delete a link between a library and a sample
+      description: |-
+        Delete a link between a library and a sample.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteLibrarySampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the library object
@@ -2079,12 +2161,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2121,7 +2209,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -2248,8 +2336,10 @@ paths:
       - Preparation integration as Curator
   ? /api/v1/as-curator/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}
   : delete:
-      description: Delete links between samples and preparations related to the specified
-        group
+      description: |-
+        Delete links between samples and preparations related to the specified group.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deletePreparationGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation group object
@@ -2270,12 +2360,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2313,7 +2409,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -2392,7 +2488,10 @@ paths:
       - Preparation integration as Curator
   /api/v1/as-curator/integration/link/preparation/{sourceId}/to/sample/{targetId}:
     delete:
-      description: Delete a link between a preparation and a sample
+      description: |-
+        Delete a link between a preparation and a sample.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deletePreparationSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the preparation object
@@ -2413,12 +2512,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2455,7 +2560,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -2604,7 +2709,10 @@ paths:
       - Preparation integration as Curator
   /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}:
     delete:
-      description: Delete a link between a group of sample objects and a study
+      description: |-
+        Delete a link between a group of sample objects and a study.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteSampleGroupStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample group object
@@ -2625,12 +2733,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not a study, or `sourceId` is not a sample group."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -2686,7 +2800,10 @@ paths:
       - Sample integration as Curator
   /api/v1/as-curator/integration/link/sample/{sourceId}/to/study/{targetId}:
     delete:
-      description: Delete a link between a sample and a study
+      description: |-
+        Delete a link between a sample and a study.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteSampleStudyLinkAsCurator
       parameters:
       - description: The ID (accession) of the sample object
@@ -2707,12 +2824,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not a study, or `sourceId` is not a sample."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -3889,8 +4012,10 @@ paths:
       - Variant integration as Curator
   /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}:
     delete:
-      description: Delete a link between a group of variant objects and a group of sample
-        objects
+      description: |-
+        Delete a link between a group of variant objects and a group of sample objects.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteVariantGroupSampleGroupLinkAsCurator
       parameters:
       - description: The ID (accession) of the group of run-level objects (corresponding
@@ -3912,12 +4037,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study, or one of the IDs has an incorrect object type."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -3968,6 +4099,9 @@ paths:
           content: {}
           description: All signal data were linked to the samples from the specified
             sample group.
+        "400":
+          content: {}
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -4051,7 +4185,10 @@ paths:
       - Variant integration as Curator
   /api/v1/as-curator/integration/link/variant/{sourceId}/to/sample/{targetId}:
     delete:
-      description: Delete a link between a variant object and a sample
+      description: |-
+        Delete a link between a variant object and a sample.
+
+        Only the owner of the study that `targetId` belongs to can delete the link.
       operationId: deleteVariantSampleLinkAsCurator
       parameters:
       - description: The ID (accession) of the run-level object (corresponding to
@@ -4073,12 +4210,18 @@ paths:
           description: Link deleted.
         "400":
           content: {}
-          description: Link cannot be deleted.
+          description: "`targetId` is not linked to any study."
         "401":
           content: {}
           description: |-
             User is not authenticated. Please supply a valid Access Token in the `Authorization` HTTP header (e.g. Authorization: bearer [token])
              or  Genestack API token in the `Genestack-API-Token` header (this token may be obtained from the Genestack UI _Profile_ page).
+        "403":
+          content: {}
+          description: The user is not the owner of the study that `targetId` belongs to.
+        "404":
+          content: {}
+          description: No object exists with the given ID, the user has no access to it, or no link exists between the two objects.
         "500":
           content: {}
           description: "An internal server error occurred. This indicates an unexpected\
@@ -4117,7 +4260,7 @@ paths:
           description: Link created.
         "400":
           content: {}
-          description: Link cannot be created.
+          description: Link cannot be created, for example because `targetId` is not linked to any study.
         "401":
           content: {}
           description: |-
@@ -7353,7 +7496,7 @@ paths:
           description: Cell objects have been fully linked to samples.
         "400":
           content: { }
-          description: Sample group, cell group or samples to the link were not found.
+          description: "Sample group, cell group or samples to the link were not found; or `targetId` is not linked to any study."
         "401":
           content: { }
           description: |-
@@ -7399,7 +7542,7 @@ paths:
           description: Cell objects have been fully linked to libraries.
         "400":
           content: { }
-          description: Sample group, cell group or libraries to the link were not found.
+          description: "Sample group, cell group or libraries to the link were not found; or `targetId` is not linked to any study."
         "401":
           content: { }
           description: |-
@@ -7445,7 +7588,7 @@ paths:
           description: Cell objects have been fully linked to preparations.
         "400":
           content: { }
-          description: Sample group, cell group or preparations to the link were not found.
+          description: "Sample group, cell group or preparations to the link were not found; or `targetId` is not linked to any study."
         "401":
           content: { }
           description: |-
