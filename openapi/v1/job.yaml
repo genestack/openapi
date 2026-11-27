@@ -76,6 +76,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -149,6 +154,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -181,6 +191,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -225,6 +240,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
       - Access-token: []
       - Genestack-API-Token: []
@@ -257,6 +277,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -298,6 +323,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
       - Access-token: []
       - Genestack-API-Token: []
@@ -330,6 +360,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -385,6 +420,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
       - Access-token: []
       - Genestack-API-Token: []
@@ -431,6 +471,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -475,6 +520,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -510,6 +560,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -545,6 +600,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
       - Access-token: []
       - Genestack-API-Token: []
@@ -571,6 +631,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -616,6 +681,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -652,6 +722,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -700,6 +775,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
       - Access-token: []
       - Genestack-API-Token: []
@@ -747,6 +827,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not started; try again later."
       security:
         - Access-token: [ ]
         - Genestack-API-Token: [ ]
@@ -817,6 +902,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Info"
           description: successful operation
+        "503":
+          content: { }
+          description: "Too many imports are in progress: the most that ODM runs at once are already\
+            \ running, and the queue of imports waiting for them is full. The\
+            \ job was not restarted; try again later."
       security:
       - Access-token: []
       - Genestack-API-Token: []
