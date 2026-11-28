@@ -18,7 +18,7 @@
 ARG JDK_IMAGE=eclipse-temurin:25.0.5.1_2-jdk-alpine
 ARG PYTHON_IMAGE=python:3.15.2-alpine
 ARG R_IMAGE=rocker/r-ver:4.6.2
-ARG SWAGGER_UI_IMAGE=swaggerapi/swagger-ui:v5.35.1
+ARG SWAGGER_UI_IMAGE=swaggerapi/swagger-ui:v5.36.0
 
 FROM ${JDK_IMAGE} AS build
 
